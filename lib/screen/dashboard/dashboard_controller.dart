@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/screen/dashboard/home/home_controller.dart';
 
 class DashBoardController extends GetxController{
   int currentTab = 0;
@@ -7,6 +8,7 @@ class DashBoardController extends GetxController{
     currentTab = index;
     if (index == 0) {
       debugPrint("INDEX IS 0");
+      Get.put(HomeController());
       // homeController.init();
     } else if (index == 1) {
       debugPrint("INDEX IS 1");

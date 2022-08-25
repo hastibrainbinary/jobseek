@@ -11,14 +11,19 @@ class AssetRes {
   static const chat = '${icons}chat.png';
   static const profile = '${icons}profile.png';
   static const menuIcon = '${icons}menu_icon.png';
+  static const bookMarkBorderIcon = '${icons}bookmark_border.png';
+  static const bookMarkFillIcon = '${icons}bookmark_fill.png';
 
   ///-----------------------------images------------------------------------------------------
   static const splash_screenback = '${images}splash_screenback.png';
+  static const splashFullImage = '${images}splash.png';
   static const frist_backscreen = '${images}frist_backscreen.png';
   static const facebook_image = '${images}facebook_image.png';
   static const Google_logo = '${images}Google_logo.png';
   static const congratsLogo = '${images}congratsLogo.png';
   static const splashBoyImg = '${images}splash_boy.png';
   static const girlImage = '${images}girl.png';
+  static const airBnbLogo = '${images}airbnb_logo.png';
+  static const twitterLogo = '${images}twitter_logo.png';
 
 }
