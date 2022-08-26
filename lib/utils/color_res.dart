@@ -10,6 +10,7 @@ class ColorRes{
   static const textColor=Color(0xff97A0AF);
   static const logoColor=Color(0xffE2D3FE);
   static const starColor= Color(0xffDA1414);
+  static const red= Color(0xffDF3727);
   static const invalidColor= Color(0xffFEEFEF);
   static const backgroungColor=Color(0xffF8F8F8);
   static const splashLogoColor=Color(0xff343740);
@@ -17,4 +18,5 @@ class ColorRes{
   static const grey =Color(0xff616162);
   static const orange =Color(0xffFFB800);
   static const borderColor =Color(0xffF3ECFF);
+
 }

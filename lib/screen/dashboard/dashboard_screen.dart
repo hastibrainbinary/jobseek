@@ -40,7 +40,7 @@ class DashBoardScreen extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(15))),
             child: SalomonBottomBar(
               margin: const EdgeInsets.all(12),
-              selectedItemColor: const Color(0xff8B4EFF),
+              selectedItemColor: ColorRes.containerColor,
               unselectedItemColor: ColorRes.containerColor,
               currentIndex: controller.currentTab,
               onTap: (int index) {

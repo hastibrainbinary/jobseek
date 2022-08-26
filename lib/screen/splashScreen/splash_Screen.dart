@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jobseek/screen/dashboard/dashboard_screen.dart';
-import 'package:jobseek/screen/splashScreen/splash_controller.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
@@ -25,21 +24,29 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ImageProvider backgroundImage = const AssetImage(AssetRes.splash_screenback);
+    backgroundImage.resolve(createLocalImageConfiguration(context));
+    ImageProvider backgroundImageBoy = const AssetImage(AssetRes.splashBoyImg);
+    backgroundImageBoy.resolve(createLocalImageConfiguration(context));
     return Scaffold(
       body: Container(
         height: Get.height,
         width: Get.width,
-       decoration: const BoxDecoration(
-         gradient:LinearGradient(colors: [
-           Color(0xFFBAE5F5),
-           Color(0xFFFADFA8),
-           Color(0xFFE2D3FE),
-           Color(0xFFCCF0C0),
-         ])
-       ),
-       /* decoration: const BoxDecoration(
-            image:
-                DecorationImage(image: AssetImage(AssetRes.splashFullImage*//*splash_screenback*//*),fit: BoxFit.fill)),*/
+        // decoration: const BoxDecoration(
+        //   gradient:LinearGradient(colors: [
+        //     Color(0xFFBAE5F5),
+        //     Color(0xFFFADFA8),
+        //     Color(0xFFE2D3FE),
+        //     Color(0xFFCCF0C0),
+        //   ], begin: Alignment.topLeft,
+        //     end: Alignment.topRight,
+        //     stops: [0.1, 0.4, 0.7, 0.9],
+        //   )
+        // ),
+        decoration:  BoxDecoration(
+            image: DecorationImage(
+                image: backgroundImage,
+                fit: BoxFit.fill)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,10 +128,10 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
             const Spacer(),
             Image.asset(
-              AssetRes.girlImage,
+              AssetRes.splashBoyImg,
               height: Get.height / 1.5,
               width: Get.width,
-                            fit: BoxFit.fill,
+              fit: BoxFit.fill,
               filterQuality: FilterQuality.none,
             )
           ],

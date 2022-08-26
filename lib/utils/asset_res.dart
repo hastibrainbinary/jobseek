@@ -13,6 +13,8 @@ class AssetRes {
   static const menuIcon = '${icons}menu_icon.png';
   static const bookMarkBorderIcon = '${icons}bookmark_border.png';
   static const bookMarkFillIcon = '${icons}bookmark_fill.png';
+  static const uploadIcon = '${icons}upload_icon.png';
+  static const pdfIcon = '${icons}pdf_icon.png';
 
   ///-----------------------------images------------------------------------------------------
   static const splash_screenback = '${images}splash_screenback.png';
@@ -25,5 +27,8 @@ class AssetRes {
   static const girlImage = '${images}girl.png';
   static const airBnbLogo = '${images}airbnb_logo.png';
   static const twitterLogo = '${images}twitter_logo.png';
+  static const notificationDetail = '${images}notification_detail.png';
+  static const successImage = '${images}success_image.png';
+  static const failedImage = '${images}failed_image.png';
 
 }
