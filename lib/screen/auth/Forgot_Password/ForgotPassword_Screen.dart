@@ -10,10 +10,11 @@ import 'ForgotPassword_controller.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   ForgotPasswordScreen({Key? key}) : super(key: key);
-  ForgotPasswordController con = Get.put(ForgotPasswordController());
+
 
   @override
   Widget build(BuildContext context) {
+    ForgotPasswordController con;
     return Scaffold(
       backgroundColor: ColorRes.backgroungColor,
       body: SingleChildScrollView(
