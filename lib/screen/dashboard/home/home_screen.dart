@@ -17,7 +17,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final controller = Get.put(HomeController());
     return Container(
       height: Get.height,
@@ -47,11 +46,14 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
-                  Text(Strings.seeAll,
-                      style: GoogleFonts.poppins(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: ColorRes.containerColor))
+                  InkWell(
+                    onTap: () => Get.toNamed(AppRes.jobRecommendationScreen),
+                    child: Text(Strings.seeAll,
+                        style: GoogleFonts.poppins(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: ColorRes.containerColor)),
+                  )
 
                   // Text("See all",style: GoogleFonts.poppins(fontSize: ),)
                 ],
@@ -101,7 +103,7 @@ class HomeScreen extends StatelessWidget {
 
             const SizedBox(height: 18),
             Container(
-              padding: const EdgeInsets.only(left: 20,right: 20),
+              padding: const EdgeInsets.only(left: 20, right: 20),
               height: 32,
               child: ListView.builder(
                   itemCount: controller.jobs2.length,
@@ -110,31 +112,31 @@ class HomeScreen extends StatelessWidget {
                   physics: const BouncingScrollPhysics(),
                   itemBuilder: (context, index) {
                     return GestureDetector(
-                      onTap:()=>controller.onTapJobs2(index),
-                      child: Obx(()=>Container(
-                        margin: const EdgeInsets.only(right: 10),
-                        height: 32,
-                        width: 70,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                color: ColorRes.containerColor, width: 2),
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(10),
+                      onTap: () => controller.onTapJobs2(index),
+                      child: Obx(() => Container(
+                            margin: const EdgeInsets.only(right: 10),
+                            height: 32,
+                            width: 70,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: ColorRes.containerColor, width: 2),
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                                color: controller.selectedJobs2.value == index
+                                    ? ColorRes.containerColor
+                                    : ColorRes.white),
+                            child: Text(
+                              controller.jobs2[index],
+                              style: appTextStyle(
+                                  color: controller.selectedJobs2.value == index
+                                      ? ColorRes.white
+                                      : ColorRes.containerColor,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600),
                             ),
-                            color: controller.selectedJobs2.value == index
-                                ? ColorRes.containerColor
-                                : ColorRes.white),
-                        child: Text(
-                          controller.jobs2[index],
-                          style: appTextStyle(
-                              color: controller.selectedJobs2.value == index
-                                  ? ColorRes.white
-                                  : ColorRes.containerColor,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      )),
+                          )),
                     );
                   }),
             ),
@@ -145,12 +147,12 @@ class HomeScreen extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   return InkWell(
-                    onTap: ()=>Get.toNamed(AppRes.jobDetailScreen),
+                    onTap: () => Get.toNamed(AppRes.jobDetailScreen),
                     child: Container(
                       height: 92,
                       width: Get.width,
-                      margin:
-                          const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 18, vertical: 4),
                       padding: const EdgeInsets.all(15),
                       decoration: BoxDecoration(
                           borderRadius:
@@ -206,7 +208,8 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                   );
-                })
+                }),
+
           ],
         ),
       ),
