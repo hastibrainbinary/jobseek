@@ -15,10 +15,10 @@ class splash_Screen extends StatelessWidget {
       body: Container(
         height: Get.height,
         width: Get.width,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
-              (AssetRes.splash_screenback),
+              (AssetRes.splashScreenBack),
             ),
           ),
         ),

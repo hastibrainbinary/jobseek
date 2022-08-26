@@ -1,14 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/screen/auth/congratsPage/congrastsScreen.dart';
 
 class ResetPasswordController extends GetxController {
   TextEditingController passwordController = TextEditingController();
-  TextEditingController ConfrimPassword = TextEditingController();
+  TextEditingController  confirmPasswordController = TextEditingController();
 
   String pwdError = "";
   String newpwdErroe = "";
-  bool _autoValidate = false;
+
 
   passwordValidation() {
     if (passwordController.text.trim() == "") {
@@ -23,19 +24,28 @@ class ResetPasswordController extends GetxController {
   }
 
   newpasswordValidation() {
-    if (ConfrimPassword.text.trim() == "") {
+    if (confirmPasswordController.text.trim() == "") {
       newpwdErroe = "Enter Password";
     } else {
-      if (passwordController.text.trim() == ConfrimPassword.text.trim()) {
+      if (passwordController.text.trim() == confirmPasswordController.text.trim()) {
         newpwdErroe = '';
       } else {
         newpwdErroe = "Enter valid password";
       }
     }
   }
+  bool validator() {
+    passwordValidation();
+    newpasswordValidation();
+    if (pwdError == ""&&newpwdErroe=="" ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   bool show = false;
-  bool Confirm = false;
+  bool confirm = false;
 
   chang() {
     debugPrint("SHOW $show");
@@ -44,20 +54,12 @@ class ResetPasswordController extends GetxController {
   }
 
   Rechange() {
-    debugPrint("Confirm $Confirm");
-    Confirm = !Confirm;
+    debugPrint("Confirm $confirm");
+    confirm = !confirm;
     update(['ConfirmPassword']);
   }
 
-  bool validator() {
-    passwordValidation();
-    newpasswordValidation();
-    if (pwdError == "") {
-      return true;
-    } else {
-      return false;
-    }
-  }
+
 
   bool rememberMe = false;
 
@@ -67,18 +69,46 @@ class ResetPasswordController extends GetxController {
       update(['remember_me']);
     }
   }
-  bool buttonColor = false;
 
-  button() {
-    if (passwordController.text != '' && ConfrimPassword.text != '') {
-      buttonColor = true;
-      update(['color']);
-    } else {
-      buttonColor = false;
+  // bool buttonColor = false;
 
-
-      update(['color']);
+  // button() {
+  //   if (passwordController.text != '' && confirmPasswordController.text != '') {
+  //     buttonColor = true;
+  //     update(['color']);
+  //   } else {
+  //     buttonColor = false;
+  //
+  //     update(['color']);
+  //   }
+  //   update();
+  // }
+  onLoginBtnTap() {
+    if (validator()) {
+      print("GO TO HOME PAGE");
+      Get.to(const CongratsScreen());
     }
-    update();
+    update(["NewPassword"]);
+    update(["ConfirmPassword"]);
   }
+  bool validation() {
+    // if (newPasswordController.text.isEmpty) {
+    //   errorToast(Strings.newPasswordError);
+    //   return false;
+    // } else if (validatePassword(newPasswordController.text) == false) {
+    //   errorToast(Strings.confirmShortPassword);
+    //   return false;
+    // } else if (confirmPasswordController.text.isEmpty) {
+    //   errorToast(Strings.coPasswordEmpty);
+    //   return false;
+    // } else if (validatePassword(confirmPasswordController.text) == false) {
+    //   errorToast(Strings.confirmShortPassword);
+    //   return false;
+    // } else if (confirmPasswordController.text != newPasswordController.text) {
+    //   errorToast(Strings.confirmPasswordMismatch);
+    //   return false;
+    // }
+    return true;
+  }
+
 }
