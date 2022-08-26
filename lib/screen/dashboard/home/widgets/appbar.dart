@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/color_res.dart';
 
@@ -42,17 +44,20 @@ Widget homeAppBar() {
             ),
           ),
         ),
-        Container(
-            height: 40,
-            width: 40,
-            alignment: Alignment.center,
-            decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                color: ColorRes.logoColor),
-            child: const Icon(
-              Icons.notifications,
-              color: ColorRes.containerColor,
-            )),
+        InkWell(
+          onTap: ()=>Get.toNamed(AppRes.notificationScreen),
+          child: Container(
+              height: 40,
+              width: 40,
+              alignment: Alignment.center,
+              decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  color: ColorRes.logoColor),
+              child: const Icon(
+                Icons.notifications,
+                color: ColorRes.containerColor,
+              )),
+        ),
       ],
     ),
   );

@@ -29,10 +29,18 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Container(
         height: Get.height,
         width: Get.width,
-        decoration: const BoxDecoration(
+       decoration: const BoxDecoration(
+         gradient:LinearGradient(colors: [
+           Color(0xFFBAE5F5),
+           Color(0xFFFADFA8),
+           Color(0xFFE2D3FE),
+           Color(0xFFCCF0C0),
+         ])
+       ),
+       /* decoration: const BoxDecoration(
             image:
-                DecorationImage(image: AssetImage(AssetRes.splashFullImage/*splash_screenback*/),fit: BoxFit.fill)),
-       /* child: Column(
+                DecorationImage(image: AssetImage(AssetRes.splashFullImage*//*splash_screenback*//*),fit: BoxFit.fill)),*/
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -113,13 +121,14 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
             const Spacer(),
             Image.asset(
-              AssetRes.splashBoyImg,
+              AssetRes.girlImage,
               height: Get.height / 1.5,
               width: Get.width,
-              fit: BoxFit.fill,
+                            fit: BoxFit.fill,
+              filterQuality: FilterQuality.none,
             )
           ],
-        ),*/
+        ),
       ),
     );
   }

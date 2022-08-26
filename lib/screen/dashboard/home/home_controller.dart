@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HomeController extends GetxController {
+class HomeController extends GetxController implements GetxService{
   TextEditingController searchController = TextEditingController();
 
 
@@ -13,12 +13,11 @@ class HomeController extends GetxController {
   // }
 
 
-  int selectedJobs2 = 0;
-  List jobs2 = ["All Job", "Writer", "Design", "Finance"];
+  RxInt selectedJobs2 = 0.obs;
+  RxList jobs2 = ["All Job", "Writer", "Design", "Finance"].obs;
 
    onTapJobs2(int index){
-    debugPrint("OnTAP");
-    selectedJobs2 = index;
-    update(["hList"]);
+     selectedJobs2.value = index;
+    //update(["hList"]);
   }
 }
