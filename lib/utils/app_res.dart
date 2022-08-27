@@ -4,4 +4,5 @@ class AppRes{
   static String jobDetailUploadCvScreen = "/jobDetailUploadCvScreen";
   static String jobDetailSuccessOrFailed = "/jobDetailSuccessOrFailed";
   static String jobRecommendationScreen = "/jobRecommendationScreen";
+  static String organizationProfileScreen = "/organizationProfileScreen";
 }
