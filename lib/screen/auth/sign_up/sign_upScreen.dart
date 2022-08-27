@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:jobseek/screen/auth/Forgot_Password/ForgotPassword_Screen.dart';
 import 'package:jobseek/screen/auth/sign_up/sign_upController.dart';
 import 'package:jobseek/screen/auth/sign_up/widget/signup_bottom/country.dart';
+import 'package:jobseek/screen/sign_inScreen/Signin_Screen.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
@@ -1293,7 +1294,12 @@ class sign_upScreen extends StatelessWidget {
                           ),
                           GetBuilder<SignUpController>(
                             builder: (controller) => TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (con) => SigninScreen()));
+                              },
                               child: Text(
                                 'Sign In',
                                 style: GoogleFonts.poppins(

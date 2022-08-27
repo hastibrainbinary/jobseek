@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jobseek/screen/auth/Forgot_Password/ForgotPassword_Screen.dart';
@@ -87,7 +86,7 @@ class SigninScreen extends StatelessWidget {
                                       BoxShadow(
                                           offset: const Offset(6, 6),
                                           color: ColorRes.containerColor
-                                              .withOpacity(0.07),
+                                              .withOpacity(0.12),
                                           spreadRadius: 0,
                                           blurRadius: 35),
                                     ],
@@ -227,7 +226,7 @@ class SigninScreen extends StatelessWidget {
                                       BoxShadow(
                                           offset: const Offset(6, 6),
                                           color: ColorRes.containerColor
-                                              .withOpacity(0.05),
+                                              .withOpacity(0.13),
                                           spreadRadius: 0,
                                           blurRadius: 35),
                                     ],
@@ -375,28 +374,77 @@ class SigninScreen extends StatelessWidget {
                             ],
                           ),
                           SizedBox(height: Get.height * 0.02),
-                          InkWell(
-                            onTap: controller.onLoginBtnTap,
-                            child: Container(
-                              height: 50,
-                              //width: 339,
-
-                              width: MediaQuery.of(context).size.width,
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                gradient: LinearGradient(colors: [
-                                  ColorRes.gradientColor.withOpacity(0.2),
-                                  ColorRes.containerColor.withOpacity(0.4)
-                                ]),
-                              ),
-                              child: Text("Sign In",
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500,
-                                      color: ColorRes.white)),
-                            ),
-                          ),
+                          GetBuilder<SignInScreenController>(
+                              id: "colorChange",
+                              builder: (controller) {
+                                return (controller.emailController.text == '' ||
+                                        controller.passwordController.text ==
+                                            '')
+                                    ? Container(
+                                        height: 50,
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        alignment: Alignment.center,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          gradient: LinearGradient(colors: [
+                                            ColorRes.gradientColor
+                                                .withOpacity(0.2),
+                                            ColorRes.containerColor
+                                                .withOpacity(0.4)
+                                          ]),
+                                        ),
+                                        child: Text("Sign In",
+                                            style: GoogleFonts.poppins(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w500,
+                                                color: ColorRes.white)),
+                                      )
+                                    : InkWell(
+                                        onTap: controller.onLoginBtnTap,
+                                        child: Container(
+                                          height: 50,
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            gradient: const LinearGradient(
+                                                colors: [
+                                                  ColorRes.gradientColor,
+                                                  ColorRes.containerColor
+                                                ]),
+                                          ),
+                                          child: Text("Sign In",
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: ColorRes.white)),
+                                        ),
+                                      );
+                              }),
+                          // InkWell(
+                          //   onTap: controller.onLoginBtnTap,
+                          //   child: Container(
+                          //     height: 50,
+                          //     width: MediaQuery.of(context).size.width,
+                          //     alignment: Alignment.center,
+                          //     decoration: BoxDecoration(
+                          //       borderRadius: BorderRadius.circular(10),
+                          //       gradient: LinearGradient(colors: [
+                          //         ColorRes.gradientColor.withOpacity(0.2),
+                          //         ColorRes.containerColor.withOpacity(0.4)
+                          //       ]),
+                          //     ),
+                          //     child: Text("Sign In",
+                          //         style: GoogleFonts.poppins(
+                          //             fontSize: 18,
+                          //             fontWeight: FontWeight.w500,
+                          //             color: ColorRes.white)),
+                          //   ),
+                          // ),
                           SizedBox(height: Get.height * 0.0221),
                           Center(
                             child: InkWell(
