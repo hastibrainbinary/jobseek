@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:jobseek/screen/job_detail_screen/job_detail_screen.dart';
 import 'package:jobseek/screen/job_recommendation_screen/job_recommendation_screen.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_screen.dart';
@@ -8,8 +7,6 @@ import 'package:jobseek/screen/job_detail_screen/job_details_success_or_fails/jo
 import 'package:jobseek/screen/notification_screen/notification_screen.dart';
 import 'package:jobseek/screen/splashScreen/splash_Screen.dart';
 import 'package:jobseek/utils/app_res.dart';
-
-
 
 void main() {
   runApp(const MyApp());
@@ -29,20 +26,24 @@ class MyApp extends StatelessWidget {
       home: SplashScreen(),
       initialRoute: "/",
       getPages: [
-        GetPage(name: AppRes.notificationScreen, page: ()=>const NotificationScreen()),
-        GetPage(name: AppRes.jobDetailScreen, page: ()=> JobDetailScreen()),
-        GetPage(name: AppRes.jobDetailUploadCvScreen, page: ()=> JobDetailsUploadCvScreen()),
-        GetPage(name: AppRes.jobDetailSuccessOrFailed, page: ()=>  JobDetailsSuccessOrFailedScreen()),
         GetPage(
             name: AppRes.notificationScreen,
             page: () => const NotificationScreen()),
+        GetPage(name: AppRes.jobDetailScreen, page: () => JobDetailScreen()),
         GetPage(
-            name: AppRes.jobDetailScreen, page: () => const JobDetailScreen()),
+            name: AppRes.jobDetailUploadCvScreen,
+            page: () => JobDetailsUploadCvScreen()),
+        GetPage(
+            name: AppRes.jobDetailSuccessOrFailed,
+            page: () => JobDetailsSuccessOrFailedScreen()),
+        GetPage(
+            name: AppRes.notificationScreen,
+            page: () => const NotificationScreen()),
+        GetPage(name: AppRes.jobDetailScreen, page: () => JobDetailScreen()),
         GetPage(
             name: AppRes.jobRecommendationScreen,
             page: () => const JobRecommendation()),
       ],
-
     );
   }
 }

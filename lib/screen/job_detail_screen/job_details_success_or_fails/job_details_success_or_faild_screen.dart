@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_controller.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_widget/job_details_appbar.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
@@ -10,6 +11,7 @@ import 'package:jobseek/utils/string.dart';
 class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
   JobDetailsSuccessOrFailedScreen({Key? key}) : super(key: key);
   var args = Get.arguments;
+  final JobDetailsUploadCvController controller = JobDetailsUploadCvController();
 
   @override
   Widget build(BuildContext context) {
@@ -66,11 +68,12 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                     const SizedBox(height: 25),
                     Container(
                       width: Get.width,
+                      margin: const EdgeInsets.only(top: 10),
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       decoration: BoxDecoration(
                         color: const Color(0xffEEEBF4),
                         borderRadius:
-                            const BorderRadius.all(Radius.circular(15)),
+                        const BorderRadius.all(Radius.circular(15)),
                         border: Border.all(color: ColorRes.borderColor),
                       ),
                       child: Row(
@@ -82,11 +85,15 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("Resume - Adam Smith.pdf",
-                                  style: appTextStyle(
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w600,
-                                      color: ColorRes.black)),
+                              SizedBox(
+                                width:Get.width * 0.65,
+                                child: Text(
+                                    args[0]['filename'].value /*"Resume - Adam Smith.pdf"*/,
+                                    style: appTextStyle(
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w600,
+                                        color: ColorRes.black)),
+                              ),
                               const SizedBox(height: 10),
                               Text("440 kb",
                                   style: appTextStyle(

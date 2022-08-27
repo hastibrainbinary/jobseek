@@ -6,7 +6,7 @@ import 'package:jobseek/utils/app_res.dart';
 class JobDetailsUploadCvController extends GetxController {
   onTapApply() {
     Get.toNamed(AppRes.jobDetailSuccessOrFailed, arguments: [
-      {"error": false}
+      {"error": false,"filename":filepath}
     ]);
   }
 
