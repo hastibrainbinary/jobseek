@@ -194,14 +194,15 @@ class OrganizationProfileScreen extends StatelessWidget {
                       ),
                       commonTextFormField(
                           textDecoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "City",
-                              hintStyle: appTextStyle(
-                                  color: ColorRes.grey.withOpacity(0.5)),
-                              suffixIcon: const Icon(
-                                Icons.arrow_drop_down_rounded,
-                                size: 50,
-                              )),
+                            border: InputBorder.none,
+                            hintText: "City",
+                            hintStyle: appTextStyle(
+                                color: ColorRes.grey.withOpacity(0.5)),
+                            suffixIcon: const Icon(
+                              Icons.arrow_drop_down_rounded,
+                              size: 50,
+                            ),
+                          ),
                           controller: controller.companyName),
                       const SizedBox(
                         height: 20,
@@ -223,11 +224,12 @@ class OrganizationProfileScreen extends StatelessWidget {
                       ),
                       commonTextFormField(
                           textDecoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "Address",
-                              hintStyle: appTextStyle(
-                                  color: ColorRes.grey.withOpacity(0.5)),
-                              suffixIcon: const Icon(Icons.mail_outline)),
+                            border: InputBorder.none,
+                            hintText: "Address",
+                            hintStyle: appTextStyle(
+                                color: ColorRes.grey.withOpacity(0.5)),
+                            // suffixIcon: const Icon(Icons.mail_outline),
+                          ),
                           controller: controller.companyAddress),
                       controller.isAddressValidate.value == true
                           ? Column(

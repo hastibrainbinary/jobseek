@@ -507,6 +507,7 @@ class sign_upScreen extends StatelessWidget {
                                       shadowColor: ColorRes.containerColor,
                                       borderRadius: BorderRadius.circular(12),
                                       child: TextFormField(
+                                        keyboardType: TextInputType.number,
                                         controller: controller.phoneController,
                                         decoration: InputDecoration(
                                             // prefix:countryCodePicker(context) ,
@@ -599,6 +600,7 @@ class sign_upScreen extends StatelessWidget {
                                 shadowColor: ColorRes.containerColor,
                                 borderRadius: BorderRadius.circular(12),
                                 child: TextFormField(
+                                  keyboardType: TextInputType.number,
                                   controller: controller.passwordController,
                                   obscureText: controller.show,
                                   decoration: InputDecoration(

@@ -425,26 +425,6 @@ class SigninScreen extends StatelessWidget {
                                         ),
                                       );
                               }),
-                          // InkWell(
-                          //   onTap: controller.onLoginBtnTap,
-                          //   child: Container(
-                          //     height: 50,
-                          //     width: MediaQuery.of(context).size.width,
-                          //     alignment: Alignment.center,
-                          //     decoration: BoxDecoration(
-                          //       borderRadius: BorderRadius.circular(10),
-                          //       gradient: LinearGradient(colors: [
-                          //         ColorRes.gradientColor.withOpacity(0.2),
-                          //         ColorRes.containerColor.withOpacity(0.4)
-                          //       ]),
-                          //     ),
-                          //     child: Text("Sign In",
-                          //         style: GoogleFonts.poppins(
-                          //             fontSize: 18,
-                          //             fontWeight: FontWeight.w500,
-                          //             color: ColorRes.white)),
-                          //   ),
-                          // ),
                           SizedBox(height: Get.height * 0.0221),
                           Center(
                             child: InkWell(
@@ -591,7 +571,6 @@ class SigninScreen extends StatelessWidget {
   OutlineInputBorder enableBorder() {
     return OutlineInputBorder(
       borderSide: const BorderSide(color: ColorRes.containerColor),
-      // borderSide: BorderSide.none,
       borderRadius: BorderRadius.circular(10),
     );
   }
@@ -599,7 +578,6 @@ class SigninScreen extends StatelessWidget {
   OutlineInputBorder errorBorder() {
     return OutlineInputBorder(
       borderSide: const BorderSide(color: ColorRes.starColor),
-      // borderSide: BorderSide.none,
       borderRadius: BorderRadius.circular(10),
     );
   }

@@ -37,7 +37,8 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                       margin: const EdgeInsets.symmetric(vertical: 4),
                       padding: const EdgeInsets.all(15),
                       decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(Radius.circular(15)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(15)),
                           border: Border.all(color: const Color(0xffF3ECFF)),
                           color: ColorRes.white),
                       child: Row(
@@ -75,6 +76,7 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
                             color: ColorRes.black)),
+
                     ///upload pdf error Container
                     Container(
                       width: Get.width,
@@ -98,11 +100,15 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                               height: 25,
                             ),
                             const SizedBox(width: 10),
-                            Text("Upload failed,please re-upload your file",
-                                style: appTextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 12,
-                                    color: ColorRes.starColor)),
+                            SizedBox(
+                              width: Get.width * 0.65,
+                              child: Text(
+                                  "Upload failed,please re-upload your file",
+                                  style: appTextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 12,
+                                      color: ColorRes.starColor)),
+                            ),
                             const Spacer(),
                             const Icon(
                               Icons.clear,
@@ -113,45 +119,45 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
 
                     Obx(() => controller.filepath.value != ""
                         ? Container(
-                      width: Get.width,
-                      margin: const EdgeInsets.only(top: 10),
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      decoration: BoxDecoration(
-                        color: const Color(0xffEEEBF4),
-                        borderRadius:
-                        const BorderRadius.all(Radius.circular(15)),
-                        border: Border.all(color: ColorRes.borderColor),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Image.asset(AssetRes.pdfIcon, height: 90),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                width:Get.width * 0.65,
-                                child: Text(
-                                    controller.filepath
-                                        .value /*"Resume - Adam Smith.pdf"*/,
-                                    style: appTextStyle(
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.w600,
-                                        color: ColorRes.black)),
-                              ),
-                              const SizedBox(height: 10),
-                              Text("440 kb",
-                                  style: appTextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.w400,
-                                      color: ColorRes.grey))
-                            ],
+                            width: Get.width,
+                            margin: const EdgeInsets.only(top: 10),
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            decoration: BoxDecoration(
+                              color: const Color(0xffEEEBF4),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(15)),
+                              border: Border.all(color: ColorRes.borderColor),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Image.asset(AssetRes.pdfIcon, height: 90),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      width: Get.width * 0.65,
+                                      child: Text(
+                                          controller.filepath
+                                              .value /*"Resume - Adam Smith.pdf"*/,
+                                          style: appTextStyle(
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.w600,
+                                              color: ColorRes.black)),
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Text("440 kb",
+                                        style: appTextStyle(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w400,
+                                            color: ColorRes.grey))
+                                  ],
+                                )
+                              ],
+                            ),
                           )
-                        ],
-                      ),
-                    )
                         : const SizedBox()),
 
                     GestureDetector(
@@ -162,7 +168,8 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 50, bottom: 40),
                         decoration: BoxDecoration(
                           color: ColorRes.white,
-                          borderRadius: const BorderRadius.all(Radius.circular(15)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(15)),
                           border: Border.all(color: ColorRes.borderColor),
                         ),
                         child: Column(
@@ -184,7 +191,7 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                     ),
 
                     ///uploading loader
-                   /* Container(
+                    /* Container(
                       width: Get.width,
                       padding: const EdgeInsets.symmetric(vertical: 35),
                       margin: const EdgeInsets.only(top: 10),
@@ -223,7 +230,8 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                         margin: const EdgeInsets.only(
                             right: 18, left: 18, top: 10, bottom: 30),
                         decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(Radius.circular(10)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
                           gradient: LinearGradient(colors: [
                             ColorRes.gradientColor.withOpacity(0.4),
                             ColorRes.containerColor.withOpacity(0.4),
