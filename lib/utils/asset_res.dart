@@ -16,7 +16,7 @@ class AssetRes {
   static const uploadIcon = '${icons}upload_icon.png';
   static const pdfIcon = '${icons}pdf_icon.png';
 
-///-----------------------------images------------------------------------------------------
+  ///-----------------------------images------------------------------------------------------
   static const splashScreenBack ='${images}splash_screenback.png';
   static const firstBackScreen ='${images}fristBackScreen.png';
   ///-----------------------------images------------------------------------------------------

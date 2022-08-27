@@ -50,20 +50,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.16.0"
-  country_calling_code_picker:
-    dependency: "direct main"
-    description:
-      name: country_calling_code_picker
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.1"
-  country_picker:
-    dependency: "direct main"
-    description:
-      name: country_picker
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.16"
   crypto:
     dependency: transitive
     description:
@@ -118,6 +104,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+<<<<<<<<< Temporary merge branch 1
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -125,6 +112,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.7"
+=========
   flutter_sim_country_code:
     dependency: transitive
     description:
@@ -132,6 +120,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.2"
+>>>>>>>>> Temporary merge branch 2
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -253,7 +242,7 @@ packages:
       name: path_provider_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.19"
+    version: "2.0.20"
   path_provider_ios:
     dependency: transitive
     description:
@@ -405,7 +394,7 @@ packages:
       name: xdg_directories
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.0+1"
+    version: "0.2.0+2"
 sdks:
   dart: ">=2.17.6 <3.0.0"
   flutter: ">=3.0.0"
