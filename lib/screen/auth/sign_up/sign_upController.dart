@@ -2,7 +2,7 @@ import 'package:country_picker/country_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/screen/sign_inScreen/Signin_Screen.dart';
+import 'package:jobseek/screen/dashboard/dashboard_screen.dart';
 
 class SignUpController extends GetxController {
   TextEditingController firstnameController = TextEditingController();
@@ -41,7 +41,7 @@ class SignUpController extends GetxController {
   firstNameValidation() {
     if (firstnameController.text.trim() == "") {
       firstError = 'Please Enter Firstname';
-    }else{
+    } else {
       firstError = "";
     }
   }
@@ -49,23 +49,23 @@ class SignUpController extends GetxController {
   lastNameValidation() {
     if (lastnameController.text.trim() == "") {
       lastError = 'Please Enter Lastname';
-    }else{
+    } else {
       lastError = "";
     }
   }
 
   cityNameValidation() {
     if (cityController.text.trim() == "") {
-     cityError = 'Please Enter city';
-    }else{
-     cityError = "";
+      cityError = 'Please Enter city';
+    } else {
+      cityError = "";
     }
   }
 
   stateNameValidation() {
     if (stateController.text.trim() == "") {
       stateError = 'Please Enter State';
-    }else{
+    } else {
       stateError = "";
     }
   }
@@ -73,7 +73,7 @@ class SignUpController extends GetxController {
   countryNameValidation() {
     if (cityController.text.trim() == "") {
       countryError = 'Please Enter Country';
-    }else{
+    } else {
       countryError = "";
     }
   }
@@ -134,7 +134,7 @@ class SignUpController extends GetxController {
   onLoginBtnTap() {
     if (validator()) {
       print("GO TO HOME PAGE");
-      Get.to(SigninScreen());
+      Get.to(DashBoardScreen());
     }
     update(["showEmail"]);
     update(["showLastname"]);

@@ -27,8 +27,8 @@ class AssetRes {
   static const Google_logo ='${images}Google_logo.png';
   static const congratsLogo ='${images}congratsLogo.png';
   static const dropdwon ='${images}dropdwon.png';
-  static const Google_logo = '${images}Google_logo.png';
-  static const congratsLogo = '${images}congratsLogo.png';
+
+
   static const splashBoyImg = '${images}splash_boy.png';
   static const girlImage = '${images}girl.png';
   static const airBnbLogo = '${images}airbnb_logo.png';
