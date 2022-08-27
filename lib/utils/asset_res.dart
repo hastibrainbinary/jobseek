@@ -16,15 +16,7 @@ class AssetRes {
   static const uploadIcon = '${icons}upload_icon.png';
   static const pdfIcon = '${icons}pdf_icon.png';
 
-///-----------------------------images------------------------------------------------------
-  static const splashScreenBack ='${images}splash_screenback.png';
-  static const firstBackScreen ='${images}fristBackScreen.png';
-  static const facebook_image = '${images}facebook_image.png';
-  static const Google_logo ='${images}Google_logo.png';
-  static const congratsLogo ='${images}congratsLogo.png';
-  static const dropdwon ='${images}dropdwon.png';
-}
-///-----------------------------images------------------------------------------------------
+  ///-----------------------------images------------------------------------------------------
   static const splashScreenBack ='${images}splash_screenback.png';
   static const firstBackScreen ='${images}fristBackScreen.png';
   ///-----------------------------images------------------------------------------------------

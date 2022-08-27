@@ -23,9 +23,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    ImageProvider backgroundImage = const AssetImage(AssetRes.splash_screenback);
+    ImageProvider backgroundImage =  const AssetImage(AssetRes.splash_screenback);
     backgroundImage.resolve(createLocalImageConfiguration(context));
-    ImageProvider backgroundImageBoy = const AssetImage(AssetRes.splashBoyImg);
+    ImageProvider backgroundImageBoy =  const AssetImage(AssetRes.splashBoyImg);
     backgroundImageBoy.resolve(createLocalImageConfiguration(context));
     return Scaffold(
       body: Container(
