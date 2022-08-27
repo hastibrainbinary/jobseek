@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jobseek/screen/auth/Forgot_Password/ForgotPassword_Screen.dart';
 import 'package:jobseek/screen/auth/sign_up/sign_upScreen.dart';
 import 'package:jobseek/screen/sign_inScreen/Signin_controller.dart';
+import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
-import '../../utils/asset_res.dart';
+class SigninScreen extends StatelessWidget {
+  SigninScreen({Key? key}) : super(key: key);
 
-class Signin_Screen extends StatelessWidget {
-  Signin_Screen({Key? key}) : super(key: key);
-
-  SigninScreenController controller = Get.put(SigninScreenController());
+  SignInScreenController controller = Get.put(SignInScreenController());
 
   final formGlobalKey = GlobalKey<FormState>();
 
@@ -23,9 +21,6 @@ class Signin_Screen extends StatelessWidget {
             backgroundColor: ColorRes.white,
             body: Obx(() {
               return Stack(children: [
-                controller.loading.isTrue
-                    ? CircularProgressIndicator()
-                    : SizedBox(),
                 SingleChildScrollView(
                   child: Container(
                     margin: const EdgeInsets.all(20),
@@ -81,7 +76,7 @@ class Signin_Screen extends StatelessWidget {
                               ),
                             ),
                           ),
-                          GetBuilder<SigninScreenController>(
+                          GetBuilder<SignInScreenController>(
                             id: "showEmail",
                             builder: (controller) => Column(
                               children: [
@@ -91,7 +86,7 @@ class Signin_Screen extends StatelessWidget {
                                       BoxShadow(
                                           offset: const Offset(6, 6),
                                           color: ColorRes.containerColor
-                                              .withOpacity(0.07),
+                                              .withOpacity(0.12),
                                           spreadRadius: 0,
                                           blurRadius: 35),
                                     ],
@@ -102,12 +97,9 @@ class Signin_Screen extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(10),
                                     child: TextFormField(
                                       controller: controller.emailController,
-                                      // validator: MultiValidator([
-                                      //
-                                      //   EmailValidator(errorText: "Enter valid email id"),
-                                      // ]),
                                       decoration: InputDecoration(
-                                        contentPadding: EdgeInsets.all(10),
+                                        contentPadding:
+                                            const EdgeInsets.all(10),
                                         hintText: 'Email',
                                         fillColor: ColorRes.white,
                                         filled: true,
@@ -191,8 +183,8 @@ class Signin_Screen extends StatelessWidget {
                                                 ),
                                                 height: 14,
                                               ),
-                                              SizedBox(width: 10),
-                                              Text('Invalid email',
+                                              const SizedBox(width: 10),
+                                              Text(controller.emailError,
                                                   style: GoogleFonts.poppins(
                                                       fontWeight:
                                                           FontWeight.w400,
@@ -224,145 +216,141 @@ class Signin_Screen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          GetBuilder<SigninScreenController>(
+                          GetBuilder<SignInScreenController>(
                             id: "showPassword",
-                            builder: (controller) => Container(
-                              decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                      offset: const Offset(6, 6),
-                                      color: ColorRes.containerColor
-                                          .withOpacity(0.05),
-                                      spreadRadius: 0,
-                                      blurRadius: 35),
-                                ],
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: Material(
-                                shadowColor: ColorRes.containerColor,
-                                borderRadius: BorderRadius.circular(12),
-                                child: TextFormField(
-                                  controller: controller.passwordController,
-                                  obscureText: controller.show,
-                                  decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.all(10),
-                                    hintText: 'Password',
-                                    // focusedBorder: OutlineInputBorder(
-                                    //   borderRadius: BorderRadius.circular(10),
-                                    //   borderSide: BorderSide(
-                                    //       color: ColorRes.containerColor),
-                                    // ),
-                                    // enabledBorder: OutlineInputBorder(
-                                    //     borderSide:
-                                    //     BorderSide(color: ColorRes.starColor),
-                                    //     borderRadius: BorderRadius.circular(10)),
-                                    fillColor: ColorRes.white,
-                                    suffixIcon: IconButton(
-                                      icon: controller.show
-                                          ? Icon(Icons.visibility_off,
-                                              color: ColorRes.black
-                                                  .withOpacity(0.15))
-                                          : Icon(Icons.visibility,
-                                              color: ColorRes.black
-                                                  .withOpacity(0.15)),
-                                      onPressed: controller.chang,
+                            builder: (controller) => Column(
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                          offset: const Offset(6, 6),
+                                          color: ColorRes.containerColor
+                                              .withOpacity(0.13),
+                                          spreadRadius: 0,
+                                          blurRadius: 35),
+                                    ],
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  child: Material(
+                                    shadowColor: ColorRes.containerColor,
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: TextFormField(
+                                      controller: controller.passwordController,
+                                      obscureText: controller.show,
+                                      decoration: InputDecoration(
+                                        contentPadding:
+                                            const EdgeInsets.all(10),
+                                        hintText: 'Password',
+                                        fillColor: ColorRes.white,
+                                        suffixIcon: IconButton(
+                                          icon: controller.show
+                                              ? Icon(Icons.visibility_off,
+                                                  color: ColorRes.black
+                                                      .withOpacity(0.15))
+                                              : Icon(Icons.visibility,
+                                                  color: ColorRes.black
+                                                      .withOpacity(0.15)),
+                                          onPressed: controller.chang,
+                                        ),
+                                        filled: true,
+                                        hintStyle: GoogleFonts.poppins(
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 15,
+                                            color: ColorRes.black
+                                                .withOpacity(0.15)),
+                                        border: controller
+                                                .passwordController.text
+                                                .trim()
+                                                .isEmpty
+                                            ? InputBorder.none
+                                            : controller.pwdError.isNotEmpty
+                                                ? errorBorder()
+                                                : enableBorder(),
+                                        focusedBorder: controller
+                                                .passwordController.text
+                                                .trim()
+                                                .isEmpty
+                                            ? InputBorder.none
+                                            : controller.pwdError.isNotEmpty
+                                                ? errorBorder()
+                                                : enableBorder(),
+                                        disabledBorder: controller
+                                                .passwordController.text
+                                                .trim()
+                                                .isEmpty
+                                            ? InputBorder.none
+                                            : controller.pwdError.isNotEmpty
+                                                ? errorBorder()
+                                                : enableBorder(),
+                                        enabledBorder: controller
+                                                .passwordController.text
+                                                .trim()
+                                                .isEmpty
+                                            ? InputBorder.none
+                                            : controller.pwdError.isNotEmpty
+                                                ? errorBorder()
+                                                : enableBorder(),
+                                        errorBorder: controller
+                                                .passwordController.text
+                                                .trim()
+                                                .isEmpty
+                                            ? InputBorder.none
+                                            : controller.pwdError.isNotEmpty
+                                                ? errorBorder()
+                                                : enableBorder(),
+                                        focusedErrorBorder: controller
+                                                .passwordController.text
+                                                .trim()
+                                                .isEmpty
+                                            ? InputBorder.none
+                                            : controller.pwdError.isNotEmpty
+                                                ? errorBorder()
+                                                : enableBorder(),
+                                      ),
                                     ),
-                                    filled: true,
-                                    hintStyle: GoogleFonts.poppins(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 15,
-                                        color:
-                                            ColorRes.black.withOpacity(0.15)),
-                                    border: controller.passwordController.text
-                                            .trim()
-                                            .isEmpty
-                                        ? InputBorder.none
-                                        : controller.pwdError.isNotEmpty
-                                            ? errorBorder()
-                                            : enableBorder(),
-                                    focusedBorder: controller
-                                            .passwordController.text
-                                            .trim()
-                                            .isEmpty
-                                        ? InputBorder.none
-                                        : controller.pwdError.isNotEmpty
-                                            ? errorBorder()
-                                            : enableBorder(),
-                                    disabledBorder: controller
-                                            .passwordController.text
-                                            .trim()
-                                            .isEmpty
-                                        ? InputBorder.none
-                                        : controller.pwdError.isNotEmpty
-                                            ? errorBorder()
-                                            : enableBorder(),
-                                    enabledBorder: controller
-                                            .passwordController.text
-                                            .trim()
-                                            .isEmpty
-                                        ? InputBorder.none
-                                        : controller.pwdError.isNotEmpty
-                                            ? errorBorder()
-                                            : enableBorder(),
-                                    errorBorder: controller
-                                            .passwordController.text
-                                            .trim()
-                                            .isEmpty
-                                        ? InputBorder.none
-                                        : controller.pwdError.isNotEmpty
-                                            ? errorBorder()
-                                            : enableBorder(),
-                                    focusedErrorBorder: controller
-                                            .passwordController.text
-                                            .trim()
-                                            .isEmpty
-                                        ? InputBorder.none
-                                        : controller.pwdError.isNotEmpty
-                                            ? errorBorder()
-                                            : enableBorder(),
-                                    // border: OutlineInputBorder(
-                                    //   borderSide: BorderSide.none,
-                                    //   borderRadius: BorderRadius.circular(12),
                                   ),
                                 ),
-                              ),
+                                controller.pwdError == ""
+                                    ? const SizedBox(height: 20)
+                                    : Container(
+                                        width: 339,
+                                        height: 28,
+                                        margin: const EdgeInsets.all(10),
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(50),
+                                            color: ColorRes.invalidColor),
+                                        padding:
+                                            const EdgeInsets.only(left: 15),
+                                        child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              const Image(
+                                                image: AssetImage(
+                                                  AssetRes.invalid,
+                                                ),
+                                                height: 14,
+                                              ),
+                                              const SizedBox(width: 10),
+                                              Text(
+                                                controller.pwdError,
+                                                style: GoogleFonts.poppins(
+                                                    fontSize: 9,
+                                                    fontWeight: FontWeight.w400,
+                                                    color: ColorRes.starColor),
+                                              ),
+                                            ]),
+                                      ),
+                              ],
                             ),
                           ),
-                          controller.pwdError == ""
-                              ? const SizedBox(height: 20)
-                              : Container(
-                                  width: 339,
-                                  height: 28,
-                                  margin: EdgeInsets.all(10),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      color: ColorRes.invalidColor),
-                                  padding: const EdgeInsets.only(left: 15),
-                                  child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        const Image(
-                                          image: AssetImage(
-                                            AssetRes.invalid,
-                                          ),
-                                          height: 14,
-                                        ),
-                                        const SizedBox(width: 10),
-                                        Text(
-                                          'Password does not match email',
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 9,
-                                              fontWeight: FontWeight.w400,
-                                              color: ColorRes.starColor),
-                                        ),
-                                      ]),
-                                ),
                           Row(
                             children: [
-                              GetBuilder<SigninScreenController>(
+                              GetBuilder<SignInScreenController>(
                                   id: "remember_me",
                                   builder: (controller) {
                                     return Checkbox(
@@ -386,28 +374,77 @@ class Signin_Screen extends StatelessWidget {
                             ],
                           ),
                           SizedBox(height: Get.height * 0.02),
-                          InkWell(
-                            onTap: controller.onLoginBtnTap,
-                            child: Container(
-                              height: 50,
-                              //width: 339,
-
-                              width: MediaQuery.of(context).size.width,
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                gradient: LinearGradient(colors: [
-                                  ColorRes.gradientColor.withOpacity(0.2),
-                                  ColorRes.containerColor.withOpacity(0.4)
-                                ]),
-                              ),
-                              child: Text("Sign In",
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500,
-                                      color: ColorRes.white)),
-                            ),
-                          ),
+                          GetBuilder<SignInScreenController>(
+                              id: "colorChange",
+                              builder: (controller) {
+                                return (controller.emailController.text == '' ||
+                                        controller.passwordController.text ==
+                                            '')
+                                    ? Container(
+                                        height: 50,
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        alignment: Alignment.center,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          gradient: LinearGradient(colors: [
+                                            ColorRes.gradientColor
+                                                .withOpacity(0.2),
+                                            ColorRes.containerColor
+                                                .withOpacity(0.4)
+                                          ]),
+                                        ),
+                                        child: Text("Sign In",
+                                            style: GoogleFonts.poppins(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w500,
+                                                color: ColorRes.white)),
+                                      )
+                                    : InkWell(
+                                        onTap: controller.onLoginBtnTap,
+                                        child: Container(
+                                          height: 50,
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            gradient: const LinearGradient(
+                                                colors: [
+                                                  ColorRes.gradientColor,
+                                                  ColorRes.containerColor
+                                                ]),
+                                          ),
+                                          child: Text("Sign In",
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: ColorRes.white)),
+                                        ),
+                                      );
+                              }),
+                          // InkWell(
+                          //   onTap: controller.onLoginBtnTap,
+                          //   child: Container(
+                          //     height: 50,
+                          //     width: MediaQuery.of(context).size.width,
+                          //     alignment: Alignment.center,
+                          //     decoration: BoxDecoration(
+                          //       borderRadius: BorderRadius.circular(10),
+                          //       gradient: LinearGradient(colors: [
+                          //         ColorRes.gradientColor.withOpacity(0.2),
+                          //         ColorRes.containerColor.withOpacity(0.4)
+                          //       ]),
+                          //     ),
+                          //     child: Text("Sign In",
+                          //         style: GoogleFonts.poppins(
+                          //             fontSize: 18,
+                          //             fontWeight: FontWeight.w500,
+                          //             color: ColorRes.white)),
+                          //   ),
+                          // ),
                           SizedBox(height: Get.height * 0.0221),
                           Center(
                             child: InkWell(
@@ -473,7 +510,7 @@ class Signin_Screen extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              SizedBox(width: 12),
+                              const SizedBox(width: 12),
                               Container(
                                 height: 51,
                                 width: 154,
@@ -522,7 +559,7 @@ class Signin_Screen extends StatelessWidget {
                                     fontSize: 15,
                                     color: ColorRes.black),
                               ),
-                              GetBuilder<SigninScreenController>(
+                              GetBuilder<SignInScreenController>(
                                 builder: (controller) => TextButton(
                                   onPressed: () {
                                     Navigator.push(
@@ -544,13 +581,16 @@ class Signin_Screen extends StatelessWidget {
                         ]),
                   ),
                 ),
+                controller.loading.isTrue
+                    ? const Center(child: CircularProgressIndicator())
+                    : const SizedBox(),
               ]);
             })));
   }
 
   OutlineInputBorder enableBorder() {
     return OutlineInputBorder(
-      borderSide: BorderSide(color: ColorRes.containerColor),
+      borderSide: const BorderSide(color: ColorRes.containerColor),
       // borderSide: BorderSide.none,
       borderRadius: BorderRadius.circular(10),
     );
@@ -558,7 +598,7 @@ class Signin_Screen extends StatelessWidget {
 
   OutlineInputBorder errorBorder() {
     return OutlineInputBorder(
-      borderSide: BorderSide(color: ColorRes.starColor),
+      borderSide: const BorderSide(color: ColorRes.starColor),
       // borderSide: BorderSide.none,
       borderRadius: BorderRadius.circular(10),
     );

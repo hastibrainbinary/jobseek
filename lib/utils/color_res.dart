@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ColorRes{
+class ColorRes {
   static const white = Color(0xFFFFFFFF);
   static const black = Color(0xff000000);
   static const black2 = Color(0xff343740);

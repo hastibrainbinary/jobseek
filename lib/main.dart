@@ -7,6 +7,7 @@ import 'package:jobseek/screen/job_detail_screen/job_details_success_or_fails/jo
 import 'package:jobseek/screen/notification_screen/notification_screen.dart';
 import 'package:jobseek/screen/splashScreen/splash_Screen.dart';
 import 'package:jobseek/utils/app_res.dart';
+import 'package:jobseek/screen/first_page/first_Screen.dart';
 
 void main() {
   runApp(const MyApp());

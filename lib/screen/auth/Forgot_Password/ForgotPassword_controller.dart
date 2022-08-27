@@ -4,7 +4,7 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 class ForgotPasswordController extends GetxController {
   bool isselected = false;
  bool isselectedemail = false;
-  mobileupdate() {
+  mobileUpdate() {
     debugPrint("isselected $isselected");
     if   (isselectedemail ==true){
       isselectedemail = false;
@@ -13,7 +13,7 @@ class ForgotPasswordController extends GetxController {
     update(['SMS']);
   }
 
-  emailupdate() {
+  emailUpdate() {
     debugPrint("isselectedemail $isselectedemail");
     if   (isselected ==true){
       isselected = false;

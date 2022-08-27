@@ -20,7 +20,7 @@ class OtpScreen extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         backgroundColor: ColorRes.backgroungColor,
         body: Column(children: [
-          SizedBox(height: Get.height * 0.0369),
+          SizedBox(height: Get.height * 0.0310),
           Row(
             children: [
               Padding(
@@ -118,7 +118,7 @@ class OtpScreen extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: Get.height * 0.2640),
+          SizedBox(height: Get.height * 0.2680),
           Container(
             height: 50,
             width: 339,
@@ -143,7 +143,7 @@ class OtpScreen extends StatelessWidget {
                       color: ColorRes.white)),
             ),
           ),
-          SizedBox(height: Get.height * 0.0381),
+          // SizedBox(height: Get.height * 0.03),
         ]),
       ),
     );

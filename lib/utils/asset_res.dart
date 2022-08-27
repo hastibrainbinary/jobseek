@@ -16,19 +16,11 @@ class AssetRes {
   static const uploadIcon = '${icons}upload_icon.png';
   static const pdfIcon = '${icons}pdf_icon.png';
 
-  ///-----------------------------images------------------------------------------------------
-  static const splash_screenback = '${images}splash_screenback.png';
-  static const splashFullImage = '${images}splash.png';
-  static const frist_backscreen = '${images}frist_backscreen.png';
+///-----------------------------images------------------------------------------------------
+  static const splashScreenBack ='${images}splash_screenback.png';
+  static const firstBackScreen ='${images}fristBackScreen.png';
   static const facebook_image = '${images}facebook_image.png';
-  static const Google_logo = '${images}Google_logo.png';
-  static const congratsLogo = '${images}congratsLogo.png';
-  static const splashBoyImg = '${images}splash_boy.png';
-  static const girlImage = '${images}girl.png';
-  static const airBnbLogo = '${images}airbnb_logo.png';
-  static const twitterLogo = '${images}twitter_logo.png';
-  static const notificationDetail = '${images}notification_detail.png';
-  static const successImage = '${images}success_image.png';
-  static const failedImage = '${images}failed_image.png';
-
+  static const Google_logo ='${images}Google_logo.png';
+  static const congratsLogo ='${images}congratsLogo.png';
+  static const dropdwon ='${images}dropdwon.png';
 }
