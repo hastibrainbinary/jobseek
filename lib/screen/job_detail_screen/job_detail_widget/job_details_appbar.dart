@@ -10,7 +10,7 @@ Widget jobDetailsAppBar(){
     children: [
       const SizedBox(height: 50),
       SizedBox(
-        height: 50,
+        height: 45,
         width: Get.width,
         child: Stack(
           children: [
@@ -22,8 +22,8 @@ Widget jobDetailsAppBar(){
                     Get.back();
                   },
                   child: Container(
-                    height: 50,
-                    width: 50,
+                    height: 45,
+                    width: 45,
                     padding: const EdgeInsets.only(left: 10),
                     // margin: const EdgeInsets.only(left: 10),
                     decoration: BoxDecoration(
@@ -40,8 +40,8 @@ Widget jobDetailsAppBar(){
                   ),
                 ),
                 Container(
-                  height: 50,
-                  width: 50,
+                  height: 45,
+                  width: 45,
                   // padding: const EdgeInsets.only(left: 0),
                   // margin: const EdgeInsets.only(right: 10),
                   decoration: BoxDecoration(
@@ -52,8 +52,8 @@ Widget jobDetailsAppBar(){
                     alignment: Alignment.center,
                     child: Image.asset(
                       AssetRes.bookMarkBorderIcon,
-                      height: 30,
-                      width: 30,
+                      height: 20,
+                      width: 20,
                     ),
                   ),
                 ),

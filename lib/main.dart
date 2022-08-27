@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/screen/first_page/first_Screen.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_screen.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_screen.dart';
 import 'package:jobseek/screen/job_detail_screen/job_details_success_or_fails/job_details_success_or_faild_screen.dart';
 import 'package:jobseek/screen/job_recommendation_screen/job_recommendation_screen.dart';
 import 'package:jobseek/screen/notification_screen/notification_screen.dart';
 import 'package:jobseek/screen/organization_profile_screen/organization_profile_screen.dart';
+import 'package:jobseek/screen/splashScreen/splash_Screen.dart';
 import 'package:jobseek/utils/app_res.dart';
-import 'package:jobseek/screen/first_page/first_Screen.dart';
 
-
-import 'screen/looking_for_screen/looking_for_screen.dart';
 
 void main() {
   runApp(const MyApp());
