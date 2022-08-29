@@ -86,7 +86,7 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SizedBox(
-                                width:Get.width * 0.65,
+                                width:Get.width * 0.6,
                                 child: Text(
                                     args[0]['filename'].value /*"Resume - Adam Smith.pdf"*/,
                                     style: appTextStyle(
