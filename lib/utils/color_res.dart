@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ColorRes {
+class ColorRes{
   static const white = Color(0xFFFFFFFF);
   static const black = Color(0xff000000);
   static const black2 = Color(0xff343740);
@@ -19,5 +19,8 @@ class ColorRes {
   static const orange =Color(0xffFFB800);
   static const borderColor =Color(0xffF3ECFF);
   static const lightGrey =Color(0xffD9D9D9);
+  static const lightGreen =Color(0xffEDF9F0);
+    static const darkGreen =Color(0xff23A757);
+    static const iconColor =Color(0xffBE9DFF);
 
 }

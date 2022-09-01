@@ -32,16 +32,14 @@ class AssetRes {
   static const splashFullImage = '${images}splash.png';
   static const frist_backscreen = '${images}frist_backscreen.png';
   static const facebook_image = '${images}facebook_image.png';
-  static const Google_logo ='${images}Google_logo.png';
-  static const congratsLogo ='${images}congratsLogo.png';
-  static const dropdwon ='${images}dropdwon.png';
-
-
+  static const Google_logo = '${images}Google_logo.png';
+  static const congratsLogo = '${images}congratsLogo.png';
   static const splashBoyImg = '${images}splash_boy.png';
   static const girlImage = '${images}girl.png';
   static const airBnbLogo = '${images}airbnb_logo.png';
   static const twitterLogo = '${images}twitter_logo.png';
   static const lookingForYou = '${images}looking_for_you.png';
+  static const resumeImage = '${images}resume.png';
 
   static const notificationDetail = '${images}notification_detail.png';
   static const successImage = '${images}success_image.png';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/utils/app_res.dart';
 
 class OrganizationProfileScreenController extends GetxController
     implements GetxService {

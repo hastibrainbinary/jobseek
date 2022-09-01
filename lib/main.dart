@@ -8,6 +8,10 @@ import 'package:jobseek/screen/job_detail_screen/job_detail_screen.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_screen.dart';
 import 'package:jobseek/screen/job_detail_screen/job_details_success_or_fails/job_details_success_or_faild_screen.dart';
 import 'package:jobseek/screen/job_recommendation_screen/job_recommendation_screen.dart';
+import 'package:jobseek/screen/manager_section/applicants_detail_screen/applicants_detail_screen.dart';
+import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen.dart';
+import 'package:jobseek/screen/manager_section/manager_application_detail_screen/manager_application_detail_screen.dart';
+import 'package:jobseek/screen/manager_section/resume_screen/resume_screen.dart';
 import 'package:jobseek/screen/notification_screen/notification_screen.dart';
 import 'package:jobseek/screen/organization_profile_screen/organization_profile_screen.dart';
 import 'package:jobseek/screen/update_vacancies_requirements/update_vacancies_requirements_screen.dart';
@@ -56,6 +60,18 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: AppRes.organizationProfileScreen,
             page: () => const OrganizationProfileScreen()),
+        GetPage(
+            name: AppRes.managerDashboardScreen,
+            page: () => ManagerDashBoardScreen()),
+        GetPage(
+            name: AppRes.managerApplicationDetailScreen,
+            page: () => const ManagerApplicationDetailScreen()),
+        GetPage(
+            name: AppRes.resumeScreen,
+            page: () => const ResumeScreen()),
+        GetPage(
+            name: AppRes.applicantsDetails,
+            page: () => const ApplicantsDetailScreen()),
       ],
     );
   }
