@@ -14,7 +14,8 @@ import 'package:jobseek/screen/manager_section/manager_application_detail_screen
 import 'package:jobseek/screen/manager_section/resume_screen/resume_screen.dart';
 import 'package:jobseek/screen/notification_screen/notification_screen.dart';
 import 'package:jobseek/screen/organization_profile_screen/organization_profile_screen.dart';
-import 'package:jobseek/screen/update_vacancies_requirements/update_vacancies_requirements_screen.dart';
+import 'package:jobseek/screen/splashScreen/splash_Screen.dart';
+
 import 'package:jobseek/utils/app_res.dart';
 import 'screen/looking_for_screen/looking_for_screen.dart';
 
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home:  ChatBoxScreen(),
+      home:  const SplashScreen(),
       initialRoute: "/",
       getPages: [
         GetPage(

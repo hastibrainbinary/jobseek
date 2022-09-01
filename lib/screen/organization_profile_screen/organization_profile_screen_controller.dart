@@ -15,7 +15,8 @@ class OrganizationProfileScreenController extends GetxController
   DateTime? startTime;
 
   validateAndSubmit() {
-    if (companyNameController.text.isEmpty) {
+    Get.toNamed(AppRes.managerDashboardScreen);
+/*    if (companyNameController.text.isEmpty) {
       isNameValidate.value = true;
     } else {
       isNameValidate.value = false;
@@ -31,7 +32,7 @@ class OrganizationProfileScreenController extends GetxController
       isAddressValidate.value = true;
     } else {
       isAddressValidate.value = false;
-    }
+    }*/
   }
 
   Future<void> onDatePickerTap(context) async {

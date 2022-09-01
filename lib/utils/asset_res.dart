@@ -23,6 +23,9 @@ class AssetRes {
   static const dropIcon ='${icons}dropIcon.png';
   static const currencyIcon ='${icons}currencyIcon.png';
   static const addIcon ='${icons}addIcon.png';
+  static const notification ='${icons}notification.png';
+  static const add ='${icons}add.png';
+
 
   ///-----------------------------images------------------------------------------------------
   static const splashScreenBack ='${images}splash_screenback.png';
@@ -45,5 +48,6 @@ class AssetRes {
   static const successImage = '${images}success_image.png';
   static const failedImage = '${images}failed_image.png';
   static const chatImage = '${images}chatImage.png';
+  static const dropdwon ='${images}dropdwon.png';
 
 }

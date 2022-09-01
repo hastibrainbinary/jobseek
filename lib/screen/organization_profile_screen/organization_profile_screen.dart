@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/common_error_box.dart';
 import 'package:jobseek/common/widgets/common_textField.dart';
 import 'package:jobseek/screen/organization_profile_screen/organization_profile_screen_controller.dart';
+import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
@@ -368,25 +369,28 @@ class OrganizationProfileScreen extends StatelessWidget {
                                   controller.countryController.text == '' ||
                                   controller.companyAddressController.text ==
                                       '')
-                              ? Container(
-                                  height: 50,
-                                  width: MediaQuery.of(context).size.width,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    gradient: LinearGradient(
-                                      colors: [
-                                        ColorRes.gradientColor.withOpacity(0.2),
-                                        ColorRes.containerColor.withOpacity(0.4)
-                                      ],
+                              ? InkWell(
+                            onTap: ()=>Get.toNamed(AppRes.managerDashboardScreen),
+                                child: Container(
+                                    height: 50,
+                                    width: MediaQuery.of(context).size.width,
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      gradient: LinearGradient(
+                                        colors: [
+                                          ColorRes.gradientColor.withOpacity(0.2),
+                                          ColorRes.containerColor.withOpacity(0.4)
+                                        ],
+                                      ),
                                     ),
+                                    child: Text("Confirm",
+                                        style: appTextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                            color: ColorRes.white)),
                                   ),
-                                  child: Text("Confirm",
-                                      style: appTextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500,
-                                          color: ColorRes.white)),
-                                )
+                              )
                               : InkWell(
                                   // dashboard write
                                   onTap: () => controller.validateAndSubmit(),
