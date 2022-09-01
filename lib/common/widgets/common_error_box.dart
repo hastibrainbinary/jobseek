@@ -4,7 +4,7 @@ import 'package:jobseek/utils/color_res.dart';
 
 Widget commonErrorBox(String text) {
   return Container(
-    padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+    padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 2),
     decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: ColorRes.invalidColor),
@@ -19,7 +19,7 @@ Widget commonErrorBox(String text) {
         ),
         Text(
           text,
-          style: appTextStyle(color: ColorRes.starColor,fontWeight: FontWeight.normal,fontSize: 14),
+          style: appTextStyle(color: ColorRes.starColor,fontWeight: FontWeight.w400,fontSize: 10),
         )
       ],
     ),

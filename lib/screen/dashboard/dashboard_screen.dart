@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/screen/chat_box/chat_box_screen.dart';
 import 'package:jobseek/screen/dashboard/dashboard_controller.dart';
 import 'package:jobseek/screen/dashboard/home/home_screen.dart';
 import 'package:jobseek/utils/app_style.dart';
@@ -23,7 +24,7 @@ class DashBoardScreen extends StatelessWidget {
               : controller.currentTab == 1
                   ? const Center(child: Text("page 1"))
                   : controller.currentTab == 2
-                      ? const Center(child: Text("page 2"))
+                      ? ChatBoxScreen()
                       : const Center(child: Text("page 3"));
         },
       ),

@@ -31,7 +31,7 @@ Widget detailBox(text) {
           width: Get.width * 0.7,
           child: Text(
             text,
-            style: appTextStyle(color: Colors.black, fontSize: 14),
+            style: appTextStyle(color: Colors.black, fontSize: 12,fontWeight: FontWeight.w400),
           ),
         )
       ],

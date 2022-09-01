@@ -19,6 +19,10 @@ class AssetRes {
   static const cloud = '${icons}cloud.png';
   static const uploadIcon = '${icons}upload_icon.png';
   static const pdfIcon = '${icons}pdf_icon.png';
+  static const dateIcon ='${icons}dateIcon.png';
+  static const dropIcon ='${icons}dropIcon.png';
+  static const currencyIcon ='${icons}currencyIcon.png';
+  static const addIcon ='${icons}addIcon.png';
 
   ///-----------------------------images------------------------------------------------------
   static const splashScreenBack ='${images}splash_screenback.png';
@@ -42,5 +46,6 @@ class AssetRes {
   static const notificationDetail = '${images}notification_detail.png';
   static const successImage = '${images}success_image.png';
   static const failedImage = '${images}failed_image.png';
+  static const chatImage = '${images}chatImage.png';
 
 }
