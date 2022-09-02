@@ -105,7 +105,8 @@ Widget recentPeopleBox() {
             InkWell(
               onTap: () => Get.toNamed(AppRes.resumeScreen),
               child: Container(
-                width: Get.width * 0.4,
+                width: Get.width * 0.38,
+
                 height: 50,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
@@ -123,7 +124,8 @@ Widget recentPeopleBox() {
             ),
             InkWell(
               child: Container(
-                width: Get.width * 0.4,
+                width: Get.width * 0.38,
+
                 height: 50,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),

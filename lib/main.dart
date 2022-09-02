@@ -72,7 +72,7 @@ class MyApp extends StatelessWidget {
             page: () => const ResumeScreen()),
         GetPage(
             name: AppRes.applicantsDetails,
-            page: () => const ApplicantsDetailScreen()),
+            page: () => ApplicantsDetailScreen()),
       ],
     );
   }

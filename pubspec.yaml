@@ -40,6 +40,7 @@ dependencies:
   get: ^4.6.5
   form_field_validator: ^1.1.0
   file_picker: ^5.0.1
+  intl: ^0.17.0
 
   # bottom_navigation_bar:
   salomon_bottom_bar:

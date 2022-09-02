@@ -25,6 +25,8 @@ class AssetRes {
   static const addIcon ='${icons}addIcon.png';
   static const notification ='${icons}notification.png';
   static const add ='${icons}add.png';
+  static const calender ='${icons}calender.png';
+  static const time ='${icons}time.png';
 
 
   ///-----------------------------images------------------------------------------------------
