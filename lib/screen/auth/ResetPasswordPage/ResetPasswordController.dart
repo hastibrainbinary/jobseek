@@ -44,8 +44,8 @@ class ResetPasswordController extends GetxController {
     }
   }
 
-  bool show = false;
-  bool confirm = false;
+  bool show = true;
+  bool confirm = true;
 
   chang() {
     debugPrint("SHOW $show");

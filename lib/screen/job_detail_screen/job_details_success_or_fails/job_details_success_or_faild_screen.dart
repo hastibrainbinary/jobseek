@@ -11,7 +11,8 @@ import 'package:jobseek/utils/string.dart';
 class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
   JobDetailsSuccessOrFailedScreen({Key? key}) : super(key: key);
   var args = Get.arguments;
-  final JobDetailsUploadCvController controller = JobDetailsUploadCvController();
+  final JobDetailsUploadCvController controller =
+      JobDetailsUploadCvController();
 
   @override
   Widget build(BuildContext context) {
@@ -65,15 +66,16 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 25),
+                    const SizedBox(height: 15),
                     Container(
+                      height: 82,
                       width: Get.width,
                       margin: const EdgeInsets.only(top: 10),
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       decoration: BoxDecoration(
                         color: const Color(0xffEEEBF4),
                         borderRadius:
-                        const BorderRadius.all(Radius.circular(15)),
+                            const BorderRadius.all(Radius.circular(15)),
                         border: Border.all(color: ColorRes.borderColor),
                       ),
                       child: Row(
@@ -86,9 +88,10 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SizedBox(
-                                width:Get.width * 0.6,
+                                width: Get.width * 0.6,
                                 child: Text(
-                                    args[0]['filename'].value /*"Resume - Adam Smith.pdf"*/,
+                                    args[0]['filename']
+                                        .value /*"Resume - Adam Smith.pdf"*/,
                                     style: appTextStyle(
                                         fontSize: 13,
                                         fontWeight: FontWeight.w600,
@@ -170,7 +173,10 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                               const BorderRadius.all(Radius.circular(10)),
                           border: Border.all(color: ColorRes.containerColor),
                         ),
-                        child: Text(Strings.discoverMoreJobs,
+                        child: Text(
+                            args[0]["error"] == false
+                                ? Strings.discoverMoreJobs
+                                : Strings.discoverMoreJobs,
                             style: appTextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w500,

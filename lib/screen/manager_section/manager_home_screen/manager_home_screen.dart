@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_widget/manager_home_screen_widget.dart';
+import 'package:jobseek/screen/manager_section/notification1/notification1_screen.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
@@ -24,21 +25,42 @@ class ManagerHomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    height: 50,
-                    width: 50,
+                    height: 40,
+                    width: 40,
                     decoration: BoxDecoration(
                       color: ColorRes.logoColor,
-                      borderRadius: BorderRadius.circular(15),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Logo',
+                        style: appTextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.w600,
+                            color: ColorRes.containerColor),
+                      ),
                     ),
                   ),
-                  Container(
-                    height: 50,
-                    width: 50,
-                    decoration: BoxDecoration(
-                      color: ColorRes.logoColor,
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Image.asset(AssetRes.notification),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (con) => const Notification1Screen()));
+                    },
+                    child: Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                          color: ColorRes.logoColor,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: const Icon(
+                          Icons.notifications,
+                          color: ColorRes.containerColor,
+                        )
+                        // Image.asset(AssetRes.notification),
+                        ),
                   ),
                 ],
               ),
@@ -148,7 +170,11 @@ class ManagerHomeScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: ColorRes.lightGreen,
                         borderRadius: BorderRadius.circular(15)),
-                    child: Text("Active",style: appTextStyle(color: ColorRes.darkGreen,fontSize: 12),),
+                    child: Text(
+                      "Active",
+                      style:
+                          appTextStyle(color: ColorRes.darkGreen, fontSize: 12),
+                    ),
                   ),
                   const Spacer(),
                   Text(

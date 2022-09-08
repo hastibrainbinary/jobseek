@@ -352,6 +352,49 @@ class ApplicantsDetailScreen extends StatelessWidget {
             ),
           )
         ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 60,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Stack(
+                children: [
+                  Container(
+                    height: 40,
+                    width: 40,
+                    padding: const EdgeInsets.only(left: 10),
+                    decoration: BoxDecoration(
+                        color: ColorRes.logoColor,
+                        borderRadius: BorderRadius.circular(8)),
+                    child: const Icon(
+                      Icons.arrow_back_ios,
+                      color: ColorRes.containerColor,
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Text(
+                        "Applicants ",
+                        style: appTextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+          ],
+        ),
       ),
     );
   }

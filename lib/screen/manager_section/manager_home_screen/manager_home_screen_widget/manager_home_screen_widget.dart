@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
+import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
 Widget recentPeopleBox() {
@@ -24,7 +25,10 @@ Widget recentPeopleBox() {
                     color: Colors.black,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: const Icon(Icons.person),
+                  child: const Image(
+                    image: AssetImage(AssetRes.detailsImage),
+                    height: 20,
+                  ),
                 ),
                 const SizedBox(
                   width: 10,
@@ -97,7 +101,7 @@ Widget recentPeopleBox() {
           width: Get.width,
         ),
         const SizedBox(
-          height: 20,
+          height: 10,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -105,11 +109,10 @@ Widget recentPeopleBox() {
             InkWell(
               onTap: () => Get.toNamed(AppRes.resumeScreen),
               child: Container(
-                width: Get.width * 0.38,
-
-                height: 50,
+                width: 135,
+                height: 35,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(10),
                     gradient: const LinearGradient(colors: [
                       Color(0xFFBF9EFF),
                       Color(0xFF8B4EFF),
@@ -123,12 +126,12 @@ Widget recentPeopleBox() {
               ),
             ),
             InkWell(
+              onTap: () => Get.toNamed(AppRes.seeDetailsScreen),
               child: Container(
-                width: Get.width * 0.38,
-
-                height: 50,
+                width: 135,
+                height: 35,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(10),
                     border:
                         Border.all(color: ColorRes.containerColor, width: 2),
                     color: Colors.white),

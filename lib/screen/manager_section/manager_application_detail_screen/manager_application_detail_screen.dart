@@ -15,29 +15,35 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
-              height: Get.height * 0.1,
+            const SizedBox(
+              height: 60,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Stack(
                 children: [
                   Container(
-                    height: 45,
-                    width: 45,
-                    padding: const EdgeInsets.only(left: 10),
+                    height: 40,
+                    width: 40,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: ColorRes.logoColor),
-                    child: const Icon(
-                      Icons.arrow_back_ios,
-                      color: ColorRes.containerColor,
+                        color: ColorRes.logoColor,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 11),
+                      child: Text(
+                        textAlign: TextAlign.center,
+                        "Logo",
+                        style: appTextStyle(
+                            color: ColorRes.containerColor,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 10),
+                      ),
                     ),
                   ),
                   Align(
                     alignment: Alignment.center,
                     child: Text(
-                      "Application Details",
+                      "Application",
                       style: appTextStyle(color: ColorRes.black, fontSize: 20),
                     ),
                   )
@@ -123,12 +129,17 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
                 children: [
                   Text(
                     "Applicants",
-                    style: appTextStyle(color: ColorRes.black, fontSize: 17),
+                    style: appTextStyle(
+                        color: const Color(0xff242424),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600),
                   ),
                   Text(
                     "See all",
                     style: appTextStyle(
-                        color: ColorRes.containerColor, fontSize: 15),
+                        color: ColorRes.containerColor,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500),
                   )
                 ],
               ),
@@ -139,15 +150,16 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
             SizedBox(
               height: Get.height * 0.6,
               child: ListView.builder(
-                padding: const EdgeInsets.all(0),
+                  padding: const EdgeInsets.all(0),
                   itemCount: 5,
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
                   itemBuilder: (BuildContext context, int index) {
                     return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 10),
                       child: InkWell(
-                        onTap: ()=>Get.toNamed(AppRes.applicantsDetails),
+                          onTap: () => Get.toNamed(AppRes.applicantsDetails),
                           child: recentPeopleBox()),
                     );
                   }),

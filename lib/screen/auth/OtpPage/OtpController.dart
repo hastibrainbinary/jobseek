@@ -6,24 +6,25 @@ import 'package:jobseek/utils/color_res.dart';
 import 'package:pinput/pinput.dart';
 
 class OtpController extends GetxController {
+
   TextEditingController otpController = TextEditingController();
-  int seconds = 56;
+  int seconds = 10;
   Timer? _countDown;
   Future startTimer() async {
-    update();
+    update(["Seconds"]);
     const oneSec = Duration(seconds: 1);
     _countDown = Timer.periodic(
       oneSec,
       (timer) {
         if (seconds == 0) {
           _countDown?.cancel();
-          update();
+          update(["Seconds"]);
         } else {
-          update();
+          update(["Seconds"]);
         }
       },
     );
-    update();
+    update(["Seconds"]);
   }
 
   void initState() {

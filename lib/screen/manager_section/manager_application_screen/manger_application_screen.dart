@@ -27,21 +27,33 @@ class ManagerApplicationScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    height: 50,
-                    width: 50,
+                    height: 40,
+                    width: 40,
                     decoration: BoxDecoration(
                       color: ColorRes.logoColor,
-                      borderRadius: BorderRadius.circular(15),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Logo',
+                        style: appTextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 10,
+                            color: ColorRes.containerColor),
+                      ),
                     ),
                   ),
                   Container(
-                    height: 50,
-                    width: 50,
+                    height: 40,
+                    width: 40,
                     decoration: BoxDecoration(
                       color: ColorRes.logoColor,
-                      borderRadius: BorderRadius.circular(15),
+                      borderRadius: BorderRadius.circular(12),
                     ),
-                    child: Image.asset(AssetRes.add),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Image.asset(AssetRes.add1),
+                    ),
                   ),
                 ],
               ),
@@ -83,7 +95,6 @@ class ManagerApplicationScreen extends StatelessWidget {
           height: 32,
           child: ListView.builder(
               itemCount: controller.jobs2.length,
-
               scrollDirection: Axis.horizontal,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
@@ -124,7 +135,8 @@ class ManagerApplicationScreen extends StatelessWidget {
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
                   return InkWell(
-                    onTap: () => Get.toNamed(AppRes.managerApplicationDetailScreen),
+                    onTap: () =>
+                        Get.toNamed(AppRes.managerApplicationDetailScreen),
                     child: Container(
                       height: 92,
                       width: Get.width,

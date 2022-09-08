@@ -103,7 +103,7 @@ class SignUpController extends GetxController {
       if (passwordController.text.trim().length >= 8) {
         pwdError = '';
       } else {
-        pwdError = "Password dose not match email";
+        pwdError = "At Least 8 Character";
       }
     }
   }
@@ -148,7 +148,7 @@ class SignUpController extends GetxController {
     update(['dark']);
   }
 
-  bool show = false;
+  bool show = true;
   Country countryModel = Country.from(json: {
     "e164_cc": "1",
     "iso2_cc": "CA",

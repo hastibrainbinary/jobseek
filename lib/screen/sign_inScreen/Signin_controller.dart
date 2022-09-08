@@ -36,7 +36,7 @@ class SignInScreenController extends GetxController {
       if (passwordController.text.trim().length >= 8) {
         pwdError = '';
       } else {
-        pwdError = "Password dose not match email";
+        pwdError = "At Least 8 Character";
       }
     }
   }
@@ -61,7 +61,7 @@ class SignInScreenController extends GetxController {
     update(["loginForm", "showEmail", "pwdError"]);
   }
 
-  bool show = false;
+  bool show = true;
 
   chang() {
     debugPrint("SHOW $show");

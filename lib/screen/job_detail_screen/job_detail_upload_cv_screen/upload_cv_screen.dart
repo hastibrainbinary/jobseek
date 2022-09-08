@@ -119,6 +119,7 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
 
                     Obx(() => controller.filepath.value != ""
                         ? Container(
+                            height: 82,
                             width: Get.width,
                             margin: const EdgeInsets.only(top: 10),
                             padding: const EdgeInsets.symmetric(vertical: 10),

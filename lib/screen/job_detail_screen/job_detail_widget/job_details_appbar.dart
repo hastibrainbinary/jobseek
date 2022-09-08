@@ -5,12 +5,12 @@ import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/string.dart';
 
-Widget jobDetailsAppBar(){
+Widget jobDetailsAppBar() {
   return Column(
     children: [
-      const SizedBox(height: 50),
+      const SizedBox(height: 60),
       SizedBox(
-        height: 45,
+        height: 40,
         width: Get.width,
         child: Stack(
           children: [
@@ -22,8 +22,8 @@ Widget jobDetailsAppBar(){
                     Get.back();
                   },
                   child: Container(
-                    height: 45,
-                    width: 45,
+                    height: 40,
+                    width: 40,
                     padding: const EdgeInsets.only(left: 10),
                     // margin: const EdgeInsets.only(left: 10),
                     decoration: BoxDecoration(
@@ -40,10 +40,8 @@ Widget jobDetailsAppBar(){
                   ),
                 ),
                 Container(
-                  height: 45,
-                  width: 45,
-                  // padding: const EdgeInsets.only(left: 0),
-                  // margin: const EdgeInsets.only(right: 10),
+                  height: 40,
+                  width: 40,
                   decoration: BoxDecoration(
                     color: ColorRes.logoColor,
                     borderRadius: BorderRadius.circular(10),
@@ -52,8 +50,8 @@ Widget jobDetailsAppBar(){
                     alignment: Alignment.center,
                     child: Image.asset(
                       AssetRes.bookMarkBorderIcon,
-                      height: 20,
-                      width: 20,
+                      height: 21,
+                      width: 15,
                     ),
                   ),
                 ),

@@ -13,7 +13,7 @@ class NotificationScreen extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          const SizedBox(height: 30),
+          const SizedBox(height: 60),
           SizedBox(
             height: 50,
             width: Get.width,
@@ -24,8 +24,8 @@ class NotificationScreen extends StatelessWidget {
                     Get.back();
                   },
                   child: Container(
-                    height: 50,
-                    width: 50,
+                    height: 40,
+                    width: 40,
                     padding: const EdgeInsets.only(left: 10),
                     margin: const EdgeInsets.only(left: 20),
                     decoration: BoxDecoration(
@@ -47,9 +47,9 @@ class NotificationScreen extends StatelessWidget {
                     child: Text(
                       Strings.notification,
                       style: appTextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                      ),
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500),
                     ),
                   ),
                 )
@@ -60,7 +60,7 @@ class NotificationScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: SizedBox(
-              height: Get.height * 0.85,
+              height: Get.height * 0.80,
               child: ListView.builder(
                   itemCount: 4,
                   scrollDirection: Axis.vertical,

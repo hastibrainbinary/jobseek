@@ -32,6 +32,7 @@ Widget homeAppBar() {
                           fontWeight: FontWeight.w600,
                           color: ColorRes.black)),
                   TextSpan(
+
                     text: 'Rakib!',
                     style: appTextStyle(
                       fontSize: 20,

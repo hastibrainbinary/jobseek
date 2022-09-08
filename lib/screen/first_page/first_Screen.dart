@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,7 +19,7 @@ class FirstScreen extends StatelessWidget {
         child: Container(
           width: Get.width,
           height: Get.height,
-          decoration:  const BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage(
                   AssetRes.firstBackScreen,
@@ -123,6 +124,9 @@ class FirstScreen extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                           color: ColorRes.black,
                         ),
+                        recognizer: TapGestureRecognizer()..onTap   =(){
+                          print("Navigate");
+                        }
                       )
                     ],
                   ),

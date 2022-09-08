@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ColorRes{
+  static const deletColor = Color(0xffFCE6ED);
   static const white = Color(0xFFFFFFFF);
   static const black = Color(0xff000000);
   static const black2 = Color(0xff343740);
@@ -23,5 +24,7 @@ class ColorRes{
   static const lightGreen =Color(0xffEDF9F0);
     static const darkGreen =Color(0xff23A757);
     static const iconColor =Color(0xffBE9DFF);
+    static const blueColor=Color(0xff2972FE);
+
 
 }

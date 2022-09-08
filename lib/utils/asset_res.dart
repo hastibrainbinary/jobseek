@@ -31,6 +31,7 @@ class AssetRes {
   static const time ='${icons}time.png';
 
 
+
   ///-----------------------------images------------------------------------------------------
   static const splashScreenBack ='${images}splash_screenback.png';
   static const firstBackScreen ='${images}fristBackScreen.png';
@@ -53,5 +54,14 @@ class AssetRes {
   static const failedImage = '${images}failed_image.png';
   static const chatImage = '${images}chatImage.png';
   static const dropdwon ='${images}dropdwon.png';
+  static const detailsImage ='${images}detailsImage.png';
+  static const chatbox_Men_Image ='${images}chatbox_Men_Image.png';
+  static const roundAirbnb = '${images}roundAirbnb.png';
+  static const galleryaimage = "${images}galleryaimage.png";
+  static const settingaArrow ='${images}settingaArrow.png';
+  static const settingHelp = '${images}settingHelp.png';
+  static const logout ='${images}logout.png';
+  static const rightLogo ='${images}rightLogo.png';
+  static const add1 ='${images}add.png';
 
 }

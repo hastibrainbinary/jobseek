@@ -4,11 +4,32 @@ import 'package:get/get.dart';
 class ChatBoxController extends GetxController implements GetxService {
   TextEditingController searchController = TextEditingController();
   RxInt selectedJobs = 0.obs;
-  RxList jobs = ["All chat", "Unread", "Archived",].obs;
-  onTapJobs(int index){
+  RxList jobs = [
+    "All chat",
+    "Unread",
+    "Archived",
+  ].obs;
+  onTapJobs(int index) {
     selectedJobs.value = index;
     //update(["hList"]);
   }
+
+  RxList jobs2 = [
+    "UI/UX Designer",
+    "UI/UX Designer",
+    "UI/UX Designer",
+    "UI/UX Designer",
+    "UI/UX Designer",
+    "UI/UX Designer",
+    "UI/UX Designer",
+    "UI/UX Designer",
+    "UI/UX Designer",
+    "UI/UX Designer",
+    "UI/UX Designer",
+    "UI/UX Designer",
+    "UI/UX Designer",
+    "UI/UX Designer",
+  ].obs;
   int currentTab = 0;
   void onBottomBarChange(int index) {
     currentTab = index;
@@ -29,5 +50,4 @@ class ChatBoxController extends GetxController implements GetxService {
     }
     update(['bottom_bar']);
   }
-
 }
