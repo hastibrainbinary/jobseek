@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jobseek/screen/dashboard/dashboard_screen.dart';
 import 'package:jobseek/screen/first_page/first_Screen.dart';
 import 'package:jobseek/screen/looking_for_screen/looking_for_screen.dart';
 import 'package:jobseek/utils/asset_res.dart';
@@ -16,17 +17,18 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 3),(){
-      Get.off(()=> const LookingForScreen());
+    Future.delayed(const Duration(seconds: 3), () {
+      Get.off(() => DashBoardScreen());
     });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    ImageProvider backgroundImage =  const AssetImage(AssetRes.splash_screenback);
+    ImageProvider backgroundImage =
+        const AssetImage(AssetRes.splash_screenback);
     backgroundImage.resolve(createLocalImageConfiguration(context));
-    ImageProvider backgroundImageBoy =  const AssetImage(AssetRes.splashBoyImg);
+    ImageProvider backgroundImageBoy = const AssetImage(AssetRes.splashBoyImg);
     backgroundImageBoy.resolve(createLocalImageConfiguration(context));
     return Scaffold(
       body: Container(
@@ -43,10 +45,9 @@ class _SplashScreenState extends State<SplashScreen> {
         //     stops: [0.1, 0.4, 0.7, 0.9],
         //   )
         // ),
-        decoration:  BoxDecoration(
-            image: DecorationImage(
-                image: backgroundImage,
-                fit: BoxFit.fill)),
+
+        decoration: BoxDecoration(
+            image: DecorationImage(image: backgroundImage, fit: BoxFit.fill)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,

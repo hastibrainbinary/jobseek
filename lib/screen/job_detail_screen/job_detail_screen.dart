@@ -12,6 +12,7 @@ import 'package:jobseek/utils/string.dart';
 class JobDetailScreen extends StatelessWidget {
   JobDetailScreen({Key? key}) : super(key: key);
   final JobDetailsController controller = Get.put(JobDetailsController());
+  var args = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,82 @@ class JobDetailScreen extends StatelessWidget {
         children: [
           Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18),
-              child: jobDetailsAppBar()),
+              child: Column(
+                children: [
+                  const SizedBox(height: 50),
+                  SizedBox(
+                    height: 45,
+                    width: Get.width,
+                    child: Stack(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                Get.back();
+                              },
+                              child: Container(
+                                height: 45,
+                                width: 45,
+                                padding: const EdgeInsets.only(left: 10),
+                                // margin: const EdgeInsets.only(left: 10),
+                                decoration: BoxDecoration(
+                                  color: ColorRes.logoColor,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: const Align(
+                                  alignment: Alignment.center,
+                                  child: Icon(
+                                    Icons.arrow_back_ios,
+                                    color: ColorRes.containerColor,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              height: 45,
+                              width: 45,
+                              // padding: const EdgeInsets.only(left: 0),
+                              // margin: const EdgeInsets.only(right: 10),
+                              decoration: BoxDecoration(
+                                color: ColorRes.logoColor,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: args["saved"] == true
+                                    ? Image.asset(
+                                        AssetRes.bookMarkFillIcon,
+                                        height: 20,
+                                        width: 20,
+                                      )
+                                    : Image.asset(
+                                        AssetRes.bookMarkBorderIcon,
+                                        height: 20,
+                                        width: 20,
+                                      ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Align(
+                          alignment: Alignment.center,
+                          child: Center(
+                            child: Text(
+                              Strings.jobDetails,
+                              style: appTextStyle(
+                                color: Colors.black,
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              )),
           SizedBox(
             height: Get.height - 100,
             child: SingleChildScrollView(

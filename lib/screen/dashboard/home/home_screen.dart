@@ -142,12 +142,12 @@ class HomeScreen extends StatelessWidget {
             ),
 
             ListView.builder(
-                itemCount: 3,
+                itemCount: controller.jobTypes.length,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   return InkWell(
-                    onTap: () => Get.toNamed(AppRes.jobDetailScreen),
+                    onTap: () => Get.toNamed(AppRes.jobDetailScreen,arguments: {"saved":controller.jobTypesSaved[index]}),
                     child: Container(
                       height: 92,
                       width: Get.width,
@@ -161,13 +161,13 @@ class HomeScreen extends StatelessWidget {
                           color: ColorRes.white),
                       child: Row(
                         children: [
-                          Image.asset(AssetRes.airBnbLogo),
+                          Image.asset(controller.jobTypesLogo[index]),
                           const SizedBox(width: 20),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("UI/UX Designer",
+                              Text(controller.jobTypes[index],
                                   style: appTextStyle(
                                       color: ColorRes.black,
                                       fontSize: 15,
@@ -189,9 +189,18 @@ class HomeScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Image.asset(
-                                AssetRes.bookMarkFillIcon,
-                                height: 20,
+                              InkWell(
+                                onTap: () {
+                                  controller.onTapSave(index);
+                                },
+                                child: Obx(() {
+                                  return Image.asset(
+                                    controller.jobTypesSaved[index]
+                                        ? AssetRes.bookMarkFillIcon
+                                        : AssetRes.bookMarkBorderIcon,
+                                    height: 20,
+                                  );
+                                }),
                               ),
                               const Spacer(),
                               Text(
@@ -209,7 +218,6 @@ class HomeScreen extends StatelessWidget {
                     ),
                   );
                 }),
-
           ],
         ),
       ),

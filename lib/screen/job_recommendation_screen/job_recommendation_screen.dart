@@ -20,13 +20,13 @@ class JobRecommendation extends StatelessWidget {
           children:  [
             const SizedBox(height: 60,),
             SizedBox(
-              height: 50,
+              height: 45,
               width: Get.width,
               child: Stack(
                 children: [
                   Container(
-                    height: 50,
-                    width: 50,
+                    height: 45,
+                    width: 45,
                     padding: const EdgeInsets.only(left: 10),
                     margin: const EdgeInsets.only(left: 20),
                     decoration: BoxDecoration(

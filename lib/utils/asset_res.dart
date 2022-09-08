@@ -13,6 +13,8 @@ class AssetRes {
   static const menuIcon = '${icons}menu_icon.png';
   static const bookMarkBorderIcon = '${icons}bookmark_border.png';
   static const bookMarkFillIcon = '${icons}bookmark_fill.png';
+  static const uploadIcon = '${icons}upload_icon.png';
+  static const pdfIcon = '${icons}pdf_icon.png';
   static const userIcon = '${icons}userIcon.png';
   static const wantJob = '${icons}want_job.png';
   static const person = '${icons}person.png';

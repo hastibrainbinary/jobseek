@@ -4,6 +4,8 @@ import 'package:jobseek/screen/add_requirements/add_requirements_screen.dart';
 import 'package:jobseek/screen/chat_box/chat_box_screen.dart';
 import 'package:jobseek/screen/create_vacancies/create_vacancies_screen.dart';
 import 'package:jobseek/screen/create_vacancies_2/create_vacancies_2_screen.dart';
+import 'package:jobseek/screen/dashboard/applications/applications_screen.dart';
+import 'package:jobseek/screen/first_page/first_Screen.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_screen.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_screen.dart';
 import 'package:jobseek/screen/job_detail_screen/job_details_success_or_fails/job_details_success_or_faild_screen.dart';
@@ -15,9 +17,9 @@ import 'package:jobseek/screen/manager_section/resume_screen/resume_screen.dart'
 import 'package:jobseek/screen/notification_screen/notification_screen.dart';
 import 'package:jobseek/screen/organization_profile_screen/organization_profile_screen.dart';
 import 'package:jobseek/screen/splashScreen/splash_Screen.dart';
+import 'package:jobseek/screen/splashScreen/splash_Screen.dart';
 
 import 'package:jobseek/utils/app_res.dart';
-import 'screen/looking_for_screen/looking_for_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,7 +36,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home:  const SplashScreen(),
+      home: SplashScreen(),
       initialRoute: "/",
       getPages: [
         GetPage(
@@ -61,6 +63,7 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: AppRes.organizationProfileScreen,
             page: () => const OrganizationProfileScreen()),
+        GetPage(name: AppRes.applicationsUser, page: () => ApplicationsScreen())
         GetPage(
             name: AppRes.managerDashboardScreen,
             page: () => ManagerDashBoardScreen()),

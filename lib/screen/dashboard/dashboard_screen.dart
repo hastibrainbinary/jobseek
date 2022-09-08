@@ -22,7 +22,7 @@ class DashBoardScreen extends StatelessWidget {
           return controller.currentTab == 0
               ?  HomeScreen()
               : controller.currentTab == 1
-                  ? const Center(child: Text("page 1"))
+                  ?  ApplicationsScreen()
                   : controller.currentTab == 2
                       ? ChatBoxScreen()
                       : const Center(child: Text("page 3"));
