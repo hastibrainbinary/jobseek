@@ -222,7 +222,7 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                     const SizedBox(height: 50),
                     GestureDetector(
                       onTap: () => controller.onTapApply(),
-                      child: Container(
+                      child:Obx((){return  Container(
                         height: 50,
                         width: Get.width,
                         alignment: Alignment.center,
@@ -231,16 +231,19 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                             right: 18, left: 18, top: 10, bottom: 30),
                         decoration: BoxDecoration(
                           borderRadius:
-                              const BorderRadius.all(Radius.circular(10)),
-                          gradient: LinearGradient(colors: [
+                          const BorderRadius.all(Radius.circular(10)),
+                          gradient:controller.filepath.value == "" ?  LinearGradient(colors: [
                             ColorRes.gradientColor.withOpacity(0.4),
                             ColorRes.containerColor.withOpacity(0.4),
+                          ]): const LinearGradient(colors: [
+                            ColorRes.gradientColor,
+                            ColorRes.containerColor,
                           ]),
                         ),
                         child: Text(Strings.apply,
                             style: appTextStyle(
                                 fontSize: 18, fontWeight: FontWeight.w500)),
-                      ),
+                      );}),
                     )
                   ],
                 ),
