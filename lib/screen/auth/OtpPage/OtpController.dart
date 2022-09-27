@@ -8,7 +8,7 @@ import 'package:pinput/pinput.dart';
 class OtpController extends GetxController {
 
   TextEditingController otpController = TextEditingController();
-  int seconds = 10;
+  int seconds = 60;
   Timer? _countDown;
   Future startTimer() async {
     update(["Seconds"]);
@@ -20,6 +20,7 @@ class OtpController extends GetxController {
           _countDown?.cancel();
           update(["Seconds"]);
         } else {
+          seconds --;
           update(["Seconds"]);
         }
       },
@@ -27,10 +28,12 @@ class OtpController extends GetxController {
     update(["Seconds"]);
   }
 
-  void initState() {
+  @override
+  void onInit() {
     startTimer();
-    super.update();
+    super.onInit();
   }
+
 
   String otpError = "";
   otpvalidation() {

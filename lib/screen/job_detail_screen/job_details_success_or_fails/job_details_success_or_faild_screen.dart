@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/screen/dashboard/applications/applications_screen.dart';
+import 'package:jobseek/screen/dashboard/dashboard_screen.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_controller.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_widget/job_details_appbar.dart';
 import 'package:jobseek/utils/app_style.dart';
@@ -68,7 +70,7 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 15),
                     Container(
-                      height: 82,
+                      //height: 82,
                       width: Get.width,
                       margin: const EdgeInsets.only(top: 10),
                       padding: const EdgeInsets.symmetric(vertical: 10),
@@ -91,6 +93,7 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                                 width: Get.width * 0.6,
                                 child: Text(
                                     args[0]['filename']
+
                                         .value /*"Resume - Adam Smith.pdf"*/,
                                     style: appTextStyle(
                                         fontSize: 13,
@@ -138,13 +141,24 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                         textAlign: TextAlign.center),
                     const SizedBox(height: 30),
                     GestureDetector(
+                      onTap: () {
+                        if (args[0]["error"] == false) {
+                          ///see applied job list tap event
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (con) => ApplicationsScreen()));
+                        } else {
+                          ///try again tap event
+                        }
+                      },
                       child: Container(
                         height: 50,
                         width: Get.width,
                         alignment: Alignment.center,
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        margin:
-                            const EdgeInsets.only(right: 18, left: 18, top: 10),
+                        // padding: const EdgeInsets.symmetric(vertical: 12),
+                        //  margin:
+                        //      const EdgeInsets.only(right: 18, left: 18, top: 10),
                         decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                           gradient: LinearGradient(colors: [
@@ -161,13 +175,21 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
+                      onTap: () {
+                        if (args[0]["error"] == false) {
+                          ///discover more jobs
+                          Get.offAll(() => DashBoardScreen());
+                        } else {
+                          ///discover more jobs event
+                          Get.offAll(() => DashBoardScreen());
+                        }
+                      },
                       child: Container(
                         height: 50,
                         width: Get.width,
                         alignment: Alignment.center,
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        margin: const EdgeInsets.only(
-                            right: 18, left: 18, top: 10, bottom: 30),
+                        // padding: const EdgeInsets.symmetric(vertical: 12),
+                        margin: const EdgeInsets.only(top: 10, bottom: 30),
                         decoration: BoxDecoration(
                           borderRadius:
                               const BorderRadius.all(Radius.circular(10)),

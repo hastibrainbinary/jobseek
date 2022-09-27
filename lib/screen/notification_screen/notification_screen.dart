@@ -56,13 +56,14 @@ class NotificationScreen extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 18),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: SizedBox(
               height: Get.height * 0.80,
               child: ListView.builder(
-                  itemCount: 4,
+                  padding: const EdgeInsets.all(0),
+                  itemCount: 10,
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
                   itemBuilder: (BuildContext context, int index) =>

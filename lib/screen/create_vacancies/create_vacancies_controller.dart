@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/screen/add_requirements/add_requirements_screen.dart';
 
 class CreateVacanciesController extends GetxController implements GetxService {
   TextEditingController positionController = TextEditingController();
@@ -10,6 +11,17 @@ class CreateVacanciesController extends GetxController implements GetxService {
   RxBool isSalaryValidate = false.obs;
   RxBool isLocationValidate = false.obs;
   RxBool isTypeValidate = false.obs;
+  onLoginBtnTap() {
+    validate();
+    if (isPositionValidate.value == false &&
+        isSalaryValidate.value == false &&
+        isLocationValidate.value == false &&
+        isTypeValidate.value == false) {
+      print("GO TO HOME PAGE");
+      Get.to(RequirementsScreen());
+    }
+  }
+
   validate() {
     if (positionController.text.isEmpty) {
       isPositionValidate.value = true;

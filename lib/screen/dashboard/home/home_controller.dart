@@ -5,11 +5,21 @@ import 'package:jobseek/utils/asset_res.dart';
 class HomeController extends GetxController implements GetxService {
   TextEditingController searchController = TextEditingController();
 
-  RxList jobTypes =
-      ["UI/UX Designer", "Financial Olanner", "UI/UX Designer"].obs;
-  RxList jobTypesSaved = [true, false, false].obs;
-  RxList jobTypesLogo =
-      [AssetRes.airBnbLogo, AssetRes.twitterLogo, AssetRes.airBnbLogo].obs;
+  RxList jobTypes = [
+    "UI/UX Designer",
+    "Financial planner",
+    "UI/UX Designer",
+    "Financial planner",
+    "UI/UX Designer"
+  ].obs;
+  RxList jobTypesSaved = [true, false, false, true, false].obs;
+  RxList jobTypesLogo = [
+    AssetRes.airBnbLogo,
+    AssetRes.twitterLogo,
+    AssetRes.airBnbLogo,
+    AssetRes.twitterLogo,
+    AssetRes.airBnbLogo
+  ].obs;
 
   onTapSave(index) {
     if (jobTypesSaved[index] == true) {

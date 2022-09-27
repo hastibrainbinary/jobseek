@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'package:google_fonts/google_fonts.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/screen/auth/OtpPage/OtpController.dart';
 import 'package:jobseek/screen/auth/ResetPasswordPage/ResetPasswordScreen.dart';
+import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:pinput/pinput.dart';
@@ -34,18 +33,19 @@ class OtpScreen extends StatelessWidget {
             const SizedBox(width: 46),
             Text(
               'Forgot Password',
-              style: GoogleFonts.poppins(
-                  fontSize: 20, fontWeight: FontWeight.w500, height: 1),
+              style: appTextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                  height: 1,
+                  color: ColorRes.black),
             ),
           ],
         ),
         SizedBox(height: Get.height * 0.19),
         Text(
           'Code has been send to +6282******39',
-          style: GoogleFonts.poppins(
-              fontSize: 12,
-              fontWeight: FontWeight.w400,
-              color: ColorRes.black),
+          style: appTextStyle(
+              fontSize: 12, fontWeight: FontWeight.w400, color: ColorRes.black),
         ),
         SizedBox(height: Get.height * 0.05),
         Pinput(
@@ -56,8 +56,7 @@ class OtpScreen extends StatelessWidget {
           closeKeyboardWhenCompleted: true,
           defaultPinTheme: controller.defaultTheme,
           focusedPinTheme: controller.defaultTheme.copyDecorationWith(
-            border:
-                Border.all(color: const Color.fromRGBO(139, 78, 255, 0.05)),
+            //border: Border.all(color: const Color.fromRGBO(139, 78, 255, 0.05)),
             borderRadius: BorderRadius.circular(8),
           ),
         ),
@@ -65,7 +64,7 @@ class OtpScreen extends StatelessWidget {
         controller.otpError == ''
             ? const SizedBox(height: 20)
             : Container(
-                width: 339,
+                width: Get.width-50,
                 height: 28,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
@@ -84,67 +83,71 @@ class OtpScreen extends StatelessWidget {
                       const SizedBox(width: 10),
                       Text(
                         'Invalid OTP code',
-                        style: GoogleFonts.poppins(
+                        style: appTextStyle(
                             fontSize: 9,
                             fontWeight: FontWeight.w400,
                             color: ColorRes.starColor),
                       ),
                     ]),
               ),
+
         SizedBox(height: Get.height * 0.0600),
         GetBuilder<OtpController>(
             id: "Seconds",
-            builder: (controller){
-          return Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Resend code in ',
-                  style: GoogleFonts.poppins(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
-                      color: ColorRes.black)),
-              Text(
-                '${controller.seconds}',
-                style: GoogleFonts.poppins(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w400,
-                    color: ColorRes.containerColor),
-              ),
-              Text(
-                ' s',
-                style: GoogleFonts.poppins(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400,
-                    color: ColorRes.black),
-              ),
-            ],
-          );
-        }),
-        const SizedBox(height:215),
-        Container(
-          height: 50,
-          width: 339,
-          //width: MediaQuery.of(context).size.width,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            gradient: const LinearGradient(colors: [
-              ColorRes.gradientColor,
-              ColorRes.containerColor,
-            ]),
-          ),
-          child: InkWell(
-            onTap: () {
-              // controller.startTimer();
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (con) => ResetPasswordScreen()));
-            },
-            child: Text("Verify",
-                style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 18,
-                    color: ColorRes.white)),
+            builder: (controller) {
+              return Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Resend code in ',
+                      style: appTextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: ColorRes.black)),
+                  Text(
+                    '${controller.seconds}',
+                    style: appTextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w400,
+                        color: ColorRes.containerColor),
+                  ),
+                  Text(
+                    ' s',
+                    style: appTextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                        color: ColorRes.black),
+                  ),
+                ],
+              );
+            }),
+        const SizedBox(height: 210),
+        InkWell(
+          onTap: controller.otpvalidation(),
+          child: Container(
+            height: 50,
+            width: 339,
+            //width: MediaQuery.of(context).size.width,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              gradient: const LinearGradient(colors: [
+                ColorRes.gradientColor,
+                ColorRes.containerColor,
+              ]),
+            ),
+            child: InkWell(
+              onTap: () {
+                // controller.startTimer();
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (con) => ResetPasswordScreen()));
+              },
+              child: Text("Verify",
+                  style: appTextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 18,
+                      color: ColorRes.white)),
+            ),
           ),
         ),
         // SizedBox(height: Get.height * 0.03),

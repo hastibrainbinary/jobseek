@@ -62,7 +62,7 @@ Widget recentPeopleBox() {
                   width: 40,
                   decoration: BoxDecoration(
                       color: ColorRes.logoColor,
-                      borderRadius: BorderRadius.circular(12)),
+                      borderRadius: BorderRadius.circular(8)),
                   child: const GradientIcon(
                       Icons.chat,
                       20,
@@ -79,7 +79,7 @@ Widget recentPeopleBox() {
                   width: 40,
                   decoration: BoxDecoration(
                       color: ColorRes.logoColor,
-                      borderRadius: BorderRadius.circular(12)),
+                      borderRadius: BorderRadius.circular(8)),
                   child: const GradientIcon(
                       Icons.videocam_sharp,
                       20,

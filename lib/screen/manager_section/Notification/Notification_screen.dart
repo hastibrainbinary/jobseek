@@ -64,7 +64,7 @@ class NotificationScreen extends StatelessWidget {
                     onToggle: (value) => controller.onchangeSound(value))),
               ],
             ),
-            const SizedBox(height: 17),
+            const SizedBox(height: 25),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 20),
               color: ColorRes.lightGrey.withOpacity(0.8),
@@ -93,7 +93,7 @@ class NotificationScreen extends StatelessWidget {
                     onToggle: (value) => controller.onchangeVibrate(value))),
               ],
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 25),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 20),
               color: ColorRes.lightGrey.withOpacity(0.8),
@@ -113,21 +113,25 @@ class NotificationScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(width: Get.width - 220),
-                Obx(() => FlutterSwitch(
+                Obx(
+                  () => FlutterSwitch(
                     height: 27,
                     width: 45,
                     value: controller.isSwitchedTips.value,
                     activeColor: ColorRes.blueColor,
                     toggleSize: 20,
-                    onToggle: (value) => controller.onchangeTips(value))),
+                    onToggle: (value) => controller.onchangeTips(value),
+                  ),
+                ),
               ],
             ),
+            const SizedBox(height: 25),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 20),
               color: ColorRes.lightGrey.withOpacity(0.8),
               height: 1,
             ),
-            const SizedBox(height: 15),
+            const SizedBox(height: 25),
             Row(
               children: [
                 Padding(

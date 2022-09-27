@@ -11,26 +11,24 @@ Widget dateTimeBox(
   return InkWell(
     onTap: () => onTap!(context!),
     child: Container(
-      height: 50,
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: ColorRes.containerColor, width: 1.5)),
-      child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  value ?? text!,
-                  style: appTextStyle(color: ColorRes.containerColor,fontSize: 15),
-                ),
-                Image.asset(
-                  image,
-                  height: 20,
-                  width: 20,
-                )
-              ],
+        height: 39,
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: ColorRes.containerColor, width: 1.5)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              value ?? text!,
+              style: appTextStyle(color: ColorRes.containerColor, fontSize: 15),
+            ),
+            Image.asset(
+              image,
+              height: 20,
+              width: 20,
             )
-
-    ),
+          ],
+        )),
   );
 }

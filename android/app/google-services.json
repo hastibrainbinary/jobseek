@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "84399084229",
+    "project_id": "impressions-convrtx",
+    "storage_bucket": "impressions-convrtx.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:84399084229:android:6822fd76f8ae6a8c0516ac",
+        "android_client_info": {
+          "package_name": "com.app.impression"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "84399084229-iucsvke8inas02lb2ogkokrer3c9ca8t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.impression",
+            "certificate_hash": "168af2c4988cacf4c391250ba3e0b752c2079b52"
+          }
+        },
+        {
+          "client_id": "84399084229-g38dhfi91s1kkj1hjavee7vi0imc88gj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrOBQrT2BrpIt3QOkkwgaNXffnJbLRp3M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "84399084229-g38dhfi91s1kkj1hjavee7vi0imc88gj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

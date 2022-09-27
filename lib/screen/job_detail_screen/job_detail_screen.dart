@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_controller.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_widget/job_detail_widget.dart';
-import 'package:jobseek/screen/job_detail_screen/job_detail_widget/job_details_appbar.dart';
+import 'package:jobseek/screen/savejobs/save_job_screen.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
@@ -39,8 +39,8 @@ class JobDetailScreen extends StatelessWidget {
                                 Get.back();
                               },
                               child: Container(
-                                height: 45,
-                                width: 45,
+                                height: 40,
+                                width: 40,
                                 padding: const EdgeInsets.only(left: 10),
                                 // margin: const EdgeInsets.only(left: 10),
                                 decoration: BoxDecoration(
@@ -57,8 +57,8 @@ class JobDetailScreen extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              height: 45,
-                              width: 45,
+                              height: 40,
+                              width: 40,
                               // padding: const EdgeInsets.only(left: 0),
                               // margin: const EdgeInsets.only(right: 10),
                               decoration: BoxDecoration(
@@ -68,10 +68,19 @@ class JobDetailScreen extends StatelessWidget {
                               child: Align(
                                 alignment: Alignment.center,
                                 child: args["saved"] == true
-                                    ? Image.asset(
-                                        AssetRes.bookMarkFillIcon,
-                                        height: 20,
-                                        width: 20,
+                                    ? InkWell(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (con) =>
+                                                      SaveJobScreen()));
+                                        },
+                                        child: Image.asset(
+                                          AssetRes.bookMarkFillIcon,
+                                          height: 20,
+                                          width: 20,
+                                        ),
                                       )
                                     : Image.asset(
                                         AssetRes.bookMarkBorderIcon,
@@ -206,7 +215,7 @@ class JobDetailScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 25),
+                  const SizedBox(height: 15),
                   Padding(
                     padding: const EdgeInsets.only(left: 20, right: 20),
                     child: Text(
@@ -243,7 +252,7 @@ class JobDetailScreen extends StatelessWidget {
                           style: appTextStyle(
                               fontSize: 18, fontWeight: FontWeight.w500)),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

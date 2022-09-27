@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jobseek/screen/dashboard/dashboard_screen.dart';
-import 'package:jobseek/screen/first_page/first_Screen.dart';
 import 'package:jobseek/screen/looking_for_screen/looking_for_screen.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
@@ -18,15 +16,14 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 3), () {
-      Get.off(() => DashBoardScreen());
+      Get.off(() => LookingForScreen());
     });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    ImageProvider backgroundImage =
-        const AssetImage(AssetRes.splash_screenback);
+    ImageProvider backgroundImage = const AssetImage(AssetRes.splashScreen);
     backgroundImage.resolve(createLocalImageConfiguration(context));
     ImageProvider backgroundImageBoy = const AssetImage(AssetRes.splashBoyImg);
     backgroundImageBoy.resolve(createLocalImageConfiguration(context));
@@ -66,7 +63,6 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
             SizedBox(
               height: 140,
-              // decoration: BoxDecoration(border: Border.all()),
               child: Row(
                 children: [
                   Container(
@@ -130,7 +126,7 @@ class _SplashScreenState extends State<SplashScreen> {
             const Spacer(),
             Image.asset(
               AssetRes.splashBoyImg,
-              height: Get.height / 1.5,
+              height: Get.height < 657 ? Get.height / 2 : Get.height / 1.5,
               width: Get.width,
               fit: BoxFit.fill,
               filterQuality: FilterQuality.none,

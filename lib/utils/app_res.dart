@@ -9,4 +9,8 @@ class AppRes{
   static String managerApplicationDetailScreen = "/managerApplicationDetailScreen";
   static String resumeScreen = "/resumeScreen";
   static String applicantsDetails = "/applicantsDetails";
+  static String seeDetailsScreen="/seeDetailsScreen";
+  static String applicationsUser ="/applicationsUser";
+  static String firstScreen = "/FirstScreen";
+  static String firstPageScreenM ="/FirstPageScreenM";
 }

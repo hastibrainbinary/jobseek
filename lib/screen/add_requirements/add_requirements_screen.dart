@@ -62,34 +62,46 @@ class RequirementsScreen extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: controller.requirements.length,
                 itemBuilder: (context, index) {
-                  return detailBox(controller.requirements[index]);
+                  return Column(
+                    children: [
+                      detailBox(controller.requirements[index]),
+                      (controller.text.value == true)
+                          ? TextFormField()
+                          : const SizedBox(),
+                    ],
+                  );
                 }),
           ),
           Padding(
             padding: const EdgeInsets.all(18.0),
-            child: Container(
-              height: 50,
-              width: 339,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: ColorRes.containerColor),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Image(
-                    image: AssetImage(AssetRes.addIcon),
-                    height: 10,
-                  ),
-                  const SizedBox(width: 5),
-                  Text(
-                    'Add New Requirements',
-                    style: appTextStyle(
-                        color: ColorRes.containerColor,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ],
+            child: InkWell(
+              onTap: () {
+                controller.text.value = true;
+              },
+              child: Container(
+                height: 50,
+                width: 339,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: ColorRes.containerColor),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Image(
+                      image: AssetImage(AssetRes.addIcon),
+                      height: 10,
+                    ),
+                    const SizedBox(width: 5),
+                    Text(
+                      'Add New Requirements',
+                      style: appTextStyle(
+                          color: ColorRes.containerColor,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

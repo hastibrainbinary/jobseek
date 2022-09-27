@@ -8,9 +8,8 @@ Widget detailBox(text) {
     // height: 50,
     width: Get.width,
     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-    margin: const EdgeInsets.symmetric(horizontal: 18,vertical: 4),
+    margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
     decoration: BoxDecoration(
-      // border: Border.all(),
       gradient: LinearGradient(colors: [
         const Color(0xFFF3F0F8),
         const Color(0xFFF3F0F8).withOpacity(0.1),
@@ -28,12 +27,50 @@ Widget detailBox(text) {
           width: 20,
         ),
         SizedBox(
-          width: Get.width * 0.7,
+          width: Get.width * 0.57,
           child: Text(
             text,
-            style: appTextStyle(color: Colors.black, fontSize: 12,fontWeight: FontWeight.w400),
+            style: appTextStyle(
+                color: Colors.black, fontSize: 12, fontWeight: FontWeight.w400),
           ),
-        )
+        ),
+        PopupMenuButton(
+          itemBuilder: (context) => [
+            PopupMenuItem(
+              value: 1,
+              child: Row(
+                children: const [
+                  Icon(
+                    Icons.edit,
+                    color: ColorRes.containerColor,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text("edit")
+                ],
+              ),
+            ),
+            PopupMenuItem(
+              value: 2,
+              child: Row(
+                children: const [
+                  Icon(
+                    Icons.delete,
+                    color: ColorRes.starColor,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text("remove")
+                ],
+              ),
+            ),
+          ],
+          offset: const Offset(0, 10),
+          color: Colors.white,
+          elevation: 1,
+        ),
       ],
     ),
   );

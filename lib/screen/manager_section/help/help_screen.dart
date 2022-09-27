@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
+import 'package:jobseek/screen/manager_section/help/policy/policy_screen.dart';
+import 'package:jobseek/screen/manager_section/help/terms/terms_Screen.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'faq/faq_screen.dart';
 
 class HelpScreen extends StatelessWidget {
   const HelpScreen({Key? key}) : super(key: key);
@@ -40,23 +43,29 @@ class HelpScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 28),
-            Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: Row(
-                children: [
-                  Text(
-                    'FAQ',
-                    style: appTextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14,
-                        color: ColorRes.black),
-                  ),
-                  SizedBox(width: Get.width - 75),
-                  const Image(
-                    image: AssetImage(AssetRes.settingaArrow),
-                    height: 15,
-                  ),
-                ],
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (con) => FaqScreen()));
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: Row(
+                  children: [
+                    Text(
+                      'FAQ',
+                      style: appTextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14,
+                          color: ColorRes.black),
+                    ),
+                    SizedBox(width: Get.width - 75),
+                    const Image(
+                      image: AssetImage(AssetRes.settingaArrow),
+                      height: 15,
+                    ),
+                  ],
+                ),
               ),
             ),
             const SizedBox(height: 20),
@@ -65,24 +74,30 @@ class HelpScreen extends StatelessWidget {
               color: ColorRes.lightGrey.withOpacity(0.8),
               height: 1,
             ),
-            Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: Row(
-                children: [
-                  const SizedBox(height: 40),
-                  Text(
-                    'Terms & Conditions',
-                    style: appTextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14,
-                        color: ColorRes.black),
-                  ),
-                  SizedBox(width: Get.width - 185),
-                  const Image(
-                    image: AssetImage(AssetRes.settingaArrow),
-                    height: 15,
-                  ),
-                ],
+            InkWell(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (con) => TermsScreen()));
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: Row(
+                  children: [
+                    const SizedBox(height: 40),
+                    Text(
+                      'Terms & Conditions',
+                      style: appTextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14,
+                          color: ColorRes.black),
+                    ),
+                    SizedBox(width: Get.width - 185),
+                    const Image(
+                      image: AssetImage(AssetRes.settingaArrow),
+                      height: 15,
+                    ),
+                  ],
+                ),
               ),
             ),
             const SizedBox(height: 10),
@@ -91,24 +106,30 @@ class HelpScreen extends StatelessWidget {
               color: ColorRes.lightGrey.withOpacity(0.8),
               height: 1,
             ),
-            Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: Row(
-                children: [
-                  const SizedBox(height: 40),
-                  Text(
-                    'Privacy Policy',
-                    style: appTextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14,
-                        color: ColorRes.black),
-                  ),
-                  SizedBox(width: Get.width - 141),
-                  const Image(
-                    image: AssetImage(AssetRes.settingaArrow),
-                    height: 15,
-                  ),
-                ],
+            InkWell(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (con) => PolicyScreen()));
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: Row(
+                  children: [
+                    const SizedBox(height: 40),
+                    Text(
+                      'Privacy Policy',
+                      style: appTextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14,
+                          color: ColorRes.black),
+                    ),
+                    SizedBox(width: Get.width - 141),
+                    const Image(
+                      image: AssetImage(AssetRes.settingaArrow),
+                      height: 15,
+                    ),
+                  ],
+                ),
               ),
             ),
           ]),

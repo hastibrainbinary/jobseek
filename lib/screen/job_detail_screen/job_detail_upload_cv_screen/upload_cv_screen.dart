@@ -65,12 +65,17 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    const Divider(thickness: 2, color: Color(0xffD9D9D9)),
+                    const Divider(
+                      thickness: 0.5,
+                      color: Color(0xffD9D9D9),
+                    ),
+                    const SizedBox(height: 20),
                     Text(Strings.uploadResume,
                         style: appTextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.w600,
                             color: ColorRes.black)),
+                    const SizedBox(height: 10),
                     Text(Strings.uploadYourCvOr,
                         style: appTextStyle(
                             fontSize: 12,
@@ -78,48 +83,50 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                             color: ColorRes.black)),
 
                     ///upload pdf error Container
-                    Container(
-                      width: Get.width,
-                      // height: 28,
-                      margin: const EdgeInsets.only(top: 10),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          color: ColorRes.invalidColor),
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 15,
-                        vertical: 18,
-                      ),
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const Image(
-                              image: AssetImage(
-                                AssetRes.invalid,
-                              ),
-                              height: 25,
+                    Obx(() => controller.isPdfUploadError.value
+                        ? Container(
+                            width: Get.width,
+                            // height: 28,
+                            margin: const EdgeInsets.only(top: 10),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                color: ColorRes.invalidColor),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 15,
+                              vertical: 18,
                             ),
-                            const SizedBox(width: 10),
-                            SizedBox(
-                              width: Get.width * 0.65,
-                              child: Text(
-                                  "Upload failed,please re-upload your file",
-                                  style: appTextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 12,
-                                      color: ColorRes.starColor)),
-                            ),
-                            const Spacer(),
-                            const Icon(
-                              Icons.clear,
-                              color: ColorRes.starColor,
-                            )
-                          ]),
-                    ),
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Image(
+                                    image: AssetImage(
+                                      AssetRes.invalid,
+                                    ),
+                                    height: 25,
+                                  ),
+                                  const SizedBox(width: 10),
+                                  SizedBox(
+                                    width: Get.width * 0.65,
+                                    child: Text(
+                                        "Upload failed,please re-upload your file",
+                                        style: appTextStyle(
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 12,
+                                            color: ColorRes.starColor)),
+                                  ),
+                                  const Spacer(),
+                                  const Icon(
+                                    Icons.clear,
+                                    color: ColorRes.starColor,
+                                  )
+                                ]),
+                          )
+                        : const SizedBox()),
 
                     Obx(() => controller.filepath.value != ""
                         ? Container(
-                            height: 82,
+                            // height: 82,
                             width: Get.width,
                             margin: const EdgeInsets.only(top: 10),
                             padding: const EdgeInsets.symmetric(vertical: 10),
@@ -139,7 +146,7 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     SizedBox(
-                                      width: Get.width * 0.65,
+                                      width: Get.width * 0.6,
                                       child: Text(
                                           controller.filepath
                                               .value /*"Resume - Adam Smith.pdf"*/,
@@ -223,28 +230,32 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                     const SizedBox(height: 50),
                     GestureDetector(
                       onTap: () => controller.onTapApply(),
-                      child:Obx((){return  Container(
-                        height: 50,
-                        width: Get.width,
-                        alignment: Alignment.center,
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        margin: const EdgeInsets.only(
-                            right: 18, left: 18, top: 10, bottom: 30),
-                        decoration: BoxDecoration(
-                          borderRadius:
-                          const BorderRadius.all(Radius.circular(10)),
-                          gradient:controller.filepath.value == "" ?  LinearGradient(colors: [
-                            ColorRes.gradientColor.withOpacity(0.4),
-                            ColorRes.containerColor.withOpacity(0.4),
-                          ]): const LinearGradient(colors: [
-                            ColorRes.gradientColor,
-                            ColorRes.containerColor,
-                          ]),
-                        ),
-                        child: Text(Strings.apply,
-                            style: appTextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w500)),
-                      );}),
+                      child: Obx(() {
+                        return Container(
+                          height: 50,
+                          width: Get.width,
+                          alignment: Alignment.center,
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                          margin: const EdgeInsets.only(
+                              right: 10, left: 10, top: 10, bottom: 30),
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(10)),
+                            gradient: controller.filepath.value == ""
+                                ? LinearGradient(colors: [
+                                    ColorRes.gradientColor.withOpacity(0.4),
+                                    ColorRes.containerColor.withOpacity(0.4),
+                                  ])
+                                : const LinearGradient(colors: [
+                                    ColorRes.gradientColor,
+                                    ColorRes.containerColor,
+                                  ]),
+                          ),
+                          child: Text(Strings.apply,
+                              style: appTextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.w500)),
+                        );
+                      }),
                     )
                   ],
                 ),

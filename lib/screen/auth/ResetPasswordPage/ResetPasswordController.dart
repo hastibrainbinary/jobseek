@@ -7,37 +7,38 @@ class ResetPasswordController extends GetxController {
   TextEditingController passwordController = TextEditingController();
   TextEditingController  confirmPasswordController = TextEditingController();
 
-  String pwdError = "";
-  String newpwdErroe = "";
+  String newPassword = '';
+  String confirmPassword = '';
+  final _formKey = GlobalKey<FormState>();
 
 
   passwordValidation() {
     if (passwordController.text.trim() == "") {
-      pwdError = "Enter Password";
+      newPassword = "Enter Password";
     } else {
       if (passwordController.text.trim().length >= 8) {
-        pwdError = '';
+        newPassword = '';
       } else {
-        pwdError = "Enter  valid password";
+        newPassword ='Password must be at least 8 characters in length';
       }
     }
   }
 
-  newpasswordValidation() {
+  newPasswordValidation() {
     if (confirmPasswordController.text.trim() == "") {
-      newpwdErroe = "Enter Password";
+      confirmPassword  = "Enter Password";
     } else {
       if (passwordController.text.trim() == confirmPasswordController.text.trim()) {
-        newpwdErroe = '';
+        confirmPassword  = '';
       } else {
-        newpwdErroe = "Enter valid password";
+        confirmPassword  ='Confirmation password does not match the entered password';
       }
     }
   }
   bool validator() {
     passwordValidation();
-    newpasswordValidation();
-    if (pwdError == ""&&newpwdErroe=="" ) {
+    newPasswordValidation();
+    if (newPassword == ""&&confirmPassword =="" ) {
       return true;
     } else {
       return false;
@@ -83,32 +84,22 @@ class ResetPasswordController extends GetxController {
   //   }
   //   update();
   // }
-  onLoginBtnTap() {
+  onLoginBtnTap( context) {
     if (validator()) {
       print("GO TO HOME PAGE");
       Get.to(const CongratsScreen());
     }
     update(["NewPassword"]);
     update(["ConfirmPassword"]);
-  }
-  bool validation() {
-    // if (newPasswordController.text.isEmpty) {
-    //   errorToast(Strings.newPasswordError);
-    //   return false;
-    // } else if (validatePassword(newPasswordController.text) == false) {
-    //   errorToast(Strings.confirmShortPassword);
-    //   return false;
-    // } else if (confirmPasswordController.text.isEmpty) {
-    //   errorToast(Strings.coPasswordEmpty);
-    //   return false;
-    // } else if (validatePassword(confirmPasswordController.text) == false) {
-    //   errorToast(Strings.confirmShortPassword);
-    //   return false;
-    // } else if (confirmPasswordController.text != newPasswordController.text) {
-    //   errorToast(Strings.confirmPasswordMismatch);
-    //   return false;
-    // }
-    return true;
+
+    if (_formKey.currentState!.validate()) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (con) => const CongratsScreen()));
+    }
   }
 
-}
+  }
+
+

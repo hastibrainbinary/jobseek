@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
+import 'package:jobseek/screen/create_vacancies/create_vacancies_screen.dart';
 import 'package:jobseek/screen/manager_section/Jobdetails/Jobdetails_controller.dart';
+import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen.dart';
+import 'package:jobseek/screen/manager_section/manager_application_screen/manger_application_screen.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
@@ -11,9 +14,11 @@ class JobDetailsScreen extends StatelessWidget {
   final bool isError;
   JobDetailsScreen({Key? key, required this.isError}) : super(key: key);
   final JobDetailsController controller = Get.put(JobDetailsController());
+ // var args = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
+   // debugPrint("Args Print $args");
     return Scaffold(
       backgroundColor: ColorRes.backgroungColor,
       body: SingleChildScrollView(
@@ -128,48 +133,77 @@ class JobDetailsScreen extends StatelessWidget {
               const SizedBox(height: 30),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 15),
-                child: Container(
-                  height: 50,
-                  alignment: Alignment.center,
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                  margin: const EdgeInsets.only(right: 18, left: 18, top: 10),
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    gradient: LinearGradient(colors: [
-                      ColorRes.gradientColor,
-                      ColorRes.containerColor,
-                    ]),
+                child: GestureDetector(
+                  onTap: () {
+                    if (isError == true) {
+                      ///see applied job list tap event
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (con) => ManagerApplicationScreen()));
+                    } else {
+                      ///try again tap event
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (con) => CreateVacanciesScreen()));
+                    }
+                  },
+                  child: Container(
+                    height: 50,
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    margin: const EdgeInsets.only(right: 18, left: 18, top: 10),
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      gradient: LinearGradient(colors: [
+                        ColorRes.gradientColor,
+                        ColorRes.containerColor,
+                      ]),
+                    ),
+                    child: Text(
+                        isError == true
+                            ? Strings.gotoapplications
+                            : Strings.tryAgain,
+                        style: appTextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w500)),
                   ),
-                  child: Text(
-                      isError == true
-                          ? Strings.gotoapplications
-                          : Strings.tryAgain,
-                      style: appTextStyle(
-                          fontSize: 18, fontWeight: FontWeight.w500)),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 0),
-                child: Container(
-                  height: 50,
-                  alignment: Alignment.center,
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                  margin: const EdgeInsets.only(
-                    right: 18,
-                    left: 18,
+                child: GestureDetector(
+                  onTap: () {
+                    if (isError== true) {
+                      ///discover more jobs
+                      Get.offAll(() => CreateVacanciesScreen());
+                    } else {
+                      ///discover more jobs event
+                      Get.offAll(() => ManagerDashBoardScreen());
+                    }
+                  },
+                  child: Container(
+                    height: 50,
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    margin: const EdgeInsets.only(
+                      right: 18,
+                      left: 18,
+                    ),
+                    decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10)),
+                        color: ColorRes.white,
+                        border: Border.all(color: ColorRes.containerColor)),
+                    child: Text(
+                        isError == true
+                            ? Strings.postanothervacancy
+                            : Strings.backtohome,
+                        style: appTextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                            color: ColorRes.containerColor)),
                   ),
-                  decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(10)),
-                      color: ColorRes.white,
-                      border: Border.all(color: ColorRes.containerColor)),
-                  child: Text(
-                      isError == true
-                          ? Strings.postanothervacancy
-                          : Strings.backtohome,
-                      style: appTextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
-                          color: ColorRes.containerColor)),
                 ),
               ),
             ]),

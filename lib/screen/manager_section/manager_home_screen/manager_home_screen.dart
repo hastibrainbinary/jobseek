@@ -14,8 +14,8 @@ class ManagerHomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
-          height: Get.height * 0.1,
+        const SizedBox(
+          height: 60,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -58,9 +58,7 @@ class ManagerHomeScreen extends StatelessWidget {
                         child: const Icon(
                           Icons.notifications,
                           color: ColorRes.containerColor,
-                        )
-                        // Image.asset(AssetRes.notification),
-                        ),
+                        )),
                   ),
                 ],
               ),
@@ -112,12 +110,15 @@ class ManagerHomeScreen extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     fontSize: 16),
               ),
-              Text(
-                "See all",
-                style: appTextStyle(
-                    color: ColorRes.containerColor,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14),
+              InkWell(
+                onTap: () {},
+                child: Text(
+                  "See all",
+                  style: appTextStyle(
+                      color: ColorRes.containerColor,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14),
+                ),
               ),
             ],
           ),
@@ -205,12 +206,14 @@ class ManagerHomeScreen extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     fontSize: 16),
               ),
-              Text(
-                "See all",
-                style: appTextStyle(
-                    color: ColorRes.containerColor,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14),
+              InkWell( onTap: (){},
+                child: Text(
+                  "See all",
+                  style: appTextStyle(
+                      color: ColorRes.containerColor,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14),
+                ),
               ),
             ],
           ),

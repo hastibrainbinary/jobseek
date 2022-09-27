@@ -1,34 +1,32 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/screen/add_requirements/add_requirements_screen.dart';
-import 'package:jobseek/screen/chat_box/chat_box_screen.dart';
-import 'package:jobseek/screen/create_vacancies/create_vacancies_screen.dart';
-import 'package:jobseek/screen/create_vacancies_2/create_vacancies_2_screen.dart';
-import 'package:jobseek/screen/dashboard/dashboard_screen.dart';
 import 'package:jobseek/screen/dashboard/applications/applications_screen.dart';
 import 'package:jobseek/screen/first_page/first_Screen.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_screen.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_screen.dart';
 import 'package:jobseek/screen/job_detail_screen/job_details_success_or_fails/job_details_success_or_faild_screen.dart';
 import 'package:jobseek/screen/job_recommendation_screen/job_recommendation_screen.dart';
-import 'package:jobseek/screen/manager_section/Jobdetails/Jobdetails_screen.dart';
-import 'package:jobseek/screen/manager_section/Profile/profile_screen.dart';
+import 'package:jobseek/screen/looking_for_screen/looking_for_screen.dart';
 import 'package:jobseek/screen/manager_section/applicants_detail_screen/applicants_detail_screen.dart';
-import 'package:jobseek/screen/manager_section/chat_live/chatbox_live_screen.dart';
+import 'package:jobseek/screen/manager_section/auth_manager/first_page/first_screen.dart';
 import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen.dart';
 import 'package:jobseek/screen/manager_section/manager_application_detail_screen/manager_application_detail_screen.dart';
-import 'package:jobseek/screen/manager_section/manager_application_screen/manger_application_screen.dart';
-import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen.dart';
 import 'package:jobseek/screen/manager_section/resume_screen/resume_screen.dart';
 import 'package:jobseek/screen/notification_screen/notification_screen.dart';
 import 'package:jobseek/screen/organization_profile_screen/organization_profile_screen.dart';
-import 'package:jobseek/screen/splashScreen/splash_Screen.dart';
-import 'package:jobseek/screen/splashScreen/splash_Screen.dart';
-
 import 'package:jobseek/screen/see_details/see_details_screen.dart';
 import 'package:jobseek/utils/app_res.dart';
 
-void main() {
+void main()  async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    systemNavigationBarColor: Colors.transparent, // navigation bar color
+    statusBarColor: Colors.transparent, // status bar color
+    statusBarIconBrightness: Brightness.dark,
+  ));
   runApp(const MyApp());
 }
 
@@ -43,14 +41,13 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: DashBoardScreen(),
-      home: SplashScreen(),
+      home: LookingForScreen(),
       initialRoute: "/",
       getPages: [
         GetPage(
             name: AppRes.notificationScreen,
             page: () => const NotificationScreen()),
-        GetPage(name: AppRes.jobDetailScreen, page: () => JobDetailScreen()),
+        // GetPage(name: AppRes.jobDetailScreen, page: () => JobDetailScreen()),
         GetPage(
             name: AppRes.jobDetailUploadCvScreen,
             page: () => JobDetailsUploadCvScreen()),
@@ -60,7 +57,7 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: AppRes.notificationScreen,
             page: () => const NotificationScreen()),
-        GetPage(name: AppRes.jobDetailScreen, page: () => JobDetailScreen()),
+        //GetPage(name: AppRes.jobDetailScreen, page: () => JobDetailScreen()),
         GetPage(name: AppRes.jobDetailScreen, page: () => JobDetailScreen()),
         GetPage(
             name: AppRes.jobRecommendationScreen,
@@ -71,7 +68,8 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: AppRes.organizationProfileScreen,
             page: () => const OrganizationProfileScreen()),
-        GetPage(name: AppRes.applicationsUser, page: () => ApplicationsScreen())
+        GetPage(
+            name: AppRes.applicationsUser, page: () => ApplicationsScreen()),
         GetPage(
             name: AppRes.managerDashboardScreen,
             page: () => ManagerDashBoardScreen()),
@@ -82,10 +80,13 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: AppRes.applicantsDetails,
             page: () => ApplicantsDetailScreen()),
-            page: () => const ApplicantsDetailScreen()),
+        GetPage(
+            name: AppRes.firstPageScreenM,
+            page: () => const FirstPageScreenM()),
         GetPage(
             name: AppRes.seeDetailsScreen,
             page: () => const SeeDetailsScreen()),
+        GetPage(name: AppRes.firstScreen, page: () => FirstScreen()),
       ],
     );
   }

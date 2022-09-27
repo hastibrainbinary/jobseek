@@ -131,7 +131,7 @@ class ChatBovLiveScreen extends StatelessWidget {
                     '\npart of us.After this you will be contacted'
                     '\npersonally by our team.Thank You ...'
                     '\nGreetings,'
-                    '\nHiringamanager',
+                    '\n Hiring Manager',
                     style: appTextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: 10,

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/screen/chat_box_user/chat_box_userScreen.dart';
 import 'package:jobseek/screen/dashboard/dashboard_controller.dart';
 import 'package:jobseek/screen/dashboard/home/home_screen.dart';
+import 'package:jobseek/screen/profile/Profile_screen.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+import 'applications/applications_screen.dart';
 
 class DashBoardScreen extends StatelessWidget {
   DashBoardScreen({Key? key}) : super(key: key);
@@ -14,6 +17,7 @@ class DashBoardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: ColorRes.backgroungColor,
       body: GetBuilder<DashBoardController>(
         id: "bottom_bar",
@@ -21,10 +25,10 @@ class DashBoardScreen extends StatelessWidget {
           return controller.currentTab == 0
               ? HomeScreen()
               : controller.currentTab == 1
-                  ?  ApplicationsScreen()
+                  ? ApplicationsScreen()
                   : controller.currentTab == 2
-                      ? const Center(child: Text("page 2"))
-                      : const Center(child: Text("page 3"));
+                      ? ChatBoxUserScreen()
+                      : ProfileUserScreen();
         },
       ),
       bottomNavigationBar: GetBuilder<DashBoardController>(

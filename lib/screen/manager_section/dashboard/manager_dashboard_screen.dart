@@ -20,6 +20,7 @@ class ManagerDashBoardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: ColorRes.backgroungColor,
         body: Obx(() => controller.currentTab.value == 0
             ? const ManagerHomeScreen()

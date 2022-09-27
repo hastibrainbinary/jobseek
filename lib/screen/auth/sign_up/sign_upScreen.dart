@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jobseek/screen/auth/Forgot_Password/ForgotPassword_Screen.dart';
+import 'package:jobseek/common/widgets/common_textField.dart';
 import 'package:jobseek/screen/auth/sign_up/sign_upController.dart';
 import 'package:jobseek/screen/auth/sign_up/widget/signup_bottom/country.dart';
 import 'package:jobseek/screen/sign_inScreen/Signin_Screen.dart';
+import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
@@ -39,35 +40,35 @@ class sign_upScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(15),
                         ),
                         child: Text('Logo',
-                            style: GoogleFonts.poppins(
+                            style: appTextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontSize: 18,
                                 color: ColorRes.containerColor)),
                       ),
                     ),
-                    SizedBox(height: Get.height * 0.0221),
+                    const SizedBox(height: 18),
                     Center(
                       child: Text(
                         'Sign up for free',
-                        style: GoogleFonts.poppins(
+                        style: appTextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w600,
                             color: ColorRes.black),
                       ),
                     ),
-                    SizedBox(height: Get.height * 0.0221),
+                    const SizedBox(height: 37),
                     Padding(
                       padding: const EdgeInsets.only(left: 15, bottom: 10),
                       child: Row(
                         children: [
                           Text('First Name',
-                              style: GoogleFonts.poppins(
+                              style: appTextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 14,
                                   color: ColorRes.black.withOpacity(0.6))),
-                          const Text(
+                          Text(
                             '*',
-                            style: TextStyle(
+                            style: appTextStyle(
                                 fontSize: 15, color: ColorRes.starColor),
                           ),
                         ],
@@ -93,11 +94,11 @@ class sign_upScreen extends StatelessWidget {
                             child: Material(
                               shadowColor: ColorRes.containerColor,
                               borderRadius: BorderRadius.circular(12),
-                              child: TextFormField(
+                              child: commonTextFormField(
                                 controller: controller.firstnameController,
-                                decoration: InputDecoration(
+                                textDecoration: InputDecoration(
                                   hintText: 'First Name',
-                                  fillColor: ColorRes.white,
+                                  fillColor: Colors.transparent,
                                   filled: true,
                                   hintStyle: GoogleFonts.poppins(
                                       fontSize: 15,
@@ -187,19 +188,19 @@ class sign_upScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: Get.height * 0.0005),
+                    const SizedBox(height: 10),
                     Padding(
                       padding: const EdgeInsets.only(left: 15, bottom: 10),
                       child: Row(
                         children: [
                           Text('Last Name',
-                              style: GoogleFonts.poppins(
+                              style: appTextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 14,
                                   color: ColorRes.black.withOpacity(0.6))),
-                          const Text(
+                          Text(
                             '*',
-                            style: TextStyle(
+                            style: appTextStyle(
                                 fontSize: 15, color: ColorRes.starColor),
                           ),
                         ],
@@ -225,13 +226,13 @@ class sign_upScreen extends StatelessWidget {
                             child: Material(
                               shadowColor: ColorRes.containerColor,
                               borderRadius: BorderRadius.circular(12),
-                              child: TextFormField(
+                              child: commonTextFormField(
                                 controller: controller.lastnameController,
-                                decoration: InputDecoration(
+                                textDecoration: InputDecoration(
                                   hintText: 'Last Name',
-                                  fillColor: ColorRes.white,
+                                  fillColor: Colors.transparent,
                                   filled: true,
-                                  hintStyle: GoogleFonts.poppins(
+                                  hintStyle: appTextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w500,
                                       color: ColorRes.black.withOpacity(0.15)),
@@ -310,7 +311,7 @@ class sign_upScreen extends StatelessWidget {
                                         ),
                                         const SizedBox(width: 10),
                                         Text(controller.lastError,
-                                            style: GoogleFonts.poppins(
+                                            style: appTextStyle(
                                                 fontWeight: FontWeight.w400,
                                                 fontSize: 9,
                                                 color: ColorRes.starColor))
@@ -319,19 +320,19 @@ class sign_upScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-
+                    const SizedBox(height: 10),
                     Padding(
                       padding: const EdgeInsets.only(left: 15, bottom: 10),
                       child: Row(
                         children: [
                           Text('Email',
-                              style: GoogleFonts.poppins(
+                              style: appTextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 14,
                                   color: ColorRes.black.withOpacity(0.6))),
-                          const Text(
+                          Text(
                             '*',
-                            style: TextStyle(
+                            style: appTextStyle(
                                 fontSize: 15, color: ColorRes.starColor),
                           ),
                         ],
@@ -357,13 +358,13 @@ class sign_upScreen extends StatelessWidget {
                             child: Material(
                               shadowColor: ColorRes.containerColor,
                               borderRadius: BorderRadius.circular(12),
-                              child: TextFormField(
+                              child: commonTextFormField(
                                 controller: controller.emailController,
-                                decoration: InputDecoration(
+                                textDecoration: InputDecoration(
                                   hintText: 'Email',
-                                  fillColor: ColorRes.white,
+                                  fillColor: Colors.transparent,
                                   filled: true,
-                                  hintStyle: GoogleFonts.poppins(
+                                  hintStyle: appTextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w500,
                                     color: ColorRes.black.withOpacity(0.15),
@@ -440,7 +441,7 @@ class sign_upScreen extends StatelessWidget {
                                         ),
                                         const SizedBox(width: 10),
                                         Text(controller.emailError,
-                                            style: GoogleFonts.poppins(
+                                            style: appTextStyle(
                                                 fontWeight: FontWeight.w400,
                                                 fontSize: 9,
                                                 color: ColorRes.starColor))
@@ -449,18 +450,19 @@ class sign_upScreen extends StatelessWidget {
                         ],
                       ),
                     ),
+                    const SizedBox(height: 10),
                     Padding(
                       padding: const EdgeInsets.only(left: 15, bottom: 10),
                       child: Row(
                         children: [
                           Text('Phone number',
-                              style: GoogleFonts.poppins(
+                              style: appTextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 14,
                                   color: ColorRes.black.withOpacity(0.6))),
-                          const Text(
+                          Text(
                             '*',
-                            style: TextStyle(
+                            style: appTextStyle(
                                 fontSize: 15, color: ColorRes.starColor),
                           ),
                         ],
@@ -479,7 +481,7 @@ class sign_upScreen extends StatelessWidget {
                                   color: controller.phoneController.text
                                           .trim()
                                           .isEmpty
-                                      ? Colors.transparent
+                                      ? ColorRes.borderColor
                                       : controller.phoneError == ""
                                           ? ColorRes.containerColor
                                           : ColorRes.starColor),
@@ -495,7 +497,7 @@ class sign_upScreen extends StatelessWidget {
                             ),
                             child: Row(
                               children: [
-                                countryCodePicker(context),
+                                countryCodePicker(context, padding: 3),
                                 SizedBox(
                                   width: Get.width / 2,
                                   child: Material(
@@ -509,7 +511,7 @@ class sign_upScreen extends StatelessWidget {
                                           hintText: 'Phone number',
                                           fillColor: ColorRes.white,
                                           filled: true,
-                                          hintStyle: GoogleFonts.poppins(
+                                          hintStyle: appTextStyle(
                                               fontSize: 15,
                                               fontWeight: FontWeight.w500,
                                               color: ColorRes.black
@@ -546,7 +548,7 @@ class sign_upScreen extends StatelessWidget {
                                         const SizedBox(width: 10),
                                         Text(
                                           controller.phoneError,
-                                          style: GoogleFonts.poppins(
+                                          style: appTextStyle(
                                               fontSize: 9,
                                               fontWeight: FontWeight.w400,
                                               color: ColorRes.starColor),
@@ -557,18 +559,19 @@ class sign_upScreen extends StatelessWidget {
                         ],
                       ),
                     ),
+                    const SizedBox(height: 10),
                     Padding(
                       padding: const EdgeInsets.only(left: 15, bottom: 10),
                       child: Row(
                         children: [
                           Text('Password',
-                              style: GoogleFonts.poppins(
+                              style: appTextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
                                   color: ColorRes.black.withOpacity(0.6))),
-                          const Text(
+                          Text(
                             '*',
-                            style: TextStyle(
+                            style: appTextStyle(
                                 fontSize: 15, color: ColorRes.starColor),
                           ),
                         ],
@@ -594,13 +597,12 @@ class sign_upScreen extends StatelessWidget {
                             child: Material(
                               shadowColor: ColorRes.containerColor,
                               borderRadius: BorderRadius.circular(12),
-                              child: TextFormField(
-
+                              child: commonTextFormField(
                                 controller: controller.passwordController,
                                 obscureText: controller.show,
-                                decoration: InputDecoration(
+                                textDecoration: InputDecoration(
                                   hintText: 'Password',
-                                  fillColor: ColorRes.white,
+                                  fillColor: Colors.transparent,
                                   suffixIcon: IconButton(
                                     icon: controller.show
                                         ? Icon(
@@ -614,7 +616,7 @@ class sign_upScreen extends StatelessWidget {
                                     onPressed: controller.chang,
                                   ),
                                   filled: true,
-                                  hintStyle: GoogleFonts.poppins(
+                                  hintStyle: appTextStyle(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 15,
                                       color: ColorRes.black.withOpacity(0.15)),
@@ -694,28 +696,29 @@ class sign_upScreen extends StatelessWidget {
                                         const SizedBox(width: 10),
                                         Text(
                                           controller.pwdError,
-                                          style: GoogleFonts.poppins(
+                                          style: appTextStyle(
                                               fontSize: 9,
                                               fontWeight: FontWeight.w400,
                                               color: ColorRes.starColor),
                                         )
                                       ]),
-                                )
+                                ),
                         ],
                       ),
                     ),
+                    const SizedBox(height: 10),
                     Padding(
                       padding: const EdgeInsets.only(left: 15, bottom: 10),
                       child: Row(
                         children: [
                           Text('City',
-                              style: GoogleFonts.poppins(
+                              style: appTextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 14,
                                   color: ColorRes.black.withOpacity(0.6))),
-                          const Text(
+                          Text(
                             '*',
-                            style: TextStyle(
+                            style: appTextStyle(
                                 fontSize: 15, color: ColorRes.starColor),
                           ),
                         ],
@@ -739,15 +742,15 @@ class sign_upScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Material(
-                              shadowColor: Colors.purple.shade700,
+                              shadowColor: ColorRes.containerColor,
                               borderRadius: BorderRadius.circular(12),
-                              child: TextFormField(
+                              child: commonTextFormField(
                                 controller: controller.cityController,
-                                decoration: InputDecoration(
+                                textDecoration: InputDecoration(
                                   hintText: 'City',
-                                  fillColor: ColorRes.white,
+                                  fillColor: Colors.transparent,
                                   filled: true,
-                                  hintStyle: GoogleFonts.poppins(
+                                  hintStyle: appTextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w500,
                                       color: ColorRes.black.withOpacity(0.15)),
@@ -822,7 +825,7 @@ class sign_upScreen extends StatelessWidget {
                                         ),
                                         const SizedBox(width: 10),
                                         Text(controller.cityError,
-                                            style: GoogleFonts.poppins(
+                                            style: appTextStyle(
                                                 fontWeight: FontWeight.w400,
                                                 fontSize: 9,
                                                 color: ColorRes.starColor))
@@ -831,13 +834,13 @@ class sign_upScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    // SizedBox(height: Get.height * 0.0197),
+                    const SizedBox(height: 10),
                     Padding(
                       padding: const EdgeInsets.only(left: 15, bottom: 10),
                       child: Row(
                         children: [
                           Text('State',
-                              style: GoogleFonts.poppins(
+                              style: appTextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 14,
                                   color: ColorRes.black.withOpacity(0.6))),
@@ -869,11 +872,11 @@ class sign_upScreen extends StatelessWidget {
                             child: Material(
                               shadowColor: Colors.purple.shade700,
                               borderRadius: BorderRadius.circular(12),
-                              child: TextFormField(
+                              child: commonTextFormField(
                                 controller: controller.stateController,
-                                decoration: InputDecoration(
+                                textDecoration: InputDecoration(
                                   hintText: 'State',
-                                  fillColor: ColorRes.white,
+                                  fillColor: Colors.transparent,
                                   filled: true,
                                   hintStyle: GoogleFonts.poppins(
                                       fontSize: 15,
@@ -951,7 +954,7 @@ class sign_upScreen extends StatelessWidget {
                                         ),
                                         const SizedBox(width: 10),
                                         Text(controller.stateError,
-                                            style: GoogleFonts.poppins(
+                                            style: appTextStyle(
                                                 fontWeight: FontWeight.w400,
                                                 fontSize: 9,
                                                 color: ColorRes.starColor))
@@ -960,13 +963,13 @@ class sign_upScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    // SizedBox(height: Get.height * 0.0197),
+                    const SizedBox(height: 10),
                     Padding(
                       padding: const EdgeInsets.only(left: 15, bottom: 10),
                       child: Row(
                         children: [
                           Text('Country',
-                              style: GoogleFonts.poppins(
+                              style: appTextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 14,
                                   color: ColorRes.black.withOpacity(0.6))),
@@ -998,13 +1001,13 @@ class sign_upScreen extends StatelessWidget {
                             child: Material(
                               shadowColor: ColorRes.containerColor,
                               borderRadius: BorderRadius.circular(12),
-                              child: TextFormField(
+                              child: commonTextFormField(
                                 controller: controller.countryController,
-                                decoration: InputDecoration(
+                                textDecoration: InputDecoration(
                                   hintText: 'Country',
-                                  fillColor: ColorRes.white,
+                                  fillColor: Colors.transparent,
                                   filled: true,
-                                  hintStyle: GoogleFonts.poppins(
+                                  hintStyle: appTextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w500,
                                       color: ColorRes.black.withOpacity(0.15)),
@@ -1082,7 +1085,7 @@ class sign_upScreen extends StatelessWidget {
                                         ),
                                         const SizedBox(width: 10),
                                         Text(controller.countryError,
-                                            style: GoogleFonts.poppins(
+                                            style: appTextStyle(
                                                 fontWeight: FontWeight.w400,
                                                 fontSize: 9,
                                                 color: ColorRes.starColor))
@@ -1091,7 +1094,6 @@ class sign_upScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: Get.height * 0.01),
                     GetBuilder<SignUpController>(
                         id: "remember_me",
                         builder: (controller) {
@@ -1114,7 +1116,7 @@ class sign_upScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text('Remember me',
-                                    style: GoogleFonts.poppins(
+                                    style: appTextStyle(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 13,
                                         color: ColorRes.black))
@@ -1122,7 +1124,7 @@ class sign_upScreen extends StatelessWidget {
                             ),
                           );
                         }),
-                    SizedBox(height: Get.height * 0.0246),
+                    const SizedBox(height: 25),
                     GetBuilder<SignUpController>(
                         id: "dark",
                         builder: (controller) {
@@ -1146,7 +1148,7 @@ class sign_upScreen extends StatelessWidget {
                                     ]),
                                   ),
                                   child: Text("Sign up",
-                                      style: GoogleFonts.poppins(
+                                      style: appTextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.w500,
                                           color: ColorRes.white)),
@@ -1166,108 +1168,104 @@ class sign_upScreen extends StatelessWidget {
                                       ]),
                                     ),
                                     child: Text("Sign up",
-                                        style: GoogleFonts.poppins(
+                                        style: appTextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.w500,
                                             color: ColorRes.white)),
                                   ),
                                 );
                         }),
-                    const SizedBox(height: 15),
-                    Center(
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (con) => ForgotPasswordScreen()));
-                        },
-                        child: Text('Forgot the password?',
-                            style: GoogleFonts.poppins(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 15,
-                                color: ColorRes.containerColor)),
-                      ),
-                    ),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 28),
                     Center(
                       child: InkWell(
                         onTap: () {},
                         child: Text('or continue with',
-                            style: GoogleFonts.poppins(
+                            style: appTextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w400,
                                 color: ColorRes.black)),
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 28),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          height: 50,
-                          width: 145,
-                          decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    offset: const Offset(6, 6),
-                                    color: ColorRes.containerColor
-                                        .withOpacity(0.08),
-                                    spreadRadius: 0,
-                                    blurRadius: 35),
-                              ],
-                              borderRadius: BorderRadius.circular(10),
-                              color: ColorRes.white),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const Image(
-                                image: AssetImage(
-                                  AssetRes.facebook_image,
+                        InkWell(
+                          onTap: () {
+                            controller.faceBookSignIn();
+                          },
+                          child: Container(
+                            height: 50,
+                            width: 145,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: ColorRes.borderColor),
+                                boxShadow: [
+                                  BoxShadow(
+                                      offset: const Offset(6, 6),
+                                      color: ColorRes.containerColor
+                                          .withOpacity(0.08),
+                                      spreadRadius: 0,
+                                      blurRadius: 35),
+                                ],
+                                borderRadius: BorderRadius.circular(10),
+                                color: ColorRes.white),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const Image(
+                                  image: AssetImage(
+                                    AssetRes.facebook_image,
+                                  ),
+                                  height: 27,
                                 ),
-                                height: 27,
-                              ),
-                              const SizedBox(width: 15),
-                              Text('Facebook',
-                                  style: GoogleFonts.poppins(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15,
-                                      color: ColorRes.black))
-                            ],
+                                const SizedBox(width: 15),
+                                Text('Facebook',
+                                    style: appTextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15,
+                                        color: ColorRes.black))
+                              ],
+                            ),
                           ),
                         ),
-                        Container(
-                          height: 50,
-                          width: 145,
-                          decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    offset: const Offset(6, 6),
-                                    color: ColorRes.containerColor
-                                        .withOpacity(0.08),
-                                    spreadRadius: 0,
-                                    blurRadius: 35),
-                              ],
-                              borderRadius: BorderRadius.circular(10),
-                              color: ColorRes.white),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const Image(
-                                image: AssetImage(
-                                  AssetRes.Google_logo,
+                        InkWell(
+                          onTap: () {
+                            controller.signWithGoogle();
+                          },
+                          child: Container(
+                            height: 50,
+                            width: 145,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: ColorRes.borderColor),
+                                boxShadow: [
+                                  BoxShadow(
+                                      offset: const Offset(6, 6),
+                                      color: ColorRes.containerColor
+                                          .withOpacity(0.08),
+                                      spreadRadius: 0,
+                                      blurRadius: 35),
+                                ],
+                                borderRadius: BorderRadius.circular(10),
+                                color: ColorRes.white),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const Image(
+                                  image: AssetImage(
+                                    AssetRes.Google_logo,
+                                  ),
+                                  height: 27,
                                 ),
-                                height: 27,
-                              ),
-                              const SizedBox(width: 15),
-                              Text('Google',
-                                  style: GoogleFonts.poppins(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15,
-                                      color: ColorRes.black))
-                            ],
+                                const SizedBox(width: 15),
+                                Text('Google',
+                                    style: appTextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15,
+                                        color: ColorRes.black)),
+                              ],
+                            ),
                           ),
                         ),
                       ],
@@ -1280,7 +1278,7 @@ class sign_upScreen extends StatelessWidget {
                       children: [
                         Text(
                           "Don't have account?",
-                          style: GoogleFonts.poppins(
+                          style: appTextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 15,
                               color: ColorRes.black),
@@ -1295,7 +1293,7 @@ class sign_upScreen extends StatelessWidget {
                             },
                             child: Text(
                               ' Sign In',
-                              style: GoogleFonts.poppins(
+                              style: appTextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 16,
                                   color: ColorRes.containerColor),
@@ -1307,7 +1305,19 @@ class sign_upScreen extends StatelessWidget {
                   ]),
             )),
             controller.loading.isTrue
-                ? const Center(child: CircularProgressIndicator())
+                ? Center(
+                    child: Container(
+                      padding: const EdgeInsets.all(35),
+                      height: 110,
+                      width: 110,
+                      decoration: BoxDecoration(
+                          color: ColorRes.white,
+                          borderRadius: BorderRadius.circular(25)),
+                      child: const CircularProgressIndicator(
+                        color: ColorRes.containerColor,
+                      ),
+                    ),
+                  )
                 : const SizedBox(),
           ],
         );

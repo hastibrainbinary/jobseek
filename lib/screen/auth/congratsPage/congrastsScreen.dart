@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:jobseek/screen/first_page/first_Screen.dart';
+import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
@@ -28,7 +28,7 @@ class CongratsScreen extends StatelessWidget {
             Center(
               child: Text(
                 'Congrats!',
-                style: GoogleFonts.poppins(
+                style: appTextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 26,
                     color: ColorRes.containerColor),
@@ -38,13 +38,13 @@ class CongratsScreen extends StatelessWidget {
             Center(
               child: Text(
                 'Your account is ready to use',
-                style: GoogleFonts.poppins(
+                style: appTextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
                     color: ColorRes.black),
               ),
             ),
-            const SizedBox(height: 120),
+            const SizedBox(height: 150),
             Center(
               child: Container(
                 height: 50,
@@ -59,13 +59,11 @@ class CongratsScreen extends StatelessWidget {
                 ),
                 child: InkWell(
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (con) => const FirstScreen()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (con) => FirstScreen()));
                   },
                   child: Text("Go to homepage",
-                      style: GoogleFonts.poppins(
+                      style: appTextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 18,
                           color: ColorRes.white)),

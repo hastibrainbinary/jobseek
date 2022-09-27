@@ -6,6 +6,7 @@ import 'package:jobseek/utils/color_res.dart';
 
 Widget notificationBox() {
   return Container(
+    height: 92,
     margin: const EdgeInsets.only(bottom: 30),
     decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
@@ -33,29 +34,31 @@ Widget notificationBox() {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(
-                height: 20,
+                height: 15,
               ),
               Text(
                 "Your application to Apple Company has been read",
                 style: appTextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w600,
-                    fontSize: 15),
+                    fontSize: 13),
                 maxLines: 2,
               ),
-              const SizedBox(
-                height: 5,
-              ),
+              // const SizedBox(
+              //   height: 5,
+              // ),
               Text(
                 "17:00",
                 style: appTextStyle(
-                  color: ColorRes.grey.withOpacity(0.5),
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                  color: ColorRes.black.withOpacity(0.5),
                 ),
                 textAlign: TextAlign.left,
               ),
-              const SizedBox(
-                height: 20,
-              ),
+              // const SizedBox(
+              //   height: 20,
+              // ),
             ],
           ),
         )

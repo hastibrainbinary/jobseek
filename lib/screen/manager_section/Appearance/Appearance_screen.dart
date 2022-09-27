@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/color_res.dart';
-
 import 'Appearance_controller.dart';
 
 class AppearanceScreen extends StatelessWidget {
@@ -121,13 +120,9 @@ class AppearanceScreen extends StatelessWidget {
                     value: controller.isSwitchedFullScreenMode.value,
                     activeColor: ColorRes.blueColor,
                     toggleSize: 20,
-                    onToggle: (value) => controller.onchangeFullScreenMode(value))),
+                    onToggle: (value) =>
+                        controller.onchangeFullScreenMode(value))),
               ],
-            ),
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20),
-              color: ColorRes.lightGrey.withOpacity(0.8),
-              height: 1,
             ),
           ]),
     );

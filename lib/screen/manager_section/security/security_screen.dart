@@ -8,7 +8,6 @@ import 'package:jobseek/utils/color_res.dart';
 
 class SecurityScreen extends StatelessWidget {
   const SecurityScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     SecurityController controller = Get.put(SecurityController());

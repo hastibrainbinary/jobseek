@@ -6,7 +6,7 @@ import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/string.dart';
 
-Widget tipsForYouSection(){
+Widget tipsForYouSection() {
   return Column(
     children: [
       const SizedBox(height: 27),
@@ -63,6 +63,7 @@ Widget tipsForYouSection(){
               width: Get.width - 160,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+
                 crossAxisAlignment: CrossAxisAlignment.start,
                 // ignore: prefer_const_literals_to_create_immutables
                 children: [
@@ -70,7 +71,7 @@ Widget tipsForYouSection(){
                     Strings.howToFindAPerfectJob,
                     style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w500,
-                        fontSize: 20,
+                        fontSize: 18,
                         color: ColorRes.white),
                   ),
                   SizedBox(
@@ -82,8 +83,7 @@ Widget tipsForYouSection(){
                       alignment: Alignment.center,
                       decoration: const BoxDecoration(
                           color: ColorRes.orange,
-                          borderRadius:
-                          BorderRadius.all(Radius.circular(10))),
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
                       child: Text(
                         Strings.readMore,
                         style: appTextStyle(

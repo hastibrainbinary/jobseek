@@ -14,6 +14,7 @@ class JobDetailsUploadCvController extends GetxController {
 
   RxString filepath = "".obs;
   RxInt? fileSize;
+  RxBool isPdfUploadError = false.obs;
   bool uploadingMedia = false;
 
   applyResume() async {
@@ -55,6 +56,7 @@ class JobDetailsUploadCvController extends GetxController {
         debugPrint("FILES : $file");
         filepath.value = file.name.toString();
         fileSize?.value = file.size;
+        isPdfUploadError.value = false;
 
         debugPrint("filepath $filepath FileSize $fileSize");
 
@@ -119,6 +121,8 @@ class JobDetailsUploadCvController extends GetxController {
 
     } else {
       // User canceled the picker
+
+      isPdfUploadError.value =true;
     }
   }
 

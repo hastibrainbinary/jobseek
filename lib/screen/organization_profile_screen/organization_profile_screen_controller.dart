@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/utils/app_res.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen.dart';
 
 class OrganizationProfileScreenController extends GetxController
     implements GetxService {
@@ -9,14 +12,39 @@ class OrganizationProfileScreenController extends GetxController
   TextEditingController companyAddressController = TextEditingController();
   TextEditingController countryController = TextEditingController();
   TextEditingController dateController = TextEditingController();
+  TextEditingController positionController = TextEditingController();
+  TextEditingController salaryController = TextEditingController();
+  TextEditingController locationController = TextEditingController();
+  TextEditingController typeController = TextEditingController();
+  TextEditingController statusController = TextEditingController();
   RxBool isNameValidate = false.obs;
   RxBool isEmailValidate = false.obs;
   RxBool isAddressValidate = false.obs;
+  RxBool isCountryValidate = false.obs;
+  RxBool isDateValidate = false.obs;
+  RxBool isPositionValidate = false.obs;
+  RxBool isSalaryValidate = false.obs;
+  RxBool isLocationValidate = false.obs;
+  RxBool isTypeValidate = false.obs;
+  RxBool isStatusValidate = false.obs;
   DateTime? startTime;
+  ImagePicker picker = ImagePicker();
+  File? image;
 
-  validateAndSubmit() {
-    Get.toNamed(AppRes.managerDashboardScreen);
-/*    if (companyNameController.text.isEmpty) {
+  onLoginBtnTap() {
+    validate();
+    if (isNameValidate.value == false &&
+        isEmailValidate.value == false &&
+        isAddressValidate.value == false &&
+        isCountryValidate.value == false &&
+        isDateValidate.value == false) {
+      print("GO TO HOME PAGE");
+      Get.to(ManagerDashBoardScreen());
+    }
+  }
+
+  validate() {
+    if (companyNameController.text.isEmpty) {
       isNameValidate.value = true;
     } else {
       isNameValidate.value = false;
@@ -32,8 +60,20 @@ class OrganizationProfileScreenController extends GetxController
       isAddressValidate.value = true;
     } else {
       isAddressValidate.value = false;
-    }*/
+    }
+    if (countryController.text.isEmpty) {
+      isCountryValidate.value = true;
+    } else {
+      isCountryValidate.value = false;
+    }
+    if (dateController.text.isEmpty) {
+      isDateValidate.value = true;
+    } else {
+      isDateValidate.value = false;
+    }
   }
+
+
 
   Future<void> onDatePickerTap(context) async {
     DateTime? picked = await showDatePicker(
@@ -69,4 +109,16 @@ class OrganizationProfileScreenController extends GetxController
     'china',
     'United Kingdom',
   ];
+  ontapGallery1() async {
+    XFile? gallery = await picker.pickImage(source: ImageSource.gallery);
+    String path = gallery!.path;
+    gallery = File(path) as XFile?;
+    imagePicker();
+  }
+
+  imagePicker() {
+    update(['gallery']);
+    update(['onTap']);
+    update();
+  }
 }
