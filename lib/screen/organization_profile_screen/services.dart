@@ -81,19 +81,35 @@ class _Email extends State<Company> {
   String address = '';
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
-  createData() {
-    DocumentReference documentRefence = fireStore.collection('user').doc(name);
-    Map<String, dynamic> user = {
-      'name': name,
-      'email': email,
-      'date': date,
-      'country': county,
-      'address': address,
-    };
-    documentRefence.set(user).whenComplete(() {
-      print('$user Created');
-    });
-  }
+  // addData() {
+  //   DocumentReference documentRefence = fireStore.collection('user').doc(name);
+  //   Map<String, dynamic> user = {
+  //     'name': name,
+  //     'email': email,
+  //     'date': date,
+  //     'country': county,
+  //     'address': address,
+  //   };
+  //   documentRefence.set(user).whenComplete(() {
+  //     print('$user add');
+  //   });
+  // }
+  // createData() {
+  //   DocumentReference documentRefence = fireStore.collection('user').doc(name);
+  //   Map<String, dynamic> user = {
+  //     'name': name,
+  //     'email': email,
+  //     'date': date,
+  //     'country': county,
+  //     'address': address,
+  //   };
+  //   documentRefence.set(user).whenComplete(() {
+  //     print('$user Created');
+  //   });
+  // }
+
+
+
 
   // readData() {
   //   DocumentReference documentReference =
@@ -131,12 +147,12 @@ class _Email extends State<Company> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Colors.blueGrey,
-        title: Text("Firbase demo list"),
-      ),
+    return const Scaffold(
+      // appBar: AppBar(
+      //   centerTitle: true,
+      //   backgroundColor: Colors.blueGrey,
+      //   title: Text("Firbase demo list"),
+      // ),
       // body: Padding(
       //   padding: EdgeInsets.all(16),
       //   child: ListView(

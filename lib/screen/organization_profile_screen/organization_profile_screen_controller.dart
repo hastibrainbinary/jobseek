@@ -33,9 +33,21 @@ class OrganizationProfileScreenController extends GetxController
   ImagePicker picker = ImagePicker();
   File? image;
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
-  addDataInFirebase(userUid, email, name, date, country, address) async {
-    // print(userCredential.user?.uid);
-    await fireStore.collection('users').doc(userUid).set({
+  // addDataInFirebase(email, name, date, country, address) async {
+  //   // print(userCredential.user?.uid);
+  //   await fireStore.collection('users').doc("user").set({
+  //     "email": email,
+  //     "name": name,
+  //     "date": date,
+  //     "country": country,
+  //     "address": address,
+  //   }).catchError((e) {
+  //     print('======Error======== ' + e);
+  //   });
+  // }
+  Future<void> uploadingData(String name, String email, String date,
+      String country, String address) async {
+    await fireStore.collection("user").add({
       "email": email,
       "name": name,
       "date": date,
@@ -73,7 +85,15 @@ class OrganizationProfileScreenController extends GetxController
     }
   }
 
-  onLoginBtnTap() {
+  onLoginBtnTap({
+    // required addData(),
+
+    required String email,
+    required String name,
+    required String date,
+    required String country,
+    required String address,
+  }) {
     validate();
     if (isNameValidate.value == false &&
         isEmailValidate.value == false &&
@@ -81,6 +101,8 @@ class OrganizationProfileScreenController extends GetxController
         isCountryValidate.value == false &&
         isDateValidate.value == false) {
       print("GO TO HOME PAGE");
+      uploadingData(name, email, date, country, address);
+
       Get.to(ManagerDashBoardScreen());
     }
   }

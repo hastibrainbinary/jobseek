@@ -109,325 +109,387 @@ class OrganizationProfileScreen extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Obx(
-                () => Column(children: [
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 5),
-                        child: Text(
-                          "Name Of Company",
-                          style: appTextStyle(
-                            color: ColorRes.black.withOpacity(0.6),
+              child: Column(children: [
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 5),
+                      child: Text(
+                        "Name Of Company",
+                        style: appTextStyle(
+                          color: ColorRes.black.withOpacity(0.6),
+                          fontSize: 14,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      "*",
+                      style: appTextStyle(color: ColorRes.starColor),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                commonTextFormField(
+                    textDecoration: InputDecoration(
+                        contentPadding: const EdgeInsets.all(15),
+                        border: InputBorder.none,
+                        hintText: "Name Of Company",
+                        hintStyle: appTextStyle(
                             fontSize: 14,
+                            color: ColorRes.black.withOpacity(0.15))),
+                    onChanged: (String name) {
+                      name = name;
+                    },
+                    controller: controller.companyNameController),
+                controller.isNameValidate.value == true
+                    ? Column(
+                        children: [
+                          const SizedBox(
+                            height: 10,
                           ),
-                        ),
-                      ),
-                      Text(
-                        "*",
-                        style: appTextStyle(color: ColorRes.starColor),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  commonTextFormField(
-                      textDecoration: InputDecoration(
-                          contentPadding: const EdgeInsets.all(15),
-                          border: InputBorder.none,
-                          hintText: "Name Of Company",
-                          hintStyle: appTextStyle(
-                              fontSize: 14,
-                              color: ColorRes.black.withOpacity(0.15))),
-                      onChanged: (String name) {
-                        name = name;
-                      },
-                      controller: controller.companyNameController),
-                  controller.isNameValidate.value == true
-                      ? Column(
-                          children: [
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            commonErrorBox("Please Enter Company name"),
-                          ],
-                        )
-                      : const SizedBox(),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 5),
-                        child: Text(
-                          "Company Email",
-                          style:
-                              appTextStyle(color: ColorRes.grey, fontSize: 14),
-                        ),
-                      ),
-                      Text(
-                        "*",
-                        style: appTextStyle(color: ColorRes.starColor),
+                          commonErrorBox("Please Enter Company name"),
+                        ],
                       )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  commonTextFormField(
+                    : const SizedBox(),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 5),
+                      child: Text(
+                        "Company Email",
+                        style: appTextStyle(color: ColorRes.grey, fontSize: 14),
+                      ),
+                    ),
+                    Text(
+                      "*",
+                      style: appTextStyle(color: ColorRes.starColor),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                commonTextFormField(
+                    textDecoration: InputDecoration(
+                      contentPadding: const EdgeInsets.all(15),
+                      border: InputBorder.none,
+                      hintText: "Company Email",
+                      hintStyle: appTextStyle(
+                          fontSize: 14,
+                          color: ColorRes.black.withOpacity(0.15)),
+                      suffixIcon: Container(
+                        padding: const EdgeInsets.all(15),
+                        child: Image(
+                          image: const AssetImage(AssetRes.emailLogo),
+                          //height: 5,
+                          color: ColorRes.black.withOpacity(0.15),
+                        ),
+                      ),
+                    ),
+                    controller: controller.companyEmailController),
+                controller.isEmailValidate.value == true
+                    ? Column(
+                        children: [
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          commonErrorBox("Please Enter Company Email"),
+                        ],
+                      )
+                    : const SizedBox(),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 5),
+                      child: Text(
+                        "Established date",
+                        style: appTextStyle(color: ColorRes.grey, fontSize: 14),
+                      ),
+                    ),
+                    Text(
+                      "*",
+                      style: appTextStyle(color: ColorRes.starColor),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                InkWell(
+                  onTap: () {
+                    controller.onDatePickerTap(context);
+                  },
+                  child: commonTextFormField(
+                      onTap: () => controller.onDatePickerTap(context),
                       textDecoration: InputDecoration(
                         contentPadding: const EdgeInsets.all(15),
                         border: InputBorder.none,
-                        hintText: "Company Email",
+                        hintText: "Established date",
                         hintStyle: appTextStyle(
                             fontSize: 14,
                             color: ColorRes.black.withOpacity(0.15)),
                         suffixIcon: Container(
                           padding: const EdgeInsets.all(15),
                           child: Image(
-                            image: const AssetImage(AssetRes.emailLogo),
-                            //height: 5,
+                            image: const AssetImage(AssetRes.dateIcon),
                             color: ColorRes.black.withOpacity(0.15),
                           ),
                         ),
                       ),
-                      controller: controller.companyEmailController),
-                  controller.isEmailValidate.value == true
-                      ? Column(
-                          children: [
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            commonErrorBox("Please Enter Company Email"),
-                          ],
-                        )
-                      : const SizedBox(),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 5),
-                        child: Text(
-                          "Established date",
-                          style:
-                              appTextStyle(color: ColorRes.grey, fontSize: 14),
-                        ),
-                      ),
-                      Text(
-                        "*",
-                        style: appTextStyle(color: ColorRes.starColor),
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      controller.onDatePickerTap(context);
-                    },
-                    child: commonTextFormField(
-                        onTap: () => controller.onDatePickerTap(context),
-                        textDecoration: InputDecoration(
-                          contentPadding: const EdgeInsets.all(15),
-                          border: InputBorder.none,
-                          hintText: "Established date",
-                          hintStyle: appTextStyle(
-                              fontSize: 14,
-                              color: ColorRes.black.withOpacity(0.15)),
-                          suffixIcon: Container(
-                            padding: const EdgeInsets.all(15),
-                            child: Image(
-                              image: const AssetImage(AssetRes.dateIcon),
-                              color: ColorRes.black.withOpacity(0.15),
-                            ),
+                      controller: controller.dateController),
+                ),
+                controller.isDateValidate.value == true
+                    ? Column(
+                        children: [
+                          const SizedBox(
+                            height: 10,
                           ),
-                        ),
-                        controller: controller.dateController),
-                  ),
-                  controller.isDateValidate.value == true
-                      ? Column(
-                          children: [
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            commonErrorBox("Please Enter Date"),
-                          ],
-                        )
-                      : const SizedBox(),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 5),
-                        child: Text(
-                          "Country",
-                          style:
-                              appTextStyle(color: ColorRes.grey, fontSize: 14),
-                        ),
-                      ),
-                      Text(
-                        "*",
-                        style: appTextStyle(color: ColorRes.starColor),
+                          commonErrorBox("Please Enter Date"),
+                        ],
                       )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  commonTextFormField(
-                      textDecoration: InputDecoration(
-                        contentPadding: const EdgeInsets.all(15),
-                        border: InputBorder.none,
-                        hintText: "Country",
-                        hintStyle: appTextStyle(
-                          fontSize: 14,
-                          color: ColorRes.black.withOpacity(0.15),
-                        ),
-                        suffixIcon: Container(
-                          padding: const EdgeInsets.all(20),
-                          child: Image(
-                            color: ColorRes.black.withOpacity(0.20),
-                            image: const AssetImage(
-                              AssetRes.dropIcon,
-                            ),
-                            height: 5,
+                    : const SizedBox(),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 5),
+                      child: Text(
+                        "Country",
+                        style: appTextStyle(color: ColorRes.grey, fontSize: 14),
+                      ),
+                    ),
+                    Text(
+                      "*",
+                      style: appTextStyle(color: ColorRes.starColor),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                commonTextFormField(
+                    textDecoration: InputDecoration(
+                      contentPadding: const EdgeInsets.all(15),
+                      border: InputBorder.none,
+                      hintText: "Country",
+                      hintStyle: appTextStyle(
+                        fontSize: 14,
+                        color: ColorRes.black.withOpacity(0.15),
+                      ),
+                      suffixIcon: Container(
+                        padding: const EdgeInsets.all(20),
+                        child: Image(
+                          color: ColorRes.black.withOpacity(0.20),
+                          image: const AssetImage(
+                            AssetRes.dropIcon,
                           ),
+                          height: 5,
                         ),
                       ),
-                      controller: controller.countryController),
-                  controller.isCountryValidate.value == true
-                      ? Column(
-                          children: [
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            commonErrorBox("Please Enter Country"),
-                          ],
-                        )
-                      : const SizedBox(),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 5),
-                        child: Text(
-                          "Company Address",
-                          style:
-                              appTextStyle(color: ColorRes.grey, fontSize: 14),
-                        ),
-                      ),
-                      Text(
-                        "*",
-                        style: appTextStyle(color: ColorRes.starColor),
+                    ),
+                    controller: controller.countryController),
+                controller.isCountryValidate.value == true
+                    ? Column(
+                        children: [
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          commonErrorBox("Please Enter Country"),
+                        ],
                       )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  commonTextFormField(
-                      textDecoration: InputDecoration(
-                        contentPadding: const EdgeInsets.all(15),
-                        border: InputBorder.none,
-                        hintText: "Address",
-                        hintStyle: appTextStyle(
-                          fontSize: 14,
-                          color: ColorRes.black.withOpacity(0.15),
-                        ),
+                    : const SizedBox(),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 5),
+                      child: Text(
+                        "Company Address",
+                        style: appTextStyle(color: ColorRes.grey, fontSize: 14),
                       ),
-                      controller: controller.companyAddressController),
-                  controller.isAddressValidate.value == true
-                      ? Column(
-                          children: [
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            commonErrorBox("Please Enter Address"),
-                          ],
-                        )
-                      : const SizedBox(),
-                  const SizedBox(
-                    height: 35,
-                  ),
-                  GetBuilder<OrganizationProfileScreenController>(
-                      id: "Organization",
-                      builder: (controller) {
-                        return (controller.companyNameController.text == '' ||
-                                controller.companyEmailController.text == '' ||
-                                controller.dateController.text == '' ||
-                                controller.countryController.text == '' ||
-                                controller.companyAddressController.text == '')
-                            ? InkWell(
-                                // dashboard write
-                                onTap: controller.onLoginBtnTap,
+                    ),
+                    Text(
+                      "*",
+                      style: appTextStyle(color: ColorRes.starColor),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                commonTextFormField(
+                    textDecoration: InputDecoration(
+                      contentPadding: const EdgeInsets.all(15),
+                      border: InputBorder.none,
+                      hintText: "Address",
+                      hintStyle: appTextStyle(
+                        fontSize: 14,
+                        color: ColorRes.black.withOpacity(0.15),
+                      ),
+                    ),
+                    controller: controller.companyAddressController),
+                controller.isAddressValidate.value == true
+                    ? Column(
+                        children: [
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          commonErrorBox("Please Enter Address"),
+                        ],
+                      )
+                    : const SizedBox(),
+                const SizedBox(
+                  height: 35,
+                ),
+                // GetBuilder<OrganizationProfileScreenController>(
+                //     id: "Organization",
+                //     builder: (controller) {
+                //       return (controller.companyNameController.text == '' ||
+                //               controller.companyEmailController.text == '' ||
+                //               controller.dateController.text == '' ||
+                //               controller.countryController.text == '' ||
+                //               controller.countryController.text == '')
+                //           ? InkWell(
+                //               // dashboard write
+                //               onTap: controller.onLoginBtnTap(
+                //                   email:
+                //                       controller.companyEmailController.text,
+                //                   name: controller.companyNameController.text,
+                //                   date: controller.dateController.text,
+                //                   country: controller.countryController.text,
+                //                   address: controller.countryController.text),
+                //
+                //               child: Container(
+                //                 height: 50,
+                //                 width: MediaQuery.of(context).size.width,
+                //                 alignment: Alignment.center,
+                //                 decoration: BoxDecoration(
+                //                   borderRadius: BorderRadius.circular(10),
+                //                   gradient: LinearGradient(
+                //                     colors: [
+                //                       ColorRes.gradientColor.withOpacity(0.2),
+                //                       ColorRes.containerColor.withOpacity(0.4)
+                //                     ],
+                //                   ),
+                //                 ),
+                //                 child: Text("Confirm",
+                //                     style: appTextStyle(
+                //                         fontSize: 18,
+                //                         fontWeight: FontWeight.w500,
+                //                         color: ColorRes.white)),
+                //               ),
+                //             )
+                //           : InkWell(
+                //               // dashboard write
+                //               onTap: controller.onLoginBtnTap(
+                //                   email:
+                //                       controller.companyEmailController.text,
+                //                   name: controller.companyNameController.text,
+                //                   date: controller.dateController.text,
+                //                   country: controller.countryController.text,
+                //                   address: controller.countryController.text),
+                //               child: Container(
+                //                 height: 50,
+                //                 width: MediaQuery.of(context).size.width,
+                //                 alignment: Alignment.center,
+                //                 decoration: BoxDecoration(
+                //                   borderRadius: BorderRadius.circular(10),
+                //                   gradient: const LinearGradient(colors: [
+                //                     ColorRes.gradientColor,
+                //                     ColorRes.containerColor
+                //                   ]),
+                //                 ),
+                //                 child: Text("Confirm",
+                //                     style: appTextStyle(
+                //                         fontSize: 18,
+                //                         fontWeight: FontWeight.w500,
+                //                         color: ColorRes.white)),
+                //               ),
+                //             );
+                //     }),
 
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    // if (formKey.currentState!.validate()) {
-                                    //   String email = companyEmailController.text;
-                                    //   String password = passwordController.text;
-                                    //  Confirm(email, password);
-                                    // }
-                                  },
-
-                                  child: Container(
-                                    height: 50,
-                                    width: MediaQuery.of(context).size.width,
-                                    alignment: Alignment.center,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          ColorRes.gradientColor.withOpacity(0.2),
-                                          ColorRes.containerColor.withOpacity(0.4)
-                                        ],
-                                      ),
-                                    ),
-                                    child: Text("Confirm",
-                                        style: appTextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w500,
-                                            color: ColorRes.white)),
-                                  ),
-                                ),
-                              )
-                            : InkWell(
-                                // dashboard write
-                                onTap: controller.onLoginBtnTap,
-                                child: Container(
-                                  height: 50,
-                                  width: MediaQuery.of(context).size.width,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    gradient: const LinearGradient(colors: [
-                                      ColorRes.gradientColor,
-                                      ColorRes.containerColor
-                                    ]),
-                                  ),
-                                  child: Text("Confirm",
-                                      style: appTextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500,
-                                          color: ColorRes.white)),
-                                ),
-                              );
-                      }),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                ]),
-              ),
+                const SizedBox(
+                  height: 20,
+                ),
+              ]),
             ),
+            (controller.companyNameController.text == '' ||
+                    controller.companyEmailController.text == '' ||
+                    controller.dateController.text == '' ||
+                    controller.countryController.text == '' ||
+                    controller.countryController.text == '')
+                ? InkWell(
+                    // dashboard write
+                    onTap: () {
+                      controller.onLoginBtnTap(
+                          email: controller.companyEmailController.text,
+                          name: controller.companyNameController.text,
+                          date: controller.dateController.text,
+                          country: controller.countryController.text,
+                          address: controller.countryController.text);
+                    },
+
+                    child: Container(
+                      height: 50,
+                      width: 339,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        gradient: LinearGradient(
+                          colors: [
+                            ColorRes.gradientColor.withOpacity(0.2),
+                            ColorRes.containerColor.withOpacity(0.4)
+                          ],
+                        ),
+                      ),
+                      child: Text("Confirm",
+                          style: appTextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              color: ColorRes.white)),
+                    ),
+                  )
+                : InkWell(
+                    // dashboard write
+                    onTap: () {
+                      controller.onLoginBtnTap(
+                          email: controller.companyEmailController.text,
+                          name: controller.companyNameController.text,
+                          date: controller.dateController.text,
+                          country: controller.countryController.text,
+                          address: controller.countryController.text);
+                    },
+                    child: Container(
+                      height: 50,
+                      width: 339,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        gradient: const LinearGradient(colors: [
+                          ColorRes.gradientColor,
+                          ColorRes.containerColor
+                        ]),
+                      ),
+                      child: Text("Confirm",
+                          style: appTextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              color: ColorRes.white)),
+                    ),
+                  ),
+            const SizedBox(height: 20),
           ],
         ),
       ),
