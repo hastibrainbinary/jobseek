@@ -368,7 +368,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                                 controller.companyAddressController.text == '')
                             ? InkWell(
                                 // dashboard write
-                                onTap: controller.onLoginBtnTap,
+                                onTap: ()=>controller.onLoginBtnTap,
 
                                 child: Container(
                                   height: 50,
@@ -392,7 +392,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                               )
                             : InkWell(
                                 // dashboard write
-                                onTap: controller.onLoginBtnTap,
+                                onTap: ()=>controller.onLoginBtnTap,
                                 child: Container(
                                   height: 50,
                                   width: MediaQuery.of(context).size.width,
