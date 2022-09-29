@@ -9,12 +9,11 @@ Widget commonTextFormField(
      bool? obscureText}) {
   return Container(
     height: 50,
-    //padding: const EdgeInsets.symmetric(horizontal: 20),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(12),
       border: Border.all(color: color ?? ColorRes.borderColor),
     ),
-    child: TextFormField(
+    child: TextField(
       controller: controller,
       decoration: textDecoration,
       style: const TextStyle(fontWeight: FontWeight.bold),

@@ -19,23 +19,19 @@ class SignInScreenController extends GetxController {
   emailValidation() {
     if (emailController.text.trim() == "") {
       emailError = 'Please Enter email';
-      // emailError = "Enter email";
     } else {
-      if (RegExp(
-              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-          .hasMatch(emailController.text)) {
-        // return 'Enter  valid Email';
+      if (RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(emailController.text)) {
         emailError = '';
       } else {
         emailError = "Invalid email";
       }
     }
+    update(["showEmail"]);
   }
 
   passwordValidation() {
     if (passwordController.text.trim() == "") {
       pwdError = 'Please Enter Password';
-      // pwdError = "Enter Password";
     } else {
       if (passwordController.text.trim().length >= 8) {
         pwdError = '';
@@ -43,6 +39,7 @@ class SignInScreenController extends GetxController {
         pwdError = "At Least 8 Character";
       }
     }
+    update(["showPassword"]);
   }
 
   bool validator() {
@@ -62,7 +59,6 @@ class SignInScreenController extends GetxController {
       }
       Get.to(DashBoardScreen());
     }
-    update(["loginForm", "showEmail", "pwdError"]);
   }
 
   bool show = true;

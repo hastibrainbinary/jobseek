@@ -270,8 +270,8 @@ class SettingScreen extends StatelessWidget {
     );
   }
 
-  void settingModalBottomSheet(context) {
-    showModalBottomSheet(
+  Future settingModalBottomSheet(context) {
+    return showModalBottomSheet(
         context: context,
         backgroundColor: Colors.transparent,
         builder: (BuildContext bc) {

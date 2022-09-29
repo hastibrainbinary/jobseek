@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: LookingForScreen(),
+      home: const LookingForScreen(),
       initialRoute: "/",
       getPages: [
         GetPage(
@@ -58,7 +58,9 @@ class MyApp extends StatelessWidget {
             name: AppRes.notificationScreen,
             page: () => const NotificationScreen()),
         //GetPage(name: AppRes.jobDetailScreen, page: () => JobDetailScreen()),
-        GetPage(name: AppRes.jobDetailScreen, page: () => JobDetailScreen()),
+        GetPage(
+            name: AppRes.jobDetailScreen,
+            page: () => JobDetailScreen()),
         GetPage(
             name: AppRes.jobRecommendationScreen,
             page: () => const JobRecommendation()),
@@ -69,14 +71,16 @@ class MyApp extends StatelessWidget {
             name: AppRes.organizationProfileScreen,
             page: () => const OrganizationProfileScreen()),
         GetPage(
-            name: AppRes.applicationsUser, page: () => ApplicationsScreen()),
+            name: AppRes.applicationsUser,
+            page: () => ApplicationsScreen()),
         GetPage(
             name: AppRes.managerDashboardScreen,
             page: () => ManagerDashBoardScreen()),
         GetPage(
             name: AppRes.managerApplicationDetailScreen,
             page: () => const ManagerApplicationDetailScreen()),
-        GetPage(name: AppRes.resumeScreen, page: () => const ResumeScreen()),
+        GetPage(name: AppRes.resumeScreen,
+            page: () => const ResumeScreen()),
         GetPage(
             name: AppRes.applicantsDetails,
             page: () => ApplicantsDetailScreen()),
@@ -86,7 +90,9 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: AppRes.seeDetailsScreen,
             page: () => const SeeDetailsScreen()),
-        GetPage(name: AppRes.firstScreen, page: () => FirstScreen()),
+        GetPage(
+            name: AppRes.firstScreen,
+            page: () => FirstScreen()),
       ],
     );
   }

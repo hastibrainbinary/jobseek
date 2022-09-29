@@ -11,7 +11,7 @@ import 'package:jobseek/utils/color_res.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class FirstScreen extends StatelessWidget {
-  FirstScreen({Key? key}) : super(key: key);
+   FirstScreen({Key? key}) : super(key: key);
   FirstScreenController controller = Get.put(FirstScreenController());
 
   @override

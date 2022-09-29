@@ -13,26 +13,25 @@ class SigninScreen extends StatelessWidget {
 
   SignInScreenController controller = Get.put(SignInScreenController());
 
-  final formGlobalKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: ColorRes.white,
         body: Obx(() {
-          return Stack(children: [
+          return Stack(
+              children: [
             SingleChildScrollView(
               child: Container(
                 margin: const EdgeInsets.all(20),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 50),
+                      SizedBox(height: Get.height*0.061),
                       Center(
                         child: Container(
                           alignment: Alignment.center,
-                          height: 80,
-                          width: 80,
+                          height: Get.height*0.1,
+                          width: Get.height*0.1,
                           decoration: BoxDecoration(
                             color: ColorRes.logoColor,
                             borderRadius: BorderRadius.circular(15),
@@ -41,36 +40,33 @@ class SigninScreen extends StatelessWidget {
                               style: GoogleFonts.poppins(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 18,
-                                  color: ColorRes.containerColor)),
+                                  color: ColorRes.containerColor),),
                         ),
                       ),
-                      const SizedBox(height: 18),
+                      SizedBox(height: Get.height*0.022),
                       Center(
                         child: Text('Sign in to your account',
                             style: GoogleFonts.poppins(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
-                                color: ColorRes.black)),
+                                color: ColorRes.black),),
                       ),
-                      const SizedBox(height: 40),
+                       SizedBox(height: Get.height*0.05),
                       Padding(
-                        padding: const EdgeInsets.only(left: 15, bottom: 10),
-                        child: Form(
-                          key: formGlobalKey,
-                          child: Row(
-                            children: [
-                              Text('Email',
-                                  style: GoogleFonts.poppins(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 14,
-                                      color: ColorRes.black.withOpacity(0.6))),
-                              const Text(
-                                '*',
-                                style: TextStyle(
-                                    fontSize: 15, color: ColorRes.starColor),
-                              ),
-                            ],
-                          ),
+                        padding:  EdgeInsets.only(left: 15,bottom:Get.height*0.012),
+                        child: Row(
+                          children: [
+                            Text('Email',
+                                style: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14,
+                                    color: ColorRes.black.withOpacity(0.6),),),
+                            const Text(
+                              '*',
+                              style: TextStyle(
+                                  fontSize: 15, color: ColorRes.starColor),
+                            ),
+                          ],
                         ),
                       ),
                       GetBuilder<SignInScreenController>(
@@ -81,81 +77,77 @@ class SigninScreen extends StatelessWidget {
                               decoration: BoxDecoration(
                                 boxShadow: [
                                   BoxShadow(
-                                      offset: const Offset(6, 6),
-                                      color: ColorRes.containerColor
-                                          .withOpacity(0.12),
-                                      spreadRadius: 0,
-                                      blurRadius: 35),
+                                    offset: const Offset(0, 0),
+                                    color: ColorRes.containerColor.withOpacity(0.15),
+                                    spreadRadius: -8,
+                                    blurRadius: 20,),
                                 ],
+                                color: Colors.white,
                                 borderRadius: BorderRadius.circular(12),
                               ),
-                              child: Material(
-                                shadowColor: ColorRes.containerColor,
-                                borderRadius: BorderRadius.circular(10),
-                                child: commonTextFormField(
-                                  controller: controller.emailController,
-                                  textDecoration: InputDecoration(
-                                    contentPadding: const EdgeInsets.all(10),
-                                    hintText: 'Email',
-                                    fillColor: Colors.transparent,
-                                    filled: true,
-                                    hintStyle: GoogleFonts.poppins(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w500,
-                                        color:
-                                            ColorRes.black.withOpacity(0.15)),
-                                    border: controller.emailController.text
-                                            .trim()
-                                            .isEmpty
-                                        ? InputBorder.none
-                                        : controller.emailError.isNotEmpty
-                                            ? errorBorder()
-                                            : enableBorder(),
-                                    focusedBorder: controller
-                                            .emailController.text
-                                            .trim()
-                                            .isEmpty
-                                        ? InputBorder.none
-                                        : controller.emailError.isNotEmpty
-                                            ? errorBorder()
-                                            : enableBorder(),
-                                    disabledBorder: controller
-                                            .emailController.text
-                                            .trim()
-                                            .isEmpty
-                                        ? InputBorder.none
-                                        : controller.emailError.isNotEmpty
-                                            ? errorBorder()
-                                            : enableBorder(),
-                                    enabledBorder: controller
-                                            .emailController.text
-                                            .trim()
-                                            .isEmpty
-                                        ? InputBorder.none
-                                        : controller.emailError.isNotEmpty
-                                            ? errorBorder()
-                                            : enableBorder(),
-                                    errorBorder: controller.emailController.text
-                                            .trim()
-                                            .isEmpty
-                                        ? InputBorder.none
-                                        : controller.emailError.isNotEmpty
-                                            ? errorBorder()
-                                            : enableBorder(),
-                                    focusedErrorBorder: controller
-                                            .emailController.text
-                                            .trim()
-                                            .isEmpty
-                                        ? InputBorder.none
-                                        : controller.emailError.isNotEmpty
-                                            ? errorBorder()
-                                            : enableBorder(),
-                                  ),
+                              child: commonTextFormField(
+                                controller: controller.emailController,
+                                textDecoration: InputDecoration(
+                                  contentPadding: const EdgeInsets.only(left: 15,top: 10,bottom: 10,right: 15),
+                                  hintText: 'Email',
+                                  fillColor: Colors.transparent,
+                                  filled: true,
+                                  hintStyle: GoogleFonts.poppins(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500,
+                                      color:
+                                          ColorRes.black.withOpacity(0.15)),
+                                  border: controller.emailController.text
+                                          .trim()
+                                          .isEmpty
+                                      ? InputBorder.none
+                                      : controller.emailError.isNotEmpty
+                                          ? errorBorder()
+                                          : enableBorder(),
+                                  focusedBorder: controller
+                                          .emailController.text
+                                          .trim()
+                                          .isEmpty
+                                      ? InputBorder.none
+                                      : controller.emailError.isNotEmpty
+                                          ? errorBorder()
+                                          : enableBorder(),
+                                  disabledBorder: controller
+                                          .emailController.text
+                                          .trim()
+                                          .isEmpty
+                                      ? InputBorder.none
+                                      : controller.emailError.isNotEmpty
+                                          ? errorBorder()
+                                          : enableBorder(),
+                                  enabledBorder: controller
+                                          .emailController.text
+                                          .trim()
+                                          .isEmpty
+                                      ? InputBorder.none
+                                      : controller.emailError.isNotEmpty
+                                          ? errorBorder()
+                                          : enableBorder(),
+                                  errorBorder: controller.emailController.text
+                                          .trim()
+                                          .isEmpty
+                                      ? InputBorder.none
+                                      : controller.emailError.isNotEmpty
+                                          ? errorBorder()
+                                          : enableBorder(),
+                                  focusedErrorBorder: controller
+                                          .emailController.text
+                                          .trim()
+                                          .isEmpty
+                                      ? InputBorder.none
+                                      : controller.emailError.isNotEmpty
+                                          ? errorBorder()
+                                          : enableBorder(),
                                 ),
                               ),
                             ),
                             controller.emailError == ""
-                                ? const SizedBox(height: 20)
+                                ? const SizedBox()
                                 : Container(
                                     margin: const EdgeInsets.all(10),
                                     width: 339,
@@ -187,9 +179,9 @@ class SigninScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: Get.height*0.025),
                       Padding(
-                        padding: const EdgeInsets.only(left: 15, bottom: 10),
+                        padding:  EdgeInsets.only(left: 15,bottom:Get.height*0.012),
                         child: Row(
                           children: [
                             Text('Password',
@@ -213,93 +205,89 @@ class SigninScreen extends StatelessWidget {
                               decoration: BoxDecoration(
                                 boxShadow: [
                                   BoxShadow(
-                                      offset: const Offset(6, 6),
-                                      color: ColorRes.containerColor
-                                          .withOpacity(0.13),
-                                      spreadRadius: 0,
-                                      blurRadius: 35),
+                                    offset: const Offset(0, 0),
+                                    color: ColorRes.containerColor.withOpacity(0.15),
+                                    spreadRadius: -8,
+                                    blurRadius: 20,),
                                 ],
+                                color: Colors.white,
                                 borderRadius: BorderRadius.circular(12),
                               ),
-                              child: Material(
-                                shadowColor: ColorRes.containerColor,
-                                borderRadius: BorderRadius.circular(12),
-                                child: commonTextFormField(
-                                  controller: controller.passwordController,
-                                  obscureText: controller.show,
-                                  textDecoration: InputDecoration(
-                                    contentPadding: const EdgeInsets.all(10),
-                                    hintText: 'Password',
-                                    fillColor: Colors.transparent,
-                                    suffixIcon: IconButton(
-                                      icon: controller.show
-                                          ? Icon(Icons.visibility_off,
-                                              color: ColorRes.black
-                                                  .withOpacity(0.15))
-                                          : Icon(Icons.visibility,
-                                              color: ColorRes.black
-                                                  .withOpacity(0.15)),
-                                      onPressed: controller.chang,
-                                    ),
-                                    filled: true,
-                                    hintStyle: GoogleFonts.poppins(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 15,
-                                        color:
-                                            ColorRes.black.withOpacity(0.15)),
-                                    border: controller.passwordController.text
-                                            .trim()
-                                            .isEmpty
-                                        ? InputBorder.none
-                                        : controller.pwdError.isNotEmpty
-                                            ? errorBorder()
-                                            : enableBorder(),
-                                    focusedBorder: controller
-                                            .passwordController.text
-                                            .trim()
-                                            .isEmpty
-                                        ? InputBorder.none
-                                        : controller.pwdError.isNotEmpty
-                                            ? errorBorder()
-                                            : enableBorder(),
-                                    disabledBorder: controller
-                                            .passwordController.text
-                                            .trim()
-                                            .isEmpty
-                                        ? InputBorder.none
-                                        : controller.pwdError.isNotEmpty
-                                            ? errorBorder()
-                                            : enableBorder(),
-                                    enabledBorder: controller
-                                            .passwordController.text
-                                            .trim()
-                                            .isEmpty
-                                        ? InputBorder.none
-                                        : controller.pwdError.isNotEmpty
-                                            ? errorBorder()
-                                            : enableBorder(),
-                                    errorBorder: controller
-                                            .passwordController.text
-                                            .trim()
-                                            .isEmpty
-                                        ? InputBorder.none
-                                        : controller.pwdError.isNotEmpty
-                                            ? errorBorder()
-                                            : enableBorder(),
-                                    focusedErrorBorder: controller
-                                            .passwordController.text
-                                            .trim()
-                                            .isEmpty
-                                        ? InputBorder.none
-                                        : controller.pwdError.isNotEmpty
-                                            ? errorBorder()
-                                            : enableBorder(),
+                              child: commonTextFormField(
+                                controller: controller.passwordController,
+                                obscureText: controller.show,
+                                textDecoration: InputDecoration(
+                                  contentPadding: const EdgeInsets.only(left: 15,top: 10,bottom: 10,right: 15),
+                                  hintText: 'Password',
+                                  fillColor: Colors.transparent,
+                                  suffixIcon: IconButton(
+                                    icon: controller.show
+                                        ? Icon(Icons.visibility_off,
+                                            color: ColorRes.black
+                                                .withOpacity(0.15),)
+                                        : Icon(Icons.visibility,
+                                            color: ColorRes.black
+                                                .withOpacity(0.15),),
+                                    onPressed: controller.chang,
                                   ),
+                                  filled: true,
+                                  hintStyle: GoogleFonts.poppins(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 15,
+                                      color:
+                                          ColorRes.black.withOpacity(0.15),),
+                                  border: controller.passwordController.text
+                                          .trim()
+                                          .isEmpty
+                                      ? InputBorder.none
+                                      : controller.pwdError.isNotEmpty
+                                          ? errorBorder()
+                                          : enableBorder(),
+                                  focusedBorder: controller
+                                          .passwordController.text
+                                          .trim()
+                                          .isEmpty
+                                      ? InputBorder.none
+                                      : controller.pwdError.isNotEmpty
+                                          ? errorBorder()
+                                          : enableBorder(),
+                                  disabledBorder: controller
+                                          .passwordController.text
+                                          .trim()
+                                          .isEmpty
+                                      ? InputBorder.none
+                                      : controller.pwdError.isNotEmpty
+                                          ? errorBorder()
+                                          : enableBorder(),
+                                  enabledBorder: controller
+                                          .passwordController.text
+                                          .trim()
+                                          .isEmpty
+                                      ? InputBorder.none
+                                      : controller.pwdError.isNotEmpty
+                                          ? errorBorder()
+                                          : enableBorder(),
+                                  errorBorder: controller
+                                          .passwordController.text
+                                          .trim()
+                                          .isEmpty
+                                      ? InputBorder.none
+                                      : controller.pwdError.isNotEmpty
+                                          ? errorBorder()
+                                          : enableBorder(),
+                                  focusedErrorBorder: controller
+                                          .passwordController.text
+                                          .trim()
+                                          .isEmpty
+                                      ? InputBorder.none
+                                      : controller.pwdError.isNotEmpty
+                                          ? errorBorder()
+                                          : enableBorder(),
                                 ),
                               ),
                             ),
                             controller.pwdError == ""
-                                ? const SizedBox(height: 20)
+                                ? const SizedBox()
                                 : Container(
                                     width: 339,
                                     height: 28,
@@ -372,7 +360,7 @@ class SigninScreen extends StatelessWidget {
                               }),
                         ],
                       ),
-                      const SizedBox(height: 25),
+                      SizedBox(height: Get.height*0.036),
                       GetBuilder<SignInScreenController>(
                           id: "colorChange",
                           builder: (controller) {
@@ -416,7 +404,7 @@ class SigninScreen extends StatelessWidget {
                                     ),
                                   );
                           }),
-                      const SizedBox(height: 18),
+                      SizedBox(height: Get.height*0.022),
                       Center(
                         child: InkWell(
                           onTap: () {
@@ -432,7 +420,7 @@ class SigninScreen extends StatelessWidget {
                                   color: ColorRes.containerColor)),
                         ),
                       ),
-                      const SizedBox(height: 28),
+                      SizedBox(height: Get.height*0.035),
                       Center(
                         child: InkWell(
                           onTap: () {},
@@ -443,7 +431,7 @@ class SigninScreen extends StatelessWidget {
                                   color: ColorRes.black)),
                         ),
                       ),
-                      const SizedBox(height: 28),
+                      SizedBox(height: Get.height*0.035),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -532,7 +520,7 @@ class SigninScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 27),
+                      SizedBox(height: Get.height*0.033),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -587,14 +575,14 @@ class SigninScreen extends StatelessWidget {
   OutlineInputBorder enableBorder() {
     return OutlineInputBorder(
       borderSide: const BorderSide(color: ColorRes.containerColor),
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(12),
     );
   }
 
   OutlineInputBorder errorBorder() {
     return OutlineInputBorder(
       borderSide: const BorderSide(color: ColorRes.starColor),
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(12),
     );
   }
 }
