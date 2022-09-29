@@ -8,6 +8,7 @@ import 'package:jobseek/screen/manager_section/security/security_screen.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 
 class SettingsScreenU extends StatelessWidget {
   const SettingsScreenU({Key? key}) : super(key: key);
@@ -34,7 +35,7 @@ class SettingsScreenU extends StatelessWidget {
                 ),
                 const SizedBox(width: 85),
                 Text(
-                  'Settings',
+                  Strings.settings,
                   style: appTextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
@@ -69,7 +70,7 @@ class SettingsScreenU extends StatelessWidget {
                     ),
                     const SizedBox(width: 15),
                     Text(
-                      'Notification',
+                      Strings.notification,
                       style: appTextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 14,
@@ -116,7 +117,7 @@ class SettingsScreenU extends StatelessWidget {
                     ),
                     const SizedBox(width: 15),
                     Text(
-                      'Security',
+                      Strings.security,
                       style: appTextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 14,
@@ -163,7 +164,7 @@ class SettingsScreenU extends StatelessWidget {
                     ),
                     const SizedBox(width: 15),
                     Text(
-                      'Appearance',
+                      Strings.appearance,
                       style: appTextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 14,
@@ -209,7 +210,7 @@ class SettingsScreenU extends StatelessWidget {
                     ),
                     const SizedBox(width: 15),
                     Text(
-                      'Help',
+                      Strings.help,
                       style: appTextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 14,
@@ -256,7 +257,7 @@ class SettingsScreenU extends StatelessWidget {
                     ),
                     const SizedBox(width: 15),
                     Text(
-                      'Logout',
+                      Strings.logout,
                       style: appTextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 14,

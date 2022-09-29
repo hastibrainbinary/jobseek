@@ -446,75 +446,87 @@ class SignInScreenM extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
-                            height: 50,
-                            width: 145,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: ColorRes.borderColor),
-                                boxShadow: [
-                                  BoxShadow(
-                                      offset: const Offset(6, 6),
-                                      color: ColorRes.containerColor
-                                          .withOpacity(0.08),
-                                      spreadRadius: 0,
-                                      blurRadius: 35),
-                                ],
-                                borderRadius: BorderRadius.circular(10),
-                                color: ColorRes.white),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                const Image(
-                                  image: AssetImage(
-                                    AssetRes.facebook_image,
+                          InkWell(
+                            onTap: () {
+                              controller.faceBookSignIn();
+                            },
+                            child: Container(
+                              height: 50,
+                              width: 145,
+                              decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: ColorRes.borderColor),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        offset: const Offset(6, 6),
+                                        color: ColorRes.containerColor
+                                            .withOpacity(0.08),
+                                        spreadRadius: 0,
+                                        blurRadius: 35),
+                                  ],
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: ColorRes.white),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Image(
+                                    image: AssetImage(
+                                      AssetRes.facebook_image,
+                                    ),
+                                    height: 27,
                                   ),
-                                  height: 27,
-                                ),
-                                const SizedBox(width: 15),
-                                Text('Facebook',
-                                    style: appTextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 15,
-                                        color: ColorRes.black))
-                              ],
+                                  const SizedBox(width: 15),
+                                  Text('Facebook',
+                                      style: appTextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 15,
+                                          color: ColorRes.black))
+                                ],
+                              ),
                             ),
                           ),
                           const SizedBox(width: 20),
-                          Container(
-                            height: 50,
-                            width: 145,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: ColorRes.borderColor),
-                                boxShadow: [
-                                  BoxShadow(
-                                      offset: const Offset(6, 6),
-                                      color: ColorRes.containerColor
-                                          .withOpacity(0.08),
-                                      spreadRadius: 0,
-                                      blurRadius: 35),
-                                ],
-                                borderRadius: BorderRadius.circular(10),
-                                color: ColorRes.white),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                const Image(
-                                  image: AssetImage(
-                                    AssetRes.Google_logo,
+                          InkWell(
+                            onTap: () {
+                              controller.signWithGoogle();
+                            },
+                            child: Container(
+                              height: 50,
+                              width: 145,
+                              decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: ColorRes.borderColor),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        offset: const Offset(6, 6),
+                                        color: ColorRes.containerColor
+                                            .withOpacity(0.08),
+                                        spreadRadius: 0,
+                                        blurRadius: 35),
+                                  ],
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: ColorRes.white),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Image(
+                                    image: AssetImage(
+                                      AssetRes.Google_logo,
+                                    ),
+                                    height: 27,
                                   ),
-                                  height: 27,
-                                ),
-                                const SizedBox(width: 15),
-                                Text(
-                                  'Google',
-                                  style: appTextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15,
-                                      color: ColorRes.black),
-                                ),
-                              ],
+                                  const SizedBox(width: 15),
+                                  Text(
+                                    'Google',
+                                    style: appTextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15,
+                                        color: ColorRes.black),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ],
@@ -553,10 +565,19 @@ class SignInScreenM extends StatelessWidget {
               ),
             ),
             controller.loading.isTrue
-                ? const Center(
-                    child: CircularProgressIndicator(
-                    color: ColorRes.containerColor,
-                  ))
+                ? Center(
+                    child: Container(
+                      padding: const EdgeInsets.all(35),
+                      height: 110,
+                      width: 110,
+                      decoration: BoxDecoration(
+                          color: ColorRes.white,
+                          borderRadius: BorderRadius.circular(25)),
+                      child: const CircularProgressIndicator(
+                        color: ColorRes.containerColor,
+                      ),
+                    ),
+                  )
                 : const SizedBox(),
           ]);
         }));

@@ -8,7 +8,8 @@ import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
 class OrganizationProfileScreen extends StatelessWidget {
-  const OrganizationProfileScreen({Key? key}) : super(key: key);
+  OrganizationProfileScreen({Key? key}) : super(key: key);
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -20,44 +21,38 @@ class OrganizationProfileScreen extends StatelessWidget {
             const SizedBox(
               height: 60,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      color: ColorRes.logoColor,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        textAlign: TextAlign.center,
-                        'Logo',
-                        style: appTextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 8,
-                            color: ColorRes.containerColor),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 46),
-                Align(
-                  alignment: Alignment.center,
+            Row(children: [
+              Container(
+                margin: const EdgeInsets.all(15),
+                height: 40,
+                width: 40,
+                decoration: BoxDecoration(
+                    color: ColorRes.logoColor,
+                    borderRadius: BorderRadius.circular(10)),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 11),
                   child: Text(
-                    "Organization Profile",
-                    style: appTextStyle(color: ColorRes.black, fontSize: 20),
+                    textAlign: TextAlign.center,
+                    "Logo",
+                    style: appTextStyle(
+                        color: ColorRes.containerColor,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 10),
                   ),
                 ),
-              ],
-            ),
+              ),
+              const SizedBox(width: 30),
+              Text(
+                'Organization Profile',
+                style: appTextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                    height: 1,
+                    color: ColorRes.black),
+              ),
+            ]),
             const SizedBox(
-              height: 20,
+              height: 18,
             ),
             Container(
               width: Get.width,
@@ -110,7 +105,7 @@ class OrganizationProfileScreen extends StatelessWidget {
               height: 1,
             ),
             const SizedBox(
-              height: 20,
+              height: 18,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -145,6 +140,9 @@ class OrganizationProfileScreen extends StatelessWidget {
                           hintStyle: appTextStyle(
                               fontSize: 14,
                               color: ColorRes.black.withOpacity(0.15))),
+                      onChanged: (String name) {
+                        name = name;
+                      },
                       controller: controller.companyNameController),
                   controller.isNameValidate.value == true
                       ? Column(
@@ -340,7 +338,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                       textDecoration: InputDecoration(
                         contentPadding: const EdgeInsets.all(15),
                         border: InputBorder.none,
-                        hintText: "Company Address",
+                        hintText: "Address",
                         hintStyle: appTextStyle(
                           fontSize: 14,
                           color: ColorRes.black.withOpacity(0.15),
@@ -358,7 +356,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                         )
                       : const SizedBox(),
                   const SizedBox(
-                    height: 70,
+                    height: 35,
                   ),
                   GetBuilder<OrganizationProfileScreenController>(
                       id: "Organization",
@@ -372,25 +370,35 @@ class OrganizationProfileScreen extends StatelessWidget {
                                 // dashboard write
                                 onTap: controller.onLoginBtnTap,
 
-                                child: Container(
-                                  height: 50,
-                                  width: MediaQuery.of(context).size.width,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    gradient: LinearGradient(
-                                      colors: [
-                                        ColorRes.gradientColor.withOpacity(0.2),
-                                        ColorRes.containerColor.withOpacity(0.4)
-                                      ],
-                                    ),
-                                  ),
-                                  child: Text("Confirm",
-                                      style: appTextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500,
-                                          color: ColorRes.white)),
-                                ),
+                                // child: ElevatedButton(
+                                //   onPressed: () {
+                                //     if (formKey.currentState!.validate()) {
+                                //       String email = companyEmailController.text;
+                                //       String password = passwordController.text;
+                                //      Confirm(email, password);
+                                //     }
+                                //   },
+                                //
+                                //   child: Container(
+                                //     height: 50,
+                                //     width: MediaQuery.of(context).size.width,
+                                //     alignment: Alignment.center,
+                                //     decoration: BoxDecoration(
+                                //       borderRadius: BorderRadius.circular(10),
+                                //       gradient: LinearGradient(
+                                //         colors: [
+                                //           ColorRes.gradientColor.withOpacity(0.2),
+                                //           ColorRes.containerColor.withOpacity(0.4)
+                                //         ],
+                                //       ),
+                                //     ),
+                                //     child: Text("Confirm",
+                                //         style: appTextStyle(
+                                //             fontSize: 18,
+                                //             fontWeight: FontWeight.w500,
+                                //             color: ColorRes.white)),
+                                //   ),
+                                // ),
                               )
                             : InkWell(
                                 // dashboard write

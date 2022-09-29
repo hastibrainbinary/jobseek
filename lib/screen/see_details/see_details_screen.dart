@@ -80,16 +80,31 @@ class SeeDetailsScreen extends StatelessWidget {
                                     fontWeight: FontWeight.w600,
                                     color: ColorRes.black)),
                           ),
-                          const SizedBox(height: 10),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 1),
-                            child: Text(
-                              "Get started.pdf",
-                              style: appTextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w500,
-                                  color: ColorRes.black),
-                            ),
+                          Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 1),
+                                child: Text(
+                                  "Get started.pdf",
+                                  style: appTextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w500,
+                                      color: ColorRes.black),
+                                ),
+                              ),
+                              const SizedBox(width: 50),
+                              Container(
+                                height: 16,
+                                width: 16,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(16),
+                                    border: Border.all(color: ColorRes.black)),
+                                child: const Icon(
+                                  Icons.arrow_downward,
+                                  size: 10,
+                                ),
+                              ),
+                            ],
                           ),
                           Row(
                             children: [
@@ -185,7 +200,6 @@ class SeeDetailsScreen extends StatelessWidget {
                     const SizedBox(height: 10),
                     Container(
                       height: 50,
-                      //padding: const EdgeInsets.symmetric(horizontal: 20),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(color: ColorRes.containerColor),
@@ -204,7 +218,7 @@ class SeeDetailsScreen extends StatelessWidget {
                                   filled: true,
                                   hintStyle: appTextStyle(
                                       fontSize: 15,
-                                      // fontWeight: FontWeight.w500,
+                                      fontWeight: FontWeight.w600,
                                       color: ColorRes.black),
                                   border: InputBorder.none),
                             ),

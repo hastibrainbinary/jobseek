@@ -34,6 +34,19 @@ class Strings {
   static const postanothervacancy = "Post Another Vacancy";
   static const backtohome ="Back to Home";
   static const tryAgain = "Try Again";
+  static const ok ="ok";
+  static const settings="Settings";
+  static const security ="Security";
+  static const appearance ="Appearance";
+  static const help ="Help";
+  static const logout ="Logout";
+  static const sound = "Sound";
+  static const vibrate ="Vibrate";
+  static const newtipsavailable = "New tips available";
+  static const newserviceavailable = "New service available";
   static const pleaseMakeSureThatYourInternet = "Please make sure that your internet connection is active and stable,then press\"Try Again\"";
-
+  static const pleasemakesurethatyourinternetconnectionisactiveandstablethenpressTryAgain="Please make sure that your internet connection is active and stable, then press “Try Again”";
+  static const uIUXDesigner ="UI/UX Designer";
+  static const airBNB="AirBNB";
+  static const nowyoucanseealltheapplierCVStringResumeandinvitethemtothenextstep= "Now you can see all the applier CV/Resume and invite them to the next step";
 }

@@ -50,7 +50,7 @@ class ManagerApplicationScreen extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (con) => CreateVacanciesScreen()));
+                                builder: (con) => const CreateVacanciesScreen()));
                       },
                       child: Container(
                         height: 40,
@@ -104,6 +104,7 @@ class ManagerApplicationScreen extends StatelessWidget {
             padding: const EdgeInsets.only(left: 20, right: 20),
             height: 32,
             child: ListView.builder(
+              padding: const EdgeInsets.all(0),
                 itemCount: controller.jobs2.length,
                 scrollDirection: Axis.horizontal,
                 physics: const BouncingScrollPhysics(),
@@ -139,10 +140,12 @@ class ManagerApplicationScreen extends StatelessWidget {
                   );
                 }),
           ),
+         const SizedBox(height: 18),
           Expanded(
             child: SizedBox(
               height: Get.height * 0.65,
               child: ListView.builder(
+                padding: const EdgeInsets.all(0),
                   itemCount: 10,
                   shrinkWrap: true,
                   itemBuilder: (context, index) {

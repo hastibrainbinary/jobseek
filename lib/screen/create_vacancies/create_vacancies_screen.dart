@@ -31,10 +31,10 @@ class CreateVacanciesScreen extends StatelessWidget {
                   child: backButton(),
                 ),
               ),
-              const SizedBox(width: 85),
+              const SizedBox(width: 40),
               Center(
                 child: Text(
-                  'Chat Box',
+                  'Create Vacancies',
                   style: appTextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
@@ -282,7 +282,7 @@ class CreateVacanciesScreen extends StatelessWidget {
                               )
                             : const SizedBox(),
                         const SizedBox(
-                          height: 70,
+                          height: 60,
                         ),
                         GetBuilder<CreateVacanciesController>(
                             id: "profile",
@@ -346,7 +346,7 @@ class CreateVacanciesScreen extends StatelessWidget {
                                     );
                             }),
                         const SizedBox(
-                          height: 20,
+                          height: 10,
                         ),
                       ]),
                     ),

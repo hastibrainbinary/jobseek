@@ -69,7 +69,7 @@ class MyApp extends StatelessWidget {
             page: () => const JobRecommendation()),
         GetPage(
             name: AppRes.organizationProfileScreen,
-            page: () => const OrganizationProfileScreen()),
+            page: () =>OrganizationProfileScreen()),
         GetPage(
             name: AppRes.applicationsUser,
             page: () => ApplicationsScreen()),
@@ -83,7 +83,7 @@ class MyApp extends StatelessWidget {
             page: () => const ResumeScreen()),
         GetPage(
             name: AppRes.applicantsDetails,
-            page: () => ApplicantsDetailScreen()),
+            page: () => ApplicantsDetailScreen(isWrong: false,)),
         GetPage(
             name: AppRes.firstPageScreenM,
             page: () => const FirstPageScreenM()),

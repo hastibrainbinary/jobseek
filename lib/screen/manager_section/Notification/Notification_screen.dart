@@ -5,6 +5,7 @@ import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/screen/manager_section/Notification/Notification_controller.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({Key? key}) : super(key: key);
@@ -32,7 +33,7 @@ class NotificationScreen extends StatelessWidget {
                 ),
                 const SizedBox(width: 80),
                 Text(
-                  'Notification',
+                  Strings.notification,
                   style: appTextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
@@ -47,7 +48,7 @@ class NotificationScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Text(
-                    'Sound',
+                    Strings.sound,
                     style: appTextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
@@ -70,20 +71,22 @@ class NotificationScreen extends StatelessWidget {
               color: ColorRes.lightGrey.withOpacity(0.8),
               height: 1,
             ),
-            const SizedBox(height: 15),
+            const SizedBox(height: 20),
             Row(
               children: [
                 Padding(
                   padding: const EdgeInsets.all(15.0),
-                  child: Text(
-                    'Vibrate',
-                    style: appTextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: ColorRes.black),
+                  child: Center(
+                    child: Text(
+                      Strings.vibrate,
+                      style: appTextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: ColorRes.black),
+                    ),
                   ),
                 ),
-                SizedBox(width: Get.width - 145),
+                SizedBox(width: Get.width - 143),
                 Obx(() => FlutterSwitch(
                     height: 27,
                     width: 45,
@@ -105,7 +108,7 @@ class NotificationScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Text(
-                    'New tips available',
+                    Strings.newtipsavailable,
                     style: appTextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
@@ -137,7 +140,7 @@ class NotificationScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Text(
-                    'New service available',
+                    Strings.newserviceavailable,
                     style: appTextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,

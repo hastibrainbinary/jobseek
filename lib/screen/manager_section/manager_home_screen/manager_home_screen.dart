@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
+import 'package:jobseek/screen/manager_section/Recent%20People%20Application/recent_Application_screen.dart';
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_widget/manager_home_screen_widget.dart';
 import 'package:jobseek/screen/manager_section/notification1/notification1_screen.dart';
 import 'package:jobseek/utils/app_style.dart';
@@ -96,7 +97,7 @@ class ManagerHomeScreen extends StatelessWidget {
         ),
         searchArea(),
         const SizedBox(
-          height: 30,
+          height: 20,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -184,7 +185,7 @@ class ManagerHomeScreen extends StatelessWidget {
                         fontSize: 16,
                         color: ColorRes.containerColor,
                         fontWeight: FontWeight.w500),
-                  )
+                  ),
                 ],
               ),
               const SizedBox(width: 10)
@@ -206,7 +207,13 @@ class ManagerHomeScreen extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     fontSize: 16),
               ),
-              InkWell( onTap: (){},
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (con) => const RecentApplicationScreen()));
+                },
                 child: Text(
                   "See all",
                   style: appTextStyle(

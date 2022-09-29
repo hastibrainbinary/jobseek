@@ -21,7 +21,7 @@ class Notification1Screen extends StatelessWidget {
             Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(18),
                   child: InkWell(
                     onTap: () {
                       Get.back();
@@ -29,7 +29,7 @@ class Notification1Screen extends StatelessWidget {
                     child: backButton(),
                   ),
                 ),
-                const SizedBox(width: 80),
+                const SizedBox(width: 60),
                 Text(
                   'Notification',
                   style: appTextStyle(
@@ -40,7 +40,7 @@ class Notification1Screen extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 25),
+            const SizedBox(height: 14),
             SizedBox(
               height: Get.height - 150,
               child: ListView.builder(

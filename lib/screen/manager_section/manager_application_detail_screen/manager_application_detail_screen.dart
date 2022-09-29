@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/screen/manager_section/Applicants_see_all/applicants_seeall_screen.dart';
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_widget/manager_home_screen_widget.dart';
 import 'package:jobseek/screen/update_vacancies_requirements/update_vacancies_requirements_screen.dart';
 import 'package:jobseek/utils/app_res.dart';
@@ -59,7 +60,8 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (con) => const UpdateVacanciesRequirementsScreen()));
+                        builder: (con) =>
+                            const UpdateVacanciesRequirementsScreen()));
               },
               child: Container(
                 height: 92,
@@ -143,7 +145,14 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
                         fontSize: 16,
                         fontWeight: FontWeight.w600),
                   ),
-                  InkWell(onTap: (){},
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (con) =>
+                                  const ApplicantsSeeAllScreen()));
+                    },
                     child: Text(
                       "See all",
                       style: appTextStyle(

@@ -6,8 +6,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:jobseek/screen/dashboard/dashboard_screen.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
-
-
 class SignInScreenController extends GetxController {
   RxBool loading = false.obs;
   TextEditingController emailController = TextEditingController();
@@ -90,18 +88,18 @@ class SignInScreenController extends GetxController {
     }
     update();
   }
+
   final FirebaseAuth auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
 
-  void signWithGoogle() async
-  {
+  void signWithGoogle() async {
     loading.value = true;
     if (await googleSignIn.isSignedIn()) {
       await googleSignIn.signOut();
     }
     final GoogleSignInAccount? account = await googleSignIn.signIn();
     final GoogleSignInAuthentication authentication =
-    await account!.authentication;
+        await account!.authentication;
 
     final OAuthCredential credential = GoogleAuthProvider.credential(
       idToken: authentication.idToken,
@@ -109,24 +107,24 @@ class SignInScreenController extends GetxController {
     );
 
     final UserCredential authResult =
-    await auth.signInWithCredential(credential);
+        await auth.signInWithCredential(credential);
     final User? user = authResult.user;
     print(user!.email);
     print(user.uid);
     print(user.displayName);
     // ignore: unnecessary_null_comparison
-    if(user.uid != null&& user.uid!="")
-    {
-     Get.offAll(()=>DashBoardScreen());
-     loading.value==false;
+    if (user.uid != null && user.uid != "") {
+      Get.offAll(() => DashBoardScreen());
+      loading.value == false;
       // loder false
-    }else{
-     loading.value==false;
+    } else {
+      loading.value == false;
     }
 
     loading.value == false;
     //flutterToast(Strings.googleSignInSuccess);
   }
+
   void faceBookSignIn() async {
     try {
       loading.value = true;
@@ -137,25 +135,24 @@ class SignInScreenController extends GetxController {
         print(userData);
       });
       final OAuthCredential facebookAuthCredential =
-      FacebookAuthProvider.credential(
+          FacebookAuthProvider.credential(
         loginResult.accessToken!.token,
       );
       print(facebookAuthCredential);
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithCredential(facebookAuthCredential);
       print(userCredential);
-      if(userCredential.user?.uid != null && userCredential.user?.uid !="") {
-        Get.offAll(()=>DashBoardScreen());
-        loading.value==false;
+      if (userCredential.user?.uid != null && userCredential.user?.uid != "") {
+        Get.offAll(() => DashBoardScreen());
+        loading.value == false;
         // loder false
-      }else{
-        loading.value==false;
+      } else {
+        loading.value == false;
       }
 
       loading.value = false;
       //flutterToast(Strings.faceBookSignInSuccess);
-    }
-    catch (e) {
+    } catch (e) {
       print(e);
       loading.value = false;
     }

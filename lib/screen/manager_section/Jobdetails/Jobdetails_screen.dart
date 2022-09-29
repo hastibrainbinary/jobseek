@@ -14,11 +14,11 @@ class JobDetailsScreen extends StatelessWidget {
   final bool isError;
   JobDetailsScreen({Key? key, required this.isError}) : super(key: key);
   final JobDetailsController controller = Get.put(JobDetailsController());
- // var args = Get.arguments;
+  // var args = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
-   // debugPrint("Args Print $args");
+    // debugPrint("Args Print $args");
     return Scaffold(
       backgroundColor: ColorRes.backgroungColor,
       body: SingleChildScrollView(
@@ -40,7 +40,7 @@ class JobDetailsScreen extends StatelessWidget {
                   ),
                   SizedBox(width: Get.width - 280),
                   Text(
-                    'Job Details',
+                    Strings.jobDetails,
                     style: appTextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w500,
@@ -68,14 +68,14 @@ class JobDetailsScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "UI/UX Designer",
+                          Strings.uIUXDesigner,
                           style: appTextStyle(
                               color: ColorRes.black,
                               fontSize: 15,
                               fontWeight: FontWeight.w500),
                         ),
                         Text(
-                          "AirBNB",
+                          Strings.airBNB,
                           style: appTextStyle(
                               color: ColorRes.black,
                               fontSize: 12,
@@ -113,7 +113,8 @@ class JobDetailsScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(10.0),
                   child: isError == true
                       ? Text(
-                          "Now you can see all the applier CV/Resume and invite them to the next step.",
+                          Strings
+                              .nowyoucanseealltheapplierCVStringResumeandinvitethemtothenextstep,
                           style: appTextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
@@ -121,7 +122,8 @@ class JobDetailsScreen extends StatelessWidget {
                           ),
                           textAlign: TextAlign.center)
                       : Text(
-                          "Please make sure that your internet connection is active and stable, then press “Try Again”",
+                          Strings
+                              .pleasemakesurethatyourinternetconnectionisactiveandstablethenpressTryAgain,
                           style: appTextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
@@ -146,7 +148,7 @@ class JobDetailsScreen extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (con) => CreateVacanciesScreen()));
+                              builder: (con) => const CreateVacanciesScreen()));
                     }
                   },
                   child: Container(
@@ -174,9 +176,9 @@ class JobDetailsScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 0),
                 child: GestureDetector(
                   onTap: () {
-                    if (isError== true) {
+                    if (isError == true) {
                       ///discover more jobs
-                      Get.offAll(() => CreateVacanciesScreen());
+                      Get.offAll(() => const CreateVacanciesScreen());
                     } else {
                       ///discover more jobs event
                       Get.offAll(() => ManagerDashBoardScreen());

@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen.dart';
 import 'package:jobseek/screen/organization_profile_screen/organization_profile_screen.dart';
 
@@ -18,7 +21,7 @@ class SignInScreenControllerM extends GetxController {
       // emailError = "Enter email";
     } else {
       if (RegExp(
-          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
           .hasMatch(emailController.text)) {
         // return 'Enter  valid Email';
         emailError = '';
@@ -56,7 +59,7 @@ class SignInScreenControllerM extends GetxController {
       if (kDebugMode) {
         print("GO TO HOME PAGE");
       }
-      Get.to( OrganizationProfileScreen());
+      Get.to(OrganizationProfileScreen());
     }
     update(["loginForm", "showEmail", "pwdError"]);
   }
@@ -91,4 +94,72 @@ class SignInScreenControllerM extends GetxController {
     update();
   }
 
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  final GoogleSignIn googleSignIn = GoogleSignIn();
+
+  void signWithGoogle() async {
+    loading.value = true;
+    if (await googleSignIn.isSignedIn()) {
+      await googleSignIn.signOut();
+    }
+    final GoogleSignInAccount? account = await googleSignIn.signIn();
+    final GoogleSignInAuthentication authentication =
+        await account!.authentication;
+
+    final OAuthCredential credential = GoogleAuthProvider.credential(
+      idToken: authentication.idToken,
+      accessToken: authentication.accessToken,
+    );
+
+    final UserCredential authResult =
+        await auth.signInWithCredential(credential);
+    final User? user = authResult.user;
+    print(user!.email);
+    print(user.uid);
+    print(user.displayName);
+    // ignore: unnecessary_null_comparison
+    if (user.uid != null && user.uid != "") {
+      Get.offAll(() => ManagerDashBoardScreen());
+      loading.value == false;
+      // loder false
+    } else {
+      loading.value == false;
+    }
+
+    loading.value == false;
+    //flutterToast(Strings.googleSignInSuccess);
+  }
+
+  void faceBookSignIn() async {
+    try {
+      loading.value = true;
+      final LoginResult loginResult = await FacebookAuth.instance
+          .login(permissions: ["email", "public_profile"]);
+      print(loginResult);
+      await FacebookAuth.instance.getUserData().then((userData) {
+        print(userData);
+      });
+      final OAuthCredential facebookAuthCredential =
+          FacebookAuthProvider.credential(
+        loginResult.accessToken!.token,
+      );
+      print(facebookAuthCredential);
+      UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithCredential(facebookAuthCredential);
+      print(userCredential);
+      if (userCredential.user?.uid != null && userCredential.user?.uid != "") {
+        Get.offAll(() => ManagerDashBoardScreen());
+        loading.value == false;
+        // loder false
+      } else {
+        loading.value == false;
+      }
+
+      loading.value = false;
+      //flutterToast(Strings.faceBookSignInSuccess);
+    } catch (e) {
+      print(e);
+      loading.value = false;
+    }
+  }
 }

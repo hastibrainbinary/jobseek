@@ -8,8 +8,14 @@ import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
+import '../../../utils/string.dart';
+
 class ApplicantsDetailScreen extends StatelessWidget {
-  ApplicantsDetailScreen({Key? key}) : super(key: key);
+  final bool isWrong;
+  ApplicantsDetailScreen({
+    Key? key,
+    required this.isWrong,
+  }) : super(key: key);
   final ApplicantsDetailsController controller =
       Get.put(ApplicantsDetailsController());
 
@@ -32,9 +38,10 @@ class ApplicantsDetailScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: ColorRes.logoColor,
                     borderRadius: BorderRadius.circular(8)),
-                child: InkWell( onTap: (){
-                  Get.back();
-                },
+                child: InkWell(
+                  onTap: () {
+                    Get.back();
+                  },
                   child: const Icon(
                     Icons.arrow_back_ios,
                     color: ColorRes.containerColor,
@@ -101,7 +108,7 @@ class ApplicantsDetailScreen extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Adam Smit",
+                                        "Adam Smith",
                                         style: appTextStyle(
                                             color: ColorRes.black,
                                             fontSize: 14,
@@ -336,20 +343,25 @@ class ApplicantsDetailScreen extends StatelessWidget {
                 const SizedBox(
                   height: 80,
                 ),
-                Container(
-                  height: 50,
-                  width: Get.width,
-                  margin: const EdgeInsets.symmetric(horizontal: 20),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      gradient: const LinearGradient(colors: [
-                        Color(0xFFBF9EFF),
-                        Color(0xFFBF9EFF),
-                      ])),
-                  child: Center(
-                    child: Text(
-                      "Send to Applicants",
-                      style: appTextStyle(color: Colors.white, fontSize: 20),
+                InkWell(
+                  onTap: () {
+                    settingModalBottomSheet(context, isWrong);
+                  },
+                  child: Container(
+                    height: 50,
+                    width: Get.width,
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        gradient: const LinearGradient(colors: [
+                          Color(0xFFBF9EFF),
+                          Color(0xFFBF9EFF),
+                        ])),
+                    child: Center(
+                      child: Text(
+                        "Send to Applicants",
+                        style: appTextStyle(color: Colors.white, fontSize: 20),
+                      ),
                     ),
                   ),
                 )
@@ -360,4 +372,86 @@ class ApplicantsDetailScreen extends StatelessWidget {
       ]),
     );
   }
+}
+
+void settingModalBottomSheet(context, bool isWrong) {
+  showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (BuildContext bc) {
+        return Container(
+          height: 390,
+          decoration: const BoxDecoration(
+            color: ColorRes.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(45),
+              topRight: Radius.circular(45),
+            ),
+          ),
+          child: Column(
+            children: [
+              const SizedBox(height: 50),
+              Image.asset(
+                  isWrong == false
+                      ? AssetRes.successImage
+                      : AssetRes.failedImage,
+                  height: 130),
+              const SizedBox(height: 20),
+              Center(
+                child: isWrong == false
+                    ? Text("Successful!",
+                        style: appTextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                            color: ColorRes.containerColor))
+                    : Text("Oops, Failed",
+                        style: appTextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                            color: ColorRes.starColor)),
+              ),
+              const SizedBox(height: 10),
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: isWrong == false
+                      ? Text("Notifications have been sent to applicants..",
+                          style: appTextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                            color: ColorRes.black.withOpacity(0.6),
+                          ),
+                          textAlign: TextAlign.center)
+                      : Text(
+                          Strings
+                              .pleasemakesurethatyourinternetconnectionisactiveandstablethenpressTryAgain,
+                          style: appTextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                            color: ColorRes.black.withOpacity(0.6),
+                          ),
+                          textAlign: TextAlign.center),
+                ),
+              ),
+              const SizedBox(height: 10),
+              Container(
+                height: 50,
+                alignment: Alignment.center,
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                margin: const EdgeInsets.only(right: 18, left: 18, top: 10),
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  gradient: LinearGradient(colors: [
+                    ColorRes.gradientColor,
+                    ColorRes.containerColor,
+                  ]),
+                ),
+                child: Text(isWrong == false ? Strings.ok : Strings.tryAgain,
+                    style: appTextStyle(
+                        fontSize: 18, fontWeight: FontWeight.w500)),
+              ),
+            ],
+          ),
+        );
+      });
 }

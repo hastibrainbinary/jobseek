@@ -1,9 +1,11 @@
 import 'dart:io';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen.dart';
+import 'package:jobseek/screen/organization_profile_screen/services.dart';
 
 class OrganizationProfileScreenController extends GetxController
     implements GetxService {
@@ -30,6 +32,46 @@ class OrganizationProfileScreenController extends GetxController
   DateTime? startTime;
   ImagePicker picker = ImagePicker();
   File? image;
+  static FirebaseFirestore fireStore = FirebaseFirestore.instance;
+  addDataInFirebase(userUid, email, name, date, country, address) async {
+    // print(userCredential.user?.uid);
+    await fireStore.collection('users').doc(userUid).set({
+      "email": email,
+      "name": name,
+      "date": date,
+      "country": country,
+      "address": address,
+    }).catchError((e) {
+      print('======Error======== ' + e);
+    });
+  }
+
+  Confirm(email, password, name, date, country, address) async {
+    try {
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      await Firebaservices.createData(
+        name: "name",
+        email: "email",
+        date: "date",
+        country: "country",
+        address: "address",
+      );
+
+      Get.to(() => const Company());
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        print('The account already exists for that email.');
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
 
   onLoginBtnTap() {
     validate();
@@ -72,8 +114,6 @@ class OrganizationProfileScreenController extends GetxController
       isDateValidate.value = false;
     }
   }
-
-
 
   Future<void> onDatePickerTap(context) async {
     DateTime? picked = await showDatePicker(

@@ -265,7 +265,6 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                       child: Image(
                                         image: const AssetImage(
                                             AssetRes.emailLogo),
-                                        //height: 5,
                                         color: ColorRes.black.withOpacity(0.15),
                                       ),
                                     ),

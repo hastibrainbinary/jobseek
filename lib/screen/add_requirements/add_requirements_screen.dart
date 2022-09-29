@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
-import 'package:jobseek/screen/job_detail_screen/job_detail_widget/job_detail_widget.dart';
 import 'package:jobseek/screen/manager_section/Jobdetails/Jobdetails_screen.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
@@ -11,9 +10,11 @@ import 'add_requirements_controller.dart';
 class RequirementsScreen extends StatelessWidget {
   RequirementsScreen({Key? key}) : super(key: key);
   final controller = Get.put(AddRequirementController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: ColorRes.backgroungColor,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -54,88 +55,102 @@ class RequirementsScreen extends StatelessWidget {
                   color: ColorRes.black.withOpacity(0.7)),
             ),
           ),
-          SizedBox(
-            height: 300,
-            child: ListView.builder(
-                padding: const EdgeInsets.all(0),
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: controller.requirements.length,
-                itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      detailBox(controller.requirements[index]),
-                      (controller.text.value == true)
-                          ? TextFormField()
-                          : const SizedBox(),
-                    ],
-                  );
-                }),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: InkWell(
-              onTap: () {
-                controller.text.value = true;
-              },
-              child: Container(
-                height: 50,
-                width: 339,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: ColorRes.containerColor),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Image(
-                      image: AssetImage(AssetRes.addIcon),
-                      height: 10,
-                    ),
-                    const SizedBox(width: 5),
-                    Text(
-                      'Add New Requirements',
-                      style: appTextStyle(
-                          color: ColorRes.containerColor,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ],
-                ),
+          Column(
+            children: [
+              SizedBox(
+                height: 350,
+                child: ListView.builder(
+                    padding: const EdgeInsets.all(0),
+                    shrinkWrap: true,
+                    itemCount: 1,
+                    itemBuilder: (context, index) {
+                      return Column(
+                        children: [
+                          // detailBox(controller.requirements[index]),
+                          (controller.text.value == true)
+                              ? Container(
+                                  //padding: EdgeInsets.symmetric( vertical: 10),
+                                  height: 46,
+                                  width: 339,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: const Color(0xffF3F0F8),
+                                  ),
+                                  child: const TextField(
+                                    decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        prefixIcon: Icon(
+                                          Icons.check_circle_outline,
+                                          color: ColorRes.containerColor,
+                                          size: 30,
+                                        )),
+                                  ),
+                                )
+                              : const SizedBox(),
+                        ],
+                      );
+                    }),
               ),
-            ),
-          ),
-          const SizedBox(height: 60),
-          Center(
-            child: InkWell(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (con) => JobDetailsScreen(
-                              isError: true,
-                            )));
-              },
-              child: Container(
-                height: 50,
-                width: 339,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  gradient: const LinearGradient(
-                    colors: [
-                      ColorRes.gradientColor,
-                      ColorRes.containerColor,
+              const SizedBox(height: 22),
+              InkWell(
+                onTap: () {
+                  controller.text.value = true;
+                },
+                child: Container(
+                  height: 50,
+                  width: 339,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: ColorRes.containerColor),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Image(
+                        image: AssetImage(AssetRes.addIcon),
+                        height: 10,
+                      ),
+                      const SizedBox(width: 5),
+                      Text(
+                        'Add New Requirements',
+                        style: appTextStyle(
+                            color: ColorRes.containerColor,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500),
+                      ),
                     ],
                   ),
                 ),
-                child: Text("Post Job Vacancy",
-                    style: appTextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                        color: ColorRes.white)),
               ),
-            ),
+              const SizedBox(height: 60),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (con) => JobDetailsScreen( isError: false,)));
+                },
+                child: Container(
+                  height: 50,
+                  width: 339,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    gradient: const LinearGradient(
+                      colors: [
+                        ColorRes.gradientColor,
+                        ColorRes.containerColor,
+                      ],
+                    ),
+                  ),
+                  child: Text("Post Job Vacancy",
+                      style: appTextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                          color: ColorRes.white)),
+                ),
+              ),
+            ],
           ),
         ],
       ),

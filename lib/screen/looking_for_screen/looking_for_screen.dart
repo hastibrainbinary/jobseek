@@ -13,6 +13,7 @@ class LookingForScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(LookingForYouScreenController());
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: const Color(0xffF8F8F8),
       body: Column(
         children: [

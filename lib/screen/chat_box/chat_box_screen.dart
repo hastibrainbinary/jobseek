@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/screen/manager_section/chat_live/chatbox_live_screen.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
@@ -48,7 +47,7 @@ class ChatBoxScreen extends StatelessWidget {
                 color: ColorRes.black),
           ),
         ]),
-        const SizedBox(height: 25),
+        const SizedBox(height: 20),
         Container(
           width: 339,
           decoration: const BoxDecoration(
@@ -231,14 +230,15 @@ class ChatBoxScreen extends StatelessWidget {
                                           border: Border.all(
                                               color: ColorRes.containerColor)),
                                       child: Center(
-                                          child: Text(
-                                        "Cancel",
-                                        style: appTextStyle(
-                                          color: ColorRes.containerColor,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500,
+                                        child: Text(
+                                          "Cancel",
+                                          style: appTextStyle(
+                                            color: ColorRes.containerColor,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                          ),
                                         ),
-                                      )),
+                                      ),
                                     ),
                                   ),
                                   const SizedBox(width: 10),
@@ -270,7 +270,7 @@ class ChatBoxScreen extends StatelessWidget {
                                     ),
                                   ),
                                 ],
-                              )
+                              ),
                             ],
                           ),
                         );
@@ -286,7 +286,7 @@ class ChatBoxScreen extends StatelessWidget {
                     ),
                     child: const Icon(
                       Icons.archive,
-                      size: 32,
+                      size: 40,
                       color: ColorRes.starColor,
                     ),
                   ),
@@ -296,7 +296,7 @@ class ChatBoxScreen extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (con) => ChatBoxLiveScreenM()));
+                              builder: (con) => const ChatBoxLiveScreenM()));
                     },
                     child: Container(
                       height: 92,

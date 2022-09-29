@@ -44,7 +44,7 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 15),
+            const SizedBox(height: 12),
             Center(
               child: Container(
                 height: 92,
@@ -92,7 +92,7 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (con) => VideoJoiningScreen()));
+                                builder: (con) => const VideoJoiningScreen()));
                       },
                       child: Container(
                         height: 35,
@@ -113,7 +113,7 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (con) => CallJoinScreen()));
+                                builder: (con) => const CallJoinScreen()));
                       },
                       child: Container(
                         height: 35,
