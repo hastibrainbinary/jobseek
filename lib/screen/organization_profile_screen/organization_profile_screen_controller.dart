@@ -65,7 +65,7 @@ class OrganizationProfileScreenController extends GetxController
         email: email,
         password: password,
       );
-      await Firebaservices.createData(
+      await FirebaseServices.createData(
         name: "name",
         email: "email",
         date: "date",
