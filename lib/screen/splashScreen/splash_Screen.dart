@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,10 +16,14 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 3), () {
-      Get.off(() => LookingForScreen());
-    });
     super.initState();
+    splash();
+  }
+
+  void splash() async {
+    await Future.delayed(const Duration(seconds: 3), () {
+      Get.off(() => const LookingForScreen());
+    });
   }
 
   @override

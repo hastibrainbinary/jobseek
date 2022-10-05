@@ -135,7 +135,7 @@ class ProfileController extends GetxController implements GetxService {
   ontapGallery1() async {
     XFile? gallery = await picker.pickImage(source: ImageSource.gallery);
     String path = gallery!.path;
-    gallery = File(path) as XFile?;
+    image = File(path);
     imagePicker();
   }
 

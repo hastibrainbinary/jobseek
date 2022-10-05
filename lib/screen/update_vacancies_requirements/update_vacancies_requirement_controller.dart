@@ -8,6 +8,7 @@ class UpdateVacanciesRequirementController extends GetxController {
     isJobDetails.value = false;
     update();
   }
+
   RxBool text = false.obs;
   RxBool add = true.obs;
 
@@ -29,7 +30,7 @@ class UpdateVacanciesRequirementController extends GetxController {
         isTypeValidate.value == false &&
         isStatusValidate.value == false) {
       print("GO TO HOME PAGE");
-      Get.to(CreateVacanciesScreen());
+      Get.to(const CreateVacanciesScreen());
     }
   }
 
@@ -89,15 +90,8 @@ class UpdateVacanciesRequirementController extends GetxController {
   ];
   String? dropDownValueStatus;
   var items2 = [
-    'Active'
-        'Away'
+    'Active',
+    "full",
+    'Away',
   ];
-  // RxList requirements = [
-  //   "Experienced in Figma or Sketch.",
-  //   "Able to work in large or small team.",
-  //   "At least 1 year of working experience in agency freelance, or start-up.",
-  //   "Able to keep up with the latest trends.",
-  //   "Have relevant experience for at least 3 years."
-  // ].obs;
-
 }

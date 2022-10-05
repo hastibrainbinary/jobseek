@@ -11,7 +11,7 @@ class VideoReceivedScreen  extends StatelessWidget {
         body: Stack(
           children: [
             Container(
-              decoration:   BoxDecoration(
+              decoration:   const BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage(AssetRes.videoReceivedMen),
                     fit: BoxFit.cover),

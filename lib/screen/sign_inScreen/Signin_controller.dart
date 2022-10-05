@@ -109,11 +109,17 @@ class SignInScreenController extends GetxController {
     final UserCredential authResult =
         await auth.signInWithCredential(credential);
     final User? user = authResult.user;
-    print(user!.email);
-    print(user.uid);
-    print(user.displayName);
+    if (kDebugMode) {
+      print(user!.email);
+    }
+    if (kDebugMode) {
+      print(user?.uid);
+    }
+    if (kDebugMode) {
+      print(user?.displayName);
+    }
     // ignore: unnecessary_null_comparison
-    if (user.uid != null && user.uid != "") {
+    if (user?.uid != null && user?.uid != "") {
       Get.offAll(() => DashBoardScreen());
       loading.value == false;
       // loder false
@@ -130,18 +136,26 @@ class SignInScreenController extends GetxController {
       loading.value = true;
       final LoginResult loginResult = await FacebookAuth.instance
           .login(permissions: ["email", "public_profile"]);
-      print(loginResult);
+      if (kDebugMode) {
+        print(loginResult);
+      }
       await FacebookAuth.instance.getUserData().then((userData) {
-        print(userData);
+        if (kDebugMode) {
+          print(userData);
+        }
       });
       final OAuthCredential facebookAuthCredential =
           FacebookAuthProvider.credential(
         loginResult.accessToken!.token,
       );
-      print(facebookAuthCredential);
+      if (kDebugMode) {
+        print(facebookAuthCredential);
+      }
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithCredential(facebookAuthCredential);
-      print(userCredential);
+      if (kDebugMode) {
+        print(userCredential);
+      }
       if (userCredential.user?.uid != null && userCredential.user?.uid != "") {
         Get.offAll(() => DashBoardScreen());
         loading.value == false;
@@ -153,7 +167,9 @@ class SignInScreenController extends GetxController {
       loading.value = false;
       //flutterToast(Strings.faceBookSignInSuccess);
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
       loading.value = false;
     }
   }

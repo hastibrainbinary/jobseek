@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/common_error_box.dart';
@@ -64,9 +65,11 @@ class ProfileScreen extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (con) => const SettingScreen()));
+                    context,
+                    MaterialPageRoute(
+                      builder: (con) => const SettingScreen(),
+                    ),
+                  );
                 },
                 child: const Icon(
                   Icons.settings,
@@ -75,7 +78,6 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
           ]),
-          // const SizedBox(height: 15),
           Expanded(
             child: SingleChildScrollView(
               child: Column(children: [
@@ -86,16 +88,25 @@ class ProfileScreen extends StatelessWidget {
                       Stack(
                         children: [
                           Container(
-                            width: 100,
-                            padding: const EdgeInsets.only(right: 10),
-                            child: const Image(
-                              image: AssetImage(AssetRes.roundAirbnb),
-                              height: 110,
-                            ),
+                            width: 90,
+                            height: 90,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: (controller.image == null)
+                                    ? const DecorationImage(
+                                        image: AssetImage(
+                                          AssetRes.roundAirbnb,
+                                        ),
+                                        fit: BoxFit.fill)
+                                    : DecorationImage(
+                                        image: FileImage(
+                                          controller.image!,
+                                        ),
+                                        fit: BoxFit.fill)),
                           ),
                           Positioned(
-                            bottom: 12,
-                            right: 12,
+                            bottom: 0,
+                            right: 10,
                             child: InkWell(
                               onTap: () {
                                 showModalBottomSheet<void>(
@@ -295,7 +306,7 @@ class ProfileScreen extends StatelessWidget {
                                 fontWeight: FontWeight.w400,
                                 fontSize: 12,
                                 color: ColorRes.black.withOpacity(0.6)),
-                          )
+                          ),
                         ],
                       ),
                     ],
@@ -306,315 +317,410 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Obx(
-                    () => Column(children: [
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 5),
-                            child: Text(
-                              "Name Of Company",
-                              style: appTextStyle(
-                                color: ColorRes.black.withOpacity(0.6),
-                                fontSize: 14,
-                              ),
-                            ),
-                          ),
-                          Text(
-                            "*",
-                            style: appTextStyle(color: ColorRes.starColor),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      commonTextFormField(
-                          textDecoration: InputDecoration(
-                              contentPadding: const EdgeInsets.all(15),
-                              border: InputBorder.none,
-                              hintText: "Name Of Company",
-                              hintStyle: appTextStyle(
-                                  fontSize: 14,
-                                  color: ColorRes.black.withOpacity(0.15))),
-                          controller: controller.companyNameController),
-                      controller.isNameValidate.value == true
-                          ? Column(
-                              children: [
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                commonErrorBox("Please Enter Company name"),
-                              ],
-                            )
-                          : const SizedBox(),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 5),
-                            child: Text(
-                              "Company Email",
-                              style: appTextStyle(
-                                  color: ColorRes.grey, fontSize: 14),
-                            ),
-                          ),
-                          Text(
-                            "*",
-                            style: appTextStyle(color: ColorRes.starColor),
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      commonTextFormField(
-                          textDecoration: InputDecoration(
-                            contentPadding: const EdgeInsets.all(15),
-                            border: InputBorder.none,
-                            hintText: "Company Email",
-                            hintStyle: appTextStyle(
-                                fontSize: 14,
-                                color: ColorRes.black.withOpacity(0.15)),
-                            suffixIcon: Container(
-                              padding: const EdgeInsets.all(15),
-                              child: Image(
-                                image: const AssetImage(AssetRes.emailLogo),
-                                //height: 5,
-                                color: ColorRes.black.withOpacity(0.15),
-                              ),
-                            ),
-                          ),
-                          controller: controller.companyEmailController),
-                      controller.isEmailValidate.value == true
-                          ? Column(
-                              children: [
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                commonErrorBox("Please Enter Company Email"),
-                              ],
-                            )
-                          : const SizedBox(),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 5),
-                            child: Text(
-                              "Established date",
-                              style: appTextStyle(
-                                  color: ColorRes.grey, fontSize: 14),
-                            ),
-                          ),
-                          Text(
-                            "*",
-                            style: appTextStyle(color: ColorRes.starColor),
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          controller.onDatePickerTap(context);
-                        },
-                        child: commonTextFormField(
-                            onTap: () => controller.onDatePickerTap(context),
-                            textDecoration: InputDecoration(
-                              contentPadding: const EdgeInsets.all(15),
-                              border: InputBorder.none,
-                              hintText: "Established date",
-                              hintStyle: appTextStyle(
-                                  fontSize: 14,
-                                  color: ColorRes.black.withOpacity(0.15)),
-                              suffixIcon: Container(
-                                padding: const EdgeInsets.all(15),
-                                child: Image(
-                                  image: const AssetImage(AssetRes.dateIcon),
-                                  color: ColorRes.black.withOpacity(0.15),
-                                ),
-                              ),
-                            ),
-                            controller: controller.dateController),
-                      ),
-                      controller.isDateController.value == true
-                          ? Column(
-                              children: [
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                commonErrorBox("Please Enter Date"),
-                              ],
-                            )
-                          : const SizedBox(),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 5),
-                            child: Text(
-                              "Country",
-                              style: appTextStyle(
-                                  color: ColorRes.grey, fontSize: 14),
-                            ),
-                          ),
-                          Text(
-                            "*",
-                            style: appTextStyle(color: ColorRes.starColor),
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      commonTextFormField(
-                          textDecoration: InputDecoration(
-                            contentPadding: const EdgeInsets.all(15),
-                            border: InputBorder.none,
-                            hintText: "Country",
-                            hintStyle: appTextStyle(
-                              fontSize: 14,
-                              color: ColorRes.black.withOpacity(0.15),
-                            ),
-                            suffixIcon: Container(
-                              padding: const EdgeInsets.all(20),
-                              child: Image(
-                                color: ColorRes.black.withOpacity(0.20),
-                                image: const AssetImage(
-                                  AssetRes.dropIcon,
-                                ),
-                                height: 5,
-                              ),
-                            ),
-                          ),
-                          controller: controller.countryController),
-                      controller.isCountryValidate.value == true
-                          ? Column(
-                              children: [
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                commonErrorBox("Please Enter Country"),
-                              ],
-                            )
-                          : const SizedBox(),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 5),
-                            child: Text(
-                              "Company Address",
-                              style: appTextStyle(
-                                  color: ColorRes.grey, fontSize: 14),
-                            ),
-                          ),
-                          Text(
-                            "*",
-                            style: appTextStyle(color: ColorRes.starColor),
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      commonTextFormField(
-                          textDecoration: InputDecoration(
-                            contentPadding: const EdgeInsets.all(15),
-                            border: InputBorder.none,
-                            hintText: "Company Address",
-                            hintStyle: appTextStyle(
-                              fontSize: 14,
-                              color: ColorRes.black.withOpacity(0.15),
-                            ),
-                          ),
-                          controller: controller.companyAddressController),
-                      controller.isAddressValidate.value == true
-                          ? Column(
-                              children: [
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                commonErrorBox("Please Enter Address"),
-                              ],
-                            )
-                          : const SizedBox(),
-                      const SizedBox(height: 20,
-                      ),
-                      GetBuilder<ProfileController>(
-                          id: "Organization",
-                          builder: (controller) {
-                            return (controller.companyNameController.text ==
-                                        '' ||
-                                    controller.companyEmailController.text ==
-                                        '' ||
-                                    controller.dateController.text == '' ||
-                                    controller.countryController.text == '' ||
-                                    controller.companyAddressController.text ==
-                                        '')
-                                ? InkWell(
-                                    // dashboard write
-                                    onTap: controller.onLoginBtnTap1,
-
-                                    child: Container(
-                                      height: 50,
-                                      width: MediaQuery.of(context).size.width,
-                                      alignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        gradient: LinearGradient(
-                                          colors: [
-                                            ColorRes.gradientColor
-                                                .withOpacity(0.2),
-                                            ColorRes.containerColor
-                                                .withOpacity(0.4)
-                                          ],
+                  child: StreamBuilder(
+                      stream: FirebaseFirestore.instance
+                          .collection("user")
+                          .where('userid', isEqualTo: "aaaaaa")
+                          .snapshots(),
+                      builder:
+                          (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                        if (snapshot.hasError) {
+                          return const Text(
+                            'No Data...',
+                          );
+                        } else {
+                          // final List<QueryDocumentSnapshot<Object?>> docs = snapshot.data!.docs;
+                          return snapshot.hasData
+                              ? Obx(
+                                  () => Column(children: [
+                                    Row(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 5),
+                                          child: Text(
+                                            "Name Of Company",
+                                            style: appTextStyle(
+                                              color: ColorRes.black
+                                                  .withOpacity(0.6),
+                                              fontSize: 14,
+                                            ),
+                                          ),
                                         ),
-                                      ),
-                                      child: Text("Save Changes",
+                                        Text(
+                                          "*",
                                           style: appTextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w500,
-                                              color: ColorRes.white)),
+                                              color: ColorRes.starColor),
+                                        ),
+                                      ],
                                     ),
-                                  )
-                                : InkWell(
-                                    // dashboard write
-                                    onTap: controller.onLoginBtnTap1,
-                                    child: Container(
-                                      height: 50,
-                                      width: MediaQuery.of(context).size.width,
-                                      alignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        gradient: const LinearGradient(colors: [
-                                          ColorRes.gradientColor,
-                                          ColorRes.containerColor
-                                        ]),
-                                      ),
-                                      child: Text("Save Changes",
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    commonTextFormField(
+                                        textDecoration: InputDecoration(
+                                            contentPadding:
+                                                const EdgeInsets.all(15),
+                                            border: InputBorder.none,
+                                            hintText: snapshot.data?.docs[0]
+                                                ["name"],
+                                            hintStyle: appTextStyle(
+                                                fontSize: 14,
+                                                color: ColorRes.black
+                                                    .withOpacity(0.15))),
+                                        controller:
+                                            controller.companyNameController),
+                                    controller.isNameValidate.value == true
+                                        ? Column(
+                                            children: [
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              commonErrorBox(
+                                                  "Please Enter Company name"),
+                                            ],
+                                          )
+                                        : const SizedBox(),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 5),
+                                          child: Text(
+                                            "Company Email",
+                                            style: appTextStyle(
+                                                color: ColorRes.grey,
+                                                fontSize: 14),
+                                          ),
+                                        ),
+                                        Text(
+                                          "*",
                                           style: appTextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w500,
-                                              color: ColorRes.white)),
+                                              color: ColorRes.starColor),
+                                        )
+                                      ],
                                     ),
-                                  );
-                          }),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                    ]),
-                  ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    commonTextFormField(
+                                        textDecoration: InputDecoration(
+                                          contentPadding:
+                                              const EdgeInsets.all(15),
+                                          border: InputBorder.none,
+                                          hintText: snapshot.data?.docs[0]
+                                              ["email"],
+                                          hintStyle: appTextStyle(
+                                              fontSize: 14,
+                                              color: ColorRes.black
+                                                  .withOpacity(0.15)),
+                                          suffixIcon: Container(
+                                            padding: const EdgeInsets.all(15),
+                                            child: Image(
+                                              image: const AssetImage(
+                                                  AssetRes.emailLogo),
+                                              //height: 5,
+                                              color: ColorRes.black
+                                                  .withOpacity(0.15),
+                                            ),
+                                          ),
+                                        ),
+                                        controller:
+                                            controller.companyEmailController),
+                                    controller.isEmailValidate.value == true
+                                        ? Column(
+                                            children: [
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              commonErrorBox(
+                                                  "Please Enter Company Email"),
+                                            ],
+                                          )
+                                        : const SizedBox(),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 5),
+                                          child: Text(
+                                            "Established date",
+                                            style: appTextStyle(
+                                                color: ColorRes.grey,
+                                                fontSize: 14),
+                                          ),
+                                        ),
+                                        Text(
+                                          "*",
+                                          style: appTextStyle(
+                                              color: ColorRes.starColor),
+                                        )
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        controller.onDatePickerTap(context);
+                                      },
+                                      child: commonTextFormField(
+                                          onTap: () => controller
+                                              .onDatePickerTap(context),
+                                          textDecoration: InputDecoration(
+                                            contentPadding:
+                                                const EdgeInsets.all(15),
+                                            border: InputBorder.none,
+                                            hintText: snapshot.data?.docs[0]
+                                                ["date"],
+                                            hintStyle: appTextStyle(
+                                                fontSize: 14,
+                                                color: ColorRes.black
+                                                    .withOpacity(0.15)),
+                                            suffixIcon: Container(
+                                              padding: const EdgeInsets.all(15),
+                                              child: Image(
+                                                image: const AssetImage(
+                                                    AssetRes.dateIcon),
+                                                color: ColorRes.black
+                                                    .withOpacity(0.15),
+                                              ),
+                                            ),
+                                          ),
+                                          controller:
+                                              controller.dateController),
+                                    ),
+                                    controller.isDateController.value == true
+                                        ? Column(
+                                            children: [
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              commonErrorBox(
+                                                  "Please Enter Date"),
+                                            ],
+                                          )
+                                        : const SizedBox(),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 5),
+                                          child: Text(
+                                            "Country",
+                                            style: appTextStyle(
+                                                color: ColorRes.grey,
+                                                fontSize: 14),
+                                          ),
+                                        ),
+                                        Text(
+                                          "*",
+                                          style: appTextStyle(
+                                              color: ColorRes.starColor),
+                                        )
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    commonTextFormField(
+                                        textDecoration: InputDecoration(
+                                          contentPadding:
+                                              const EdgeInsets.all(15),
+                                          border: InputBorder.none,
+                                          hintText: snapshot.data?.docs[0]
+                                              ["country"],
+                                          hintStyle: appTextStyle(
+                                            fontSize: 14,
+                                            color: ColorRes.black
+                                                .withOpacity(0.15),
+                                          ),
+                                          suffixIcon: Container(
+                                            padding: const EdgeInsets.all(20),
+                                            child: Image(
+                                              color: ColorRes.black
+                                                  .withOpacity(0.20),
+                                              image: const AssetImage(
+                                                AssetRes.dropIcon,
+                                              ),
+                                              height: 5,
+                                            ),
+                                          ),
+                                        ),
+                                        controller:
+                                            controller.countryController),
+                                    controller.isCountryValidate.value == true
+                                        ? Column(
+                                            children: [
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              commonErrorBox(
+                                                  "Please Enter Country"),
+                                            ],
+                                          )
+                                        : const SizedBox(),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 5),
+                                          child: Text(
+                                            "Company Address",
+                                            style: appTextStyle(
+                                                color: ColorRes.grey,
+                                                fontSize: 14),
+                                          ),
+                                        ),
+                                        Text(
+                                          "*",
+                                          style: appTextStyle(
+                                              color: ColorRes.starColor),
+                                        )
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    commonTextFormField(
+                                        textDecoration: InputDecoration(
+                                          contentPadding:
+                                              const EdgeInsets.all(15),
+                                          border: InputBorder.none,
+                                          hintText: snapshot.data?.docs[0]
+                                              ["address"],
+                                          hintStyle: appTextStyle(
+                                            fontSize: 14,
+                                            color: ColorRes.black
+                                                .withOpacity(0.15),
+                                          ),
+                                        ),
+                                        controller: controller
+                                            .companyAddressController),
+                                    controller.isAddressValidate.value == true
+                                        ? Column(
+                                            children: [
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              commonErrorBox(
+                                                  "Please Enter Address"),
+                                            ],
+                                          )
+                                        : const SizedBox(),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    GetBuilder<ProfileController>(
+                                        id: "Organization",
+                                        builder: (controller) {
+                                          return (controller.companyNameController.text == '' ||
+                                                  controller
+                                                          .companyEmailController
+                                                          .text ==
+                                                      '' ||
+                                                  controller.dateController
+                                                          .text ==
+                                                      '' ||
+                                                  controller.countryController
+                                                          .text ==
+                                                      '' ||
+                                                  controller
+                                                          .companyAddressController
+                                                          .text ==
+                                                      '')
+                                              ? InkWell(
+                                                  // dashboard write
+                                                  onTap:
+                                                      controller.onLoginBtnTap1,
+                                                  child: Container(
+                                                    height: 50,
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                            .size
+                                                            .width,
+                                                    alignment: Alignment.center,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      gradient: LinearGradient(
+                                                        colors: [
+                                                          ColorRes.gradientColor
+                                                              .withOpacity(0.2),
+                                                          ColorRes
+                                                              .containerColor
+                                                              .withOpacity(0.4)
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    child: Text("Save Changes",
+                                                        style: appTextStyle(
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            color: ColorRes
+                                                                .white)),
+                                                  ),
+                                                )
+                                              : InkWell(
+                                                  // dashboard write
+                                                  onTap:
+                                                      controller.onLoginBtnTap1,
+                                                  child: Container(
+                                                    height: 50,
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                            .size
+                                                            .width,
+                                                    alignment: Alignment.center,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      gradient:
+                                                          const LinearGradient(
+                                                              colors: [
+                                                            ColorRes
+                                                                .gradientColor,
+                                                            ColorRes
+                                                                .containerColor
+                                                          ]),
+                                                    ),
+                                                    child: Text("Save Changes",
+                                                        style: appTextStyle(
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            color: ColorRes
+                                                                .white)),
+                                                  ),
+                                                );
+                                        }),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                  ]),
+                                )
+                              : const Center(
+                                  child: CircularProgressIndicator(
+                                    color: ColorRes.containerColor,
+                                  ),
+                                );
+                        }
+                      }),
                 ),
               ]),
             ),

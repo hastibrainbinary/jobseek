@@ -1,6 +1,7 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
@@ -136,7 +137,9 @@ class SignUpController extends GetxController {
 
   onLoginBtnTap() {
     if (validator()) {
-      print("GO TO HOME PAGE");
+      if (kDebugMode) {
+        print("GO TO HOME PAGE");
+      }
       Get.to(DashBoardScreen());
     }
     update(["showEmail"]);
@@ -235,11 +238,17 @@ class SignUpController extends GetxController {
     final UserCredential authResult =
     await auth.signInWithCredential(credential);
     final User? user = authResult.user;
-    print(user!.email);
-    print(user.uid);
-    print(user.displayName);
+    if (kDebugMode) {
+      print(user!.email);
+    }
+    if (kDebugMode) {
+      print(user?.uid);
+    }
+    if (kDebugMode) {
+      print(user?.displayName);
+    }
     // ignore: unnecessary_null_comparison
-    if(user.uid != null&& user.uid!="")
+    if(user?.uid != null&& user?.uid!="")
     {
       Get.offAll(()=>DashBoardScreen());
       loading.value==false;
@@ -256,18 +265,26 @@ class SignUpController extends GetxController {
       loading.value = true;
       final LoginResult loginResult = await FacebookAuth.instance
           .login(permissions: ["email", "public_profile"]);
-      print(loginResult);
+      if (kDebugMode) {
+        print(loginResult);
+      }
       await FacebookAuth.instance.getUserData().then((userData) {
-        print(userData);
+        if (kDebugMode) {
+          print(userData);
+        }
       });
       final OAuthCredential facebookAuthCredential =
       FacebookAuthProvider.credential(
         loginResult.accessToken!.token,
       );
-      print(facebookAuthCredential);
+      if (kDebugMode) {
+        print(facebookAuthCredential);
+      }
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithCredential(facebookAuthCredential);
-      print(userCredential);
+      if (kDebugMode) {
+        print(userCredential);
+      }
       if(userCredential.user?.uid != null && userCredential.user?.uid !="") {
         Get.offAll(()=>DashBoardScreen());
         loading.value==false;
@@ -280,7 +297,9 @@ class SignUpController extends GetxController {
       //flutterToast(Strings.faceBookSignInSuccess);
     }
     catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
       loading.value = false;
     }
   }

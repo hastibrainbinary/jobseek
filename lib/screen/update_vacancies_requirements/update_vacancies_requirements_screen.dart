@@ -312,15 +312,22 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                       fontSize: 14,
                                       color: ColorRes.black.withOpacity(0.15),
                                     ),
-                                    suffixIcon: Container(
-                                      padding: const EdgeInsets.all(20),
-                                      child: Image(
-                                        color: ColorRes.black.withOpacity(0.20),
-                                        image: const AssetImage(
-                                          AssetRes.dropIcon,
-                                        ),
-                                        height: 5,
-                                      ),
+                                    suffixIcon: DropdownButton(
+                                      iconSize: 40.0,
+                                      iconEnabledColor: Colors.grey.shade400,
+                                      iconDisabledColor: Colors.grey.shade400,
+                                      underline: Container(),
+                                      icon: const Icon(Icons.arrow_drop_down),
+                                      items: controller.items.map(
+                                        (val) {
+                                          return DropdownMenuItem<String>(
+                                            value: val,
+                                            child: Text(val),
+                                          );
+                                        },
+                                      ).toList(),
+                                      onChanged: (String? val) =>
+                                          controller.dropDownValueLocation,
                                     ),
                                   ),
                                   controller: controller.locationController),
@@ -366,15 +373,22 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                       fontSize: 14,
                                       color: ColorRes.black.withOpacity(0.15),
                                     ),
-                                    suffixIcon: Container(
-                                      padding: const EdgeInsets.all(20),
-                                      child: Image(
-                                        color: ColorRes.black.withOpacity(0.20),
-                                        image: const AssetImage(
-                                          AssetRes.dropIcon,
-                                        ),
-                                        height: 5,
-                                      ),
+                                    suffixIcon: DropdownButton(
+                                      iconSize: 40.0,
+                                      iconEnabledColor: Colors.grey.shade400,
+                                      iconDisabledColor: Colors.grey.shade400,
+                                      underline: Container(),
+                                      icon: const Icon(Icons.arrow_drop_down),
+                                      items: controller.items1.map(
+                                        (val) {
+                                          return DropdownMenuItem<String>(
+                                            value: val,
+                                            child: Text(val),
+                                          );
+                                        },
+                                      ).toList(),
+                                      onChanged: (String? val) =>
+                                          controller.dropDownValueType = val!,
                                     ),
                                   ),
                                   controller: controller.typeController),
@@ -423,15 +437,22 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                       fontSize: 14,
                                       color: ColorRes.black.withOpacity(0.15),
                                     ),
-                                    suffixIcon: Container(
-                                      padding: const EdgeInsets.all(20),
-                                      child: Image(
-                                        color: ColorRes.black.withOpacity(0.20),
-                                        image: const AssetImage(
-                                          AssetRes.dropIcon,
-                                        ),
-                                        height: 5,
-                                      ),
+                                    suffixIcon: DropdownButton(
+                                      iconSize: 40.0,
+                                      iconEnabledColor: Colors.grey.shade400,
+                                      iconDisabledColor: Colors.grey.shade400,
+                                      underline: Container(),
+                                      icon: const Icon(Icons.arrow_drop_down),
+                                      items: controller.items2.map(
+                                        (val) {
+                                          return DropdownMenuItem<String>(
+                                            value: val,
+                                            child: Text(val),
+                                          );
+                                        },
+                                      ).toList(),
+                                      onChanged: (String? val) =>
+                                          controller.dropDownValueStatus = val!,
                                     ),
                                   ),
                                   controller: controller.statusController),
@@ -559,7 +580,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                                     )),
                                               ),
                                             )
-                                          : SizedBox(),
+                                          : const SizedBox(),
                                     ],
                                   );
                                 }),

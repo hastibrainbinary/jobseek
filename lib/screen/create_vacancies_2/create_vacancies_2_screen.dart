@@ -381,8 +381,7 @@ class CreateVacancies2Screen extends StatelessWidget {
                             id: "profile",
                             builder: (controller) {
                               return (controller.positionController.text == '' ||
-                                      controller.salaryController.text ==
-                                          '' ||
+                                      controller.salaryController.text == '' ||
                                       controller.locationController.text ==
                                           '' ||
                                       controller.typeController.text == '' ||

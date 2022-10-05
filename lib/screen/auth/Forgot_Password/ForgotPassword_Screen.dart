@@ -198,8 +198,8 @@ class ForgotPasswordScreen extends StatelessWidget {
             ),
             child: InkWell(
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (con) => OtpScreen()));
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (con) => OtpScreen()));
               },
               child: Text("Continue",
                   style: appTextStyle(

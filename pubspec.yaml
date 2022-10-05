@@ -43,13 +43,16 @@ dependencies:
   intl: ^0.17.0
   image_picker: ^0.8.5+3
   google_sign_in: ^5.4.2
-  firebase_auth: ^3.10.0
+
   firebase_core: ^1.23.0
   flutter_login_facebook: ^1.6.0
   cloud_firestore: ^3.4.9
+  firebase_auth: ^3.11.0
 
 
   flutter_facebook_auth: ^4.4.1+1
+
+  shared_preferences: ^2.0.15
 
   # bottom_navigation_bar:
   salomon_bottom_bar:

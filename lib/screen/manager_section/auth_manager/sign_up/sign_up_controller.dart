@@ -128,7 +128,7 @@ class SignUpControllerM extends GetxController {
   onLoginBtnTap() {
     if (validator()) {
       print("GO TO HOME PAGE");
-      Get.to(OrganizationProfileScreen());
+      Get.to(const OrganizationProfileScreen());
     }
     update(["showEmail"]);
     update(["showLastname"]);

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/common_error_box.dart';
@@ -40,7 +41,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: 30),
+              const SizedBox(width: 20),
               Text(
                 'Organization Profile',
                 style: appTextStyle(
@@ -70,16 +71,33 @@ class OrganizationProfileScreen extends StatelessWidget {
                   InkWell(
                     onTap: () => controller.ontapGallery1(),
                     child: Container(
-                      height: 60,
                       width: 60,
-                      decoration: const BoxDecoration(
-                          color: ColorRes.logoColor, shape: BoxShape.circle),
-                      child: Image.asset(
-                        AssetRes.cloud,
-                        height: 20,
-                        width: 20,
-                      ),
+                      height: 60,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: (controller.image == null)
+                              ? const DecorationImage(
+                                  image: AssetImage(
+                                    AssetRes.cloud,
+                                  ),
+                                  fit: BoxFit.fill)
+                              : DecorationImage(
+                                  image: FileImage(
+                                    controller.image!,
+                                  ),
+                                  fit: BoxFit.fill)),
                     ),
+                    //  Container(
+                    //   height: 60,
+                    //   width: 60,
+                    //   decoration: const BoxDecoration(
+                    //       color: ColorRes.logoColor, shape: BoxShape.circle),
+                    //   child: Image.asset(
+                    //     AssetRes.cloud,
+                    //     height: 20,
+                    //     width: 20,
+                    //   ),
+                    // ),
                   ),
                   const SizedBox(
                     height: 10,
@@ -108,9 +126,8 @@ class OrganizationProfileScreen extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Obx(
-                () => Column(
-                    children: [
+              child: Column(
+                children: [
                   Row(
                     children: [
                       Padding(
@@ -132,19 +149,17 @@ class OrganizationProfileScreen extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                     commonTextFormField(
-                      textDecoration: InputDecoration(
-                          contentPadding: const EdgeInsets.all(15),
-                          border: InputBorder.none,
-                          hintText: "Name Of Company",
-                          hintStyle: appTextStyle(
-                              fontSize: 14,
-                              color: ColorRes.black.withOpacity(0.15))),
-                      onChanged: (String name) {
-                        name = name;
-                      },
-                      controller: controller.companyNameController,),
-                      controller.isNameValidate.value == true
+                  commonTextFormField(
+                    textDecoration: InputDecoration(
+                        contentPadding: const EdgeInsets.all(15),
+                        border: InputBorder.none,
+                        hintText: "Name Of Company",
+                        hintStyle: appTextStyle(
+                            fontSize: 14,
+                            color: ColorRes.black.withOpacity(0.15))),
+                    controller: controller.companyNameController,
+                  ),
+                  controller.isNameValidate.value == true
                       ? Column(
                           children: [
                             const SizedBox(
@@ -154,10 +169,10 @@ class OrganizationProfileScreen extends StatelessWidget {
                           ],
                         )
                       : const SizedBox(),
-                      const SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                      Row(
+                  Row(
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(left: 5),
@@ -204,7 +219,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                           ],
                         )
                       : const SizedBox(),
-                      const SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Row(
@@ -226,7 +241,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                      InkWell(
+                  InkWell(
                     onTap: () {
                       controller.onDatePickerTap(context);
                     },
@@ -249,7 +264,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                         ),
                         controller: controller.dateController),
                   ),
-                      controller.isDateValidate.value == true
+                  controller.isDateValidate.value == true
                       ? Column(
                           children: [
                             const SizedBox(
@@ -290,15 +305,22 @@ class OrganizationProfileScreen extends StatelessWidget {
                           fontSize: 14,
                           color: ColorRes.black.withOpacity(0.15),
                         ),
-                        suffixIcon: Container(
-                          padding: const EdgeInsets.all(20),
-                          child: Image(
-                            color: ColorRes.black.withOpacity(0.20),
-                            image: const AssetImage(
-                              AssetRes.dropIcon,
-                            ),
-                            height: 5,
-                          ),
+                        suffixIcon: DropdownButton(
+                          iconSize: 35.0,
+                          iconEnabledColor: Colors.grey.shade400,
+                          iconDisabledColor: Colors.grey.shade400,
+                          underline: Container(),
+                          icon: const Icon(Icons.arrow_drop_down),
+                          items: controller.items.map(
+                            (val) {
+                              return DropdownMenuItem<String>(
+                                value: val,
+                                child: Text(val),
+                              );
+                            },
+                          ).toList(),
+                          onChanged: (String? val) =>
+                              controller.dropDownValue = val!,
                         ),
                       ),
                       controller: controller.countryController),
@@ -358,7 +380,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                   const SizedBox(
                     height: 35,
                   ),
-                      GetBuilder<OrganizationProfileScreenController>(
+                  GetBuilder<OrganizationProfileScreenController>(
                       id: "Organization",
                       builder: (controller) {
                         return (controller.companyNameController.text == '' ||
@@ -368,8 +390,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                                 controller.companyAddressController.text == '')
                             ? InkWell(
                                 // dashboard write
-                                onTap: ()=>controller.onLoginBtnTap,
-
+                                onTap: () => controller.onLoginBtnTap,
                                 child: Container(
                                   height: 50,
                                   width: MediaQuery.of(context).size.width,
@@ -392,7 +413,18 @@ class OrganizationProfileScreen extends StatelessWidget {
                               )
                             : InkWell(
                                 // dashboard write
-                                onTap: ()=>controller.onLoginBtnTap,
+                                onTap: () {
+                                  if (kDebugMode) {
+                                    print("=a4fyj66enum j");
+                                  }
+                                  controller.onLoginBtnTap(
+                                      country: "",
+                                      address: "",
+                                      date: "",
+                                      name: "",
+                                      email: "");
+                                },
+                                // controller.onLoginBtnTap,
                                 child: Container(
                                   height: 50,
                                   width: MediaQuery.of(context).size.width,
@@ -415,7 +447,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                ],),
+                ],
               ),
             ),
           ],

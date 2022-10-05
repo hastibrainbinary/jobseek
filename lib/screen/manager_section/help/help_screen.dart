@@ -46,7 +46,7 @@ class HelpScreen extends StatelessWidget {
             InkWell(
               onTap: () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (con) => FaqScreen()));
+                    context, MaterialPageRoute(builder: (con) => const FaqScreen()));
               },
               child: Padding(
                 padding: const EdgeInsets.all(18.0),
@@ -77,7 +77,7 @@ class HelpScreen extends StatelessWidget {
             InkWell(
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (con) => TermsScreen()));
+                    MaterialPageRoute(builder: (con) => const TermsScreen()));
               },
               child: Padding(
                 padding: const EdgeInsets.all(18.0),
@@ -109,7 +109,7 @@ class HelpScreen extends StatelessWidget {
             InkWell(
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (con) => PolicyScreen()));
+                    MaterialPageRoute(builder: (con) => const PolicyScreen()));
               },
               child: Padding(
                 padding: const EdgeInsets.all(18.0),

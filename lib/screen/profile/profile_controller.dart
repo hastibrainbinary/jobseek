@@ -39,7 +39,9 @@ class ProfileUserController extends GetxController implements GetxService {
       if (kDebugMode) {
         startTime = picked;
       }
-      print("START TIME : $startTime");
+      if (kDebugMode) {
+        print("START TIME : $startTime");
+      }
       dateOfBirthController.text =
           "${picked.toLocal().month}/${picked.toLocal().day}/${picked.toLocal().year}";
       update();
@@ -53,7 +55,9 @@ class ProfileUserController extends GetxController implements GetxService {
         isAddressValidate.value == false &&
         isoccupationValidate.value == false &&
         isbirthValidate.value == false) {
-      print("GO TO HOME PAGE");
+      if (kDebugMode) {
+        print("GO TO HOME PAGE");
+      }
       // Get.to(ManagerDashBoardScreen());
     }
   }

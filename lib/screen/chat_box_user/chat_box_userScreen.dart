@@ -354,7 +354,7 @@ class ChatBoxUserScreen extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (con) => ChatLiveScreen()));
+                              builder: (con) => const ChatLiveScreen()));
                     },
                     child: Container(
                       height: 92,

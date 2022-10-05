@@ -5,7 +5,7 @@ Widget commonTextFormField(
     {InputDecoration? textDecoration,
     TextEditingController? controller,
     VoidCallback? onTap,
-      Function(String)? onChanged,
+
 
     Color? color,
     bool? obscureText}) {
@@ -21,7 +21,7 @@ Widget commonTextFormField(
       style: const TextStyle(fontWeight: FontWeight.bold),
       onTap: onTap ?? () {},
       obscureText: obscureText ?? false,
-      onChanged: (value) =>onChanged!(value) ?? () {},
+
     ),
   );
 }

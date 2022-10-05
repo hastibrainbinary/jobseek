@@ -11,6 +11,7 @@ class ChatBovLiveScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: ColorRes.backgroungColor,
       body: Column(
           mainAxisAlignment: MainAxisAlignment.start,

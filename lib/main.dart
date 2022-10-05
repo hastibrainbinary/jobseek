@@ -17,6 +17,7 @@ import 'package:jobseek/screen/manager_section/resume_screen/resume_screen.dart'
 import 'package:jobseek/screen/notification_screen/notification_screen.dart';
 import 'package:jobseek/screen/organization_profile_screen/organization_profile_screen.dart';
 import 'package:jobseek/screen/see_details/see_details_screen.dart';
+import 'package:jobseek/screen/splashScreen/splash_Screen.dart';
 import 'package:jobseek/utils/app_res.dart';
 
 void main()  async{
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: const LookingForScreen(),
+      home: const SplashScreen(),
       initialRoute: "/",
       getPages: [
         GetPage(
@@ -69,7 +70,7 @@ class MyApp extends StatelessWidget {
             page: () => const JobRecommendation()),
         GetPage(
             name: AppRes.organizationProfileScreen,
-            page: () =>OrganizationProfileScreen()),
+            page: () =>const OrganizationProfileScreen()),
         GetPage(
             name: AppRes.applicationsUser,
             page: () => ApplicationsScreen()),

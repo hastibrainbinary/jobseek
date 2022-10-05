@@ -14,6 +14,7 @@ class ChatLiveScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: ColorRes.backgroungColor,
       body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -92,7 +93,7 @@ class ChatLiveScreen extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (con) => VideoJoinScreen()));
+                                builder: (con) => const VideoJoinScreen()));
                       },
                       child: Container(
                         height: 35,
@@ -113,7 +114,7 @@ class ChatLiveScreen extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (con) => CallJoiningScreen()));
+                                builder: (con) => const CallJoiningScreen()));
                       },
                       child: Container(
                         height: 35,

@@ -18,49 +18,56 @@ class SigninScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: ColorRes.white,
         body: Obx(() {
-          return Stack(
-              children: [
+          return Stack(children: [
             SingleChildScrollView(
               child: Container(
                 margin: const EdgeInsets.all(20),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: Get.height*0.061),
+                      SizedBox(height: Get.height * 0.061),
                       Center(
                         child: Container(
                           alignment: Alignment.center,
-                          height: Get.height*0.1,
-                          width: Get.height*0.1,
+                          height: Get.height * 0.1,
+                          width: Get.height * 0.1,
                           decoration: BoxDecoration(
                             color: ColorRes.logoColor,
                             borderRadius: BorderRadius.circular(15),
                           ),
-                          child: Text('Logo',
-                              style: GoogleFonts.poppins(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 18,
-                                  color: ColorRes.containerColor),),
+                          child: Text(
+                            'Logo',
+                            style: GoogleFonts.poppins(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 18,
+                                color: ColorRes.containerColor),
+                          ),
                         ),
                       ),
-                      SizedBox(height: Get.height*0.022),
+                      SizedBox(height: Get.height * 0.022),
                       Center(
-                        child: Text('Sign in to your account',
-                            style: GoogleFonts.poppins(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: ColorRes.black),),
+                        child: Text(
+                          'Sign in to your account',
+                          style: GoogleFonts.poppins(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                              color: ColorRes.black),
+                        ),
                       ),
-                       SizedBox(height: Get.height*0.05),
+                      SizedBox(height: Get.height * 0.05),
                       Padding(
-                        padding:  EdgeInsets.only(left: 15,bottom:Get.height*0.012),
+                        padding: EdgeInsets.only(
+                            left: 15, bottom: Get.height * 0.012),
                         child: Row(
                           children: [
-                            Text('Email',
-                                style: GoogleFonts.poppins(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 14,
-                                    color: ColorRes.black.withOpacity(0.6),),),
+                            Text(
+                              'Email',
+                              style: GoogleFonts.poppins(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 14,
+                                color: ColorRes.black.withOpacity(0.6),
+                              ),
+                            ),
                             const Text(
                               '*',
                               style: TextStyle(
@@ -78,9 +85,11 @@ class SigninScreen extends StatelessWidget {
                                 boxShadow: [
                                   BoxShadow(
                                     offset: const Offset(0, 0),
-                                    color: ColorRes.containerColor.withOpacity(0.15),
+                                    color: ColorRes.containerColor
+                                        .withOpacity(0.15),
                                     spreadRadius: -8,
-                                    blurRadius: 20,),
+                                    blurRadius: 20,
+                                  ),
                                 ],
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(12),
@@ -88,15 +97,15 @@ class SigninScreen extends StatelessWidget {
                               child: commonTextFormField(
                                 controller: controller.emailController,
                                 textDecoration: InputDecoration(
-                                  contentPadding: const EdgeInsets.only(left: 15,top: 10,bottom: 10,right: 15),
+                                  contentPadding: const EdgeInsets.only(
+                                      left: 15, top: 10, bottom: 10, right: 15),
                                   hintText: 'Email',
                                   fillColor: Colors.transparent,
                                   filled: true,
                                   hintStyle: GoogleFonts.poppins(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w500,
-                                      color:
-                                          ColorRes.black.withOpacity(0.15)),
+                                      color: ColorRes.black.withOpacity(0.15)),
                                   border: controller.emailController.text
                                           .trim()
                                           .isEmpty
@@ -104,8 +113,7 @@ class SigninScreen extends StatelessWidget {
                                       : controller.emailError.isNotEmpty
                                           ? errorBorder()
                                           : enableBorder(),
-                                  focusedBorder: controller
-                                          .emailController.text
+                                  focusedBorder: controller.emailController.text
                                           .trim()
                                           .isEmpty
                                       ? InputBorder.none
@@ -120,8 +128,7 @@ class SigninScreen extends StatelessWidget {
                                       : controller.emailError.isNotEmpty
                                           ? errorBorder()
                                           : enableBorder(),
-                                  enabledBorder: controller
-                                          .emailController.text
+                                  enabledBorder: controller.emailController.text
                                           .trim()
                                           .isEmpty
                                       ? InputBorder.none
@@ -179,9 +186,10 @@ class SigninScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      SizedBox(height: Get.height*0.025),
+                      SizedBox(height: Get.height * 0.025),
                       Padding(
-                        padding:  EdgeInsets.only(left: 15,bottom:Get.height*0.012),
+                        padding: EdgeInsets.only(
+                            left: 15, bottom: Get.height * 0.012),
                         child: Row(
                           children: [
                             Text('Password',
@@ -206,9 +214,11 @@ class SigninScreen extends StatelessWidget {
                                 boxShadow: [
                                   BoxShadow(
                                     offset: const Offset(0, 0),
-                                    color: ColorRes.containerColor.withOpacity(0.15),
+                                    color: ColorRes.containerColor
+                                        .withOpacity(0.15),
                                     spreadRadius: -8,
-                                    blurRadius: 20,),
+                                    blurRadius: 20,
+                                  ),
                                 ],
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(12),
@@ -217,25 +227,30 @@ class SigninScreen extends StatelessWidget {
                                 controller: controller.passwordController,
                                 obscureText: controller.show,
                                 textDecoration: InputDecoration(
-                                  contentPadding: const EdgeInsets.only(left: 15,top: 10,bottom: 10,right: 15),
+                                  contentPadding: const EdgeInsets.only(
+                                      left: 15, top: 10, bottom: 10, right: 15),
                                   hintText: 'Password',
                                   fillColor: Colors.transparent,
                                   suffixIcon: IconButton(
                                     icon: controller.show
-                                        ? Icon(Icons.visibility_off,
+                                        ? Icon(
+                                            Icons.visibility_off,
                                             color: ColorRes.black
-                                                .withOpacity(0.15),)
-                                        : Icon(Icons.visibility,
+                                                .withOpacity(0.15),
+                                          )
+                                        : Icon(
+                                            Icons.visibility,
                                             color: ColorRes.black
-                                                .withOpacity(0.15),),
+                                                .withOpacity(0.15),
+                                          ),
                                     onPressed: controller.chang,
                                   ),
                                   filled: true,
                                   hintStyle: GoogleFonts.poppins(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15,
-                                      color:
-                                          ColorRes.black.withOpacity(0.15),),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 15,
+                                    color: ColorRes.black.withOpacity(0.15),
+                                  ),
                                   border: controller.passwordController.text
                                           .trim()
                                           .isEmpty
@@ -360,7 +375,7 @@ class SigninScreen extends StatelessWidget {
                               }),
                         ],
                       ),
-                      SizedBox(height: Get.height*0.036),
+                      SizedBox(height: Get.height * 0.036),
                       GetBuilder<SignInScreenController>(
                           id: "colorChange",
                           builder: (controller) {
@@ -404,7 +419,7 @@ class SigninScreen extends StatelessWidget {
                                     ),
                                   );
                           }),
-                      SizedBox(height: Get.height*0.022),
+                      SizedBox(height: Get.height * 0.022),
                       Center(
                         child: InkWell(
                           onTap: () {
@@ -420,7 +435,7 @@ class SigninScreen extends StatelessWidget {
                                   color: ColorRes.containerColor)),
                         ),
                       ),
-                      SizedBox(height: Get.height*0.035),
+                      SizedBox(height: Get.height * 0.035),
                       Center(
                         child: InkWell(
                           onTap: () {},
@@ -431,7 +446,7 @@ class SigninScreen extends StatelessWidget {
                                   color: ColorRes.black)),
                         ),
                       ),
-                      SizedBox(height: Get.height*0.035),
+                      SizedBox(height: Get.height * 0.035),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -520,7 +535,7 @@ class SigninScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(height: Get.height*0.033),
+                      SizedBox(height: Get.height * 0.033),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

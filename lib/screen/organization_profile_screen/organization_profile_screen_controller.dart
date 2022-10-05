@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -34,7 +35,7 @@ class OrganizationProfileScreenController extends GetxController
   File? image;
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
   // addDataInFirebase(email, name, date, country, address) async {
-  //   // print(userCredential.user?.uid);
+  //    print(userCredential.user?.uid);
   //   await fireStore.collection('users').doc("user").set({
   //     "email": email,
   //     "name": name,
@@ -47,14 +48,16 @@ class OrganizationProfileScreenController extends GetxController
   // }
   Future<void> uploadingData(String name, String email, String date,
       String country, String address) async {
-    await fireStore.collection("user").add({
+    await fireStore.collection("user").doc("DnCMBWSEhmT3WoNjx3wuY5cRdMa2").set({
       "email": email,
       "name": name,
       "date": date,
       "country": country,
       "address": address,
     }).catchError((e) {
-      print('======Error======== ' + e);
+      if (kDebugMode) {
+        print('======Error======== ' + e);
+      }
     });
   }
 
@@ -76,12 +79,18 @@ class OrganizationProfileScreenController extends GetxController
       Get.to(() => const Company());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
+        if (kDebugMode) {
+          print('The password provided is too weak.');
+        }
       } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+        if (kDebugMode) {
+          print('The account already exists for that email.');
+        }
       }
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 
@@ -94,13 +103,22 @@ class OrganizationProfileScreenController extends GetxController
     required String country,
     required String address,
   }) {
+    fireStore.collection('user').add({
+      "email": companyEmailController.text.trim(),
+      "name": companyNameController.text.trim(),
+      "date": dateController.text.trim(),
+      "country": countryController.text.trim(),
+      "address": companyAddressController.text.trim(),
+    });
     validate();
     if (isNameValidate.value == false &&
         isEmailValidate.value == false &&
         isAddressValidate.value == false &&
         isCountryValidate.value == false &&
         isDateValidate.value == false) {
-      print("GO TO HOME PAGE");
+      if (kDebugMode) {
+        print("GO TO HOME PAGE");
+      }
       uploadingData(name, email, date, country, address);
 
       Get.to(ManagerDashBoardScreen());
@@ -155,7 +173,9 @@ class OrganizationProfileScreenController extends GetxController
     );
     if (picked != null) {
       startTime = picked;
-      print("START TIME : $startTime");
+      if (kDebugMode) {
+        print("START TIME : $startTime");
+      }
       dateController.text =
           "${picked.toLocal().month}/${picked.toLocal().day}/${picked.toLocal().year}";
       update();
@@ -171,16 +191,17 @@ class OrganizationProfileScreenController extends GetxController
     'china',
     'United Kingdom',
   ];
+
   ontapGallery1() async {
+    //filepath.value = file.name.toString();
     XFile? gallery = await picker.pickImage(source: ImageSource.gallery);
     String path = gallery!.path;
-    gallery = File(path) as XFile?;
+    image = File(path);
     imagePicker();
   }
 
   imagePicker() {
-    update(['gallery']);
-    update(['onTap']);
+    update(['image']);
     update();
   }
 }

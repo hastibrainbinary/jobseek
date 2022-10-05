@@ -50,7 +50,8 @@ class ManagerApplicationScreen extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (con) => const CreateVacanciesScreen()));
+                                builder: (con) =>
+                                    const CreateVacanciesScreen()));
                       },
                       child: Container(
                         height: 40,
@@ -104,7 +105,7 @@ class ManagerApplicationScreen extends StatelessWidget {
             padding: const EdgeInsets.only(left: 20, right: 20),
             height: 32,
             child: ListView.builder(
-              padding: const EdgeInsets.all(0),
+                padding: const EdgeInsets.all(0),
                 itemCount: controller.jobs2.length,
                 scrollDirection: Axis.horizontal,
                 physics: const BouncingScrollPhysics(),
@@ -140,12 +141,12 @@ class ManagerApplicationScreen extends StatelessWidget {
                   );
                 }),
           ),
-         const SizedBox(height: 18),
+          const SizedBox(height: 18),
           Expanded(
             child: SizedBox(
               height: Get.height * 0.65,
               child: ListView.builder(
-                padding: const EdgeInsets.all(0),
+                  padding: const EdgeInsets.all(0),
                   itemCount: 10,
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
@@ -195,8 +196,8 @@ class ManagerApplicationScreen extends StatelessWidget {
                               children: [
                                 Container(
                                   height: 20,
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 15),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 15),
                                   decoration: BoxDecoration(
                                     color: ColorRes.lightGreen,
                                     borderRadius: BorderRadius.circular(20),
@@ -204,7 +205,8 @@ class ManagerApplicationScreen extends StatelessWidget {
                                   child: Text(
                                     "Active",
                                     style: appTextStyle(
-                                        color: ColorRes.darkGreen, fontSize: 12),
+                                        color: ColorRes.darkGreen,
+                                        fontSize: 12),
                                   ),
                                 ),
                                 const Spacer(),
@@ -214,7 +216,7 @@ class ManagerApplicationScreen extends StatelessWidget {
                                       fontSize: 16,
                                       color: ColorRes.containerColor,
                                       fontWeight: FontWeight.w500),
-                                )
+                                ),
                               ],
                             ),
                             const SizedBox(width: 10)

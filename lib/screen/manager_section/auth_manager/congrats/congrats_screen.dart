@@ -62,7 +62,7 @@ class CongratsScreenM extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (con) => FirstPageScreenM()));
+                            builder: (con) => const FirstPageScreenM()));
                   },
                   child: Text("Go to homepage",
                       style: appTextStyle(

@@ -63,7 +63,6 @@ Widget tipsForYouSection() {
               width: Get.width - 160,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-
                 crossAxisAlignment: CrossAxisAlignment.start,
                 // ignore: prefer_const_literals_to_create_immutables
                 children: [

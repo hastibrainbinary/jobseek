@@ -122,7 +122,7 @@ class JobDetailsUploadCvController extends GetxController {
     } else {
       // User canceled the picker
 
-      isPdfUploadError.value =true;
+      isPdfUploadError.value = true;
     }
   }
 

@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  static final title = 'salomon_bottom_bar';
+  static const title = 'salomon_bottom_bar';
+
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   _MyAppState createState() => _MyAppState();
@@ -25,7 +27,7 @@ class _MyAppState extends State<MyApp> {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text(MyApp.title),
+          title: const Text(MyApp.title),
         ),
         bottomNavigationBar: SalomonBottomBar(
           currentIndex: _currentIndex,
