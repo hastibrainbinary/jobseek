@@ -51,7 +51,7 @@ class ManagerApplicationScreen extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (con) =>
-                                    const CreateVacanciesScreen()));
+                                    const CreateVacanciesScreenM()));
                       },
                       child: Container(
                         height: 40,

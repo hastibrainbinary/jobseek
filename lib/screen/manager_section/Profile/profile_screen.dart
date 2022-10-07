@@ -320,10 +320,20 @@ class ProfileScreen extends StatelessWidget {
                   child: StreamBuilder(
                       stream: FirebaseFirestore.instance
                           .collection("user")
-                          .where('userid', isEqualTo: "aaaaaa")
+                          // .where('userid', isEqualTo: "aaaaaa")
                           .snapshots(),
                       builder:
                           (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                        controller.companyNameController.text =
+                            snapshot.data?.docs[0]["name"];
+                        controller.companyEmailController.text =
+                            snapshot.data?.docs[0]["email"];
+                        controller.dateController.text =
+                            snapshot.data?.docs[0]["date"];
+                        controller.countryController.text =
+                            snapshot.data?.docs[0]["country"];
+                        controller.companyAddressController.text =
+                            snapshot.data?.docs[0]["address"];
                         if (snapshot.hasError) {
                           return const Text(
                             'No Data...',
@@ -362,8 +372,7 @@ class ProfileScreen extends StatelessWidget {
                                             contentPadding:
                                                 const EdgeInsets.all(15),
                                             border: InputBorder.none,
-                                            hintText: snapshot.data?.docs[0]
-                                                ["name"],
+                                            hintText: "name of company",
                                             hintStyle: appTextStyle(
                                                 fontSize: 14,
                                                 color: ColorRes.black
@@ -411,18 +420,16 @@ class ProfileScreen extends StatelessWidget {
                                           contentPadding:
                                               const EdgeInsets.all(15),
                                           border: InputBorder.none,
-                                          hintText: snapshot.data?.docs[0]
-                                              ["email"],
+                                          hintText: "Company Email",
                                           hintStyle: appTextStyle(
                                               fontSize: 14,
                                               color: ColorRes.black
                                                   .withOpacity(0.15)),
                                           suffixIcon: Container(
-                                            padding: const EdgeInsets.all(15),
+                                            padding: const EdgeInsets.all(16),
                                             child: Image(
                                               image: const AssetImage(
                                                   AssetRes.emailLogo),
-                                              //height: 5,
                                               color: ColorRes.black
                                                   .withOpacity(0.15),
                                             ),
@@ -477,8 +484,7 @@ class ProfileScreen extends StatelessWidget {
                                             contentPadding:
                                                 const EdgeInsets.all(15),
                                             border: InputBorder.none,
-                                            hintText: snapshot.data?.docs[0]
-                                                ["date"],
+                                            hintText: "Date",
                                             hintStyle: appTextStyle(
                                                 fontSize: 14,
                                                 color: ColorRes.black
@@ -537,8 +543,7 @@ class ProfileScreen extends StatelessWidget {
                                           contentPadding:
                                               const EdgeInsets.all(15),
                                           border: InputBorder.none,
-                                          hintText: snapshot.data?.docs[0]
-                                              ["country"],
+                                          hintText: "Country",
                                           hintStyle: appTextStyle(
                                             fontSize: 14,
                                             color: ColorRes.black
@@ -599,8 +604,7 @@ class ProfileScreen extends StatelessWidget {
                                           contentPadding:
                                               const EdgeInsets.all(15),
                                           border: InputBorder.none,
-                                          hintText: snapshot.data?.docs[0]
-                                              ["address"],
+                                          hintText: "Address",
                                           hintStyle: appTextStyle(
                                             fontSize: 14,
                                             color: ColorRes.black

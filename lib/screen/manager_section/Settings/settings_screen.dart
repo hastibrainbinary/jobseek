@@ -345,7 +345,10 @@ class SettingScreen extends StatelessWidget {
                     const SizedBox(width: 10),
                     InkWell(
                       onTap: () {
-                        Navigator.of(context).pop(true);
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(
+                                builder: (context) => const LookingForScreen()),
+                            (routes) => false);
                       },
                       child: Container(
                         height: 50,

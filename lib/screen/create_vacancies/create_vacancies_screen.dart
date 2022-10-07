@@ -8,8 +8,8 @@ import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'create_vacancies_controller.dart';
 
-class CreateVacanciesScreen extends StatelessWidget {
-  const CreateVacanciesScreen({Key? key}) : super(key: key);
+class CreateVacanciesScreenM extends StatelessWidget {
+  const CreateVacanciesScreenM({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -85,271 +85,289 @@ class CreateVacanciesScreen extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Obx(
-                      () => Column(children: [
-                        Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 5),
-                              child: Text(
-                                "Open Position",
-                                style: appTextStyle(
-                                  color: ColorRes.black.withOpacity(0.6),
-                                  fontSize: 14,
-                                ),
-                              ),
-                            ),
-                            Text(
-                              "*",
-                              style: appTextStyle(color: ColorRes.starColor),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        commonTextFormField(
-                            textDecoration: InputDecoration(
-                                contentPadding: const EdgeInsets.all(15),
-                                border: InputBorder.none,
-                                hintText: "Open Position",
-                                hintStyle: appTextStyle(
-                                    fontSize: 14,
-                                    color: ColorRes.black.withOpacity(0.15))),
-                            controller: controller.positionController),
-                        controller.isPositionValidate.value == true
-                            ? Column(
-                                children: [
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  commonErrorBox("Please Enter Position"),
-                                ],
-                              )
-                            : const SizedBox(),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 5),
-                              child: Text(
-                                "Salary",
-                                style: appTextStyle(
-                                    color: ColorRes.grey, fontSize: 14),
-                              ),
-                            ),
-                            Text(
-                              "*",
-                              style: appTextStyle(color: ColorRes.starColor),
-                            )
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        commonTextFormField(
-                            textDecoration: InputDecoration(
-                              contentPadding: const EdgeInsets.all(15),
-                              border: InputBorder.none,
-                              hintText: "Salary",
-                              hintStyle: appTextStyle(
-                                  fontSize: 14,
-                                  color: ColorRes.black.withOpacity(0.15)),
-                              suffixIcon: Container(
-                                padding: const EdgeInsets.all(13),
-                                child: Image(
-                                  image:
-                                      const AssetImage(AssetRes.currencyIcon),
-                                  height: 5,
-                                  color: ColorRes.black.withOpacity(0.15),
-                                ),
-                              ),
-                            ),
-                            controller: controller.salaryController),
-                        controller.isSalaryValidate.value == true
-                            ? Column(
-                                children: [
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  commonErrorBox("Please Enter Salary"),
-                                ],
-                              )
-                            : const SizedBox(),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 5),
-                              child: Text(
-                                "Location",
-                                style: appTextStyle(
-                                    color: ColorRes.grey, fontSize: 14),
-                              ),
-                            ),
-                            Text(
-                              "*",
-                              style: appTextStyle(color: ColorRes.starColor),
-                            )
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        commonTextFormField(
-                            textDecoration: InputDecoration(
-                              contentPadding: const EdgeInsets.all(15),
-                              border: InputBorder.none,
-                              hintText: "Location",
-                              hintStyle: appTextStyle(
-                                  fontSize: 14,
-                                  color: ColorRes.black.withOpacity(0.15)),
-                              suffixIcon: Container(
-                                padding: const EdgeInsets.all(20),
-                                child: Image(
-                                  image: const AssetImage(AssetRes.dropIcon),
-                                  height: 5,
-                                  color: ColorRes.black.withOpacity(0.15),
-                                ),
-                              ),
-                            ),
-                            controller: controller.locationController),
-                        controller.isLocationValidate.value == true
-                            ? Column(
-                                children: [
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  commonErrorBox("Please Enter Location"),
-                                ],
-                              )
-                            : const SizedBox(),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 5),
-                              child: Text(
-                                "Type",
-                                style: appTextStyle(
-                                    color: ColorRes.grey, fontSize: 14),
-                              ),
-                            ),
-                            Text(
-                              "*",
-                              style: appTextStyle(color: ColorRes.starColor),
-                            )
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        commonTextFormField(
-                            textDecoration: InputDecoration(
-                              contentPadding: const EdgeInsets.all(15),
-                              border: InputBorder.none,
-                              hintText: "Type",
-                              hintStyle: appTextStyle(
+                    child: Column(children: [
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 5),
+                            child: Text(
+                              "Open Position",
+                              style: appTextStyle(
+                                color: ColorRes.black.withOpacity(0.6),
                                 fontSize: 14,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            "*",
+                            style: appTextStyle(color: ColorRes.starColor),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      commonTextFormField(
+                          textDecoration: InputDecoration(
+                              contentPadding: const EdgeInsets.all(15),
+                              border: InputBorder.none,
+                              hintText: "Open Position",
+                              hintStyle: appTextStyle(
+                                  fontSize: 14,
+                                  color: ColorRes.black.withOpacity(0.15))),
+                          controller: controller.positionController),
+                      controller.isPositionValidate.value == true
+                          ? Column(
+                              children: [
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                commonErrorBox("Please Enter Position"),
+                              ],
+                            )
+                          : const SizedBox(),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 5),
+                            child: Text(
+                              "Salary",
+                              style: appTextStyle(
+                                  color: ColorRes.grey, fontSize: 14),
+                            ),
+                          ),
+                          Text(
+                            "*",
+                            style: appTextStyle(color: ColorRes.starColor),
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      commonTextFormField(
+                          textDecoration: InputDecoration(
+                            contentPadding: const EdgeInsets.all(15),
+                            border: InputBorder.none,
+                            hintText: "Salary",
+                            hintStyle: appTextStyle(
+                                fontSize: 14,
+                                color: ColorRes.black.withOpacity(0.15)),
+                            suffixIcon: Container(
+                              padding: const EdgeInsets.all(13),
+                              child: Image(
+                                image: const AssetImage(AssetRes.currencyIcon),
+                                height: 5,
                                 color: ColorRes.black.withOpacity(0.15),
                               ),
-                              suffixIcon: Container(
-                                padding: const EdgeInsets.all(20),
-                                child: Image(
-                                  color: ColorRes.black.withOpacity(0.20),
-                                  image: const AssetImage(
-                                    AssetRes.dropIcon,
-                                  ),
-                                  height: 5,
-                                ),
-                              ),
                             ),
-                            controller: controller.typeController),
-                        controller.isTypeValidate.value == true
-                            ? Column(
-                                children: [
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  commonErrorBox("Please Enter Type"),
-                                ],
-                              )
-                            : const SizedBox(),
-                        const SizedBox(
-                          height: 60,
-                        ),
-                        GetBuilder<CreateVacanciesController>(
-                            id: "profile",
-                            builder: (controller) {
-                              return (controller.positionController.text == '' ||
-                                      controller.salaryController.text == '' ||
-                                      controller.locationController.text ==
-                                          '' ||
-                                      controller.typeController.text == '')
-                                  ? InkWell(
-                                      // add screen
-                                      onTap: () => controller.onLoginBtnTap(),
+                          ),
+                          controller: controller.salaryController),
+                      controller.isSalaryValidate.value == true
+                          ? Column(
+                              children: [
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                commonErrorBox("Please Enter Salary"),
+                              ],
+                            )
+                          : const SizedBox(),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 5),
+                            child: Text(
+                              "Location",
+                              style: appTextStyle(
+                                  color: ColorRes.grey, fontSize: 14),
+                            ),
+                          ),
+                          Text(
+                            "*",
+                            style: appTextStyle(color: ColorRes.starColor),
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      commonTextFormField(
+                          textDecoration: InputDecoration(
+                            contentPadding: const EdgeInsets.all(15),
+                            border: InputBorder.none,
+                            hintText: "Location",
+                            hintStyle: appTextStyle(
+                                fontSize: 14,
+                                color: ColorRes.black.withOpacity(0.15)),
+                            suffixIcon: GetBuilder<CreateVacanciesController>(
+                              id: "Location",
+                              builder: (controller) {
+                                return DropdownButton(
+                                    //value: controller.dropDownValue,
+                                    iconSize: 35.0,
+                                    iconEnabledColor: Colors.grey.shade400,
+                                    iconDisabledColor: Colors.grey.shade400,
+                                    underline: Container(),
+                                    icon: const Icon(Icons.arrow_drop_down),
+                                    items: controller.items.map(
+                                      (val) {
+                                        return DropdownMenuItem<String>(
+                                          value: val,
+                                          child: Text(val),
+                                        );
+                                      },
+                                    ).toList(),
+                                    onChanged: (String? val) {
+                                      controller.changeDropdwon(val: val!);
+                                    });
+                              },
+                            ),
+                          ),
+                          controller: controller.locationController),
+                      controller.isLocationValidate.value == true
+                          ? Column(
+                              children: [
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                commonErrorBox("Please Enter Location"),
+                              ],
+                            )
+                          : const SizedBox(),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 5),
+                            child: Text(
+                              "Type",
+                              style: appTextStyle(
+                                  color: ColorRes.grey, fontSize: 14),
+                            ),
+                          ),
+                          Text(
+                            "*",
+                            style: appTextStyle(color: ColorRes.starColor),
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      commonTextFormField(
+                          textDecoration: InputDecoration(
+                            contentPadding: const EdgeInsets.all(15),
+                            border: InputBorder.none,
+                            hintText: "Type",
+                            hintStyle: appTextStyle(
+                              fontSize: 14,
+                              color: ColorRes.black.withOpacity(0.15),
+                            ),
+                            suffixIcon: GetBuilder<CreateVacanciesController>(
+                              id: "type",
+                              builder: (controller) {
+                                return DropdownButton(
+                                    iconSize: 35.0,
+                                    iconEnabledColor: Colors.grey.shade400,
+                                    iconDisabledColor: Colors.grey.shade400,
+                                    underline: Container(),
+                                    icon: const Icon(Icons.arrow_drop_down),
+                                    items: controller.items1.map(
+                                      (val) {
+                                        return DropdownMenuItem<String>(
+                                          value: val,
+                                          child: Text(val),
+                                        );
+                                      },
+                                    ).toList(),
+                                    onChanged: (String? val) {
+                                      controller.changeDropdwon(val: val!);
+                                    });
+                              },
+                            ),
+                          ),
+                          controller: controller.typeController),
+                      controller.isTypeValidate.value == true
+                          ? Column(
+                              children: [
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                commonErrorBox("Please Enter Type"),
+                              ],
+                            )
+                          : const SizedBox(),
+                      const SizedBox(
+                        height: 60,
+                      ),
+                      GetBuilder<CreateVacanciesController>(
+                          id: "profile",
+                          builder: (controller) {
+                            return (controller.positionController.text == '' ||
+                                    controller.salaryController.text == '' ||
+                                    controller.locationController.text == '' ||
+                                    controller.typeController.text == '')
+                                ? InkWell(
+                                    // add screen
+                                    onTap: () => controller.onLoginBtnTap(),
 
-                                      child: Container(
-                                        height: 50,
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        alignment: Alignment.center,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          gradient: LinearGradient(
-                                            colors: [
-                                              ColorRes.gradientColor
-                                                  .withOpacity(0.2),
-                                              ColorRes.containerColor
-                                                  .withOpacity(0.4)
-                                            ],
-                                          ),
+                                    child: Container(
+                                      height: 50,
+                                      width: MediaQuery.of(context).size.width,
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        gradient: LinearGradient(
+                                          colors: [
+                                            ColorRes.gradientColor
+                                                .withOpacity(0.2),
+                                            ColorRes.containerColor
+                                                .withOpacity(0.4)
+                                          ],
                                         ),
-                                        child: Text("Next",
-                                            style: appTextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.w500,
-                                                color: ColorRes.white)),
                                       ),
-                                    )
-                                  : InkWell(
-                                      // add screen
-                                      onTap: () => controller.onLoginBtnTap(),
-                                      child: Container(
-                                        height: 50,
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        alignment: Alignment.center,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          gradient: const LinearGradient(
-                                              colors: [
-                                                ColorRes.gradientColor,
-                                                ColorRes.containerColor
-                                              ]),
-                                        ),
-                                        child: Text("Next",
-                                            style: appTextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.w500,
-                                                color: ColorRes.white)),
+                                      child: Text("Next",
+                                          style: appTextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w500,
+                                              color: ColorRes.white)),
+                                    ),
+                                  )
+                                : InkWell(
+                                    // add screen
+                                    onTap: () => controller.onLoginBtnTap(),
+                                    child: Container(
+                                      height: 50,
+                                      width: MediaQuery.of(context).size.width,
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        gradient: const LinearGradient(colors: [
+                                          ColorRes.gradientColor,
+                                          ColorRes.containerColor
+                                        ]),
                                       ),
-                                    );
-                            }),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                      ]),
-                    ),
+                                      child: Text("Next",
+                                          style: appTextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w500,
+                                              color: ColorRes.white)),
+                                    ),
+                                  );
+                          }),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                    ]),
                   ),
                 ],
               ),

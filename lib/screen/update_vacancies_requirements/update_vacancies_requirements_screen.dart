@@ -261,11 +261,12 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                         color:
                                             ColorRes.black.withOpacity(0.15)),
                                     suffixIcon: Container(
-                                      padding: const EdgeInsets.all(15),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 15),
                                       child: Image(
                                         image: const AssetImage(
-                                            AssetRes.emailLogo),
-                                        color: ColorRes.black.withOpacity(0.15),
+                                            AssetRes.currencyIcon),
+                                        color: ColorRes.black.withOpacity(0.30),
                                       ),
                                     ),
                                   ),
@@ -312,23 +313,29 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                       fontSize: 14,
                                       color: ColorRes.black.withOpacity(0.15),
                                     ),
-                                    suffixIcon: DropdownButton(
-                                      iconSize: 40.0,
-                                      iconEnabledColor: Colors.grey.shade400,
-                                      iconDisabledColor: Colors.grey.shade400,
-                                      underline: Container(),
-                                      icon: const Icon(Icons.arrow_drop_down),
-                                      items: controller.items.map(
-                                        (val) {
-                                          return DropdownMenuItem<String>(
-                                            value: val,
-                                            child: Text(val),
-                                          );
-                                        },
-                                      ).toList(),
-                                      onChanged: (String? val) =>
-                                          controller.dropDownValueLocation,
-                                    ),
+                                    // suffixIcon:  GetBuilder<UpdateVacanciesRequirementController>(
+                                    //   id: "dropdown",
+                                    //   builder: (controller) {
+                                    //     return DropdownButton(
+                                    //       //value: controller.dropDownValue,
+                                    //         iconSize: 35.0,
+                                    //         iconEnabledColor: Colors.grey.shade400,
+                                    //         iconDisabledColor: Colors.grey.shade400,
+                                    //         underline: Container(),
+                                    //         icon: const Icon(Icons.arrow_drop_down),
+                                    //         items: controller.items.map(
+                                    //               (val) {
+                                    //             return DropdownMenuItem<String>(
+                                    //               value: val,
+                                    //               child: Text(val),
+                                    //             );
+                                    //           },
+                                    //         ).toList(),
+                                    //         onChanged: (String? val) {
+                                    //           controller.changeDropdwon(val: val!);
+                                    //         });
+                                    //   },
+                                    // ),
                                   ),
                                   controller: controller.locationController),
                               controller.isLocationValidate.value == true
@@ -374,7 +381,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                       color: ColorRes.black.withOpacity(0.15),
                                     ),
                                     suffixIcon: DropdownButton(
-                                      iconSize: 40.0,
+                                      iconSize: 35.0,
                                       iconEnabledColor: Colors.grey.shade400,
                                       iconDisabledColor: Colors.grey.shade400,
                                       underline: Container(),
@@ -438,7 +445,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                       color: ColorRes.black.withOpacity(0.15),
                                     ),
                                     suffixIcon: DropdownButton(
-                                      iconSize: 40.0,
+                                      iconSize: 35.0,
                                       iconEnabledColor: Colors.grey.shade400,
                                       iconDisabledColor: Colors.grey.shade400,
                                       underline: Container(),

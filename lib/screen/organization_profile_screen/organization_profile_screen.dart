@@ -74,13 +74,14 @@ class OrganizationProfileScreen extends StatelessWidget {
                       width: 60,
                       height: 60,
                       decoration: BoxDecoration(
+                          color: ColorRes.logoColor,
                           shape: BoxShape.circle,
                           image: (controller.image == null)
                               ? const DecorationImage(
                                   image: AssetImage(
                                     AssetRes.cloud,
                                   ),
-                                  fit: BoxFit.fill)
+                                )
                               : DecorationImage(
                                   image: FileImage(
                                     controller.image!,
@@ -305,22 +306,29 @@ class OrganizationProfileScreen extends StatelessWidget {
                           fontSize: 14,
                           color: ColorRes.black.withOpacity(0.15),
                         ),
-                        suffixIcon: DropdownButton(
-                          iconSize: 35.0,
-                          iconEnabledColor: Colors.grey.shade400,
-                          iconDisabledColor: Colors.grey.shade400,
-                          underline: Container(),
-                          icon: const Icon(Icons.arrow_drop_down),
-                          items: controller.items.map(
-                            (val) {
-                              return DropdownMenuItem<String>(
-                                value: val,
-                                child: Text(val),
-                              );
-                            },
-                          ).toList(),
-                          onChanged: (String? val) =>
-                              controller.dropDownValue = val!,
+                        suffixIcon:
+                            GetBuilder<OrganizationProfileScreenController>(
+                          id: "dropdown",
+                          builder: (controller) {
+                            return DropdownButton(
+                                //value: controller.dropDownValue,
+                                iconSize: 35.0,
+                                iconEnabledColor: Colors.grey.shade400,
+                                iconDisabledColor: Colors.grey.shade400,
+                                underline: Container(),
+                                icon: const Icon(Icons.arrow_drop_down),
+                                items: controller.items.map(
+                                  (val) {
+                                    return DropdownMenuItem<String>(
+                                      value: val,
+                                      child: Text(val),
+                                    );
+                                  },
+                                ).toList(),
+                                onChanged: (String? val) {
+                                  controller.changeDropdwon(val: val!);
+                                });
+                          },
                         ),
                       ),
                       controller: controller.countryController),

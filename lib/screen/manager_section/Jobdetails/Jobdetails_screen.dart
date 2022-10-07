@@ -114,7 +114,7 @@ class JobDetailsScreen extends StatelessWidget {
                   child: isError == true
                       ? Text(
                           Strings
-                              .nowyoucanseealltheapplierCVStringResumeandinvitethemtothenextstep,
+                              .nowYouCanSeeAllTheApplierCVStringResumeAndInviteThemToTheNextStep,
                           style: appTextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
@@ -123,7 +123,7 @@ class JobDetailsScreen extends StatelessWidget {
                           textAlign: TextAlign.center)
                       : Text(
                           Strings
-                              .pleasemakesurethatyourinternetconnectionisactiveandstablethenpressTryAgain,
+                              .pleaseMakeSureThatYourInternetConnectionIsActiveAndStableThenPressTryAgain,
                           style: appTextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
@@ -148,7 +148,8 @@ class JobDetailsScreen extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (con) => const CreateVacanciesScreen()));
+                              builder: (con) =>
+                                  const CreateVacanciesScreenM()));
                     }
                   },
                   child: Container(
@@ -165,7 +166,7 @@ class JobDetailsScreen extends StatelessWidget {
                     ),
                     child: Text(
                         isError == true
-                            ? Strings.gotoapplications
+                            ? Strings.gotoApplications
                             : Strings.tryAgain,
                         style: appTextStyle(
                             fontSize: 18, fontWeight: FontWeight.w500)),
@@ -178,12 +179,12 @@ class JobDetailsScreen extends StatelessWidget {
                   onTap: () {
                     if (isError == true) {
                       ///discover more jobs
-                      Get.offAll(() => const CreateVacanciesScreen());
+                      Get.offAll(() => const CreateVacanciesScreenM());
                     } else {
                       ///discover more jobs event
                       Get.offAll(() => ManagerDashBoardScreen());
                     }
-                  },
+                    },
                   child: Container(
                     height: 50,
                     alignment: Alignment.center,
@@ -199,8 +200,8 @@ class JobDetailsScreen extends StatelessWidget {
                         border: Border.all(color: ColorRes.containerColor)),
                     child: Text(
                         isError == true
-                            ? Strings.postanothervacancy
-                            : Strings.backtohome,
+                            ? Strings.postAnotherVacancy
+                            : Strings.backToHome,
                         style: appTextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w500,

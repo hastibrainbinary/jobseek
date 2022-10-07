@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/add_requirements/add_requirements_screen.dart';
 
@@ -17,7 +18,9 @@ class CreateVacanciesController extends GetxController implements GetxService {
         isSalaryValidate.value == false &&
         isLocationValidate.value == false &&
         isTypeValidate.value == false) {
-      print("GO TO HOME PAGE");
+      if (kDebugMode) {
+        print("GO TO HOME PAGE");
+      }
       Get.to(RequirementsScreen());
     }
   }
@@ -44,4 +47,30 @@ class CreateVacanciesController extends GetxController implements GetxService {
       isTypeValidate.value = false;
     }
   }
+
+  changeDropdwon({required String val}) {
+    dropDownValueLocation = val;
+    locationController.text = dropDownValueLocation!;
+
+    typeController.text= dropDownValueType!;
+
+    update(["Location"]);
+    update(["type"]);
+  }
+
+  String? dropDownValueLocation;
+
+  var items = [
+    'India',
+    'United States',
+    'Europe',
+    'china',
+    'United Kingdom',
+  ];
+  String? dropDownValueType;
+
+  var items1 = [
+    'Part time',
+    'Full time',
+  ];
 }

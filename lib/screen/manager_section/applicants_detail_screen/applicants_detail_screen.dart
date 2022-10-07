@@ -7,8 +7,7 @@ import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
-
-import '../../../utils/string.dart';
+import 'package:jobseek/utils/string.dart';
 
 class ApplicantsDetailScreen extends StatelessWidget {
   final bool isWrong;
@@ -92,7 +91,7 @@ class ApplicantsDetailScreen extends StatelessWidget {
                                     height: 50,
                                     width: 50,
                                     decoration: BoxDecoration(
-                                      color: Colors.black,
+                                      color: ColorRes.black,
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     child: const Image(
@@ -424,7 +423,7 @@ void settingModalBottomSheet(context, bool isWrong) {
                           textAlign: TextAlign.center)
                       : Text(
                           Strings
-                              .pleasemakesurethatyourinternetconnectionisactiveandstablethenpressTryAgain,
+                              .pleaseMakeSureThatYourInternetConnectionIsActiveAndStableThenPressTryAgain,
                           style: appTextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,

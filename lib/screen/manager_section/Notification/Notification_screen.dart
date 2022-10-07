@@ -108,7 +108,7 @@ class NotificationScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Text(
-                    Strings.newtipsavailable,
+                    Strings.newTipsAvailable,
                     style: appTextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
@@ -140,7 +140,7 @@ class NotificationScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Text(
-                    Strings.newserviceavailable,
+                    Strings.newServiceAvailable,
                     style: appTextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/create_vacancies/create_vacancies_screen.dart';
 
@@ -29,8 +30,10 @@ class UpdateVacanciesRequirementController extends GetxController {
         isLocationValidate.value == false &&
         isTypeValidate.value == false &&
         isStatusValidate.value == false) {
-      print("GO TO HOME PAGE");
-      Get.to(const CreateVacanciesScreen());
+      if (kDebugMode) {
+        print("GO TO HOME PAGE");
+      }
+      Get.to(const CreateVacanciesScreenM());
     }
   }
 
@@ -91,7 +94,6 @@ class UpdateVacanciesRequirementController extends GetxController {
   String? dropDownValueStatus;
   var items2 = [
     'Active',
-    "full",
     'Away',
   ];
 }

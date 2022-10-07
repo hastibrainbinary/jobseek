@@ -34,21 +34,10 @@ class OrganizationProfileScreenController extends GetxController
   ImagePicker picker = ImagePicker();
   File? image;
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
-  // addDataInFirebase(email, name, date, country, address) async {
-  //    print(userCredential.user?.uid);
-  //   await fireStore.collection('users').doc("user").set({
-  //     "email": email,
-  //     "name": name,
-  //     "date": date,
-  //     "country": country,
-  //     "address": address,
-  //   }).catchError((e) {
-  //     print('======Error======== ' + e);
-  //   });
-  // }
+
   Future<void> uploadingData(String name, String email, String date,
       String country, String address) async {
-    await fireStore.collection("user").doc("DnCMBWSEhmT3WoNjx3wuY5cRdMa2").set({
+    await fireStore.collection("user").add({
       "email": email,
       "name": name,
       "date": date,
@@ -124,6 +113,18 @@ class OrganizationProfileScreenController extends GetxController
       Get.to(ManagerDashBoardScreen());
     }
   }
+  // addDataInFirebase(email, name, date, country, address) async {
+  //    print(userCredential.user?.uid);
+  //   await fireStore.collection('users').doc("user").set({
+  //     "email": email,
+  //     "name": name,
+  //     "date": date,
+  //     "country": country,
+  //     "address": address,
+  //   }).catchError((e) {
+  //     print('======Error======== ' + e);
+  //   });
+  // }
 
   validate() {
     if (companyNameController.text.isEmpty) {
@@ -182,7 +183,14 @@ class OrganizationProfileScreenController extends GetxController
     }
   }
 
-  String? dropDownValue;
+  changeDropdwon({required String val}) {
+    dropDownValue = val;
+    countryController.text = dropDownValue;
+
+    update(["dropdown"]);
+  }
+
+  String dropDownValue = 'India';
 
   var items = [
     'India',
@@ -190,6 +198,13 @@ class OrganizationProfileScreenController extends GetxController
     'Europe',
     'china',
     'United Kingdom',
+    " Cuba",
+    "	Havana",
+    "Cyprus",
+    "Nicosia",
+    "Czech ",
+    "Republic",
+    "Prague",
   ];
 
   ontapGallery1() async {

@@ -206,7 +206,7 @@ class SeeDetailsScreen extends StatelessWidget {
                       ),
                       child: Row(
                         children: [
-                          countryCodePicker(context, padding: 3),
+                          countryCodePicker(context, padding: 4),
                           SizedBox(
                             width: Get.width / 2,
                             child: TextFormField(
@@ -262,7 +262,7 @@ class SeeDetailsScreen extends StatelessWidget {
                       color: ColorRes.containerColor,
                       textDecoration: const InputDecoration(
                           hintText: 'Gujarat',
-                          hintStyle: TextStyle(color: Colors.black),
+                          hintStyle: TextStyle(color: ColorRes.black),
                           contentPadding: EdgeInsets.all(15),
                           border: InputBorder.none),
                     ),
@@ -282,7 +282,7 @@ class SeeDetailsScreen extends StatelessWidget {
                       color: ColorRes.containerColor,
                       textDecoration: const InputDecoration(
                           hintText: 'India',
-                          hintStyle: TextStyle(color: Colors.black),
+                          hintStyle: TextStyle(color: ColorRes.black),
                           contentPadding: EdgeInsets.all(15),
                           border: InputBorder.none),
                     ),

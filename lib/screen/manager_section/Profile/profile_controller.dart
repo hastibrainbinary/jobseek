@@ -1,13 +1,10 @@
 import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:jobseek/screen/manager_section/Profile/profile_screen.dart';
 import 'package:jobseek/utils/app_res.dart';
 
-import '../dashboard/manager_dashboard_screen.dart';
 
 class ProfileController extends GetxController implements GetxService {
   TextEditingController companyNameController = TextEditingController();
