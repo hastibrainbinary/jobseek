@@ -1,9 +1,14 @@
+
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:country_picker/country_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen.dart';
 import 'package:jobseek/screen/organization_profile_screen/organization_profile_screen.dart';
+import 'package:jobseek/screen/organization_profile_screen/services.dart';
 
 class SignUpControllerM extends GetxController {
   TextEditingController firstnameController = TextEditingController();
@@ -41,36 +46,49 @@ class SignUpControllerM extends GetxController {
   //     }
   //   });
   // }
-  addDataInFirebase(userUid, email) async {
-    // print(userCredential.user?.uid);
+  addDataInFirebase({required String userUid, required Map<String, dynamic> map}) async {
     await fireStore
-        .collection('manager')
+        .collection("Auth")
+        .doc("Manager")
+        .collection("register")
         .doc(userUid)
-        .set({"email": email}).catchError((e) {
-      print('======Error======== ' + e);
+        .set(map).catchError((e) {
+      print('...error...' + e);
     });
+    print("*************************** Sucsse");
+
   }
 
-  // singUp(email, password) async {
-  //   try {
-  //     UserCredential userCredential =
-  //     await FirebaseAuth.instance.createUserWithEmailAndPassword(
-  //       email: email,
-  //       password: password,
-  //     );
-  //     await Firebaservices.createData("username", email, password);
-  //     Navigator.push(
-  //         context, MaterialPageRoute(builder: (con) => ManagerDashBoardScreen()));
-  //   } on FirebaseAuthException catch (e) {
-  //     if (e.code == 'weak-password') {
-  //       print('The password provided is too weak.');
-  //     } else if (e.code == 'email-already-in-use') {
-  //       print('The account already exists for that email.');
-  //     }
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  // }
+  singUp(email, password) async {
+    try {
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      if (userCredential.user?.uid != null) {
+      Map<String, dynamic>  map2 = {
+        "Fullname": "${firstnameController.text} ${lastnameController.text}",
+      "Email": emailController.text,
+      "Phone": phoneController.text,
+      "City": cityController.text,
+      "State": stateController.text,
+      "Country": countryController.text,
+      };
+        addDataInFirebase(userUid: userCredential.user?.uid??"",map:map2 );
+      }
+      Get.to(() => const Company());
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        print('The account already exists for that email.');
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
   emailValidation() {
     if (emailController.text.trim() == "") {
       emailError = 'Please Enter email';
@@ -173,10 +191,10 @@ class SignUpControllerM extends GetxController {
     }
   }
 
-  onLoginBtnTap() {
+  onSignUpBtnTap() {
     if (validator()) {
       print("GO TO HOME PAGE");
-      Get.to(const OrganizationProfileScreen());
+      singUp(emailController.text, passwordController.text);
     }
     update(["showEmail"]);
     update(["showLastname"]);

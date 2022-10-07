@@ -7,20 +7,33 @@ class FirebaseServices {
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
   static Future<void> createData(
-      {name, email, date, country, address, String? s}) async {
+      {firstName,
+      lastName,
+      email,
+      phoneNumber,
+      city,
+      country,
+      state,
+      String? s}) async {
     final FirebaseAuth auth = FirebaseAuth.instance;
     final User? users = auth.currentUser;
     final uid = users!.uid;
     if (kDebugMode) {
       print("USER UID $uid");
     }
-    DocumentReference documentRefence = fireStore.collection('user').doc(uid);
+    DocumentReference documentRefence = FirebaseFirestore.instance
+        .collection("Auth")
+        .doc("Manager")
+        .collection("register")
+        .doc("taru uid");
     Map<String, dynamic> user = {
-      "email": email,
-      "name": name,
-      "date": date,
-      "country": country,
-      "address": address,
+      'FirstName': firstName,
+      'LastName': lastName,
+      'email': email,
+      'PhoneNumber': phoneNumber,
+      'city': city,
+      'country': country,
+      'state': state,
     };
     await documentRefence.set(user).whenComplete(() {
       if (kDebugMode) {
@@ -29,51 +42,72 @@ class FirebaseServices {
     });
   }
 
-  void readData(name, email, date, country, address) {
-    DocumentReference documentReference =
-        fireStore.collection('user').doc(name);
+  void readData(
+    firstName,
+    lastName,
+    email,
+    phoneNumber,
+    city,
+    country,
+    state,
+  ) {
+    DocumentReference documentReference = FirebaseFirestore.instance
+        .collection("Auth")
+        .doc("Manager")
+        .collection("register")
+        .doc("taru uid");
     Map<String, dynamic> user = {
-      "email": email,
-      "name": name,
-      "date": date,
-      "country": country,
-      "address": address,
+      'FirstName': firstName,
+      'LastName': lastName,
+      'email': email,
+      'PhoneNumber': phoneNumber,
+      'city': city,
+      'country': country,
+      'state': state,
     };
   }
 
-  static updateData(name, email, date, country, address) {
-    final FirebaseAuth auth = FirebaseAuth.instance;
-    final User? users = auth.currentUser;
-    final uid = users!.uid;
-    if (kDebugMode) {
-      print("USER UID $uid");
-    }
+  // static updateData(name, email, date, country, address) {
+  //   final FirebaseAuth auth = FirebaseAuth.instance;
+  //   final User? users = auth.currentUser;
+  //   final uid = users!.uid;
+  //   if (kDebugMode) {
+  //     print("USER UID $uid");
+  //   }
+  //
+  //   DocumentReference documentRefence = FirebaseFirestore.instance
+  //       .collection("Auth")
+  //       .doc("Manager")
+  //       .collection("register")
+  //       .doc("taru uid");
+  //   Map<String, dynamic> user = {
+  //     "email": email,
+  //     "name": name,
+  //     "date": date,
+  //     "country": country,
+  //     "address": address,
+  //   };
+  //   documentRefence.update(user).whenComplete(() {
+  //     if (kDebugMode) {
+  //       print('$name updated');
+  //     }
+  //   });
+  // }
 
-    DocumentReference documentRefence = fireStore.collection('user').doc(uid);
-    Map<String, dynamic> user = {
-      "email": email,
-      "name": name,
-      "date": date,
-      "country": country,
-      "address": address,
-    };
-    documentRefence.update(user).whenComplete(() {
-      if (kDebugMode) {
-        print('$name updated');
-      }
-    });
-  }
-
-  deletedData(username, emailid, password, userUid) {
-    DocumentReference documentRefereance =
-        fireStore.collection('user').doc(userUid);
-
-    documentRefereance.delete().whenComplete(() {
-      if (kDebugMode) {
-        print('$username   Deleted');
-      }
-    });
-  }
+  // deletedData(username, emailid, password, userUid) {
+  //   DocumentReference documentRefereance =
+  //   FirebaseFirestore.instance
+  //       .collection("Auth")
+  //       .doc("Manager")
+  //       .collection("register")
+  //       .doc("taru uid");
+  //
+  //   documentRefereance.delete().whenComplete(() {
+  //     if (kDebugMode) {
+  //       print('$username   Deleted');
+  //     }
+  //   });
+  // }
 }
 
 class Company extends StatefulWidget {
@@ -84,75 +118,51 @@ class Company extends StatefulWidget {
 }
 
 class _Email extends State<Company> {
-  String name = '';
+  String firstName = '';
+  String lastName = '';
   String email = '';
-  String date = '';
-  String county = '';
-  String address = '';
+  String phoneNumber = '';
+  String city = '';
+  String state = '';
+  String country = '';
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
-  // addData() {
-  //   DocumentReference documentRefence = fireStore.collection('user').doc(name);
-  //   Map<String, dynamic> user = {
-  //     'name': name,
-  //     'email': email,
-  //     'date': date,
-  //     'country': county,
-  //     'address': address,
-  //   };
-  //   documentRefence.set(user).whenComplete(() {
-  //     print('$user add');
-  //   });
-  // }
-  // createData() {
-  //   DocumentReference documentRefence = fireStore.collection('user').doc(name);
-  //   Map<String, dynamic> user = {
-  //     'name': name,
-  //     'email': email,
-  //     'date': date,
-  //     'country': county,
-  //     'address': address,
-  //   };
-  //   documentRefence.set(user).whenComplete(() {
-  //     print('$user Created');
-  //   });
-  // }
-
-  // readData() {
-  //   DocumentReference documentReference =
-  //   fireStore.collection('user').doc(username);
-  //   Map<String, dynamic> user = {
-  //     'username': username,
-  //     'emailid': emailid,
-  //     'password': password,
-  //   };
-  // }
-
-  updateData() {
-    DocumentReference documentRefence = fireStore.collection('user').doc(name);
+  createData() {
+    DocumentReference documentRefence = FirebaseFirestore.instance
+        .collection("Auth")
+        .doc("Manager")
+        .collection("register")
+        .doc("taru uid");
     Map<String, dynamic> user = {
-      'name': name,
+      'FirstName': firstName,
+      'LastName': lastName,
       'email': email,
-      'date': date,
-      'country': county,
-      'address': address,
+      'PhoneNumber': phoneNumber,
+      'city': city,
+      'country': country,
+      'state': state,
     };
     documentRefence.set(user).whenComplete(() {
-      if (kDebugMode) {
-        print('$name updated');
-      }
+      print('$user Created');
     });
   }
 
-  deletedData() {
-    DocumentReference documentRefereance =
-        fireStore.collection('user').doc(name);
+  readData() {
+    DocumentReference documentReference = FirebaseFirestore.instance
+        .collection("Auth")
+        .doc("Manager")
+        .collection("register")
+        .doc("taru uid");
 
-    documentRefereance.delete().whenComplete(() {
-      if (kDebugMode) {
-        print('$name   Deleted');
-      }
-    });
+    Map<String, dynamic> user = {
+      'FirstName': firstName,
+      'LastName': lastName,
+      'email': email,
+      'PhoneNumber': phoneNumber,
+      'city': city,
+      'country': country,
+      'state': state,
+    };
   }
 
   @override
