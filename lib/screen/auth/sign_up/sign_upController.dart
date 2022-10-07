@@ -234,9 +234,7 @@ class SignUpController extends GetxController {
       idToken: authentication.idToken,
       accessToken: authentication.accessToken,
     );
-
-    final UserCredential authResult =
-    await auth.signInWithCredential(credential);
+    final UserCredential authResult = await auth.signInWithCredential(credential);
     final User? user = authResult.user;
     if (kDebugMode) {
       print(user!.email);
@@ -247,16 +245,15 @@ class SignUpController extends GetxController {
     if (kDebugMode) {
       print(user?.displayName);
     }
-    // ignore: unnecessary_null_comparison
     if(user?.uid != null&& user?.uid!="")
     {
+
       Get.offAll(()=>DashBoardScreen());
       loading.value==false;
       // loder false
     }else{
       loading.value==false;
     }
-
     loading.value == false;
     //flutterToast(Strings.googleSignInSuccess);
   }

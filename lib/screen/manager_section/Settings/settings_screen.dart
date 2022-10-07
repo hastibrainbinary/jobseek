@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
+import 'package:jobseek/screen/looking_for_screen/looking_for_screen.dart';
 import 'package:jobseek/screen/manager_section/Appearance/Appearance_screen.dart';
 import 'package:jobseek/screen/manager_section/Notification/Notification_screen.dart';
 import 'package:jobseek/screen/manager_section/help/help_screen.dart';
 import 'package:jobseek/screen/manager_section/security/security_screen.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
@@ -236,7 +239,16 @@ class SettingScreen extends StatelessWidget {
               padding: const EdgeInsets.all(12.0),
               child: InkWell(
                 onTap: () {
-                  settingModalBottomSheet(context);
+                  settingModalBottomSheet(context).then((value) async {
+                    print(value);
+                    final GoogleSignIn googleSignIn = GoogleSignIn();
+                    if (await googleSignIn.isSignedIn()) {
+                    await googleSignIn.signOut();
+                    }
+                    PrefService.clear();
+                    // ignore: use_build_context_synchronously
+                    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const LookingForScreen(),), (route) => false);
+                  });
                 },
                 child: Row(
                   children: [

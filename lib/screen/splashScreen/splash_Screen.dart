@@ -2,9 +2,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jobseek/screen/dashboard/dashboard_screen.dart';
 import 'package:jobseek/screen/looking_for_screen/looking_for_screen.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -21,8 +24,9 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void splash() async {
-    await Future.delayed(const Duration(seconds: 3), () {
-      Get.off(() => const LookingForScreen());
+    String token = PrefService.getString(PrefKeys.accessToken);
+    await Future.delayed(const Duration(seconds: 5), () {
+      Get.off(() => token=="" ? const LookingForScreen(): DashBoardScreen());
     });
   }
 
@@ -36,18 +40,6 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Container(
         height: Get.height,
         width: Get.width,
-        // decoration: const BoxDecoration(
-        //   gradient:LinearGradient(colors: [
-        //     Color(0xFFBAE5F5),
-        //     Color(0xFFFADFA8),
-        //     Color(0xFFE2D3FE),
-        //     Color(0xFFCCF0C0),
-        //   ], begin: Alignment.topLeft,
-        //     end: Alignment.topRight,
-        //     stops: [0.1, 0.4, 0.7, 0.9],
-        //   )
-        // ),
-
         decoration: BoxDecoration(
             image: DecorationImage(image: backgroundImage, fit: BoxFit.fill)),
         child: Column(
@@ -131,7 +123,7 @@ class _SplashScreenState extends State<SplashScreen> {
             const Spacer(),
             Image.asset(
               AssetRes.splashBoyImg,
-              height: Get.height < 657 ? Get.height / 2 : Get.height / 1.5,
+              height: Get.height < 657 ? Get.height / 2 : Get.height / 1.6,
               width: Get.width,
               fit: BoxFit.fill,
               filterQuality: FilterQuality.none,

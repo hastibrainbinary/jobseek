@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jobseek/common/widgets/common_textField.dart';
+import 'package:jobseek/screen/auth/sign_inScreen/Signin_Screen.dart';
 import 'package:jobseek/screen/auth/sign_up/sign_upController.dart';
 import 'package:jobseek/screen/auth/sign_up/widget/signup_bottom/country.dart';
-import 'package:jobseek/screen/sign_inScreen/Signin_Screen.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
@@ -57,398 +57,21 @@ class sign_upScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 37),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15, bottom: 10),
-                      child: Row(
-                        children: [
-                          Text('First Name',
-                              style: appTextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 14,
-                                  color: ColorRes.black.withOpacity(0.6))),
-                          Text(
-                            '*',
-                            style: appTextStyle(
-                                fontSize: 15, color: ColorRes.starColor),
-                          ),
-                        ],
-                      ),
-                    ),
                     GetBuilder<SignUpController>(
                       id: "showFirstname",
-                      builder: (controller) => Column(
-                        children: [
-                          Container(
-                            height: 51,
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    offset: const Offset(6, 6),
-                                    color: ColorRes.containerColor
-                                        .withOpacity(0.10),
-                                    spreadRadius: 0,
-                                    blurRadius: 35),
-                              ],
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Material(
-                              shadowColor: ColorRes.containerColor,
-                              borderRadius: BorderRadius.circular(12),
-                              child: commonTextFormField(
-                                controller: controller.firstnameController,
-                                textDecoration: InputDecoration(
-                                  hintText: 'First Name',
-                                  fillColor: Colors.transparent,
-                                  filled: true,
-                                  hintStyle: GoogleFonts.poppins(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w500,
-                                      color: ColorRes.black.withOpacity(0.15)),
-                                  border: controller.firstnameController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.firstError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  focusedBorder: controller
-                                          .firstnameController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.firstError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  disabledBorder: controller
-                                          .firstnameController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.firstError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  enabledBorder: controller
-                                          .firstnameController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.firstError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  errorBorder: controller
-                                          .firstnameController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.firstError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  focusedErrorBorder: controller
-                                          .firstnameController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.firstError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                ),
-                              ),
-                            ),
-                          ),
-                          controller.firstError == ""
-                              ? const SizedBox(height: 20)
-                              : Container(
-                                  margin: const EdgeInsets.all(10),
-                                  width: 339,
-                                  height: 28,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      color: ColorRes.invalidColor),
-                                  padding: const EdgeInsets.only(left: 15),
-                                  child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        const Image(
-                                          image: AssetImage(
-                                            AssetRes.invalid,
-                                          ),
-                                          height: 14,
-                                        ),
-                                        const SizedBox(width: 10),
-                                        Text(controller.firstError,
-                                            style: GoogleFonts.poppins(
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 9,
-                                                color: ColorRes.starColor))
-                                      ]),
-                                ),
-                        ],
-                      ),
+                      builder: (controller) => texFieldColumn(title: 'First Name',hintText: 'First Name', error: controller.firstError, txtController: controller.firstnameController),
+
                     ),
                     const SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15, bottom: 10),
-                      child: Row(
-                        children: [
-                          Text('Last Name',
-                              style: appTextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 14,
-                                  color: ColorRes.black.withOpacity(0.6))),
-                          Text(
-                            '*',
-                            style: appTextStyle(
-                                fontSize: 15, color: ColorRes.starColor),
-                          ),
-                        ],
-                      ),
-                    ),
                     GetBuilder<SignUpController>(
                       id: "showLastname",
-                      builder: (controller) => Column(
-                        children: [
-                          Container(
-                            height: 51,
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    offset: const Offset(6, 6),
-                                    color: ColorRes.containerColor
-                                        .withOpacity(0.10),
-                                    spreadRadius: 0,
-                                    blurRadius: 35),
-                              ],
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Material(
-                              shadowColor: ColorRes.containerColor,
-                              borderRadius: BorderRadius.circular(12),
-                              child: commonTextFormField(
-                                controller: controller.lastnameController,
-                                textDecoration: InputDecoration(
-                                  hintText: 'Last Name',
-                                  fillColor: Colors.transparent,
-                                  filled: true,
-                                  hintStyle: appTextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w500,
-                                      color: ColorRes.black.withOpacity(0.15)),
-                                  border: controller.lastnameController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.lastError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  focusedBorder: controller
-                                          .lastnameController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.lastError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  disabledBorder: controller
-                                          .lastnameController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.lastError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  enabledBorder: controller
-                                          .lastnameController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.lastError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  errorBorder: controller
-                                          .lastnameController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.lastError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  focusedErrorBorder: controller
-                                          .lastnameController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.lastError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                ),
-                              ),
-                            ),
-                          ),
-                          controller.lastError == ""
-                              ? const SizedBox(height: 20)
-                              : Container(
-                                  margin: const EdgeInsets.all(10),
-                                  width: 339,
-                                  height: 28,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      color: ColorRes.invalidColor),
-                                  padding: const EdgeInsets.only(left: 15),
-                                  child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        const Image(
-                                          image: AssetImage(
-                                            AssetRes.invalid,
-                                          ),
-                                          height: 14,
-                                        ),
-                                        const SizedBox(width: 10),
-                                        Text(controller.lastError,
-                                            style: appTextStyle(
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 9,
-                                                color: ColorRes.starColor))
-                                      ]),
-                                ),
-                        ],
-                      ),
+                      builder: (controller) => texFieldColumn(title: 'Last Name', hintText: 'Last Name', error: controller.lastError, txtController: controller.lastnameController,),
+
                     ),
                     const SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15, bottom: 10),
-                      child: Row(
-                        children: [
-                          Text('Email',
-                              style: appTextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 14,
-                                  color: ColorRes.black.withOpacity(0.6))),
-                          Text(
-                            '*',
-                            style: appTextStyle(
-                                fontSize: 15, color: ColorRes.starColor),
-                          ),
-                        ],
-                      ),
-                    ),
                     GetBuilder<SignUpController>(
                       id: "showEmail",
-                      builder: (controller) => Column(
-                        children: [
-                          Container(
-                            height: 51,
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    offset: const Offset(6, 6),
-                                    color: ColorRes.containerColor
-                                        .withOpacity(0.10),
-                                    spreadRadius: 0,
-                                    blurRadius: 35),
-                              ],
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Material(
-                              shadowColor: ColorRes.containerColor,
-                              borderRadius: BorderRadius.circular(12),
-                              child: commonTextFormField(
-                                controller: controller.emailController,
-                                textDecoration: InputDecoration(
-                                  hintText: 'Email',
-                                  fillColor: Colors.transparent,
-                                  filled: true,
-                                  hintStyle: appTextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500,
-                                    color: ColorRes.black.withOpacity(0.15),
-                                  ),
-                                  border: controller.emailController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.emailError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  focusedBorder: controller.emailController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.emailError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  disabledBorder: controller
-                                          .emailController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.emailError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  enabledBorder: controller.emailController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.emailError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  errorBorder: controller.emailController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.emailError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  focusedErrorBorder: controller
-                                          .emailController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.emailError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                ),
-                              ),
-                            ),
-                          ),
-                          controller.emailError == ""
-                              ? const SizedBox(height: 20)
-                              : Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  height: 28,
-                                  margin: const EdgeInsets.all(10),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      color: ColorRes.invalidColor),
-                                  padding: const EdgeInsets.only(left: 15),
-                                  child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        const Image(
-                                          image: AssetImage(
-                                            AssetRes.invalid,
-                                          ),
-                                          height: 14,
-                                        ),
-                                        const SizedBox(width: 10),
-                                        Text(controller.emailError,
-                                            style: appTextStyle(
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 9,
-                                                color: ColorRes.starColor))
-                                      ]),
-                                ),
-                        ],
-                      ),
+                      builder: (controller) => texFieldColumn(title: 'Email', hintText: 'Email',error: controller.emailError, txtController: controller.emailController),
                     ),
                     const SizedBox(height: 10),
                     Padding(
@@ -474,7 +97,7 @@ class sign_upScreen extends StatelessWidget {
                         children: [
                           Container(
                             width: Get.width,
-                            height: 51,
+                            height: 51,padding: EdgeInsets.only(left: 10),
                             decoration: BoxDecoration(
                               color: ColorRes.white,
                               border: Border.all(
@@ -707,392 +330,20 @@ class sign_upScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15, bottom: 10),
-                      child: Row(
-                        children: [
-                          Text('City',
-                              style: appTextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 14,
-                                  color: ColorRes.black.withOpacity(0.6))),
-                          Text(
-                            '*',
-                            style: appTextStyle(
-                                fontSize: 15, color: ColorRes.starColor),
-                          ),
-                        ],
-                      ),
-                    ),
                     GetBuilder<SignUpController>(
                       id: "showCity",
-                      builder: (controller) => Column(
-                        children: [
-                          Container(
-                            height: 51,
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    offset: const Offset(6, 6),
-                                    color: ColorRes.containerColor
-                                        .withOpacity(0.10),
-                                    spreadRadius: 0,
-                                    blurRadius: 35),
-                              ],
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Material(
-                              shadowColor: ColorRes.containerColor,
-                              borderRadius: BorderRadius.circular(12),
-                              child: commonTextFormField(
-                                controller: controller.cityController,
-                                textDecoration: InputDecoration(
-                                  hintText: 'City',
-                                  fillColor: Colors.transparent,
-                                  filled: true,
-                                  hintStyle: appTextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w500,
-                                      color: ColorRes.black.withOpacity(0.15)),
-                                  border: controller.cityController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.cityError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  focusedBorder: controller.cityController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.cityError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  disabledBorder: controller.cityController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.cityError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  enabledBorder: controller.cityController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.cityError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  errorBorder: controller.cityController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.cityError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  focusedErrorBorder: controller
-                                          .cityController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.cityError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                ),
-                              ),
-                            ),
-                          ),
-                          controller.cityError == ""
-                              ? const SizedBox(height: 20)
-                              : Container(
-                                  margin: const EdgeInsets.all(10),
-                                  width: 339,
-                                  height: 28,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      color: ColorRes.invalidColor),
-                                  padding: const EdgeInsets.only(left: 15),
-                                  child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        const Image(
-                                          image: AssetImage(
-                                            AssetRes.invalid,
-                                          ),
-                                          height: 14,
-                                        ),
-                                        const SizedBox(width: 10),
-                                        Text(controller.cityError,
-                                            style: appTextStyle(
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 9,
-                                                color: ColorRes.starColor))
-                                      ]),
-                                ),
-                        ],
-                      ),
+                      builder: (controller) =>texFieldColumn(title: 'City',hintText: 'City', error: controller.cityError, txtController: controller.cityController),
+
                     ),
                     const SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15, bottom: 10),
-                      child: Row(
-                        children: [
-                          Text('State',
-                              style: appTextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 14,
-                                  color: ColorRes.black.withOpacity(0.6))),
-                          const Text(
-                            '*',
-                            style: TextStyle(
-                                fontSize: 15, color: ColorRes.starColor),
-                          ),
-                        ],
-                      ),
-                    ),
                     GetBuilder<SignUpController>(
                       id: "showState",
-                      builder: (controller) => Column(
-                        children: [
-                          Container(
-                            height: 51,
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    offset: const Offset(6, 6),
-                                    color: ColorRes.containerColor
-                                        .withOpacity(0.10),
-                                    spreadRadius: 0,
-                                    blurRadius: 35),
-                              ],
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Material(
-                              shadowColor: Colors.purple.shade700,
-                              borderRadius: BorderRadius.circular(12),
-                              child: commonTextFormField(
-                                controller: controller.stateController,
-                                textDecoration: InputDecoration(
-                                  hintText: 'State',
-                                  fillColor: Colors.transparent,
-                                  filled: true,
-                                  hintStyle: GoogleFonts.poppins(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w500,
-                                      color: ColorRes.black.withOpacity(0.15)),
-                                  border: controller.stateController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.stateError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  focusedBorder: controller.stateController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.stateError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  disabledBorder: controller
-                                          .stateController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.stateError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  enabledBorder: controller.stateController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.stateError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  errorBorder: controller.stateController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.stateError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  focusedErrorBorder: controller
-                                          .stateController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.stateError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                ),
-                              ),
-                            ),
-                          ),
-                          controller.stateError == ""
-                              ? const SizedBox(height: 20)
-                              : Container(
-                                  margin: const EdgeInsets.all(10),
-                                  width: 339,
-                                  height: 28,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      color: ColorRes.invalidColor),
-                                  padding: const EdgeInsets.only(left: 15),
-                                  child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        const Image(
-                                          image: AssetImage(
-                                            AssetRes.invalid,
-                                          ),
-                                          height: 14,
-                                        ),
-                                        const SizedBox(width: 10),
-                                        Text(controller.stateError,
-                                            style: appTextStyle(
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 9,
-                                                color: ColorRes.starColor))
-                                      ]),
-                                ),
-                        ],
-                      ),
+                      builder: (controller) => texFieldColumn(title: 'State', hintText: 'State', error: controller.stateError, txtController: controller.stateController,)
                     ),
                     const SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15, bottom: 10),
-                      child: Row(
-                        children: [
-                          Text('Country',
-                              style: appTextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 14,
-                                  color: ColorRes.black.withOpacity(0.6))),
-                          const Text(
-                            '*',
-                            style: TextStyle(
-                                fontSize: 15, color: ColorRes.starColor),
-                          ),
-                        ],
-                      ),
-                    ),
                     GetBuilder<SignUpController>(
                       id: "showCountry",
-                      builder: (controller) => Column(
-                        children: [
-                          Container(
-                            height: 51,
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    offset: const Offset(6, 6),
-                                    color: ColorRes.containerColor
-                                        .withOpacity(0.10),
-                                    spreadRadius: 0,
-                                    blurRadius: 35),
-                              ],
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Material(
-                              shadowColor: ColorRes.containerColor,
-                              borderRadius: BorderRadius.circular(12),
-                              child: commonTextFormField(
-                                controller: controller.countryController,
-                                textDecoration: InputDecoration(
-                                  hintText: 'Country',
-                                  fillColor: Colors.transparent,
-                                  filled: true,
-                                  hintStyle: appTextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w500,
-                                      color: ColorRes.black.withOpacity(0.15)),
-                                  border: controller.countryController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.countryError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  focusedBorder: controller
-                                          .countryController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.countryError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  disabledBorder: controller
-                                          .countryController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.countryError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  enabledBorder: controller
-                                          .countryController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.countryError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  errorBorder: controller.countryController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.countryError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  focusedErrorBorder: controller
-                                          .countryController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.countryError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                ),
-                              ),
-                            ),
-                          ),
-                          controller.countryError == ""
-                              ? const SizedBox(height: 20)
-                              : Container(
-                                  margin: const EdgeInsets.all(10),
-                                  width: 339,
-                                  height: 28,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      color: ColorRes.invalidColor),
-                                  padding: const EdgeInsets.only(left: 15),
-                                  child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        const Image(
-                                          image: AssetImage(
-                                            AssetRes.invalid,
-                                          ),
-                                          height: 14,
-                                        ),
-                                        const SizedBox(width: 10),
-                                        Text(controller.countryError,
-                                            style: appTextStyle(
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 9,
-                                                color: ColorRes.starColor))
-                                      ]),
-                                ),
-                        ],
-                      ),
+                      builder: (controller) => texFieldColumn(title: 'Country', hintText: 'Country', error: controller.countryError, txtController: controller.countryController,)
                     ),
                     GetBuilder<SignUpController>(
                         id: "remember_me",
@@ -1333,7 +584,6 @@ OutlineInputBorder enableBorder() {
     borderRadius: BorderRadius.circular(10),
   );
 }
-
 OutlineInputBorder errorBorder() {
   return OutlineInputBorder(
     borderSide: const BorderSide(color: ColorRes.starColor),
@@ -1341,4 +591,128 @@ OutlineInputBorder errorBorder() {
     borderRadius: BorderRadius.circular(10),
   );
 }
-
+Widget texFieldColumn({required String title,required String hintText, required String error,required TextEditingController txtController,}){
+  return Column(
+    children: [
+      Padding(
+        padding: const EdgeInsets.only(left: 15, bottom: 10),
+        child: Row(
+          children: [
+            Text(title,
+                style: appTextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14,
+                    color: ColorRes.black.withOpacity(0.6))),
+            Text(
+              '*',
+              style: appTextStyle(
+                  fontSize: 15, color: ColorRes.starColor),
+            ),
+          ],
+        ),
+      ),
+      Container(
+        height: 51,
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+                offset: const Offset(6, 6),
+                color: ColorRes.containerColor
+                    .withOpacity(0.10),
+                spreadRadius: 0,
+                blurRadius: 35),
+          ],
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Material(
+          shadowColor: ColorRes.containerColor,
+          borderRadius: BorderRadius.circular(12),
+          child: commonTextFormField(
+            controller: txtController,
+            textDecoration: InputDecoration(
+              hintText: hintText,
+              fillColor: Colors.transparent,
+              filled: true,
+              hintStyle: appTextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                  color: ColorRes.black.withOpacity(0.15)),
+              border: txtController.text
+                  .trim()
+                  .isEmpty
+                  ? InputBorder.none
+                  : error.isNotEmpty
+                  ? errorBorder()
+                  : enableBorder(),
+              focusedBorder: txtController.text
+                  .trim()
+                  .isEmpty
+                  ? InputBorder.none
+                  : error.isNotEmpty
+                  ? errorBorder()
+                  : enableBorder(),
+              disabledBorder: txtController.text
+                  .trim()
+                  .isEmpty
+                  ? InputBorder.none
+                  : error.isNotEmpty
+                  ? errorBorder()
+                  : enableBorder(),
+              enabledBorder: txtController.text
+                  .trim()
+                  .isEmpty
+                  ? InputBorder.none
+                  : error.isNotEmpty
+                  ? errorBorder()
+                  : enableBorder(),
+              errorBorder: txtController.text
+                  .trim()
+                  .isEmpty
+                  ? InputBorder.none
+                  : error.isNotEmpty
+                  ? errorBorder()
+                  : enableBorder(),
+              focusedErrorBorder: txtController.text
+                  .trim()
+                  .isEmpty
+                  ? InputBorder.none
+                  : error.isNotEmpty
+                  ? errorBorder()
+                  : enableBorder(),
+            ),
+          ),
+        ),
+      ),
+      error == ""
+          ? const SizedBox(height: 20)
+          : Container(
+        margin: const EdgeInsets.all(10),
+        width: 339,
+        height: 28,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(50),
+            color: ColorRes.invalidColor),
+        padding: const EdgeInsets.only(left: 15),
+        child: Row(
+          mainAxisAlignment:
+          MainAxisAlignment.start,
+          crossAxisAlignment:
+          CrossAxisAlignment.center,
+          children: [
+            const Image(
+              image: AssetImage(
+                AssetRes.invalid,
+              ),
+              height: 14,
+            ),
+            const SizedBox(width: 10),
+            Text(error,
+                style: appTextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 9,
+                    color: ColorRes.starColor))
+          ],),
+      ),
+    ],
+  );
+}

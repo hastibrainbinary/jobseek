@@ -18,15 +18,18 @@ import 'package:jobseek/screen/notification_screen/notification_screen.dart';
 import 'package:jobseek/screen/organization_profile_screen/organization_profile_screen.dart';
 import 'package:jobseek/screen/see_details/see_details_screen.dart';
 import 'package:jobseek/screen/splashScreen/splash_Screen.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_res.dart';
 
 void main()  async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await PrefService.init();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     systemNavigationBarColor: Colors.transparent, // navigation bar color
     statusBarColor: Colors.transparent, // status bar color
     statusBarIconBrightness: Brightness.dark,
+    systemNavigationBarIconBrightness: Brightness.dark
   ));
   runApp(const MyApp());
 }
