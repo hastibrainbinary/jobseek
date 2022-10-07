@@ -52,10 +52,15 @@ class CreateVacanciesController extends GetxController implements GetxService {
     dropDownValueLocation = val;
     locationController.text = dropDownValueLocation!;
 
-    typeController.text= dropDownValueType!;
+
 
     update(["Location"]);
+     }
+  changetype({required String val}){
+    dropDownValueType = val;
+    typeController.text= dropDownValueType!;
     update(["type"]);
+
   }
 
   String? dropDownValueLocation;

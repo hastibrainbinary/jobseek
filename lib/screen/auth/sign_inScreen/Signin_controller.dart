@@ -20,7 +20,9 @@ class SignInScreenController extends GetxController {
     if (emailController.text.trim() == "") {
       emailError = 'Please Enter email';
     } else {
-      if (RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(emailController.text)) {
+      if (RegExp(
+              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+          .hasMatch(emailController.text)) {
         emailError = '';
       } else {
         emailError = "Invalid email";
@@ -100,14 +102,16 @@ class SignInScreenController extends GetxController {
       await googleSignIn.signOut();
     }
     final GoogleSignInAccount? account = await googleSignIn.signIn();
-    final GoogleSignInAuthentication authentication = await account!.authentication;
+    final GoogleSignInAuthentication authentication =
+        await account!.authentication;
 
     final OAuthCredential credential = GoogleAuthProvider.credential(
       idToken: authentication.idToken,
       accessToken: authentication.accessToken,
     );
 
-    final UserCredential authResult = await auth.signInWithCredential(credential);
+    final UserCredential authResult =
+        await auth.signInWithCredential(credential);
     final User? user = authResult.user;
     if (kDebugMode) {
       print(user!.email);

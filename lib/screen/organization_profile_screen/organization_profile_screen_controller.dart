@@ -83,15 +83,7 @@ class OrganizationProfileScreenController extends GetxController
     }
   }
 
-  onLoginBtnTap({
-    // required addData(),
-
-    required String email,
-    required String name,
-    required String date,
-    required String country,
-    required String address,
-  }) {
+  onLoginBtnTap() {
     fireStore.collection('user').add({
       "email": companyEmailController.text.trim(),
       "name": companyNameController.text.trim(),
@@ -108,7 +100,6 @@ class OrganizationProfileScreenController extends GetxController
       if (kDebugMode) {
         print("GO TO HOME PAGE");
       }
-      uploadingData(name, email, date, country, address);
 
       Get.to(ManagerDashBoardScreen());
     }

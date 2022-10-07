@@ -74,8 +74,11 @@ class UpdateVacanciesRequirementController extends GetxController {
 
   RxString dropDownValueLocation = "".obs;
 
-  onChangeLocation(String val) {
-    dropDownValueLocation.value = val;
+  changeDropdwon({required String val}) {
+    dropDownValueLocation = val as RxString;
+    locationController.text = dropDownValueLocation as String;
+
+    update(["locationDrop"]);
   }
 
   var items = [

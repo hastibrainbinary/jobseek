@@ -425,12 +425,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                                   if (kDebugMode) {
                                     print("=a4fyj66enum j");
                                   }
-                                  controller.onLoginBtnTap(
-                                      country: "",
-                                      address: "",
-                                      date: "",
-                                      name: "",
-                                      email: "");
+                                  controller.onLoginBtnTap();
                                 },
                                 // controller.onLoginBtnTap,
                                 child: Container(

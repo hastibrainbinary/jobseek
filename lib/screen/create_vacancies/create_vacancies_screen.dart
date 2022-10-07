@@ -290,7 +290,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                       },
                                     ).toList(),
                                     onChanged: (String? val) {
-                                      controller.changeDropdwon(val: val!);
+                                      controller.changetype(val: val!);
                                     });
                               },
                             ),

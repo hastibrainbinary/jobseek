@@ -28,7 +28,7 @@ class DashBoardScreen extends StatelessWidget {
                   ? ApplicationsScreen()
                   : controller.currentTab == 2
                       ? ChatBoxUserScreen()
-                      : ProfileUserScreen();
+                      : ProfileUserScreenU();
         },
       ),
       bottomNavigationBar: GetBuilder<DashBoardController>(

@@ -67,7 +67,7 @@ class ProfileScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (con) => const SettingScreen(),
+                      builder: (con) => const SettingScreenM(),
                     ),
                   );
                 },
@@ -325,15 +325,15 @@ class ProfileScreen extends StatelessWidget {
                       builder:
                           (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                         controller.companyNameController.text =
-                            snapshot.data?.docs[0]["name"];
+                            snapshot.data?.docs[0]["name"] ?? "-";
                         controller.companyEmailController.text =
-                            snapshot.data?.docs[0]["email"];
+                            snapshot.data?.docs[0]["email"] ?? "-";
                         controller.dateController.text =
-                            snapshot.data?.docs[0]["date"];
+                            snapshot.data?.docs[0]["date"] ?? "-";
                         controller.countryController.text =
-                            snapshot.data?.docs[0]["country"];
+                            snapshot.data?.docs[0]["country"] ?? "-";
                         controller.companyAddressController.text =
-                            snapshot.data?.docs[0]["address"];
+                            snapshot.data?.docs[0]["address"] ?? "-";
                         if (snapshot.hasError) {
                           return const Text(
                             'No Data...',

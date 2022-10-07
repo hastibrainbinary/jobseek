@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/organization_profile_screen/organization_profile_screen.dart';
 
@@ -23,6 +25,52 @@ class SignUpControllerM extends GetxController {
   String stateError = "";
   String countryError = "";
 
+  static FirebaseFirestore fireStore = FirebaseFirestore.instance;
+
+  // Future<void> uploadingData(String name, String email, String date,
+  //     String country, String address) async {
+  //   await fireStore.collection("auth").add({
+  //     "email": email,
+  //     "name": name,
+  //     "date": date,
+  //     "country": country,
+  //     "address": address,
+  //   }).catchError((e) {
+  //     if (kDebugMode) {
+  //       print('======Error======== ' + e);
+  //     }
+  //   });
+  // }
+  addDataInFirebase(userUid, email) async {
+    // print(userCredential.user?.uid);
+    await fireStore
+        .collection('manager')
+        .doc(userUid)
+        .set({"email": email}).catchError((e) {
+      print('======Error======== ' + e);
+    });
+  }
+
+  // singUp(email, password) async {
+  //   try {
+  //     UserCredential userCredential =
+  //     await FirebaseAuth.instance.createUserWithEmailAndPassword(
+  //       email: email,
+  //       password: password,
+  //     );
+  //     await Firebaservices.createData("username", email, password);
+  //     Navigator.push(
+  //         context, MaterialPageRoute(builder: (con) => ManagerDashBoardScreen()));
+  //   } on FirebaseAuthException catch (e) {
+  //     if (e.code == 'weak-password') {
+  //       print('The password provided is too weak.');
+  //     } else if (e.code == 'email-already-in-use') {
+  //       print('The account already exists for that email.');
+  //     }
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
   emailValidation() {
     if (emailController.text.trim() == "") {
       emailError = 'Please Enter email';

@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/common_error_box.dart';
 import 'package:jobseek/common/widgets/common_textField.dart';
-import 'package:jobseek/screen/manager_section/Settings/settings_screen.dart';
 import 'package:jobseek/screen/profile/profile_controller.dart';
+import 'package:jobseek/screen/settings/settings_screen.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
-class ProfileUserScreen extends StatelessWidget {
-  ProfileUserScreen({Key? key}) : super(key: key);
+class ProfileUserScreenU extends StatelessWidget {
+  ProfileUserScreenU({Key? key}) : super(key: key);
   final controller = Get.put(ProfileUserController());
 
   @override
@@ -67,7 +67,7 @@ class ProfileUserScreen extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (con) => const SettingScreen()));
+                            builder: (con) => const SettingsScreenU()));
                   },
                   child: const Icon(
                     Icons.settings,

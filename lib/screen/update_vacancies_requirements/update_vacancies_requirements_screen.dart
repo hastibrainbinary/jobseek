@@ -313,29 +313,34 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                       fontSize: 14,
                                       color: ColorRes.black.withOpacity(0.15),
                                     ),
-                                    // suffixIcon:  GetBuilder<UpdateVacanciesRequirementController>(
-                                    //   id: "dropdown",
-                                    //   builder: (controller) {
-                                    //     return DropdownButton(
-                                    //       //value: controller.dropDownValue,
-                                    //         iconSize: 35.0,
-                                    //         iconEnabledColor: Colors.grey.shade400,
-                                    //         iconDisabledColor: Colors.grey.shade400,
-                                    //         underline: Container(),
-                                    //         icon: const Icon(Icons.arrow_drop_down),
-                                    //         items: controller.items.map(
-                                    //               (val) {
-                                    //             return DropdownMenuItem<String>(
-                                    //               value: val,
-                                    //               child: Text(val),
-                                    //             );
-                                    //           },
-                                    //         ).toList(),
-                                    //         onChanged: (String? val) {
-                                    //           controller.changeDropdwon(val: val!);
-                                    //         });
-                                    //   },
-                                    // ),
+                                    suffixIcon: GetBuilder<
+                                        UpdateVacanciesRequirementController>(
+                                      id: "locationDrop",
+                                      builder: (controller) {
+                                        return DropdownButton(
+                                            //value: controller.dropDownValue,
+                                            iconSize: 35.0,
+                                            iconEnabledColor:
+                                                Colors.grey.shade400,
+                                            iconDisabledColor:
+                                                Colors.grey.shade400,
+                                            underline: Container(),
+                                            icon: const Icon(
+                                                Icons.arrow_drop_down),
+                                            items: controller.items.map(
+                                              (val) {
+                                                return DropdownMenuItem<String>(
+                                                  value: val,
+                                                  child: Text(val),
+                                                );
+                                              },
+                                            ).toList(),
+                                            onChanged: (String? val) {
+                                              controller.changeDropdwon(
+                                                  val: val!);
+                                            });
+                                      },
+                                    ),
                                   ),
                                   controller: controller.locationController),
                               controller.isLocationValidate.value == true

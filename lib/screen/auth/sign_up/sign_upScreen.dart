@@ -59,19 +59,30 @@ class sign_upScreen extends StatelessWidget {
                     const SizedBox(height: 37),
                     GetBuilder<SignUpController>(
                       id: "showFirstname",
-                      builder: (controller) => texFieldColumn(title: 'First Name',hintText: 'First Name', error: controller.firstError, txtController: controller.firstnameController),
-
+                      builder: (controller) => texFieldColumn(
+                          title: 'First Name',
+                          hintText: 'First Name',
+                          error: controller.firstError,
+                          txtController: controller.firstnameController),
                     ),
                     const SizedBox(height: 10),
                     GetBuilder<SignUpController>(
                       id: "showLastname",
-                      builder: (controller) => texFieldColumn(title: 'Last Name', hintText: 'Last Name', error: controller.lastError, txtController: controller.lastnameController,),
-
+                      builder: (controller) => texFieldColumn(
+                        title: 'Last Name',
+                        hintText: 'Last Name',
+                        error: controller.lastError,
+                        txtController: controller.lastnameController,
+                      ),
                     ),
                     const SizedBox(height: 10),
                     GetBuilder<SignUpController>(
                       id: "showEmail",
-                      builder: (controller) => texFieldColumn(title: 'Email', hintText: 'Email',error: controller.emailError, txtController: controller.emailController),
+                      builder: (controller) => texFieldColumn(
+                          title: 'Email',
+                          hintText: 'Email',
+                          error: controller.emailError,
+                          txtController: controller.emailController),
                     ),
                     const SizedBox(height: 10),
                     Padding(
@@ -97,7 +108,8 @@ class sign_upScreen extends StatelessWidget {
                         children: [
                           Container(
                             width: Get.width,
-                            height: 51,padding: EdgeInsets.only(left: 10),
+                            height: 51,
+                            padding: EdgeInsets.only(left: 10),
                             decoration: BoxDecoration(
                               color: ColorRes.white,
                               border: Border.all(
@@ -332,19 +344,30 @@ class sign_upScreen extends StatelessWidget {
                     const SizedBox(height: 10),
                     GetBuilder<SignUpController>(
                       id: "showCity",
-                      builder: (controller) =>texFieldColumn(title: 'City',hintText: 'City', error: controller.cityError, txtController: controller.cityController),
-
+                      builder: (controller) => texFieldColumn(
+                          title: 'City',
+                          hintText: 'City',
+                          error: controller.cityError,
+                          txtController: controller.cityController),
                     ),
                     const SizedBox(height: 10),
                     GetBuilder<SignUpController>(
-                      id: "showState",
-                      builder: (controller) => texFieldColumn(title: 'State', hintText: 'State', error: controller.stateError, txtController: controller.stateController,)
-                    ),
+                        id: "showState",
+                        builder: (controller) => texFieldColumn(
+                              title: 'State',
+                              hintText: 'State',
+                              error: controller.stateError,
+                              txtController: controller.stateController,
+                            )),
                     const SizedBox(height: 10),
                     GetBuilder<SignUpController>(
-                      id: "showCountry",
-                      builder: (controller) => texFieldColumn(title: 'Country', hintText: 'Country', error: controller.countryError, txtController: controller.countryController,)
-                    ),
+                        id: "showCountry",
+                        builder: (controller) => texFieldColumn(
+                              title: 'Country',
+                              hintText: 'Country',
+                              error: controller.countryError,
+                              txtController: controller.countryController,
+                            )),
                     GetBuilder<SignUpController>(
                         id: "remember_me",
                         builder: (controller) {
@@ -584,6 +607,7 @@ OutlineInputBorder enableBorder() {
     borderRadius: BorderRadius.circular(10),
   );
 }
+
 OutlineInputBorder errorBorder() {
   return OutlineInputBorder(
     borderSide: const BorderSide(color: ColorRes.starColor),
@@ -591,7 +615,13 @@ OutlineInputBorder errorBorder() {
     borderRadius: BorderRadius.circular(10),
   );
 }
-Widget texFieldColumn({required String title,required String hintText, required String error,required TextEditingController txtController,}){
+
+Widget texFieldColumn({
+  required String title,
+  required String hintText,
+  required String error,
+  required TextEditingController txtController,
+}) {
   return Column(
     children: [
       Padding(
@@ -605,8 +635,7 @@ Widget texFieldColumn({required String title,required String hintText, required 
                     color: ColorRes.black.withOpacity(0.6))),
             Text(
               '*',
-              style: appTextStyle(
-                  fontSize: 15, color: ColorRes.starColor),
+              style: appTextStyle(fontSize: 15, color: ColorRes.starColor),
             ),
           ],
         ),
@@ -617,8 +646,7 @@ Widget texFieldColumn({required String title,required String hintText, required 
           boxShadow: [
             BoxShadow(
                 offset: const Offset(6, 6),
-                color: ColorRes.containerColor
-                    .withOpacity(0.10),
+                color: ColorRes.containerColor.withOpacity(0.10),
                 spreadRadius: 0,
                 blurRadius: 35),
           ],
@@ -637,48 +665,36 @@ Widget texFieldColumn({required String title,required String hintText, required 
                   fontSize: 15,
                   fontWeight: FontWeight.w500,
                   color: ColorRes.black.withOpacity(0.15)),
-              border: txtController.text
-                  .trim()
-                  .isEmpty
+              border: txtController.text.trim().isEmpty
                   ? InputBorder.none
                   : error.isNotEmpty
-                  ? errorBorder()
-                  : enableBorder(),
-              focusedBorder: txtController.text
-                  .trim()
-                  .isEmpty
+                      ? errorBorder()
+                      : enableBorder(),
+              focusedBorder: txtController.text.trim().isEmpty
                   ? InputBorder.none
                   : error.isNotEmpty
-                  ? errorBorder()
-                  : enableBorder(),
-              disabledBorder: txtController.text
-                  .trim()
-                  .isEmpty
+                      ? errorBorder()
+                      : enableBorder(),
+              disabledBorder: txtController.text.trim().isEmpty
                   ? InputBorder.none
                   : error.isNotEmpty
-                  ? errorBorder()
-                  : enableBorder(),
-              enabledBorder: txtController.text
-                  .trim()
-                  .isEmpty
+                      ? errorBorder()
+                      : enableBorder(),
+              enabledBorder: txtController.text.trim().isEmpty
                   ? InputBorder.none
                   : error.isNotEmpty
-                  ? errorBorder()
-                  : enableBorder(),
-              errorBorder: txtController.text
-                  .trim()
-                  .isEmpty
+                      ? errorBorder()
+                      : enableBorder(),
+              errorBorder: txtController.text.trim().isEmpty
                   ? InputBorder.none
                   : error.isNotEmpty
-                  ? errorBorder()
-                  : enableBorder(),
-              focusedErrorBorder: txtController.text
-                  .trim()
-                  .isEmpty
+                      ? errorBorder()
+                      : enableBorder(),
+              focusedErrorBorder: txtController.text.trim().isEmpty
                   ? InputBorder.none
                   : error.isNotEmpty
-                  ? errorBorder()
-                  : enableBorder(),
+                      ? errorBorder()
+                      : enableBorder(),
             ),
           ),
         ),
@@ -686,33 +702,32 @@ Widget texFieldColumn({required String title,required String hintText, required 
       error == ""
           ? const SizedBox(height: 20)
           : Container(
-        margin: const EdgeInsets.all(10),
-        width: 339,
-        height: 28,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(50),
-            color: ColorRes.invalidColor),
-        padding: const EdgeInsets.only(left: 15),
-        child: Row(
-          mainAxisAlignment:
-          MainAxisAlignment.start,
-          crossAxisAlignment:
-          CrossAxisAlignment.center,
-          children: [
-            const Image(
-              image: AssetImage(
-                AssetRes.invalid,
+              margin: const EdgeInsets.all(10),
+              width: 339,
+              height: 28,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  color: ColorRes.invalidColor),
+              padding: const EdgeInsets.only(left: 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Image(
+                    image: AssetImage(
+                      AssetRes.invalid,
+                    ),
+                    height: 14,
+                  ),
+                  const SizedBox(width: 10),
+                  Text(error,
+                      style: appTextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 9,
+                          color: ColorRes.starColor))
+                ],
               ),
-              height: 14,
             ),
-            const SizedBox(width: 10),
-            Text(error,
-                style: appTextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 9,
-                    color: ColorRes.starColor))
-          ],),
-      ),
     ],
   );
 }

@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/color_res.dart';
-
 import 'appearance_controller.dart';
 
 class AppearanceScreenU extends StatelessWidget {
