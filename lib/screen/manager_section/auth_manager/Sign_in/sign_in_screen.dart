@@ -399,8 +399,7 @@ class SignInScreenM extends StatelessWidget {
                                       controller.onLoginBtnTap(
                                           password: controller
                                               .passwordController.text,
-                                          email:
-                                              controller.emailController.text);
+                                          email: controller.emailController.text);
                                     },
                                     child: Container(
                                       height: 50,

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jobseek/screen/dashboard/dashboard_controller.dart';
 import 'package:jobseek/screen/dashboard/dashboard_screen.dart';
 import 'package:jobseek/screen/looking_for_screen/looking_for_screen.dart';
 import 'package:jobseek/service/pref_services.dart';
@@ -26,6 +27,8 @@ class _SplashScreenState extends State<SplashScreen> {
   void splash() async {
     String token = PrefService.getString(PrefKeys.accessToken);
     await Future.delayed(const Duration(seconds: 5), () {
+      final DashBoardController controller = Get.put(DashBoardController());
+      controller.currentTab = 0;
       Get.off(() => token=="" ? const LookingForScreen(): DashBoardScreen());
     });
   }
