@@ -50,7 +50,7 @@ class OrganizationProfileScreenController extends GetxController
     });
   }
 
-  Confirm(email, password, name, date, country, address) async {
+  confirm(email, password, name, date, country, address) async {
     try {
       UserCredential userCredential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -104,18 +104,6 @@ class OrganizationProfileScreenController extends GetxController
       Get.to(ManagerDashBoardScreen());
     }
   }
-  // addDataInFirebase(email, name, date, country, address) async {
-  //    print(userCredential.user?.uid);
-  //   await fireStore.collection('users').doc("user").set({
-  //     "email": email,
-  //     "name": name,
-  //     "date": date,
-  //     "country": country,
-  //     "address": address,
-  //   }).catchError((e) {
-  //     print('======Error======== ' + e);
-  //   });
-  // }
 
   validate() {
     if (companyNameController.text.isEmpty) {

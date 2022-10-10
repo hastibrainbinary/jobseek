@@ -29,20 +29,6 @@ class SignUpControllerM extends GetxController {
 
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
-  // Future<void> uploadingData(String name, String email, String date,
-  //     String country, String address) async {
-  //   await fireStore.collection("auth").add({
-  //     "email": email,
-  //     "name": name,
-  //     "date": date,
-  //     "country": country,
-  //     "address": address,
-  //   }).catchError((e) {
-  //     if (kDebugMode) {
-  //       print('======Error======== ' + e);
-  //     }
-  //   });
-  // }
   addDataInFirebase(
       {required String userUid, required Map<String, dynamic> map}) async {
     await fireStore
@@ -52,7 +38,9 @@ class SignUpControllerM extends GetxController {
         .doc(userUid)
         .set(map)
         .catchError((e) {
-      print('...error...' + e);
+      if (kDebugMode) {
+        print('...error...' + e);
+      }
     });
     if (kDebugMode) {
       print("*************************** Success");

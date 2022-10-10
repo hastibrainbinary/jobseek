@@ -58,7 +58,6 @@ class SignInScreenControllerM extends GetxController {
   emailValidation() {
     if (emailController.text.trim() == "") {
       emailError = 'Please Enter email';
-      // emailError = "Enter email";
     } else {
       if (RegExp(
               r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
@@ -74,7 +73,6 @@ class SignInScreenControllerM extends GetxController {
   passwordValidation() {
     if (passwordController.text.trim() == "") {
       pwdError = 'Please Enter Password';
-      // pwdError = "Enter Password";
     } else {
       if (passwordController.text.trim().length >= 8) {
         pwdError = '';

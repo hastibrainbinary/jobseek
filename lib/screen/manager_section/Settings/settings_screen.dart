@@ -240,6 +240,22 @@ class SettingScreenM extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   settingModalBottomSheet(context);
+                  settingModalBottomSheet(context).then((value) async {
+                    if (kDebugMode) {
+                      print(value);
+                    }
+                    final GoogleSignIn googleSignIn = GoogleSignIn();
+                    if (await googleSignIn.isSignedIn()) {
+                      await googleSignIn.signOut();
+                    }
+                    PrefService.clear();
+                    // ignore: use_build_context_synchronously
+                    Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(
+                          builder: (context) => const LookingForScreen(),
+                        ),
+                        (route) => false);
+                  });
                 },
                 child: Row(
                   children: [
