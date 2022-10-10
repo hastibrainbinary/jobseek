@@ -44,7 +44,7 @@ class CongratsScreenM extends StatelessWidget {
                     color: ColorRes.black),
               ),
             ),
-            const SizedBox(height: 150),
+            const SizedBox(height: 120),
             Center(
               child: Container(
                 height: 50,

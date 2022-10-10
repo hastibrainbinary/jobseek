@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/organization_profile_screen/services.dart';
@@ -53,7 +54,9 @@ class SignUpControllerM extends GetxController {
         .catchError((e) {
       print('...error...' + e);
     });
-    print("*************************** Success");
+    if (kDebugMode) {
+      print("*************************** Success");
+    }
   }
 
   singUp(email, password) async {
@@ -77,9 +80,16 @@ class SignUpControllerM extends GetxController {
       Get.to(() => const Company());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
+        if (kDebugMode) {
+          print('The password provided is too weak.');
+        }
       } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+        Get.snackbar("Error", e.message.toString(),
+            colorText: const Color(0xffDA1414));
+        loading.value = false;
+        if (kDebugMode) {
+          print('The account already exists for that email.');
+        }
       }
     } catch (e) {
       print(e);
@@ -191,7 +201,9 @@ class SignUpControllerM extends GetxController {
   onSignUpBtnTap() {
     if (validator()) {
       print("GO TO HOME PAGE");
+      loading.value = true;
       singUp(emailController.text, passwordController.text);
+      // OrganizationProfileScreen();
     }
     update(["showEmail"]);
     update(["showLastname"]);

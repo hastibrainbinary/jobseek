@@ -18,7 +18,8 @@ class OtpScreen extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       backgroundColor: ColorRes.backgroungColor,
       body: Column(children: [
-        SizedBox(height: Get.height * 0.0738),
+        SizedBox(height: 50),
+
         Row(
           children: [
             Padding(
@@ -64,7 +65,7 @@ class OtpScreen extends StatelessWidget {
         controller.otpError == ''
             ? const SizedBox(height: 20)
             : Container(
-                width: Get.width-50,
+                width: Get.width - 50,
                 height: 28,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),

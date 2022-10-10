@@ -1293,7 +1293,19 @@ class SignUpScreenM extends StatelessWidget {
                   ]),
             )),
             controller.loading.isTrue
-                ? const Center(child: CircularProgressIndicator())
+                ? Center(
+                    child: Container(
+                      padding: const EdgeInsets.all(35),
+                      height: 110,
+                      width: 110,
+                      decoration: BoxDecoration(
+                          color: ColorRes.white,
+                          borderRadius: BorderRadius.circular(25)),
+                      child: const CircularProgressIndicator(
+                        color: ColorRes.containerColor,
+                      ),
+                    ),
+                  )
                 : const SizedBox(),
           ],
         );

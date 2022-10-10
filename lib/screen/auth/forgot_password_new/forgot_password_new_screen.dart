@@ -64,6 +64,7 @@ class ForgotPasswordScreenU extends StatelessWidget {
                       fontSize: 14,
                       color: ColorRes.black.withOpacity(0.6))),
             ),
+            const SizedBox(height: 10),
 
             GetBuilder<ForgotPasswordControllerU>(
               id: "showEmail",

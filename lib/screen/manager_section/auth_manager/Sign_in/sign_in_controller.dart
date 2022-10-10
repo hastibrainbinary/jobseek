@@ -55,30 +55,6 @@ class SignInScreenControllerM extends GetxController {
     }
   }
 
-  // String res = await FirebaseHelper.firebaseHelper
-  //     .signInWithEmailAndPassword(
-  // email: emailController.text,
-  // password: passwordController.text);
-  //
-  // if (res == 'weak-password') {
-  // toast(txt: res);
-  // print('The password provided is too weak.');
-  // } else if (res == 'email-already-in-use') {
-  // toast(txt: res);
-  // print('The account already exists for that email.');
-  // } else if (res == 'user-not-found') {
-  // toast(txt: res);
-  // print('User not found.');
-  // } else if (res == 'wrong-password') {
-  // toast(txt: res);
-  // print('wrong password.');
-  // } else {
-  //
-  //
-  // Navigator.of(context).pushNamedAndRemoveUntil(
-  // '/addProfileScreen', (route) => false,
-  // arguments: args);
-  // }
   emailValidation() {
     if (emailController.text.trim() == "") {
       emailError = 'Please Enter email';

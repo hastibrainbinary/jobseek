@@ -5,7 +5,6 @@ import 'package:jobseek/common/widgets/common_textField.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
-
 import 'forgot_password_controller.dart';
 
 class ForgotPasswordScreenM extends StatelessWidget {
@@ -64,6 +63,7 @@ class ForgotPasswordScreenM extends StatelessWidget {
                       fontSize: 14,
                       color: ColorRes.black.withOpacity(0.6))),
             ),
+            const SizedBox(height: 10),
 
             GetBuilder<ForgotPasswordControllerM>(
               id: "showEmail",

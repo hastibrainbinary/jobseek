@@ -345,7 +345,7 @@ class ResetPasswordScreenM extends StatelessWidget {
                 }),
           ],
         ),
-        const SizedBox(height: 260),
+        const SizedBox(height: 190),
         InkWell(
           onTap: () => controller.onLoginBtnTap(context),
           child: Container(

@@ -19,7 +19,7 @@ class OtpScreenM extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       backgroundColor: ColorRes.backgroungColor,
       body: Column(children: [
-        SizedBox(height: Get.height * 0.0738),
+        const SizedBox(height:50),
         Row(
           children: [
             Padding(
@@ -122,7 +122,7 @@ class OtpScreenM extends StatelessWidget {
                 ],
               );
             }),
-        const SizedBox(height: 210),
+        const SizedBox(height: 180),
         InkWell(
           onTap: controller.otpvalidation(),
           child: Container(
