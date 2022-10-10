@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -159,10 +161,7 @@ class SignUpController extends GetxController {
 
   singUp(email, password) async {
     try {
-      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
+      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password,);
       if (userCredential.user?.uid != null) {
         Map<String, dynamic>  map2 = {
           "Fullname": "${firstnameController.text} ${lastnameController.text}",
@@ -179,6 +178,7 @@ class SignUpController extends GetxController {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
       } else if (e.code == 'email-already-in-use') {
+        Get.snackbar("Error",e.message.toString() , colorText: const Color(0xffDA1414));
         print('The account already exists for that email.');
       }
     } catch (e) {
