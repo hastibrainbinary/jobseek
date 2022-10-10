@@ -239,16 +239,7 @@ class SettingsScreenU extends StatelessWidget {
               padding: const EdgeInsets.all(12.0),
               child: InkWell(
                 onTap: () {
-                  settingModalBottomSheet(context).then((value) async {
-                    print(value);
-                    final GoogleSignIn googleSignIn = GoogleSignIn();
-                    if (await googleSignIn.isSignedIn()) {
-                      await googleSignIn.signOut();
-                    }
-                    PrefService.clear();
-                    // ignore: use_build_context_synchronously
-                    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const LookingForScreen(),), (route) => false);
-                  });
+                  settingModalBottomSheet(context);
                 },
                 child: Row(
                   children: [
@@ -283,7 +274,7 @@ class SettingsScreenU extends StatelessWidget {
     );
   }
 
-  settingModalBottomSheet(context) {
+  settingModalBottomSheet(context) async {
     showModalBottomSheet(
         context: context,
         backgroundColor: Colors.transparent,
@@ -319,7 +310,7 @@ class SettingsScreenU extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: InkWell(
                         onTap: () {
-                          Navigator.of(context).pop(false);
+                          Navigator.of(context).pop();
                         },
                         child: Container(
                           height: 50,
@@ -344,8 +335,18 @@ class SettingsScreenU extends StatelessWidget {
                     ),
                     const SizedBox(width: 10),
                     InkWell(
-                      onTap: () {
-                        Navigator.of(context).pop(true);
+                      onTap: () async {
+                        final GoogleSignIn googleSignIn = GoogleSignIn();
+                        if (await googleSignIn.isSignedIn()) {
+                          await googleSignIn.signOut();
+                        }
+                        PrefService.clear();
+                        // ignore: use_build_context_synchronously
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(
+                              builder: (context) => const LookingForScreen(),
+                            ),
+                            (route) => false);
                       },
                       child: Container(
                         height: 50,

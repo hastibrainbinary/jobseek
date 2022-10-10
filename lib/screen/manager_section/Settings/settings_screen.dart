@@ -239,16 +239,7 @@ class SettingScreenM extends StatelessWidget {
               padding: const EdgeInsets.all(12.0),
               child: InkWell(
                 onTap: () {
-                  settingModalBottomSheet(context).then((value) async {
-                    print(value);
-                    final GoogleSignIn googleSignIn = GoogleSignIn();
-                    if (await googleSignIn.isSignedIn()) {
-                      await googleSignIn.signOut();
-                    }
-                    PrefService.clear();
-                    // ignore: use_build_context_synchronously
-                    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const LookingForScreen(),), (route) => false);
-                  });
+                  settingModalBottomSheet(context);
                 },
                 child: Row(
                   children: [
@@ -344,11 +335,18 @@ class SettingScreenM extends StatelessWidget {
                     ),
                     const SizedBox(width: 10),
                     InkWell(
-                      onTap: () {
+                      onTap: () async {
+                        final GoogleSignIn googleSignIn = GoogleSignIn();
+                        if (await googleSignIn.isSignedIn()) {
+                          await googleSignIn.signOut();
+                        }
+                        PrefService.clear();
+                        // ignore: use_build_context_synchronously
                         Navigator.of(context).pushAndRemoveUntil(
                             MaterialPageRoute(
-                                builder: (context) => const LookingForScreen()),
-                            (routes) => false);
+                              builder: (context) => const LookingForScreen(),
+                            ),
+                                (route) => false);
                       },
                       child: Container(
                         height: 50,
