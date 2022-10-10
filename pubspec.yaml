@@ -53,6 +53,7 @@ dependencies:
   flutter_facebook_auth: ^4.4.1+1
 
   shared_preferences: ^2.0.15
+  email_auth: ^1.0.0
 
   # bottom_navigation_bar:
   salomon_bottom_bar:

@@ -50,7 +50,7 @@ class OrganizationProfileScreenController extends GetxController
     });
   }
 
-/*  Confirm(email, password, name, date, country, address) async {
+  Confirm(email, password, name, date, country, address) async {
     try {
       UserCredential userCredential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -81,7 +81,7 @@ class OrganizationProfileScreenController extends GetxController
         print(e);
       }
     }
-  }*/
+  }
 
   onLoginBtnTap() {
     fireStore.collection('user').add({

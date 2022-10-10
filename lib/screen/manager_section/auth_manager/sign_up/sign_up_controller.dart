@@ -1,13 +1,9 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen.dart';
-import 'package:jobseek/screen/organization_profile_screen/organization_profile_screen.dart';
 import 'package:jobseek/screen/organization_profile_screen/services.dart';
 
 class SignUpControllerM extends GetxController {
@@ -46,17 +42,18 @@ class SignUpControllerM extends GetxController {
   //     }
   //   });
   // }
-  addDataInFirebase({required String userUid, required Map<String, dynamic> map}) async {
+  addDataInFirebase(
+      {required String userUid, required Map<String, dynamic> map}) async {
     await fireStore
         .collection("Auth")
         .doc("Manager")
         .collection("register")
         .doc(userUid)
-        .set(map).catchError((e) {
+        .set(map)
+        .catchError((e) {
       print('...error...' + e);
     });
-    print("*************************** Sucsse");
-
+    print("*************************** Success");
   }
 
   singUp(email, password) async {
@@ -67,15 +64,15 @@ class SignUpControllerM extends GetxController {
         password: password,
       );
       if (userCredential.user?.uid != null) {
-      Map<String, dynamic>  map2 = {
-        "Fullname": "${firstnameController.text} ${lastnameController.text}",
-      "Email": emailController.text,
-      "Phone": phoneController.text,
-      "City": cityController.text,
-      "State": stateController.text,
-      "Country": countryController.text,
-      };
-        addDataInFirebase(userUid: userCredential.user?.uid??"",map:map2 );
+        Map<String, dynamic> map2 = {
+          "FullName": "${firstnameController.text} ${lastnameController.text}",
+          "Email": emailController.text,
+          "Phone": phoneController.text,
+          "City": cityController.text,
+          "State": stateController.text,
+          "Country": countryController.text,
+        };
+        addDataInFirebase(userUid: userCredential.user?.uid ?? "", map: map2);
       }
       Get.to(() => const Company());
     } on FirebaseAuthException catch (e) {

@@ -13,7 +13,72 @@ class SignInScreenControllerM extends GetxController {
 
   String emailError = "";
   String pwdError = "";
+  Future<String> signInWithEmailAndPassword(
+      {required String email, required String password}) async {
+    try {
+      loading.value = true;
+      UserCredential credential = await auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      loading.value = false;
 
+      if (kDebugMode) {
+        print(credential);
+      }
+
+      if (credential.user!.email.toString() == email) {
+        Get.to(() => const OrganizationProfileScreen());
+      }
+
+      return credential.user!.uid;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        Get.snackbar("Error", "Wrong user", colorText: const Color(0xffDA1414));
+        loading.value = false;
+
+        if (kDebugMode) {
+          print('No user found for that email.');
+        }
+      } else if (e.code == 'wrong-password') {
+        Get.snackbar("Error", "Wrong Password",
+            colorText: const Color(0xffDA1414));
+
+        loading.value = false;
+
+        if (kDebugMode) {
+          print('Wrong password provided for that user.');
+        }
+      }
+      if (kDebugMode) {
+        print(e.code);
+      }
+      return e.code;
+    }
+  }
+
+  // String res = await FirebaseHelper.firebaseHelper
+  //     .signInWithEmailAndPassword(
+  // email: emailController.text,
+  // password: passwordController.text);
+  //
+  // if (res == 'weak-password') {
+  // toast(txt: res);
+  // print('The password provided is too weak.');
+  // } else if (res == 'email-already-in-use') {
+  // toast(txt: res);
+  // print('The account already exists for that email.');
+  // } else if (res == 'user-not-found') {
+  // toast(txt: res);
+  // print('User not found.');
+  // } else if (res == 'wrong-password') {
+  // toast(txt: res);
+  // print('wrong password.');
+  // } else {
+  //
+  //
+  // Navigator.of(context).pushNamedAndRemoveUntil(
+  // '/addProfileScreen', (route) => false,
+  // arguments: args);
+  // }
   emailValidation() {
     if (emailController.text.trim() == "") {
       emailError = 'Please Enter email';
@@ -53,12 +118,14 @@ class SignInScreenControllerM extends GetxController {
     }
   }
 
-  onLoginBtnTap() {
+  onLoginBtnTap({String? email, String? password}) {
     if (validator()) {
+      loading.value = true;
+      signInWithEmailAndPassword(password: password!, email: email!);
+      loading.value = true;
       if (kDebugMode) {
         print("GO TO HOME PAGE");
       }
-      Get.to(OrganizationProfileScreen());
     }
     update(["loginForm", "showEmail", "pwdError"]);
   }
@@ -124,9 +191,9 @@ class SignInScreenControllerM extends GetxController {
     }
     // ignore: unnecessary_null_comparison
     if (user?.uid != null && user?.uid != "") {
-      Get.offAll(() => OrganizationProfileScreen());
+      Get.offAll(() => const OrganizationProfileScreen());
       loading.value == false;
-      // loder false
+      // loader false
     } else {
       loading.value == false;
     }
@@ -161,15 +228,14 @@ class SignInScreenControllerM extends GetxController {
         print(userCredential);
       }
       if (userCredential.user?.uid != null && userCredential.user?.uid != "") {
-        Get.offAll(() => OrganizationProfileScreen());
+        Get.offAll(() => const OrganizationProfileScreen());
         loading.value == false;
-        // loder false
+        // loader false
       } else {
         loading.value == false;
       }
 
       loading.value = false;
-      //flutterToast(Strings.faceBookSignInSuccess);
     } catch (e) {
       if (kDebugMode) {
         print(e);

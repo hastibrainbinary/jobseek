@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
@@ -8,6 +10,42 @@ class ForgotPasswordControllerM extends GetxController {
 
   TextEditingController forgotEmailController = TextEditingController();
   String emailError = "";
+
+  static FirebaseFirestore fireStore = FirebaseFirestore.instance;
+  // void sendOtp() async {
+  //   bool result = await emailAuth.sendOtp(
+  //       recipientMail: forgotEmailController.value.text, otpLength: 4
+  //   );
+  // }
+
+  var acs = ActionCodeSettings(
+      // URL you want to redirect back to. The domain (www.example.com) for this
+      // URL must be whitelisted in the Firebase Console.
+
+      url: 'https://jobseek.page.link/6SuK',
+      // This must be true
+      handleCodeInApp: true,
+      iOSBundleId: 'com.example.ios',
+      androidPackageName: 'com.example.android',
+      // installIfNotAvailable
+      androidInstallApp: true,
+      // minimumVersion
+      androidMinimumVersion: '12');
+
+  // FirebaseAuth.instance.sendSignInLinkToEmail(
+  // email: emailAuth, actionCodeSettings: acs)
+  //     .catchError((onError) => print('Error sending email verification $onError'))
+  //     .then((value) => print('Successfully sent email verification'));
+
+  Future verificationEmail(email) async {
+    try {
+      FirebaseAuth.instance
+          .sendSignInLinkToEmail(email: email, actionCodeSettings: acs);
+    } catch (err) {
+      print(err);
+    }
+  }
+
   emailValidation() {
     if (forgotEmailController.text.trim() == "") {
       emailError = 'Please Enter email';
@@ -36,6 +74,7 @@ class ForgotPasswordControllerM extends GetxController {
   onLoginBtnTap() {
     if (validator()) {
       if (kDebugMode) {
+
         print("GO TO HOME PAGE");
       }
       Get.to(OtpScreenM());

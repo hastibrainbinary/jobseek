@@ -14,7 +14,7 @@ class FirebaseServices {
       city,
       country,
       state,
-      String? s}) async {
+      String? s, required String name, required String date, required String address}) async {
     final FirebaseAuth auth = FirebaseAuth.instance;
     final User? users = auth.currentUser;
     final uid = users!.uid;
