@@ -57,6 +57,7 @@ class SignInScreenController extends GetxController {
   onLoginBtnTap() {
     if (validator()) {
       if (kDebugMode) {
+
         print("GO TO HOME PAGE");
       }
       Get.to(DashBoardScreen());
