@@ -186,7 +186,7 @@ class OrganizationProfileScreenController extends GetxController
     "Prague",
   ];
 
-  ontapGallery1() async {
+  onTapGallery1() async {
     //filepath.value = file.name.toString();
     XFile? gallery = await picker.pickImage(source: ImageSource.gallery);
     String path = gallery!.path;

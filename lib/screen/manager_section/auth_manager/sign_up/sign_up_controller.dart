@@ -4,8 +4,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/screen/organization_profile_screen/services.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:jobseek/screen/organization_profile_screen/organization_profile_screen.dart';
 
 class SignUpControllerM extends GetxController {
   TextEditingController firstnameController = TextEditingController();
@@ -49,6 +51,7 @@ class SignUpControllerM extends GetxController {
 
   singUp(email, password) async {
     try {
+      loading.value = true;
       UserCredential userCredential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
@@ -65,7 +68,8 @@ class SignUpControllerM extends GetxController {
         };
         addDataInFirebase(userUid: userCredential.user?.uid ?? "", map: map2);
       }
-      Get.to(() => const Company());
+      Get.to(() => const OrganizationProfileScreen());
+      loading.value = false;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         if (kDebugMode) {
@@ -80,7 +84,10 @@ class SignUpControllerM extends GetxController {
         }
       }
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
+      loading.value = false;
     }
   }
 
@@ -188,7 +195,9 @@ class SignUpControllerM extends GetxController {
 
   onSignUpBtnTap() {
     if (validator()) {
-      print("GO TO HOME PAGE");
+      if (kDebugMode) {
+        print("GO TO HOME PAGE");
+      }
       loading.value = true;
       singUp(emailController.text, passwordController.text);
       // OrganizationProfileScreen();
@@ -267,5 +276,87 @@ class SignUpControllerM extends GetxController {
       update(['color']);
     }
     update();
+  }
+
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  final GoogleSignIn googleSignIn = GoogleSignIn();
+  void signWithGoogle() async {
+    loading.value = true;
+    if (await googleSignIn.isSignedIn()) {
+      await googleSignIn.signOut();
+    }
+    final GoogleSignInAccount? account = await googleSignIn.signIn();
+    final GoogleSignInAuthentication authentication =
+    await account!.authentication;
+
+    final OAuthCredential credential = GoogleAuthProvider.credential(
+      idToken: authentication.idToken,
+      accessToken: authentication.accessToken,
+    );
+    final UserCredential authResult =
+    await auth.signInWithCredential(credential);
+    final User? user = authResult.user;
+    if (kDebugMode) {
+      print(user!.email);
+    }
+    if (kDebugMode) {
+      print(user?.uid);
+    }
+    if (kDebugMode) {
+      print(user?.displayName);
+    }
+    if (user?.uid != null && user?.uid != "") {
+      Get.offAll(() => const OrganizationProfileScreen());
+      loading.value == false;
+      // loader false
+    } else {
+      loading.value == false;
+    }
+    loading.value == false;
+    //flutterToast(Strings.googleSignInSuccess);
+  }
+
+  void faceBookSignIn() async {
+    try {
+      loading.value = true;
+      final LoginResult loginResult = await FacebookAuth.instance
+          .login(permissions: ["email", "public_profile"]);
+      if (kDebugMode) {
+        print(loginResult);
+      }
+      await FacebookAuth.instance.getUserData().then((userData) {
+        if (kDebugMode) {
+          print(userData);
+        }
+      });
+      final OAuthCredential facebookAuthCredential =
+      FacebookAuthProvider.credential(
+        loginResult.accessToken!.token,
+      );
+      if (kDebugMode) {
+        print(facebookAuthCredential);
+      }
+      UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithCredential(facebookAuthCredential);
+      if (kDebugMode) {
+        print(userCredential);
+      }
+      loading.value = false;
+      if (userCredential.user?.uid != null && userCredential.user?.uid != "") {
+        Get.offAll(() => const OrganizationProfileScreen());
+        loading.value == false;
+        // loader false
+      } else {
+        loading.value == false;
+      }
+
+      loading.value = false;
+      //flutterToast(Strings.faceBookSignInSuccess);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      loading.value = false;
+    }
   }
 }

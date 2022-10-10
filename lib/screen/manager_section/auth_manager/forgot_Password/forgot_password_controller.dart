@@ -11,11 +11,7 @@ class ForgotPasswordControllerM extends GetxController {
   String emailError = "";
 
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
-  // void sendOtp() async {
-  //   bool result = await emailAuth.sendOtp(
-  //       recipientMail: forgotEmailController.value.text, otpLength: 4
-  //   );
-  // }
+
 
   // var acs = ActionCodeSettings(
   //     // URL you want to redirect back to. The domain (www.example.com) for this

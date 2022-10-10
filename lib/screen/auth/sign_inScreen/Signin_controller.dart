@@ -3,7 +3,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:jobseek/screen/dashboard/dashboard_controller.dart';
 import 'package:jobseek/screen/dashboard/dashboard_screen.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:jobseek/service/pref_services.dart';
@@ -55,6 +54,49 @@ class SignInScreenController extends GetxController {
     }
   }
 
+  // Future<String> signInWithEmailAndPassword(
+  //     {required String email, required String password}) async {
+  //   try {
+  //     loading.value = true;
+  //     UserCredential credential = await auth.signInWithEmailAndPassword(
+  //         email: email, password: password);
+  //     loading.value = false;
+  //
+  //     if (kDebugMode) {
+  //       print(credential);
+  //     }
+  //
+  //     if (credential.user!.email.toString() == email) {
+  //       final DashBoardController controller = Get.put(DashBoardController());
+  //       controller.currentTab = 0;
+  //       Get.offAll(DashBoardScreen());
+  //     }
+  //
+  //     return credential.user!.uid;
+  //   } on FirebaseAuthException catch (e) {
+  //     if (e.code == 'user-not-found') {
+  //       Get.snackbar("Error", "Wrong user", colorText: const Color(0xffDA1414));
+  //       loading.value = true;
+  //
+  //       if (kDebugMode) {
+  //         print('No user found for that email.');
+  //       }
+  //     } else if (e.code == 'wrong-password') {
+  //       Get.snackbar("Error", "Wrong Password",
+  //           colorText: const Color(0xffDA1414));
+  //
+  //       loading.value = false;
+  //
+  //       if (kDebugMode) {
+  //         print('Wrong password provided for that user.');
+  //       }
+  //     }
+  //     if (kDebugMode) {
+  //       print(e.code);
+  //     }
+  //     return e.code;
+  //   }
+  // }
   Future<String> signInWithEmailAndPassword(
       {required String email, required String password}) async {
     try {
@@ -68,9 +110,7 @@ class SignInScreenController extends GetxController {
       }
 
       if (credential.user!.email.toString() == email) {
-        final DashBoardController controller = Get.put(DashBoardController());
-        controller.currentTab = 0;
-        Get.offAll(DashBoardScreen());
+        Get.to(() => DashBoardScreen());
       }
 
       return credential.user!.uid;
@@ -99,13 +139,14 @@ class SignInScreenController extends GetxController {
     }
   }
 
-  onLoginBtnTap() {
+  onLoginBtnTap({String? email, String? password}) {
     if (validator()) {
+      loading.value = true;
+      signInWithEmailAndPassword(password: password!, email: email!);
+      loading.value = true;
       if (kDebugMode) {
-
         print("GO TO HOME PAGE");
       }
-      signInWithEmailAndPassword(password: passwordController.text, email: emailController.text);
     }
   }
 

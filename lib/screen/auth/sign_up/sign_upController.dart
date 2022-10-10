@@ -145,7 +145,6 @@ class SignUpController extends GetxController {
       if (kDebugMode) {
         print("GO TO HOME PAGE");
       }
-
     }
     update(["showEmail"]);
     update(["showLastname"]);
@@ -161,42 +160,64 @@ class SignUpController extends GetxController {
 
   singUp(email, password) async {
     try {
-      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password,);
+      loading.value = true;
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
       if (userCredential.user?.uid != null) {
-        Map<String, dynamic>  map2 = {
-          "Fullname": "${firstnameController.text} ${lastnameController.text}",
+        Map<String, dynamic> map2 = {
+          "fullName": "${firstnameController.text} ${lastnameController.text}",
           "Email": emailController.text,
           "Phone": phoneController.text,
           "City": cityController.text,
           "State": stateController.text,
           "Country": countryController.text,
         };
-        addDataInFirebase(userUid: userCredential.user?.uid??"",map:map2 );
+        addDataInFirebase(userUid: userCredential.user?.uid ?? "", map: map2);
       }
       Get.to(DashBoardScreen());
+      loading.value = false;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
+        if (kDebugMode) {
+          print('The password provided is too weak.');
+        }
       } else if (e.code == 'email-already-in-use') {
-        Get.snackbar("Error",e.message.toString() , colorText: const Color(0xffDA1414));
-        print('The account already exists for that email.');
+        Get.snackbar("Error", e.message.toString(),
+            colorText: const Color(0xffDA1414));
+        loading.value = false;
+        if (kDebugMode) {
+          print('The account already exists for that email.');
+        }
       }
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+        loading.value = false;
+      }
     }
   }
 
-  addDataInFirebase({required String userUid, required Map<String, dynamic> map}) async {
+  addDataInFirebase(
+      {required String userUid, required Map<String, dynamic> map}) async {
     await fireStore
         .collection("Auth")
         .doc("User")
         .collection("register")
         .doc(userUid)
-        .set(map).catchError((e) {
-      print('...error...' + e);
+        .set(map)
+        .catchError((e) {
+      if (kDebugMode) {
+        print('...error...' + e);
+      }
     });
-    print("*************************** Sucsse");
+    if (kDebugMode) {
+      print("*************************** Success");
+    }
   }
+
   bool show = true;
   Country countryModel = Country.from(json: {
     "e164_cc": "1",
@@ -260,24 +281,25 @@ class SignUpController extends GetxController {
     }
     update();
   }
+
   final FirebaseAuth auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
 
-  void signWithGoogle() async
-  {
+  void signWithGoogle() async {
     loading.value = true;
     if (await googleSignIn.isSignedIn()) {
       await googleSignIn.signOut();
     }
     final GoogleSignInAccount? account = await googleSignIn.signIn();
     final GoogleSignInAuthentication authentication =
-    await account!.authentication;
+        await account!.authentication;
 
     final OAuthCredential credential = GoogleAuthProvider.credential(
       idToken: authentication.idToken,
       accessToken: authentication.accessToken,
     );
-    final UserCredential authResult = await auth.signInWithCredential(credential);
+    final UserCredential authResult =
+        await auth.signInWithCredential(credential);
     final User? user = authResult.user;
     if (kDebugMode) {
       print(user!.email);
@@ -288,18 +310,17 @@ class SignUpController extends GetxController {
     if (kDebugMode) {
       print(user?.displayName);
     }
-    if(user?.uid != null&& user?.uid!="")
-    {
-
-      Get.offAll(()=>DashBoardScreen());
-      loading.value==false;
+    if (user?.uid != null && user?.uid != "") {
+      Get.offAll(() => DashBoardScreen());
+      loading.value == false;
       // loder false
-    }else{
-      loading.value==false;
+    } else {
+      loading.value == false;
     }
     loading.value == false;
     //flutterToast(Strings.googleSignInSuccess);
   }
+
   void faceBookSignIn() async {
     try {
       loading.value = true;
@@ -314,7 +335,7 @@ class SignUpController extends GetxController {
         }
       });
       final OAuthCredential facebookAuthCredential =
-      FacebookAuthProvider.credential(
+          FacebookAuthProvider.credential(
         loginResult.accessToken!.token,
       );
       if (kDebugMode) {
@@ -325,18 +346,17 @@ class SignUpController extends GetxController {
       if (kDebugMode) {
         print(userCredential);
       }
-      if(userCredential.user?.uid != null && userCredential.user?.uid !="") {
-        Get.offAll(()=>DashBoardScreen());
-        loading.value==false;
+      if (userCredential.user?.uid != null && userCredential.user?.uid != "") {
+        Get.offAll(() => DashBoardScreen());
+        loading.value == false;
         // loder false
-      }else{
-        loading.value==false;
+      } else {
+        loading.value == false;
       }
 
       loading.value = false;
       //flutterToast(Strings.faceBookSignInSuccess);
-    }
-    catch (e) {
+    } catch (e) {
       if (kDebugMode) {
         print(e);
       }

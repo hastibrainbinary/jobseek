@@ -69,7 +69,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                     height: 10,
                   ),
                   InkWell(
-                    onTap: () => controller.ontapGallery1(),
+                    onTap: () => controller.onTapGallery1(),
                     child: Container(
                       width: 60,
                       height: 60,
