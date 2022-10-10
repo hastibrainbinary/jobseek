@@ -432,7 +432,7 @@ class SigninScreen extends StatelessWidget {
                               style: GoogleFonts.poppins(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15,
-                                  color: ColorRes.containerColor)),
+                                  color: ColorRes.containerColor,),),
                         ),
                       ),
                       SizedBox(height: Get.height * 0.035),

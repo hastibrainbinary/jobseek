@@ -105,7 +105,6 @@ class SignInScreenController extends GetxController {
 
         print("GO TO HOME PAGE");
       }
-      
       signInWithEmailAndPassword(password: passwordController.text, email: emailController.text);
     }
   }
