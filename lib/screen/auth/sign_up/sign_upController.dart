@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,6 +30,7 @@ class SignUpController extends GetxController {
   String cityError = "";
   String stateError = "";
   String countryError = "";
+  static FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
   emailValidation() {
     if (emailController.text.trim() == "") {
@@ -135,12 +139,13 @@ class SignUpController extends GetxController {
     }
   }
 
-  onLoginBtnTap() {
+  onSignUpBtnTap() {
     if (validator()) {
+      singUp(emailController.text, passwordController.text);
       if (kDebugMode) {
         print("GO TO HOME PAGE");
       }
-      Get.to(DashBoardScreen());
+
     }
     update(["showEmail"]);
     update(["showLastname"]);
@@ -154,6 +159,44 @@ class SignUpController extends GetxController {
     update(['dark']);
   }
 
+  singUp(email, password) async {
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password,);
+      if (userCredential.user?.uid != null) {
+        Map<String, dynamic>  map2 = {
+          "Fullname": "${firstnameController.text} ${lastnameController.text}",
+          "Email": emailController.text,
+          "Phone": phoneController.text,
+          "City": cityController.text,
+          "State": stateController.text,
+          "Country": countryController.text,
+        };
+        addDataInFirebase(userUid: userCredential.user?.uid??"",map:map2 );
+      }
+      Get.to(DashBoardScreen());
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        Get.snackbar("Error",e.message.toString() , colorText: const Color(0xffDA1414));
+        print('The account already exists for that email.');
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  addDataInFirebase({required String userUid, required Map<String, dynamic> map}) async {
+    await fireStore
+        .collection("Auth")
+        .doc("User")
+        .collection("register")
+        .doc(userUid)
+        .set(map).catchError((e) {
+      print('...error...' + e);
+    });
+    print("*************************** Sucsse");
+  }
   bool show = true;
   Country countryModel = Country.from(json: {
     "e164_cc": "1",

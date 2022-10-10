@@ -429,7 +429,7 @@ class sign_upScreen extends StatelessWidget {
                                 )
                               : InkWell(
                                   // dashboard write
-                                  onTap: controller.onLoginBtnTap,
+                                  onTap: controller.onSignUpBtnTap,
                                   child: Container(
                                     height: 50,
                                     width: MediaQuery.of(context).size.width,
