@@ -60,7 +60,7 @@ class OrganizationProfileScreenController extends GetxController
   confirm(email, password, name, date, country, address) async {
     try {
       UserCredential userCredential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -72,7 +72,6 @@ class OrganizationProfileScreenController extends GetxController
         address: "address",
       );
 
-      Get.to(() => const Company());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         if (kDebugMode) {
@@ -118,7 +117,7 @@ class OrganizationProfileScreenController extends GetxController
         print("GO TO HOME PAGE");
       }
 
-      Get.to(ManagerDashBoardScreen());
+      Get.off(ManagerDashBoardScreen());
     }
   }
 

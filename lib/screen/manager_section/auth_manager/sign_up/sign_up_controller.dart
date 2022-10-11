@@ -8,6 +8,8 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:jobseek/screen/organization_profile_screen/organization_profile_screen.dart';
+import 'package:jobseek/service/pref_services.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 
 class SignUpControllerM extends GetxController {
   TextEditingController firstnameController = TextEditingController();
@@ -52,12 +54,10 @@ class SignUpControllerM extends GetxController {
   singUp(email, password) async {
     try {
       loading.value = true;
-      UserCredential userCredential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
+      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password,);
       if (userCredential.user?.uid != null) {
+        PrefService.setValue(PrefKeys.userId, userCredential.user?.uid.toString());
+        PrefService.setValue(PrefKeys.rol, "Manager");
         Map<String, dynamic> map2 = {
           "FullName": "${firstnameController.text} ${lastnameController.text}",
           "Email": emailController.text,
@@ -68,7 +68,7 @@ class SignUpControllerM extends GetxController {
         };
         addDataInFirebase(userUid: userCredential.user?.uid ?? "", map: map2);
       }
-      Get.to(() => const OrganizationProfileScreen());
+      Get.off(() => const OrganizationProfileScreen());
       loading.value = false;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {

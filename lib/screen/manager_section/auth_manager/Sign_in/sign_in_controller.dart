@@ -17,8 +17,7 @@ class SignInScreenControllerM extends GetxController {
       {required String email, required String password}) async {
     try {
       loading.value = true;
-      UserCredential credential = await auth.signInWithEmailAndPassword(
-          email: email, password: password);
+      UserCredential credential = await auth.signInWithEmailAndPassword(email: email, password: password);
       loading.value = false;
 
       if (kDebugMode) {
@@ -92,10 +91,10 @@ class SignInScreenControllerM extends GetxController {
     }
   }
 
-  onLoginBtnTap({String? email, String? password}) {
+  onLoginBtnTap() {
     if (validator()) {
       loading.value = true;
-      signInWithEmailAndPassword(password: password!, email: email!);
+      signInWithEmailAndPassword(password: passwordController.text.trim(), email: emailController.text.trim());
       loading.value = true;
       if (kDebugMode) {
         print("GO TO HOME PAGE");

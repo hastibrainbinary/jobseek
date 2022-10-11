@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:jobseek/screen/dashboard/dashboard_controller.dart';
 import 'package:jobseek/screen/dashboard/dashboard_screen.dart';
 import 'package:jobseek/screen/looking_for_screen/looking_for_screen.dart';
+import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
@@ -25,11 +26,12 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void splash() async {
-    String token = PrefService.getString(PrefKeys.accessToken);
+    String token = PrefService.getString(PrefKeys.userId);
+    String rol = PrefService.getString(PrefKeys.rol);
     await Future.delayed(const Duration(seconds: 3), () {
       final DashBoardController controller = Get.put(DashBoardController());
       controller.currentTab = 0;
-      Get.off(() => token=="" ? const LookingForScreen(): DashBoardScreen());
+      Get.off(() => token=="" ? const LookingForScreen(): rol=="User"? DashBoardScreen(): ManagerDashBoardScreen());
     });
   }
 

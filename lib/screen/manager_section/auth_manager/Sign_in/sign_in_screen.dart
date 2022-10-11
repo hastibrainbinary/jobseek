@@ -395,13 +395,8 @@ class SignInScreenM extends StatelessWidget {
                                             color: ColorRes.white)),
                                   )
                                 : InkWell(
-                                    onTap: () {
-                                      controller.onLoginBtnTap(
-                                          password: controller
-                                              .passwordController.text,
-                                          email:
-                                              controller.emailController.text);
-                                    },
+                                    onTap: controller.onLoginBtnTap
+                                    ,
                                     child: Container(
                                       height: 50,
                                       width: MediaQuery.of(context).size.width,

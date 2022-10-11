@@ -39,11 +39,14 @@ class SignUpScreen extends StatelessWidget {
                           color: ColorRes.logoColor,
                           borderRadius: BorderRadius.circular(15),
                         ),
-                        child: Text('Logo',
-                            style: appTextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 18,
-                                color: ColorRes.containerColor)),
+                        child: Text(
+                          'Logo',
+                          style: appTextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18,
+                            color: ColorRes.containerColor,
+                          ),
+                        ),
                       ),
                     ),
                     const SizedBox(height: 18),
@@ -496,11 +499,13 @@ class SignUpScreen extends StatelessWidget {
                                   height: 27,
                                 ),
                                 const SizedBox(width: 15),
-                                Text('Facebook',
-                                    style: appTextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 15,
-                                        color: ColorRes.black))
+                                Text(
+                                  'Facebook',
+                                  style: appTextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 15,
+                                      color: ColorRes.black),
+                                ),
                               ],
                             ),
                           ),
