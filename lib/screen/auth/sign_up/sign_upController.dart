@@ -313,12 +313,12 @@ class SignUpController extends GetxController {
     if (user?.uid != null && user?.uid != "") {
       Get.offAll(() => DashBoardScreen());
       loading.value == false;
-      // loder false
+      // loader false
     } else {
       loading.value == false;
     }
     loading.value == false;
-    //flutterToast(Strings.googleSignInSuccess);
+
   }
 
   void faceBookSignIn() async {
@@ -349,7 +349,7 @@ class SignUpController extends GetxController {
       if (userCredential.user?.uid != null && userCredential.user?.uid != "") {
         Get.offAll(() => DashBoardScreen());
         loading.value == false;
-        // loder false
+        // loader false
       } else {
         loading.value == false;
       }

@@ -1302,6 +1302,7 @@ class SignUpScreenM extends StatelessWidget {
                           color: ColorRes.white,
                           borderRadius: BorderRadius.circular(25)),
                       child: const CircularProgressIndicator(
+                        backgroundColor: Color(0xffE2D3FE),
                         color: ColorRes.containerColor,
                       ),
                     ),

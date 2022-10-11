@@ -38,7 +38,8 @@ class FirstScreen extends StatelessWidget {
         ),
         child: Column(
           children: [
-            SizedBox(height: Get.height * 0.12),
+            const SizedBox(height: 120),
+            // Get.height * 0.12),
             Text(
               'Logo',
               style: GoogleFonts.poppins(
@@ -51,7 +52,7 @@ class FirstScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Text(
                 textAlign: TextAlign.center,
-                'We currently have over 140 live roles waiting for you!',
+                'We currently have over 140 live roles waiting\n for you!',
                 style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w400,
                   fontSize: 26,

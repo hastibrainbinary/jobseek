@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void splash() async {
     String token = PrefService.getString(PrefKeys.accessToken);
-    await Future.delayed(const Duration(seconds: 5), () {
+    await Future.delayed(const Duration(seconds: 3), () {
       final DashBoardController controller = Get.put(DashBoardController());
       controller.currentTab = 0;
       Get.off(() => token=="" ? const LookingForScreen(): DashBoardScreen());

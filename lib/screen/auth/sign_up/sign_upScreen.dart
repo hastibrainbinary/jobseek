@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:jobseek/common/widgets/common_textField.dart';
 import 'package:jobseek/screen/auth/sign_inScreen/Signin_Screen.dart';
 import 'package:jobseek/screen/auth/sign_up/sign_upController.dart';
@@ -109,7 +108,7 @@ class sign_upScreen extends StatelessWidget {
                           Container(
                             width: Get.width,
                             height: 51,
-                            padding: EdgeInsets.only(left: 10),
+                            padding: const EdgeInsets.only(left: 10),
                             decoration: BoxDecoration(
                               color: ColorRes.white,
                               border: Border.all(
@@ -588,6 +587,7 @@ class sign_upScreen extends StatelessWidget {
                           color: ColorRes.white,
                           borderRadius: BorderRadius.circular(25)),
                       child: const CircularProgressIndicator(
+                        backgroundColor: Color(0xffE2D3FE),
                         color: ColorRes.containerColor,
                       ),
                     ),

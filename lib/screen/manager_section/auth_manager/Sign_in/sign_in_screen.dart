@@ -399,7 +399,8 @@ class SignInScreenM extends StatelessWidget {
                                       controller.onLoginBtnTap(
                                           password: controller
                                               .passwordController.text,
-                                          email: controller.emailController.text);
+                                          email:
+                                              controller.emailController.text);
                                     },
                                     child: Container(
                                       height: 50,
@@ -573,12 +574,14 @@ class SignInScreenM extends StatelessWidget {
                 ? Center(
                     child: Container(
                       padding: const EdgeInsets.all(35),
+
                       height: 110,
                       width: 110,
                       decoration: BoxDecoration(
                           color: ColorRes.white,
                           borderRadius: BorderRadius.circular(25)),
                       child: const CircularProgressIndicator(
+                        backgroundColor: Color(0xffE2D3FE),
                         color: ColorRes.containerColor,
                       ),
                     ),
