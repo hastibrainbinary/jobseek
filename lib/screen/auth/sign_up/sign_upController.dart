@@ -22,6 +22,7 @@ class SignUpController extends GetxController {
   TextEditingController cityController = TextEditingController();
   TextEditingController stateController = TextEditingController();
   TextEditingController countryController = TextEditingController();
+  TextEditingController occupationController = TextEditingController();
 
   RxBool loading = false.obs;
   String emailError = "";
@@ -32,6 +33,7 @@ class SignUpController extends GetxController {
   String cityError = "";
   String stateError = "";
   String countryError = "";
+  String occupationError = "";
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
   emailValidation() {
@@ -85,6 +87,14 @@ class SignUpController extends GetxController {
       countryError = 'Please Enter Country';
     } else {
       countryError = "";
+    }
+  }
+
+  occupationNameValidation() {
+    if (occupationController.text.trim() == "") {
+      occupationError = 'Please Enter Country';
+    } else {
+      occupationError = "";
     }
   }
 
@@ -163,12 +173,14 @@ class SignUpController extends GetxController {
   singUp(email, password) async {
     try {
       loading.value = true;
-      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
       if (userCredential.user?.uid != null) {
-        PrefService.setValue(PrefKeys.userId, userCredential.user?.uid.toString());
+        PrefService.setValue(
+            PrefKeys.userId, userCredential.user?.uid.toString());
         PrefService.setValue(PrefKeys.rol, "User");
         Map<String, dynamic> map2 = {
           "fullName": "${firstnameController.text} ${lastnameController.text}",
@@ -321,7 +333,6 @@ class SignUpController extends GetxController {
       loading.value == false;
     }
     loading.value == false;
-
   }
 
   void faceBookSignIn() async {
