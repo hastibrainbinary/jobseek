@@ -8,13 +8,14 @@ import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
-class sign_upScreen extends StatelessWidget {
-  sign_upScreen({Key? key}) : super(key: key);
+class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({Key? key}) : super(key: key);
 
-  SignUpController controller = Get.put(SignUpController());
+
 
   @override
   Widget build(BuildContext context) {
+    SignUpController controller = Get.put(SignUpController());
     return Scaffold(
       backgroundColor: ColorRes.white,
       body: Obx(() {
@@ -162,7 +163,8 @@ class sign_upScreen extends StatelessWidget {
                               : Container(
                                   width: MediaQuery.of(context).size.width,
                                   height: 28,
-                                  margin: const EdgeInsets.all(10),
+                                  margin:
+                                      const EdgeInsets.symmetric(vertical: 10),
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(50),
                                       color: ColorRes.invalidColor),
@@ -310,7 +312,8 @@ class sign_upScreen extends StatelessWidget {
                               : Container(
                                   width: MediaQuery.of(context).size.width,
                                   height: 28,
-                                  margin: const EdgeInsets.all(10),
+                                  margin:
+                                      const EdgeInsets.symmetric(vertical: 10),
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(50),
                                       color: ColorRes.invalidColor),

@@ -19,14 +19,14 @@ class VideoJoinScreen extends StatelessWidget {
         const Positioned(
           height: 120,
           top: 270,
-          left: 140,
+          left: 120,
           child: Image(
             image: AssetImage(AssetRes.airBnbLogo),
           ),
         ),
         Positioned(
           top: 400,
-          left: 165,
+          left: 145,
           child: Text(
             "AirBNB",
             style: appTextStyle(fontSize: 22, fontWeight: FontWeight.w500),
@@ -34,7 +34,7 @@ class VideoJoinScreen extends StatelessWidget {
         ),
         Positioned(
           top: 440,
-          left: 145,
+          left: 120,
           child: Text(
             "Joining Interview ...",
             style: appTextStyle(fontWeight: FontWeight.w400, fontSize: 14),

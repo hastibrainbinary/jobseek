@@ -29,7 +29,7 @@ class SecurityScreen extends StatelessWidget {
                       child: backButton(),
                     ),
                   ),
-                  const SizedBox(width: 80),
+                  const SizedBox(width: 75),
                   Text(
                     'Security',
                     style: appTextStyle(
@@ -53,7 +53,7 @@ class SecurityScreen extends StatelessWidget {
                           color: ColorRes.black),
                     ),
                   ),
-                  SizedBox(width: Get.width - 135),
+                  SizedBox(width: Get.width - 145),
                   Obx(() => FlutterSwitch(
                       height: 27,
                       width: 45,
@@ -69,7 +69,7 @@ class SecurityScreen extends StatelessWidget {
                 color: ColorRes.lightGrey.withOpacity(0.8),
                 height: 1,
               ),
-              const SizedBox(height: 15),
+              const SizedBox(height: 20),
               Row(
                 children: [
                   Padding(
@@ -98,7 +98,7 @@ class SecurityScreen extends StatelessWidget {
                 color: ColorRes.lightGrey.withOpacity(0.8),
                 height: 1,
               ),
-              const SizedBox(height: 15),
+              const SizedBox(height: 20),
               Row(
                 children: [
                   Padding(

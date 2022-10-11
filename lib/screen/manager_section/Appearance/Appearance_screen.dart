@@ -48,14 +48,14 @@ class AppearanceScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Text(
-                    'Dark',
+                    'Dark Mode',
                     style: appTextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
                         color: ColorRes.black),
                   ),
                 ),
-                SizedBox(width: Get.width - 125),
+                SizedBox(width: Get.width - 170),
                 Obx(() => FlutterSwitch(
                     height: 27,
                     width: 45,
@@ -71,7 +71,7 @@ class AppearanceScreen extends StatelessWidget {
               color: ColorRes.lightGrey.withOpacity(0.8),
               height: 1,
             ),
-            const SizedBox(height: 15),
+            const SizedBox(height: 20),
             Row(
               children: [
                 Padding(
@@ -100,7 +100,7 @@ class AppearanceScreen extends StatelessWidget {
               color: ColorRes.lightGrey.withOpacity(0.8),
               height: 1,
             ),
-            const SizedBox(height: 15),
+            const SizedBox(height: 20),
             Row(
               children: [
                 Padding(

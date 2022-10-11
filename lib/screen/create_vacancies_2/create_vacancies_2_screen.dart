@@ -147,20 +147,23 @@ class CreateVacancies2Screen extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Obx(
                       () => Column(children: [
-                        Row(
-                          children: [
-                            Text(
-                              "Open Position",
-                              style: appTextStyle(
-                                color: ColorRes.black.withOpacity(0.6),
-                                fontSize: 14,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15),
+                          child: Row(
+                            children: [
+                              Text(
+                                "Open Position",
+                                style: appTextStyle(
+                                  color: ColorRes.black.withOpacity(0.6),
+                                  fontSize: 14,
+                                ),
                               ),
-                            ),
-                            Text(
-                              "*",
-                              style: appTextStyle(color: ColorRes.starColor),
-                            ),
-                          ],
+                              Text(
+                                "*",
+                                style: appTextStyle(color: ColorRes.starColor),
+                              ),
+                            ],
+                          ),
                         ),
                         const SizedBox(
                           height: 10,
@@ -296,6 +299,7 @@ class CreateVacancies2Screen extends StatelessWidget {
                           height: 10,
                         ),
                         commonTextFormField(
+                            type: TextInputType.number,
                             textDecoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: "Type",

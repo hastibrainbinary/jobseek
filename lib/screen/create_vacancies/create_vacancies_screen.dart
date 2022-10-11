@@ -89,7 +89,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                       Row(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 5),
+                            padding: const EdgeInsets.only(left: 15),
                             child: Text(
                               "Open Position",
                               style: appTextStyle(
@@ -132,7 +132,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                       Row(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 5),
+                            padding: const EdgeInsets.only(left: 15),
                             child: Text(
                               "Salary",
                               style: appTextStyle(
@@ -149,6 +149,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                         height: 10,
                       ),
                       commonTextFormField(
+                          type: TextInputType.number,
                           textDecoration: InputDecoration(
                             contentPadding: const EdgeInsets.all(15),
                             border: InputBorder.none,
@@ -182,7 +183,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                       Row(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 5),
+                            padding: const EdgeInsets.only(left: 15),
                             child: Text(
                               "Location",
                               style: appTextStyle(
@@ -247,7 +248,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                       Row(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 5),
+                            padding: const EdgeInsets.only(left: 15),
                             child: Text(
                               "Type",
                               style: appTextStyle(

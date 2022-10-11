@@ -19,14 +19,14 @@ class VideoJoiningScreen extends StatelessWidget {
         const Positioned(
           height: 120,
           top: 270,
-          left: 140,
+          left: 120,
           child: Image(
             image: AssetImage(AssetRes.chatbox_Men_Image),
           ),
         ),
         Positioned(
           top: 400,
-          left: 165,
+          left: 140,
           child: Text(
             "AirBNB",
             style: appTextStyle(fontSize: 22, fontWeight: FontWeight.w500),
@@ -34,7 +34,7 @@ class VideoJoiningScreen extends StatelessWidget {
         ),
         Positioned(
           top: 440,
-          left: 145,
+          left: 120,
           child: Text(
             "Joining Interview ...",
             style: appTextStyle(fontWeight: FontWeight.w400, fontSize: 14),
@@ -42,7 +42,7 @@ class VideoJoiningScreen extends StatelessWidget {
         ),
         Positioned(
           top: 680,
-          left: 120,
+          left: 110,
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Container(
               height: 60,

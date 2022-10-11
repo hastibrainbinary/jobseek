@@ -343,26 +343,29 @@ class ProfileScreen extends StatelessWidget {
                           return snapshot.hasData
                               ? Obx(
                                   () => Column(children: [
-                                    Row(
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 5),
-                                          child: Text(
-                                            "Name Of Company",
-                                            style: appTextStyle(
-                                              color: ColorRes.black
-                                                  .withOpacity(0.6),
-                                              fontSize: 14,
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 8.0),
+                                      child: Row(
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(left: 10),
+                                            child: Text(
+                                              "Name Of Company",
+                                              style: appTextStyle(
+                                                color: ColorRes.black
+                                                    .withOpacity(0.6),
+                                                fontSize: 14,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        Text(
-                                          "*",
-                                          style: appTextStyle(
-                                              color: ColorRes.starColor),
-                                        ),
-                                      ],
+                                          Text(
+                                            "*",
+                                            style: appTextStyle(
+                                                color: ColorRes.starColor),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                     const SizedBox(
                                       height: 10,

@@ -31,7 +31,7 @@ class NotificationScreen extends StatelessWidget {
                     child: backButton(),
                   ),
                 ),
-                const SizedBox(width: 80),
+                const SizedBox(width: 75),
                 Text(
                   Strings.notification,
                   style: appTextStyle(
@@ -65,7 +65,7 @@ class NotificationScreen extends StatelessWidget {
                     onToggle: (value) => controller.onchangeSound(value))),
               ],
             ),
-            const SizedBox(height: 25),
+            const SizedBox(height: 20),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 20),
               color: ColorRes.lightGrey.withOpacity(0.8),
@@ -96,13 +96,13 @@ class NotificationScreen extends StatelessWidget {
                     onToggle: (value) => controller.onchangeVibrate(value))),
               ],
             ),
-            const SizedBox(height: 25),
+            const SizedBox(height: 20),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 20),
               color: ColorRes.lightGrey.withOpacity(0.8),
               height: 1,
             ),
-            const SizedBox(height: 15),
+            const SizedBox(height:20),
             Row(
               children: [
                 Padding(
@@ -128,13 +128,13 @@ class NotificationScreen extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 25),
+            const SizedBox(height: 20),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 20),
               color: ColorRes.lightGrey.withOpacity(0.8),
               height: 1,
             ),
-            const SizedBox(height: 25),
+            const SizedBox(height:20),
             Row(
               children: [
                 Padding(

@@ -3,15 +3,15 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/screen/looking_for_screen/looking_for_screen.dart';
-import 'package:jobseek/screen/manager_section/Appearance/Appearance_screen.dart';
-import 'package:jobseek/screen/manager_section/Notification/Notification_screen.dart';
-import 'package:jobseek/screen/manager_section/help/help_screen.dart';
-import 'package:jobseek/screen/manager_section/security/security_screen.dart';
+import 'package:jobseek/screen/settings/security/security_screen.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/string.dart';
+import 'appearance/appearance_screen.dart';
+import 'help/help_screen.dart';
+import 'notification/notification_screen.dart';
 
 class SettingsScreenU extends StatelessWidget {
   const SettingsScreenU({Key? key}) : super(key: key);
@@ -53,7 +53,7 @@ class SettingsScreenU extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (con) => const NotificationScreen()));
+                        builder: (con) => const NotificationScreenU()));
               },
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
@@ -100,7 +100,7 @@ class SettingsScreenU extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (con) => const SecurityScreen()));
+                        builder: (con) => const SecurityScreenU()));
               },
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
@@ -147,7 +147,7 @@ class SettingsScreenU extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (con) => const AppearanceScreen()));
+                        builder: (con) => const AppearanceScreenU()));
               },
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
@@ -192,7 +192,7 @@ class SettingsScreenU extends StatelessWidget {
             InkWell(
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (con) => const HelpScreen()));
+                    MaterialPageRoute(builder: (con) => const HelpScreenU()));
               },
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
@@ -238,8 +238,18 @@ class SettingsScreenU extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: InkWell(
-                onTap: () {
-                  settingModalBottomSheet(context);
+                onTap: () async {
+                  final GoogleSignIn googleSignIn = GoogleSignIn();
+                  if (await googleSignIn.isSignedIn()) {
+                    await googleSignIn.signOut();
+                  }
+                  PrefService.clear();
+                  // ignore: use_build_context_synchronously
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                        builder: (context) => const LookingForScreen(),
+                      ),
+                      (route) => false);
                 },
                 child: Row(
                   children: [

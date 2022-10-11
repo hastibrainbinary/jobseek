@@ -22,7 +22,7 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Stack(
+              child: Row(
                 children: [
                   Container(
                     height: 40,
@@ -42,13 +42,14 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Align(
+                  Container(
+                    width: Get.width - 80,
                     alignment: Alignment.center,
                     child: Text(
-                      "Application",
+                      "Applications",
                       style: appTextStyle(color: ColorRes.black, fontSize: 20),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

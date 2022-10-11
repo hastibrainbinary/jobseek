@@ -21,7 +21,7 @@ class ApplicantsSeeAllScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Stack(
+            child: Row(
               children: [
                 Container(
                   height: 40,
@@ -40,7 +40,8 @@ class ApplicantsSeeAllScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Align(
+                Container(
+                  width: Get.width - 80,
                   alignment: Alignment.center,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 5),

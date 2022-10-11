@@ -111,7 +111,7 @@ class JobDetailsScreen extends StatelessWidget {
               Center(
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
-                  child: isError == true
+                  child: isError == false
                       ? Text(
                           Strings
                               .nowYouCanSeeAllTheApplierCVStringResumeAndInviteThemToTheNextStep,
@@ -137,7 +137,7 @@ class JobDetailsScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 child: GestureDetector(
                   onTap: () {
-                    if (isError == true) {
+                    if (isError == false) {
                       ///see applied job list tap event
                       Navigator.push(
                           context,

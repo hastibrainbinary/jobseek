@@ -177,7 +177,7 @@ class ChatBoxScreen extends StatelessWidget {
                                           "Hi Adam Smith,",
                                           style: appTextStyle(
                                               color: ColorRes.black,
-                                              fontSize: 9,
+                                              fontSize: 10,
                                               fontWeight: FontWeight.w400),
                                         ),
                                       ],

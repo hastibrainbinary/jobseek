@@ -11,7 +11,7 @@ import 'package:jobseek/utils/color_res.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class FirstScreen extends StatelessWidget {
-   FirstScreen({Key? key}) : super(key: key);
+  FirstScreen({Key? key}) : super(key: key);
   FirstScreenController controller = Get.put(FirstScreenController());
 
   @override
@@ -38,7 +38,7 @@ class FirstScreen extends StatelessWidget {
         ),
         child: Column(
           children: [
-            const SizedBox(height: 120),
+            const SizedBox(height: 110),
             // Get.height * 0.12),
             Text(
               'Logo',
@@ -64,7 +64,7 @@ class FirstScreen extends StatelessWidget {
             InkWell(
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (con) => sign_upScreen()));
+                    MaterialPageRoute(builder: (con) => const SignUpScreen()));
               },
               child: Container(
                 height: 55,

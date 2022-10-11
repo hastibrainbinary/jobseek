@@ -120,8 +120,9 @@ class ChatBoxUserScreen extends StatelessWidget {
             shrinkWrap: true,
             itemBuilder: (BuildContext context, int index) {
               return Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 18,
+                ),
                 child: Dismissible(
                   confirmDismiss: (DismissDirection direction) async {
                     return await showModalBottomSheet(
@@ -236,7 +237,7 @@ class ChatBoxUserScreen extends StatelessWidget {
                                           "Hi Adam Smith,",
                                           style: appTextStyle(
                                               color: ColorRes.black,
-                                              fontSize: 9,
+                                              fontSize: 10,
                                               fontWeight: FontWeight.w400),
                                         ),
                                       ],

@@ -37,7 +37,14 @@ class OrganizationProfileScreenController extends GetxController
 
   Future<void> uploadingData(String name, String email, String date,
       String country, String address) async {
-    await fireStore.collection("user").add({
+    await fireStore
+        .collection("Auth")
+        .doc("Manager")
+        .collection("register")
+        .doc("userUid")
+        .collection("company")
+        .doc("details")
+        .set({
       "email": email,
       "name": name,
       "date": date,
@@ -83,14 +90,24 @@ class OrganizationProfileScreenController extends GetxController
     }
   }
 
-  onLoginBtnTap() {
-    fireStore.collection('user').add({
+  onLoginBtnTap() async {
+    Map<String, dynamic> map = {
       "email": companyEmailController.text.trim(),
       "name": companyNameController.text.trim(),
       "date": dateController.text.trim(),
       "country": countryController.text.trim(),
       "address": companyAddressController.text.trim(),
-    });
+    };
+
+    await fireStore
+        .collection("Auth")
+        .doc("Manager")
+        .collection("register")
+        .doc("userUid")
+        .collection("company")
+        .doc("details")
+        .set(map);
+
     validate();
     if (isNameValidate.value == false &&
         isEmailValidate.value == false &&

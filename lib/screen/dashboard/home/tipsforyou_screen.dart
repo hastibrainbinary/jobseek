@@ -128,7 +128,7 @@ class TipsForYouScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(18.0),
                         child: Text(
-                          'Lorem ipsum dolor sit amet,consectetur adipiscing elit,sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Urna id volutpat lacus laoreet non curabitur gravida arcu.Amet nisl purus in mollis nunc sed id.Elementum curabitur vitae nunc sed.A pellentesque sit amet porttitor eget.Ac turpis egestas integer eget aliquet nibh.Nibh praesent tristique magna sit amet purus gravida.Sagittis nisl rhoncus mattis rhoncus urna neque viverra.Volutpat sed cras ornare arcu dui vivamus arcu felis bibendum.',
+                          'Lorem ipsum dolor sit amet,consecrated adipiscing elit,sed do eiusmod temper incididunt ut labore et dolore magna aliqua.Urna id volutpat lacus laoreet non curabitur gravida arcu.Amet nisl purus in mollis nunc sed id.Elementum curabitur vitae nunc sed.A pellentesque sit amet porttitor eget.Ac turpis egestas integer eget aliquet nibh.Nibh praesent tristique magna sit amet purus gravida.Sagittis nisl rhoncus mattis rhoncus urna neque viverra.Volutpat sed cras ornare arcu dui vivamus arcu felis bibendum.',
                           style: appTextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w500,
@@ -136,9 +136,11 @@ class TipsForYouScreen extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(18.0),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 15.0,
+                        ),
                         child: Text(
-                          "Sagittis vitae et leo duis ut diam.Et pharetra pharetra massa massa.Faucibus et molestie ac feugiat.Ac feugiat sed lectus vestibulum.Sagittis eu volutpat odio facilisis. Venenatis urna cursus eget nunc scelerisque viverra mauris.",
+                          "Sagittis vitae et leo dais ut diam.Et praetor praetor mass mass.Faucibus et molestie ac feugiat.Ac feugiat sed lectus vestibulum.Sagittis eu volutpat odio facilisis. Venenatis urna cursus eget nunc scelerisque viverra mauris.",
                           style: appTextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 12,

@@ -31,7 +31,7 @@ class HelpScreen extends StatelessWidget {
                     child: backButton(),
                   ),
                 ),
-                const SizedBox(width: 80),
+                const SizedBox(width: 85),
                 Text(
                   'Help',
                   style: appTextStyle(
@@ -45,8 +45,8 @@ class HelpScreen extends StatelessWidget {
             const SizedBox(height: 28),
             InkWell(
               onTap: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (con) => const FaqScreen()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (con) => const FaqScreen()));
               },
               child: Padding(
                 padding: const EdgeInsets.all(18.0),
@@ -100,7 +100,7 @@ class HelpScreen extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 20),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 20),
               color: ColorRes.lightGrey.withOpacity(0.8),

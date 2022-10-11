@@ -132,7 +132,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                   Row(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 5),
+                        padding: const EdgeInsets.only(left: 16),
                         child: Text(
                           "Name Of Company",
                           style: appTextStyle(
@@ -176,7 +176,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                   Row(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 5),
+                        padding: const EdgeInsets.only(left: 16),
                         child: Text(
                           "Company Email",
                           style:
@@ -201,13 +201,17 @@ class OrganizationProfileScreen extends StatelessWidget {
                             fontSize: 14,
                             color: ColorRes.black.withOpacity(0.15)),
                         suffixIcon: Container(
-                          padding: const EdgeInsets.all(15),
-                          child: Image(
-                            image: const AssetImage(AssetRes.emailLogo),
-                            //height: 5,
-                            color: ColorRes.black.withOpacity(0.15),
-                          ),
-                        ),
+                            padding: const EdgeInsets.all(15),
+                            child: Icon(
+                              Icons.email_outlined,
+                              color: ColorRes.black.withOpacity(0.10),
+                            )
+                            // Image(
+                            //   image: const AssetImage(AssetRes.emailLogo),
+                            //   //height: 5,
+                            //   color: ColorRes.black.withOpacity(0.15),
+                            // ),
+                            ),
                       ),
                       controller: controller.companyEmailController),
                   controller.isEmailValidate.value == true
@@ -226,7 +230,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                   Row(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 5),
+                        padding: const EdgeInsets.only(left: 16),
                         child: Text(
                           "Established date",
                           style:
@@ -281,7 +285,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                   Row(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 5),
+                        padding: const EdgeInsets.only(left: 16),
                         child: Text(
                           "Country",
                           style:
@@ -348,7 +352,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                   Row(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 5),
+                        padding: const EdgeInsets.only(left: 16),
                         child: Text(
                           "Company Address",
                           style:

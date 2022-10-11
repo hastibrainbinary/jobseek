@@ -128,7 +128,7 @@ class RequirementsScreen extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (con) => JobDetailsScreen( isError: false,)));
+                          builder: (con) => JobDetailsScreen( isError: true,)));
                 },
                 child: Container(
                   height: 50,

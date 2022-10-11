@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/screen/call/call_joining_screen.dart';
-import 'package:jobseek/screen/call/call_receivescreen.dart';
 import 'package:jobseek/screen/call/video_joinScreen.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
@@ -82,7 +81,7 @@ class ChatLiveScreen extends StatelessWidget {
                           "Online",
                           style: appTextStyle(
                               color: ColorRes.black,
-                              fontSize: 9,
+                              fontSize: 12,
                               fontWeight: FontWeight.w400),
                         ),
                       ],

@@ -81,7 +81,7 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                           "Online",
                           style: appTextStyle(
                               color: ColorRes.black,
-                              fontSize: 9,
+                              fontSize: 12,
                               fontWeight: FontWeight.w400),
                         ),
                       ],

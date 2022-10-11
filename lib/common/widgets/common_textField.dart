@@ -5,6 +5,7 @@ Widget commonTextFormField(
     {InputDecoration? textDecoration,
     TextEditingController? controller,
     VoidCallback? onTap,
+      TextInputType? type,
 
 
     Color? color,
@@ -16,6 +17,7 @@ Widget commonTextFormField(
       border: Border.all(color: color ?? ColorRes.borderColor),
     ),
     child: TextField(
+      keyboardType:type ?? TextInputType.text,
       controller: controller,
       decoration: textDecoration,
       style: const TextStyle(fontWeight: FontWeight.bold),
