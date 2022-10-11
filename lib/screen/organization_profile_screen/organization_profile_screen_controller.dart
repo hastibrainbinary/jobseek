@@ -7,6 +7,8 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen.dart';
 import 'package:jobseek/screen/organization_profile_screen/services.dart';
+import 'package:jobseek/service/pref_services.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 
 class OrganizationProfileScreenController extends GetxController
     implements GetxService {
@@ -35,61 +37,8 @@ class OrganizationProfileScreenController extends GetxController
   File? image;
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
-  Future<void> uploadingData(String name, String email, String date,
-      String country, String address) async {
-    await fireStore
-        .collection("Auth")
-        .doc("Manager")
-        .collection("register")
-        .doc("userUid")
-        .collection("company")
-        .doc("details")
-        .set({
-      "email": email,
-      "name": name,
-      "date": date,
-      "country": country,
-      "address": address,
-    }).catchError((e) {
-      if (kDebugMode) {
-        print('======Error======== ' + e);
-      }
-    });
-  }
-
-  confirm(email, password, name, date, country, address) async {
-    try {
-      UserCredential userCredential =
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      await FirebaseServices.createData(
-        name: "name",
-        email: "email",
-        date: "date",
-        country: "country",
-        address: "address",
-      );
-
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        if (kDebugMode) {
-          print('The password provided is too weak.');
-        }
-      } else if (e.code == 'email-already-in-use') {
-        if (kDebugMode) {
-          print('The account already exists for that email.');
-        }
-      }
-    } catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
-    }
-  }
-
   onLoginBtnTap() async {
+    String uid  = PrefService.getString(PrefKeys.userId);
     Map<String, dynamic> map = {
       "email": companyEmailController.text.trim(),
       "name": companyNameController.text.trim(),
@@ -102,7 +51,7 @@ class OrganizationProfileScreenController extends GetxController
         .collection("Auth")
         .doc("Manager")
         .collection("register")
-        .doc("userUid")
+        .doc(uid)
         .collection("company")
         .doc("details")
         .set(map);
