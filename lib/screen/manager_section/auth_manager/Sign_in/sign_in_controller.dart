@@ -5,6 +5,8 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:jobseek/screen/organization_profile_screen/organization_profile_screen.dart';
+import 'package:jobseek/service/pref_services.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 
 class SignInScreenControllerM extends GetxController {
   RxBool loading = false.obs;
@@ -164,6 +166,8 @@ class SignInScreenControllerM extends GetxController {
     }
     // ignore: unnecessary_null_comparison
     if (user?.uid != null && user?.uid != "") {
+
+        PrefService.setValue(PrefKeys.userId, user?.uid.toString());
       Get.offAll(() => const OrganizationProfileScreen());
       loading.value == false;
       // loader false

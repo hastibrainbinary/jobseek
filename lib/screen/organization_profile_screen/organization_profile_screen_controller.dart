@@ -46,28 +46,33 @@ class OrganizationProfileScreenController extends GetxController
       "country": countryController.text.trim(),
       "address": companyAddressController.text.trim(),
     };
-
-    await fireStore
-        .collection("Auth")
-        .doc("Manager")
-        .collection("register")
-        .doc(uid)
-        .collection("company")
-        .doc("details")
-        .set(map);
-
     validate();
     if (isNameValidate.value == false &&
         isEmailValidate.value == false &&
         isAddressValidate.value == false &&
         isCountryValidate.value == false &&
-        isDateValidate.value == false) {
-      if (kDebugMode) {
-        print("GO TO HOME PAGE");
-      }
+        isDateValidate.value == false){
+  await fireStore
+      .collection("Auth")
+      .doc("Manager")
+      .collection("register")
+      .doc(uid)
+      .collection("company")
+      .doc("details")
+      .set(map).then((value) {
+
+
 
       Get.off(ManagerDashBoardScreen());
-    }
+
+
+  });
+
+
+
+
+}
+
   }
 
   validate() {
