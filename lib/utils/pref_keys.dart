@@ -9,6 +9,7 @@ class PrefKeys {
   static const phoneNumber = "phoneNumber";
   static const imageId = "imageId";
   static const openConfirmSignUpPage = "openConfirmSignUpPage";
+  static const totalPost = "totalPost";
 
   /// User Data
   static const firstName = "firstName";

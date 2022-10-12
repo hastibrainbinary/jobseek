@@ -1,12 +1,10 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen.dart';
-import 'package:jobseek/screen/organization_profile_screen/services.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 
@@ -38,7 +36,7 @@ class OrganizationProfileScreenController extends GetxController
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
   onLoginBtnTap() async {
-    String uid  = PrefService.getString(PrefKeys.userId);
+    String uid = PrefService.getString(PrefKeys.userId);
     Map<String, dynamic> map = {
       "email": companyEmailController.text.trim(),
       "name": companyNameController.text.trim(),
@@ -51,28 +49,19 @@ class OrganizationProfileScreenController extends GetxController
         isEmailValidate.value == false &&
         isAddressValidate.value == false &&
         isCountryValidate.value == false &&
-        isDateValidate.value == false){
-  await fireStore
-      .collection("Auth")
-      .doc("Manager")
-      .collection("register")
-      .doc(uid)
-      .collection("company")
-      .doc("details")
-      .set(map).then((value) {
-
-
-
-      Get.off(ManagerDashBoardScreen());
-
-
-  });
-
-
-
-
-}
-
+        isDateValidate.value == false) {
+      await fireStore
+          .collection("Auth")
+          .doc("Manager")
+          .collection("register")
+          .doc(uid)
+          .collection("company")
+          .doc("details")
+          .set(map)
+          .then((value) {
+        Get.off(ManagerDashBoardScreen());
+      });
+    }
   }
 
   validate() {

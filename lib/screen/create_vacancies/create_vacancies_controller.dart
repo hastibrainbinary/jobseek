@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/screen/add_requirements/add_requirements_screen.dart';
+import 'package:jobseek/service/pref_services.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 
 class CreateVacanciesController extends GetxController implements GetxService {
   TextEditingController positionController = TextEditingController();
@@ -12,16 +14,50 @@ class CreateVacanciesController extends GetxController implements GetxService {
   RxBool isSalaryValidate = false.obs;
   RxBool isLocationValidate = false.obs;
   RxBool isTypeValidate = false.obs;
-  onLoginBtnTap() {
+  static FirebaseFirestore fireStore = FirebaseFirestore.instance;
+
+  onLoginBtnTap() async {
+    String uid = PrefService.getString(PrefKeys.userId);
+    int totalPost = PrefService.getInt(PrefKeys.totalPost);
+    String pUid = "$uid*${totalPost + 1}";
+    if (kDebugMode) {
+      print("**************$totalPost");
+    }
+    Map<String, dynamic> map = {
+      "Position": positionController.text.trim(),
+      "salary": salaryController.text.trim(),
+      "location": locationController.text.trim(),
+      "type": typeController.text.trim(),
+      "Status": "Active",
+    };
     validate();
     if (isPositionValidate.value == false &&
         isSalaryValidate.value == false &&
         isLocationValidate.value == false &&
         isTypeValidate.value == false) {
-      if (kDebugMode) {
-        print("GO TO HOME PAGE");
-      }
-      Get.to(RequirementsScreen());
+      await fireStore
+          .collection('allPost')
+          .doc(pUid)
+          .set(map)
+          .then((value) async {
+        fireStore
+            .collection("Auth")
+            .doc("Manager")
+            .collection("register")
+            .doc(uid)
+            .collection("post")
+            .doc(pUid);
+
+        await fireStore
+            .collection("Auth")
+            .doc("Manager")
+            .collection("register")
+            .doc(uid)
+            .update({"TotalPost": totalPost});
+
+        PrefService.setValue(PrefKeys.totalPost, totalPost+1);
+      });
+
     }
   }
 
@@ -52,15 +88,13 @@ class CreateVacanciesController extends GetxController implements GetxService {
     dropDownValueLocation = val;
     locationController.text = dropDownValueLocation!;
 
-
-
     update(["Location"]);
-     }
-  changetype({required String val}){
-    dropDownValueType = val;
-    typeController.text= dropDownValueType!;
-    update(["type"]);
+  }
 
+  changetype({required String val}) {
+    dropDownValueType = val;
+    typeController.text = dropDownValueType!;
+    update(["type"]);
   }
 
   String? dropDownValueLocation;

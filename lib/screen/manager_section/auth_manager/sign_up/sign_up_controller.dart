@@ -58,6 +58,8 @@ class SignUpControllerM extends GetxController {
       if (userCredential.user?.uid != null) {
         PrefService.setValue(PrefKeys.userId, userCredential.user?.uid.toString());
         PrefService.setValue(PrefKeys.rol, "Manager");
+        PrefService.setValue(PrefKeys.totalPost,0);
+
         Map<String, dynamic> map2 = {
           "FullName": "${firstnameController.text} ${lastnameController.text}",
           "Email": emailController.text,
@@ -65,6 +67,7 @@ class SignUpControllerM extends GetxController {
           "City": cityController.text,
           "State": stateController.text,
           "Country": countryController.text,
+          "TotalPost":0,
         };
         addDataInFirebase(userUid: userCredential.user?.uid ?? "", map: map2);
       }
