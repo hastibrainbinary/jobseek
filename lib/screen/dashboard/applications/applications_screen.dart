@@ -12,6 +12,7 @@ import 'accepted_screen.dart';
 
 class ApplicationsScreen extends StatelessWidget {
   ApplicationsScreen({Key? key}) : super(key: key);
+
   final applicationController = Get.put(ApplicationsController());
 
   @override

@@ -137,6 +137,7 @@ class SignUpController extends GetxController {
     cityNameValidation();
     stateNameValidation();
     countryNameValidation();
+    occupationNameValidation();
     if (emailError == "" &&
         pwdError == "" &&
         phoneError == "" &&
@@ -144,7 +145,8 @@ class SignUpController extends GetxController {
         lastError == "" &&
         cityError == "" &&
         stateError == "" &&
-        countryError == "") {
+        countryError == "" &&
+        occupationError=="") {
       return true;
     } else {
       return false;
@@ -164,6 +166,7 @@ class SignUpController extends GetxController {
     update(["showPhoneNumber"]);
     update(["loginForm"]);
     update(["showPassword"]);
+    update(["showOccupation"]);
     update(["showCity"]);
     update(["showState"]);
     update(["showCountry"]);
@@ -186,6 +189,7 @@ class SignUpController extends GetxController {
           "fullName": "${firstnameController.text} ${lastnameController.text}",
           "Email": emailController.text,
           "Phone": phoneController.text,
+          "Occupation":occupationController.text,
           "City": cityController.text,
           "State": stateController.text,
           "Country": countryController.text,

@@ -319,8 +319,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                     controller.typeController.text == '')
                                 ? InkWell(
                                     // add screen
-                                    onTap: () => controller.onLoginBtnTap(),
-
+                                    onTap: controller.onTapNext,
                                     child: Container(
                                       height: 50,
                                       width: MediaQuery.of(context).size.width,
@@ -345,7 +344,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                   )
                                 : InkWell(
                                     // add screen
-                                    onTap: () => controller.onLoginBtnTap(),
+                                    onTap: controller.onTapNext,
                                     child: Container(
                                       height: 50,
                                       width: MediaQuery.of(context).size.width,

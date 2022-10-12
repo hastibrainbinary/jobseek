@@ -345,141 +345,14 @@ class SignUpScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15, bottom: 10),
-                      child: Row(
-                        children: [
-                          Text('occupation',
-                              style: appTextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  color: ColorRes.black.withOpacity(0.6))),
-                          Text(
-                            '*',
-                            style: appTextStyle(
-                                fontSize: 15, color: ColorRes.starColor),
-                          ),
-                        ],
-                      ),
-                    ),
                     GetBuilder<SignUpController>(
-                      id: "showOccupation",
-                      builder: (controller) => Column(
-                        children: [
-                          Container(
-                            height: 51,
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    offset: const Offset(6, 6),
-                                    color: ColorRes.containerColor
-                                        .withOpacity(0.10),
-                                    spreadRadius: 0,
-                                    blurRadius: 35),
-                              ],
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Material(
-                              shadowColor: ColorRes.containerColor,
-                              borderRadius: BorderRadius.circular(12),
-                              child: commonTextFormField(
-                                controller: controller.passwordController,
-                                obscureText: controller.show,
-                                textDecoration: InputDecoration(
-                                  hintText: 'occupation',
-                                  fillColor: Colors.transparent,
-                                  filled: true,
-                                  hintStyle: appTextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15,
-                                      color: ColorRes.black.withOpacity(0.15)),
-                                  border: controller.occupationController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.occupationError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  focusedBorder: controller
-                                          .occupationController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.occupationError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  disabledBorder: controller
-                                          .occupationController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.occupationError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  enabledBorder: controller
-                                          .occupationController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.occupationError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  errorBorder: controller
-                                          .occupationController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.occupationError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  focusedErrorBorder: controller
-                                          .occupationController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.occupationError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                ),
-                              ),
-                            ),
-                          ),
-                          controller.occupationError == ""
-                              ? const SizedBox(height: 20)
-                              : Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  height: 28,
-                                  margin:
-                                      const EdgeInsets.symmetric(vertical: 10),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      color: ColorRes.invalidColor),
-                                  padding: const EdgeInsets.only(left: 15),
-                                  child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        const Image(
-                                          image: AssetImage(
-                                            AssetRes.invalid,
-                                          ),
-                                          height: 14,
-                                        ),
-                                        const SizedBox(width: 10),
-                                        Text(
-                                          controller.pwdError,
-                                          style: appTextStyle(
-                                              fontSize: 9,
-                                              fontWeight: FontWeight.w400,
-                                              color: ColorRes.starColor),
-                                        )
-                                      ]),
-                                ),
-                        ],
-                      ),
-                    ),
+                        id: "showOccupation",
+                        builder: (controller) => texFieldColumn(
+                          title: 'Occupation',
+                          hintText: 'Occupation',
+                          error: controller.occupationError,
+                          txtController: controller.occupationController,
+                        )),
                     const SizedBox(height: 10),
                     GetBuilder<SignUpController>(
                       id: "showCity",
