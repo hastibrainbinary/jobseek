@@ -146,22 +146,6 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
                         fontSize: 16,
                         fontWeight: FontWeight.w600),
                   ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (con) =>
-                                  const ApplicantsSeeAllScreen()));
-                    },
-                    child: Text(
-                      "See all",
-                      style: appTextStyle(
-                          color: ColorRes.containerColor,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  )
                 ],
               ),
             ),

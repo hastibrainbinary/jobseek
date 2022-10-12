@@ -74,6 +74,7 @@ class HelpScreen extends StatelessWidget {
               color: ColorRes.lightGrey.withOpacity(0.8),
               height: 1,
             ),
+            const SizedBox(height: 15),
             InkWell(
               onTap: () {
                 Navigator.push(context,
@@ -100,7 +101,7 @@ class HelpScreen extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 15),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 20),
               color: ColorRes.lightGrey.withOpacity(0.8),

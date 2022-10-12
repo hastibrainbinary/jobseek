@@ -31,7 +31,7 @@ class AppearanceScreen extends StatelessWidget {
                     child: backButton(),
                   ),
                 ),
-                const SizedBox(width: 80),
+                const SizedBox(width: 75),
                 Text(
                   'Appearance',
                   style: appTextStyle(
@@ -113,7 +113,7 @@ class AppearanceScreen extends StatelessWidget {
                         color: ColorRes.black),
                   ),
                 ),
-                SizedBox(width: Get.width - 210),
+                SizedBox(width: Get.width - 211),
                 Obx(() => FlutterSwitch(
                     height: 27,
                     width: 45,

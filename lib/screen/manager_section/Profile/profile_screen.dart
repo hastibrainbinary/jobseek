@@ -12,6 +12,7 @@ import 'package:jobseek/utils/color_res.dart';
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({Key? key}) : super(key: key);
   final controller = Get.put(ProfileController());
+  static FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -318,9 +319,14 @@ class ProfileScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: StreamBuilder(
-                      stream: FirebaseFirestore.instance
+                      stream: fireStore
+                          .collection("Auth")
+                          .doc("Manager")
+                          .collection("register")
+                          .doc("userUid")
+                          .collection("company")
+                          .doc("details")
                           .collection("user")
-                          // .where('userid', isEqualTo: "aaaaaa")
                           .snapshots(),
                       builder:
                           (context, AsyncSnapshot<QuerySnapshot> snapshot) {

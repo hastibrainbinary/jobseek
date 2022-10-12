@@ -11,6 +11,7 @@ Widget commonTextFormField(
     Color? color,
     bool? obscureText}) {
   return Container(
+
     height: 50,
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(12),

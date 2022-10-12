@@ -205,13 +205,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                             child: Icon(
                               Icons.email_outlined,
                               color: ColorRes.black.withOpacity(0.10),
-                            )
-                            // Image(
-                            //   image: const AssetImage(AssetRes.emailLogo),
-                            //   //height: 5,
-                            //   color: ColorRes.black.withOpacity(0.15),
-                            // ),
-                            ),
+                            )),
                       ),
                       controller: controller.companyEmailController),
                   controller.isEmailValidate.value == true

@@ -189,7 +189,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                               Row(
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 5),
+                                    padding: const EdgeInsets.only(left: 15),
                                     child: Text(
                                       "Open Position",
                                       style: appTextStyle(
@@ -234,7 +234,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                               Row(
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 5),
+                                    padding: const EdgeInsets.only(left: 15),
                                     child: Text(
                                       "Salary",
                                       style: appTextStyle(
@@ -287,7 +287,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                               Row(
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 5),
+                                    padding: const EdgeInsets.only(left: 15),
                                     child: Text(
                                       "Location",
                                       style: appTextStyle(
@@ -359,7 +359,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                               Row(
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 5),
+                                    padding: const EdgeInsets.only(left: 15),
                                     child: Text(
                                       "Type",
                                       style: appTextStyle(
@@ -423,7 +423,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                               Row(
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 5),
+                                    padding: const EdgeInsets.only(left: 15),
                                     child: Text(
                                       "Status",
                                       style: appTextStyle(

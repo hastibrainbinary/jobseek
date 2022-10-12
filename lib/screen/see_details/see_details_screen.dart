@@ -150,11 +150,14 @@ class SeeDetailsScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      " Name",
-                      style: appTextStyle(
-                        color: ColorRes.black.withOpacity(0.6),
-                        fontSize: 14,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15),
+                      child: Text(
+                        " Name",
+                        style: appTextStyle(
+                          color: ColorRes.black.withOpacity(0.6),
+                          fontSize: 14,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -170,11 +173,14 @@ class SeeDetailsScreen extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    Text(
-                      " Email",
-                      style: appTextStyle(
-                        color: ColorRes.black.withOpacity(0.6),
-                        fontSize: 14,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15),
+                      child: Text(
+                        " Email",
+                        style: appTextStyle(
+                          color: ColorRes.black.withOpacity(0.6),
+                          fontSize: 14,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -190,11 +196,14 @@ class SeeDetailsScreen extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    Text(
-                      "Phone Number",
-                      style: appTextStyle(
-                        color: ColorRes.black.withOpacity(0.6),
-                        fontSize: 14,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15),
+                      child: Text(
+                        "Phone Number",
+                        style: appTextStyle(
+                          color: ColorRes.black.withOpacity(0.6),
+                          fontSize: 14,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -229,11 +238,14 @@ class SeeDetailsScreen extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    Text(
-                      " city",
-                      style: appTextStyle(
-                        color: ColorRes.black.withOpacity(0.6),
-                        fontSize: 14,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15),
+                      child: Text(
+                        " city",
+                        style: appTextStyle(
+                          color: ColorRes.black.withOpacity(0.6),
+                          fontSize: 14,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -249,11 +261,14 @@ class SeeDetailsScreen extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    Text(
-                      "State",
-                      style: appTextStyle(
-                        color: ColorRes.black.withOpacity(0.6),
-                        fontSize: 14,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15),
+                      child: Text(
+                        "State",
+                        style: appTextStyle(
+                          color: ColorRes.black.withOpacity(0.6),
+                          fontSize: 14,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -269,11 +284,14 @@ class SeeDetailsScreen extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    Text(
-                      "Country",
-                      style: appTextStyle(
-                        color: ColorRes.black.withOpacity(0.6),
-                        fontSize: 14,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15),
+                      child: Text(
+                        "Country",
+                        style: appTextStyle(
+                          color: ColorRes.black.withOpacity(0.6),
+                          fontSize: 14,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 10),

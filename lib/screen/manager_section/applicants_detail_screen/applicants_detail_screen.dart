@@ -303,10 +303,13 @@ class ApplicantsDetailScreen extends StatelessWidget {
                             children: [
                               Row(
                                 children: [
-                                  Text(
-                                    "Message",
-                                    style: appTextStyle(
-                                        color: ColorRes.black2, fontSize: 16),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 15),
+                                    child: Text(
+                                      "Message",
+                                      style: appTextStyle(
+                                          color: ColorRes.black2, fontSize: 16),
+                                    ),
                                   ),
                                   Text(
                                     "*",
