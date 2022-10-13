@@ -50,6 +50,13 @@ class OrganizationProfileScreenController extends GetxController
         isAddressValidate.value == false &&
         isCountryValidate.value == false &&
         isDateValidate.value == false) {
+
+      await fireStore
+          .collection("Auth")
+          .doc("Manager")
+          .collection("register")
+          .doc(uid).update({"company" : true,});
+      PrefService.setValue(PrefKeys.company, true);
       await fireStore
           .collection("Auth")
           .doc("Manager")

@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen.dart';
 import 'package:jobseek/screen/organization_profile_screen/organization_profile_screen.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/pref_keys.dart';
@@ -12,48 +14,91 @@ class SignInScreenControllerM extends GetxController {
   RxBool loading = false.obs;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
+  bool isManager = false;
   String emailError = "";
   String pwdError = "";
-  Future<String> signInWithEmailAndPassword(
+
+
+  void signInWithEmailAndPassword(
       {required String email, required String password}) async {
-    try {
-      loading.value = true;
-      UserCredential credential = await auth.signInWithEmailAndPassword(email: email, password: password);
-      loading.value = false;
+    FirebaseFirestore fireStore = FirebaseFirestore.instance;
+    loading.value = true;
 
-      if (kDebugMode) {
-        print(credential);
-      }
+    await fireStore
+        .collection("Auth")
+        .doc("Manager")
+        .collection("register")
+        .get()
+        .then((value) async {
+      if (value.docs.length.isEqual(0)) {
+        loading.value = true;
+        Get.snackbar("Error", "Please Create Account,\n Your Email is not Registered", colorText: const Color(0xffDA1414));
+      } else {
+        for (int i = 0; i < value.docs.length; i++) {
+          if (kDebugMode) {
+            print("${value.docs[i]["Email"]}=||||||++++++++++");
+          }
+          if (value.docs[i]["Email"] == email &&
+              value.docs[i]["Email"] != "") {
+            isManager = true;
+            PrefService.setValue(PrefKeys.rol, "Manager");
+            PrefService.setValue(PrefKeys.totalPost,value.docs[i]["TotalPost"]);
+            PrefService.setValue(PrefKeys.company, value.docs[i]["company"]);
+            print("$isManager====]]]]]");
 
-      if (credential.user!.email.toString() == email) {
-        Get.to(() => const OrganizationProfileScreen());
-      }
-
-      return credential.user!.uid;
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        Get.snackbar("Error", "Wrong user", colorText: const Color(0xffDA1414));
-        loading.value = false;
-
-        if (kDebugMode) {
-          print('No user found for that email.');
+            break;
+          } else {
+            isManager = false;
+            print("$isManager====]]]]]");
+          }
         }
-      } else if (e.code == 'wrong-password') {
-        Get.snackbar("Error", "Wrong Password",
-            colorText: const Color(0xffDA1414));
 
-        loading.value = false;
+        if (isManager == true) {
+          try {
+            loading.value = true;
+            UserCredential credential = await auth.signInWithEmailAndPassword(email: email, password: password);
 
-        if (kDebugMode) {
-          print('Wrong password provided for that user.');
+            if (kDebugMode) {
+              print(credential);
+            }
+
+            if (credential.user!.email.toString() == email) {
+              PrefService.setValue(PrefKeys.userId, credential.user!.uid.toString());
+              Get.off(() => PrefService.getBool(PrefKeys.company)? ManagerDashBoardScreen():const OrganizationProfileScreen());
+            }
+
+          } on FirebaseAuthException catch (e) {
+            if (e.code == 'user-not-found') {
+              Get.snackbar("Error", "Wrong user", colorText: const Color(0xffDA1414));
+              loading.value = false;
+
+              if (kDebugMode) {
+                print('No user found for that email.');
+              }
+            } else if (e.code == 'wrong-password') {
+              Get.snackbar("Error", "Wrong Password", colorText: const Color(0xffDA1414));
+              loading.value = false;
+
+              if (kDebugMode) {
+                print('Wrong password provided for that user.');
+              }
+            }
+            if (kDebugMode) {
+              print(e.code);
+              Get.snackbar("Error", e.code , colorText: const Color(0xffDA1414));
+              loading.value = false;
+            }
+          }
+        } else {
+          Get.snackbar("Error", "Please Create Account,\n Your Email is not Registered", colorText: const Color(0xffDA1414));
+          loading.value = false;
         }
+        loading.value = false;
       }
-      if (kDebugMode) {
-        print(e.code);
-      }
-      return e.code;
-    }
+
+      print("${value.isBlank}=|=|=|");
+      print("${value.docs.length}=|=|=|");
+    });
   }
 
   emailValidation() {
@@ -95,9 +140,7 @@ class SignInScreenControllerM extends GetxController {
 
   onLoginBtnTap() {
     if (validator()) {
-      loading.value = true;
       signInWithEmailAndPassword(password: passwordController.text.trim(), email: emailController.text.trim());
-      loading.value = true;
       if (kDebugMode) {
         print("GO TO HOME PAGE");
       }
