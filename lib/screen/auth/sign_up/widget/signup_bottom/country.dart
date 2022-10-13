@@ -23,7 +23,7 @@ Widget countryCodePicker(BuildContext context,{double? padding}) {
           ),
           SizedBox(width: Get.width * 0.02),
           // Icon(Icons.arrow_drop_down_rounded),
-          Image.asset(AssetRes.dropDWon, height: 4),
+          Image.asset(AssetRes.dropdwon, height: 4),
           SizedBox(width: Get.width * 0.020),
         ],
       ),

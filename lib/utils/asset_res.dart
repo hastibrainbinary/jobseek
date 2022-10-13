@@ -33,7 +33,7 @@ class AssetRes {
   static const seePdf = '${icons}see_pdf.png';
 
   ///-----------------------------images------------------------------------------------------
-  static const splashScreenBack = '${images}splashScreenBack.png';
+  static const splash_screenback = '${images}splash_screenback.png';
   static const firstBackScreen = '${images}FirstBackScreen.png';
 
   ///-----------------------------images------------------------------------------------------
@@ -54,7 +54,7 @@ class AssetRes {
   static const successImage = '${images}success_image.png';
   static const failedImage = '${images}failed_image.png';
   static const chatImage = '${images}chatImage.png';
-  static const dropDWon = '${images}DropDown.png';
+  static const dropdwon = '${images}dropdwon.png';
   static const detailsImage = '${images}detailsImage.png';
   static const chatbox_Men_Image = '${images}chatbox_Men_Image.png';
   static const roundAirbnb = '${images}roundAirbnb.png';
