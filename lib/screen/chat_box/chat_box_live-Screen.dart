@@ -14,7 +14,7 @@ class ChatBoxLiveScreenM extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: ColorRes.backgroungColor,
+      backgroundColor: ColorRes.backgroundColor,
       body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,7 +62,7 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                 child: Row(
                   children: [
                     Image.asset(
-                      AssetRes.chatbox_Men_Image,
+                      AssetRes.chatBoxMenImage,
                     ),
                     const SizedBox(width: 20),
                     Column(

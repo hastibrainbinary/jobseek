@@ -21,7 +21,7 @@ class SettingScreenM extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: ColorRes.backgroungColor,
+      backgroundColor: ColorRes.backgroundColor,
       body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,7 +83,7 @@ class SettingScreenM extends StatelessWidget {
                     ),
                     const SizedBox(width: 165),
                     const Image(
-                      image: AssetImage(AssetRes.settingaArrow),
+                      image: AssetImage(AssetRes.settingArrow),
                       height: 15,
                     ),
                   ],
@@ -130,7 +130,7 @@ class SettingScreenM extends StatelessWidget {
                     ),
                     SizedBox(width: Get.width - 170),
                     const Image(
-                      image: AssetImage(AssetRes.settingaArrow),
+                      image: AssetImage(AssetRes.settingArrow),
                       height: 15,
                     ),
                   ],
@@ -177,7 +177,7 @@ class SettingScreenM extends StatelessWidget {
                     ),
                     SizedBox(width: Get.width - 200),
                     const Image(
-                      image: AssetImage(AssetRes.settingaArrow),
+                      image: AssetImage(AssetRes.settingArrow),
                       height: 15,
                     ),
                   ],
@@ -223,7 +223,7 @@ class SettingScreenM extends StatelessWidget {
                     ),
                     SizedBox(width: Get.width - 140),
                     const Image(
-                      image: AssetImage(AssetRes.settingaArrow),
+                      image: AssetImage(AssetRes.settingArrow),
                       height: 15,
                     ),
                   ],
@@ -250,7 +250,7 @@ class SettingScreenM extends StatelessWidget {
                       width: 55,
                       padding: const EdgeInsets.all(18),
                       decoration: BoxDecoration(
-                        color: ColorRes.deletColor,
+                        color: ColorRes.deleteColor,
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: const Image(

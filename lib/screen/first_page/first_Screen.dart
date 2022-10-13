@@ -25,7 +25,7 @@ class FirstScreen extends StatelessWidget {
       print(Get.width);
     }
     return Scaffold(
-      backgroundColor: ColorRes.backgroungColor,
+      backgroundColor: ColorRes.backgroundColor,
       body: Container(
         width: Get.width,
         height: Get.height,

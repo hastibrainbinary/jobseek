@@ -15,7 +15,7 @@ class FirstPageScreenM extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: ColorRes.backgroungColor,
+      backgroundColor: ColorRes.backgroundColor,
       body: Container(
         width: Get.width,
         height: Get.height,

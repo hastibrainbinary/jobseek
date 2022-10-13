@@ -1209,7 +1209,7 @@ class SignUpScreenM extends StatelessWidget {
                             children: [
                               const Image(
                                 image: AssetImage(
-                                  AssetRes.facebook_image,
+                                  AssetRes.facebookImage,
                                 ),
                                 height: 27,
                               ),
@@ -1243,7 +1243,7 @@ class SignUpScreenM extends StatelessWidget {
                             children: [
                               const Image(
                                 image: AssetImage(
-                                  AssetRes.Google_logo,
+                                  AssetRes.googleLogo,
                                 ),
                                 height: 27,
                               ),

@@ -14,7 +14,7 @@ class ChatBoxUserScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: ColorRes.backgroungColor,
+      backgroundColor: ColorRes.backgroundColor,
       body: Column(children: [
         const SizedBox(height: 50),
         Row(children: [
@@ -340,7 +340,7 @@ class ChatBoxUserScreen extends StatelessWidget {
                   background: Container(
                     alignment: Alignment.centerRight,
                     decoration: BoxDecoration(
-                      color: ColorRes.deletColor,
+                      color: ColorRes.deleteColor,
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: const Icon(

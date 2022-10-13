@@ -17,7 +17,7 @@ class ResetPasswordScreenM extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: ColorRes.backgroungColor,
+      backgroundColor: ColorRes.backgroundColor,
       body: Column(children: [
         SizedBox(height: Get.height * 0.0738),
         Row(

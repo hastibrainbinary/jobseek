@@ -14,7 +14,7 @@ class NotificationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     NotificationController controller = Get.put(NotificationController());
     return Scaffold(
-      backgroundColor: ColorRes.backgroungColor,
+      backgroundColor: ColorRes.backgroundColor,
       body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,

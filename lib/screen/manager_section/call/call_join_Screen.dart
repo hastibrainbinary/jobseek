@@ -11,7 +11,7 @@ class CallJoinScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: ColorRes.backgroungColor,
+      backgroundColor: ColorRes.backgroundColor,
       body: Column(
         children: [
           SizedBox(
@@ -25,7 +25,7 @@ class CallJoinScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(35),
                 image: const DecorationImage(
                     image: AssetImage(
-                      AssetRes.chatbox_Men_Image,
+                      AssetRes.chatBoxMenImage,
                     ),
                     fit: BoxFit.cover),
               ),
@@ -53,14 +53,14 @@ class CallJoinScreen extends StatelessWidget {
               height: 60,
               width: 60,
               decoration: BoxDecoration(
-                color: ColorRes.deletColor,
+                color: ColorRes.deleteColor,
                 borderRadius: BorderRadius.circular(15),
               ),
               child: const Padding(
                 padding: EdgeInsets.all(16.0),
                 child: Image(
                   image: AssetImage(
-                    AssetRes.call_decaline,
+                    AssetRes.callDecline,
                   ),
                 ),
               ),

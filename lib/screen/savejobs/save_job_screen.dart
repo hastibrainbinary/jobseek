@@ -14,7 +14,7 @@ class SaveJobScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(SaveJobController());
     return Scaffold(
-      backgroundColor: ColorRes.backgroungColor,
+      backgroundColor: ColorRes.backgroundColor,
       body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,

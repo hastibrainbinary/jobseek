@@ -18,7 +18,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: ColorRes.backgroungColor,
+      backgroundColor: ColorRes.backgroundColor,
       body: Column(
         children: [
           const SizedBox(height: 60),
@@ -241,7 +241,7 @@ class ProfileScreen extends StatelessWidget {
                                                         child: const Image(
                                                           image: AssetImage(
                                                               AssetRes
-                                                                  .galleryaimage),
+                                                                  .galleryImage),
                                                           color: ColorRes
                                                               .containerColor,
                                                         ),
@@ -727,11 +727,20 @@ class ProfileScreen extends StatelessWidget {
                                     ),
                                   ]),
                                 )
-                              : const Center(
-                                  child: CircularProgressIndicator(
-                                    color: ColorRes.containerColor,
-                                  ),
-                                );
+                              :  Center(
+                            child: Container(
+                              padding: const EdgeInsets.all(35),
+                              height: 110,
+                              width: 110,
+                              decoration: BoxDecoration(
+                                  color: ColorRes.white,
+                                  borderRadius: BorderRadius.circular(25)),
+                              child: const CircularProgressIndicator(
+                                backgroundColor: Color(0xffE2D3FE),
+                                color: ColorRes.containerColor,
+                              ),
+                            ),
+                          );
                         }
                       }),
                 ),

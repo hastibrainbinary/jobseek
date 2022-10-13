@@ -10,7 +10,7 @@ class ResumeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: ColorRes.black,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -56,9 +56,10 @@ class ResumeScreen extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            InkWell( onTap: (){
-              Get.back();
-            },
+            InkWell(
+              onTap: () {
+                Get.back();
+              },
               child: Container(
                 height: 50,
                 margin: const EdgeInsets.symmetric(horizontal: 20),

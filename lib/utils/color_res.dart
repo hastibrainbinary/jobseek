@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ColorRes {
-  static const deletColor = Color(0xffFCE6ED);
+  static const deleteColor = Color(0xffFCE6ED);
   static const white = Color(0xFFFFFFFF);
   static const black = Color(0xff000000);
   static const black2 = Color(0xff343740);
@@ -13,7 +13,7 @@ class ColorRes {
   static const starColor = Color(0xffDA1414);
   static const red = Color(0xffDF3727);
   static const invalidColor = Color(0xffFEEFEF);
-  static const backgroungColor = Color(0xffF8F8F8);
+  static const backgroundColor = Color(0xffF8F8F8);
   static const splashLogoColor = Color(0xff343740);
   static const white2 = Color(0xffEEF0F1);
   static const grey = Color(0xff616162);

@@ -15,7 +15,7 @@ class ForgotPasswordScreenU extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorRes.backgroungColor,
+      backgroundColor: ColorRes.backgroundColor,
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: SingleChildScrollView(

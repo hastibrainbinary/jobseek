@@ -14,7 +14,7 @@ class HelpScreenU extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorRes.backgroungColor,
+      backgroundColor: ColorRes.backgroundColor,
       body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,7 +61,7 @@ class HelpScreenU extends StatelessWidget {
                     ),
                     SizedBox(width: Get.width - 75),
                     const Image(
-                      image: AssetImage(AssetRes.settingaArrow),
+                      image: AssetImage(AssetRes.settingArrow),
                       height: 15,
                     ),
                   ],
@@ -93,7 +93,7 @@ class HelpScreenU extends StatelessWidget {
                     ),
                     SizedBox(width: Get.width - 185),
                     const Image(
-                      image: AssetImage(AssetRes.settingaArrow),
+                      image: AssetImage(AssetRes.settingArrow),
                       height: 15,
                     ),
                   ],
@@ -125,7 +125,7 @@ class HelpScreenU extends StatelessWidget {
                     ),
                     SizedBox(width: Get.width - 141),
                     const Image(
-                      image: AssetImage(AssetRes.settingaArrow),
+                      image: AssetImage(AssetRes.settingArrow),
                       height: 15,
                     ),
                   ],

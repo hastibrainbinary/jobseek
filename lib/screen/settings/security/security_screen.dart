@@ -13,7 +13,7 @@ class SecurityScreenU extends StatelessWidget {
   Widget build(BuildContext context) {
     SecurityControllerU controller = Get.put(SecurityControllerU());
     return Scaffold(
-      backgroundColor: ColorRes.backgroungColor,
+      backgroundColor: ColorRes.backgroundColor,
       body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,

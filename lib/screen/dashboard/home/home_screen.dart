@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,6 +16,7 @@ import 'package:jobseek/utils/string.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
   final HomeController controller = HomeController();
+  FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class HomeScreen extends StatelessWidget {
     return Container(
       height: Get.height,
       width: Get.width,
-      color: ColorRes.backgroungColor,
+      color: ColorRes.backgroundColor,
       child: Column(
         children: [
           const SizedBox(
@@ -155,86 +157,114 @@ class HomeScreen extends StatelessWidget {
                         }),
                   ),
 
-                  ListView.builder(
-                      itemCount: controller.jobTypes.length,
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        return InkWell(
-                          onTap: () => Get.toNamed(AppRes.jobDetailScreen,
-                              arguments: {
-                                "saved": controller.jobTypesSaved[index]
-                              }),
-                          child: Container(
-                            height: 92,
-                            width: Get.width,
-                            margin: const EdgeInsets.symmetric(
-                                horizontal: 18, vertical: 4),
-                            padding: const EdgeInsets.all(15),
-                            decoration: BoxDecoration(
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(15)),
-                                border:
-                                    Border.all(color: const Color(0xffF3ECFF)),
-                                color: ColorRes.white),
-                            child: Row(
-                              children: [
-                                Image.asset(controller.jobTypesLogo[index]),
-                                const SizedBox(width: 20),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(controller.jobTypes[index],
-                                        style: appTextStyle(
-                                            color: ColorRes.black,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w500)),
-                                    Text("AirBNB",
-                                        style: appTextStyle(
-                                            color: ColorRes.black,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w400)),
-                                    Text("United States - Full Time",
-                                        style: appTextStyle(
-                                            color: ColorRes.black,
-                                            fontSize: 9,
-                                            fontWeight: FontWeight.w400)),
-                                  ],
-                                ),
-                                const Spacer(),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    InkWell(
-                                      onTap: () {
-                                        controller.onTapSave(index);
-                                      },
-                                      child: Obx(() {
-                                        return Image.asset(
-                                          controller.jobTypesSaved[index]
-                                              ? AssetRes.bookMarkFillIcon
-                                              : AssetRes.bookMarkBorderIcon,
-                                          height: 20,
-                                        );
-                                      }),
+                  StreamBuilder(
+                      stream: fireStore.collection("allPost").snapshots(),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<dynamic> snapshot) {
+                        return snapshot.hasData
+                            ? ListView.builder(
+                                itemCount: snapshot.data.docs.length,
+                                shrinkWrap: true,
+                                physics: const BouncingScrollPhysics(),
+                                itemBuilder: (context, index) {
+                                  return InkWell(
+                                    onTap: () => Get.toNamed(
+                                        AppRes.jobDetailScreen,
+                                        arguments: {
+                                          "saved":
+                                              controller.jobTypesSaved[index]
+                                        }),
+                                    child: Container(
+                                      height: 92,
+                                      width: Get.width,
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 18, vertical: 4),
+                                      padding: const EdgeInsets.all(15),
+                                      decoration: BoxDecoration(
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(15)),
+                                          border: Border.all(
+                                              color: const Color(0xffF3ECFF)),
+                                          color: ColorRes.white),
+                                      child: Row(
+                                        children: [
+                                          Image.asset(
+                                              controller.jobTypesLogo[index]),
+                                          const SizedBox(width: 20),
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                  // controller.jobTypes[index],
+                                                  snapshot.data!.docs[index]
+                                                      ["Position"],
+                                                  style: appTextStyle(
+                                                      color: ColorRes.black,
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.w500)),
+                                              Text("AirBNB",
+                                                  style: appTextStyle(
+                                                      color: ColorRes.black,
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                          FontWeight.w400)),
+                                              Text(
+                                                  "${snapshot.data!.docs[index]["location"]}  ${snapshot.data!.docs[index]["type"]}",
+                                                  style: appTextStyle(
+                                                      color: ColorRes.black,
+                                                      fontSize: 10,
+                                                      fontWeight:
+                                                          FontWeight.w400)),
+                                            ],
+                                          ),
+                                          const Spacer(),
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.end,
+                                            children: [
+                                              InkWell(
+                                                onTap: () {
+                                                  controller.onTapSave(index);
+                                                },
+                                                child: Obx(() {
+                                                  return Image.asset(
+                                                    controller.jobTypesSaved[
+                                                            index]
+                                                        ? AssetRes
+                                                            .bookMarkFillIcon
+                                                        : AssetRes
+                                                            .bookMarkBorderIcon,
+                                                    height: 20,
+                                                  );
+                                                }),
+                                              ),
+                                              const Spacer(),
+                                              Text(
+                                                "\$${snapshot.data!.docs[index]["salary"]}",
+                                                style: appTextStyle(
+                                                    fontSize: 16,
+                                                    color:
+                                                        ColorRes.containerColor,
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                              )
+                                            ],
+                                          ),
+                                          const SizedBox(width: 10)
+                                        ],
+                                      ),
                                     ),
-                                    const Spacer(),
-                                    Text(
-                                      "\$2.350",
-                                      style: appTextStyle(
-                                          fontSize: 16,
-                                          color: ColorRes.containerColor,
-                                          fontWeight: FontWeight.w500),
-                                    )
-                                  ],
-                                ),
-                                const SizedBox(width: 10)
-                              ],
-                            ),
-                          ),
-                        );
+                                  );
+                                })
+                            : Center(
+                                child: CircularProgressIndicator(),
+                              );
                       }),
                 ],
               ),

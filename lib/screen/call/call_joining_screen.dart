@@ -10,7 +10,7 @@ class CallJoiningScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorRes.backgroungColor,
+      backgroundColor: ColorRes.backgroundColor,
       body: Column(
         children: [
           SizedBox(
@@ -44,14 +44,14 @@ class CallJoiningScreen extends StatelessWidget {
               height: 60,
               width: 60,
               decoration: BoxDecoration(
-                color: ColorRes.deletColor,
+                color: ColorRes.deleteColor,
                 borderRadius: BorderRadius.circular(15),
               ),
               child: const Padding(
                 padding: EdgeInsets.all(16.0),
                 child: Image(
                   image: AssetImage(
-                    AssetRes.call_decaline,
+                    AssetRes.callDecline,
                   ),
                 ),
               ),

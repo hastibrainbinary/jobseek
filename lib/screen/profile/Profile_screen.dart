@@ -16,7 +16,7 @@ class ProfileUserScreenU extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: ColorRes.backgroungColor,
+      backgroundColor: ColorRes.backgroundColor,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -240,7 +240,7 @@ class ProfileUserScreenU extends StatelessWidget {
                                                           child: const Image(
                                                             image: AssetImage(
                                                                 AssetRes
-                                                                    .galleryaimage),
+                                                                    .galleryImage),
                                                             color: ColorRes
                                                                 .containerColor,
                                                           ),

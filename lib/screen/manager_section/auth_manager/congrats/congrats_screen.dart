@@ -12,7 +12,7 @@ class CongratsScreenM extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: ColorRes.backgroungColor,
+        backgroundColor: ColorRes.backgroundColor,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,

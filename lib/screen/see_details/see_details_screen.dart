@@ -15,7 +15,7 @@ class SeeDetailsScreen extends StatelessWidget {
     final controller = Get.put(SeeDetailsController());
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: ColorRes.backgroungColor,
+      backgroundColor: ColorRes.backgroundColor,
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
@@ -62,7 +62,7 @@ class SeeDetailsScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(5.0),
                         child: Image.asset(
-                          AssetRes.see_pdf,
+                          AssetRes.seePdf,
                           height: 40,
                         ),
                       ),

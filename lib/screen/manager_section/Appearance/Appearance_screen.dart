@@ -14,7 +14,7 @@ class AppearanceScreen extends StatelessWidget {
     AppearanceController controller = Get.put(AppearanceController());
 
     return Scaffold(
-      backgroundColor: ColorRes.backgroungColor,
+      backgroundColor: ColorRes.backgroundColor,
       body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,

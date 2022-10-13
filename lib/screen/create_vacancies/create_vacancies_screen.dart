@@ -16,7 +16,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
     final controller = Get.put(CreateVacanciesController());
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: ColorRes.backgroungColor,
+        backgroundColor: ColorRes.backgroundColor,
         body: SingleChildScrollView(
           child: GestureDetector(
             onTap: () {

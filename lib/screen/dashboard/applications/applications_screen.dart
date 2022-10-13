@@ -22,7 +22,7 @@ class ApplicationsScreen extends StatelessWidget {
       body: Container(
         height: Get.height,
         width: Get.width,
-        color: ColorRes.backgroungColor,
+        color: ColorRes.backgroundColor,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,

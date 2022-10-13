@@ -20,7 +20,7 @@ class JobDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // debugPrint("Args Print $args");
     return Scaffold(
-      backgroundColor: ColorRes.backgroungColor,
+      backgroundColor: ColorRes.backgroundColor,
       body: SingleChildScrollView(
         child: Column(
             mainAxisAlignment: MainAxisAlignment.start,

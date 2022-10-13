@@ -12,7 +12,7 @@ class ChatBovLiveScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: ColorRes.backgroungColor,
+      backgroundColor: ColorRes.backgroundColor,
       body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,7 +58,7 @@ class ChatBovLiveScreen extends StatelessWidget {
                 child: Row(
                   children: [
                     Image.asset(
-                      AssetRes.chatbox_Men_Image,
+                      AssetRes.chatBoxMenImage,
                     ),
                     const SizedBox(width: 20),
                     Column(
@@ -128,7 +128,7 @@ class ChatBovLiveScreen extends StatelessWidget {
                     'Hi,Adam Smith,'
                     '\nCongratulations!'
                     '\nAfter we reviewed your application for the position'
-                    '\nof UI/UX Designer,we congratulate you for beinga'
+                    '\nof UI/UX Designer,we congratulate you for being'
                     '\npart of us.After this you will be contacted'
                     '\npersonally by our team.Thank You ...'
                     '\nGreetings,'

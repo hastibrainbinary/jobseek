@@ -21,7 +21,7 @@ class VideoJoiningScreen extends StatelessWidget {
           top: 270,
           left: 120,
           child: Image(
-            image: AssetImage(AssetRes.chatbox_Men_Image),
+            image: AssetImage(AssetRes.chatBoxMenImage),
           ),
         ),
         Positioned(
@@ -55,7 +55,7 @@ class VideoJoiningScreen extends StatelessWidget {
                 padding: EdgeInsets.all(16.0),
                 child: Image(
                   image: AssetImage(
-                    AssetRes.call_decaline,
+                    AssetRes.callDecline,
                   ),
                 ),
               ),

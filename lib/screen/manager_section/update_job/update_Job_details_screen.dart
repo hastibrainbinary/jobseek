@@ -10,7 +10,7 @@ class UpdateJobScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: ColorRes.backgroungColor,
+        backgroundColor: ColorRes.backgroundColor,
         body: Column(children: [
           const SizedBox(height: 50),
           Row(

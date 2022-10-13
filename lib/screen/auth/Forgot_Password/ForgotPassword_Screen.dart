@@ -14,7 +14,7 @@ class ForgotPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorRes.backgroungColor,
+      backgroundColor: ColorRes.backgroundColor,
       body: Column(
         children: [
           SizedBox(height: Get.height * 0.0738),
@@ -82,7 +82,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                         ),
                         child: const Image(
                           image: AssetImage(
-                            AssetRes.inboxlogo,
+                            AssetRes.inboxLogo,
                           ),
                           height: 10,
                         ),

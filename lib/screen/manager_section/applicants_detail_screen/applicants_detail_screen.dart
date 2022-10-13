@@ -424,11 +424,9 @@ void settingModalBottomSheet(context, bool isWrong) {
                             color: ColorRes.black.withOpacity(0.6),
                           ),
                           textAlign: TextAlign.center)
-                      : Text(
-                          Strings
-                              .pleaseMakeSureThatYour,
+                      : Text(Strings.pleaseMakeSureThatYour,
                           style: appTextStyle(
-                             fontSize: 12,
+                            fontSize: 12,
                             fontWeight: FontWeight.w400,
                             color: ColorRes.black.withOpacity(0.6),
                           ),
