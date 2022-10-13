@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
+import 'package:jobseek/common/widgets/common_error_box.dart';
 import 'package:jobseek/common/widgets/common_textField.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
-import '../../common/widgets/common_error_box.dart';
 import 'create_vacancies_2_controller.dart';
 
 class CreateVacancies2Screen extends StatelessWidget {

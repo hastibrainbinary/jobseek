@@ -1,13 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/common_error_box.dart';
 import 'package:jobseek/common/widgets/common_textField.dart';
 import 'package:jobseek/screen/manager_section/Profile/profile_controller.dart';
 import 'package:jobseek/screen/manager_section/Settings/settings_screen.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({Key? key}) : super(key: key);
@@ -164,7 +167,7 @@ class ProfileScreen extends StatelessWidget {
                                                   children: [
                                                     InkWell(
                                                       onTap: () =>
-                                                          controller.ontap(),
+                                                          controller.onTapImage,
                                                       child: Container(
                                                         height: 70,
                                                         width: 70,
@@ -222,7 +225,7 @@ class ProfileScreen extends StatelessWidget {
                                                   children: [
                                                     InkWell(
                                                       onTap: () => controller
-                                                          .ontapGallery1(),
+                                                          .onTapGallery1(),
                                                       child: Container(
                                                         height: 70,
                                                         width: 70,
@@ -318,34 +321,34 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: StreamBuilder(
+                  child: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
                       stream: fireStore
                           .collection("Auth")
                           .doc("Manager")
                           .collection("register")
-                          .doc("userUid")
+                          .doc(PrefService.getString(PrefKeys.userId))
                           .collection("company")
-                          .doc("details")
-                          .collection("user")
-                          .snapshots(),
+                          .doc("details").snapshots(),
                       builder:
-                          (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                          (context, AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snapshot) {
+                        if (kDebugMode) {
+                          print(snapshot.data);
+                        }
                         controller.companyNameController.text =
-                            snapshot.data?.docs[0]["name"] ?? "-";
+                            snapshot.data?["name"] ?? "-";
                         controller.companyEmailController.text =
-                            snapshot.data?.docs[0]["email"] ?? "-";
+                            snapshot.data?["email"] ?? "-";
                         controller.dateController.text =
-                            snapshot.data?.docs[0]["date"] ?? "-";
+                            snapshot.data?["date"] ?? "-";
                         controller.countryController.text =
-                            snapshot.data?.docs[0]["country"] ?? "-";
+                            snapshot.data?["country"] ?? "-";
                         controller.companyAddressController.text =
-                            snapshot.data?.docs[0]["address"] ?? "-";
+                            snapshot.data?["address"] ?? "-";
                         if (snapshot.hasError) {
                           return const Text(
                             'No Data...',
                           );
                         } else {
-                          // final List<QueryDocumentSnapshot<Object?>> docs = snapshot.data!.docs;
                           return snapshot.hasData
                               ? Obx(
                                   () => Column(children: [
@@ -366,10 +369,8 @@ class ProfileScreen extends StatelessWidget {
                                             ),
                                           ),
                                           Text(
-                                            "*",
-                                            style: appTextStyle(
-                                                color: ColorRes.starColor),
-                                          ),
+                                            "*", style: appTextStyle(
+                                                color: ColorRes.starColor,),),
                                         ],
                                       ),
                                     ),
@@ -655,9 +656,6 @@ class ProfileScreen extends StatelessWidget {
                                                           .text ==
                                                       '')
                                               ? InkWell(
-                                                  // dashboard write
-                                                  onTap:
-                                                      controller.onLoginBtnTap1,
                                                   child: Container(
                                                     height: 50,
                                                     width:
@@ -691,7 +689,7 @@ class ProfileScreen extends StatelessWidget {
                                               : InkWell(
                                                   // dashboard write
                                                   onTap:
-                                                      controller.onLoginBtnTap1,
+                                                      controller.onTapEdit,
                                                   child: Container(
                                                     height: 50,
                                                     width:

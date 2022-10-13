@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/screen/create_vacancies_2/create_vacancies_2_screen.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 
@@ -15,6 +16,10 @@ class CreateVacanciesController extends GetxController implements GetxService {
   RxBool isLocationValidate = false.obs;
   RxBool isTypeValidate = false.obs;
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
+
+  onTapNextBut(){
+    Get.to(CreateVacancies2Screen());
+  }
 
   onTapNext() async {
     String uid = PrefService.getString(PrefKeys.userId);

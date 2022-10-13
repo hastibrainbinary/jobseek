@@ -50,13 +50,15 @@ class ProfileController extends GetxController implements GetxService {
     }
   }
 
-  onLoginBtnTap1() {
+  onTapEdit() {
     validate();
     if (isNameValidate.value == false &&
         isEmailValidate.value == false &&
         isAddressValidate.value == false &&
         isCountryValidate.value == false &&
         isDateController.value == false) {
+
+
       print("GO TO HOME PAGE");
       // Get.to(ManagerDashBoardScreen());
     }
@@ -122,14 +124,14 @@ class ProfileController extends GetxController implements GetxService {
     'china',
     'United Kingdom',
   ];
-  ontap() async {
+  onTapImage() async {
     XFile? img = await picker.pickImage(source: ImageSource.camera);
     String path = img!.path;
     image = File(path);
     imagePicker();
   }
 
-  ontapGallery1() async {
+  onTapGallery1() async {
     XFile? gallery = await picker.pickImage(source: ImageSource.gallery);
     String path = gallery!.path;
     image = File(path);

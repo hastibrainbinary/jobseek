@@ -338,38 +338,33 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                           controller.locationController.text ==
                                               '' ||
                                           controller.typeController.text == '')
-                                      ? InkWell(
-                                          // add screen
-                                          onTap: () => controller.onTapNext(),
-
-                                          child: Container(
-                                            height: 50,
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            alignment: Alignment.center,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              gradient: LinearGradient(
-                                                colors: [
-                                                  ColorRes.gradientColor
-                                                      .withOpacity(0.2),
-                                                  ColorRes.containerColor
-                                                      .withOpacity(0.4)
-                                                ],
-                                              ),
-                                            ),
-                                            child: Text("Next",
-                                                style: appTextStyle(
-                                                    fontSize: 18,
-                                                    fontWeight: FontWeight.w500,
-                                                    color: ColorRes.white)),
+                                      ? Container(
+                                        height: 50,
+                                        width: MediaQuery.of(context)
+                                            .size
+                                            .width,
+                                        alignment: Alignment.center,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          gradient: LinearGradient(
+                                            colors: [
+                                              ColorRes.gradientColor
+                                                  .withOpacity(0.2),
+                                              ColorRes.containerColor
+                                                  .withOpacity(0.4)
+                                            ],
                                           ),
-                                        )
+                                        ),
+                                        child: Text("Next",
+                                            style: appTextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w500,
+                                                color: ColorRes.white)),
+                                      )
                                       : InkWell(
                                           // add screen
-                                          onTap: () => controller.onTapNext(),
+                                          onTap: () => controller.onTapNextBut(),
                                           child: Container(
                                             height: 50,
                                             width: MediaQuery.of(context)
