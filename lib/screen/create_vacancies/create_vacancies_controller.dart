@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
@@ -15,7 +16,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
   RxBool isTypeValidate = false.obs;
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
-  onLoginBtnTap() async {
+  onTapNext() async {
     String uid = PrefService.getString(PrefKeys.userId);
     int totalPost = PrefService.getInt(PrefKeys.totalPost);
     String pUid = "$uid*${totalPost + 1}";
@@ -37,26 +38,21 @@ class CreateVacanciesController extends GetxController implements GetxService {
       await fireStore
           .collection('allPost')
           .doc(pUid)
-          .set(map)
-          .then((value) async {
-        fireStore
-            .collection("Auth")
-            .doc("Manager")
-            .collection("register")
-            .doc(uid)
-            .collection("post")
-            .doc(pUid);
-
-        await fireStore
-            .collection("Auth")
-            .doc("Manager")
-            .collection("register")
-            .doc(uid)
-            .update({"TotalPost": totalPost});
-
-        PrefService.setValue(PrefKeys.totalPost, totalPost+1);
-      });
-
+          .set(map);
+      fireStore
+          .collection("Auth")
+          .doc("Manager")
+          .collection("register")
+          .doc(uid)
+          .collection("post")
+          .doc(pUid);
+      PrefService.setValue(PrefKeys.totalPost, totalPost+1);
+      await fireStore
+          .collection("Auth")
+          .doc("Manager")
+          .collection("register")
+          .doc(uid)
+          .update({"TotalPost": totalPost+1});
     }
   }
 
@@ -105,6 +101,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
     'china',
     'United Kingdom',
   ];
+
   String? dropDownValueType;
 
   var items1 = [
