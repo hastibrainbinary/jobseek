@@ -172,7 +172,8 @@ class HomeScreen extends StatelessWidget {
                                         AppRes.jobDetailScreen,
                                         arguments: {
                                           "saved":
-                                              controller.jobTypesSaved[index]
+                                              controller.jobTypesSaved[index],
+                                          "docId": snapshot.data!.docs[index].id
                                         }),
                                     child: Container(
                                       height: 92,

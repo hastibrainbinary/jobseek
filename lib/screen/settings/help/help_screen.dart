@@ -61,7 +61,7 @@ class HelpScreenU extends StatelessWidget {
                     ),
                     SizedBox(width: Get.width - 75),
                     const Image(
-                      image: AssetImage(AssetRes.settingArrow),
+                      image: AssetImage(AssetRes.settingaArrow),
                       height: 15,
                     ),
                   ],
@@ -93,7 +93,7 @@ class HelpScreenU extends StatelessWidget {
                     ),
                     SizedBox(width: Get.width - 185),
                     const Image(
-                      image: AssetImage(AssetRes.settingArrow),
+                      image: AssetImage(AssetRes.settingaArrow),
                       height: 15,
                     ),
                   ],
@@ -125,7 +125,7 @@ class HelpScreenU extends StatelessWidget {
                     ),
                     SizedBox(width: Get.width - 141),
                     const Image(
-                      image: AssetImage(AssetRes.settingArrow),
+                      image: AssetImage(AssetRes.settingaArrow),
                       height: 15,
                     ),
                   ],

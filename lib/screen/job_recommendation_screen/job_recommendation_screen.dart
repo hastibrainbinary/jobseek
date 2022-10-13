@@ -107,7 +107,7 @@ class JobRecommendation extends StatelessWidget {
                             return InkWell(
                               onTap: () => Get.toNamed(AppRes.jobDetailScreen,
                                   arguments: {
-                                    "saved": controller.jobTypesSaved[index]
+                                    "saved": controller.jobTypesSaved[index],
                                   }),
                               child: Container(
                                 height: 92,

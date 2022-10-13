@@ -56,10 +56,10 @@ class AssetRes {
   static const chatImage = '${images}chatImage.png';
   static const dropDWon = '${images}DropDown.png';
   static const detailsImage = '${images}detailsImage.png';
-  static const chatBoxMenImage = '${images}chatBoxMenImage.png';
+  static const chatbox_Men_Image = '${images}chatbox_Men_Image.png';
   static const roundAirbnb = '${images}roundAirbnb.png';
   static const galleryImage = "${images}galleryImage.png";
-  static const settingArrow = '${images}settingArrow.png';
+  static const settingaArrow = '${images}settingaArrow.png';
   static const settingHelp = '${images}settingHelp.png';
   static const logout = '${images}logout.png';
   static const rightLogo = '${images}rightLogo.png';

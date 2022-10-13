@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_controller.dart';
@@ -59,8 +60,6 @@ class JobDetailScreen extends StatelessWidget {
                             Container(
                               height: 40,
                               width: 40,
-                              // padding: const EdgeInsets.only(left: 0),
-                              // margin: const EdgeInsets.only(right: 10),
                               decoration: BoxDecoration(
                                 color: ColorRes.logoColor,
                                 borderRadius: BorderRadius.circular(10),
@@ -108,7 +107,9 @@ class JobDetailScreen extends StatelessWidget {
                   ),
                 ],
               )),
-          SizedBox(
+          StreamBuilder(
+              stream:  FirebaseFirestore.instance.collection("allPost").doc(args["docId"]).snapshots(),
+              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot){return SizedBox(
             height: Get.height - 100,
             child: SingleChildScrollView(
               child: Column(
@@ -122,11 +123,11 @@ class JobDetailScreen extends StatelessWidget {
                     height: 92,
                     width: Get.width,
                     margin:
-                        const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
+                    const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
                     padding: const EdgeInsets.all(15),
                     decoration: BoxDecoration(
                         borderRadius:
-                            const BorderRadius.all(Radius.circular(15)),
+                        const BorderRadius.all(Radius.circular(15)),
                         border: Border.all(color: ColorRes.borderColor),
                         color: ColorRes.white),
                     child: Row(
@@ -155,12 +156,12 @@ class JobDetailScreen extends StatelessWidget {
                   Container(
                     width: Get.width,
                     margin:
-                        const EdgeInsets.symmetric(horizontal: 18, vertical: 5),
+                    const EdgeInsets.symmetric(horizontal: 18, vertical: 5),
                     padding: const EdgeInsets.symmetric(
                         vertical: 18, horizontal: 18),
                     decoration: BoxDecoration(
                         borderRadius:
-                            const BorderRadius.all(Radius.circular(15)),
+                        const BorderRadius.all(Radius.circular(15)),
                         border: Border.all(color: ColorRes.borderColor),
                         color: ColorRes.white),
                     child: Column(
@@ -168,7 +169,7 @@ class JobDetailScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("Salary",
+                            Text(snapshot.data!.docs[0]["salary"],
                                 style: appTextStyle(
                                     color: ColorRes.black,
                                     fontSize: 15,
@@ -256,7 +257,7 @@ class JobDetailScreen extends StatelessWidget {
                 ],
               ),
             ),
-          ),
+          );})
         ],
       ),
     );

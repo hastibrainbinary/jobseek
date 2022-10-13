@@ -156,7 +156,7 @@ class ChatBoxScreen extends StatelessWidget {
                                 child: Row(
                                   children: [
                                     Image.asset(
-                                      AssetRes.chatBoxMenImage,
+                                      AssetRes.chatbox_Men_Image,
                                     ),
                                     const SizedBox(width: 20),
                                     Column(

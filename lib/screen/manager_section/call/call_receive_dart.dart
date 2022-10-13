@@ -24,7 +24,7 @@ class CallReceiveScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(35),
                 image: const DecorationImage(
                     image: AssetImage(
-                      AssetRes.chatBoxMenImage,
+                      AssetRes.chatbox_Men_Image,
                     ),
                     fit: BoxFit.cover),
               ),

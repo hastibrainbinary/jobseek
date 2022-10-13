@@ -83,7 +83,7 @@ class SettingScreenM extends StatelessWidget {
                     ),
                     const SizedBox(width: 165),
                     const Image(
-                      image: AssetImage(AssetRes.settingArrow),
+                      image: AssetImage(AssetRes.settingaArrow),
                       height: 15,
                     ),
                   ],
@@ -130,7 +130,7 @@ class SettingScreenM extends StatelessWidget {
                     ),
                     SizedBox(width: Get.width - 170),
                     const Image(
-                      image: AssetImage(AssetRes.settingArrow),
+                      image: AssetImage(AssetRes.settingaArrow),
                       height: 15,
                     ),
                   ],
@@ -177,7 +177,7 @@ class SettingScreenM extends StatelessWidget {
                     ),
                     SizedBox(width: Get.width - 200),
                     const Image(
-                      image: AssetImage(AssetRes.settingArrow),
+                      image: AssetImage(AssetRes.settingaArrow),
                       height: 15,
                     ),
                   ],
@@ -222,8 +222,8 @@ class SettingScreenM extends StatelessWidget {
                           color: ColorRes.black),
                     ),
                     SizedBox(width: Get.width - 140),
-                    const Image(
-                      image: AssetImage(AssetRes.settingArrow),
+                     Image(
+                      image: AssetImage(AssetRes.settingaArrow),
                       height: 15,
                     ),
                   ],
