@@ -16,441 +16,557 @@ class SignUpScreen extends StatelessWidget {
     SignUpController controller = Get.put(SignUpController());
     return Scaffold(
       backgroundColor: ColorRes.white,
-      body: Obx(() {
-        return Stack(
-          children: [
-            SingleChildScrollView(
-                child: Container(
-              margin: const EdgeInsets.all(20),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      height: 50,
-                    ),
-                    Center(
-                      child: Container(
-                        alignment: Alignment.center,
-                        height: 80,
-                        width: 80,
-                        decoration: BoxDecoration(
-                          color: ColorRes.logoColor,
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Text(
-                          'Logo',
-                          style: appTextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18,
-                            color: ColorRes.containerColor,
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: Obx(() {
+          return Stack(
+            children: [
+              SingleChildScrollView(
+                  child: Container(
+                margin: const EdgeInsets.all(20),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        height: 50,
+                      ),
+                      Center(
+                        child: Container(
+                          alignment: Alignment.center,
+                          height: 80,
+                          width: 80,
+                          decoration: BoxDecoration(
+                            color: ColorRes.logoColor,
+                            borderRadius: BorderRadius.circular(15),
                           ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 18),
-                    Center(
-                      child: Text(
-                        'Sign up for free',
-                        style: appTextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                            color: ColorRes.black),
-                      ),
-                    ),
-                    const SizedBox(height: 37),
-                    GetBuilder<SignUpController>(
-                      id: "showFirstname",
-                      builder: (controller) => texFieldColumn(
-                          title: 'First Name',
-                          hintText: 'First Name',
-                          error: controller.firstError,
-                          txtController: controller.firstnameController),
-                    ),
-                    const SizedBox(height: 10),
-                    GetBuilder<SignUpController>(
-                      id: "showLastname",
-                      builder: (controller) => texFieldColumn(
-                        title: 'Last Name',
-                        hintText: 'Last Name',
-                        error: controller.lastError,
-                        txtController: controller.lastnameController,
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    GetBuilder<SignUpController>(
-                      id: "showEmail",
-                      builder: (controller) => texFieldColumn(
-                          title: 'Email',
-                          hintText: 'Email',
-                          error: controller.emailError,
-                          txtController: controller.emailController),
-                    ),
-                    const SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15, bottom: 10),
-                      child: Row(
-                        children: [
-                          Text('Phone number',
-                              style: appTextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 14,
-                                  color: ColorRes.black.withOpacity(0.6))),
-                          Text(
-                            '*',
+                          child: Text(
+                            'Logo',
                             style: appTextStyle(
-                                fontSize: 15, color: ColorRes.starColor),
-                          ),
-                        ],
-                      ),
-                    ),
-                    GetBuilder<SignUpController>(
-                      id: "showPhoneNumber",
-                      builder: (controller) => Column(
-                        children: [
-                          Container(
-                            width: Get.width,
-                            height: 51,
-                            padding: const EdgeInsets.only(left: 10),
-                            decoration: BoxDecoration(
-                              color: ColorRes.white,
-                              border: Border.all(
-                                  color: controller.phoneController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? ColorRes.borderColor
-                                      : controller.phoneError == ""
-                                          ? ColorRes.containerColor
-                                          : ColorRes.starColor),
-                              boxShadow: [
-                                BoxShadow(
-                                    offset: const Offset(6, 6),
-                                    color: ColorRes.containerColor
-                                        .withOpacity(0.10),
-                                    spreadRadius: 0,
-                                    blurRadius: 35),
-                              ],
-                              borderRadius: BorderRadius.circular(12),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18,
+                              color: ColorRes.containerColor,
                             ),
-                            child: Row(
-                              children: [
-                                countryCodePicker(context, padding: 3),
-                                SizedBox(
-                                  width: Get.width / 2,
-                                  child: Material(
-                                    shadowColor: ColorRes.containerColor,
-                                    borderRadius: BorderRadius.circular(12),
-                                    child: TextFormField(
-                                      keyboardType: TextInputType.number,
-                                      controller: controller.phoneController,
-                                      decoration: InputDecoration(
-                                          // prefix:countryCodePicker(context) ,
-                                          hintText: 'Phone number',
-                                          fillColor: ColorRes.white,
-                                          filled: true,
-                                          hintStyle: appTextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w500,
-                                              color: ColorRes.black
-                                                  .withOpacity(0.15)),
-                                          border: InputBorder.none),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 18),
+                      Center(
+                        child: Text(
+                          'Sign up for free',
+                          style: appTextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                              color: ColorRes.black),
+                        ),
+                      ),
+                      const SizedBox(height: 37),
+                      GetBuilder<SignUpController>(
+                        id: "showFirstname",
+                        builder: (controller) => texFieldColumn(
+                            title: 'First Name',
+                            hintText: 'First Name',
+                            error: controller.firstError,
+                            txtController: controller.firstnameController),
+                      ),
+                      const SizedBox(height: 10),
+                      GetBuilder<SignUpController>(
+                        id: "showLastname",
+                        builder: (controller) => texFieldColumn(
+                          title: 'Last Name',
+                          hintText: 'Last Name',
+                          error: controller.lastError,
+                          txtController: controller.lastnameController,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      GetBuilder<SignUpController>(
+                        id: "showEmail",
+                        builder: (controller) => texFieldColumn(
+                            title: 'Email',
+                            hintText: 'Email',
+                            error: controller.emailError,
+                            txtController: controller.emailController),
+                      ),
+                      const SizedBox(height: 10),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15, bottom: 10),
+                        child: Row(
+                          children: [
+                            Text('Phone number',
+                                style: appTextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14,
+                                    color: ColorRes.black.withOpacity(0.6))),
+                            Text(
+                              '*',
+                              style: appTextStyle(
+                                  fontSize: 15, color: ColorRes.starColor),
+                            ),
+                          ],
+                        ),
+                      ),
+                      GetBuilder<SignUpController>(
+                        id: "showPhoneNumber",
+                        builder: (controller) => Column(
+                          children: [
+                            Container(
+                              width: Get.width,
+                              height: 51,
+                              padding: const EdgeInsets.only(left: 10),
+                              decoration: BoxDecoration(
+                                color: ColorRes.white,
+                                border: Border.all(
+                                    color: controller.phoneController.text
+                                            .trim()
+                                            .isEmpty
+                                        ? ColorRes.borderColor
+                                        : controller.phoneError == ""
+                                            ? ColorRes.containerColor
+                                            : ColorRes.starColor),
+                                boxShadow: [
+                                  BoxShadow(
+                                      offset: const Offset(6, 6),
+                                      color: ColorRes.containerColor
+                                          .withOpacity(0.10),
+                                      spreadRadius: 0,
+                                      blurRadius: 35),
+                                ],
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Row(
+                                children: [
+                                  countryCodePicker(context, padding: 3),
+                                  SizedBox(
+                                    width: Get.width / 2,
+                                    child: Material(
+                                      shadowColor: ColorRes.containerColor,
+                                      borderRadius: BorderRadius.circular(12),
+                                      child: TextFormField(
+                                        keyboardType: TextInputType.number,
+                                        controller: controller.phoneController,
+                                        decoration: InputDecoration(
+                                            // prefix:countryCodePicker(context) ,
+                                            hintText: 'Phone number',
+                                            fillColor: ColorRes.white,
+                                            filled: true,
+                                            hintStyle: appTextStyle(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w500,
+                                                color: ColorRes.black
+                                                    .withOpacity(0.15)),
+                                            border: InputBorder.none),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                          controller.phoneError == ""
-                              ? SizedBox(height: Get.height * 0.0197)
-                              : Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  height: 28,
-                                  margin:
-                                      const EdgeInsets.symmetric(vertical: 10),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      color: ColorRes.invalidColor),
-                                  padding: const EdgeInsets.only(left: 15),
-                                  child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        const Image(
-                                          image: AssetImage(
-                                            AssetRes.invalid,
+                            controller.phoneError == ""
+                                ? SizedBox(height: Get.height * 0.0197)
+                                : Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    height: 28,
+                                    margin: const EdgeInsets.symmetric(
+                                        vertical: 10),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(50),
+                                        color: ColorRes.invalidColor),
+                                    padding: const EdgeInsets.only(left: 15),
+                                    child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          const Image(
+                                            image: AssetImage(
+                                              AssetRes.invalid,
+                                            ),
+                                            height: 14,
                                           ),
-                                          height: 14,
-                                        ),
-                                        const SizedBox(width: 10),
-                                        Text(
-                                          controller.phoneError,
-                                          style: appTextStyle(
-                                              fontSize: 9,
-                                              fontWeight: FontWeight.w400,
-                                              color: ColorRes.starColor),
-                                        )
-                                      ]),
-                                ),
-                          // Text(controller.phoneError)
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15, bottom: 10),
-                      child: Row(
-                        children: [
-                          Text('Password',
-                              style: appTextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  color: ColorRes.black.withOpacity(0.6))),
-                          Text(
-                            '*',
-                            style: appTextStyle(
-                                fontSize: 15, color: ColorRes.starColor),
-                          ),
-                        ],
-                      ),
-                    ),
-                    GetBuilder<SignUpController>(
-                      id: "showPassword",
-                      builder: (controller) => Column(
-                        children: [
-                          Container(
-                            height: 51,
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    offset: const Offset(6, 6),
-                                    color: ColorRes.containerColor
-                                        .withOpacity(0.10),
-                                    spreadRadius: 0,
-                                    blurRadius: 35),
-                              ],
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Material(
-                              shadowColor: ColorRes.containerColor,
-                              borderRadius: BorderRadius.circular(12),
-                              child: commonTextFormField(
-                                controller: controller.passwordController,
-                                obscureText: controller.show,
-                                textDecoration: InputDecoration(
-                                  hintText: 'Password',
-                                  fillColor: Colors.transparent,
-                                  suffixIcon: IconButton(
-                                    icon: controller.show
-                                        ? Icon(
-                                            Icons.visibility_off,
-                                            color: ColorRes.black
-                                                .withOpacity(0.15),
+                                          const SizedBox(width: 10),
+                                          Text(
+                                            controller.phoneError,
+                                            style: appTextStyle(
+                                                fontSize: 9,
+                                                fontWeight: FontWeight.w400,
+                                                color: ColorRes.starColor),
                                           )
-                                        : Icon(Icons.visibility,
-                                            color: ColorRes.black
-                                                .withOpacity(0.15)),
-                                    onPressed: controller.chang,
+                                        ]),
                                   ),
-                                  filled: true,
-                                  hintStyle: appTextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15,
-                                      color: ColorRes.black.withOpacity(0.15)),
-                                  border: controller.passwordController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.pwdError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  focusedBorder: controller
-                                          .passwordController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.pwdError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  disabledBorder: controller
-                                          .passwordController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.pwdError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  enabledBorder: controller
-                                          .passwordController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.pwdError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  errorBorder: controller
-                                          .passwordController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.pwdError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
-                                  focusedErrorBorder: controller
-                                          .passwordController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? InputBorder.none
-                                      : controller.pwdError.isNotEmpty
-                                          ? errorBorder()
-                                          : enableBorder(),
+                            // Text(controller.phoneError)
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15, bottom: 10),
+                        child: Row(
+                          children: [
+                            Text('Password',
+                                style: appTextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                    color: ColorRes.black.withOpacity(0.6))),
+                            Text(
+                              '*',
+                              style: appTextStyle(
+                                  fontSize: 15, color: ColorRes.starColor),
+                            ),
+                          ],
+                        ),
+                      ),
+                      GetBuilder<SignUpController>(
+                        id: "showPassword",
+                        builder: (controller) => Column(
+                          children: [
+                            Container(
+                              height: 51,
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                      offset: const Offset(6, 6),
+                                      color: ColorRes.containerColor
+                                          .withOpacity(0.10),
+                                      spreadRadius: 0,
+                                      blurRadius: 35),
+                                ],
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Material(
+                                shadowColor: ColorRes.containerColor,
+                                borderRadius: BorderRadius.circular(12),
+                                child: commonTextFormField(
+                                  controller: controller.passwordController,
+                                  obscureText: controller.show,
+                                  textDecoration: InputDecoration(
+                                    hintText: 'Password',
+                                    fillColor: Colors.transparent,
+                                    suffixIcon: IconButton(
+                                      icon: controller.show
+                                          ? Icon(
+                                              Icons.visibility_off,
+                                              color: ColorRes.black
+                                                  .withOpacity(0.15),
+                                            )
+                                          : Icon(Icons.visibility,
+                                              color: ColorRes.black
+                                                  .withOpacity(0.15)),
+                                      onPressed: controller.chang,
+                                    ),
+                                    filled: true,
+                                    hintStyle: appTextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15,
+                                        color:
+                                            ColorRes.black.withOpacity(0.15)),
+                                    border: controller.passwordController.text
+                                            .trim()
+                                            .isEmpty
+                                        ? InputBorder.none
+                                        : controller.pwdError.isNotEmpty
+                                            ? errorBorder()
+                                            : enableBorder(),
+                                    focusedBorder: controller
+                                            .passwordController.text
+                                            .trim()
+                                            .isEmpty
+                                        ? InputBorder.none
+                                        : controller.pwdError.isNotEmpty
+                                            ? errorBorder()
+                                            : enableBorder(),
+                                    disabledBorder: controller
+                                            .passwordController.text
+                                            .trim()
+                                            .isEmpty
+                                        ? InputBorder.none
+                                        : controller.pwdError.isNotEmpty
+                                            ? errorBorder()
+                                            : enableBorder(),
+                                    enabledBorder: controller
+                                            .passwordController.text
+                                            .trim()
+                                            .isEmpty
+                                        ? InputBorder.none
+                                        : controller.pwdError.isNotEmpty
+                                            ? errorBorder()
+                                            : enableBorder(),
+                                    errorBorder: controller
+                                            .passwordController.text
+                                            .trim()
+                                            .isEmpty
+                                        ? InputBorder.none
+                                        : controller.pwdError.isNotEmpty
+                                            ? errorBorder()
+                                            : enableBorder(),
+                                    focusedErrorBorder: controller
+                                            .passwordController.text
+                                            .trim()
+                                            .isEmpty
+                                        ? InputBorder.none
+                                        : controller.pwdError.isNotEmpty
+                                            ? errorBorder()
+                                            : enableBorder(),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          controller.pwdError == ""
-                              ? const SizedBox(height: 20)
-                              : Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  height: 28,
-                                  margin:
-                                      const EdgeInsets.symmetric(vertical: 10),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      color: ColorRes.invalidColor),
-                                  padding: const EdgeInsets.only(left: 15),
-                                  child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        const Image(
-                                          image: AssetImage(
-                                            AssetRes.invalid,
+                            controller.pwdError == ""
+                                ? const SizedBox(height: 20)
+                                : Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    height: 28,
+                                    margin: const EdgeInsets.symmetric(
+                                        vertical: 10),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(50),
+                                        color: ColorRes.invalidColor),
+                                    padding: const EdgeInsets.only(left: 15),
+                                    child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          const Image(
+                                            image: AssetImage(
+                                              AssetRes.invalid,
+                                            ),
+                                            height: 14,
                                           ),
-                                          height: 14,
-                                        ),
-                                        const SizedBox(width: 10),
-                                        Text(
-                                          controller.pwdError,
-                                          style: appTextStyle(
-                                              fontSize: 9,
-                                              fontWeight: FontWeight.w400,
-                                              color: ColorRes.starColor),
-                                        )
-                                      ]),
-                                ),
-                        ],
+                                          const SizedBox(width: 10),
+                                          Text(
+                                            controller.pwdError,
+                                            style: appTextStyle(
+                                                fontSize: 9,
+                                                fontWeight: FontWeight.w400,
+                                                color: ColorRes.starColor),
+                                          )
+                                        ]),
+                                  ),
+                          ],
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 10),
-                    GetBuilder<SignUpController>(
+                      const SizedBox(height: 10),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15, bottom: 10),
+                        child: Row(
+                          children: [
+                            Text('occupation',
+                                style: appTextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                    color: ColorRes.black.withOpacity(0.6))),
+                            Text(
+                              '*',
+                              style: appTextStyle(
+                                  fontSize: 15, color: ColorRes.starColor),
+                            ),
+                          ],
+                        ),
+                      ),
+                      GetBuilder<SignUpController>(
                         id: "showOccupation",
-                        builder: (controller) => texFieldColumn(
-                          title: 'Occupation',
-                          hintText: 'Occupation',
-                          error: controller.occupationError,
-                          txtController: controller.occupationController,
-                        )),
-                    const SizedBox(height: 10),
-                    GetBuilder<SignUpController>(
-                      id: "showCity",
-                      builder: (controller) => texFieldColumn(
-                          title: 'City',
-                          hintText: 'City',
-                          error: controller.cityError,
-                          txtController: controller.cityController),
-                    ),
-                    const SizedBox(height: 10),
-                    GetBuilder<SignUpController>(
-                        id: "showState",
-                        builder: (controller) => texFieldColumn(
-                              title: 'State',
-                              hintText: 'State',
-                              error: controller.stateError,
-                              txtController: controller.stateController,
-                            )),
-                    const SizedBox(height: 10),
-                    GetBuilder<SignUpController>(
-                        id: "showCountry",
-                        builder: (controller) => texFieldColumn(
-                              title: 'Country',
-                              hintText: 'Country',
-                              error: controller.countryError,
-                              txtController: controller.countryController,
-                            )),
-                    GetBuilder<SignUpController>(
-                        id: "remember_me",
-                        builder: (controller) {
-                          return InkWell(
-                            onTap: () {
-                              controller.rememberMe = !controller.rememberMe;
-                              controller.update(["remember_me"]);
-                            },
-                            child: Row(
-                              children: [
-                                Checkbox(
-                                  activeColor: ColorRes.containerColor,
-                                  checkColor: ColorRes.white,
-                                  side: const BorderSide(
-                                      width: 1, color: ColorRes.containerColor),
-                                  value: controller.rememberMe,
-                                  onChanged: controller.onRememberMeChange,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(4),
+                        builder: (controller) => Column(
+                          children: [
+                            Container(
+                              height: 51,
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                      offset: const Offset(6, 6),
+                                      color: ColorRes.containerColor
+                                          .withOpacity(0.10),
+                                      spreadRadius: 0,
+                                      blurRadius: 35),
+                                ],
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Material(
+                                shadowColor: ColorRes.containerColor,
+                                borderRadius: BorderRadius.circular(12),
+                                child: commonTextFormField(
+                                  controller: controller.occupationController,
+                                  obscureText: controller.show,
+                                  textDecoration: InputDecoration(
+                                    hintText: 'occupation',
+                                    fillColor: Colors.transparent,
+                                    filled: true,
+                                    hintStyle: appTextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15,
+                                        color:
+                                            ColorRes.black.withOpacity(0.15)),
+                                    border: controller.occupationController.text
+                                            .trim()
+                                            .isEmpty
+                                        ? InputBorder.none
+                                        : controller.occupationError.isNotEmpty
+                                            ? errorBorder()
+                                            : enableBorder(),
+                                    focusedBorder: controller
+                                            .occupationController.text
+                                            .trim()
+                                            .isEmpty
+                                        ? InputBorder.none
+                                        : controller.occupationError.isNotEmpty
+                                            ? errorBorder()
+                                            : enableBorder(),
+                                    disabledBorder: controller
+                                            .occupationController.text
+                                            .trim()
+                                            .isEmpty
+                                        ? InputBorder.none
+                                        : controller.occupationError.isNotEmpty
+                                            ? errorBorder()
+                                            : enableBorder(),
+                                    enabledBorder: controller
+                                            .occupationController.text
+                                            .trim()
+                                            .isEmpty
+                                        ? InputBorder.none
+                                        : controller.occupationError.isNotEmpty
+                                            ? errorBorder()
+                                            : enableBorder(),
+                                    errorBorder: controller
+                                            .occupationController.text
+                                            .trim()
+                                            .isEmpty
+                                        ? InputBorder.none
+                                        : controller.occupationError.isNotEmpty
+                                            ? errorBorder()
+                                            : enableBorder(),
+                                    focusedErrorBorder: controller
+                                            .occupationController.text
+                                            .trim()
+                                            .isEmpty
+                                        ? InputBorder.none
+                                        : controller.occupationError.isNotEmpty
+                                            ? errorBorder()
+                                            : enableBorder(),
                                   ),
                                 ),
-                                Text('Remember me',
-                                    style: appTextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 13,
-                                        color: ColorRes.black))
-                              ],
+                              ),
                             ),
-                          );
-                        }),
-                    const SizedBox(height: 25),
-                    GetBuilder<SignUpController>(
-                        id: "dark",
-                        builder: (controller) {
-                          return (controller.firstnameController.text == '' ||
-                                  controller.lastnameController.text == '' ||
-                                  controller.emailController.text == '' ||
-                                  controller.phoneController.text == '' ||
-                                  controller.passwordController.text == '' ||
-                                  controller.cityController.text == '' ||
-                                  controller.stateController.text == '' ||
-                                  controller.countryController.text == '')
-                              ? Container(
-                                  height: 50,
-                                  width: MediaQuery.of(context).size.width,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    gradient: LinearGradient(colors: [
-                                      ColorRes.gradientColor.withOpacity(0.2),
-                                      ColorRes.containerColor.withOpacity(0.4)
-                                    ]),
+                            controller.occupationError == ""
+                                ? const SizedBox(height: 20)
+                                : Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    height: 28,
+                                    margin: const EdgeInsets.symmetric(
+                                        vertical: 10),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(50),
+                                        color: ColorRes.invalidColor),
+                                    padding: const EdgeInsets.only(left: 15),
+                                    child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          const Image(
+                                            image: AssetImage(
+                                              AssetRes.invalid,
+                                            ),
+                                            height: 14,
+                                          ),
+                                          const SizedBox(width: 10),
+                                          Text(
+                                            controller.pwdError,
+                                            style: appTextStyle(
+                                                fontSize: 9,
+                                                fontWeight: FontWeight.w400,
+                                                color: ColorRes.starColor),
+                                          )
+                                        ]),
                                   ),
-                                  child: Text("Sign up",
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      GetBuilder<SignUpController>(
+                        id: "showCity",
+                        builder: (controller) => texFieldColumn(
+                            title: 'City',
+                            hintText: 'City',
+                            error: controller.cityError,
+                            txtController: controller.cityController),
+                      ),
+                      const SizedBox(height: 10),
+                      GetBuilder<SignUpController>(
+                          id: "showState",
+                          builder: (controller) => texFieldColumn(
+                                title: 'State',
+                                hintText: 'State',
+                                error: controller.stateError,
+                                txtController: controller.stateController,
+                              )),
+                      const SizedBox(height: 10),
+                      GetBuilder<SignUpController>(
+                          id: "showCountry",
+                          builder: (controller) => texFieldColumn(
+                                title: 'Country',
+                                hintText: 'Country',
+                                error: controller.countryError,
+                                txtController: controller.countryController,
+                              )),
+                      GetBuilder<SignUpController>(
+                          id: "remember_me",
+                          builder: (controller) {
+                            return InkWell(
+                              onTap: () {
+                                controller.rememberMe = !controller.rememberMe;
+                                controller.update(["remember_me"]);
+                              },
+                              child: Row(
+                                children: [
+                                  Checkbox(
+                                    activeColor: ColorRes.containerColor,
+                                    checkColor: ColorRes.white,
+                                    side: const BorderSide(
+                                        width: 1,
+                                        color: ColorRes.containerColor),
+                                    value: controller.rememberMe,
+                                    onChanged: controller.onRememberMeChange,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                  ),
+                                  Text('Remember me',
                                       style: appTextStyle(
-                                          fontSize: 18,
                                           fontWeight: FontWeight.w500,
-                                          color: ColorRes.white)),
-                                )
-                              : InkWell(
-                                  // dashboard write
-                                  onTap: controller.onSignUpBtnTap,
-                                  child: Container(
+                                          fontSize: 13,
+                                          color: ColorRes.black))
+                                ],
+                              ),
+                            );
+                          }),
+                      const SizedBox(height: 25),
+                      GetBuilder<SignUpController>(
+                          id: "dark",
+                          builder: (controller) {
+                            return (controller.firstnameController.text == '' ||
+                                    controller.lastnameController.text == '' ||
+                                    controller.emailController.text == '' ||
+                                    controller.phoneController.text == '' ||
+                                    controller.passwordController.text == '' ||
+                                    controller.occupationController.text ==
+                                        '' ||
+                                    controller.cityController.text == '' ||
+                                    controller.stateController.text == '' ||
+                                    controller.countryController.text == '')
+                                ? Container(
                                     height: 50,
                                     width: MediaQuery.of(context).size.width,
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
-                                      gradient: const LinearGradient(colors: [
-                                        ColorRes.gradientColor,
-                                        ColorRes.containerColor
+                                      gradient: LinearGradient(colors: [
+                                        ColorRes.gradientColor.withOpacity(0.2),
+                                        ColorRes.containerColor.withOpacity(0.4)
                                       ]),
                                     ),
                                     child: Text("Sign up",
@@ -458,159 +574,182 @@ class SignUpScreen extends StatelessWidget {
                                             fontSize: 18,
                                             fontWeight: FontWeight.w500,
                                             color: ColorRes.white)),
-                                  ),
-                                );
-                        }),
-                    const SizedBox(height: 28),
-                    Center(
-                      child: InkWell(
-                        onTap: () {},
-                        child: Text('or continue with',
-                            style: appTextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w400,
-                                color: ColorRes.black)),
-                      ),
-                    ),
-                    const SizedBox(height: 28),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            controller.faceBookSignIn();
-                          },
-                          child: Container(
-                            height: 50,
-                            width: 145,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: ColorRes.borderColor),
-                                boxShadow: [
-                                  BoxShadow(
-                                      offset: const Offset(6, 6),
-                                      color: ColorRes.containerColor
-                                          .withOpacity(0.08),
-                                      spreadRadius: 0,
-                                      blurRadius: 35),
-                                ],
-                                borderRadius: BorderRadius.circular(10),
-                                color: ColorRes.white),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                const Image(
-                                  image: AssetImage(
-                                    AssetRes.facebook_image,
-                                  ),
-                                  height: 27,
-                                ),
-                                const SizedBox(width: 15),
-                                Text(
-                                  'Facebook',
-                                  style: appTextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15,
-                                      color: ColorRes.black),
-                                ),
-                              ],
-                            ),
-                          ),
+                                  )
+                                : InkWell(
+                                    // dashboard write
+                                    onTap: controller.onSignUpBtnTap,
+                                    child: Container(
+                                      height: 50,
+                                      width: MediaQuery.of(context).size.width,
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        gradient: const LinearGradient(colors: [
+                                          ColorRes.gradientColor,
+                                          ColorRes.containerColor
+                                        ]),
+                                      ),
+                                      child: Text("Sign up",
+                                          style: appTextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w500,
+                                              color: ColorRes.white)),
+                                    ),
+                                  );
+                          }),
+                      const SizedBox(height: 28),
+                      Center(
+                        child: InkWell(
+                          onTap: () {},
+                          child: Text('or continue with',
+                              style: appTextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w400,
+                                  color: ColorRes.black)),
                         ),
-                        InkWell(
-                          onTap: () {
-                            controller.signWithGoogle();
-                          },
-                          child: Container(
-                            height: 50,
-                            width: 145,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: ColorRes.borderColor),
-                                boxShadow: [
-                                  BoxShadow(
-                                      offset: const Offset(6, 6),
-                                      color: ColorRes.containerColor
-                                          .withOpacity(0.08),
-                                      spreadRadius: 0,
-                                      blurRadius: 35),
-                                ],
-                                borderRadius: BorderRadius.circular(10),
-                                color: ColorRes.white),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                const Image(
-                                  image: AssetImage(
-                                    AssetRes.Google_logo,
+                      ),
+                      const SizedBox(height: 28),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              controller.faceBookSignIn();
+                            },
+                            child: Container(
+                              height: 50,
+                              width: 145,
+                              decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: ColorRes.borderColor),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        offset: const Offset(6, 6),
+                                        color: ColorRes.containerColor
+                                            .withOpacity(0.08),
+                                        spreadRadius: 0,
+                                        blurRadius: 35),
+                                  ],
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: ColorRes.white),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Image(
+                                    image: AssetImage(
+                                      AssetRes.facebook_image,
+                                    ),
+                                    height: 27,
                                   ),
-                                  height: 27,
-                                ),
-                                const SizedBox(width: 15),
-                                Text('Google',
+                                  const SizedBox(width: 15),
+                                  Text(
+                                    'Facebook',
                                     style: appTextStyle(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 15,
-                                        color: ColorRes.black)),
-                              ],
+                                        color: ColorRes.black),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 18,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Don't have account?",
-                          style: appTextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 15,
-                              color: ColorRes.black),
-                        ),
-                        GetBuilder<SignUpController>(
-                          builder: (controller) => InkWell(
+                          InkWell(
                             onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (con) => SigninScreen()));
+                              controller.signWithGoogle();
                             },
-                            child: Text(
-                              ' Sign In',
-                              style: appTextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 16,
-                                  color: ColorRes.containerColor),
+                            child: Container(
+                              height: 50,
+                              width: 145,
+                              decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: ColorRes.borderColor),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        offset: const Offset(6, 6),
+                                        color: ColorRes.containerColor
+                                            .withOpacity(0.08),
+                                        spreadRadius: 0,
+                                        blurRadius: 35),
+                                  ],
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: ColorRes.white),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Image(
+                                    image: AssetImage(
+                                      AssetRes.Google_logo,
+                                    ),
+                                    height: 27,
+                                  ),
+                                  const SizedBox(width: 15),
+                                  Text('Google',
+                                      style: appTextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 15,
+                                          color: ColorRes.black)),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ]),
-            )),
-            controller.loading.isTrue
-                ? Center(
-                    child: Container(
-                      padding: const EdgeInsets.all(35),
-                      height: 110,
-                      width: 110,
-                      decoration: BoxDecoration(
-                          color: ColorRes.white,
-                          borderRadius: BorderRadius.circular(25)),
-                      child: const CircularProgressIndicator(
-                        backgroundColor: Color(0xffE2D3FE),
-                        color: ColorRes.containerColor,
+                        ],
                       ),
-                    ),
-                  )
-                : const SizedBox(),
-          ],
-        );
-      }),
+                      const SizedBox(
+                        height: 18,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Don't have account?",
+                            style: appTextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 15,
+                                color: ColorRes.black),
+                          ),
+                          GetBuilder<SignUpController>(
+                            builder: (controller) => InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (con) => SigninScreenU()));
+                              },
+                              child: Text(
+                                ' Sign In',
+                                style: appTextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16,
+                                    color: ColorRes.containerColor),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ]),
+              )),
+              controller.loading.isTrue
+                  ? Center(
+                      child: Container(
+                        padding: const EdgeInsets.all(35),
+                        height: 110,
+                        width: 110,
+                        decoration: BoxDecoration(
+                            color: ColorRes.white,
+                            borderRadius: BorderRadius.circular(25)),
+                        child: const CircularProgressIndicator(
+                          backgroundColor: Color(0xffE2D3FE),
+                          color: ColorRes.containerColor,
+                        ),
+                      ),
+                    )
+                  : const SizedBox(),
+            ],
+          );
+        }),
+      ),
     );
   }
 }

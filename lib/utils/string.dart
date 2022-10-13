@@ -45,8 +45,8 @@ class Strings {
   static const newTipsAvailable = "New tips available";
   static const newServiceAvailable = "New service available";
   static const pleaseMakeSureThatYourInternet = "Please make sure that your internet connection is active and stable,then press\"Try Again\"";
-  static const pleaseMakeSureThatYourInternetConnectionIsActiveAndStableThenPressTryAgain="Please make sure that your internet connection is active and stable, then press “Try Again”";
+  static const pleaseMakeSureThatYour ="Please make sure that your internet connection is active and stable, then press “Try Again”";
   static const uIUXDesigner ="UI/UX Designer";
   static const airBNB="AirBNB";
-  static const nowYouCanSeeAllTheApplierCVStringResumeAndInviteThemToTheNextStep= "Now you can see all the applier CV/Resume and invite them to the next step";
+  static const nowYouCanSeeAllTheApplier= "Now you can see all the applier CV/Resume and invite them to the next step";
 }

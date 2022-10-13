@@ -8,8 +8,8 @@ import 'package:jobseek/screen/auth/sign_up/sign_upScreen.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
-class SigninScreen extends StatelessWidget {
-  SigninScreen({Key? key}) : super(key: key);
+class SigninScreenU extends StatelessWidget {
+  SigninScreenU({Key? key}) : super(key: key);
 
   SignInScreenController controller = Get.put(SignInScreenController());
 
@@ -64,12 +64,15 @@ class SigninScreen extends StatelessWidget {
                               left: 15, bottom: Get.height * 0.012),
                           child: Row(
                             children: [
-                              Text(
-                                'Email',
-                                style: GoogleFonts.poppins(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 14,
-                                  color: ColorRes.black.withOpacity(0.6),
+                              Padding(
+                                padding: const EdgeInsets.only(left: .0),
+                                child: Text(
+                                  'Email',
+                                  style: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14,
+                                    color: ColorRes.black.withOpacity(0.6),
+                                  ),
                                 ),
                               ),
                               const Text(
@@ -522,7 +525,7 @@ class SigninScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            const SizedBox(width: 20),
+
                             InkWell(
                               onTap: () {
                                 controller.signWithGoogle();

@@ -96,7 +96,7 @@ class FirstScreen extends StatelessWidget {
             InkWell(
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (con) => SigninScreen()));
+                    MaterialPageRoute(builder: (con) => SigninScreenU()));
               },
               child: Container(
                 height: 55,

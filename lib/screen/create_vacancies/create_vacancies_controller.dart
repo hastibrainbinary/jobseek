@@ -38,21 +38,26 @@ class CreateVacanciesController extends GetxController implements GetxService {
       await fireStore
           .collection('allPost')
           .doc(pUid)
-          .set(map);
-      fireStore
-          .collection("Auth")
-          .doc("Manager")
-          .collection("register")
-          .doc(uid)
-          .collection("post")
-          .doc(pUid);
-      PrefService.setValue(PrefKeys.totalPost, totalPost+1);
-      await fireStore
-          .collection("Auth")
-          .doc("Manager")
-          .collection("register")
-          .doc(uid)
-          .update({"TotalPost": totalPost+1});
+          .set(map)
+          .then((value) async {
+        fireStore
+            .collection("Auth")
+            .doc("Manager")
+            .collection("register")
+            .doc(uid)
+            .collection("post")
+            .doc(pUid);
+
+        await fireStore
+            .collection("Auth")
+            .doc("Manager")
+            .collection("register")
+            .doc(uid)
+            .update({"TotalPost": totalPost});
+
+        PrefService.setValue(PrefKeys.totalPost, totalPost + 1);
+
+      });
     }
   }
 
@@ -79,7 +84,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
     }
   }
 
-  changeDropdwon({required String val}) {
+  changeDropwon({required String val}) {
     dropDownValueLocation = val;
     locationController.text = dropDownValueLocation!;
 

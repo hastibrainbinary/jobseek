@@ -112,18 +112,14 @@ class JobDetailsScreen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: isError == false
-                      ? Text(
-                          Strings
-                              .nowYouCanSeeAllTheApplierCVStringResumeAndInviteThemToTheNextStep,
+                      ? Text(Strings.nowYouCanSeeAllTheApplier,
                           style: appTextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
                             color: ColorRes.black.withOpacity(0.6),
                           ),
                           textAlign: TextAlign.center)
-                      : Text(
-                          Strings
-                              .pleaseMakeSureThatYourInternetConnectionIsActiveAndStableThenPressTryAgain,
+                      : Text(Strings.pleaseMakeSureThatYour,
                           style: appTextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
@@ -184,7 +180,7 @@ class JobDetailsScreen extends StatelessWidget {
                       ///discover more jobs event
                       Get.offAll(() => ManagerDashBoardScreen());
                     }
-                    },
+                  },
                   child: Container(
                     height: 50,
                     alignment: Alignment.center,

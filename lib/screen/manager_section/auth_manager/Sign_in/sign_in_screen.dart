@@ -487,7 +487,7 @@ class SignInScreenM extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const SizedBox(width: 20),
+
                           InkWell(
                             onTap: () {
                               controller.signWithGoogle();
