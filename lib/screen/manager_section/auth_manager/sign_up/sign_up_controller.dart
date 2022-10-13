@@ -68,6 +68,7 @@ class SignUpControllerM extends GetxController {
           "State": stateController.text,
           "Country": countryController.text,
           "TotalPost":0,
+          "company" : false,
         };
         addDataInFirebase(userUid: userCredential.user?.uid ?? "", map: map2);
       }

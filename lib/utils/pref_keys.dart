@@ -3,6 +3,7 @@ class PrefKeys {
   static const register = "register";
   static const accessToken = "token";
   static const rol = "Rol";
+  static const company = "company";
   static const registerToken = "registerToken";
   static const userId = "userId";
   static const phoneId = "phoneId";

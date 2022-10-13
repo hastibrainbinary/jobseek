@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ class SignInScreenController extends GetxController {
   RxBool loading = false.obs;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
+  bool isUser = false;
   String emailError = "";
   String pwdError = "";
 
@@ -97,46 +98,83 @@ class SignInScreenController extends GetxController {
   //     return e.code;
   //   }
   // }
-  Future<String> signInWithEmailAndPassword(
+  void signInWithEmailAndPassword(
       {required String email, required String password}) async {
-    try {
-      loading.value = true;
-      UserCredential credential = await auth.signInWithEmailAndPassword(
-          email: email, password: password);
-      loading.value = false;
+    FirebaseFirestore fireStore = FirebaseFirestore.instance;
+    loading.value = true;
 
-      if (kDebugMode) {
-        print(credential);
-      }
+    await fireStore
+        .collection("Auth")
+        .doc("User")
+        .collection("register")
+        .get()
+        .then((value) async {
+      if (value.docs.length.isEqual(0)) {
+        loading.value = true;
+        Get.snackbar("Error", "Please Create Account,\n Your Email is not Registered", colorText: const Color(0xffDA1414));
+      } else {
+        for (int i = 0; i < value.docs.length; i++) {
+          if (kDebugMode) {
+            print("${value.docs[i]["Email"]}=||||||++++++++++");
+          }
+          if (value.docs[i]["Email"] == email &&
+              value.docs[i]["Email"] != "") {
+            isUser = true;
+            PrefService.setValue(PrefKeys.rol, "User");
+            print("$isUser====]]]]]");
 
-      if (credential.user!.email.toString() == email) {
-        Get.to(() => DashBoardScreen());
-      }
-
-      return credential.user!.uid;
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        Get.snackbar("Error", "Wrong user", colorText: const Color(0xffDA1414));
-        loading.value = false;
-
-        if (kDebugMode) {
-          print('No user found for that email.');
+            break;
+          } else {
+            isUser = false;
+            print("$isUser====]]]]]");
+          }
         }
-      } else if (e.code == 'wrong-password') {
-        Get.snackbar("Error", "Wrong Password",
-            colorText: const Color(0xffDA1414));
 
-        loading.value = false;
+        if (isUser == true) {
+          try {
+            loading.value = true;
+            UserCredential credential = await auth.signInWithEmailAndPassword(email: email, password: password);
+            if (kDebugMode) {
+              print(credential);
+            }
 
-        if (kDebugMode) {
-          print('Wrong password provided for that user.');
+            if (credential.user!.email.toString() == email) {
+              PrefService.setValue(PrefKeys.userId, credential.user!.uid.toString());
+              Get.off(() => DashBoardScreen());
+            }
+
+          } on FirebaseAuthException catch (e) {
+            if (e.code == 'user-not-found') {
+              Get.snackbar("Error", "Wrong user", colorText: const Color(0xffDA1414));
+              loading.value = false;
+
+              if (kDebugMode) {
+                print('No user found for that email.');
+              }
+            } else if (e.code == 'wrong-password') {
+              Get.snackbar("Error", "Wrong Password", colorText: const Color(0xffDA1414));
+              loading.value = false;
+
+              if (kDebugMode) {
+                print('Wrong password provided for that user.');
+              }
+            }
+            if (kDebugMode) {
+              print(e.code);
+              Get.snackbar("Error", e.code , colorText: const Color(0xffDA1414));
+              loading.value = false;
+            }
+          }
+        } else {
+          Get.snackbar("Error", "Please Create Account,\n Your Email is not Registered", colorText: const Color(0xffDA1414));
+          loading.value = false;
         }
+        loading.value = false;
       }
-      if (kDebugMode) {
-        print(e.code);
-      }
-      return e.code;
-    }
+
+      print("${value.isBlank}=|=|=|");
+      print("${value.docs.length}=|=|=|");
+    });
   }
 
   onLoginBtnTap({String? email, String? password}) {
