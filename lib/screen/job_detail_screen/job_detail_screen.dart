@@ -17,6 +17,7 @@ class JobDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -109,9 +110,9 @@ class JobDetailScreen extends StatelessWidget {
               )),
           StreamBuilder(
               stream:  FirebaseFirestore.instance.collection("allPost").doc(args["docId"]).snapshots(),
-              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot){return SizedBox(
+              builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snapshot){return SizedBox(
             height: Get.height - 100,
-            child: SingleChildScrollView(
+            child:snapshot.hasData? SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -138,12 +139,12 @@ class JobDetailScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("UI/UX Designer",
+                            Text(snapshot.data!["Position"],
                                 style: appTextStyle(
                                     color: ColorRes.black,
                                     fontSize: 15,
                                     fontWeight: FontWeight.w500)),
-                            Text("AirBNB",
+                            Text(snapshot.data!["CompanyName"],
                                 style: appTextStyle(
                                     color: ColorRes.black,
                                     fontSize: 12,
@@ -169,12 +170,12 @@ class JobDetailScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(snapshot.data!.docs["salary"],
+                            Text("Salary",
                                 style: appTextStyle(
                                     color: ColorRes.black,
                                     fontSize: 15,
                                     fontWeight: FontWeight.w500)),
-                            Text("\$2.350",
+                            Text("\$${snapshot.data!["salary"]}",
                                 style: appTextStyle(
                                     color: ColorRes.containerColor,
                                     fontSize: 15,
@@ -190,7 +191,7 @@ class JobDetailScreen extends StatelessWidget {
                                     color: ColorRes.black,
                                     fontSize: 15,
                                     fontWeight: FontWeight.w500)),
-                            Text("Full Time",
+                            Text(snapshot.data!["type"],
                                 style: appTextStyle(
                                     color: ColorRes.containerColor,
                                     fontSize: 15,
@@ -206,7 +207,7 @@ class JobDetailScreen extends StatelessWidget {
                                     color: ColorRes.black,
                                     fontSize: 15,
                                     fontWeight: FontWeight.w500)),
-                            Text("United States",
+                            Text(snapshot.data!["location"],
                                 style: appTextStyle(
                                     color: ColorRes.containerColor,
                                     fontSize: 15,
@@ -227,9 +228,9 @@ class JobDetailScreen extends StatelessWidget {
                   ListView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      itemCount: controller.requirements.length,
+                      itemCount: snapshot.data!["RequirementsList"].length,
                       itemBuilder: (context, index) {
-                        return detailBox(controller.requirements[index]);
+                        return detailBox(snapshot.data!["RequirementsList"][index]);
                       }),
                   GestureDetector(
                     onTap: () {
@@ -255,6 +256,22 @@ class JobDetailScreen extends StatelessWidget {
                     ),
                   ),
                 ],
+              ),
+            ):Container(
+              height: Get.height,
+              width: Get.width,
+              color: ColorRes.containerColor.withOpacity(0.2),
+              alignment: Alignment.center,
+              child: Container(
+                padding: const EdgeInsets.all(35),
+                height: 110,
+                width: 110,
+                decoration: BoxDecoration(
+                    color: ColorRes.white,
+                    borderRadius: BorderRadius.circular(25)),
+                child: const CircularProgressIndicator(
+                  color: ColorRes.containerColor,
+                ),
               ),
             ),
           );})

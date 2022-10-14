@@ -605,7 +605,11 @@ class SigninScreenU extends StatelessWidget {
                 ),
               ),
               controller.loading.isTrue
-                  ? Center(
+                  ? Container(
+                height: Get.height,
+                width: Get.width,
+                color: ColorRes.containerColor.withOpacity(0.2),
+                alignment: Alignment.center,
                       child: Container(
                         padding: const EdgeInsets.all(35),
                         height: 110,

@@ -34,7 +34,7 @@ Widget detailBox(text) {
                 color: Colors.black, fontSize: 12, fontWeight: FontWeight.w400),
           ),
         ),
-        PopupMenuButton(
+        /*PopupMenuButton(
           itemBuilder: (context) => [
             PopupMenuItem(
               value: 1,
@@ -70,7 +70,7 @@ Widget detailBox(text) {
           offset: const Offset(0, 10),
           color: Colors.white,
           elevation: 1,
-        ),
+        ),*/
       ],
     ),
   );
