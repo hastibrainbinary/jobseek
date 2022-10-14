@@ -24,6 +24,7 @@ class AssetRes {
   static const dropIcon = '${icons}dropIcon.png';
   static const currencyIcon = '${icons}currencyIcon.png';
   static const addIcon = '${icons}addIcon.png';
+  static const checkIcon = '${icons}check.png';
   static const notification = '${icons}notification.png';
   static const add = '${icons}add.png';
   static const calender = '${icons}calender.png';

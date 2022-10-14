@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/screen/create_vacancies_2/create_vacancies_2_screen.dart';
+import 'package:jobseek/screen/add_requirements/add_requirements_screen.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 
@@ -16,15 +16,24 @@ class CreateVacanciesController extends GetxController implements GetxService {
   RxBool isLocationValidate = false.obs;
   RxBool isTypeValidate = false.obs;
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
+  List<TextEditingController> addRequirementsList = [];
+
 
   onTapNextBut(){
-    Get.to(CreateVacancies2Screen());
+    Get.to(RequirementsScreen());
+  }
+
+  onTapAddRequirements(){
+    addRequirementsList.add(TextEditingController());
+    update(["requirement"]);
   }
 
   onTapNext() async {
     String uid = PrefService.getString(PrefKeys.userId);
     int totalPost = PrefService.getInt(PrefKeys.totalPost);
     String pUid = "$uid*${totalPost + 1}";
+    List<String> requirementsList = List.generate(addRequirementsList.length, (index) => addRequirementsList[index].text);
+    print(requirementsList);
     if (kDebugMode) {
       print("**************$totalPost");
     }
@@ -34,6 +43,8 @@ class CreateVacanciesController extends GetxController implements GetxService {
       "location": locationController.text.trim(),
       "type": typeController.text.trim(),
       "Status": "Active",
+      "CompanyName": "BrainBinary",
+      "RequirementsList": requirementsList,
     };
     validate();
     if (isPositionValidate.value == false &&
@@ -61,7 +72,8 @@ class CreateVacanciesController extends GetxController implements GetxService {
             .update({"TotalPost": totalPost});
 
         PrefService.setValue(PrefKeys.totalPost, totalPost + 1);
-
+        Get.back();
+        Get.back();
       });
     }
   }
