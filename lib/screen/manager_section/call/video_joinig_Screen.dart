@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
+import 'package:jobseek/utils/color_res.dart';
 
 class VideoJoiningScreen extends StatelessWidget {
   const VideoJoiningScreen({Key? key}) : super(key: key);
@@ -13,7 +14,7 @@ class VideoJoiningScreen extends StatelessWidget {
         Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage(AssetRes.videoJoinMen), fit: BoxFit.cover),
+                image: AssetImage(AssetRes.videojoin_men), fit: BoxFit.cover),
           ),
         ),
         const Positioned(
@@ -29,7 +30,10 @@ class VideoJoiningScreen extends StatelessWidget {
           left: 140,
           child: Text(
             "AirBNB",
-            style: appTextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+            style: appTextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ),
         Positioned(
@@ -37,7 +41,10 @@ class VideoJoiningScreen extends StatelessWidget {
           left: 120,
           child: Text(
             "Joining Interview ...",
-            style: appTextStyle(fontWeight: FontWeight.w400, fontSize: 14,),
+            style: appTextStyle(
+              fontWeight: FontWeight.w400,
+              fontSize: 14,
+            ),
           ),
         ),
         Positioned(
@@ -57,6 +64,7 @@ class VideoJoiningScreen extends StatelessWidget {
                   image: AssetImage(
                     AssetRes.call_decaline,
                   ),
+                  color: Color(0xffDF3525),
                 ),
               ),
             ),

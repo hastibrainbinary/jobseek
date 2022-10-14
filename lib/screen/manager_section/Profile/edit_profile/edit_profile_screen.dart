@@ -233,7 +233,7 @@ class EditProfileScreen extends StatelessWidget {
                                                         child: const Image(
                                                           image: AssetImage(
                                                               AssetRes
-                                                                  .galleryImage),
+                                                                  .galleryaimage),
                                                           color: ColorRes
                                                               .containerColor,
                                                         ),

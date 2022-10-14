@@ -450,7 +450,7 @@ class SignUpScreenM extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     Padding(
-                      padding: const EdgeInsets.only(left: 13, bottom: 10),
+                      padding: const EdgeInsets.only(left: 15, bottom: 10),
                       child: Row(
                         children: [
                           Text('Phone number',
@@ -473,6 +473,7 @@ class SignUpScreenM extends StatelessWidget {
                           Container(
                             width: Get.width,
                             height: 51,
+                            padding: const EdgeInsets.only(left: 10),
                             decoration: BoxDecoration(
                               color: ColorRes.white,
                               border: Border.all(
@@ -526,7 +527,8 @@ class SignUpScreenM extends StatelessWidget {
                               : Container(
                                   width: MediaQuery.of(context).size.width,
                                   height: 28,
-                                  margin: const EdgeInsets.all(10),
+                                  margin:
+                                      const EdgeInsets.symmetric(vertical: 10),
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(50),
                                       color: ColorRes.invalidColor),

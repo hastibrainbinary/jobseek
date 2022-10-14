@@ -59,7 +59,7 @@ class AssetRes {
   static const detailsImage = '${images}detailsImage.png';
   static const chatbox_Men_Image = '${images}chatbox_Men_Image.png';
   static const roundAirbnb = '${images}roundAirbnb.png';
-  static const galleryImage = "${images}galleryImage.png";
+  static const galleryaimage = "${images}galleryaimage.png";
   static const settingaArrow = '${images}settingaArrow.png';
   static const settingHelp = '${images}settingHelp.png';
   static const logout = '${images}logout.png';
@@ -70,7 +70,7 @@ class AssetRes {
   static const call_decaline = '${images}call_decaline.png';
   static const videoJoinScreen = '${images}videoJoinScreen.png';
   static const videoReceiveScreen = '${images}videoReceiveScreen.png';
-  static const videoJoinMen = '${images}videoJoinMen.png';
+  static const videojoin_men = '${images}videojoin_men.png';
   static const videoReceivedMen = '${images}videoReceived_men.png';
   static const failedImages = "${images}failedImages.png";
   static const unSave = "${images}unSave.png";

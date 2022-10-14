@@ -79,7 +79,7 @@ class SettingsScreenU extends StatelessWidget {
                           fontSize: 14,
                           color: ColorRes.black),
                     ),
-                    const SizedBox(width: 165),
+                    const SizedBox(width: 190),
                     const Image(
                       image: AssetImage(AssetRes.settingaArrow),
                       height: 15,
@@ -211,7 +211,7 @@ class SettingsScreenU extends StatelessWidget {
                         color: ColorRes.containerColor,
                       ),
                     ),
-                    const SizedBox(width: 15),
+                    const SizedBox(width: 11),
                     Text(
                       Strings.help,
                       style: appTextStyle(

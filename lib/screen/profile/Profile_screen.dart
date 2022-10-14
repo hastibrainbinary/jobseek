@@ -41,7 +41,7 @@ class ProfileUserScreenU extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: 80),
+              const SizedBox(width: 90),
               Center(
                 child: Text(
                   'Profile',
@@ -53,9 +53,8 @@ class ProfileUserScreenU extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                width:60,
+                width:90,
               ),
-
               Container(
                 margin: const EdgeInsets.all(15),
                 height: 40,
@@ -241,7 +240,7 @@ class ProfileUserScreenU extends StatelessWidget {
                                                           child: const Image(
                                                             image: AssetImage(
                                                                 AssetRes
-                                                                    .galleryImage),
+                                                                    .galleryaimage),
                                                             color: ColorRes
                                                                 .containerColor,
                                                           ),

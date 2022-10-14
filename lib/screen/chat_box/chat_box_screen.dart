@@ -37,7 +37,7 @@ class ChatBoxScreen extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width:80),
+          const SizedBox(width:90),
           Text(
             'Chat Box',
             style: appTextStyle(

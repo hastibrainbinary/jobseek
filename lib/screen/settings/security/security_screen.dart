@@ -54,7 +54,7 @@ class SecurityScreenU extends StatelessWidget {
                         color: ColorRes.black),
                   ),
                 ),
-                SizedBox(width: Get.width - 135),
+                SizedBox(width: Get.width - 140),
                 Obx(() => FlutterSwitch(
                     height: 27,
                     width: 45,
