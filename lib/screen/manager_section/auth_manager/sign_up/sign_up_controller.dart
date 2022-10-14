@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:jobseek/screen/manager_section/auth_manager/sign_up/goole_signup_screenM.dart';
 import 'package:jobseek/screen/organization_profile_screen/organization_profile_screen.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/pref_keys.dart';
@@ -54,11 +55,16 @@ class SignUpControllerM extends GetxController {
   singUp(email, password) async {
     try {
       loading.value = true;
-      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password,);
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
       if (userCredential.user?.uid != null) {
-        PrefService.setValue(PrefKeys.userId, userCredential.user?.uid.toString());
+        PrefService.setValue(
+            PrefKeys.userId, userCredential.user?.uid.toString());
         PrefService.setValue(PrefKeys.rol, "Manager");
-        PrefService.setValue(PrefKeys.totalPost,0);
+        PrefService.setValue(PrefKeys.totalPost, 0);
 
         Map<String, dynamic> map2 = {
           "FullName": "${firstnameController.text} ${lastnameController.text}",
@@ -67,8 +73,8 @@ class SignUpControllerM extends GetxController {
           "City": cityController.text,
           "State": stateController.text,
           "Country": countryController.text,
-          "TotalPost":0,
-          "company" : false,
+          "TotalPost": 0,
+          "company": false,
         };
         addDataInFirebase(userUid: userCredential.user?.uid ?? "", map: map2);
       }
@@ -284,21 +290,56 @@ class SignUpControllerM extends GetxController {
 
   final FirebaseAuth auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
-  void signWithGoogle() async {
+  // void signWithGoogle() async {
+  //   loading.value = true;
+  //   if (await googleSignIn.isSignedIn()) {
+  //     await googleSignIn.signOut();
+  //   }
+  //   final GoogleSignInAccount? account = await googleSignIn.signIn();
+  //   final GoogleSignInAuthentication authentication =
+  //   await account!.authentication;
+  //
+  //   final OAuthCredential credential = GoogleAuthProvider.credential(
+  //     idToken: authentication.idToken,
+  //     accessToken: authentication.accessToken,
+  //   );
+  //   final UserCredential authResult =
+  //   await auth.signInWithCredential(credential);
+  //   final User? user = authResult.user;
+  //   if (kDebugMode) {
+  //     print(user!.email);
+  //   }
+  //   if (kDebugMode) {
+  //     print(user?.uid);
+  //   }
+  //   if (kDebugMode) {
+  //     print(user?.displayName);
+  //   }
+  //   if (user?.uid != null && user?.uid != "") {
+  //    // Get.offAll(() => const OrganizationProfileScreen());
+  //     loading.value == false;
+  //     // loader false
+  //   } else {
+  //     loading.value == false;
+  //   }
+  //   loading.value == false;
+  //   //flutterToast(Strings.googleSignInSuccess);
+  // }
+  void SignUpWithGoogle() async {
     loading.value = true;
     if (await googleSignIn.isSignedIn()) {
       await googleSignIn.signOut();
     }
     final GoogleSignInAccount? account = await googleSignIn.signIn();
     final GoogleSignInAuthentication authentication =
-    await account!.authentication;
+        await account!.authentication;
 
     final OAuthCredential credential = GoogleAuthProvider.credential(
       idToken: authentication.idToken,
       accessToken: authentication.accessToken,
     );
     final UserCredential authResult =
-    await auth.signInWithCredential(credential);
+        await auth.signInWithCredential(credential);
     final User? user = authResult.user;
     if (kDebugMode) {
       print(user!.email);
@@ -310,14 +351,25 @@ class SignUpControllerM extends GetxController {
       print(user?.displayName);
     }
     if (user?.uid != null && user?.uid != "") {
-      Get.offAll(() => const OrganizationProfileScreen());
+      String firstNm = user!.displayName.toString().split(" ").first;
+      String lastNm = user.displayName.toString().split(" ").last;
+      PrefService.setValue(PrefKeys.userId, user.uid.toString());
+      PrefService.setValue(PrefKeys.rol, "Manager");
+
+      Get.to(
+        GoogleSignupScreenM(
+          email: user.email.toString(),
+          firstName: firstNm,
+          lastName: lastNm,
+        ),
+      );
+      // Get.offAll(() => DashBoardScreen());
       loading.value == false;
       // loader false
     } else {
       loading.value == false;
     }
     loading.value == false;
-    //flutterToast(Strings.googleSignInSuccess);
   }
 
   void faceBookSignIn() async {
@@ -334,7 +386,7 @@ class SignUpControllerM extends GetxController {
         }
       });
       final OAuthCredential facebookAuthCredential =
-      FacebookAuthProvider.credential(
+          FacebookAuthProvider.credential(
         loginResult.accessToken!.token,
       );
       if (kDebugMode) {

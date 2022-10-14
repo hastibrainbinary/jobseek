@@ -1222,38 +1222,43 @@ class SignUpScreenM extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Container(
-                          height: 50,
-                          width: 145,
-                          decoration: BoxDecoration(
-                              border: Border.all(color: ColorRes.borderColor),
-                              boxShadow: [
-                                BoxShadow(
-                                    offset: const Offset(6, 6),
-                                    color: ColorRes.containerColor
-                                        .withOpacity(0.08),
-                                    spreadRadius: 0,
-                                    blurRadius: 35),
-                              ],
-                              borderRadius: BorderRadius.circular(10),
-                              color: ColorRes.white),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const Image(
-                                image: AssetImage(
-                                  AssetRes.googleLogo,
+                        InkWell(
+                          onTap: () {
+                            controller.SignUpWithGoogle();
+                          },
+                          child: Container(
+                            height: 50,
+                            width: 145,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: ColorRes.borderColor),
+                                boxShadow: [
+                                  BoxShadow(
+                                      offset: const Offset(6, 6),
+                                      color: ColorRes.containerColor
+                                          .withOpacity(0.08),
+                                      spreadRadius: 0,
+                                      blurRadius: 35),
+                                ],
+                                borderRadius: BorderRadius.circular(10),
+                                color: ColorRes.white),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const Image(
+                                  image: AssetImage(
+                                    AssetRes.googleLogo,
+                                  ),
+                                  height: 27,
                                 ),
-                                height: 27,
-                              ),
-                              const SizedBox(width: 15),
-                              Text('Google',
-                                  style: appTextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15,
-                                      color: ColorRes.black))
-                            ],
+                                const SizedBox(width: 15),
+                                Text('Google',
+                                    style: appTextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15,
+                                        color: ColorRes.black))
+                              ],
+                            ),
                           ),
                         ),
                       ],
