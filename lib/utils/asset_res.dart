@@ -34,7 +34,7 @@ class AssetRes {
 
   ///-----------------------------images------------------------------------------------------
   static const splash_screenback = '${images}splash_screenback.png';
-  static const firstBackScreen = '${images}FirstBackScreen.png';
+  static const fristBackScreen = '${images}fristBackScreen.png';
 
   ///-----------------------------images------------------------------------------------------
   static const splashScreen = '${images}splashScreenBack.png';

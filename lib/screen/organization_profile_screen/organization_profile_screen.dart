@@ -45,7 +45,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: 20),
+              const SizedBox(width: 10),
               Text(
                 'Organization Profile',
                 style: appTextStyle(
@@ -530,18 +530,18 @@ class OrganizationProfileScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                               color: ColorRes.white,
                               borderRadius:
-                              const BorderRadius.all(Radius.circular(10)),
+                                  const BorderRadius.all(Radius.circular(10)),
                               border:
-                              Border.all(color: ColorRes.containerColor)),
+                                  Border.all(color: ColorRes.containerColor)),
                           child: Center(
                               child: Text(
-                                "Cancel",
-                                style: appTextStyle(
-                                  color: ColorRes.containerColor,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              )),
+                            "Cancel",
+                            style: appTextStyle(
+                              color: ColorRes.containerColor,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          )),
                         ),
                       ),
                     ),
@@ -559,7 +559,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                             MaterialPageRoute(
                               builder: (context) => const LookingForScreen(),
                             ),
-                                (route) => false);
+                            (route) => false);
                       },
                       child: Container(
                         height: 50,

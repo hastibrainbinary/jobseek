@@ -32,7 +32,7 @@ class FirstScreen extends StatelessWidget {
         decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage(
-                AssetRes.firstBackScreen,
+                AssetRes.fristBackScreen,
               ),
               fit: BoxFit.cover),
         ),
