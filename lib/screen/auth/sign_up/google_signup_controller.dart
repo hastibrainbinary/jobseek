@@ -4,18 +4,26 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/screen/dashboard/dashboard_screen.dart';
+import 'package:jobseek/utils/shared_preferences.dart';
+
+import '../../../utils/pref_keys.dart';
 
 class GoogleSignupController extends GetxController {
   final String email;
   final String firstname;
   final String lastname;
-  GoogleSignupController( {required this.email,required this.firstname, required this.lastname,});
+  GoogleSignupController({
+    required this.email,
+    required this.firstname,
+    required this.lastname,
+  });
   @override
   void onInit() {
     print("********************************");
-   emailController.text = email;
-   firstnameController.text= firstname;
-   lastnameController .text= lastname;
+    emailController.text = email;
+    firstnameController.text = firstname;
+    lastnameController.text = lastname;
     super.onInit();
   }
 
@@ -39,6 +47,70 @@ class GoogleSignupController extends GetxController {
   String stateError = "";
   String countryError = "";
   String occupationError = "";
+  bool show = true;
+  bool rememberMe = false;
+  void onRememberMeChange(bool? value) {
+    if (value != null) {
+      rememberMe = value;
+      update(['remember_me']);
+    }
+  }
+
+  chang() {
+    debugPrint("SHOW $show");
+    show = !show;
+    update(['showPassword']);
+  }
+
+  Country countryModel = Country.from(json: {
+    "e164_cc": "1",
+    "iso2_cc": "CA",
+    "e164_sc": 0,
+    "geographic": true,
+    "level": 2,
+    "name": "Canada",
+    "example": "2042345678",
+    "display_name": "Canada (CA) [+1]",
+    "full_example_with_plus_sign": "+12042345678",
+    "display_name_no_e164_cc": "Canada (CA)",
+    "e164_key": "1-CA-0"
+  });
+
+  void countrySelect(context) {
+    showCountryPicker(
+      context: context,
+      showPhoneCode: true,
+      onSelect: (Country country) {
+        countryModel = country;
+        update(['phone_filed']);
+      },
+    );
+  }
+
+  void onCountryTap(BuildContext context) {
+    showCountryPicker(
+      context: context,
+      showPhoneCode: true,
+      onSelect: (Country country) {
+        countryModel = country;
+        update(['phone_filed']);
+      },
+    );
+  }
+
+  bool buttonColor = false;
+
+  button() {
+    if (emailController.text != '' && passwordController.text != '') {
+      buttonColor = true;
+      update(['color']);
+    } else {
+      buttonColor = false;
+      update(['color']);
+    }
+    update();
+  }
+
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
   emailValidation() {
@@ -46,7 +118,7 @@ class GoogleSignupController extends GetxController {
       emailError = 'Please Enter email';
     } else {
       if (RegExp(
-          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
           .hasMatch(emailController.text)) {
         emailError = '';
       } else {
@@ -125,9 +197,7 @@ class GoogleSignupController extends GetxController {
     if (passwordController.text.trim() == "") {
       pwdError = 'Please Enter Password';
     } else {
-      if (passwordController.text
-          .trim()
-          .length >= 8) {
+      if (passwordController.text.trim().length >= 8) {
         pwdError = '';
       } else {
         pwdError = "At Least 8 Character";
@@ -160,155 +230,114 @@ class GoogleSignupController extends GetxController {
     }
   }
 
+  addDataInFirebase(
+      {required String userUid, required Map<String, dynamic> map}) async {
+    await fireStore
+        .collection("Auth")
+        .doc("User")
+        .collection("register")
+        .doc(userUid)
+        .set(map)
+        .catchError((e) {
+      if (kDebugMode) {
+        print('...error...' + e);
+      }
+    });
+  }
 
+  onSignUpBtnTap() async {
 
-  onSignUpBtnTap() {
-    if (validator()) {
+    String uid = await SharePref.getString(PrefKeys.userId) ?? "";
+      Map<String, dynamic> map2 = {
+        "fullName": "${firstnameController.text} ${lastnameController.text}",
+        "Email": emailController.text,
+        "Phone": phoneController.text,
+        "Occupation": occupationController.text,
+        "City": cityController.text,
+        "State": stateController.text,
+        "Country": countryController.text,
+      };
+
       // singUp(emailController.text, passwordController.text);
       if (kDebugMode) {
         print("GO TO HOME PAGE");
       }
+      await addDataInFirebase(userUid: uid, map: map2);
+      Get.offAll(()=>DashBoardScreen());
+      update(["showEmail"]);
+      update(["showLastname"]);
+      update(["showFirstname"]);
+      update(["showPhoneNumber"]);
+      update(["loginForm"]);
+      update(["showPassword"]);
+      update(["showOccupation"]);
+      update(["showCity"]);
+      update(["showState"]);
+      update(["showCountry"]);
+      update(['dark']);
     }
-    update(["showEmail"]);
-    update(["showLastname"]);
-    update(["showFirstname"]);
-    update(["showPhoneNumber"]);
-    update(["loginForm"]);
-    update(["showPassword"]);
-    update(["showOccupation"]);
-    update(["showCity"]);
-    update(["showState"]);
-    update(["showCountry"]);
-    update(['dark']);
+
+    // singUp(email, password) async {
+    //   try {
+    //     loading.value = true;
+    //     UserCredential userCredential =
+    //     await FirebaseAuth.instance.createUserWithEmailAndPassword(
+    //       email: email,
+    //       password: password,
+    //     );
+    //     if (userCredential.user?.uid != null) {
+    //       PrefService.setValue(
+    //           PrefKeys.userId, userCredential.user?.uid.toString());
+    //       PrefService.setValue(PrefKeys.rol, "User");
+    //       Map<String, dynamic> map2 = {
+    //         "fullName": "${firstnameController.text} ${lastnameController.text}",
+    //         "Email": emailController.text,
+    //         "Phone": phoneController.text,
+    //         "Occupation": occupationController.text,
+    //         "City": cityController.text,
+    //         "State": stateController.text,
+    //         "Country": countryController.text,
+    //       };
+    //       addDataInFirebase(userUid: userCredential.user?.uid ?? "", map: map2);
+    //     }
+    //     Get.to(DashBoardScreen());
+    //     loading.value = false;
+    //   } on FirebaseAuthException catch (e) {
+    //     if (e.code == 'weak-password') {
+    //       if (kDebugMode) {
+    //         print('The password provided is too weak.');
+    //       }
+    //     } else if (e.code == 'email-already-in-use') {
+    //       Get.snackbar("Error", e.message.toString(),
+    //           colorText: const Color(0xffDA1414));
+    //       loading.value = false;
+    //       if (kDebugMode) {
+    //         print('The account already exists for that email.');
+    //       }
+    //     }
+    //   } catch (e) {
+    //     if (kDebugMode) {
+    //       print(e);
+    //       loading.value = false;
+    //     }
+    //   }
+    // }
+
+    // addDataInFirebase(
+    //     {required String userUid, required Map<String, dynamic> map}) async {
+    //   await fireStore
+    //       .collection("Auth")
+    //       .doc("User")
+    //       .collection("register")
+    //       .doc(userUid)
+    //       .set(map)
+    //       .catchError((e) {
+    //     if (kDebugMode) {
+    //       print('...error...' + e);
+    //     }
+    //   });
+    //   if (kDebugMode) {
+    //     print("*************************** Success");
+    //   }
+    // }
   }
-
-  // singUp(email, password) async {
-  //   try {
-  //     loading.value = true;
-  //     UserCredential userCredential =
-  //     await FirebaseAuth.instance.createUserWithEmailAndPassword(
-  //       email: email,
-  //       password: password,
-  //     );
-  //     if (userCredential.user?.uid != null) {
-  //       PrefService.setValue(
-  //           PrefKeys.userId, userCredential.user?.uid.toString());
-  //       PrefService.setValue(PrefKeys.rol, "User");
-  //       Map<String, dynamic> map2 = {
-  //         "fullName": "${firstnameController.text} ${lastnameController.text}",
-  //         "Email": emailController.text,
-  //         "Phone": phoneController.text,
-  //         "Occupation": occupationController.text,
-  //         "City": cityController.text,
-  //         "State": stateController.text,
-  //         "Country": countryController.text,
-  //       };
-  //       addDataInFirebase(userUid: userCredential.user?.uid ?? "", map: map2);
-  //     }
-  //     Get.to(DashBoardScreen());
-  //     loading.value = false;
-  //   } on FirebaseAuthException catch (e) {
-  //     if (e.code == 'weak-password') {
-  //       if (kDebugMode) {
-  //         print('The password provided is too weak.');
-  //       }
-  //     } else if (e.code == 'email-already-in-use') {
-  //       Get.snackbar("Error", e.message.toString(),
-  //           colorText: const Color(0xffDA1414));
-  //       loading.value = false;
-  //       if (kDebugMode) {
-  //         print('The account already exists for that email.');
-  //       }
-  //     }
-  //   } catch (e) {
-  //     if (kDebugMode) {
-  //       print(e);
-  //       loading.value = false;
-  //     }
-  //   }
-  // }
-  //
-  // addDataInFirebase(
-  //     {required String userUid, required Map<String, dynamic> map}) async {
-  //   await fireStore
-  //       .collection("Auth")
-  //       .doc("User")
-  //       .collection("register")
-  //       .doc(userUid)
-  //       .set(map)
-  //       .catchError((e) {
-  //     if (kDebugMode) {
-  //       print('...error...' + e);
-  //     }
-  //   });
-  //   if (kDebugMode) {
-  //     print("*************************** Success");
-  //   }
-  // }
-
-  bool show = true;
-  Country countryModel = Country.from(json: {
-    "e164_cc": "1",
-    "iso2_cc": "CA",
-    "e164_sc": 0,
-    "geographic": true,
-    "level": 2,
-    "name": "Canada",
-    "example": "2042345678",
-    "display_name": "Canada (CA) [+1]",
-    "full_example_with_plus_sign": "+12042345678",
-    "display_name_no_e164_cc": "Canada (CA)",
-    "e164_key": "1-CA-0"
-  });
-
-  void countrySelect(context) {
-    showCountryPicker(
-      context: context,
-      showPhoneCode: true,
-      onSelect: (Country country) {
-        countryModel = country;
-        update(['phone_filed']);
-      },
-    );
-  }
-
-  void onCountryTap(BuildContext context) {
-    showCountryPicker(
-      context: context,
-      showPhoneCode: true,
-      onSelect: (Country country) {
-        countryModel = country;
-        update(['phone_filed']);
-      },
-    );
-  }
-
-  chang() {
-    debugPrint("SHOW $show");
-    show = !show;
-    update(['showPassword']);
-  }
-
-  bool rememberMe = false;
-
-  void onRememberMeChange(bool? value) {
-    if (value != null) {
-      rememberMe = value;
-      update(['remember_me']);
-    }
-  }
-
-  bool buttonColor = false;
-
-  button() {
-    if (emailController.text != '' && passwordController.text != '') {
-      buttonColor = true;
-      update(['color']);
-    } else {
-      buttonColor = false;
-      update(['color']);
-    }
-    update();
-  }
-}
-

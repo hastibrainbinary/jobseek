@@ -12,13 +12,18 @@ class GoogleSignupScreen extends StatelessWidget {
   final String email;
   final String firstName;
   final String lastName;
-  const GoogleSignupScreen({Key? key, required this.email, required this.firstName, required this.lastName}) : super(key: key);
+  const GoogleSignupScreen(
+      {Key? key,
+      required this.email,
+      required this.firstName,
+      required this.lastName})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     print("EMAIL : $email , $firstName , $lastName");
-    GoogleSignupController controller = Get.put(GoogleSignupController
-      (email: email,firstname:firstName,lastname:lastName));
+    GoogleSignupController controller = Get.put(GoogleSignupController(
+        email: email, firstname: firstName, lastname: lastName));
 
     return Scaffold(
       backgroundColor: ColorRes.backgroundColor,
@@ -58,7 +63,6 @@ class GoogleSignupScreen extends StatelessWidget {
           ),
           const SizedBox(height: 37),
           GetBuilder<GoogleSignupController>(
-
             id: "showFirstname",
             builder: (controller) => texFieldColumn(
                 title: 'First Name',
@@ -70,7 +74,6 @@ class GoogleSignupScreen extends StatelessWidget {
           GetBuilder<GoogleSignupController>(
             id: "showLastname",
             builder: (controller) => texFieldColumn(
-
               title: 'Last Name',
               hintText: 'Last Name',
               error: controller.lastError,
@@ -246,11 +249,12 @@ class GoogleSignupScreen extends StatelessWidget {
                             fontWeight: FontWeight.w500,
                             fontSize: 15,
                             color: ColorRes.black.withOpacity(0.15)),
-                        border: controller.passwordController.text.trim().isEmpty
-                            ? InputBorder.none
-                            : controller.pwdError.isNotEmpty
-                                ? errorBorder()
-                                : enableBorder(),
+                        border:
+                            controller.passwordController.text.trim().isEmpty
+                                ? InputBorder.none
+                                : controller.pwdError.isNotEmpty
+                                    ? errorBorder()
+                                    : enableBorder(),
                         focusedBorder:
                             controller.passwordController.text.trim().isEmpty
                                 ? InputBorder.none

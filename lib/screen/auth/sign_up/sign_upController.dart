@@ -330,8 +330,11 @@ class SignUpController extends GetxController {
     if (user?.uid != null && user?.uid != "") {
       String firstNm=user!.displayName.toString().split(" ").first;
       String lastNm=user.displayName.toString().split(" ").last;
+            PrefService.setValue(
+                PrefKeys.userId, user.uid.toString());
+            PrefService.setValue(PrefKeys.rol, "User");
 
-      Get.to( GoogleSignupScreen(email:user.email.toString(),firstName:firstNm,lastName: lastNm),);
+      Get.to( GoogleSignupScreen(email:user.email.toString(),firstName:firstNm,lastName: lastNm,),);
       // Get.offAll(() => DashBoardScreen());
       loading.value == false;
       // loader false
