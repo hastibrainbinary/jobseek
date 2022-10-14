@@ -15,11 +15,28 @@ class CreateVacanciesController extends GetxController implements GetxService {
   RxBool isSalaryValidate = false.obs;
   RxBool isLocationValidate = false.obs;
   RxBool isTypeValidate = false.obs;
+  String companyName = "";
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
   List<TextEditingController> addRequirementsList = [];
 
 
   onTapNextBut(){
+    final docRef = fireStore
+        .collection("Auth")
+        .doc("Manager")
+        .collection("register")
+        .doc(PrefService.getString(PrefKeys.userId))
+        .collection("company")
+        .doc("details");
+    docRef.get().then(
+          (DocumentSnapshot doc) {
+        final data = doc.data() as Map<String, dynamic>;
+        companyName = data["name"];
+        // ...
+      },
+      onError: (e) => print("Error getting document: $e"),
+    );
+
     Get.to(RequirementsScreen());
   }
 
@@ -43,7 +60,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
       "location": locationController.text.trim(),
       "type": typeController.text.trim(),
       "Status": "Active",
-      "CompanyName": "BrainBinary",
+      "CompanyName": companyName,
       "RequirementsList": requirementsList,
     };
     validate();
@@ -51,11 +68,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
         isSalaryValidate.value == false &&
         isLocationValidate.value == false &&
         isTypeValidate.value == false) {
-      await fireStore
-          .collection('allPost')
-          .doc(pUid)
-          .set(map)
-          .then((value) async {
+      await fireStore.collection('allPost').doc(pUid).set(map).then((value) async {
         fireStore
             .collection("Auth")
             .doc("Manager")
@@ -69,7 +82,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
             .doc("Manager")
             .collection("register")
             .doc(uid)
-            .update({"TotalPost": totalPost});
+            .update({"TotalPost": totalPost+1});
 
         PrefService.setValue(PrefKeys.totalPost, totalPost + 1);
         Get.back();
