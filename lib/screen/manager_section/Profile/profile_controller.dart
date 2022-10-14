@@ -1,10 +1,13 @@
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:jobseek/screen/manager_section/Profile/profile_screen.dart';
+import 'package:jobseek/screen/manager_section/Profile/edit_profile/edit_profile_screen.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_res.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 
 
 class ProfileController extends GetxController implements GetxService {
@@ -13,11 +16,13 @@ class ProfileController extends GetxController implements GetxService {
   TextEditingController companyAddressController = TextEditingController();
   TextEditingController countryController = TextEditingController();
   TextEditingController dateController = TextEditingController();
+  static FirebaseFirestore fireStore = FirebaseFirestore.instance;
   RxBool isNameValidate = false.obs;
   RxBool isEmailValidate = false.obs;
   RxBool isAddressValidate = false.obs;
   RxBool isCountryValidate = false.obs;
   RxBool isDateController = false.obs;
+  RxBool isLod = false.obs;
 
   DateTime? startTime;
   ImagePicker picker = ImagePicker();
@@ -51,18 +56,44 @@ class ProfileController extends GetxController implements GetxService {
     }
   }
 
+  init(){
+    isLod.value = true;
+    final docRef = fireStore
+        .collection("Auth")
+        .doc("Manager")
+        .collection("register")
+        .doc(PrefService.getString(PrefKeys.userId))
+        .collection("company")
+        .doc("details");
+    docRef.get().then(
+          (DocumentSnapshot doc) {
+        final data = doc.data() as Map<String, dynamic>;
+        companyNameController.text = data["name"];
+        companyEmailController.text = data["email"];
+        companyAddressController.text = data["address"];
+        dateController.text = data["date"];
+        countryController.text = data["country"];
+        update();
+        isLod.value = false;
+        // ...
+      },
+      onError: (e) {
+        Get.snackbar("Error getting document:", "$e", colorText: const Color(0xffDA1414));
+        print("Error getting document: $e");
+      },
+    );
+  }
+
   onTapEdit() {
-    validate();
-    if (isNameValidate.value == false &&
-        isEmailValidate.value == false &&
-        isAddressValidate.value == false &&
-        isCountryValidate.value == false &&
-        isDateController.value == false) {
+    print("GO TO Edit Profile");
+      Get.to(EditProfileScreen());
+  }
 
+  changeDropdwon({required String val}) {
+    dropDownValue = val;
+    countryController.text = dropDownValue;
 
-      print("GO TO HOME PAGE");
-      Get.to(ProfileScreen());
-    }
+    update(["dropdown"]);
   }
 
   validate() {
@@ -95,6 +126,38 @@ class ProfileController extends GetxController implements GetxService {
     }
   }
 
+  onTapSubmit() async {
+    validate();
+    if (isNameValidate.value == false &&
+        isEmailValidate.value == false &&
+        isAddressValidate.value == false &&
+        isCountryValidate.value == false &&
+        isDateController.value == false) {
+      String uid = PrefService.getString(PrefKeys.userId);
+      Map<String, dynamic> map = {
+        "email": companyEmailController.text.trim(),
+        "name": companyNameController.text.trim(),
+        "date": dateController.text.trim(),
+        "country": countryController.text.trim(),
+        "address": companyAddressController.text.trim(),
+      };
+      await fireStore
+          .collection("Auth")
+          .doc("Manager")
+          .collection("register")
+          .doc(uid)
+          .collection("company")
+          .doc("details")
+          .update(map);
+
+      if (kDebugMode) {
+        print("GO TO HOME PAGE");
+      }
+      init();
+      Get.back();
+      // Get.to(ManagerDashBoardScreen());
+    }
+  }
   validateAndSubmit() {
     Get.toNamed(AppRes.managerDashboardScreen);
 /*    if (companyNameController.text.isEmpty) {
@@ -116,7 +179,7 @@ class ProfileController extends GetxController implements GetxService {
     }*/
   }
 
-  RxString? dropDownValue;
+  String dropDownValue = 'India';
 
   var items = [
     'India',
@@ -124,6 +187,13 @@ class ProfileController extends GetxController implements GetxService {
     'Europe',
     'china',
     'United Kingdom',
+    " Cuba",
+    "	Havana",
+    "Cyprus",
+    "Nicosia",
+    "Czech ",
+    "Republic",
+    "Prague",
   ];
   onTapImage() async {
     XFile? img = await picker.pickImage(source: ImageSource.camera);

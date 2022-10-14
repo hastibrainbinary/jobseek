@@ -45,6 +45,10 @@ class SignInScreenController extends GetxController {
     update(["showPassword"]);
   }
 
+  void onChanged(String value){
+    update(["colorChange"]);
+  }
+
   bool validator() {
     emailValidation();
     passwordValidation();

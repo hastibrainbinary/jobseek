@@ -226,6 +226,7 @@ class SignUpController extends GetxController {
         .doc(userUid)
         .set(map)
         .catchError((e) {
+
       if (kDebugMode) {
         print('...error...' + e);
       }

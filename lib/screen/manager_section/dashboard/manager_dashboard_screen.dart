@@ -35,7 +35,7 @@ class ManagerDashBoardScreen extends StatelessWidget {
                   ? ManagerApplicationScreen()
                   : controller.currentTab.value == 2
                       ? ChatBoxScreen()
-                      : EditProfileScreen()),
+                      : ProfileScreen()),
           bottomNavigationBar: Obx(() => Container(
                 margin: const EdgeInsets.symmetric(horizontal: 18),
                 decoration: const BoxDecoration(

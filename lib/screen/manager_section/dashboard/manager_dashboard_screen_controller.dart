@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/screen/manager_section/Profile/profile_controller.dart';
 
 
 class ManagerDashBoardScreenController extends GetxController implements GetxService{
@@ -18,7 +19,8 @@ class ManagerDashBoardScreenController extends GetxController implements GetxSer
       // messageController.init();
     } else {
       debugPrint("INDEX IS 3");
-      // profileController.init();
+      ProfileController controller = Get.put(ProfileController());
+      controller.init();
     }
     update(['bottom_bar']);
   }

@@ -102,6 +102,7 @@ class SigninScreenU extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(12),
                                 ),
                                 child: commonTextFormField(
+                                  onChanged: controller.onChanged,
                                   controller: controller.emailController,
                                   textDecoration: InputDecoration(
                                     contentPadding: const EdgeInsets.only(
@@ -239,6 +240,7 @@ class SigninScreenU extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(12),
                                 ),
                                 child: commonTextFormField(
+                                  onChanged: controller.onChanged,
                                   controller: controller.passwordController,
                                   obscureText: controller.show,
                                   textDecoration: InputDecoration(
