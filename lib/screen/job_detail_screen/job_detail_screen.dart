@@ -169,7 +169,7 @@ class JobDetailScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(snapshot.data!.docs[0]["salary"],
+                            Text(snapshot.data!.docs["salary"],
                                 style: appTextStyle(
                                     color: ColorRes.black,
                                     fontSize: 15,

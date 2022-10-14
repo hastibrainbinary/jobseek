@@ -38,7 +38,6 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   const SizedBox(height: 23),
                   searchArea(),
-
                   InkWell(
                       onTap: () {
                         Navigator.push(
@@ -156,7 +155,6 @@ class HomeScreen extends StatelessWidget {
                           );
                         }),
                   ),
-
                   StreamBuilder(
                       stream: fireStore.collection("allPost").snapshots(),
                       builder: (BuildContext context,
@@ -167,12 +165,14 @@ class HomeScreen extends StatelessWidget {
                                 shrinkWrap: true,
                                 physics: const BouncingScrollPhysics(),
                                 itemBuilder: (context, index) {
+                                  print(index);
+                                  print(snapshot.data!.docs[index].id);
                                   return InkWell(
                                     onTap: () => Get.toNamed(
                                         AppRes.jobDetailScreen,
                                         arguments: {
                                           "saved":
-                                              controller.jobTypesSaved[index],
+                                              controller.jobTypesSaved[index%5],
                                           "docId": snapshot.data!.docs[index].id
                                         }),
                                     child: Container(
@@ -190,7 +190,7 @@ class HomeScreen extends StatelessWidget {
                                       child: Row(
                                         children: [
                                           Image.asset(
-                                              controller.jobTypesLogo[index]),
+                                              controller.jobTypesLogo[index%5]),
                                           const SizedBox(width: 20),
                                           Column(
                                             mainAxisAlignment:
@@ -200,8 +200,7 @@ class HomeScreen extends StatelessWidget {
                                             children: [
                                               Text(
                                                   // controller.jobTypes[index],
-                                                  snapshot.data!.docs[index]
-                                                      ["Position"],
+                                                  snapshot.data!.docs[index]["Position"],
                                                   style: appTextStyle(
                                                       color: ColorRes.black,
                                                       fontSize: 15,
@@ -235,12 +234,9 @@ class HomeScreen extends StatelessWidget {
                                                 },
                                                 child: Obx(() {
                                                   return Image.asset(
-                                                    controller.jobTypesSaved[
-                                                            index]
-                                                        ? AssetRes
-                                                            .bookMarkFillIcon
-                                                        : AssetRes
-                                                            .bookMarkBorderIcon,
+                                                    controller.jobTypesSaved[index%5]
+                                                        ? AssetRes.bookMarkFillIcon
+                                                        : AssetRes.bookMarkBorderIcon,
                                                     height: 20,
                                                   );
                                                 }),
@@ -263,7 +259,7 @@ class HomeScreen extends StatelessWidget {
                                     ),
                                   );
                                 })
-                            : Center(
+                            : const Center(
                                 child: CircularProgressIndicator(),
                               );
                       }),
