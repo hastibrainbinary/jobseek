@@ -19,7 +19,7 @@ class ChatLiveScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 50),
+            const SizedBox(height: 60),
             Row(
               children: [
                 Padding(
@@ -31,7 +31,7 @@ class ChatLiveScreen extends StatelessWidget {
                     child: backButton(),
                   ),
                 ),
-                const SizedBox(width: 85),
+                const SizedBox(width:80),
                 Center(
                   child: Text(
                     'Chat Box',

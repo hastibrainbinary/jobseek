@@ -16,7 +16,7 @@ class ChatBoxScreen extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       backgroundColor: ColorRes.backgroundColor,
       body: Column(children: [
-        const SizedBox(height: 60),
+        const SizedBox(height:50),
         Row(children: [
           Container(
             margin: const EdgeInsets.all(15),
@@ -37,7 +37,7 @@ class ChatBoxScreen extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width: 60),
+          const SizedBox(width:80),
           Text(
             'Chat Box',
             style: appTextStyle(

@@ -15,7 +15,7 @@ Widget lookingForYouBox(String icon, text, bool isSelect) {
           width: 2),
     ),
     child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
@@ -30,6 +30,7 @@ Widget lookingForYouBox(String icon, text, bool isSelect) {
             child: Image.asset(icon),
           ),
         ),
+        const SizedBox(height: 10,),
         Text(
           text,
           style: appTextStyle(color: ColorRes.black, fontSize: 12),

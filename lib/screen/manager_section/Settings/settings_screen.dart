@@ -221,8 +221,8 @@ class SettingScreenM extends StatelessWidget {
                           fontSize: 14,
                           color: ColorRes.black),
                     ),
-                    SizedBox(width: Get.width - 140),
-                     Image(
+                    SizedBox(width: Get.width - 145),
+                     const Image(
                       image: AssetImage(AssetRes.settingaArrow),
                       height: 15,
                     ),

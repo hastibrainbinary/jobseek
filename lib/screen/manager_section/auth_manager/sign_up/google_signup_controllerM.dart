@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/screen/dashboard/dashboard_screen.dart';
 import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 import 'package:jobseek/utils/shared_preferences.dart';

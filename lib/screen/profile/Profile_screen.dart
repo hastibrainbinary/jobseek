@@ -53,8 +53,9 @@ class ProfileUserScreenU extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                width: 70,
+                width:60,
               ),
+
               Container(
                 margin: const EdgeInsets.all(15),
                 height: 40,

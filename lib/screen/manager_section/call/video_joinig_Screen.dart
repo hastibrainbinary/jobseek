@@ -37,7 +37,7 @@ class VideoJoiningScreen extends StatelessWidget {
           left: 120,
           child: Text(
             "Joining Interview ...",
-            style: appTextStyle(fontWeight: FontWeight.w400, fontSize: 14),
+            style: appTextStyle(fontWeight: FontWeight.w400, fontSize: 14,),
           ),
         ),
         Positioned(
@@ -55,7 +55,7 @@ class VideoJoiningScreen extends StatelessWidget {
                 padding: EdgeInsets.all(16.0),
                 child: Image(
                   image: AssetImage(
-                    AssetRes.callDecline,
+                    AssetRes.call_decaline,
                   ),
                 ),
               ),

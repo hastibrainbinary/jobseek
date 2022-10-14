@@ -115,7 +115,7 @@ class GoogleSignupController extends GetxController {
 
   emailValidation() {
     if (emailController.text.trim() == "") {
-      emailError = 'Please Enter email';
+      emailError = 'Please enter email';
     } else {
       if (RegExp(
               r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
@@ -129,7 +129,7 @@ class GoogleSignupController extends GetxController {
 
   firstNameValidation() {
     if (firstnameController.text.trim() == "") {
-      firstError = 'Please Enter Firstname';
+      firstError = 'Please enter Firstname';
     } else {
       firstError = "";
     }
@@ -137,7 +137,7 @@ class GoogleSignupController extends GetxController {
 
   lastNameValidation() {
     if (lastnameController.text.trim() == "") {
-      lastError = 'Please Enter Lastname';
+      lastError = 'Please enter Lastname';
     } else {
       lastError = "";
     }
@@ -145,7 +145,7 @@ class GoogleSignupController extends GetxController {
 
   cityNameValidation() {
     if (cityController.text.trim() == "") {
-      cityError = 'Please Enter city';
+      cityError = 'Please enter city';
     } else {
       cityError = "";
     }
@@ -153,7 +153,7 @@ class GoogleSignupController extends GetxController {
 
   stateNameValidation() {
     if (stateController.text.trim() == "") {
-      stateError = 'Please Enter State';
+      stateError = 'Please enter State';
     } else {
       stateError = "";
     }
@@ -161,7 +161,7 @@ class GoogleSignupController extends GetxController {
 
   countryNameValidation() {
     if (cityController.text.trim() == "") {
-      countryError = 'Please Enter Country';
+      countryError = 'Please enter Country';
     } else {
       countryError = "";
     }
@@ -169,7 +169,7 @@ class GoogleSignupController extends GetxController {
 
   occupationNameValidation() {
     if (occupationController.text.trim() == "") {
-      occupationError = 'Please Enter Country';
+      occupationError = 'Please enter Country';
     } else {
       occupationError = "";
     }
@@ -177,12 +177,12 @@ class GoogleSignupController extends GetxController {
 
   phoneValidation() {
     if (phoneController.text.trim() == "") {
-      phoneError = 'Please Enter phoneNumber';
+      phoneError = 'Please enter phoneNumber';
     } else {
       if (phoneController.text.length == 10) {
         phoneError = "";
       } else {
-        phoneError = "Invalid Phone Number";
+        phoneError = "Invalid phone number";
       }
       // if (RegExp(r"^\+?0[0-9]{10}$").hasMatch(phoneController.text)) {
       //     phoneError = "";
@@ -195,7 +195,7 @@ class GoogleSignupController extends GetxController {
 
   passwordValidation() {
     if (passwordController.text.trim() == "") {
-      pwdError = 'Please Enter Password';
+      pwdError = 'Please enter Password';
     } else {
       if (passwordController.text.trim().length >= 8) {
         pwdError = '';

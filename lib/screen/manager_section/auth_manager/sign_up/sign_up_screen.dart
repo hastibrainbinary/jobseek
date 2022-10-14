@@ -56,7 +56,7 @@ class SignUpScreenM extends StatelessWidget {
                     ),
                     const SizedBox(height: 37),
                     Padding(
-                      padding: const EdgeInsets.only(left: 15, bottom: 10),
+                      padding: const EdgeInsets.only(left: 13, bottom: 10),
                       child: Row(
                         children: [
                           Text('First Name',
@@ -188,7 +188,7 @@ class SignUpScreenM extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     Padding(
-                      padding: const EdgeInsets.only(left: 15, bottom: 10),
+                      padding: const EdgeInsets.only(left: 13, bottom: 10),
                       child: Row(
                         children: [
                           Text('Last Name',
@@ -320,7 +320,7 @@ class SignUpScreenM extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     Padding(
-                      padding: const EdgeInsets.only(left: 15, bottom: 10),
+                      padding: const EdgeInsets.only(left: 13, bottom: 10),
                       child: Row(
                         children: [
                           Text('Email',
@@ -450,7 +450,7 @@ class SignUpScreenM extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     Padding(
-                      padding: const EdgeInsets.only(left: 15, bottom: 10),
+                      padding: const EdgeInsets.only(left: 13, bottom: 10),
                       child: Row(
                         children: [
                           Text('Phone number',
@@ -559,7 +559,7 @@ class SignUpScreenM extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     Padding(
-                      padding: const EdgeInsets.only(left: 15, bottom: 10),
+                      padding: const EdgeInsets.only(left: 13, bottom: 10),
                       child: Row(
                         children: [
                           Text('Password',
@@ -706,7 +706,7 @@ class SignUpScreenM extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     Padding(
-                      padding: const EdgeInsets.only(left: 15, bottom: 10),
+                      padding: const EdgeInsets.only(left: 13, bottom: 10),
                       child: Row(
                         children: [
                           Text('City',
@@ -834,7 +834,7 @@ class SignUpScreenM extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     Padding(
-                      padding: const EdgeInsets.only(left: 15, bottom: 10),
+                      padding: const EdgeInsets.only(left: 13, bottom: 10),
                       child: Row(
                         children: [
                           Text('State',
@@ -963,7 +963,7 @@ class SignUpScreenM extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     Padding(
-                      padding: const EdgeInsets.only(left: 15, bottom: 10),
+                      padding: const EdgeInsets.only(left: 13, bottom: 10),
                       child: Row(
                         children: [
                           Text('Country',

@@ -202,7 +202,7 @@ class SignUpScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       Padding(
-                        padding: const EdgeInsets.only(left: 15, bottom: 10),
+                        padding: const EdgeInsets.only(left: 13, bottom: 10),
                         child: Row(
                           children: [
                             Text('Password',

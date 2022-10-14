@@ -145,7 +145,7 @@ class SignUpController extends GetxController {
         cityError == "" &&
         stateError == "" &&
         countryError == "" &&
-        occupationError=="") {
+        occupationError == "") {
       return true;
     } else {
       return false;
@@ -181,13 +181,14 @@ class SignUpController extends GetxController {
         password: password,
       );
       if (userCredential.user?.uid != null) {
-        PrefService.setValue(PrefKeys.userId, userCredential.user?.uid.toString());
+        PrefService.setValue(
+            PrefKeys.userId, userCredential.user?.uid.toString());
         PrefService.setValue(PrefKeys.rol, "User");
         Map<String, dynamic> map2 = {
           "fullName": "${firstnameController.text} ${lastnameController.text}",
           "Email": emailController.text,
           "Phone": phoneController.text,
-          "Occupation":occupationController.text,
+          "Occupation": occupationController.text,
           "City": cityController.text,
           "State": stateController.text,
           "Country": countryController.text,
@@ -329,13 +330,18 @@ class SignUpController extends GetxController {
       print(user?.displayName);
     }
     if (user?.uid != null && user?.uid != "") {
-      String firstNm=user!.displayName.toString().split(" ").first;
-      String lastNm=user.displayName.toString().split(" ").last;
-            PrefService.setValue(
-                PrefKeys.userId, user.uid.toString());
-            PrefService.setValue(PrefKeys.rol, "User");
+      String firstNm = user!.displayName.toString().split(" ").first;
+      String lastNm = user.displayName.toString().split(" ").last;
+      PrefService.setValue(PrefKeys.userId, user.uid.toString());
+      PrefService.setValue(PrefKeys.rol, "User");
 
-      Get.to( GoogleSignupScreen(email:user.email.toString(),firstName:firstNm,lastName: lastNm,),);
+      Get.to(
+        GoogleSignupScreen(
+          email: user.email.toString(),
+          firstName: firstNm,
+          lastName: lastNm,
+        ),
+      );
       // Get.offAll(() => DashBoardScreen());
       loading.value == false;
       // loader false

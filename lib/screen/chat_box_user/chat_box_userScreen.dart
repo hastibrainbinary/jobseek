@@ -37,7 +37,7 @@ class ChatBoxUserScreen extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width: 70),
+          const SizedBox(width: 80),
           Center(
             child: Text(
               'Chat Box',

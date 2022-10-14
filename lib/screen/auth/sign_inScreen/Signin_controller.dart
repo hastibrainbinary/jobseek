@@ -19,7 +19,7 @@ class SignInScreenController extends GetxController {
 
   emailValidation() {
     if (emailController.text.trim() == "") {
-      emailError = 'Please Enter email';
+      emailError = 'Please enter email';
     } else {
       if (RegExp(
               r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
@@ -34,12 +34,12 @@ class SignInScreenController extends GetxController {
 
   passwordValidation() {
     if (passwordController.text.trim() == "") {
-      pwdError = 'Please Enter Password';
+      pwdError = 'Please enter Password';
     } else {
       if (passwordController.text.trim().length >= 8) {
         pwdError = '';
       } else {
-        pwdError = "At Least 8 Character";
+        pwdError = "At least 8 character";
       }
     }
     update(["showPassword"]);
@@ -115,48 +115,56 @@ class SignInScreenController extends GetxController {
         .then((value) async {
       if (value.docs.length.isEqual(0)) {
         loading.value = true;
-        Get.snackbar("Error", "Please Create Account,\n Your Email is not Registered", colorText: const Color(0xffDA1414));
+        Get.snackbar(
+            "Error", "Please create account,\n your email is not registered",
+            colorText: const Color(0xffDA1414));
       } else {
         for (int i = 0; i < value.docs.length; i++) {
           if (kDebugMode) {
             print("${value.docs[i]["Email"]}=||||||++++++++++");
           }
-          if (value.docs[i]["Email"] == email &&
-              value.docs[i]["Email"] != "") {
+          if (value.docs[i]["Email"] == email && value.docs[i]["Email"] != "") {
             isUser = true;
             PrefService.setValue(PrefKeys.rol, "User");
-            print("$isUser====]]]]]");
+            if (kDebugMode) {
+              print("$isUser====]]]]]");
+            }
 
             break;
           } else {
             isUser = false;
-            print("$isUser====]]]]]");
+            if (kDebugMode) {
+              print("$isUser====]]]]]");
+            }
           }
         }
 
         if (isUser == true) {
           try {
             loading.value = true;
-            UserCredential credential = await auth.signInWithEmailAndPassword(email: email, password: password);
+            UserCredential credential = await auth.signInWithEmailAndPassword(
+                email: email, password: password);
             if (kDebugMode) {
               print(credential);
             }
 
             if (credential.user!.email.toString() == email) {
-              PrefService.setValue(PrefKeys.userId, credential.user!.uid.toString());
+              PrefService.setValue(
+                  PrefKeys.userId, credential.user!.uid.toString());
               Get.off(() => DashBoardScreen());
             }
-
           } on FirebaseAuthException catch (e) {
             if (e.code == 'user-not-found') {
-              Get.snackbar("Error", "Wrong user", colorText: const Color(0xffDA1414));
+              Get.snackbar("Error", "Wrong user",
+                  colorText: const Color(0xffDA1414));
               loading.value = false;
 
               if (kDebugMode) {
                 print('No user found for that email.');
               }
             } else if (e.code == 'wrong-password') {
-              Get.snackbar("Error", "Wrong Password", colorText: const Color(0xffDA1414));
+              Get.snackbar("Error", "Wrong password",
+                  colorText: const Color(0xffDA1414));
               loading.value = false;
 
               if (kDebugMode) {
@@ -165,19 +173,25 @@ class SignInScreenController extends GetxController {
             }
             if (kDebugMode) {
               print(e.code);
-              Get.snackbar("Error", e.code , colorText: const Color(0xffDA1414));
+              Get.snackbar("Error", e.code, colorText: const Color(0xffDA1414));
               loading.value = false;
             }
           }
         } else {
-          Get.snackbar("Error", "Please Create Account,\n Your Email is not Registered", colorText: const Color(0xffDA1414));
+          Get.snackbar(
+              "Error", "Please create account,\n your email is not registered",
+              colorText: const Color(0xffDA1414));
           loading.value = false;
         }
         loading.value = false;
       }
 
-      print("${value.isBlank}=|=|=|");
-      print("${value.docs.length}=|=|=|");
+      if (kDebugMode) {
+        print("${value.isBlank}=|=|=|");
+      }
+      if (kDebugMode) {
+        print("${value.docs.length}=|=|=|");
+      }
     });
   }
 

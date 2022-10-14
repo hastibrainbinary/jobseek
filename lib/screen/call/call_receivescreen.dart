@@ -51,7 +51,7 @@ class CallReceivedScreen extends StatelessWidget {
                 padding: EdgeInsets.all(16.0),
                 child: Image(
                   image: AssetImage(
-                    AssetRes.callDecline,
+                    AssetRes.call_decaline,
                   ),
                 ),
               ),

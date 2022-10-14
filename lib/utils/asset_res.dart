@@ -67,7 +67,7 @@ class AssetRes {
   static const add1 = '${images}add.png';
   static const facebook = '${images}facebook.png';
   static const userprofileLogo = '${images}userprofileLogo.png';
-  static const callDecline = '${images}callDecline.png';
+  static const call_decaline = '${images}call_decaline.png';
   static const videoJoinScreen = '${images}videoJoinScreen.png';
   static const videoReceiveScreen = '${images}videoReceiveScreen.png';
   static const videoJoinMen = '${images}videoJoinMen.png';

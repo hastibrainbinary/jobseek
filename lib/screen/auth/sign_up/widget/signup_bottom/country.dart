@@ -13,7 +13,7 @@ Widget countryCodePicker(BuildContext context,{double? padding}) {
       child: Row(
         children: [
           Padding(
-            padding:  EdgeInsets.all(padding??8.0),
+            padding:  EdgeInsets.all(padding??7.0),
             child: Text(phoneController.countryModel.flagEmoji),
           ),
           const SizedBox(width: 5),
