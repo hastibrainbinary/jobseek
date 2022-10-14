@@ -338,8 +338,7 @@ class SignUpControllerM extends GetxController {
       idToken: authentication.idToken,
       accessToken: authentication.accessToken,
     );
-    final UserCredential authResult =
-        await auth.signInWithCredential(credential);
+    final UserCredential authResult = await auth.signInWithCredential(credential);
     final User? user = authResult.user;
     if (kDebugMode) {
       print(user!.email);
@@ -351,18 +350,71 @@ class SignUpControllerM extends GetxController {
       print(user?.displayName);
     }
     if (user?.uid != null && user?.uid != "") {
-      String firstNm = user!.displayName.toString().split(" ").first;
-      String lastNm = user.displayName.toString().split(" ").last;
-      PrefService.setValue(PrefKeys.userId, user.uid.toString());
-      PrefService.setValue(PrefKeys.rol, "Manager");
 
-      Get.to(
-        GoogleSignupScreenM(
-          email: user.email.toString(),
-          firstName: firstNm,
-          lastName: lastNm,
-        ),
-      );
+      bool isUser = false;
+      await fireStore
+          .collection("Auth")
+          .doc("User")
+          .collection("register")
+          .get()
+          .then((value) async {
+        if (value.docs.length.isEqual(0)) {
+          loading.value = true;
+          isUser = false;
+          Get.snackbar(
+              "Error", "Please create account,\n your email is not registered",
+              colorText: const Color(0xffDA1414));
+        } else {
+          for (int i = 0; i < value.docs.length; i++) {
+            if (kDebugMode) {
+              print("${value.docs[i]["Email"]}=||||||++++++++++");
+            }
+            if (value.docs[i]["Email"] == user!.email && value.docs[i]["Email"] != "") {
+              isUser = true;
+              Get.snackbar(
+                  "Error", "This email is already registered",
+                  colorText: const Color(0xffDA1414));
+              if (kDebugMode) {
+                print("$isUser====]]]]]");
+              }
+              break;
+            } else {
+              isUser = false;
+              if (kDebugMode) {
+                print("$isUser====]]]]]");
+              }
+            }
+          }
+
+          if (isUser == false) {
+            String firstNm = user!.displayName.toString().split(" ").first;
+            String lastNm = user.displayName.toString().split(" ").last;
+            Get.to(GoogleSignupScreenM(
+              uid: user.uid.toString(),
+              email: user.email.toString(),
+              firstName: firstNm,
+              lastName: lastNm,
+            ),
+            );
+          } else {
+            if (await googleSignIn.isSignedIn()) {
+              await googleSignIn.signOut();
+            }
+            Get.snackbar(
+                "Error", "This email is already registered",
+                colorText: const Color(0xffDA1414));
+            loading.value = false;
+          }
+          loading.value = false;
+        }
+
+        if (kDebugMode) {
+          print("${value.isBlank}=|=|=|");
+        }
+        if (kDebugMode) {
+          print("${value.docs.length}=|=|=|");
+        }
+      });
       // Get.offAll(() => DashBoardScreen());
       loading.value == false;
       // loader false

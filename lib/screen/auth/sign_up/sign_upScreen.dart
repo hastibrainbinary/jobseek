@@ -647,6 +647,7 @@ Widget texFieldColumn({
   required String hintText,
   required String error,
   required TextEditingController txtController,
+  bool? read,
 }) {
   return Column(
     children: [
@@ -683,6 +684,7 @@ Widget texFieldColumn({
           borderRadius: BorderRadius.circular(12),
           child: commonTextFormField(
             controller: txtController,
+            readOnly: read ?? false,
             textDecoration: InputDecoration(
               hintText: hintText,
               fillColor: Colors.transparent,

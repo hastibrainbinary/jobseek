@@ -14,15 +14,15 @@ class SignInScreenControllerM extends GetxController {
   RxBool loading = false.obs;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  FirebaseFirestore fireStore = FirebaseFirestore.instance;
   bool isManager = false;
   String emailError = "";
   String pwdError = "";
 
   void signInWithEmailAndPassword(
       {required String email, required String password}) async {
-    FirebaseFirestore fireStore = FirebaseFirestore.instance;
-    loading.value = true;
 
+    loading.value = true;
     await fireStore
         .collection("Auth")
         .doc("Manager")
@@ -42,8 +42,7 @@ class SignInScreenControllerM extends GetxController {
           if (value.docs[i]["Email"] == email && value.docs[i]["Email"] != "") {
             isManager = true;
             PrefService.setValue(PrefKeys.rol, "Manager");
-            PrefService.setValue(
-                PrefKeys.totalPost, value.docs[i]["TotalPost"]);
+            PrefService.setValue(PrefKeys.totalPost, value.docs[i]["TotalPost"]);
             PrefService.setValue(PrefKeys.company, value.docs[i]["company"]);
             if (kDebugMode) {
               print("$isManager====]]]]]");
@@ -209,8 +208,7 @@ class SignInScreenControllerM extends GetxController {
       accessToken: authentication.accessToken,
     );
 
-    final UserCredential authResult =
-        await auth.signInWithCredential(credential);
+    final UserCredential authResult = await auth.signInWithCredential(credential);
     final User? user = authResult.user;
     if (kDebugMode) {
       print(user!.email);
@@ -221,10 +219,62 @@ class SignInScreenControllerM extends GetxController {
     if (kDebugMode) {
       print(user?.displayName);
     }
-    // ignore: unnecessary_null_comparison
+
     if (user?.uid != null && user?.uid != "") {
+      loading.value = true;
+      await fireStore
+          .collection("Auth")
+          .doc("Manager")
+          .collection("register")
+          .get()
+          .then((value) async {
+        if (value.docs.length.isEqual(0)) {
+          loading.value = true;
+          Get.snackbar(
+              "Error", "Please create account,\n your email is not registered",
+              colorText: const Color(0xffDA1414));
+        } else {
+          for (int i = 0; i < value.docs.length; i++) {
+            if (kDebugMode) {
+              print("${value.docs[i]["Email"]}=||||||++++++++++");
+            }
+            if (value.docs[i]["Email"] == user!.email && value.docs[i]["Email"] != "") {
+              isManager = true;
+              PrefService.setValue(PrefKeys.rol, "Manager");
+              PrefService.setValue(PrefKeys.totalPost, value.docs[i]["TotalPost"]);
+              PrefService.setValue(PrefKeys.company, value.docs[i]["company"]);
+              PrefService.setValue(PrefKeys.userId, user.uid);
+              Get.off(() => PrefService.getBool(PrefKeys.company)
+                  ? ManagerDashBoardScreen()
+                  : const OrganizationProfileScreen());
+              if (kDebugMode) {
+                print("$isManager====]]]]]");
+              }
+              break;
+            } else {
+              isManager = false;
+              Get.snackbar(
+                  "Error", "Please create account,\n your email is not registered",
+                  colorText: const Color(0xffDA1414));
+              if (await googleSignIn.isSignedIn()) {
+                await googleSignIn.signOut();
+              }
+              loading.value = false;
+              if (kDebugMode) {
+                print("$isManager====]]]]]");
+              }
+            }
+          }
+          loading.value = false;
+        }
+
+        print("${value.isBlank}=|=|=|");
+        print("${value.docs.length}=|=|=|");
+      });
+
       PrefService.setValue(PrefKeys.userId, user?.uid.toString());
-      Get.offAll(() => const OrganizationProfileScreen());
+
+
       loading.value == false;
       // loader false
     } else {

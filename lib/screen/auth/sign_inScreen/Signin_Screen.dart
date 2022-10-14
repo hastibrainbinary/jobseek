@@ -485,7 +485,7 @@ class SigninScreenU extends StatelessWidget {
                         ),
                         SizedBox(height: Get.height * 0.035),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             InkWell(
                               onTap: () {

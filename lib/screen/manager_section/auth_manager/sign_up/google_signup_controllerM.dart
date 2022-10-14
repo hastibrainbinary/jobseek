@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 import 'package:jobseek/utils/shared_preferences.dart';
 
@@ -12,7 +13,9 @@ class GoogleSignUpControllerM extends GetxController {
   final String email;
   final String firstname;
   final String lastname;
+  final String uid;
   GoogleSignUpControllerM({
+    required this.uid,
     required this.email,
     required this.firstname,
     required this.lastname,
@@ -30,22 +33,18 @@ class GoogleSignUpControllerM extends GetxController {
   TextEditingController lastnameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
   TextEditingController cityController = TextEditingController();
   TextEditingController stateController = TextEditingController();
   TextEditingController countryController = TextEditingController();
-  TextEditingController occupationController = TextEditingController();
 
   RxBool loading = false.obs;
   String emailError = "";
-  String pwdError = "";
   String phoneError = "";
   String firstError = "";
   String lastError = "";
   String cityError = "";
   String stateError = "";
   String countryError = "";
-  String occupationError = "";
   bool show = true;
   bool rememberMe = false;
   void onRememberMeChange(bool? value) {
@@ -99,16 +98,6 @@ class GoogleSignUpControllerM extends GetxController {
 
   bool buttonColor = false;
 
-  button() {
-    if (emailController.text != '' && passwordController.text != '') {
-      buttonColor = true;
-      update(['color']);
-    } else {
-      buttonColor = false;
-      update(['color']);
-    }
-    update();
-  }
 
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
@@ -166,14 +155,6 @@ class GoogleSignUpControllerM extends GetxController {
     }
   }
 
-  occupationNameValidation() {
-    if (occupationController.text.trim() == "") {
-      occupationError = 'Please Enter Country';
-    } else {
-      occupationError = "";
-    }
-  }
-
   phoneValidation() {
     if (phoneController.text.trim() == "") {
       phoneError = 'Please Enter phoneNumber';
@@ -192,37 +173,22 @@ class GoogleSignUpControllerM extends GetxController {
     update(["showPhoneNumber"]);
   }
 
-  passwordValidation() {
-    if (passwordController.text.trim() == "") {
-      pwdError = 'Please Enter Password';
-    } else {
-      if (passwordController.text.trim().length >= 8) {
-        pwdError = '';
-      } else {
-        pwdError = "At Least 8 Character";
-      }
-    }
-  }
-
   bool validator() {
     emailValidation();
-    passwordValidation();
     phoneValidation();
     firstNameValidation();
     lastNameValidation();
     cityNameValidation();
     stateNameValidation();
     countryNameValidation();
-    occupationNameValidation();
     if (emailError == "" &&
-        pwdError == "" &&
         phoneError == "" &&
         firstError == "" &&
         lastError == "" &&
         cityError == "" &&
         stateError == "" &&
-        countryError == "" &&
-        occupationError == "") {
+        countryError == ""
+        ) {
       return true;
     } else {
       return false;
@@ -245,30 +211,27 @@ class GoogleSignUpControllerM extends GetxController {
   }
 
   onSignUpBtnTap() async {
-    String uid = await SharePref.getString(PrefKeys.userId) ?? "";
     Map<String, dynamic> map2 = {
       "fullName": "${firstnameController.text} ${lastnameController.text}",
       "Email": emailController.text,
       "Phone": phoneController.text,
-      "Occupation": occupationController.text,
       "City": cityController.text,
       "State": stateController.text,
       "Country": countryController.text,
     };
 
-    // singUp(emailController.text, passwordController.text);
     if (kDebugMode) {
       print("GO TO HOME PAGE");
     }
     await addDataInFirebase(userUid: uid, map: map2);
+    PrefService.setValue(PrefKeys.userId, uid);
+    PrefService.setValue(PrefKeys.rol, "Manager");
     Get.offAll(() => ManagerDashBoardScreen());
     update(["showEmail"]);
     update(["showLastname"]);
     update(["showFirstname"]);
     update(["showPhoneNumber"]);
     update(["loginForm"]);
-    update(["showPassword"]);
-    update(["showOccupation"]);
     update(["showCity"]);
     update(["showState"]);
     update(["showCountry"]);

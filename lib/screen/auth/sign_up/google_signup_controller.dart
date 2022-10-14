@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/dashboard/dashboard_screen.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/shared_preferences.dart';
 
 import '../../../utils/pref_keys.dart';
@@ -13,7 +14,9 @@ class GoogleSignupController extends GetxController {
   final String email;
   final String firstname;
   final String lastname;
+  final String uid;
   GoogleSignupController({
+    required this.uid,
     required this.email,
     required this.firstname,
     required this.lastname,
@@ -31,7 +34,6 @@ class GoogleSignupController extends GetxController {
   TextEditingController lastnameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
   TextEditingController cityController = TextEditingController();
   TextEditingController stateController = TextEditingController();
   TextEditingController countryController = TextEditingController();
@@ -39,7 +41,6 @@ class GoogleSignupController extends GetxController {
 
   RxBool loading = false.obs;
   String emailError = "";
-  String pwdError = "";
   String phoneError = "";
   String firstError = "";
   String lastError = "";
@@ -101,7 +102,7 @@ class GoogleSignupController extends GetxController {
   bool buttonColor = false;
 
   button() {
-    if (emailController.text != '' && passwordController.text != '') {
+    if (emailController.text != '') {
       buttonColor = true;
       update(['color']);
     } else {
@@ -193,21 +194,8 @@ class GoogleSignupController extends GetxController {
     update(["showPhoneNumber"]);
   }
 
-  passwordValidation() {
-    if (passwordController.text.trim() == "") {
-      pwdError = 'Please enter Password';
-    } else {
-      if (passwordController.text.trim().length >= 8) {
-        pwdError = '';
-      } else {
-        pwdError = "At Least 8 Character";
-      }
-    }
-  }
-
   bool validator() {
     emailValidation();
-    passwordValidation();
     phoneValidation();
     firstNameValidation();
     lastNameValidation();
@@ -216,7 +204,6 @@ class GoogleSignupController extends GetxController {
     countryNameValidation();
     occupationNameValidation();
     if (emailError == "" &&
-        pwdError == "" &&
         phoneError == "" &&
         firstError == "" &&
         lastError == "" &&
@@ -246,7 +233,6 @@ class GoogleSignupController extends GetxController {
   }
 
   onSignUpBtnTap() async {
-    String uid = await SharePref.getString(PrefKeys.userId) ?? "";
     Map<String, dynamic> map2 = {
       "fullName": "${firstnameController.text} ${lastnameController.text}",
       "Email": emailController.text,
@@ -262,6 +248,8 @@ class GoogleSignupController extends GetxController {
       print("GO TO HOME PAGE");
     }
     await addDataInFirebase(userUid: uid, map: map2);
+    PrefService.setValue(PrefKeys.userId, uid);
+    PrefService.setValue(PrefKeys.rol, "User");
     Get.offAll(() => DashBoardScreen());
     update(["showEmail"]);
     update(["showLastname"]);
