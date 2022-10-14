@@ -3,11 +3,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:jobseek/screen/manager_section/Profile/profile_screen.dart';
 import 'package:jobseek/utils/app_res.dart';
 
 
-class ProfileController extends GetxController implements GetxService {
+class EditProfileController extends GetxController implements GetxService {
   TextEditingController companyNameController = TextEditingController();
   TextEditingController companyEmailController = TextEditingController();
   TextEditingController companyAddressController = TextEditingController();
@@ -46,7 +45,7 @@ class ProfileController extends GetxController implements GetxService {
         print("START TIME : $startTime");
       }
       dateController.text =
-          "${picked.toLocal().month}/${picked.toLocal().day}/${picked.toLocal().year}";
+      "${picked.toLocal().month}/${picked.toLocal().day}/${picked.toLocal().year}";
       update();
     }
   }
@@ -61,7 +60,7 @@ class ProfileController extends GetxController implements GetxService {
 
 
       print("GO TO HOME PAGE");
-      Get.to(ProfileScreen());
+      // Get.to(ManagerDashBoardScreen());
     }
   }
 

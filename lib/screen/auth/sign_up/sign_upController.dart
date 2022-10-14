@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:jobseek/screen/auth/sign_up/google_signupscreen.dart';
 import 'package:jobseek/screen/dashboard/dashboard_screen.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/pref_keys.dart';
@@ -195,7 +194,7 @@ class SignUpController extends GetxController {
         };
         addDataInFirebase(userUid: userCredential.user?.uid ?? "", map: map2);
       }
-      Get.to(DashBoardScreen());
+
       loading.value = false;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -329,7 +328,11 @@ class SignUpController extends GetxController {
       print(user?.displayName);
     }
     if (user?.uid != null && user?.uid != "") {
-      Get.offAll(() => DashBoardScreen());
+      String firstNm=user!.displayName.toString().split(" ").first;
+      String lastNm=user.displayName.toString().split(" ").last;
+
+      Get.to( GoogleSignupScreen(email:user.email.toString(),firstName:firstNm,lastName: lastNm),);
+      // Get.offAll(() => DashBoardScreen());
       loading.value == false;
       // loader false
     } else {

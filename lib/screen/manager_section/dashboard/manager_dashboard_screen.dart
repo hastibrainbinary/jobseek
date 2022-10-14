@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/chat_box/chat_box_screen.dart';
+import 'package:jobseek/screen/manager_section/Profile/edit_profile/edit_profile_screen.dart';
 import 'package:jobseek/screen/manager_section/Profile/profile_screen.dart';
 import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen_controller.dart';
 import 'package:jobseek/screen/manager_section/dashboard/widget.dart';
@@ -34,7 +35,7 @@ class ManagerDashBoardScreen extends StatelessWidget {
                   ? ManagerApplicationScreen()
                   : controller.currentTab.value == 2
                       ? ChatBoxScreen()
-                      : ProfileScreen()),
+                      : EditProfileScreen()),
           bottomNavigationBar: Obx(() => Container(
                 margin: const EdgeInsets.symmetric(horizontal: 18),
                 decoration: const BoxDecoration(
