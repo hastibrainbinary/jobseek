@@ -121,7 +121,7 @@ class ChatBoxUserScreen extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               return Padding(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 18,
+                  horizontal: 18, vertical: 4
                 ),
                 child: Dismissible(
                   confirmDismiss: (DismissDirection direction) async {
@@ -142,63 +142,7 @@ class ChatBoxUserScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              // Container(
-                              //     margin: const EdgeInsets.symmetric(
-                              //         horizontal: 20),
-                              //     padding:
-                              //         const EdgeInsets.symmetric(vertical: 15),
-                              //     height: 92,
-                              //     width: Get.width - 40,
-                              //     decoration: BoxDecoration(
-                              //         borderRadius: const BorderRadius.all(
-                              //             Radius.circular(15)),
-                              //         border: Border.all(
-                              //             color: const Color(0xffF3ECFF)),
-                              //         color: ColorRes.white),
-                              //     alignment: Alignment.centerLeft,
-                              //     child: Row(
-                              //       children: [
-                              //         Image(
-                              //           image: AssetImage(AssetRes.airBnbLogo),
-                              //         ),
-                              //         Column(
-                              //           children: [
-                              //             Padding(
-                              //               padding:
-                              //                   const EdgeInsets.only(left: 16),
-                              //               child: Text(
-                              //                 "UI/UX Designer",
-                              //                 style: appTextStyle(
-                              //                     fontWeight: FontWeight.w500,
-                              //                     fontSize: 15,
-                              //                     color: ColorRes.black),
-                              //               ),
-                              //             ),
-                              //             Row(
-                              //               children: [
-                              //                 Text(
-                              //                   'Hi Adam Smith',
-                              //                   style: appTextStyle(
-                              //                       fontSize: 12,
-                              //                       fontWeight: FontWeight.w400,
-                              //                       color: ColorRes.black),
-                              //                 ),
-                              //                 SizedBox(width: 50),
-                              //                 Text(
-                              //                   "\$20",
-                              //                   style: appTextStyle(
-                              //                       fontWeight: FontWeight.w400,
-                              //                       fontSize: 12,
-                              //                       color: ColorRes.black
-                              //                           .withOpacity(0.8)),
-                              //                 )
-                              //               ],
-                              //             ),
-                              //
-                              //           ],
-                              //         ),
-                              //       ],
-                              //     )),
+
                               Container(
                                 height: 92,
                                 width: Get.width,

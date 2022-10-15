@@ -44,7 +44,9 @@ class CreateVacanciesController extends GetxController implements GetxService {
     addRequirementsList.add(TextEditingController());
     update(["requirement"]);
   }
-
+  void onChanged(String value){
+    update(["colorChange"]);
+  }
   onTapNext() async {
     String uid = PrefService.getString(PrefKeys.userId);
     int totalPost = PrefService.getInt(PrefKeys.totalPost);

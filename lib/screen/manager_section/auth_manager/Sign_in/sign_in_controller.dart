@@ -112,6 +112,9 @@ class SignInScreenControllerM extends GetxController {
       print("${value.docs.length}=|=|=|");
     });
   }
+  void onChanged(String value){
+    update(["colorChange"]);
+  }
 
   emailValidation() {
     if (emailController.text.trim() == "") {

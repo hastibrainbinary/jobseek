@@ -19,6 +19,10 @@ class ProfileUserController extends GetxController implements GetxService {
   ImagePicker picker = ImagePicker();
   File? image;
 
+  void onChanged(String value){
+    update(["colorChange"]);
+  }
+
   Future<void> onDatePickerTap(context) async {
     DateTime? picked = await showDatePicker(
       context: context,

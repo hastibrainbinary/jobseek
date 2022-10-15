@@ -114,6 +114,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                               height: 10,
                             ),
                             commonTextFormField(
+                                onChanged: controller.onChanged,
                                 textDecoration: InputDecoration(
                                     contentPadding: const EdgeInsets.all(15),
                                     border: InputBorder.none,
@@ -157,6 +158,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                               height: 10,
                             ),
                             commonTextFormField(
+                                onChanged: controller.onChanged,
                                 type: TextInputType.number,
                                 textDecoration: InputDecoration(
                                   contentPadding: const EdgeInsets.all(15),
@@ -210,6 +212,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                               height: 10,
                             ),
                             commonTextFormField(
+                                onChanged: controller.onChanged,
                                 textDecoration: InputDecoration(
                                   contentPadding: const EdgeInsets.all(15),
                                   border: InputBorder.none,
@@ -280,6 +283,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                               height: 10,
                             ),
                             commonTextFormField(
+                                onChanged: controller.onChanged,
                                 textDecoration: InputDecoration(
                                   contentPadding: const EdgeInsets.all(15),
                                   border: InputBorder.none,

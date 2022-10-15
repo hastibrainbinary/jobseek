@@ -168,6 +168,7 @@ class CreateVacancies2Screen extends StatelessWidget {
                           height: 10,
                         ),
                         commonTextFormField(
+                            onChanged: controller.onChanged,
                             textDecoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: "Open Position",
@@ -205,6 +206,7 @@ class CreateVacancies2Screen extends StatelessWidget {
                           height: 10,
                         ),
                         commonTextFormField(
+                            onChanged: controller.onChanged,
                             textDecoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: "Salary",
@@ -252,6 +254,7 @@ class CreateVacancies2Screen extends StatelessWidget {
                           height: 10,
                         ),
                         commonTextFormField(
+                            onChanged: controller.onChanged,
                             textDecoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: "Location",
@@ -298,6 +301,7 @@ class CreateVacancies2Screen extends StatelessWidget {
                           height: 10,
                         ),
                         commonTextFormField(
+                            onChanged: controller.onChanged,
                             type: TextInputType.number,
                             textDecoration: InputDecoration(
                               border: InputBorder.none,
@@ -348,6 +352,7 @@ class CreateVacancies2Screen extends StatelessWidget {
                           height: 10,
                         ),
                         commonTextFormField(
+                            onChanged: controller.onChanged,
                             textDecoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: "Status",

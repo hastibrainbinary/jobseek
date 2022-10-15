@@ -214,4 +214,8 @@ class ProfileController extends GetxController implements GetxService {
     update(['onTap']);
     update();
   }
+
+  void onChanged(String value){
+    update(["colorChange"]);
+  }
 }
