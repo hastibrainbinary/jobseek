@@ -385,15 +385,160 @@ class SignUpScreen extends StatelessWidget {
                                 txtController: controller.stateController,
                               )),
                       const SizedBox(height: 10),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 13, bottom: 10),
+                        child: Row(
+                          children: [
+                            Text('Country',
+                                style: appTextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14,
+                                    color: ColorRes.black.withOpacity(0.6))),
+                            const Text(
+                              '*',
+                              style: TextStyle(
+                                  fontSize: 15, color: ColorRes.starColor),
+                            ),
+                          ],
+                        ),
+                      ),
                       GetBuilder<SignUpController>(
-                          id: "showCountry",
-                          builder: (controller) => texFieldColumn(
-                                title: 'Country',
-                                hintText: 'Country',
-                            onChanged: controller.onChanged,
-                                error: controller.countryError,
-                                txtController: controller.countryController,
-                              )),
+                        id: "showCountry",
+                        builder: (controller) => Column(
+                          children: [
+                            Container(
+                              height: 51,
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                      offset: const Offset(6, 6),
+                                      color: ColorRes.containerColor
+                                          .withOpacity(0.10),
+                                      spreadRadius: 0,
+                                      blurRadius: 35),
+                                ],
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Material(
+                                shadowColor: ColorRes.containerColor,
+                                borderRadius: BorderRadius.circular(12),
+                                child: commonTextFormField(
+                                  controller: controller.countryController,
+                                  textDecoration: InputDecoration(
+                                    hintText: 'Country',
+                                    fillColor: Colors.transparent,
+                                    suffixIcon:
+                                    GetBuilder<SignUpController>(
+                                      id: "dropdown",
+                                      builder: (controller) {
+                                        return DropdownButton(
+
+                                            iconSize: 35.0,
+                                            iconEnabledColor: Colors.grey.shade400,
+                                            iconDisabledColor: Colors.grey.shade400,
+                                            underline: Container(),
+                                            icon: const Icon(Icons.arrow_drop_down),
+                                            items: controller.items.map(
+                                                  (val) {
+                                                return DropdownMenuItem<String>(
+                                                  value: val,
+                                                  child: Text(val),
+                                                );
+                                              },
+                                            ).toList(),
+                                            onChanged: (String? val) {
+                                              controller.changeDropdwon(val: val!);
+                                            });
+                                      },
+                                    ),
+                                    filled: true,
+                                    hintStyle: appTextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500,
+                                        color: ColorRes.black.withOpacity(0.15)),
+                                    border: controller.countryController.text
+                                        .trim()
+                                        .isEmpty
+                                        ? InputBorder.none
+                                        : controller.countryError.isNotEmpty
+                                        ? errorBorder()
+                                        : enableBorder(),
+                                    focusedBorder: controller
+                                        .countryController.text
+                                        .trim()
+                                        .isEmpty
+                                        ? InputBorder.none
+                                        : controller.countryError.isNotEmpty
+                                        ? errorBorder()
+                                        : enableBorder(),
+                                    disabledBorder: controller
+                                        .countryController.text
+                                        .trim()
+                                        .isEmpty
+                                        ? InputBorder.none
+                                        : controller.countryError.isNotEmpty
+                                        ? errorBorder()
+                                        : enableBorder(),
+                                    enabledBorder: controller
+                                        .countryController.text
+                                        .trim()
+                                        .isEmpty
+                                        ? InputBorder.none
+                                        : controller.countryError.isNotEmpty
+                                        ? errorBorder()
+                                        : enableBorder(),
+                                    errorBorder: controller.countryController.text
+                                        .trim()
+                                        .isEmpty
+                                        ? InputBorder.none
+                                        : controller.countryError.isNotEmpty
+                                        ? errorBorder()
+                                        : enableBorder(),
+                                    focusedErrorBorder: controller
+                                        .countryController.text
+                                        .trim()
+                                        .isEmpty
+                                        ? InputBorder.none
+                                        : controller.countryError.isNotEmpty
+                                        ? errorBorder()
+                                        : enableBorder(),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            controller.countryError == ""
+                                ? const SizedBox(height: 20)
+                                : Container(
+                              margin: const EdgeInsets.all(10),
+                              width: 339,
+                              height: 28,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50),
+                                  color: ColorRes.invalidColor),
+                              padding: const EdgeInsets.only(left: 15),
+                              child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.start,
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.center,
+                                  children: [
+                                    const Image(
+                                      image: AssetImage(
+                                        AssetRes.invalid,
+                                      ),
+                                      height: 14,
+                                    ),
+                                    const SizedBox(width: 10),
+                                    Text(controller.countryError,
+                                        style: appTextStyle(
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 9,
+                                            color: ColorRes.starColor))
+                                  ]),
+                            ),
+                          ],
+                        ),
+                      ),
                       GetBuilder<SignUpController>(
                           id: "remember_me",
                           builder: (controller) {

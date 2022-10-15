@@ -41,7 +41,7 @@ class FirstPageScreenM extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Text(
                 textAlign: TextAlign.center,
-                'We currently have over 140 live roles waiting for you!',
+                'We currently have over 140 live roles waiting\n for you!',
                 style: appTextStyle(
                   fontWeight: FontWeight.w400,
                   fontSize: 26,

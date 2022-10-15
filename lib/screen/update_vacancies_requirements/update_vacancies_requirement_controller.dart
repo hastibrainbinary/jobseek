@@ -75,26 +75,46 @@ class UpdateVacanciesRequirementController extends GetxController {
   RxString dropDownValueLocation = "".obs;
 
   changeDropdwon({required String val}) {
-    dropDownValueLocation = val as RxString;
-    locationController.text = dropDownValueLocation as String;
+    dropDownValue = val;
+    locationController.text = dropDownValue;
 
-    update(["locationDrop"]);
+    update(["dropdown"]);
   }
-
-  var items = [
+  String dropDownValue = 'India';
+  var items1 = [
     'India',
     'United States',
     'Europe',
     'china',
     'United Kingdom',
+    " Cuba",
+    "	Havana",
+    "Cyprus",
+    "Nicosia",
+    "Czech ",
+    "Republic",
+    "Prague",
   ];
-  String? dropDownValueType;
+  changeDropwonType({required String val}) {
+    dropDownValueType = val;
+    typeController.text = dropDownValueType;
 
-  var items1 = [
+    update(["dropdown"]);
+  }
+  String dropDownValueType = 'part Time';
+
+  var items = [
     'Part Time',
     'Full Time',
   ];
-  String? dropDownValueStatus;
+
+  changeDropdwonStatus({required String val}) {
+    dropDownValueStatus = val;
+    statusController.text = dropDownValueStatus;
+
+    update(["dropdown"]);
+  }
+  String dropDownValueStatus = 'Active';
   var items2 = [
     'Active',
     'Away',

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -32,7 +33,7 @@ class HomeScreen extends StatelessWidget {
           ),
           homeAppBar(),
           SizedBox(
-            height: Get.height - 170,
+            height: Get.height - 175,
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -165,8 +166,12 @@ class HomeScreen extends StatelessWidget {
                                 shrinkWrap: true,
                                 physics: const BouncingScrollPhysics(),
                                 itemBuilder: (context, index) {
-                                  print(index);
-                                  print(snapshot.data!.docs[index].id);
+                                  if (kDebugMode) {
+                                    print(index);
+                                  }
+                                  if (kDebugMode) {
+                                    print(snapshot.data!.docs[index].id);
+                                  }
                                   return InkWell(
                                     onTap: () => Get.toNamed(
                                         AppRes.jobDetailScreen,

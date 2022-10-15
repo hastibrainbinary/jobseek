@@ -58,28 +58,32 @@ class SettingsScreenU extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      height: 55,
-                      width: 55,
-                      decoration: BoxDecoration(
-                        color: ColorRes.logoColor,
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: const Icon(
-                        Icons.notifications,
-                        color: ColorRes.containerColor,
-                      ),
+                    Row(
+                      children: [
+                        Container(
+                          height: 55,
+                          width: 55,
+                          decoration: BoxDecoration(
+                            color: ColorRes.logoColor,
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: const Icon(
+                            Icons.notifications,
+                            color: ColorRes.containerColor,
+                          ),
+                        ),
+                        const SizedBox(width: 15),
+                        Text(
+                          Strings.notification,
+                          style: appTextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: ColorRes.black),
+                        ),
+                      ],
                     ),
-                    const SizedBox(width: 15),
-                    Text(
-                      Strings.notification,
-                      style: appTextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 14,
-                          color: ColorRes.black),
-                    ),
-                    const SizedBox(width: 190),
                     const Image(
                       image: AssetImage(AssetRes.settingaArrow),
                       height: 15,
@@ -90,7 +94,7 @@ class SettingsScreenU extends StatelessWidget {
             ),
             const SizedBox(height: 3),
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.symmetric(horizontal: 10),
               color: ColorRes.lightGrey.withOpacity(0.8),
               height: 1,
             ),
@@ -105,28 +109,32 @@ class SettingsScreenU extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      height: 55,
-                      width: 55,
-                      decoration: BoxDecoration(
-                        color: ColorRes.logoColor,
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: const Icon(
-                        Icons.lock,
-                        color: ColorRes.containerColor,
-                      ),
+                    Row(
+                      children: [
+                        Container(
+                          height: 55,
+                          width: 55,
+                          decoration: BoxDecoration(
+                            color: ColorRes.logoColor,
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: const Icon(
+                            Icons.lock,
+                            color: ColorRes.containerColor,
+                          ),
+                        ),
+                        const SizedBox(width: 15),
+                        Text(
+                          Strings.security,
+                          style: appTextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: ColorRes.black),
+                        ),
+                      ],
                     ),
-                    const SizedBox(width: 15),
-                    Text(
-                      Strings.security,
-                      style: appTextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 14,
-                          color: ColorRes.black),
-                    ),
-                    SizedBox(width: Get.width - 170),
                     const Image(
                       image: AssetImage(AssetRes.settingaArrow),
                       height: 15,
@@ -137,7 +145,7 @@ class SettingsScreenU extends StatelessWidget {
             ),
             const SizedBox(height: 3),
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.symmetric(horizontal: 10),
               color: ColorRes.lightGrey.withOpacity(0.8),
               height: 1,
             ),
@@ -152,28 +160,32 @@ class SettingsScreenU extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      height: 55,
-                      width: 55,
-                      decoration: BoxDecoration(
-                        color: ColorRes.logoColor,
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: const Icon(
-                        Icons.visibility,
-                        color: ColorRes.containerColor,
-                      ),
+                    Row(
+                      children: [
+                        Container(
+                          height: 55,
+                          width: 55,
+                          decoration: BoxDecoration(
+                            color: ColorRes.logoColor,
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: const Icon(
+                            Icons.visibility,
+                            color: ColorRes.containerColor,
+                          ),
+                        ),
+                        const SizedBox(width: 15),
+                        Text(
+                          Strings.appearance,
+                          style: appTextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: ColorRes.black),
+                        ),
+                      ],
                     ),
-                    const SizedBox(width: 15),
-                    Text(
-                      Strings.appearance,
-                      style: appTextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 14,
-                          color: ColorRes.black),
-                    ),
-                    SizedBox(width: Get.width - 200),
                     const Image(
                       image: AssetImage(AssetRes.settingaArrow),
                       height: 15,
@@ -184,7 +196,7 @@ class SettingsScreenU extends StatelessWidget {
             ),
             const SizedBox(height: 3),
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.symmetric(horizontal: 10),
               color: ColorRes.lightGrey.withOpacity(0.8),
               height: 1,
             ),
@@ -197,29 +209,36 @@ class SettingsScreenU extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      height: 55,
-                      width: 55,
-                      padding: const EdgeInsets.all(18),
-                      decoration: BoxDecoration(
-                        color: ColorRes.logoColor,
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: const Image(
-                        image: AssetImage(AssetRes.settingHelp),
-                        color: ColorRes.containerColor,
-                      ),
+                    Row(
+                      children: [
+                        Container(
+                          height: 55,
+                          width: 55,
+                          decoration: BoxDecoration(
+                            color: ColorRes.logoColor,
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.all(17.0),
+                            child: Image(
+                              image: AssetImage(AssetRes.settingHelp),
+                              width: 20,
+                              color: ColorRes.containerColor,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 15),
+                        Text(
+                          Strings.help,
+                          style: appTextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: ColorRes.black),
+                        ),
+                      ],
                     ),
-                    const SizedBox(width: 11),
-                    Text(
-                      Strings.help,
-                      style: appTextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 14,
-                          color: ColorRes.black),
-                    ),
-                    SizedBox(width: Get.width - 140),
                     const Image(
                       image: AssetImage(AssetRes.settingaArrow),
                       height: 15,
@@ -230,7 +249,7 @@ class SettingsScreenU extends StatelessWidget {
             ),
             const SizedBox(height: 3),
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.symmetric(horizontal: 10),
               color: ColorRes.lightGrey.withOpacity(0.8),
               height: 1,
             ),

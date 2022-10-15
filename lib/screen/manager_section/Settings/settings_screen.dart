@@ -13,6 +13,7 @@ import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 
 class SettingScreenM extends StatelessWidget {
   const SettingScreenM({Key? key}) : super(key: key);
@@ -60,28 +61,32 @@ class SettingScreenM extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      height: 55,
-                      width: 55,
-                      decoration: BoxDecoration(
-                        color: ColorRes.logoColor,
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: const Icon(
-                        Icons.notifications,
-                        color: ColorRes.containerColor,
-                      ),
+                    Row(
+                      children: [
+                        Container(
+                          height: 55,
+                          width: 55,
+                          decoration: BoxDecoration(
+                            color: ColorRes.logoColor,
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: const Icon(
+                            Icons.notifications,
+                            color: ColorRes.containerColor,
+                          ),
+                        ),
+                        const SizedBox(width: 15),
+                        Text(
+                          Strings.notification,
+                          style: appTextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: ColorRes.black),
+                        ),
+                      ],
                     ),
-                    const SizedBox(width: 15),
-                    Text(
-                      'Notification',
-                      style: appTextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 14,
-                          color: ColorRes.black),
-                    ),
-                    const SizedBox(width: 165),
                     const Image(
                       image: AssetImage(AssetRes.settingaArrow),
                       height: 15,
@@ -222,7 +227,7 @@ class SettingScreenM extends StatelessWidget {
                           color: ColorRes.black),
                     ),
                     SizedBox(width: Get.width - 145),
-                     const Image(
+                    const Image(
                       image: AssetImage(AssetRes.settingaArrow),
                       height: 15,
                     ),
