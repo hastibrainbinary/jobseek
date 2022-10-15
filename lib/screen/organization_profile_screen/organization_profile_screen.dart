@@ -117,17 +117,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                                   ),
                                   fit: BoxFit.fill)),
                     ),
-                    //  Container(
-                    //   height: 60,
-                    //   width: 60,
-                    //   decoration: const BoxDecoration(
-                    //       color: ColorRes.logoColor, shape: BoxShape.circle),
-                    //   child: Image.asset(
-                    //     AssetRes.cloud,
-                    //     height: 20,
-                    //     width: 20,
-                    //   ),
-                    // ),
+
                   ),
                   const SizedBox(
                     height: 10,
@@ -180,6 +170,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                     height: 10,
                   ),
                   commonTextFormField(
+                    onChanged: controller.onChanged,
                     textDecoration: InputDecoration(
                         contentPadding: const EdgeInsets.all(15),
                         border: InputBorder.none,
@@ -222,6 +213,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                     height: 10,
                   ),
                   commonTextFormField(
+                      onChanged: controller.onChanged,
                       textDecoration: InputDecoration(
                         contentPadding: const EdgeInsets.all(15),
                         border: InputBorder.none,
@@ -274,6 +266,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                       controller.onDatePickerTap(context);
                     },
                     child: commonTextFormField(
+                        onChanged: controller.onChanged,
                         onTap: () => controller.onDatePickerTap(context),
                         textDecoration: InputDecoration(
                           contentPadding: const EdgeInsets.all(15),
@@ -325,6 +318,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                     height: 10,
                   ),
                   commonTextFormField(
+                      onChanged: controller.onChanged,
                       textDecoration: InputDecoration(
                         contentPadding: const EdgeInsets.all(15),
                         border: InputBorder.none,
@@ -392,6 +386,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                     height: 10,
                   ),
                   commonTextFormField(
+                      onChanged: controller.onChanged,
                       textDecoration: InputDecoration(
                         contentPadding: const EdgeInsets.all(15),
                         border: InputBorder.none,

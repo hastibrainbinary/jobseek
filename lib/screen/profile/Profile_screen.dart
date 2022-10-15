@@ -41,7 +41,7 @@ class ProfileUserScreenU extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: 90),
+              const Spacer(),
               Center(
                 child: Text(
                   'Profile',
@@ -52,9 +52,7 @@ class ProfileUserScreenU extends StatelessWidget {
                       color: ColorRes.black),
                 ),
               ),
-              const SizedBox(
-                width:90,
-              ),
+              const Spacer(),
               Container(
                 margin: const EdgeInsets.all(15),
                 height: 40,
@@ -339,6 +337,7 @@ class ProfileUserScreenU extends StatelessWidget {
                             height: 10,
                           ),
                           commonTextFormField(
+                              onChanged: controller.onChanged,
                               textDecoration: InputDecoration(
                                   contentPadding: const EdgeInsets.all(15),
                                   border: InputBorder.none,
@@ -377,6 +376,7 @@ class ProfileUserScreenU extends StatelessWidget {
                             height: 10,
                           ),
                           commonTextFormField(
+                              onChanged: controller.onChanged,
                               textDecoration: InputDecoration(
                                 contentPadding: const EdgeInsets.all(15),
                                 border: InputBorder.none,
@@ -424,6 +424,7 @@ class ProfileUserScreenU extends StatelessWidget {
                               controller.onDatePickerTap(context);
                             },
                             child: commonTextFormField(
+                                onChanged: controller.onChanged,
                                 onTap: () =>
                                     controller.onDatePickerTap(context),
                                 textDecoration: InputDecoration(
@@ -464,6 +465,7 @@ class ProfileUserScreenU extends StatelessWidget {
                             height: 10,
                           ),
                           commonTextFormField(
+                              onChanged: controller.onChanged,
                               textDecoration: InputDecoration(
                                 border: InputBorder.none,
                                 contentPadding: const EdgeInsets.all(15),
@@ -504,6 +506,7 @@ class ProfileUserScreenU extends StatelessWidget {
                             height: 10,
                           ),
                           commonTextFormField(
+                              onChanged: controller.onChanged,
                               textDecoration: InputDecoration(
                                 border: InputBorder.none,
                                 contentPadding: const EdgeInsets.all(15),
@@ -524,9 +527,7 @@ class ProfileUserScreenU extends StatelessWidget {
                                   ],
                                 )
                               : const SizedBox(),
-                          //   const SizedBox(
-                          //     height: 30,
-                          // ),
+
                           const SizedBox(height: 20),
                           const SizedBox(
                             height: 10,

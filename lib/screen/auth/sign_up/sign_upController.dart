@@ -35,6 +35,7 @@ class SignUpController extends GetxController {
   String occupationError = "";
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
+
   emailValidation() {
     if (emailController.text.trim() == "") {
       emailError = 'Please Enter email';
@@ -227,7 +228,6 @@ class SignUpController extends GetxController {
         .doc(userUid)
         .set(map)
         .catchError((e) {
-
       if (kDebugMode) {
         print('...error...' + e);
       }
