@@ -195,7 +195,7 @@ class SignUpController extends GetxController {
   }
 
   void onChanged(String value){
-    update(["colorChange"]);
+    update(["dark"]);
   }
 
   singUp(email, password) async {

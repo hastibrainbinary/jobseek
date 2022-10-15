@@ -94,6 +94,7 @@ class SignUpScreenM extends StatelessWidget {
                               shadowColor: ColorRes.containerColor,
                               borderRadius: BorderRadius.circular(12),
                               child: commonTextFormField(
+                                onChanged: controller.onChanged,
                                 controller: controller.firstnameController,
                                 textDecoration: InputDecoration(
                                   hintText: 'First Name',
@@ -226,6 +227,7 @@ class SignUpScreenM extends StatelessWidget {
                               shadowColor: ColorRes.containerColor,
                               borderRadius: BorderRadius.circular(12),
                               child: commonTextFormField(
+                                onChanged: controller.onChanged,
                                 controller: controller.lastnameController,
                                 textDecoration: InputDecoration(
                                   hintText: 'Last Name',
@@ -358,6 +360,7 @@ class SignUpScreenM extends StatelessWidget {
                               shadowColor: ColorRes.containerColor,
                               borderRadius: BorderRadius.circular(12),
                               child: commonTextFormField(
+                                onChanged: controller.onChanged,
                                 controller: controller.emailController,
                                 textDecoration: InputDecoration(
                                   hintText: 'Email',
@@ -504,6 +507,7 @@ class SignUpScreenM extends StatelessWidget {
                                     shadowColor: ColorRes.containerColor,
                                     borderRadius: BorderRadius.circular(12),
                                     child: TextFormField(
+                                      onChanged: controller.onChanged,
                                       keyboardType: TextInputType.number,
                                       controller: controller.phoneController,
                                       decoration: InputDecoration(
@@ -599,6 +603,7 @@ class SignUpScreenM extends StatelessWidget {
                               shadowColor: ColorRes.containerColor,
                               borderRadius: BorderRadius.circular(12),
                               child: commonTextFormField(
+                                onChanged: controller.onChanged,
                                 controller: controller.passwordController,
                                 obscureText: controller.show,
                                 textDecoration: InputDecoration(
@@ -746,6 +751,7 @@ class SignUpScreenM extends StatelessWidget {
                               shadowColor: ColorRes.containerColor,
                               borderRadius: BorderRadius.circular(12),
                               child: commonTextFormField(
+                                onChanged: controller.onChanged,
                                 controller: controller.cityController,
                                 textDecoration: InputDecoration(
                                   hintText: 'City',
@@ -874,6 +880,7 @@ class SignUpScreenM extends StatelessWidget {
                               shadowColor: Colors.purple.shade700,
                               borderRadius: BorderRadius.circular(12),
                               child: commonTextFormField(
+                                onChanged: controller.onChanged,
                                 controller: controller.stateController,
                                 textDecoration: InputDecoration(
                                   hintText: 'State',
@@ -1003,6 +1010,7 @@ class SignUpScreenM extends StatelessWidget {
                               shadowColor: ColorRes.containerColor,
                               borderRadius: BorderRadius.circular(12),
                               child: commonTextFormField(
+                                onChanged: controller.onChanged,
                                 controller: controller.countryController,
                                 textDecoration: InputDecoration(
                                   hintText: 'Country',

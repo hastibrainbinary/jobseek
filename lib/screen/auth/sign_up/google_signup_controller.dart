@@ -50,6 +50,7 @@ class GoogleSignupController extends GetxController {
   String occupationError = "";
   bool show = true;
   bool rememberMe = false;
+
   void onRememberMeChange(bool? value) {
     if (value != null) {
       rememberMe = value;
@@ -101,15 +102,8 @@ class GoogleSignupController extends GetxController {
 
   bool buttonColor = false;
 
-  button() {
-    if (emailController.text != '') {
-      buttonColor = true;
-      update(['color']);
-    } else {
-      buttonColor = false;
-      update(['color']);
-    }
-    update();
+  void onChanged(String value){
+    update(["dark"]);
   }
 
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;

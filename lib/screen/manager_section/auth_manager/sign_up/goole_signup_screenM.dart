@@ -69,6 +69,7 @@ class GoogleSignupScreenM extends StatelessWidget {
               builder: (controller) => texFieldColumn(
                   title: 'First Name',
                   hintText: 'First Name',
+                  onChanged: controller.onChanged,
                   error: controller.firstError,
                   txtController: controller.firstnameController),
             ),
@@ -78,6 +79,7 @@ class GoogleSignupScreenM extends StatelessWidget {
               builder: (controller) => texFieldColumn(
                 title: 'Last Name',
                 hintText: 'Last Name',
+                onChanged: controller.onChanged,
                 error: controller.lastError,
                 txtController: controller.lastnameController,
               ),
@@ -145,6 +147,7 @@ class GoogleSignupScreenM extends StatelessWidget {
                             child: TextFormField(
                               keyboardType: TextInputType.number,
                               controller: controller.phoneController,
+                              onChanged: controller.onChanged,
                               decoration: InputDecoration(
                                   // prefix:countryCodePicker(context) ,
                                   hintText: 'Phone number',
@@ -201,6 +204,7 @@ class GoogleSignupScreenM extends StatelessWidget {
               builder: (controller) => texFieldColumn(
                   title: 'City',
                   hintText: 'City',
+                  onChanged: controller.onChanged,
                   error: controller.cityError,
                   txtController: controller.cityController),
             ),
@@ -210,6 +214,7 @@ class GoogleSignupScreenM extends StatelessWidget {
                 builder: (controller) => texFieldColumn(
                       title: 'State',
                       hintText: 'State',
+                  onChanged: controller.onChanged,
                       error: controller.stateError,
                       txtController: controller.stateController,
                     )),
@@ -219,6 +224,7 @@ class GoogleSignupScreenM extends StatelessWidget {
                 builder: (controller) => texFieldColumn(
                       title: 'Country',
                       hintText: 'Country',
+                  onChanged: controller.onChanged,
                       error: controller.countryError,
                       txtController: controller.countryController,
                     )),

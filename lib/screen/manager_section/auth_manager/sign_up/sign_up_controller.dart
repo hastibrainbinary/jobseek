@@ -34,8 +34,7 @@ class SignUpControllerM extends GetxController {
 
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
-  addDataInFirebase(
-      {required String userUid, required Map<String, dynamic> map}) async {
+  addDataInFirebase({required String userUid, required Map<String, dynamic> map}) async {
     await fireStore
         .collection("Auth")
         .doc("Manager")
@@ -52,6 +51,11 @@ class SignUpControllerM extends GetxController {
     }
   }
 
+
+  void onChanged(String value){
+    update(["dark"]);
+  }
+
   singUp(email, password) async {
     try {
       loading.value = true;
@@ -61,8 +65,7 @@ class SignUpControllerM extends GetxController {
         password: password,
       );
       if (userCredential.user?.uid != null) {
-        PrefService.setValue(
-            PrefKeys.userId, userCredential.user?.uid.toString());
+        PrefService.setValue(PrefKeys.userId, userCredential.user?.uid.toString());
         PrefService.setValue(PrefKeys.rol, "Manager");
         PrefService.setValue(PrefKeys.totalPost, 0);
 
@@ -95,10 +98,12 @@ class SignUpControllerM extends GetxController {
       }
     } catch (e) {
       if (kDebugMode) {
+        loading.value = false;
         print(e);
       }
       loading.value = false;
     }
+    loading.value = false;
   }
 
   emailValidation() {

@@ -70,6 +70,7 @@ class GoogleSignupScreen extends StatelessWidget {
               builder: (controller) => texFieldColumn(
                   title: 'First Name',
                   hintText: 'First Name',
+                  onChanged: controller.onChanged,
                   error: controller.firstError,
                   txtController: controller.firstnameController),
             ),
@@ -79,6 +80,7 @@ class GoogleSignupScreen extends StatelessWidget {
               builder: (controller) => texFieldColumn(
                 title: 'Last Name',
                 hintText: 'Last Name',
+                onChanged: controller.onChanged,
                 error: controller.lastError,
                 txtController: controller.lastnameController,
               ),
@@ -89,6 +91,7 @@ class GoogleSignupScreen extends StatelessWidget {
               builder: (controller) => texFieldColumn(
                   title: 'Email',
                   hintText: 'Email',
+                  onChanged: controller.onChanged,
                   error: controller.emailError,
                   txtController: controller.emailController),
             ),
@@ -145,6 +148,7 @@ class GoogleSignupScreen extends StatelessWidget {
                             child: TextFormField(
                               keyboardType: TextInputType.number,
                               controller: controller.phoneController,
+                              onChanged: controller.onChanged,
                               decoration: InputDecoration(
                                   // prefix:countryCodePicker(context) ,
                                   hintText: 'Phone number',
@@ -233,6 +237,7 @@ class GoogleSignupScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                       child: commonTextFormField(
                         controller: controller.occupationController,
+                        onChanged: controller.onChanged,
                         // obscureText: controller.show,
                         textDecoration: InputDecoration(
                           hintText: 'Occupation',
@@ -321,6 +326,7 @@ class GoogleSignupScreen extends StatelessWidget {
               builder: (controller) => texFieldColumn(
                   title: 'City',
                   hintText: 'City',
+                  onChanged: controller.onChanged,
                   error: controller.cityError,
                   txtController: controller.cityController),
             ),
@@ -330,6 +336,7 @@ class GoogleSignupScreen extends StatelessWidget {
                 builder: (controller) => texFieldColumn(
                       title: 'State',
                       hintText: 'State',
+                  onChanged: controller.onChanged,
                       error: controller.stateError,
                       txtController: controller.stateController,
                     )),
@@ -339,6 +346,7 @@ class GoogleSignupScreen extends StatelessWidget {
                 builder: (controller) => texFieldColumn(
                       title: 'Country',
                       hintText: 'Country',
+                  onChanged: controller.onChanged,
                       error: controller.countryError,
                       txtController: controller.countryController,
                     )),

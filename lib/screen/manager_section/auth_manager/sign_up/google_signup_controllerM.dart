@@ -54,6 +54,10 @@ class GoogleSignUpControllerM extends GetxController {
     }
   }
 
+  void onChanged(String value){
+    update(["dark"]);
+  }
+
   chang() {
     debugPrint("SHOW $show");
     show = !show;
