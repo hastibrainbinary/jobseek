@@ -179,6 +179,27 @@ class SignUpControllerM extends GetxController {
       }
     }
   }
+  changeDropdwon({required String val}) {
+    dropDownValue = val;
+    countryController.text = dropDownValue;
+
+    update(["dropdown"]);
+  }
+  String dropDownValue = 'India';
+  var items1 = [
+    'India',
+    'United States',
+    'Europe',
+    'china',
+    'United Kingdom',
+    " Cuba",
+    "	Havana",
+    "Cyprus",
+    "Nicosia",
+    "Czech ",
+    "Republic",
+    "Prague",
+  ];
 
   bool validator() {
     emailValidation();

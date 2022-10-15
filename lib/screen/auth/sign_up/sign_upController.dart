@@ -35,7 +35,28 @@ class SignUpController extends GetxController {
   String occupationError = "";
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
+  changeDropdwon({required String val}) {
+    dropDownValue = val;
+    countryController.text = dropDownValue;
 
+    update(["dropdown"]);
+  }
+
+  String dropDownValue = 'India';
+  var items = [
+    'India',
+    'United States',
+    'Europe',
+    'china',
+    'United Kingdom',
+    " Cuba",
+    "	Havana",
+    "Cyprus",
+    "Nicosia",
+    "Czech ",
+    "Republic",
+    "Prague",
+  ];
   emailValidation() {
     if (emailController.text.trim() == "") {
       emailError = 'Please Enter email';

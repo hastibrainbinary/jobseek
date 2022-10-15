@@ -318,12 +318,40 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                         fontSize: 14,
                                         color: ColorRes.black.withOpacity(0.15),
                                       ),
+                                      // suffixIcon: GetBuilder<
+                                      //     UpdateVacanciesRequirementController>(
+                                      //   id: "locationDrop",
+                                      //   builder: (controller) {
+                                      //     return DropdownButton(
+                                      //         //value: controller.dropDownValue,
+                                      //         iconSize: 35.0,
+                                      //         iconEnabledColor:
+                                      //             Colors.grey.shade400,
+                                      //         iconDisabledColor:
+                                      //             Colors.grey.shade400,
+                                      //         underline: Container(),
+                                      //         icon: const Icon(
+                                      //             Icons.arrow_drop_down),
+                                      //         items: controller.items.map(
+                                      //           (val) {
+                                      //             return DropdownMenuItem<
+                                      //                 String>(
+                                      //               value: val,
+                                      //               child: Text(val),
+                                      //             );
+                                      //           },
+                                      //         ).toList(),
+                                      //         onChanged: (String? val) {
+                                      //           controller.changeDropdwon(
+                                      //               val: val!);
+                                      //         });
+                                      //   },
+                                      // ),
                                       suffixIcon: GetBuilder<
                                           UpdateVacanciesRequirementController>(
-                                        id: "locationDrop",
+                                        id: "dropdown",
                                         builder: (controller) {
                                           return DropdownButton(
-                                              //value: controller.dropDownValue,
                                               iconSize: 35.0,
                                               iconEnabledColor:
                                                   Colors.grey.shade400,
@@ -332,7 +360,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                               underline: Container(),
                                               icon: const Icon(
                                                   Icons.arrow_drop_down),
-                                              items: controller.items.map(
+                                              items: controller.items1.map(
                                                 (val) {
                                                   return DropdownMenuItem<
                                                       String>(
@@ -398,7 +426,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                         iconDisabledColor: Colors.grey.shade400,
                                         underline: Container(),
                                         icon: const Icon(Icons.arrow_drop_down),
-                                        items: controller.items1.map(
+                                        items: controller.items.map(
                                           (val) {
                                             return DropdownMenuItem<String>(
                                               value: val,
@@ -406,8 +434,8 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                             );
                                           },
                                         ).toList(),
-                                        onChanged: (String? val) =>
-                                            controller.dropDownValueType = val!,
+                                        onChanged: (String? val) => controller
+                                            .changeDropwonType(val: val!),
                                       ),
                                     ),
                                     controller: controller.typeController),
@@ -472,7 +500,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                           },
                                         ).toList(),
                                         onChanged: (String? val) => controller
-                                            .dropDownValueStatus = val!,
+                                            .changeDropdwonStatus(val: val!),
                                       ),
                                     ),
                                     controller: controller.statusController),
