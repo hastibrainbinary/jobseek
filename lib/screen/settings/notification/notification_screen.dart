@@ -67,7 +67,7 @@ class NotificationScreenU extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.symmetric(horizontal:10),
               color: ColorRes.lightGrey.withOpacity(0.8),
               height: 1,
             ),
@@ -96,7 +96,7 @@ class NotificationScreenU extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.symmetric(horizontal: 10),
               color: ColorRes.lightGrey.withOpacity(0.8),
               height: 1,
             ),
@@ -128,7 +128,7 @@ class NotificationScreenU extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.symmetric(horizontal: 10),
               color: ColorRes.lightGrey.withOpacity(0.8),
               height: 1,
             ),

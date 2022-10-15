@@ -59,7 +59,8 @@ class HelpScreenU extends StatelessWidget {
                           fontSize: 14,
                           color: ColorRes.black),
                     ),
-                    SizedBox(width: Get.width - 75),
+                    const Spacer(),
+                    // SizedBox(width: Get.width - 75),
                     const Image(
                       image: AssetImage(AssetRes.settingaArrow),
                       height: 15,
@@ -70,7 +71,7 @@ class HelpScreenU extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.symmetric(horizontal: 10),
               color: ColorRes.lightGrey.withOpacity(0.8),
               height: 1,
             ),
@@ -91,7 +92,8 @@ class HelpScreenU extends StatelessWidget {
                           fontSize: 14,
                           color: ColorRes.black),
                     ),
-                    SizedBox(width: Get.width - 185),
+                    Spacer(),
+                    // SizedBox(width: Get.width - 185),
                     const Image(
                       image: AssetImage(AssetRes.settingaArrow),
                       height: 15,
@@ -102,7 +104,7 @@ class HelpScreenU extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.symmetric(horizontal: 10),
               color: ColorRes.lightGrey.withOpacity(0.8),
               height: 1,
             ),
