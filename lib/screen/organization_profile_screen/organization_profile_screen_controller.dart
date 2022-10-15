@@ -114,7 +114,7 @@ class OrganizationProfileScreenController extends GetxController
       initialDate: DateTime.now(),
       initialEntryMode: DatePickerEntryMode.calendarOnly,
       firstDate: DateTime(2020),
-      lastDate: DateTime(2050),
+      lastDate: DateTime.now(),
       builder: (context, child) {
         return Theme(
           data: ThemeData(

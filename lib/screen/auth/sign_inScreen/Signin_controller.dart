@@ -240,13 +240,14 @@ class SignInScreenController extends GetxController {
   final GoogleSignIn googleSignIn = GoogleSignIn();
 
   void signWithGoogle() async {
-    loading.value = true;
     if (await googleSignIn.isSignedIn()) {
       await googleSignIn.signOut();
     }
     final GoogleSignInAccount? account = await googleSignIn.signIn();
-    final GoogleSignInAuthentication authentication =
-        await account!.authentication;
+    if (await googleSignIn.isSignedIn()) {
+      loading.value = true;
+    }
+    final GoogleSignInAuthentication authentication = await account!.authentication;
 
     final OAuthCredential credential = GoogleAuthProvider.credential(
       idToken: authentication.idToken,
@@ -295,21 +296,24 @@ class SignInScreenController extends GetxController {
               break;
             } else {
               isUser = false;
-              Get.snackbar(
-                  "Error", "Please create account,\n your email is not registered",
-                  colorText: const Color(0xffDA1414));
-              if (await googleSignIn.isSignedIn()) {
-                await googleSignIn.signOut();
-              }
-              loading.value = false;
               if (kDebugMode) {
                 print("$isUser====]]]]]");
               }
             }
           }
-          loading.value = false;
+
+
         }
 
+        if(isUser == false){
+          Get.snackbar(
+              "Error", "Please create account,\n your email is not registered",
+              colorText: const Color(0xffDA1414));
+          if (await googleSignIn.isSignedIn()) {
+            await googleSignIn.signOut();
+          }
+        }
+        loading.value = false;
         if (kDebugMode) {
           print("${value.isBlank}=|=|=|");
         }
@@ -317,13 +321,10 @@ class SignInScreenController extends GetxController {
           print("${value.docs.length}=|=|=|");
         }
       });
-
-
     } else {
       loading.value == false;
     }
     loading.value == false;
-    //flutterToast(Strings.googleSignInSuccess);
   }
 
   void faceBookSignIn() async {

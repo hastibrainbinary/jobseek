@@ -67,6 +67,7 @@ class SignUpScreen extends StatelessWidget {
                         builder: (controller) => texFieldColumn(
                             title: 'First Name',
                             hintText: 'First Name',
+                            onChanged: controller.onChanged,
                             error: controller.firstError,
                             txtController: controller.firstnameController),
                       ),
@@ -76,6 +77,7 @@ class SignUpScreen extends StatelessWidget {
                         builder: (controller) => texFieldColumn(
                           title: 'Last Name',
                           hintText: 'Last Name',
+                          onChanged: controller.onChanged,
                           error: controller.lastError,
                           txtController: controller.lastnameController,
                         ),
@@ -86,6 +88,7 @@ class SignUpScreen extends StatelessWidget {
                         builder: (controller) => texFieldColumn(
                             title: 'Email',
                             hintText: 'Email',
+                            onChanged: controller.onChanged,
                             error: controller.emailError,
                             txtController: controller.emailController),
                       ),
@@ -146,6 +149,7 @@ class SignUpScreen extends StatelessWidget {
                                       child: TextFormField(
                                         keyboardType: TextInputType.number,
                                         controller: controller.phoneController,
+                                        onChanged: controller.onChanged,
                                         decoration: InputDecoration(
                                             // prefix:countryCodePicker(context) ,
                                             hintText: 'Phone number',
@@ -241,6 +245,7 @@ class SignUpScreen extends StatelessWidget {
                                 child: commonTextFormField(
                                   controller: controller.passwordController,
                                   obscureText: controller.show,
+                                  onChanged: controller.onChanged,
                                   textDecoration: InputDecoration(
                                     hintText: 'Password',
                                     fillColor: Colors.transparent,
@@ -355,6 +360,7 @@ class SignUpScreen extends StatelessWidget {
                         builder: (controller) => texFieldColumn(
                             title: 'Occupation',
                             hintText: 'Occupation',
+                            onChanged: controller.onChanged,
                             error: controller.occupationError,
                             txtController: controller.occupationController),
                       ),
@@ -364,6 +370,7 @@ class SignUpScreen extends StatelessWidget {
                         builder: (controller) => texFieldColumn(
                             title: 'City',
                             hintText: 'City',
+                            onChanged: controller.onChanged,
                             error: controller.cityError,
                             txtController: controller.cityController),
                       ),
@@ -373,6 +380,7 @@ class SignUpScreen extends StatelessWidget {
                           builder: (controller) => texFieldColumn(
                                 title: 'State',
                                 hintText: 'State',
+                            onChanged: controller.onChanged,
                                 error: controller.stateError,
                                 txtController: controller.stateController,
                               )),
@@ -382,6 +390,7 @@ class SignUpScreen extends StatelessWidget {
                           builder: (controller) => texFieldColumn(
                                 title: 'Country',
                                 hintText: 'Country',
+                            onChanged: controller.onChanged,
                                 error: controller.countryError,
                                 txtController: controller.countryController,
                               )),
@@ -646,6 +655,7 @@ Widget texFieldColumn({
   required String title,
   required String hintText,
   required String error,
+  Function(String)? onChanged,
   required TextEditingController txtController,
   bool? read,
 }) {
@@ -685,6 +695,7 @@ Widget texFieldColumn({
           child: commonTextFormField(
             controller: txtController,
             readOnly: read ?? false,
+            onChanged: onChanged,
             textDecoration: InputDecoration(
               hintText: hintText,
               fillColor: Colors.transparent,

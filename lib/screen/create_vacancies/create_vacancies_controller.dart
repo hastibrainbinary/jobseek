@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/add_requirements/add_requirements_screen.dart';
+import 'package:jobseek/screen/manager_section/Jobdetails/Jobdetails_screen.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 
@@ -38,6 +40,34 @@ class CreateVacanciesController extends GetxController implements GetxService {
     );
 
     Get.to(RequirementsScreen());
+  }
+
+  void onTapBack(String value){
+    if(value == "require"){
+      addRequirementsList = [];
+    }else if(value == "vacancies"){
+      positionController.clear();
+      salaryController.clear();
+      locationController.clear();
+      typeController.clear();
+      isPositionValidate.value = false;
+      isSalaryValidate.value = false;
+      isLocationValidate.value = false;
+      isTypeValidate.value = false;
+      companyName = "";
+    }else{
+      positionController.clear();
+      salaryController.clear();
+      locationController.clear();
+      typeController.clear();
+      isPositionValidate.value = false;
+      isSalaryValidate.value = false;
+      isLocationValidate.value = false;
+      isTypeValidate.value = false;
+      companyName = "";
+      addRequirementsList = [];
+    }
+    update();
   }
 
   onTapAddRequirements(){
@@ -85,13 +115,13 @@ class CreateVacanciesController extends GetxController implements GetxService {
             .collection("register")
             .doc(uid)
             .update({"TotalPost": totalPost+1});
-
         PrefService.setValue(PrefKeys.totalPost, totalPost + 1);
-        Get.back();
-        Get.back();
+        onTapBack("");
+        Get.off(()=>JobDetailsScreen(isError: true,));
       });
     }
   }
+
 
   validate() {
     if (positionController.text.isEmpty) {

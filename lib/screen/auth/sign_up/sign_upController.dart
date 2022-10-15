@@ -173,6 +173,10 @@ class SignUpController extends GetxController {
     update(['dark']);
   }
 
+  void onChanged(String value){
+    update(["colorChange"]);
+  }
+
   singUp(email, password) async {
     try {
       loading.value = true;
@@ -305,11 +309,14 @@ class SignUpController extends GetxController {
   final GoogleSignIn googleSignIn = GoogleSignIn();
 
   void signWithGoogle() async {
-    loading.value = true;
+
     if (await googleSignIn.isSignedIn()) {
       await googleSignIn.signOut();
     }
     final GoogleSignInAccount? account = await googleSignIn.signIn();
+    if (await googleSignIn.isSignedIn()) {
+      loading.value = true;
+    }
     final GoogleSignInAuthentication authentication =
         await account!.authentication;
 

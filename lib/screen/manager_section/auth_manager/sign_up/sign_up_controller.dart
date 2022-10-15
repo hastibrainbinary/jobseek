@@ -326,11 +326,13 @@ class SignUpControllerM extends GetxController {
   //   //flutterToast(Strings.googleSignInSuccess);
   // }
   void SignUpWithGoogle() async {
-    loading.value = true;
     if (await googleSignIn.isSignedIn()) {
       await googleSignIn.signOut();
     }
     final GoogleSignInAccount? account = await googleSignIn.signIn();
+    if (await googleSignIn.isSignedIn()) {
+      loading.value = true;
+    }
     final GoogleSignInAuthentication authentication =
         await account!.authentication;
 
@@ -350,7 +352,6 @@ class SignUpControllerM extends GetxController {
       print(user?.displayName);
     }
     if (user?.uid != null && user?.uid != "") {
-
       bool isUser = false;
       await fireStore
           .collection("Auth")

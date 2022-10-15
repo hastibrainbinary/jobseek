@@ -206,7 +206,7 @@ class HomeScreen extends StatelessWidget {
                                                       fontSize: 15,
                                                       fontWeight:
                                                           FontWeight.w500)),
-                                              Text("AirBNB",
+                                              Text(snapshot.data!.docs[index]["CompanyName"],
                                                   style: appTextStyle(
                                                       color: ColorRes.black,
                                                       fontSize: 12,

@@ -198,11 +198,13 @@ class SignInScreenControllerM extends GetxController {
   final GoogleSignIn googleSignIn = GoogleSignIn();
 
   void signWithGoogle() async {
-    loading.value = true;
     if (await googleSignIn.isSignedIn()) {
       await googleSignIn.signOut();
     }
     final GoogleSignInAccount? account = await googleSignIn.signIn();
+    if (await googleSignIn.isSignedIn()) {
+      loading.value = true;
+    }
     final GoogleSignInAuthentication authentication =
         await account!.authentication;
 
