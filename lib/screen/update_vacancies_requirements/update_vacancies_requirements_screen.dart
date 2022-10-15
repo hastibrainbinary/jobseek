@@ -564,7 +564,6 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                               ),
                                             )
                                           : InkWell(
-                                              // dashboard write
                                               onTap: controller.onLoginBtnTap,
                                               child: Container(
                                                 height: 50,
