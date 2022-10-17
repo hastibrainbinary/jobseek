@@ -127,7 +127,7 @@ class HelpScreen extends StatelessWidget {
                           fontSize: 14,
                           color: ColorRes.black),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     // SizedBox(width: Get.width - 141),
                     const Image(
                       image: AssetImage(AssetRes.settingaArrow),
@@ -140,4 +140,4 @@ class HelpScreen extends StatelessWidget {
           ]),
     );
   }
-}
+} 
