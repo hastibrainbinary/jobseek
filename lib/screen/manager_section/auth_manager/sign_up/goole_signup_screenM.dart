@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/common/widgets/common_textField.dart';
-import 'package:jobseek/screen/auth/sign_up/google_signup_controller.dart';
 import 'package:jobseek/screen/auth/sign_up/sign_upScreen.dart';
 import 'package:jobseek/screen/auth/sign_up/widget/signup_bottom/country.dart';
+import 'package:jobseek/screen/manager_section/auth_manager/sign_up/google_signup_controllerM.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
@@ -12,18 +11,19 @@ class GoogleSignupScreenM extends StatelessWidget {
   final String email;
   final String firstName;
   final String lastName;
+  final String uid;
   const GoogleSignupScreenM(
       {Key? key,
       required this.email,
       required this.firstName,
-      required this.lastName})
+      required this.lastName, required this.uid})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     print("EMAIL : $email , $firstName , $lastName");
-    GoogleSignupController controller = Get.put(GoogleSignupController(
-        email: email, firstname: firstName, lastname: lastName));
+    GoogleSignUpControllerM controller = Get.put(GoogleSignUpControllerM(
+        email: email, firstname: firstName, lastname: lastName, uid: uid));
 
     return Scaffold(
       backgroundColor: ColorRes.backgroundColor,
@@ -64,30 +64,33 @@ class GoogleSignupScreenM extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 37),
-            GetBuilder<GoogleSignupController>(
+            GetBuilder<GoogleSignUpControllerM>(
               id: "showFirstname",
               builder: (controller) => texFieldColumn(
                   title: 'First Name',
                   hintText: 'First Name',
+                  onChanged: controller.onChanged,
                   error: controller.firstError,
                   txtController: controller.firstnameController),
             ),
             const SizedBox(height: 10),
-            GetBuilder<GoogleSignupController>(
+            GetBuilder<GoogleSignUpControllerM>(
               id: "showLastname",
               builder: (controller) => texFieldColumn(
                 title: 'Last Name',
                 hintText: 'Last Name',
+                onChanged: controller.onChanged,
                 error: controller.lastError,
                 txtController: controller.lastnameController,
               ),
             ),
             const SizedBox(height: 10),
-            GetBuilder<GoogleSignupController>(
+            GetBuilder<GoogleSignUpControllerM>(
               id: "showEmail",
               builder: (controller) => texFieldColumn(
                   title: 'Email',
                   hintText: 'Email',
+                  read: true,
                   error: controller.emailError,
                   txtController: controller.emailController),
             ),
@@ -108,7 +111,7 @@ class GoogleSignupScreenM extends StatelessWidget {
                 ],
               ),
             ),
-            GetBuilder<GoogleSignupController>(
+            GetBuilder<GoogleSignUpControllerM>(
               id: "showPhoneNumber",
               builder: (controller) => Column(
                 children: [
@@ -144,6 +147,7 @@ class GoogleSignupScreenM extends StatelessWidget {
                             child: TextFormField(
                               keyboardType: TextInputType.number,
                               controller: controller.phoneController,
+                              onChanged: controller.onChanged,
                               decoration: InputDecoration(
                                   // prefix:countryCodePicker(context) ,
                                   hintText: 'Phone number',
@@ -195,164 +199,36 @@ class GoogleSignupScreenM extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.only(left: 15, bottom: 10),
-              child: Row(
-                children: [
-                  Text('Password',
-                      style: appTextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: ColorRes.black.withOpacity(0.6))),
-                  Text(
-                    '*',
-                    style: appTextStyle(fontSize: 15, color: ColorRes.starColor),
-                  ),
-                ],
-              ),
-            ),
-            GetBuilder<GoogleSignupController>(
-              id: "showPassword",
-              builder: (controller) => Column(
-                children: [
-                  Container(
-                    height: 51,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                            offset: const Offset(6, 6),
-                            color: ColorRes.containerColor.withOpacity(0.10),
-                            spreadRadius: 0,
-                            blurRadius: 35),
-                      ],
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Material(
-                      shadowColor: ColorRes.containerColor,
-                      borderRadius: BorderRadius.circular(12),
-                      child: commonTextFormField(
-                        controller: controller.passwordController,
-                        obscureText: controller.show,
-                        textDecoration: InputDecoration(
-                          hintText: 'Password',
-                          fillColor: Colors.transparent,
-                          suffixIcon: IconButton(
-                            icon: controller.show
-                                ? Icon(
-                                    Icons.visibility_off,
-                                    color: ColorRes.black.withOpacity(0.15),
-                                  )
-                                : Icon(Icons.visibility,
-                                    color: ColorRes.black.withOpacity(0.15)),
-                            onPressed: controller.chang,
-                          ),
-                          filled: true,
-                          hintStyle: appTextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 15,
-                              color: ColorRes.black.withOpacity(0.15)),
-                          border:
-                              controller.passwordController.text.trim().isEmpty
-                                  ? InputBorder.none
-                                  : controller.pwdError.isNotEmpty
-                                      ? errorBorder()
-                                      : enableBorder(),
-                          focusedBorder:
-                              controller.passwordController.text.trim().isEmpty
-                                  ? InputBorder.none
-                                  : controller.pwdError.isNotEmpty
-                                      ? errorBorder()
-                                      : enableBorder(),
-                          disabledBorder:
-                              controller.passwordController.text.trim().isEmpty
-                                  ? InputBorder.none
-                                  : controller.pwdError.isNotEmpty
-                                      ? errorBorder()
-                                      : enableBorder(),
-                          enabledBorder:
-                              controller.passwordController.text.trim().isEmpty
-                                  ? InputBorder.none
-                                  : controller.pwdError.isNotEmpty
-                                      ? errorBorder()
-                                      : enableBorder(),
-                          errorBorder:
-                              controller.passwordController.text.trim().isEmpty
-                                  ? InputBorder.none
-                                  : controller.pwdError.isNotEmpty
-                                      ? errorBorder()
-                                      : enableBorder(),
-                          focusedErrorBorder:
-                              controller.passwordController.text.trim().isEmpty
-                                  ? InputBorder.none
-                                  : controller.pwdError.isNotEmpty
-                                      ? errorBorder()
-                                      : enableBorder(),
-                        ),
-                      ),
-                    ),
-                  ),
-                  controller.pwdError == ""
-                      ? const SizedBox(height: 20)
-                      : Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: 28,
-                          margin: const EdgeInsets.symmetric(vertical: 10),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: ColorRes.invalidColor),
-                          padding: const EdgeInsets.only(left: 15),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                const Image(
-                                  image: AssetImage(
-                                    AssetRes.invalid,
-                                  ),
-                                  height: 14,
-                                ),
-                                const SizedBox(width: 10),
-                                Text(
-                                  controller.pwdError,
-                                  style: appTextStyle(
-                                      fontSize: 9,
-                                      fontWeight: FontWeight.w400,
-                                      color: ColorRes.starColor),
-                                )
-                              ]),
-                        ),
-                ],
-              ),
-            ),
-
-            const SizedBox(height: 10),
-            GetBuilder<GoogleSignupController>(
+            GetBuilder<GoogleSignUpControllerM>(
               id: "showCity",
               builder: (controller) => texFieldColumn(
                   title: 'City',
                   hintText: 'City',
+                  onChanged: controller.onChanged,
                   error: controller.cityError,
                   txtController: controller.cityController),
             ),
             const SizedBox(height: 10),
-            GetBuilder<GoogleSignupController>(
+            GetBuilder<GoogleSignUpControllerM>(
                 id: "showState",
                 builder: (controller) => texFieldColumn(
                       title: 'State',
                       hintText: 'State',
+                  onChanged: controller.onChanged,
                       error: controller.stateError,
                       txtController: controller.stateController,
                     )),
             const SizedBox(height: 10),
-            GetBuilder<GoogleSignupController>(
+            GetBuilder<GoogleSignUpControllerM>(
                 id: "showCountry",
                 builder: (controller) => texFieldColumn(
                       title: 'Country',
                       hintText: 'Country',
+                  onChanged: controller.onChanged,
                       error: controller.countryError,
                       txtController: controller.countryController,
                     )),
-            GetBuilder<GoogleSignupController>(
+            GetBuilder<GoogleSignUpControllerM>(
                 id: "remember_me",
                 builder: (controller) {
                   return InkWell(
@@ -383,15 +259,13 @@ class GoogleSignupScreenM extends StatelessWidget {
                   );
                 }),
             const SizedBox(height: 25),
-            GetBuilder<GoogleSignupController>(
+            GetBuilder<GoogleSignUpControllerM>(
                 id: "dark",
                 builder: (controller) {
                   return (controller.firstnameController.text == '' ||
                           controller.lastnameController.text == '' ||
                           controller.emailController.text == '' ||
                           controller.phoneController.text == '' ||
-                          controller.passwordController.text == '' ||
-                          controller.occupationController.text == '' ||
                           controller.cityController.text == '' ||
                           controller.stateController.text == '' ||
                           controller.countryController.text == '')

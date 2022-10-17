@@ -13,6 +13,7 @@ class SignInScreenController extends GetxController {
   RxBool loading = false.obs;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  FirebaseFirestore fireStore = FirebaseFirestore.instance;
   bool isUser = false;
   String emailError = "";
   String pwdError = "";
@@ -104,9 +105,8 @@ class SignInScreenController extends GetxController {
   // }
   void signInWithEmailAndPassword(
       {required String email, required String password}) async {
-    FirebaseFirestore fireStore = FirebaseFirestore.instance;
-    loading.value = true;
 
+    loading.value = true;
     await fireStore
         .collection("Auth")
         .doc("User")
@@ -240,13 +240,14 @@ class SignInScreenController extends GetxController {
   final GoogleSignIn googleSignIn = GoogleSignIn();
 
   void signWithGoogle() async {
-    loading.value = true;
     if (await googleSignIn.isSignedIn()) {
       await googleSignIn.signOut();
     }
     final GoogleSignInAccount? account = await googleSignIn.signIn();
-    final GoogleSignInAuthentication authentication =
-        await account!.authentication;
+    if (await googleSignIn.isSignedIn()) {
+      loading.value = true;
+    }
+    final GoogleSignInAuthentication authentication = await account!.authentication;
 
     final OAuthCredential credential = GoogleAuthProvider.credential(
       idToken: authentication.idToken,
@@ -265,17 +266,65 @@ class SignInScreenController extends GetxController {
     if (kDebugMode) {
       print(user?.displayName);
     }
-
     if (user?.uid != null && user?.uid != "") {
-      PrefService.setValue(PrefKeys.accessToken, user!.uid);
-      Get.offAll(() => DashBoardScreen());
-      loading.value == false;
+      loading.value = true;
+      await fireStore
+          .collection("Auth")
+          .doc("User")
+          .collection("register")
+          .get()
+          .then((value) async {
+        if (value.docs.length.isEqual(0)) {
+          loading.value = true;
+          Get.snackbar(
+              "Error", "Please create account,\n your email is not registered",
+              colorText: const Color(0xffDA1414));
+        } else {
+          for (int i = 0; i < value.docs.length; i++) {
+            if (kDebugMode) {
+              print("${value.docs[i]["Email"]}=||||||++++++++++");
+            }
+            if (value.docs[i]["Email"] == user!.email && value.docs[i]["Email"] != "") {
+              isUser = true;
+              PrefService.setValue(PrefKeys.rol, "User");
+              PrefService.setValue(PrefKeys.accessToken, user.uid);
+              Get.offAll(() => DashBoardScreen());
+              loading.value == false;
+              if (kDebugMode) {
+                print("$isUser====]]]]]");
+              }
+              break;
+            } else {
+              isUser = false;
+              if (kDebugMode) {
+                print("$isUser====]]]]]");
+              }
+            }
+          }
+
+
+        }
+
+        if(isUser == false){
+          Get.snackbar(
+              "Error", "Please create account,\n your email is not registered",
+              colorText: const Color(0xffDA1414));
+          if (await googleSignIn.isSignedIn()) {
+            await googleSignIn.signOut();
+          }
+        }
+        loading.value = false;
+        if (kDebugMode) {
+          print("${value.isBlank}=|=|=|");
+        }
+        if (kDebugMode) {
+          print("${value.docs.length}=|=|=|");
+        }
+      });
     } else {
       loading.value == false;
     }
-
     loading.value == false;
-    //flutterToast(Strings.googleSignInSuccess);
   }
 
   void faceBookSignIn() async {

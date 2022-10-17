@@ -12,17 +12,18 @@ class GoogleSignupScreen extends StatelessWidget {
   final String email;
   final String firstName;
   final String lastName;
+  final String uid;
   const GoogleSignupScreen(
       {Key? key,
       required this.email,
       required this.firstName,
-      required this.lastName})
+      required this.lastName, required this.uid})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     print("EMAIL : $email , $firstName , $lastName");
-    GoogleSignupController controller = Get.put(GoogleSignupController(
+    GoogleSignupController controller = Get.put(GoogleSignupController(uid: uid,
         email: email, firstname: firstName, lastname: lastName));
 
     return Scaffold(
@@ -69,6 +70,7 @@ class GoogleSignupScreen extends StatelessWidget {
               builder: (controller) => texFieldColumn(
                   title: 'First Name',
                   hintText: 'First Name',
+                  onChanged: controller.onChanged,
                   error: controller.firstError,
                   txtController: controller.firstnameController),
             ),
@@ -78,6 +80,7 @@ class GoogleSignupScreen extends StatelessWidget {
               builder: (controller) => texFieldColumn(
                 title: 'Last Name',
                 hintText: 'Last Name',
+                onChanged: controller.onChanged,
                 error: controller.lastError,
                 txtController: controller.lastnameController,
               ),
@@ -88,6 +91,7 @@ class GoogleSignupScreen extends StatelessWidget {
               builder: (controller) => texFieldColumn(
                   title: 'Email',
                   hintText: 'Email',
+                  onChanged: controller.onChanged,
                   error: controller.emailError,
                   txtController: controller.emailController),
             ),
@@ -144,6 +148,7 @@ class GoogleSignupScreen extends StatelessWidget {
                             child: TextFormField(
                               keyboardType: TextInputType.number,
                               controller: controller.phoneController,
+                              onChanged: controller.onChanged,
                               decoration: InputDecoration(
                                   // prefix:countryCodePicker(context) ,
                                   hintText: 'Phone number',
@@ -199,137 +204,7 @@ class GoogleSignupScreen extends StatelessWidget {
               padding: const EdgeInsets.only(left: 15, bottom: 10),
               child: Row(
                 children: [
-                  Text('Password',
-                      style: appTextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: ColorRes.black.withOpacity(0.6))),
-                  Text(
-                    '*',
-                    style: appTextStyle(fontSize: 15, color: ColorRes.starColor),
-                  ),
-                ],
-              ),
-            ),
-            GetBuilder<GoogleSignupController>(
-              id: "showPassword",
-              builder: (controller) => Column(
-                children: [
-                  Container(
-                    height: 51,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                            offset: const Offset(6, 6),
-                            color: ColorRes.containerColor.withOpacity(0.10),
-                            spreadRadius: 0,
-                            blurRadius: 35),
-                      ],
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Material(
-                      shadowColor: ColorRes.containerColor,
-                      borderRadius: BorderRadius.circular(12),
-                      child: commonTextFormField(
-                        controller: controller.passwordController,
-                        obscureText: controller.show,
-                        textDecoration: InputDecoration(
-                          hintText: 'Password',
-                          fillColor: Colors.transparent,
-                          suffixIcon: IconButton(
-                            icon: controller.show
-                                ? Icon(
-                                    Icons.visibility_off,
-                                    color: ColorRes.black.withOpacity(0.15),
-                                  )
-                                : Icon(Icons.visibility,
-                                    color: ColorRes.black.withOpacity(0.15)),
-                            onPressed: controller.chang,
-                          ),
-                          filled: true,
-                          hintStyle: appTextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 15,
-                              color: ColorRes.black.withOpacity(0.15)),
-                          border:
-                              controller.passwordController.text.trim().isEmpty
-                                  ? InputBorder.none
-                                  : controller.pwdError.isNotEmpty
-                                      ? errorBorder()
-                                      : enableBorder(),
-                          focusedBorder:
-                              controller.passwordController.text.trim().isEmpty
-                                  ? InputBorder.none
-                                  : controller.pwdError.isNotEmpty
-                                      ? errorBorder()
-                                      : enableBorder(),
-                          disabledBorder:
-                              controller.passwordController.text.trim().isEmpty
-                                  ? InputBorder.none
-                                  : controller.pwdError.isNotEmpty
-                                      ? errorBorder()
-                                      : enableBorder(),
-                          enabledBorder:
-                              controller.passwordController.text.trim().isEmpty
-                                  ? InputBorder.none
-                                  : controller.pwdError.isNotEmpty
-                                      ? errorBorder()
-                                      : enableBorder(),
-                          errorBorder:
-                              controller.passwordController.text.trim().isEmpty
-                                  ? InputBorder.none
-                                  : controller.pwdError.isNotEmpty
-                                      ? errorBorder()
-                                      : enableBorder(),
-                          focusedErrorBorder:
-                              controller.passwordController.text.trim().isEmpty
-                                  ? InputBorder.none
-                                  : controller.pwdError.isNotEmpty
-                                      ? errorBorder()
-                                      : enableBorder(),
-                        ),
-                      ),
-                    ),
-                  ),
-                  controller.pwdError == ""
-                      ? const SizedBox(height: 20)
-                      : Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: 28,
-                          margin: const EdgeInsets.symmetric(vertical: 10),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: ColorRes.invalidColor),
-                          padding: const EdgeInsets.only(left: 15),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                const Image(
-                                  image: AssetImage(
-                                    AssetRes.invalid,
-                                  ),
-                                  height: 14,
-                                ),
-                                const SizedBox(width: 10),
-                                Text(
-                                  controller.pwdError,
-                                  style: appTextStyle(
-                                      fontSize: 9,
-                                      fontWeight: FontWeight.w400,
-                                      color: ColorRes.starColor),
-                                )
-                              ]),
-                        ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.only(left: 15, bottom: 10),
-              child: Row(
-                children: [
-                  Text('occupation',
+                  Text('Occupation',
                       style: appTextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
@@ -362,9 +237,10 @@ class GoogleSignupScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                       child: commonTextFormField(
                         controller: controller.occupationController,
+                        onChanged: controller.onChanged,
                         // obscureText: controller.show,
                         textDecoration: InputDecoration(
-                          hintText: 'occupation',
+                          hintText: 'Occupation',
                           fillColor: Colors.transparent,
                           filled: true,
                           hintStyle: appTextStyle(
@@ -433,7 +309,7 @@ class GoogleSignupScreen extends StatelessWidget {
                                 ),
                                 const SizedBox(width: 10),
                                 Text(
-                                  controller.pwdError,
+                                  controller.occupationError,
                                   style: appTextStyle(
                                       fontSize: 9,
                                       fontWeight: FontWeight.w400,
@@ -450,6 +326,7 @@ class GoogleSignupScreen extends StatelessWidget {
               builder: (controller) => texFieldColumn(
                   title: 'City',
                   hintText: 'City',
+                  onChanged: controller.onChanged,
                   error: controller.cityError,
                   txtController: controller.cityController),
             ),
@@ -459,6 +336,7 @@ class GoogleSignupScreen extends StatelessWidget {
                 builder: (controller) => texFieldColumn(
                       title: 'State',
                       hintText: 'State',
+                  onChanged: controller.onChanged,
                       error: controller.stateError,
                       txtController: controller.stateController,
                     )),
@@ -468,6 +346,7 @@ class GoogleSignupScreen extends StatelessWidget {
                 builder: (controller) => texFieldColumn(
                       title: 'Country',
                       hintText: 'Country',
+                  onChanged: controller.onChanged,
                       error: controller.countryError,
                       txtController: controller.countryController,
                     )),
@@ -509,7 +388,6 @@ class GoogleSignupScreen extends StatelessWidget {
                           controller.lastnameController.text == '' ||
                           controller.emailController.text == '' ||
                           controller.phoneController.text == '' ||
-                          controller.passwordController.text == '' ||
                           controller.occupationController.text == '' ||
                           controller.cityController.text == '' ||
                           controller.stateController.text == '' ||

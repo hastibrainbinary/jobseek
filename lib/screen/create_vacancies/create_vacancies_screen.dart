@@ -31,6 +31,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                       padding: const EdgeInsets.all(15),
                       child: InkWell(
                         onTap: () {
+                          controller.onTapBack("vacancies");
                           Get.back();
                         },
                         child: backButton(),

@@ -23,6 +23,7 @@ class SignUpControllerM extends GetxController {
   TextEditingController countryController = TextEditingController();
 
   RxBool loading = false.obs;
+  bool isManager = false;
   String emailError = "";
   String pwdError = "";
   String phoneError = "";
@@ -34,8 +35,7 @@ class SignUpControllerM extends GetxController {
 
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
-  addDataInFirebase(
-      {required String userUid, required Map<String, dynamic> map}) async {
+  addDataInFirebase({required String userUid, required Map<String, dynamic> map}) async {
     await fireStore
         .collection("Auth")
         .doc("Manager")
@@ -47,22 +47,26 @@ class SignUpControllerM extends GetxController {
         print('...error...' + e);
       }
     });
+    Get.off(() => const OrganizationProfileScreen());
     if (kDebugMode) {
       print("*************************** Success");
     }
   }
 
+
+  void onChanged(String value){
+    update(["dark"]);
+  }
+
   singUp(email, password) async {
     try {
       loading.value = true;
-      UserCredential userCredential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
       if (userCredential.user?.uid != null) {
-        PrefService.setValue(
-            PrefKeys.userId, userCredential.user?.uid.toString());
+        PrefService.setValue(PrefKeys.userId, userCredential.user?.uid.toString());
         PrefService.setValue(PrefKeys.rol, "Manager");
         PrefService.setValue(PrefKeys.totalPost, 0);
 
@@ -78,7 +82,6 @@ class SignUpControllerM extends GetxController {
         };
         addDataInFirebase(userUid: userCredential.user?.uid ?? "", map: map2);
       }
-      Get.off(() => const OrganizationProfileScreen());
       loading.value = false;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -95,10 +98,12 @@ class SignUpControllerM extends GetxController {
       }
     } catch (e) {
       if (kDebugMode) {
+        loading.value = false;
         print(e);
       }
       loading.value = false;
     }
+    loading.value = false;
   }
 
   emailValidation() {
@@ -184,6 +189,7 @@ class SignUpControllerM extends GetxController {
     countryController.text = dropDownValue;
 
     update(["dropdown"]);
+    update(["dark"]);
   }
   String dropDownValue = 'India';
   var items1 = [
@@ -347,20 +353,20 @@ class SignUpControllerM extends GetxController {
   //   //flutterToast(Strings.googleSignInSuccess);
   // }
   void SignUpWithGoogle() async {
-    loading.value = true;
     if (await googleSignIn.isSignedIn()) {
       await googleSignIn.signOut();
     }
     final GoogleSignInAccount? account = await googleSignIn.signIn();
-    final GoogleSignInAuthentication authentication =
-        await account!.authentication;
+    if (await googleSignIn.isSignedIn()) {
+      loading.value = true;
+    }
+    final GoogleSignInAuthentication authentication = await account!.authentication;
 
     final OAuthCredential credential = GoogleAuthProvider.credential(
       idToken: authentication.idToken,
       accessToken: authentication.accessToken,
     );
-    final UserCredential authResult =
-        await auth.signInWithCredential(credential);
+    final UserCredential authResult = await auth.signInWithCredential(credential);
     final User? user = authResult.user;
     if (kDebugMode) {
       print(user!.email);
@@ -372,21 +378,66 @@ class SignUpControllerM extends GetxController {
       print(user?.displayName);
     }
     if (user?.uid != null && user?.uid != "") {
-      String firstNm = user!.displayName.toString().split(" ").first;
-      String lastNm = user.displayName.toString().split(" ").last;
-      PrefService.setValue(PrefKeys.userId, user.uid.toString());
-      PrefService.setValue(PrefKeys.rol, "Manager");
 
-      Get.to(
-        GoogleSignupScreenM(
-          email: user.email.toString(),
-          firstName: firstNm,
-          lastName: lastNm,
-        ),
-      );
-      // Get.offAll(() => DashBoardScreen());
+      await fireStore
+          .collection("Auth")
+          .doc("User")
+          .collection("register")
+          .get()
+          .then((value) async {
+        if (value.docs.length.isEqual(0)) {
+          loading.value = true;
+          isManager = false;
+          Get.snackbar(
+              "Error", "Please create account,\n your email is not registered",
+              colorText: const Color(0xffDA1414));
+        } else {
+          for (int i = 0; i < value.docs.length; i++) {
+            if (kDebugMode) {
+              print("${value.docs[i]["Email"]}=||||||++++++++++");
+            }
+            if (value.docs[i]["Email"] == user!.email && value.docs[i]["Email"] != "") {
+              isManager = true;
+              if (kDebugMode) {
+                print("$isManager====]]]]]");
+              }
+              break;
+            } else {
+              isManager = false;
+              if (kDebugMode) {
+                print("$isManager====]]]]]");
+              }
+            }
+          }
+
+          if (isManager == false) {
+            String firstNm = user!.displayName.toString().split(" ").first;
+            String lastNm = user.displayName.toString().split(" ").last;
+            Get.to(()=>GoogleSignupScreenM(
+              uid: user.uid.toString(),
+              email: user.email.toString(),
+              firstName: firstNm,
+              lastName: lastNm,
+            ),
+            );
+          } else {
+            await googleSignIn.signOut();
+            Get.snackbar(
+                "Error", "This email is already registered",
+                colorText: const Color(0xffDA1414));
+            loading.value = false;
+          }
+          loading.value = false;
+        }
+
+        if (kDebugMode) {
+          print("${value.isBlank}=|=|=|");
+        }
+        if (kDebugMode) {
+          print("${value.docs.length}=|=|=|");
+        }
+      });
       loading.value == false;
-      // loader false
     } else {
       loading.value == false;
     }
