@@ -257,6 +257,8 @@ class SignUpController extends GetxController {
         print('...error...' + e);
       }
     });
+    loading.value = false;
+    Get.off(() => DashBoardScreen());
     if (kDebugMode) {
       print("*************************** Success");
     }

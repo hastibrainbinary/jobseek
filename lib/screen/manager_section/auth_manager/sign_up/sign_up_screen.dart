@@ -1020,7 +1020,6 @@ class SignUpScreenM extends StatelessWidget {
                                     id: "dropdown",
                                     builder: (controller) {
                                       return DropdownButton(
-
                                           iconSize: 35.0,
                                           iconEnabledColor: Colors.grey.shade400,
                                           iconDisabledColor: Colors.grey.shade400,
