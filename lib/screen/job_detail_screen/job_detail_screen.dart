@@ -107,11 +107,14 @@ class JobDetailScreen extends StatelessWidget {
                   ),
                 ],
               )),
-          StreamBuilder(
+          StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
               stream: FirebaseFirestore.instance
-                  .collection("allPost")
+                  .collection("category")
+                  .doc("Design")
+                  .collection("Design")
                   .doc(args["docId"])
                   .snapshots(),
+              /*FirebaseFirestore.instance.collection("allPost").doc(args["docId"]).snapshots(),*/
               builder: (BuildContext context,
                   AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>>
                       snapshot) {
@@ -146,7 +149,7 @@ class JobDetailScreen extends StatelessWidget {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      CrossAxisAlignment.start,
                                       children: [
                                         Text(snapshot.data!["Position"],
                                             style: appTextStyle(
