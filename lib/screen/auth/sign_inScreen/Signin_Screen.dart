@@ -5,8 +5,10 @@ import 'package:jobseek/common/widgets/common_textField.dart';
 import 'package:jobseek/screen/auth/forgot_password_new/forgot_password_new_screen.dart';
 import 'package:jobseek/screen/auth/sign_inScreen/Signin_controller.dart';
 import 'package:jobseek/screen/auth/sign_up/sign_upScreen.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 
 class SigninScreenU extends StatelessWidget {
   SigninScreenU({Key? key}) : super(key: key);
@@ -205,7 +207,7 @@ class SigninScreenU extends StatelessWidget {
                         SizedBox(height: Get.height * 0.025),
                         Padding(
                           padding: EdgeInsets.only(
-                              left: 15, bottom: Get.height * 0.012),
+                              left: 13, bottom: Get.height * 0.012),
                           child: Row(
                             children: [
                               Text('Password',
@@ -245,7 +247,7 @@ class SigninScreenU extends StatelessWidget {
                                   obscureText: controller.show,
                                   textDecoration: InputDecoration(
                                     contentPadding: const EdgeInsets.only(
-                                        left: 15,
+                                        left: 13,
                                         top: 10,
                                         bottom: 10,
                                         right: 15),
@@ -368,6 +370,25 @@ class SigninScreenU extends StatelessWidget {
                                     onTap: () {
                                       controller.rememberMe =
                                           !controller.rememberMe;
+                                      if (controller.rememberMe) {
+                                        PrefService.setValue(PrefKeys.email,
+                                            controller.emailController.text);
+                                        PrefService.setValue(PrefKeys.password,
+                                            controller.passwordController.text);
+                                        PrefService.setValue(
+                                            PrefKeys.rememberMe,
+                                            controller.rememberMe);
+                                      } else {
+                                        PrefService.remove(
+                                          PrefKeys.email,
+                                        );
+                                        PrefService.remove(
+                                          PrefKeys.password,
+                                        );
+                                        PrefService.remove(
+                                          PrefKeys.rememberMe,
+                                        );
+                                      }
                                       controller.update(["remember_me"]);
                                     },
                                     child: Row(
@@ -386,11 +407,13 @@ class SigninScreenU extends StatelessWidget {
                                                 BorderRadius.circular(4),
                                           ),
                                         ),
-                                        Text('Remember me',
-                                            style: GoogleFonts.poppins(
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 13,
-                                                color: ColorRes.black))
+                                        Text(
+                                          'Remember me',
+                                          style: GoogleFonts.poppins(
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 13,
+                                              color: ColorRes.black),
+                                        ),
                                       ],
                                     ),
                                   );
@@ -527,7 +550,6 @@ class SigninScreenU extends StatelessWidget {
                                 ),
                               ),
                             ),
-
                             InkWell(
                               onTap: () {
                                 controller.signWithGoogle();
@@ -587,10 +609,14 @@ class SigninScreenU extends StatelessWidget {
                               builder: (controller) => InkWell(
                                 onTap: () {
                                   Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (con) =>
-                                              const SignUpScreen()));
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (con) => const SignUpScreen(),
+                                    ),
+                                  ).then((value) {
+                                    controller.emailController.clear();
+                                    controller.passwordController.clear();
+                                  });
                                 },
                                 child: Text(
                                   ' Sign up',
@@ -608,10 +634,10 @@ class SigninScreenU extends StatelessWidget {
               ),
               controller.loading.isTrue
                   ? Container(
-                height: Get.height,
-                width: Get.width,
-                color: ColorRes.containerColor.withOpacity(0.2),
-                alignment: Alignment.center,
+                      height: Get.height,
+                      width: Get.width,
+                      color: ColorRes.containerColor.withOpacity(0.2),
+                      alignment: Alignment.center,
                       child: Container(
                         padding: const EdgeInsets.all(35),
                         height: 110,

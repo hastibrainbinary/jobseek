@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/asset_res.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 
 class HomeController extends GetxController implements GetxService {
   TextEditingController searchController = TextEditingController();
@@ -44,5 +46,14 @@ class HomeController extends GetxController implements GetxService {
   onTapJobs2(int index) {
     selectedJobs2.value = index;
     //update(["hList"]);
+  }
+  String?  firstNAme;
+  @override
+  void onInit() {
+    getfirstName();
+    super.onInit();
+  }
+  getfirstName()async{
+    firstNAme = await PrefService.getString(PrefKeys.firstnameu);
   }
 }

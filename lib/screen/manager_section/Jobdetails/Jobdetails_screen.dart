@@ -144,8 +144,7 @@ class JobDetailsScreen extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (con) =>
-                                  const CreateVacanciesScreenM()));
+                              builder: (con) => ManagerApplicationScreen()));
                     }
                   },
                   child: Container(

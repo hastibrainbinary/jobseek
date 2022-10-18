@@ -397,8 +397,7 @@ class SignInScreenM extends StatelessWidget {
                                             color: ColorRes.white)),
                                   )
                                 : InkWell(
-                                    onTap: controller.onLoginBtnTap
-                                    ,
+                                    onTap: controller.onLoginBtnTap,
                                     child: Container(
                                       height: 50,
                                       width: MediaQuery.of(context).size.width,
@@ -489,7 +488,6 @@ class SignInScreenM extends StatelessWidget {
                               ),
                             ),
                           ),
-
                           InkWell(
                             onTap: () {
                               controller.signWithGoogle();
@@ -549,9 +547,14 @@ class SignInScreenM extends StatelessWidget {
                             builder: (controller) => InkWell(
                               onTap: () {
                                 Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (con) => SignUpScreenM()));
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (con) => SignUpScreenM(),
+                                  ),
+                                ).then((value) => {
+                                      controller.passwordController.clear(),
+                                      controller.emailController.clear()
+                                    });
                               },
                               child: Text(
                                 ' Sign up',
@@ -571,7 +574,6 @@ class SignInScreenM extends StatelessWidget {
                 ? Center(
                     child: Container(
                       padding: const EdgeInsets.all(35),
-
                       height: 110,
                       width: 110,
                       decoration: BoxDecoration(

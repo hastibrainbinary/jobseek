@@ -16,27 +16,33 @@ class FinancialPlannerScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 30),
-            Row(
+            const SizedBox(height: 50),
+            Stack(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(18),
-                  child: InkWell(
-                    onTap: () {
-                      Get.back();
-                    },
-                    child: backButton(),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: InkWell(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: backButton(),
+                    ),
                   ),
                 ),
-                const SizedBox(width:70),
-                Center(
-                  child: Text(
-                    'Application',
-                    style: appTextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                        height: 1,
-                        color: ColorRes.black),
+                Padding(
+                  padding: const EdgeInsets.only(top: 25.0),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Application',
+                      style: appTextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                          height: 1,
+                          color: ColorRes.black),
+                    ),
                   ),
                 ),
               ],

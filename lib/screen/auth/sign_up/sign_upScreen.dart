@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/common_textField.dart';
 import 'package:jobseek/screen/auth/sign_inScreen/Signin_Screen.dart';
+import 'package:jobseek/screen/auth/sign_inScreen/Signin_controller.dart';
 import 'package:jobseek/screen/auth/sign_up/sign_upController.dart';
 import 'package:jobseek/screen/auth/sign_up/widget/signup_bottom/country.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -380,7 +383,7 @@ class SignUpScreen extends StatelessWidget {
                           builder: (controller) => texFieldColumn(
                                 title: 'State',
                                 hintText: 'State',
-                            onChanged: controller.onChanged,
+                                onChanged: controller.onChanged,
                                 error: controller.stateError,
                                 txtController: controller.stateController,
                               )),
@@ -427,19 +430,20 @@ class SignUpScreen extends StatelessWidget {
                                   textDecoration: InputDecoration(
                                     hintText: 'Country',
                                     fillColor: Colors.transparent,
-                                    suffixIcon:
-                                    GetBuilder<SignUpController>(
+                                    suffixIcon: GetBuilder<SignUpController>(
                                       id: "dropdown",
                                       builder: (controller) {
                                         return DropdownButton(
-
                                             iconSize: 35.0,
-                                            iconEnabledColor: Colors.grey.shade400,
-                                            iconDisabledColor: Colors.grey.shade400,
+                                            iconEnabledColor:
+                                                Colors.grey.shade400,
+                                            iconDisabledColor:
+                                                Colors.grey.shade400,
                                             underline: Container(),
-                                            icon: const Icon(Icons.arrow_drop_down),
+                                            icon: const Icon(
+                                                Icons.arrow_drop_down),
                                             items: controller.items.map(
-                                                  (val) {
+                                              (val) {
                                                 return DropdownMenuItem<String>(
                                                   value: val,
                                                   child: Text(val),
@@ -447,7 +451,8 @@ class SignUpScreen extends StatelessWidget {
                                               },
                                             ).toList(),
                                             onChanged: (String? val) {
-                                              controller.changeDropdwon(val: val!);
+                                              controller.changeDropdwon(
+                                                  val: val!);
                                             });
                                       },
                                     ),
@@ -455,53 +460,55 @@ class SignUpScreen extends StatelessWidget {
                                     hintStyle: appTextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.w500,
-                                        color: ColorRes.black.withOpacity(0.15)),
+                                        color:
+                                            ColorRes.black.withOpacity(0.15)),
                                     border: controller.countryController.text
-                                        .trim()
-                                        .isEmpty
+                                            .trim()
+                                            .isEmpty
                                         ? InputBorder.none
                                         : controller.countryError.isNotEmpty
-                                        ? errorBorder()
-                                        : enableBorder(),
+                                            ? errorBorder()
+                                            : enableBorder(),
                                     focusedBorder: controller
-                                        .countryController.text
-                                        .trim()
-                                        .isEmpty
+                                            .countryController.text
+                                            .trim()
+                                            .isEmpty
                                         ? InputBorder.none
                                         : controller.countryError.isNotEmpty
-                                        ? errorBorder()
-                                        : enableBorder(),
+                                            ? errorBorder()
+                                            : enableBorder(),
                                     disabledBorder: controller
-                                        .countryController.text
-                                        .trim()
-                                        .isEmpty
+                                            .countryController.text
+                                            .trim()
+                                            .isEmpty
                                         ? InputBorder.none
                                         : controller.countryError.isNotEmpty
-                                        ? errorBorder()
-                                        : enableBorder(),
+                                            ? errorBorder()
+                                            : enableBorder(),
                                     enabledBorder: controller
-                                        .countryController.text
-                                        .trim()
-                                        .isEmpty
+                                            .countryController.text
+                                            .trim()
+                                            .isEmpty
                                         ? InputBorder.none
                                         : controller.countryError.isNotEmpty
-                                        ? errorBorder()
-                                        : enableBorder(),
-                                    errorBorder: controller.countryController.text
-                                        .trim()
-                                        .isEmpty
+                                            ? errorBorder()
+                                            : enableBorder(),
+                                    errorBorder: controller
+                                            .countryController.text
+                                            .trim()
+                                            .isEmpty
                                         ? InputBorder.none
                                         : controller.countryError.isNotEmpty
-                                        ? errorBorder()
-                                        : enableBorder(),
+                                            ? errorBorder()
+                                            : enableBorder(),
                                     focusedErrorBorder: controller
-                                        .countryController.text
-                                        .trim()
-                                        .isEmpty
+                                            .countryController.text
+                                            .trim()
+                                            .isEmpty
                                         ? InputBorder.none
                                         : controller.countryError.isNotEmpty
-                                        ? errorBorder()
-                                        : enableBorder(),
+                                            ? errorBorder()
+                                            : enableBorder(),
                                   ),
                                 ),
                               ),
@@ -509,33 +516,33 @@ class SignUpScreen extends StatelessWidget {
                             controller.countryError == ""
                                 ? const SizedBox(height: 20)
                                 : Container(
-                              margin: const EdgeInsets.all(10),
-                              width: 339,
-                              height: 28,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(50),
-                                  color: ColorRes.invalidColor),
-                              padding: const EdgeInsets.only(left: 15),
-                              child: Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.start,
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.center,
-                                  children: [
-                                    const Image(
-                                      image: AssetImage(
-                                        AssetRes.invalid,
-                                      ),
-                                      height: 14,
-                                    ),
-                                    const SizedBox(width: 10),
-                                    Text(controller.countryError,
-                                        style: appTextStyle(
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 9,
-                                            color: ColorRes.starColor))
-                                  ]),
-                            ),
+                                    margin: const EdgeInsets.all(10),
+                                    width: 339,
+                                    height: 28,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(50),
+                                        color: ColorRes.invalidColor),
+                                    padding: const EdgeInsets.only(left: 15),
+                                    child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          const Image(
+                                            image: AssetImage(
+                                              AssetRes.invalid,
+                                            ),
+                                            height: 14,
+                                          ),
+                                          const SizedBox(width: 10),
+                                          Text(controller.countryError,
+                                              style: appTextStyle(
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 9,
+                                                  color: ColorRes.starColor))
+                                        ]),
+                                  ),
                           ],
                         ),
                       ),
@@ -737,11 +744,31 @@ class SignUpScreen extends StatelessWidget {
                           ),
                           GetBuilder<SignUpController>(
                             builder: (controller) => InkWell(
-                              onTap: () {
+                              onTap: () async {
+                                SignInScreenController controller2 =
+                                    Get.put(SignInScreenController());
+                                controller2.emailController.clear();
+                                controller2.passwordController.clear();
+                                await PrefService.setValue(
+                                    PrefKeys.firstnameu,
+                                    controller.firstnameController.text
+                                        .toString());
                                 Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (con) => SigninScreenU()));
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (con) => SigninScreenU(),
+                                  ),
+                                ).then((value) => {
+                                      controller.firstnameController.clear(),
+                                      controller.lastnameController.clear(),
+                                      controller.emailController.clear(),
+                                      controller.phoneController.clear(),
+                                      controller.passwordController.clear(),
+                                      controller.occupationController.clear(),
+                                      controller.cityController.clear(),
+                                      controller.stateController.clear(),
+                                      controller.countryController.clear(),
+                                    });
                               },
                               child: Text(
                                 ' Sign In',

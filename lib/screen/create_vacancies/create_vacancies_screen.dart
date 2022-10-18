@@ -332,6 +332,77 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                   )
                                 : const SizedBox(),
                             const SizedBox(
+                              height: 20,
+                            ),
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 15),
+                                  child: Text(
+                                    "Category",
+                                    style: appTextStyle(
+                                        color: ColorRes.grey, fontSize: 14),
+                                  ),
+                                ),
+                                Text(
+                                  "*",
+                                  style:
+                                      appTextStyle(color: ColorRes.starColor),
+                                )
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            commonTextFormField(
+                                onChanged: controller.onChanged,
+                                textDecoration: InputDecoration(
+                                  contentPadding: const EdgeInsets.all(15),
+                                  border: InputBorder.none,
+                                  hintText: "category",
+                                  hintStyle: appTextStyle(
+                                    fontSize: 14,
+                                    color: ColorRes.black.withOpacity(0.15),
+                                  ),
+                                  suffixIcon:
+                                      GetBuilder<CreateVacanciesController>(
+                                    id: "category",
+                                    builder: (controller) {
+                                      return DropdownButton(
+                                          iconSize: 35.0,
+                                          iconEnabledColor:
+                                              Colors.grey.shade400,
+                                          iconDisabledColor:
+                                              Colors.grey.shade400,
+                                          underline: Container(),
+                                          icon:
+                                              const Icon(Icons.arrow_drop_down),
+                                          items: controller.itemsCategory.map(
+                                            (val) {
+                                              return DropdownMenuItem<String>(
+                                                value: val,
+                                                child: Text(val),
+                                              );
+                                            },
+                                          ).toList(),
+                                          onChanged: (String? val) {
+                                            controller.changeCategory(val: val!);
+                                          });
+                                    },
+                                  ),
+                                ),
+                                controller: controller.categoryController),
+                            controller.isCategoryValidate.value == true
+                                ? Column(
+                                    children: [
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      commonErrorBox("Please Enter category"),
+                                    ],
+                                  )
+                                : const SizedBox(),
+                            const SizedBox(
                               height: 60,
                             ),
                             GetBuilder<CreateVacanciesController>(
@@ -342,7 +413,10 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                               '' ||
                                           controller.locationController.text ==
                                               '' ||
-                                          controller.typeController.text == '')
+                                          controller.typeController.text ==
+                                              '' ||
+                                          controller.categoryController.text ==
+                                              '')
                                       ? Container(
                                           height: 50,
                                           width:

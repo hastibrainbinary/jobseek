@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
 import 'package:jobseek/screen/manager_section/Recent%20People%20Application/recent_Application_screen.dart';
+import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_controller.dart';
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_widget/manager_home_screen_widget.dart';
 import 'package:jobseek/screen/manager_section/notification1/notification1_screen.dart';
 import 'package:jobseek/utils/app_style.dart';
@@ -9,7 +10,8 @@ import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
 class ManagerHomeScreen extends StatelessWidget {
-  const ManagerHomeScreen({Key? key}) : super(key: key);
+  ManagerHomeScreen({Key? key}) : super(key: key);
+  final controller = Get.put(ManagerHomeScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -78,8 +80,8 @@ class ManagerHomeScreen extends StatelessWidget {
                             fontSize: 20,
                             fontWeight: FontWeight.w600),
                       ),
-                      Text(
-                        "AirBNB!",
+                      Text( 
+                        controller.companyNAme ?? "",
                         style: appTextStyle(
                             color: ColorRes.containerColor,
                             fontSize: 20,

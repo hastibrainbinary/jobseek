@@ -117,7 +117,6 @@ class OrganizationProfileScreen extends StatelessWidget {
                                   ),
                                   fit: BoxFit.fill)),
                     ),
-
                   ),
                   const SizedBox(
                     height: 10,

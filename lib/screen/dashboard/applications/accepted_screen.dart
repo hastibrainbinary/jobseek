@@ -15,25 +15,33 @@ class AcceptedScreen extends StatelessWidget {
         body: Column(
           children: [
             const SizedBox(height: 50),
-            Row(
+            Stack(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: InkWell(
-                    onTap: () {
-                      Get.back();
-                    },
-                    child: backButton(),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: InkWell(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: backButton(),
+                    ),
                   ),
                 ),
-                const SizedBox(width: 85),
-                Text(
-                  'Application',
-                  style: appTextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                      height: 1,
-                      color: ColorRes.black),
+                Padding(
+                  padding: const EdgeInsets.only(top: 25.0),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Application',
+                      style: appTextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                          height: 1,
+                          color: ColorRes.black),
+                    ),
+                  ),
                 ),
               ],
             ),

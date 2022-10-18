@@ -30,7 +30,7 @@ class ManagerDashBoardScreen extends StatelessWidget {
           resizeToAvoidBottomInset: false,
           backgroundColor: ColorRes.backgroundColor,
           body: Obx(() => controller.currentTab.value == 0
-              ? const ManagerHomeScreen()
+              ? ManagerHomeScreen()
               : controller.currentTab.value == 1
                   ? ManagerApplicationScreen()
                   : controller.currentTab.value == 2

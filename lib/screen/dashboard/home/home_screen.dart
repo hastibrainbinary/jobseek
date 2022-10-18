@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jobseek/screen/dashboard/home/home_controller.dart';
 import 'package:jobseek/screen/dashboard/home/tipsforyou_screen.dart';
+import 'package:jobseek/screen/dashboard/home/widgets/all_jobs.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/appbar.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/tips_for_you_section.dart';
@@ -156,118 +157,19 @@ class HomeScreen extends StatelessWidget {
                           );
                         }),
                   ),
-                  StreamBuilder(
-                      stream: fireStore.collection("allPost").snapshots(),
-                      builder: (BuildContext context,
-                          AsyncSnapshot<dynamic> snapshot) {
-                        return snapshot.hasData
-                            ? ListView.builder(
-                                itemCount: snapshot.data.docs.length,
-                                shrinkWrap: true,
-                                physics: const BouncingScrollPhysics(),
-                                itemBuilder: (context, index) {
-                                  if (kDebugMode) {
-                                    print(index);
-                                  }
-                                  if (kDebugMode) {
-                                    print(snapshot.data!.docs[index].id);
-                                  }
-                                  return InkWell(
-                                    onTap: () => Get.toNamed(
-                                        AppRes.jobDetailScreen,
-                                        arguments: {
-                                          "saved":
-                                              controller.jobTypesSaved[index%5],
-                                          "docId": snapshot.data!.docs[index].id
-                                        }),
-                                    child: Container(
-                                      height: 92,
-                                      width: Get.width,
-                                      margin: const EdgeInsets.symmetric(
-                                          horizontal: 18, vertical: 4),
-                                      padding: const EdgeInsets.all(15),
-                                      decoration: BoxDecoration(
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(15)),
-                                          border: Border.all(
-                                              color: const Color(0xffF3ECFF)),
-                                          color: ColorRes.white),
-                                      child: Row(
-                                        children: [
-                                          Image.asset(
-                                              controller.jobTypesLogo[index%5]),
-                                          const SizedBox(width: 20),
-                                          Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                  // controller.jobTypes[index],
-                                                  snapshot.data!.docs[index]["Position"],
-                                                  style: appTextStyle(
-                                                      color: ColorRes.black,
-                                                      fontSize: 15,
-                                                      fontWeight:
-                                                          FontWeight.w500)),
-                                              Text(snapshot.data!.docs[index]["CompanyName"],
-                                                  style: appTextStyle(
-                                                      color: ColorRes.black,
-                                                      fontSize: 12,
-                                                      fontWeight:
-                                                          FontWeight.w400)),
-                                              Text(
-                                                  "${snapshot.data!.docs[index]["location"]}  ${snapshot.data!.docs[index]["type"]}",
-                                                  style: appTextStyle(
-                                                      color: ColorRes.black,
-                                                      fontSize: 10,
-                                                      fontWeight:
-                                                          FontWeight.w400)),
-                                            ],
-                                          ),
-                                          const Spacer(),
-                                          Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.end,
-                                            children: [
-                                              InkWell(
-                                                onTap: () {
-                                                  controller.onTapSave(index);
-                                                },
-                                                child: Obx(() {
-                                                  return Image.asset(
-                                                    controller.jobTypesSaved[index%5]
-                                                        ? AssetRes.bookMarkFillIcon
-                                                        : AssetRes.bookMarkBorderIcon,
-                                                    height: 20,
-                                                  );
-                                                }),
-                                              ),
-                                              const Spacer(),
-                                              Text(
-                                                "\$${snapshot.data!.docs[index]["salary"]}",
-                                                style: appTextStyle(
-                                                    fontSize: 16,
-                                                    color:
-                                                        ColorRes.containerColor,
-                                                    fontWeight:
-                                                        FontWeight.w500),
-                                              )
-                                            ],
-                                          ),
-                                          const SizedBox(width: 10)
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                })
-                            : const Center(
-                                child: CircularProgressIndicator(),
-                              );
-                      }),
+
+                  Obx(() => controller.selectedJobs2.value == 0
+                      ? allJobs()
+                      : controller.selectedJobs2.value == 1
+                          ? const SizedBox()
+                          : controller.selectedJobs2.value == 2
+                              ? const SizedBox()
+                              : controller.selectedJobs2.value == 3
+                                  ? const SizedBox()
+                                  : Center(
+                                      child: Text(controller.jobs2[
+                                          controller.selectedJobs2.value]),
+                                    ))
                 ],
               ),
             ),

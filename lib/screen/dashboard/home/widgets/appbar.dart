@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 
 Widget homeAppBar() {
   return Padding(
@@ -17,7 +19,10 @@ Widget homeAppBar() {
               borderRadius: BorderRadius.all(Radius.circular(10)),
               color: ColorRes.logoColor),
           child: const Text("Logo",
-              style: TextStyle(color: ColorRes.containerColor,fontSize: 10,fontWeight: FontWeight.w600)),
+              style: TextStyle(
+                  color: ColorRes.containerColor,
+                  fontSize: 10,
+                  fontWeight: FontWeight.w600)),
         ),
         Expanded(
           child: Container(
@@ -32,8 +37,7 @@ Widget homeAppBar() {
                           fontWeight: FontWeight.w600,
                           color: ColorRes.black)),
                   TextSpan(
-
-                    text: 'Rakib!',
+                    text: PrefService.getString(PrefKeys.firstnameu).toString(),
                     style: appTextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
@@ -46,7 +50,7 @@ Widget homeAppBar() {
           ),
         ),
         InkWell(
-          onTap: ()=>Get.toNamed(AppRes.notificationScreen),
+          onTap: () => Get.toNamed(AppRes.notificationScreen),
           child: Container(
               height: 40,
               width: 40,
@@ -63,5 +67,3 @@ Widget homeAppBar() {
     ),
   );
 }
-
-

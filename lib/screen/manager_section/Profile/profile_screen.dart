@@ -1,16 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/common_error_box.dart';
 import 'package:jobseek/common/widgets/common_textField.dart';
 import 'package:jobseek/screen/manager_section/Profile/profile_controller.dart';
 import 'package:jobseek/screen/manager_section/Settings/settings_screen.dart';
-import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
-import 'package:jobseek/utils/pref_keys.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({Key? key}) : super(key: key);
@@ -464,10 +461,9 @@ class ProfileScreen extends StatelessWidget {
                                     suffixIcon: Container(
                                       padding: const EdgeInsets.all(15),
                                       child: Image(
-                                        image: const AssetImage(
-                                            AssetRes.dateIcon),
-                                        color:
-                                            ColorRes.black.withOpacity(0.15),
+                                        image:
+                                            const AssetImage(AssetRes.dateIcon),
+                                        color: ColorRes.black.withOpacity(0.15),
                                       ),
                                     ),
                                   ),
@@ -590,34 +586,33 @@ class ProfileScreen extends StatelessWidget {
                                   id: "Organization",
                                   builder: (controller) {
                                     return InkWell(
-                                            // dashboard write
-                                            onTap: controller.onTapEdit,
-                                            child: Container(
-                                              height: 50,
-                                              width: MediaQuery.of(context)
-                                                  .size
-                                                  .width,
-                                              alignment: Alignment.center,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                gradient: const LinearGradient(
-                                                  colors: [
-                                                    ColorRes.gradientColor,
-                                                    ColorRes.containerColor
-                                                  ],
-                                                ),
-                                              ),
-                                              child: Text(
-                                                "Edit",
-                                                style: appTextStyle(
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: ColorRes.white,
-                                                ),
-                                              ),
-                                            ),
-                                          );
+                                      // dashboard write
+                                      onTap: controller.onTapEdit,
+                                      child: Container(
+                                        height: 50,
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        alignment: Alignment.center,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          gradient: const LinearGradient(
+                                            colors: [
+                                              ColorRes.gradientColor,
+                                              ColorRes.containerColor
+                                            ],
+                                          ),
+                                        ),
+                                        child: Text(
+                                          "Edit",
+                                          style: appTextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                            color: ColorRes.white,
+                                          ),
+                                        ),
+                                      ),
+                                    );
                                   }),
                               const SizedBox(
                                 height: 20,

@@ -219,6 +219,8 @@ class SignUpController extends GetxController {
           "State": stateController.text,
           "Country": countryController.text,
         };
+        await   PrefService.setValue(PrefKeys.firstnameu,firstnameController.text.toString());
+
         addDataInFirebase(userUid: userCredential.user?.uid ?? "", map: map2);
       }
 
@@ -252,12 +254,13 @@ class SignUpController extends GetxController {
         .collection("register")
         .doc(userUid)
         .set(map)
-        .catchError((e) {
+        .catchError((e) async {
       if (kDebugMode) {
         print('...error...' + e);
       }
     });
     loading.value = false;
+
     Get.off(() => DashBoardScreen());
     if (kDebugMode) {
       print("*************************** Success");

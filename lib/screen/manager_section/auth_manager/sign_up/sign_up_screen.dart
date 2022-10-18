@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/common_textField.dart';
-import 'package:jobseek/screen/auth/sign_up/sign_upController.dart';
 import 'package:jobseek/screen/auth/sign_up/widget/signup_bottom/country.dart';
 import 'package:jobseek/screen/manager_section/auth_manager/Sign_in/sign_in_screen.dart';
 import 'package:jobseek/screen/manager_section/auth_manager/sign_up/sign_up_controller.dart';
@@ -1015,18 +1014,20 @@ class SignUpScreenM extends StatelessWidget {
                                 textDecoration: InputDecoration(
                                   hintText: 'Country',
                                   fillColor: Colors.transparent,
-                                  suffixIcon:
-                                  GetBuilder<SignUpControllerM>(
+                                  suffixIcon: GetBuilder<SignUpControllerM>(
                                     id: "dropdown",
                                     builder: (controller) {
                                       return DropdownButton(
                                           iconSize: 35.0,
-                                          iconEnabledColor: Colors.grey.shade400,
-                                          iconDisabledColor: Colors.grey.shade400,
+                                          iconEnabledColor:
+                                              Colors.grey.shade400,
+                                          iconDisabledColor:
+                                              Colors.grey.shade400,
                                           underline: Container(),
-                                          icon: const Icon(Icons.arrow_drop_down),
+                                          icon:
+                                              const Icon(Icons.arrow_drop_down),
                                           items: controller.items1.map(
-                                                (val) {
+                                            (val) {
                                               return DropdownMenuItem<String>(
                                                 value: val,
                                                 child: Text(val),
@@ -1034,7 +1035,8 @@ class SignUpScreenM extends StatelessWidget {
                                             },
                                           ).toList(),
                                           onChanged: (String? val) {
-                                            controller.changeDropdwon(val: val!);
+                                            controller.changeDropdwon(
+                                                val: val!);
                                           });
                                     },
                                   ),

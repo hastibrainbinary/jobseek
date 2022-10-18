@@ -62,83 +62,88 @@ class RequirementsScreen extends StatelessWidget {
                 id: "requirement",
                 builder: (controller) {
                   return ListView.builder(
-                    keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                    keyboardDismissBehavior:
+                        ScrollViewKeyboardDismissBehavior.onDrag,
                     physics: const BouncingScrollPhysics(),
-                    padding: const EdgeInsets.only(
-                        left: 18, right: 18, top: 18),
-                    itemCount: controller.addRequirementsList.length+1,
+                    padding:
+                        const EdgeInsets.only(left: 18, right: 18, top: 18),
+                    itemCount: controller.addRequirementsList.length + 1,
                     itemBuilder: (context, index) {
                       return index == controller.addRequirementsList.length
                           ? InkWell(
-                        onTap: controller.onTapAddRequirements,
-                        child: Container(
-                          height: 50,
-                          width: 339,
-                          margin: const EdgeInsets.only(top: 22,bottom: 15),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: ColorRes.containerColor),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Image(
-                                image: AssetImage(AssetRes.addIcon),
-                                height: 15,
-                              ),
-                              const SizedBox(width: 10),
-                              Text(
-                                'Add New Requirements',
-                                style: appTextStyle(
-                                    color: ColorRes.containerColor,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                            ],
-                          ),
-                        ),
-                      )
-                          : Container(
-                        padding: const EdgeInsets.only(right: 10),
-                        margin:
-                            const EdgeInsets.only(top: 5, bottom: 5),
-                        width: 339,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: const Color(0xffF3F0F8),
-                        ),
-                        child: Row(
-                          children: [
-                            Container(
-                              height: 46,
-                              width: 46,
-                              padding: const EdgeInsets.all(10),
-                              child: const Image(
-                                image: AssetImage(AssetRes.checkIcon),
-                                height: 10,
-                                width: 10,
-                              ),
-                            ),
-                            Expanded(
-                              child: TextField(
-                                controller: controller.addRequirementsList[index],
-                                keyboardType: TextInputType.multiline,
-                                maxLines: null,
-                                decoration: const InputDecoration(
-                                  border: InputBorder.none,
-                                  enabled: true,
+                              onTap: controller.onTapAddRequirements,
+                              child: Container(
+                                height: 50,
+                                width: 339,
+                                margin:
+                                    const EdgeInsets.only(top: 22, bottom: 15),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(
+                                      color: ColorRes.containerColor),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const Image(
+                                      image: AssetImage(AssetRes.addIcon),
+                                      height: 15,
+                                    ),
+                                    const SizedBox(width: 10),
+                                    Text(
+                                      'Add New Requirements',
+                                      style: appTextStyle(
+                                          color: ColorRes.containerColor,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      );
+                            )
+                          : Container(
+                              padding: const EdgeInsets.only(right: 10),
+                              margin: const EdgeInsets.only(top: 5, bottom: 5),
+                              width: 339,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: const Color(0xffF3F0F8),
+                              ),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    height: 46,
+                                    width: 46,
+                                    padding: const EdgeInsets.all(10),
+                                    child: const Image(
+                                      image: AssetImage(AssetRes.checkIcon),
+                                      height: 10,
+                                      width: 10,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: TextField(
+                                      controller:
+                                          controller.addRequirementsList[index],
+                                      keyboardType: TextInputType.multiline,
+                                      maxLines: null,
+                                      decoration: const InputDecoration(
+                                        border: InputBorder.none,
+                                        enabled: true,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
                     },
                   );
                 },
               ),
             ),
-            SizedBox(height: 70,)
+            const SizedBox(
+              height: 70,
+            )
           ],
         ),
       ),

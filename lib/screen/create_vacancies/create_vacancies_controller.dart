@@ -13,16 +13,17 @@ class CreateVacanciesController extends GetxController implements GetxService {
   TextEditingController salaryController = TextEditingController();
   TextEditingController locationController = TextEditingController();
   TextEditingController typeController = TextEditingController();
+  TextEditingController categoryController = TextEditingController();
   RxBool isPositionValidate = false.obs;
   RxBool isSalaryValidate = false.obs;
   RxBool isLocationValidate = false.obs;
   RxBool isTypeValidate = false.obs;
+  RxBool isCategoryValidate = false.obs;
   String companyName = "";
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
   List<TextEditingController> addRequirementsList = [];
 
-
-  onTapNextBut(){
+  onTapNextBut() {
     final docRef = fireStore
         .collection("Auth")
         .doc("Manager")
@@ -31,7 +32,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
         .collection("company")
         .doc("details");
     docRef.get().then(
-          (DocumentSnapshot doc) {
+      (DocumentSnapshot doc) {
         final data = doc.data() as Map<String, dynamic>;
         companyName = data["name"];
         // ...
@@ -42,46 +43,54 @@ class CreateVacanciesController extends GetxController implements GetxService {
     Get.to(RequirementsScreen());
   }
 
-  void onTapBack(String value){
-    if(value == "require"){
+  void onTapBack(String value) {
+    if (value == "require") {
       addRequirementsList = [];
-    }else if(value == "vacancies"){
+    } else if (value == "vacancies") {
       positionController.clear();
       salaryController.clear();
       locationController.clear();
       typeController.clear();
+      categoryController.clear();
       isPositionValidate.value = false;
       isSalaryValidate.value = false;
       isLocationValidate.value = false;
       isTypeValidate.value = false;
+      isCategoryValidate.value = false;
       companyName = "";
-    }else{
+    } else {
       positionController.clear();
       salaryController.clear();
       locationController.clear();
       typeController.clear();
+      categoryController.clear();
       isPositionValidate.value = false;
       isSalaryValidate.value = false;
       isLocationValidate.value = false;
       isTypeValidate.value = false;
+      isCategoryValidate.value = false;
+
       companyName = "";
       addRequirementsList = [];
     }
     update();
   }
 
-  onTapAddRequirements(){
+  onTapAddRequirements() {
     addRequirementsList.add(TextEditingController());
     update(["requirement"]);
   }
-  void onChanged(String value){
+
+  void onChanged(String value) {
     update(["colorChange"]);
   }
+
   onTapNext() async {
     String uid = PrefService.getString(PrefKeys.userId);
     int totalPost = PrefService.getInt(PrefKeys.totalPost);
     String pUid = "$uid*${totalPost + 1}";
-    List<String> requirementsList = List.generate(addRequirementsList.length, (index) => addRequirementsList[index].text);
+    List<String> requirementsList = List.generate(
+        addRequirementsList.length, (index) => addRequirementsList[index].text);
     print(requirementsList);
     if (kDebugMode) {
       print("**************$totalPost");
@@ -91,6 +100,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
       "salary": salaryController.text.trim(),
       "location": locationController.text.trim(),
       "type": typeController.text.trim(),
+      " Category": categoryController.text.trim(),
       "Status": "Active",
       "CompanyName": companyName,
       "RequirementsList": requirementsList,
@@ -99,8 +109,13 @@ class CreateVacanciesController extends GetxController implements GetxService {
     if (isPositionValidate.value == false &&
         isSalaryValidate.value == false &&
         isLocationValidate.value == false &&
-        isTypeValidate.value == false) {
-      await fireStore.collection('allPost').doc(pUid).set(map).then((value) async {
+        isTypeValidate.value == false &&
+        isCategoryValidate.value == false) {
+      await fireStore
+          .collection('allPost')
+          .doc(pUid)
+          .set(map)
+          .then((value) async {
         fireStore
             .collection("Auth")
             .doc("Manager")
@@ -114,14 +129,21 @@ class CreateVacanciesController extends GetxController implements GetxService {
             .doc("Manager")
             .collection("register")
             .doc(uid)
-            .update({"TotalPost": totalPost+1});
+            .update({"TotalPost": totalPost + 1});
+
+
+        await fireStore
+            .collection("category")
+            .doc(categoryController.text.trim())
+            .set(map);
         PrefService.setValue(PrefKeys.totalPost, totalPost + 1);
         onTapBack("");
-        Get.off(()=>JobDetailsScreen(isError: true,));
+        Get.off(() => JobDetailsScreen(
+              isError: true,
+            ));
       });
     }
   }
-
 
   validate() {
     if (positionController.text.isEmpty) {
@@ -143,6 +165,11 @@ class CreateVacanciesController extends GetxController implements GetxService {
       isTypeValidate.value = true;
     } else {
       isTypeValidate.value = false;
+      if (categoryController.text.isEmpty) {
+        isCategoryValidate.value = true;
+      } else {
+        isCategoryValidate.value = false;
+      }
     }
   }
 
@@ -157,6 +184,12 @@ class CreateVacanciesController extends GetxController implements GetxService {
     dropDownValueType = val;
     typeController.text = dropDownValueType!;
     update(["type"]);
+  }
+
+  changeCategory({required String val}) {
+    dropDownValueCategory = val;
+    categoryController.text = dropDownValueCategory!;
+    update(["Category"]);
   }
 
   String? dropDownValueLocation;
@@ -174,5 +207,12 @@ class CreateVacanciesController extends GetxController implements GetxService {
   var items1 = [
     'Part time',
     'Full time',
+  ];
+  String? dropDownValueCategory;
+
+  var itemsCategory = [
+    'Writer',
+    'Design',
+    'Finance',
   ];
 }

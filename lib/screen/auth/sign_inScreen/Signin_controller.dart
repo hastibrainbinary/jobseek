@@ -8,6 +8,7 @@ import 'package:jobseek/screen/dashboard/dashboard_screen.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/pref_keys.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignInScreenController extends GetxController {
   RxBool loading = false.obs;
@@ -17,6 +18,27 @@ class SignInScreenController extends GetxController {
   bool isUser = false;
   String emailError = "";
   String pwdError = "";
+  bool rememberMe = false;
+  void loadUserEmailPassword() async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      var email = prefs.getString("email") ?? "";
+      var password = prefs.getString("password") ?? "";
+      var remeberMe = prefs.getBool("remember_me") ?? false;
+      print(remeberMe);
+      print(email);
+      print(password);
+      // if (remeberMe) {
+      //   setState(() {
+      //     isChecked = true;
+      //   });
+      //   emailController.text = email ?? "";
+      //   passwordController.text = password ?? "";
+      // }
+    } catch (e) {
+      print(e);
+    }
+  }
 
   emailValidation() {
     if (emailController.text.trim() == "") {
@@ -46,7 +68,7 @@ class SignInScreenController extends GetxController {
     update(["showPassword"]);
   }
 
-  void onChanged(String value){
+  void onChanged(String value) {
     update(["colorChange"]);
   }
 
@@ -60,52 +82,8 @@ class SignInScreenController extends GetxController {
     }
   }
 
-  // Future<String> signInWithEmailAndPassword(
-  //     {required String email, required String password}) async {
-  //   try {
-  //     loading.value = true;
-  //     UserCredential credential = await auth.signInWithEmailAndPassword(
-  //         email: email, password: password);
-  //     loading.value = false;
-  //
-  //     if (kDebugMode) {
-  //       print(credential);
-  //     }
-  //
-  //     if (credential.user!.email.toString() == email) {
-  //       final DashBoardController controller = Get.put(DashBoardController());
-  //       controller.currentTab = 0;
-  //       Get.offAll(DashBoardScreen());
-  //     }
-  //
-  //     return credential.user!.uid;
-  //   } on FirebaseAuthException catch (e) {
-  //     if (e.code == 'user-not-found') {
-  //       Get.snackbar("Error", "Wrong user", colorText: const Color(0xffDA1414));
-  //       loading.value = true;
-  //
-  //       if (kDebugMode) {
-  //         print('No user found for that email.');
-  //       }
-  //     } else if (e.code == 'wrong-password') {
-  //       Get.snackbar("Error", "Wrong Password",
-  //           colorText: const Color(0xffDA1414));
-  //
-  //       loading.value = false;
-  //
-  //       if (kDebugMode) {
-  //         print('Wrong password provided for that user.');
-  //       }
-  //     }
-  //     if (kDebugMode) {
-  //       print(e.code);
-  //     }
-  //     return e.code;
-  //   }
-  // }
   void signInWithEmailAndPassword(
       {required String email, required String password}) async {
-
     loading.value = true;
     await fireStore
         .collection("Auth")
@@ -204,6 +182,7 @@ class SignInScreenController extends GetxController {
         print("GO TO HOME PAGE");
       }
     }
+
   }
 
   bool show = true;
@@ -213,8 +192,6 @@ class SignInScreenController extends GetxController {
     show = !show;
     update(['showPassword']);
   }
-
-  bool rememberMe = false;
 
   void onRememberMeChange(bool? value) {
     if (value != null) {
@@ -247,7 +224,8 @@ class SignInScreenController extends GetxController {
     if (await googleSignIn.isSignedIn()) {
       loading.value = true;
     }
-    final GoogleSignInAuthentication authentication = await account!.authentication;
+    final GoogleSignInAuthentication authentication =
+        await account!.authentication;
 
     final OAuthCredential credential = GoogleAuthProvider.credential(
       idToken: authentication.idToken,
@@ -284,7 +262,8 @@ class SignInScreenController extends GetxController {
             if (kDebugMode) {
               print("${value.docs[i]["Email"]}=||||||++++++++++");
             }
-            if (value.docs[i]["Email"] == user!.email && value.docs[i]["Email"] != "") {
+            if (value.docs[i]["Email"] == user!.email &&
+                value.docs[i]["Email"] != "") {
               isUser = true;
               PrefService.setValue(PrefKeys.rol, "User");
               PrefService.setValue(PrefKeys.accessToken, user.uid);
@@ -301,11 +280,9 @@ class SignInScreenController extends GetxController {
               }
             }
           }
-
-
         }
 
-        if(isUser == false){
+        if (isUser == false) {
           Get.snackbar(
               "Error", "Please create account,\n your email is not registered",
               colorText: const Color(0xffDA1414));

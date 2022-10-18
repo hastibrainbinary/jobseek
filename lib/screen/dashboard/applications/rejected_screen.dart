@@ -15,44 +15,53 @@ class RejectedScreen extends StatelessWidget {
       body: Column(
         children: [
           const SizedBox(height: 50),
-          Row(
+          Stack(
             children: [
-              Padding(
-                padding: const EdgeInsets.all(12),
-                child: InkWell(
-                  onTap: () {
-                    Get.back();
-                  },
-                  child: backButton(),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: InkWell(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: backButton(),
+                  ),
                 ),
               ),
-              const SizedBox(width: 85),
-              Text(
-                'Application',
-                style: appTextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                    height: 1,
-                    color: ColorRes.black),
+              Padding(
+                padding: const EdgeInsets.only(top: 25.0),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Application',
+                    style: appTextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        height: 1,
+                        color: ColorRes.black),
+                  ),
+                ),
               ),
             ],
           ),
           const SizedBox(height: 10),
           SizedBox(
-            height: Get.height-140,
+            height: Get.height - 140,
             child: SingleChildScrollView(
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-
                     Container(
                       height: 135,
                       width: Get.width,
-                      margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 18, vertical: 4),
                       padding: const EdgeInsets.all(15),
                       decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(Radius.circular(15)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(15)),
                           border: Border.all(color: const Color(0xffF3ECFF)),
                           color: ColorRes.white),
                       child: Column(
@@ -111,10 +120,13 @@ class RejectedScreen extends StatelessWidget {
                     const SizedBox(height: 10),
                     Container(
                       width: Get.width,
-                      margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 5),
-                      padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 18),
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 18, vertical: 5),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 18, horizontal: 18),
                       decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(Radius.circular(15)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(15)),
                           border: Border.all(color: ColorRes.borderColor),
                           color: ColorRes.white),
                       child: Column(

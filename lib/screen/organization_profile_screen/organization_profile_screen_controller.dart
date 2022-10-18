@@ -35,10 +35,9 @@ class OrganizationProfileScreenController extends GetxController
   File? image;
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
-  void onChanged(String value){
+  void onChanged(String value) {
     update(["colorChange"]);
   }
-
 
   onLoginBtnTap() async {
     String uid = PrefService.getString(PrefKeys.userId);
@@ -73,6 +72,7 @@ class OrganizationProfileScreenController extends GetxController
           .doc("details")
           .set(map)
           .then((value) {
+            PrefService.setValue(PrefKeys.companyName,companyNameController.text.toString());
         Get.off(ManagerDashBoardScreen());
       });
     }
