@@ -59,7 +59,7 @@ Widget allJobs(Stream stream){
                         CrossAxisAlignment.start,
                         children: [
                           Text(
-                            // controller.jobTypes[index],
+
                               snapshot.data!.docs[index]
                               ["Position"],
                               style: appTextStyle(
