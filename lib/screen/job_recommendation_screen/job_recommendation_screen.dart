@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
+import 'package:jobseek/screen/dashboard/home/home_controller.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/all_jobs.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
 import 'package:jobseek/screen/job_recommendation_screen/job_recommendation_controller.dart';
@@ -102,7 +103,8 @@ class JobRecommendation extends StatelessWidget {
                   }),
             ),
             Obx(() => controller.selectedJobs2.value == 0
-                ? allJobs(fireStore.collection("allPost").snapshots(),)
+                //? allJobs(fireStore.collection("allPost").snapshots(),)
+                ? allJobs(controller.allNoteCollection.snapshots(),)
                 : controller.selectedJobs2.value == 1
                     ? const SizedBox()
                     : controller.selectedJobs2.value == 2

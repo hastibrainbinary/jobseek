@@ -7,6 +7,7 @@ import 'package:jobseek/utils/pref_keys.dart';
 class HomeController extends GetxController implements GetxService {
   TextEditingController searchController = TextEditingController();
 
+
   RxList jobTypes = [
     "UI/UX Designer",
     "Financial planner",
@@ -22,6 +23,8 @@ class HomeController extends GetxController implements GetxService {
     AssetRes.twitterLogo,
     AssetRes.airBnbLogo
   ].obs;
+
+
 
   onTapSave(index) {
     if (jobTypesSaved[index] == true) {

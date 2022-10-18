@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/dashboard/home/home_controller.dart';
+import 'package:jobseek/screen/job_recommendation_screen/job_recommendation_controller.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
@@ -10,14 +11,32 @@ import 'package:jobseek/utils/color_res.dart';
 
 Widget allJobs(Stream stream){
   final HomeController controller = HomeController();
-  FirebaseFirestore fireStore = FirebaseFirestore.instance;
+
+  final jrController = Get.put(JobRecommendationController());
   return StreamBuilder(
       stream: stream,
-      builder: (BuildContext context,
-          AsyncSnapshot<dynamic> snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+
+        jrController.documents = snapshot.data.docs;
+
+
+
+        if (jrController.searchText.value.isNotEmpty) {
+          jrController.documents = jrController.documents.where((element) {
+
+            //print(element.get('Position'));
+            return element
+                .get('Position')
+                .toString()
+                .toLowerCase()
+                .contains(jrController.searchText.value.toLowerCase());
+
+          }).toList();
+        }
+
         return snapshot.hasData
             ? ListView.builder(
-            itemCount: snapshot.data.docs.length,
+            itemCount: jrController.documents.length,
             shrinkWrap: true,
             physics: const BouncingScrollPhysics(),
             itemBuilder: (context, index) {
@@ -25,7 +44,7 @@ Widget allJobs(Stream stream){
                 print(index);
               }
               if (kDebugMode) {
-                print(snapshot.data!.docs[index].id);
+                print(jrController.documents[index].id);
               }
               return InkWell(
                 onTap: () => Get.toNamed(
@@ -60,7 +79,7 @@ Widget allJobs(Stream stream){
                         children: [
                           Text(
                             // controller.jobTypes[index],
-                              snapshot.data!.docs[index]
+                              jrController.documents[index]
                               ["Position"],
                               style: appTextStyle(
                                   color: ColorRes.black,
@@ -68,7 +87,7 @@ Widget allJobs(Stream stream){
                                   fontWeight:
                                   FontWeight.w500)),
                           Text(
-                              snapshot.data!.docs[index]
+                              jrController.documents[index]
                               ["CompanyName"],
                               style: appTextStyle(
                                   color: ColorRes.black,
@@ -76,7 +95,7 @@ Widget allJobs(Stream stream){
                                   fontWeight:
                                   FontWeight.w400)),
                           Text(
-                              "${snapshot.data!.docs[index]["location"]}  ${snapshot.data!.docs[index]["type"]}",
+                              "${jrController.documents[index]["location"]}  ${jrController.documents[index]["type"]}",
                               style: appTextStyle(
                                   color: ColorRes.black,
                                   fontSize: 10,
@@ -109,7 +128,7 @@ Widget allJobs(Stream stream){
                           ),
                           const Spacer(),
                           Text(
-                            "\$${snapshot.data!.docs[index]["salary"]}",
+                            "\$${jrController.documents[index]["salary"]}",
                             style: appTextStyle(
                                 fontSize: 16,
                                 color:
