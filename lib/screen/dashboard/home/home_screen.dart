@@ -9,6 +9,7 @@ import 'package:jobseek/screen/dashboard/home/widgets/all_jobs.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/appbar.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/tips_for_you_section.dart';
+import 'package:jobseek/screen/job_detail_screen/job_detail_widget/job_detail_widget.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
@@ -19,6 +20,7 @@ class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
   final HomeController controller = HomeController();
   FirebaseFirestore fireStore = FirebaseFirestore.instance;
+  var args = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -159,13 +161,31 @@ class HomeScreen extends StatelessWidget {
                   ),
 
                   Obx(() => controller.selectedJobs2.value == 0
-                      ? allJobs()
+                      ? allJobs(fireStore.collection("allPost").snapshots())
                       : controller.selectedJobs2.value == 1
-                          ? const SizedBox()
+                          ? allJobs(
+                              fireStore
+                                  .collection("category")
+                                  .doc("Writer")
+                                  .collection("Writer")
+                                  .snapshots(),
+                            )
                           : controller.selectedJobs2.value == 2
-                              ? const SizedBox()
+                              ? allJobs(
+                                  fireStore
+                                      .collection("category")
+                                      .doc("design")
+                                      .collection("design")
+                                      .snapshots(),
+                                )
                               : controller.selectedJobs2.value == 3
-                                  ? const SizedBox()
+                                  ? allJobs(
+                                      fireStore
+                                          .collection("category")
+                                          .doc("finance")
+                                          .collection("finance")
+                                          .snapshots(),
+                                    )
                                   : Center(
                                       child: Text(controller.jobs2[
                                           controller.selectedJobs2.value]),

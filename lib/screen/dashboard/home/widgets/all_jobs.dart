@@ -8,11 +8,11 @@ import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
-Widget allJobs(){
+Widget allJobs(Stream stream){
   final HomeController controller = HomeController();
   FirebaseFirestore fireStore = FirebaseFirestore.instance;
   return StreamBuilder(
-      stream: fireStore.collection("allPost").snapshots(),
+      stream: stream,
       builder: (BuildContext context,
           AsyncSnapshot<dynamic> snapshot) {
         return snapshot.hasData

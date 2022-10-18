@@ -131,10 +131,9 @@ class CreateVacanciesController extends GetxController implements GetxService {
             .doc(uid)
             .update({"TotalPost": totalPost + 1});
 
-
         await fireStore
             .collection("category")
-            .doc(categoryController.text.trim())
+            .doc(categoryController.text.trim()).collection(categoryController.text.trim()).doc()
             .set(map);
         PrefService.setValue(PrefKeys.totalPost, totalPost + 1);
         onTapBack("");

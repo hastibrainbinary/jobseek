@@ -102,7 +102,7 @@ class JobRecommendation extends StatelessWidget {
                   }),
             ),
             Obx(() => controller.selectedJobs2.value == 0
-                ? allJobs()
+                ? allJobs(fireStore.collection("allPost").snapshots(),)
                 : controller.selectedJobs2.value == 1
                     ? const SizedBox()
                     : controller.selectedJobs2.value == 2
