@@ -104,7 +104,7 @@ class UiUxDesignerScreen extends StatelessWidget {
                             ),
                             child: Center(
                               child: Text(
-                                "Scheduled for Interview",
+                                "Application Sent",
                                 style: appTextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w500,

@@ -105,7 +105,7 @@ class AcceptedScreen extends StatelessWidget {
                               ),
                               child: Center(
                                 child: Text(
-                                  "Accepted",
+                                  "Application Accepted",
                                   style: appTextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w500,

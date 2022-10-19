@@ -106,7 +106,7 @@ class RejectedScreen extends StatelessWidget {
                             ),
                             child: Center(
                               child: Text(
-                                "Rejected",
+                                "Application Rejected",
                                 style: appTextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w500,

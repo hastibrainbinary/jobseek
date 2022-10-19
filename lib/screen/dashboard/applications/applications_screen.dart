@@ -223,7 +223,7 @@ class ApplicationsScreen extends StatelessWidget {
                               ),
                               child: Center(
                                 child: Text(
-                                  "Accepted",
+                                  "Application Accepted",
                                   style: appTextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w500,
@@ -294,7 +294,7 @@ class ApplicationsScreen extends StatelessWidget {
                               ),
                               child: Center(
                                 child: Text(
-                                  "Scheduled for Interview",
+                                  "Application Sent",
                                   style: appTextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w500,
@@ -360,16 +360,16 @@ class ApplicationsScreen extends StatelessWidget {
                               height: 28,
                               width: Get.width,
                               decoration: BoxDecoration(
-                                color: const Color(0xffFFF4EC),
+                                color: const Color(0xffFFFBED),
                                 borderRadius: BorderRadius.circular(99),
                               ),
                               child: Center(
                                 child: Text(
-                                  "Scheduled for Interview",
+                                  "Application Pending",
                                   style: appTextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w500,
-                                      color: const Color(0xffB95000)),
+                                      color: const Color(0xffF1C100)),
                                 ),
                               ),
                             ),
@@ -436,7 +436,7 @@ class ApplicationsScreen extends StatelessWidget {
                               ),
                               child: Center(
                                 child: Text(
-                                  "Rejected",
+                                  "Application Rejected",
                                   style: appTextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w500,

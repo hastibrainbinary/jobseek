@@ -91,16 +91,16 @@ class FinancialPlannerScreen extends StatelessWidget {
                     height: 28,
                     width: Get.width,
                     decoration: BoxDecoration(
-                      color: const Color(0xffFFF4EC),
+                      color: const Color(0xffFFFBED),
                       borderRadius: BorderRadius.circular(99),
                     ),
                     child: Center(
                       child: Text(
-                        "Scheduled for Interview",
+                        "Application Pending",
                         style: appTextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
-                            color: const Color(0xffB95000)),
+                            color: const Color(0xffF1C100)),
                       ),
                     ),
                   ),
