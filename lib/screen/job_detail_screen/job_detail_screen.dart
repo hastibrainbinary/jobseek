@@ -107,17 +107,14 @@ class JobDetailScreen extends StatelessWidget {
                   ),
                 ],
               )),
-          StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+          StreamBuilder(
               stream: FirebaseFirestore.instance
                   .collection("category")
                   .doc("Design")
                   .collection("Design")
-                  .doc(args["docId"])
                   .snapshots(),
               /*FirebaseFirestore.instance.collection("allPost").doc(args["docId"]).snapshots(),*/
-              builder: (BuildContext context,
-                  AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>>
-                      snapshot) {
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
                 return SizedBox(
                   height: Get.height - 100,
                   child: snapshot.hasData
@@ -149,14 +146,16 @@ class JobDetailScreen extends StatelessWidget {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Text(snapshot.data!["Position"],
+                                        Text(snapshot.data!.docs[0]["Position"],
                                             style: appTextStyle(
                                                 color: ColorRes.black,
                                                 fontSize: 15,
                                                 fontWeight: FontWeight.w500)),
-                                        Text(snapshot.data!["CompanyName"],
+                                        Text(
+                                            snapshot.data!.docs[0]
+                                                ["CompanyName"],
                                             style: appTextStyle(
                                                 color: ColorRes.black,
                                                 fontSize: 12,
@@ -189,7 +188,8 @@ class JobDetailScreen extends StatelessWidget {
                                                 color: ColorRes.black,
                                                 fontSize: 15,
                                                 fontWeight: FontWeight.w500)),
-                                        Text("\$${snapshot.data!["salary"]}",
+                                        Text(
+                                            "\$${snapshot.data!.docs[0]["salary"]}",
                                             style: appTextStyle(
                                                 color: ColorRes.containerColor,
                                                 fontSize: 15,
@@ -206,7 +206,7 @@ class JobDetailScreen extends StatelessWidget {
                                                 color: ColorRes.black,
                                                 fontSize: 15,
                                                 fontWeight: FontWeight.w500)),
-                                        Text(snapshot.data!["type"],
+                                        Text(snapshot.data!.docs[0]["type"],
                                             style: appTextStyle(
                                                 color: ColorRes.containerColor,
                                                 fontSize: 15,
@@ -223,7 +223,7 @@ class JobDetailScreen extends StatelessWidget {
                                                 color: ColorRes.black,
                                                 fontSize: 15,
                                                 fontWeight: FontWeight.w500)),
-                                        Text(snapshot.data!["location"],
+                                        Text(snapshot.data!.docs[0]["location"],
                                             style: appTextStyle(
                                                 color: ColorRes.containerColor,
                                                 fontSize: 15,
@@ -245,11 +245,11 @@ class JobDetailScreen extends StatelessWidget {
                               ListView.builder(
                                   shrinkWrap: true,
                                   physics: const NeverScrollableScrollPhysics(),
-                                  itemCount:
-                                      snapshot.data!["RequirementsList"].length,
+                                  itemCount: snapshot
+                                      .data!.docs[0]["RequirementsList"].length,
                                   itemBuilder: (context, index) {
-                                    return detailBox(snapshot
-                                        .data!["RequirementsList"][index]);
+                                    return detailBox(snapshot.data!.docs[0]
+                                        ["RequirementsList"][index]);
                                   }),
                               GestureDetector(
                                 onTap: () {
