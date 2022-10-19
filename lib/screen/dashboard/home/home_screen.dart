@@ -9,10 +9,8 @@ import 'package:jobseek/screen/dashboard/home/widgets/all_jobs.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/appbar.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/tips_for_you_section.dart';
-import 'package:jobseek/screen/job_detail_screen/job_detail_widget/job_detail_widget.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
-import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/string.dart';
 
@@ -161,31 +159,13 @@ class HomeScreen extends StatelessWidget {
                   ),
 
                   Obx(() => controller.selectedJobs2.value == 0
-                      ? allJobs(fireStore.collection("allPost").snapshots())
+                      ? allJobs(fireStore.collection("allPost") .snapshots())
                       : controller.selectedJobs2.value == 1
-                          ? allJobs(
-                              fireStore
-                                  .collection("category")
-                                  .doc("Writer")
-                                  .collection("Writer")
-                                  .snapshots(),
-                            )
+                          ? allJobs(fireStore.collection("category").doc("Writer").collection("Writer").snapshots(),)
                           : controller.selectedJobs2.value == 2
-                              ? allJobs(
-                                  fireStore
-                                      .collection("category")
-                                      .doc("design")
-                                      .collection("design")
-                                      .snapshots(),
-                                )
+                              ? allJobs(fireStore.collection("category").doc("Design").collection("Design").snapshots(),)
                               : controller.selectedJobs2.value == 3
-                                  ? allJobs(
-                                      fireStore
-                                          .collection("category")
-                                          .doc("finance")
-                                          .collection("finance")
-                                          .snapshots(),
-                                    )
+                                  ? allJobs(fireStore.collection("category").doc("Finance").collection("Finance").snapshots(),)
                                   : Center(
                                       child: Text(controller.jobs2[
                                           controller.selectedJobs2.value]),
