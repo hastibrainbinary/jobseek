@@ -54,6 +54,7 @@ Widget allJobs(Stream stream){
                           .jobTypesSaved[index % 5],
                       "docId": snapshot.data!.docs[index].id
                     }),
+
                 child: Container(
                   height: 92,
                   width: Get.width,
