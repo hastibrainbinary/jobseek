@@ -14,11 +14,13 @@ class CreateVacanciesController extends GetxController implements GetxService {
   TextEditingController locationController = TextEditingController();
   TextEditingController typeController = TextEditingController();
   TextEditingController categoryController = TextEditingController();
+  TextEditingController statusController = TextEditingController();
   RxBool isPositionValidate = false.obs;
   RxBool isSalaryValidate = false.obs;
   RxBool isLocationValidate = false.obs;
   RxBool isTypeValidate = false.obs;
   RxBool isCategoryValidate = false.obs;
+  RxBool isStatusValidate = false.obs;
   String companyName = "";
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
   List<TextEditingController> addRequirementsList = [];
@@ -52,11 +54,13 @@ class CreateVacanciesController extends GetxController implements GetxService {
       locationController.clear();
       typeController.clear();
       categoryController.clear();
+      statusController.clear();
       isPositionValidate.value = false;
       isSalaryValidate.value = false;
       isLocationValidate.value = false;
       isTypeValidate.value = false;
       isCategoryValidate.value = false;
+      isStatusValidate.value = false;
       companyName = "";
     } else {
       positionController.clear();
@@ -64,11 +68,13 @@ class CreateVacanciesController extends GetxController implements GetxService {
       locationController.clear();
       typeController.clear();
       categoryController.clear();
+      statusController.clear();
       isPositionValidate.value = false;
       isSalaryValidate.value = false;
       isLocationValidate.value = false;
       isTypeValidate.value = false;
       isCategoryValidate.value = false;
+      isStatusValidate.value = false;
 
       companyName = "";
       addRequirementsList = [];
@@ -101,7 +107,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
       "location": locationController.text.trim(),
       "type": typeController.text.trim(),
       " Category": categoryController.text.trim(),
-      "Status": "Active",
+      "Status": statusController.text.trim(),
       "CompanyName": companyName,
       "RequirementsList": requirementsList,
     };
@@ -110,7 +116,8 @@ class CreateVacanciesController extends GetxController implements GetxService {
         isSalaryValidate.value == false &&
         isLocationValidate.value == false &&
         isTypeValidate.value == false &&
-        isCategoryValidate.value == false) {
+        isCategoryValidate.value == false &&
+        isStatusValidate.value == false) {
       await fireStore
           .collection('allPost')
           .doc(pUid)
@@ -133,7 +140,9 @@ class CreateVacanciesController extends GetxController implements GetxService {
 
         await fireStore
             .collection("category")
-            .doc(categoryController.text.trim()).collection(categoryController.text.trim()).doc()
+            .doc(categoryController.text.trim())
+            .collection(categoryController.text.trim())
+            .doc()
             .set(map);
         PrefService.setValue(PrefKeys.totalPost, totalPost + 1);
         onTapBack("");
@@ -169,6 +178,11 @@ class CreateVacanciesController extends GetxController implements GetxService {
       } else {
         isCategoryValidate.value = false;
       }
+      if (statusController.text.isEmpty) {
+        isStatusValidate.value = true;
+      } else {
+        isStatusValidate.value = false;
+      }
     }
   }
 
@@ -188,6 +202,12 @@ class CreateVacanciesController extends GetxController implements GetxService {
   changeCategory({required String val}) {
     dropDownValueCategory = val;
     categoryController.text = dropDownValueCategory!;
+    update(["Category"]);
+  }
+  String? dropDownValueStatus;
+  changeStatus({required String val}) {
+    dropDownValueStatus = val;
+    statusController.text = dropDownValueStatus!;
     update(["Category"]);
   }
 
@@ -213,5 +233,10 @@ class CreateVacanciesController extends GetxController implements GetxService {
     'Writer',
     'Design',
     'Finance',
+  ];
+  var itemsStatus = [
+    'Active',
+    'Inactive',
+
   ];
 }

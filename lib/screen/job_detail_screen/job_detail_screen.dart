@@ -148,13 +148,13 @@ class JobDetailScreen extends StatelessWidget {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(snapshot.data!.docs[0]["Position"],
+                                        Text(snapshot.data!.docs[args["index"]]["Position"],
                                             style: appTextStyle(
                                                 color: ColorRes.black,
                                                 fontSize: 15,
                                                 fontWeight: FontWeight.w500)),
                                         Text(
-                                            snapshot.data!.docs[0]
+                                            snapshot.data!.docs[args["index"]]
                                                 ["CompanyName"],
                                             style: appTextStyle(
                                                 color: ColorRes.black,

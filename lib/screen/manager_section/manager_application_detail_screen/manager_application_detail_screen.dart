@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/screen/manager_section/Applicants_see_all/applicants_seeall_screen.dart';
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_widget/manager_home_screen_widget.dart';
 import 'package:jobseek/screen/update_vacancies_requirements/update_vacancies_requirements_screen.dart';
 import 'package:jobseek/utils/app_res.dart';

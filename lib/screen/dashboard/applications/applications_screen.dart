@@ -400,11 +400,13 @@ class ApplicationsScreen extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text("Product Designer",
-                                        style: appTextStyle(
-                                            color: ColorRes.black,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w500)),
+                                    Text(
+                                      "Product Designer",
+                                      style: appTextStyle(
+                                          color: ColorRes.black,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w500),
+                                    ),
                                     Text("Facebook",
                                         style: appTextStyle(
                                             color: ColorRes.black,

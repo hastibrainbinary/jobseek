@@ -386,7 +386,8 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                             },
                                           ).toList(),
                                           onChanged: (String? val) {
-                                            controller.changeCategory(val: val!);
+                                            controller.changeCategory(
+                                                val: val!);
                                           });
                                     },
                                   ),
@@ -399,6 +400,77 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                         height: 10,
                                       ),
                                       commonErrorBox("Please Enter category"),
+                                    ],
+                                  )
+                                : const SizedBox(),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 15),
+                                  child: Text(
+                                    "Status",
+                                    style: appTextStyle(
+                                        color: ColorRes.grey, fontSize: 14),
+                                  ),
+                                ),
+                                Text(
+                                  "*",
+                                  style:
+                                      appTextStyle(color: ColorRes.starColor),
+                                )
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            commonTextFormField(
+                                onChanged: controller.onChanged,
+                                textDecoration: InputDecoration(
+                                  contentPadding: const EdgeInsets.all(15),
+                                  border: InputBorder.none,
+                                  hintText: "Status",
+                                  hintStyle: appTextStyle(
+                                    fontSize: 14,
+                                    color: ColorRes.black.withOpacity(0.15),
+                                  ),
+                                  suffixIcon:
+                                      GetBuilder<CreateVacanciesController>(
+                                    id: "Status",
+                                    builder: (controller) {
+                                      return DropdownButton(
+                                          iconSize: 35.0,
+                                          iconEnabledColor:
+                                              Colors.grey.shade400,
+                                          iconDisabledColor:
+                                              Colors.grey.shade400,
+                                          underline: Container(),
+                                          icon:
+                                              const Icon(Icons.arrow_drop_down),
+                                          items: controller.itemsStatus.map(
+                                            (val) {
+                                              return DropdownMenuItem<String>(
+                                                value: val,
+                                                child: Text(val),
+                                              );
+                                            },
+                                          ).toList(),
+                                          onChanged: (String? val) {
+                                            controller.changeStatus(val: val!);
+                                          });
+                                    },
+                                  ),
+                                ),
+                                controller: controller.statusController),
+                            controller.isStatusValidate.value == true
+                                ? Column(
+                                    children: [
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      commonErrorBox("Please Enter Status"),
                                     ],
                                   )
                                 : const SizedBox(),
@@ -416,7 +488,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                           controller.typeController.text ==
                                               '' ||
                                           controller.categoryController.text ==
-                                              '')
+                                              ''||controller.statusController.text=='')
                                       ? Container(
                                           height: 50,
                                           width:
