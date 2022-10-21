@@ -78,7 +78,7 @@ class MyApp extends StatelessWidget {
             page: () => ManagerDashBoardScreen()),
         GetPage(
             name: AppRes.managerApplicationDetailScreen,
-            page: () => const ManagerApplicationDetailScreen()),
+            page: () =>  ManagerApplicationDetailScreen()),
         GetPage(name: AppRes.resumeScreen, page: () => const ResumeScreen()),
         GetPage(
             name: AppRes.applicantsDetails,

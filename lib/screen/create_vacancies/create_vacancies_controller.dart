@@ -204,6 +204,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
     categoryController.text = dropDownValueCategory!;
     update(["Category"]);
   }
+
   String? dropDownValueStatus;
   changeStatus({required String val}) {
     dropDownValueStatus = val;
@@ -237,6 +238,5 @@ class CreateVacanciesController extends GetxController implements GetxService {
   var itemsStatus = [
     'Active',
     'Inactive',
-
   ];
 }

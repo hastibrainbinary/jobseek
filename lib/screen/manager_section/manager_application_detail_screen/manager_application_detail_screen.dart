@@ -8,8 +8,8 @@ import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
 class ManagerApplicationDetailScreen extends StatelessWidget {
-  const ManagerApplicationDetailScreen({Key? key}) : super(key: key);
-
+  ManagerApplicationDetailScreen({Key? key}) : super(key: key);
+  var args = Get.arguments;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,10 +58,15 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
             InkWell(
               onTap: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (con) =>
-                            const UpdateVacanciesRequirementsScreen()));
+                  context,
+                  MaterialPageRoute(
+                    builder: (con) => UpdateVacanciesRequirementsScreen(
+                      index: int.parse(
+                        args["DocId"].toString(),
+                      ),
+                    ),
+                  ),
+                );
               },
               child: Container(
                 height: 92,
@@ -80,21 +85,33 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("UI/UX Designer",
+                        Text(args["docs"]["Position"],
                             style: appTextStyle(
                                 color: ColorRes.black,
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500)),
-                        Text("AirBNB",
+                        Text(args["docs"]["CompanyName"],
                             style: appTextStyle(
                                 color: ColorRes.black,
                                 fontSize: 12,
                                 fontWeight: FontWeight.w400)),
-                        Text("United States - Full Time",
-                            style: appTextStyle(
-                                color: ColorRes.black,
-                                fontSize: 9,
-                                fontWeight: FontWeight.w400)),
+                        Row(
+                          children: [
+                            Text(
+                              args["docs"]["location"],
+                              style: appTextStyle(
+                                  color: ColorRes.black,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                            // const SizedBox(width: 3),
+                            Text(args["docs"]["type"],
+                                style: appTextStyle(
+                                    color: ColorRes.black,
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w400)),
+                          ],
+                        ),
                       ],
                     ),
                     const Spacer(),
@@ -106,18 +123,23 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
                           height: 20,
                           padding: const EdgeInsets.symmetric(horizontal: 15),
                           decoration: BoxDecoration(
-                            color: ColorRes.lightGreen,
+                            color: args["docs"]["Status"] == "Active"
+                                ? ColorRes.lightGreen
+                                : ColorRes.invalidColor,
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Text(
-                            "Active",
+                            args["docs"]["Status"],
                             style: appTextStyle(
-                                color: ColorRes.darkGreen, fontSize: 12),
+                                color: args["docs"]["Status"] == "Active"
+                                    ? ColorRes.darkGreen
+                                    : ColorRes.starColor,
+                                fontSize: 12),
                           ),
                         ),
                         const Spacer(),
                         Text(
-                          "\$2.350",
+                          args["docs"]["salary"],
                           style: appTextStyle(
                               fontSize: 16,
                               color: ColorRes.containerColor,

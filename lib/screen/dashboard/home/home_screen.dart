@@ -159,13 +159,31 @@ class HomeScreen extends StatelessWidget {
                   ),
 
                   Obx(() => controller.selectedJobs2.value == 0
-                      ? allJobs(fireStore.collection("allPost") .snapshots())
+                      ? allJobs(fireStore.collection("allPost").snapshots())
                       : controller.selectedJobs2.value == 1
-                          ? allJobs(fireStore.collection("category").doc("Writer").collection("Writer").snapshots(),)
+                          ? allJobs(
+                              fireStore
+                                  .collection("category")
+                                  .doc("Writer")
+                                  .collection("Writer")
+                                  .snapshots(),
+                            )
                           : controller.selectedJobs2.value == 2
-                              ? allJobs(fireStore.collection("category").doc("Design").collection("Design").snapshots(),)
+                              ? allJobs(
+                                  fireStore
+                                      .collection("category")
+                                      .doc("Design")
+                                      .collection("Design")
+                                      .snapshots(),
+                                )
                               : controller.selectedJobs2.value == 3
-                                  ? allJobs(fireStore.collection("category").doc("Finance").collection("Finance").snapshots(),)
+                                  ? allJobs(
+                                      fireStore
+                                          .collection("category")
+                                          .doc("Finance")
+                                          .collection("Finance")
+                                          .snapshots(),
+                                    )
                                   : Center(
                                       child: Text(controller.jobs2[
                                           controller.selectedJobs2.value]),

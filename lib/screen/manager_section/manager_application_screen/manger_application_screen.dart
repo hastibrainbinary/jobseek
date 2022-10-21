@@ -158,7 +158,11 @@ class ManagerApplicationScreen extends StatelessWidget {
                         itemBuilder: (context, index) {
                           return InkWell(
                             onTap: () => Get.toNamed(
-                                AppRes.managerApplicationDetailScreen),
+                                AppRes.managerApplicationDetailScreen,
+                                arguments: {
+                                  "docs": snapshot.data!.docs[index],
+                                  "DocId": index
+                                }),
                             child: Container(
                               height: 92,
                               width: Get.width,
@@ -204,7 +208,7 @@ class ManagerApplicationScreen extends StatelessWidget {
                                                 fontSize: 10,
                                                 fontWeight: FontWeight.w400),
                                           ),
-                                          // const SizedBox(width: 3),
+                                          const SizedBox(width: 1),
                                           Text(
                                               snapshot.data!.docs[index]
                                                   ["type"],
