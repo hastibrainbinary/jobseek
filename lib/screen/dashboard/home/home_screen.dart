@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,6 +22,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(HomeController());
+
     return Container(
       height: Get.height,
       width: Get.width,
@@ -158,36 +158,38 @@ class HomeScreen extends StatelessWidget {
                         }),
                   ),
 
-                  Obx(() => controller.selectedJobs2.value == 0
-                      ? allJobs(fireStore.collection("allPost").snapshots())
-                      : controller.selectedJobs2.value == 1
-                          ? allJobs(
-                              fireStore
-                                  .collection("category")
-                                  .doc("Writer")
-                                  .collection("Writer")
-                                  .snapshots(),
-                            )
-                          : controller.selectedJobs2.value == 2
-                              ? allJobs(
-                                  fireStore
-                                      .collection("category")
-                                      .doc("Design")
-                                      .collection("Design")
-                                      .snapshots(),
-                                )
-                              : controller.selectedJobs2.value == 3
-                                  ? allJobs(
-                                      fireStore
-                                          .collection("category")
-                                          .doc("Finance")
-                                          .collection("Finance")
-                                          .snapshots(),
-                                    )
-                                  : Center(
-                                      child: Text(controller.jobs2[
-                                          controller.selectedJobs2.value]),
-                                    ))
+                  Obx(
+                    () => controller.selectedJobs2.value == 0
+                        ? allJobs(fireStore.collection("allPost").snapshots())
+                        : controller.selectedJobs2.value == 1
+                            ? allJobs(
+                                fireStore
+                                    .collection("category")
+                                    .doc("Writer")
+                                    .collection("Writer")
+                                    .snapshots(),
+                              )
+                            : controller.selectedJobs2.value == 2
+                                ? allJobs(
+                                    fireStore
+                                        .collection("category")
+                                        .doc("Design")
+                                        .collection("Design")
+                                        .snapshots(),
+                                  )
+                                : controller.selectedJobs2.value == 3
+                                    ? allJobs(
+                                        fireStore
+                                            .collection("category")
+                                            .doc("Finance")
+                                            .collection("Finance")
+                                            .snapshots(),
+                                      )
+                                    : Center(
+                                        child: Text(controller.jobs2[
+                                            controller.selectedJobs2.value]),
+                                      ),
+                  ),
                 ],
               ),
             ),

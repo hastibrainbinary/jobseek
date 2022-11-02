@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_controller.dart';
@@ -13,10 +14,13 @@ import 'package:jobseek/utils/string.dart';
 class JobDetailScreen extends StatelessWidget {
   JobDetailScreen({Key? key}) : super(key: key);
   final JobDetailsController controller = Get.put(JobDetailsController());
-  var args = Get.arguments;
+  Map args = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
+    if (kDebugMode) {
+      print(args);
+    }
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -148,15 +152,13 @@ class JobDetailScreen extends StatelessWidget {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(
-                                            snapshot.data!.docs[args["index"]]
-                                                ["Position"],
+                                        Text(snapshot.data!.docs[0]["Position"],
                                             style: appTextStyle(
                                                 color: ColorRes.black,
                                                 fontSize: 15,
                                                 fontWeight: FontWeight.w500)),
                                         Text(
-                                            snapshot.data!.docs[args["index"]]
+                                            snapshot.data!.docs[1]
                                                 ["CompanyName"],
                                             style: appTextStyle(
                                                 color: ColorRes.black,

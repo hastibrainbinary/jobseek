@@ -23,6 +23,8 @@ import 'package:jobseek/utils/app_res.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   await Firebase.initializeApp();
   await PrefService.init();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(

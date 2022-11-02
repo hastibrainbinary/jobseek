@@ -88,7 +88,7 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
                         Text(args["docs"]["Position"],
                             style: appTextStyle(
                                 color: ColorRes.black,
-                                fontSize: 15,
+                                fontSize: 13,
                                 fontWeight: FontWeight.w500)),
                         Text(args["docs"]["CompanyName"],
                             style: appTextStyle(
@@ -104,7 +104,6 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
                                   fontSize: 10,
                                   fontWeight: FontWeight.w400),
                             ),
-                            // const SizedBox(width: 3),
                             Text(args["docs"]["type"],
                                 style: appTextStyle(
                                     color: ColorRes.black,
@@ -120,13 +119,13 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Container(
-                          height: 20,
+                          height: 18,
                           padding: const EdgeInsets.symmetric(horizontal: 15),
                           decoration: BoxDecoration(
                             color: args["docs"]["Status"] == "Active"
                                 ? ColorRes.lightGreen
                                 : ColorRes.invalidColor,
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(18),
                           ),
                           child: Text(
                             args["docs"]["Status"],
@@ -141,7 +140,7 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
                         Text(
                           args["docs"]["salary"],
                           style: appTextStyle(
-                              fontSize: 16,
+                              fontSize: 15,
                               color: ColorRes.containerColor,
                               fontWeight: FontWeight.w500),
                         )

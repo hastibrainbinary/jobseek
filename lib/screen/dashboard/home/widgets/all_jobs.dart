@@ -78,7 +78,8 @@ Widget allJobs(Stream stream) {
                                       fontSize: 12,
                                       fontWeight: FontWeight.w400)),
                               Text(
-                                  "${jrController.documents[index]["location"]}  ${jrController.documents[index]["type"]}",
+                                  "${jrController.documents[index]["location"]} "
+                                  " ${jrController.documents[index]["type"]}",
                                   style: appTextStyle(
                                       color: ColorRes.black,
                                       fontSize: 10,

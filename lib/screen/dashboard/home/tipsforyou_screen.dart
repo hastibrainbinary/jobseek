@@ -12,7 +12,7 @@ class TipsForYouScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: false,
         backgroundColor: ColorRes.backgroundColor,
         body: Column(
           children: [
@@ -137,7 +137,7 @@ class TipsForYouScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(18.0),
                         child: Text(
-                          'Lorem ipsum dolor sit amet,consecrated adipiscing elit,sed do eiusmod temper incididunt ut labore et dolore magna aliqua.Urna id volutpat lacus laoreet non curabitur gravida arcu.Amet nisl purus in mollis nunc sed id.Elementum curabitur vitae nunc sed.A pellentesque sit amet porttitor eget.Ac turpis egestas integer eget aliquet nibh.Nibh praesent tristique magna sit amet purus gravida.Sagittis nisl rhoncus mattis rhoncus urna neque viverra.Volutpat sed cras ornare arcu dui vivamus arcu felis bibendum.',
+                          'Lorem ipsum dolor sit amet,consecrated advising elite,sed do emus temper incididunt ut labore et dolore magna aliqua.Urna id volutpat lacus laoreet non curabitur gravida arcu.Amet nisl purus in mollis nunc sed id.Elementum curabitur vitae nunc sed.A pellentesque sit amet porttitor eget.Ac turpis egestas integer eget aliquet nibh.Nibh praesent tristique magna sit amet purus gravida.Sagittis nisl rhoncus mattis rhoncus urna neque viverra.Volutpat sed cras ornare arcu dui vivamus arcu felis bibendum.',
                           style: appTextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w500,

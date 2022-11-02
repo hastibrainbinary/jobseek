@@ -7,7 +7,6 @@ import 'package:jobseek/utils/pref_keys.dart';
 class HomeController extends GetxController implements GetxService {
   TextEditingController searchController = TextEditingController();
 
-
   RxList jobTypes = [
     "UI/UX Designer",
     "Financial planner",
@@ -24,8 +23,6 @@ class HomeController extends GetxController implements GetxService {
     AssetRes.airBnbLogo
   ].obs;
 
-
-
   onTapSave(index) {
     if (jobTypesSaved[index] == true) {
       jobTypesSaved.removeAt(index);
@@ -36,13 +33,6 @@ class HomeController extends GetxController implements GetxService {
     }
   }
 
-  // RxInt selectedJobs = 0.obs;
-  // RxList jobs = ["All Job", "Writer", "Design", "Finance"].obs;
-  // onTapJobs(int index){
-  //   debugPrint("OnTAP $index");
-  //   selectedJobs.value = index;
-  // }
-
   RxInt selectedJobs2 = 0.obs;
   RxList jobs2 = ["All Job", "Writer", "Design", "Finance"].obs;
 
@@ -50,13 +40,15 @@ class HomeController extends GetxController implements GetxService {
     selectedJobs2.value = index;
     //update(["hList"]);
   }
-  String?  firstNAme;
+
+  String? firstNAme;
   @override
   void onInit() {
     getfirstName();
     super.onInit();
   }
-  getfirstName()async{
+
+  getfirstName() async {
     firstNAme = await PrefService.getString(PrefKeys.firstnameu);
   }
 }

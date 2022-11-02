@@ -38,7 +38,7 @@ Widget recentPeopleBox() {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Adam Smit",
+                      "Adam Smith",
                       style: appTextStyle(
                           color: ColorRes.black,
                           fontSize: 14,
