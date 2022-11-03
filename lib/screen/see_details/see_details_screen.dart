@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/common/widgets/common_textField.dart';
 import 'package:jobseek/screen/auth/sign_up/widget/signup_bottom/country.dart';
 import 'package:jobseek/screen/see_details/see_details_controller.dart';
 import 'package:jobseek/utils/app_style.dart';
@@ -231,22 +230,22 @@ class SeeDetailsScreen extends StatelessWidget {
                       child: Row(
                         children: [
                           countryCodePicker(context, padding: 4),
-                          SizedBox(
-                            width: Get.width / 2,
-                            child: TextFormField(
-                              // keyboardType: TextInputType.number,
-                              // controller: controller.phoneNumberController,
-                              decoration: InputDecoration(
-                                  // hintText: '99135 01269',
-                                  fillColor: Colors.transparent,
-                                  filled: true,
-                                  hintStyle: appTextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w600,
-                                      color: ColorRes.black),
-                                  border: InputBorder.none),
-                            ),
-                          ),
+                          // SizedBox(
+                          //   width: Get.width / 2,
+                          //   child: TextFormField(
+                          //     // keyboardType: TextInputType.number,
+                          //     // controller: controller.phoneNumberController,
+                          //     decoration: InputDecoration(
+                          //         // hintText: '99135 01269',
+                          //         fillColor: Colors.transparent,
+                          //         filled: true,
+                          //         hintStyle: appTextStyle(
+                          //             fontSize: 15,
+                          //             fontWeight: FontWeight.w600,
+                          //             color: ColorRes.black),
+                          //         border: InputBorder.none),
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),

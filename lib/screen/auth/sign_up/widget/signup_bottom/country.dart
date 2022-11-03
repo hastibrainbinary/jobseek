@@ -7,7 +7,7 @@ import 'package:jobseek/utils/color_res.dart';
 Widget countryCodePicker(BuildContext context,{double? padding}) {
   SignUpController phoneController = Get.put(SignUpController());
   return InkWell(
-   // onTap: () => phoneController.onCountryTap(context),
+    onTap: () => phoneController.onCountryTap(context),
     child: SizedBox(
       height: 20,
       child: Row(
