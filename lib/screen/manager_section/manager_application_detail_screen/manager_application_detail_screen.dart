@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_widget/manager_home_screen_widget.dart';
-import 'package:jobseek/screen/update_vacancies_requirements/update_vacancies_requirements_screen.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
@@ -57,8 +56,9 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                Get.toNamed(AppRes.updateVacanciesRequirementScreen,arguments:args);
-             /*   Navigator.push(
+                Get.toNamed(AppRes.updateVacanciesRequirementScreen,
+                    arguments: args);
+                /*   Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (con) => UpdateVacanciesRequirementsScreen(

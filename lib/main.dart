@@ -81,7 +81,7 @@ class MyApp extends StatelessWidget {
             page: () => ManagerDashBoardScreen()),
         GetPage(
             name: AppRes.managerApplicationDetailScreen,
-            page: () =>  ManagerApplicationDetailScreen()),
+            page: () => ManagerApplicationDetailScreen()),
         GetPage(name: AppRes.resumeScreen, page: () => const ResumeScreen()),
         GetPage(
             name: AppRes.applicantsDetails,
@@ -94,8 +94,9 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: AppRes.seeDetailsScreen,
             page: () => const SeeDetailsScreen()),
-        GetPage(name: AppRes.updateVacanciesRequirementScreen,
-            page: ()=> UpdateVacanciesRequirementsScreen()),
+        GetPage(
+            name: AppRes.updateVacanciesRequirementScreen,
+            page: () => UpdateVacanciesRequirementsScreen()),
         GetPage(name: AppRes.firstScreen, page: () => FirstScreen()),
       ],
     );

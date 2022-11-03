@@ -1,4 +1,4 @@
-class AppRes{
+class AppRes {
   static String notificationScreen = "/notificationScreen";
   static String jobDetailScreen = "/jobDetailScreen";
   static String jobDetailUploadCvScreen = "/jobDetailUploadCvScreen";
@@ -6,12 +6,14 @@ class AppRes{
   static String jobRecommendationScreen = "/jobRecommendationScreen";
   static String organizationProfileScreen = "/organizationProfileScreen";
   static String managerDashboardScreen = "/managerDashboardScreen";
-  static String managerApplicationDetailScreen = "/managerApplicationDetailScreen";
+  static String managerApplicationDetailScreen =
+      "/managerApplicationDetailScreen";
   static String resumeScreen = "/resumeScreen";
   static String applicantsDetails = "/applicantsDetails";
-  static String seeDetailsScreen="/seeDetailsScreen";
-  static String applicationsUser ="/applicationsUser";
+  static String seeDetailsScreen = "/seeDetailsScreen";
+  static String applicationsUser = "/applicationsUser";
   static String firstScreen = "/FirstScreen";
-  static String firstPageScreenM ="/FirstPageScreenM";
-  static String updateVacanciesRequirementScreen ="/UpdateVacanciesRequirementScreen";
+  static String updateVacanciesRequirementScreen =
+      "/UpdateVacanciesRequirementScreen";
+  static String firstPageScreenM = "/FirstPageScreenM";
 }
