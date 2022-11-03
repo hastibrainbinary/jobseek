@@ -136,7 +136,7 @@ import 'package:jobseek/utils/color_res.dart';
                         ),
                       ),
                       InkWell(
-                        onTap: () => Get.toNamed(AppRes.seeDetailsScreen),
+                        onTap: () => Get.toNamed(AppRes.seeDetailsScreen,arguments: contro.userData[i]),
                         child: Container(
                           width: 135,
                           height: 35,

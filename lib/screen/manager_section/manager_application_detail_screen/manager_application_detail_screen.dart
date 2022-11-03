@@ -176,20 +176,13 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
             ),
             SizedBox(
               height: Get.height * 0.6,
-              child: ListView.builder(
-                  padding: const EdgeInsets.all(0),
-                  itemCount: 5,
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 10),
-                      child: InkWell(
-                          onTap: () => Get.toNamed(AppRes.applicantsDetails),
-                          child: recentPeopleBox()),
-                    );
-                  }),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 20, vertical: 10),
+                child: InkWell(
+                    onTap: () => Get.toNamed(AppRes.applicantsDetails),
+                    child: recentPeopleBox()),
+              ),
             )
           ],
         ),
