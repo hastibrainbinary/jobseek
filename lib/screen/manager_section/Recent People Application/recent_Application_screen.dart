@@ -41,8 +41,6 @@ class RecentApplicationScreen extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 5),
-          searchArea(),
-          const SizedBox(height: 12),
           SizedBox(
             height: Get.height * 0.75,
             child: ListView.builder(
