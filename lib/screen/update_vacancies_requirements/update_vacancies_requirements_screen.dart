@@ -4,19 +4,20 @@ import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/common/widgets/common_error_box.dart';
 import 'package:jobseek/common/widgets/common_textField.dart';
+import 'package:jobseek/screen/job_detail_screen/job_detail_widget/job_detail_widget.dart';
 import 'package:jobseek/screen/update_vacancies_requirements/update_vacancies_requirement_controller.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
 class UpdateVacanciesRequirementsScreen extends StatelessWidget {
-  final int index;
-  UpdateVacanciesRequirementsScreen({Key? key, required this.index})
+  UpdateVacanciesRequirementsScreen({Key? key,})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(UpdateVacanciesRequirementController());
+
 
     return Scaffold(
       backgroundColor: ColorRes.backgroundColor,
@@ -150,13 +151,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 18),
                   controller.isJobDetails.value
-                      ? StreamBuilder(
-                          stream: FirebaseFirestore.instance
-                              .collection("allPost")
-                              .snapshots(),
-                          builder: (BuildContext context,
-                              AsyncSnapshot<dynamic> snapshot) {
-                            return Padding(
+                      ? Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: SizedBox(
                                 height: Get.height - 215,
@@ -228,8 +223,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                             contentPadding:
                                                 const EdgeInsets.all(15),
                                             border: InputBorder.none,
-                                            hintText: snapshot.data!.docs[index]
-                                                ["Position"],
+                                            hintText: "ui ux design",
                                             hintStyle: appTextStyle(
                                                 fontSize: 14,
                                                 color: ColorRes.black)),
@@ -276,8 +270,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                           contentPadding:
                                               const EdgeInsets.all(15),
                                           border: InputBorder.none,
-                                          hintText: snapshot.data!.docs[index]
-                                              ["salary"],
+                                          hintText: '15000',
                                           hintStyle: appTextStyle(
                                               fontSize: 14,
                                               color: ColorRes.black),
@@ -335,8 +328,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                           contentPadding:
                                               const EdgeInsets.all(15),
                                           border: InputBorder.none,
-                                          hintText: snapshot.data!.docs[index]
-                                              ["location"],
+                                          hintText: 'india',
                                           hintStyle: appTextStyle(
                                             fontSize: 14,
                                             color: ColorRes.black,
@@ -413,8 +405,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                           contentPadding:
                                               const EdgeInsets.all(15),
                                           border: InputBorder.none,
-                                          hintText: snapshot.data!.docs[index]
-                                              ["type"],
+                                          hintText: 'Full time',
                                           hintStyle: appTextStyle(
                                             fontSize: 14,
                                             color: ColorRes.black,
@@ -449,7 +440,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                                 height: 10,
                                               ),
                                               commonErrorBox(
-                                                  "Please Enter Location"),
+                                                  "Please Enter Type"),
                                             ],
                                           )
                                         : const SizedBox(),
@@ -486,8 +477,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                           contentPadding:
                                               const EdgeInsets.all(15),
                                           border: InputBorder.none,
-                                          hintText: snapshot.data!.docs[index]
-                                              ["Status"],
+                                          hintText: 'Active',
                                           hintStyle: appTextStyle(
                                             fontSize: 14,
                                             color: ColorRes.black,
@@ -623,8 +613,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                   ]),
                                 ),
                               ),
-                            );
-                          })
+                            )
                       : Column(
                           children: [
                             SizedBox(
@@ -636,7 +625,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                   itemBuilder: (context, index) {
                                     return Column(
                                       children: [
-                                        // detailBox(controller.requirements[index]),
+                                        detailBox('1'),
                                         (controller.text.value == true)
                                             ? Container(
                                                 //padding: EdgeInsets.symmetric( vertical: 10),

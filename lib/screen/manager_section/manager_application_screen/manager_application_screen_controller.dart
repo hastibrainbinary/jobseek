@@ -16,6 +16,6 @@ class ManagerApplicationScreenController extends GetxController
 
   onTapJobs2(int index) {
     selectedJobs2.value = index;
-    //update(["hList"]);
+    update(["status"]);
   }
 }

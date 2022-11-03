@@ -57,16 +57,18 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                Navigator.push(
+                Get.toNamed(AppRes.updateVacanciesRequirementScreen,arguments:args);
+             /*   Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (con) => UpdateVacanciesRequirementsScreen(
                       index: int.parse(
                         args["DocId"].toString(),
                       ),
+                      args:args,
                     ),
                   ),
-                );
+                );*/
               },
               child: Container(
                 height: 92,

@@ -13,4 +13,5 @@ class AppRes{
   static String applicationsUser ="/applicationsUser";
   static String firstScreen = "/FirstScreen";
   static String firstPageScreenM ="/FirstPageScreenM";
+  static String updateVacanciesRequirementScreen ="/UpdateVacanciesRequirementScreen";
 }

@@ -18,6 +18,7 @@ import 'package:jobseek/screen/notification_screen/notification_screen.dart';
 import 'package:jobseek/screen/organization_profile_screen/organization_profile_screen.dart';
 import 'package:jobseek/screen/see_details/see_details_screen.dart';
 import 'package:jobseek/screen/splashScreen/splash_Screen.dart';
+import 'package:jobseek/screen/update_vacancies_requirements/update_vacancies_requirements_screen.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_res.dart';
 
@@ -93,6 +94,8 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: AppRes.seeDetailsScreen,
             page: () => const SeeDetailsScreen()),
+        GetPage(name: AppRes.updateVacanciesRequirementScreen,
+            page: ()=> UpdateVacanciesRequirementsScreen()),
         GetPage(name: AppRes.firstScreen, page: () => FirstScreen()),
       ],
     );
