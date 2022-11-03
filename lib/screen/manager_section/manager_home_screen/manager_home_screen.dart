@@ -16,6 +16,7 @@ class ManagerHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Column(
       children: [
         const SizedBox(
@@ -373,9 +374,14 @@ class ManagerHomeScreen extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: recentPeopleBox(),
+        GetBuilder<ManagerHomeScreenController>(
+          id:"userdata",
+          builder: (contro) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: recentPeopleBox(),
+            );
+          }
         )
       ],
     );

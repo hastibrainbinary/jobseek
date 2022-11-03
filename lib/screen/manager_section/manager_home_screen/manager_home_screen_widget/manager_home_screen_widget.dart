@@ -1,154 +1,168 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_controller.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
-Widget recentPeopleBox() {
-  return Container(
-    padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-    decoration: BoxDecoration(
-        border: Border.all(color: ColorRes.borderColor),
-        borderRadius: BorderRadius.circular(15)),
-    child: Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                Container(
-                  height: 50,
-                  width: 50,
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(10),
+
+ Widget recentPeopleBox() {
+   final contro = Get.put(ManagerHomeScreenController());
+  return SizedBox(
+        height: 200,
+        child: ListView.builder(
+          itemCount: contro.userData.length,
+          itemBuilder: (context,i) {
+            return Container(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+              decoration: BoxDecoration(
+                  border: Border.all(color: ColorRes.borderColor),
+                  borderRadius: BorderRadius.circular(15)),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Container(
+                            height: 50,
+                            width: 50,
+                            decoration: BoxDecoration(
+                              color: Colors.black,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: const Image(
+                              image: AssetImage(AssetRes.detailsImage),
+                              height: 20,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "${contro.userData[i]['fullName']}",
+                                style: appTextStyle(
+                                    color: ColorRes.black,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              Text(
+                                "${contro.userData[i]['Occupation']}",
+                                style: appTextStyle(
+                                    color: ColorRes.grey,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            height: 40,
+                            width: 40,
+                            decoration: BoxDecoration(
+                                color: ColorRes.logoColor,
+                                borderRadius: BorderRadius.circular(8)),
+                            child: const GradientIcon(
+                                Icons.chat,
+                                20,
+                                LinearGradient(colors: [
+                                  Color(0xFFBE9DFF),
+                                  Color(0xFF8B4EFF),
+                                ])),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Container(
+                            height: 40,
+                            width: 40,
+                            decoration: BoxDecoration(
+                                color: ColorRes.logoColor,
+                                borderRadius: BorderRadius.circular(8)),
+                            child: const GradientIcon(
+                                Icons.videocam_sharp,
+                                20,
+                                LinearGradient(colors: [
+                                  Color(0xFFBE9DFF),
+                                  Color(0xFF8B4EFF),
+                                ])),
+                          ),
+                        ],
+                      )
+                    ],
                   ),
-                  child: const Image(
-                    image: AssetImage(AssetRes.detailsImage),
+                  const SizedBox(
                     height: 20,
                   ),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Adam Smith",
-                      style: appTextStyle(
-                          color: ColorRes.black,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500),
-                    ),
-                    Text(
-                      "UI/UX Designer",
-                      style: appTextStyle(
-                          color: ColorRes.grey,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ],
-                )
-              ],
-            ),
-            Row(
-              children: [
-                Container(
-                  height: 40,
-                  width: 40,
-                  decoration: BoxDecoration(
-                      color: ColorRes.logoColor,
-                      borderRadius: BorderRadius.circular(8)),
-                  child: const GradientIcon(
-                      Icons.chat,
-                      20,
-                      LinearGradient(colors: [
-                        Color(0xFFBE9DFF),
-                        Color(0xFF8B4EFF),
-                      ])),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Container(
-                  height: 40,
-                  width: 40,
-                  decoration: BoxDecoration(
-                      color: ColorRes.logoColor,
-                      borderRadius: BorderRadius.circular(8)),
-                  child: const GradientIcon(
-                      Icons.videocam_sharp,
-                      20,
-                      LinearGradient(colors: [
-                        Color(0xFFBE9DFF),
-                        Color(0xFF8B4EFF),
-                      ])),
-                ),
-              ],
-            )
-          ],
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        Container(
-          color: ColorRes.lightGrey,
-          height: 2,
-          width: Get.width,
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            InkWell(
-              onTap: () => Get.toNamed(AppRes.resumeScreen),
-              child: Container(
-                width: 135,
-                height: 35,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    gradient: const LinearGradient(colors: [
-                      Color(0xFFBF9EFF),
-                      Color(0xFF8B4EFF),
-                    ])),
-                child: Center(
-                  child: Text(
-                    "See Resume",
-                    style: appTextStyle(color: Colors.white, fontSize: 15),
+                  Container(
+                    color: ColorRes.lightGrey,
+                    height: 2,
+                    width: Get.width,
                   ),
-                ),
-              ),
-            ),
-            InkWell(
-              onTap: () => Get.toNamed(AppRes.seeDetailsScreen),
-              child: Container(
-                width: 135,
-                height: 35,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    border:
-                        Border.all(color: ColorRes.containerColor, width: 2),
-                    color: Colors.white),
-                child: Center(
-                  child: Text(
-                    "See Details",
-                    style: appTextStyle(
-                        color: ColorRes.containerColor, fontSize: 15),
+                  const SizedBox(
+                    height: 10,
                   ),
-                ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      InkWell(
+                        onTap: () => Get.toNamed(AppRes.resumeScreen),
+                        child: Container(
+                          width: 135,
+                          height: 35,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              gradient: const LinearGradient(colors: [
+                                Color(0xFFBF9EFF),
+                                Color(0xFF8B4EFF),
+                              ])),
+                          child: Center(
+                            child: Text(
+                              "See Resume",
+                              style: appTextStyle(color: Colors.white, fontSize: 15),
+                            ),
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () => Get.toNamed(AppRes.seeDetailsScreen),
+                        child: Container(
+                          width: 135,
+                          height: 35,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border:
+                                  Border.all(color: ColorRes.containerColor, width: 2),
+                              color: Colors.white),
+                          child: Center(
+                            child: Text(
+                              "See Details",
+                              style: appTextStyle(
+                                  color: ColorRes.containerColor, fontSize: 15),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
               ),
-            ),
-          ],
-        )
-      ],
-    ),
-  );
+            );
+          }
+        ),
+      );
+
 }
 
 class GradientIcon extends StatelessWidget {

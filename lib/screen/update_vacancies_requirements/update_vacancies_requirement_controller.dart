@@ -73,8 +73,8 @@ class UpdateVacanciesRequirementController extends GetxController {
     typeController.text =data['docs']["type"];
     statusController.text =data['docs']["Status"];
     DocumentSnapshot document = await FirebaseFirestore.instance.collection("allPost").doc(args['docs'].id.toString()).get();
-    DocumentReference ref = document.get("RequrementsList");
-
+    var ref = document.data();
+    print(ref);
   }
 
   validate() {
