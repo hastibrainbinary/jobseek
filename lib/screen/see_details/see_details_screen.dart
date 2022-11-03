@@ -161,15 +161,23 @@ class SeeDetailsScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    commonTextFormField(
-                      controller: controller.nameController,
-                      color: ColorRes.containerColor,
-                      textDecoration: const InputDecoration(
-                          hintText: 'Viral Savaliya',
-                          hintStyle: TextStyle(color: Colors.black),
-                          contentPadding: EdgeInsets.all(15),
-                          border: InputBorder.none),
+                    Container(
+                      height: 51,
+                      width: 339,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: ColorRes.containerColor)),
                     ),
+                    // const SizedBox(height: 10),
+                    // commonTextFormField(
+                    //   controller: controller.nameController,
+                    //   color: ColorRes.containerColor,
+                    //   textDecoration: const InputDecoration(
+                    //       hintText: 'Viral Savaliya',
+                    //       hintStyle: TextStyle(color: Colors.black),
+                    //       contentPadding: EdgeInsets.all(15),
+                    //       border: InputBorder.none),
+                    // ),
                     const SizedBox(
                       height: 20,
                     ),
@@ -184,15 +192,22 @@ class SeeDetailsScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    commonTextFormField(
-                      controller: controller.emailController,
-                      color: ColorRes.containerColor,
-                      textDecoration: const InputDecoration(
-                          hintText: 'example@yourdomain.com',
-                          hintStyle: TextStyle(color: Colors.black),
-                          contentPadding: EdgeInsets.all(15),
-                          border: InputBorder.none),
+                    Container(
+                      height: 51,
+                      width: 339,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: ColorRes.containerColor)),
                     ),
+                    // commonTextFormField(
+                    //   controller: controller.emailController,
+                    //   color: ColorRes.containerColor,
+                    //   textDecoration: const InputDecoration(
+                    //       hintText: 'example@yourdomain.com',
+                    //       hintStyle: TextStyle(color: Colors.black),
+                    //       contentPadding: EdgeInsets.all(15),
+                    //       border: InputBorder.none),
+                    // ),
                     const SizedBox(
                       height: 20,
                     ),
@@ -219,10 +234,10 @@ class SeeDetailsScreen extends StatelessWidget {
                           SizedBox(
                             width: Get.width / 2,
                             child: TextFormField(
-                              keyboardType: TextInputType.number,
-                              controller: controller.phoneNumberController,
+                              // keyboardType: TextInputType.number,
+                              // controller: controller.phoneNumberController,
                               decoration: InputDecoration(
-                                  hintText: '99135 01269',
+                                  // hintText: '99135 01269',
                                   fillColor: Colors.transparent,
                                   filled: true,
                                   hintStyle: appTextStyle(
@@ -249,15 +264,22 @@ class SeeDetailsScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    commonTextFormField(
-                      controller: controller.cityController,
-                      color: ColorRes.containerColor,
-                      textDecoration: const InputDecoration(
-                          hintText: 'Surat',
-                          hintStyle: TextStyle(color: Colors.black),
-                          contentPadding: EdgeInsets.all(15),
-                          border: InputBorder.none),
+                    Container(
+                      height: 51,
+                      width: 339,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: ColorRes.containerColor)),
                     ),
+                    // commonTextFormField(
+                    //   controller: controller.cityController,
+                    //   color: ColorRes.containerColor,
+                    //   textDecoration: const InputDecoration(
+                    //       hintText: 'Surat',
+                    //       hintStyle: TextStyle(color: Colors.black),
+                    //       contentPadding: EdgeInsets.all(15),
+                    //       border: InputBorder.none),
+                    // ),
                     const SizedBox(
                       height: 20,
                     ),
@@ -272,15 +294,22 @@ class SeeDetailsScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    commonTextFormField(
-                      controller: controller.stateController,
-                      color: ColorRes.containerColor,
-                      textDecoration: const InputDecoration(
-                          hintText: 'Gujarat',
-                          hintStyle: TextStyle(color: ColorRes.black),
-                          contentPadding: EdgeInsets.all(15),
-                          border: InputBorder.none),
+                    Container(
+                      height: 51,
+                      width: 339,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: ColorRes.containerColor)),
                     ),
+                    // commonTextFormField(
+                    //   controller: controller.stateController,
+                    //   color: ColorRes.containerColor,
+                    //   textDecoration: const InputDecoration(
+                    //       hintText: 'Gujarat',
+                    //       hintStyle: TextStyle(color: ColorRes.black),
+                    //       contentPadding: EdgeInsets.all(15),
+                    //       border: InputBorder.none),
+                    // ),
                     const SizedBox(
                       height: 20,
                     ),
@@ -295,15 +324,22 @@ class SeeDetailsScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    commonTextFormField(
-                      controller: controller.countryController,
-                      color: ColorRes.containerColor,
-                      textDecoration: const InputDecoration(
-                          hintText: 'India',
-                          hintStyle: TextStyle(color: ColorRes.black),
-                          contentPadding: EdgeInsets.all(15),
-                          border: InputBorder.none),
+                    Container(
+                      height: 51,
+                      width: 339,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: ColorRes.containerColor)),
                     ),
+                    // commonTextFormField(
+                    //   controller: controller.countryController,
+                    //   color: ColorRes.containerColor,
+                    //   textDecoration: const InputDecoration(
+                    //       hintText: 'India',
+                    //       hintStyle: TextStyle(color: ColorRes.black),
+                    //       contentPadding: EdgeInsets.all(15),
+                    //       border: InputBorder.none),
+                    // ),
                     const SizedBox(height: 25),
                     InkWell(
                       onTap: () {
