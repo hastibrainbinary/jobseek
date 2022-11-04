@@ -214,7 +214,7 @@ class ManagerHomeScreen extends StatelessWidget {
                               itemCount: snapshot.data.docs.length,
                               shrinkWrap: true,
                               itemBuilder: (context, index) {
-                                return InkWell(
+                                return (controller.companyNAme != snapshot.data!.docs[index]["CompanyName"])?SizedBox():InkWell(
                                   onTap: () => Get.toNamed(
                                       AppRes.managerApplicationDetailScreen,
                                       arguments: {
