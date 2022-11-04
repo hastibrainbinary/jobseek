@@ -22,7 +22,6 @@ class SignUpController extends GetxController {
   TextEditingController stateController = TextEditingController();
   TextEditingController countryController = TextEditingController();
   TextEditingController occupationController = TextEditingController();
-  String? countryCode;
 
   RxBool loading = false.obs;
   String emailError = "";
@@ -63,7 +62,7 @@ class SignUpController extends GetxController {
       emailError = 'Please Enter email';
     } else {
       if (RegExp(
-              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
           .hasMatch(emailController.text)) {
         emailError = '';
       } else {
@@ -195,7 +194,7 @@ class SignUpController extends GetxController {
     update(['dark']);
   }
 
-  void onChanged(String value) {
+  void onChanged(String value){
     update(["dark"]);
   }
 
@@ -203,7 +202,7 @@ class SignUpController extends GetxController {
     try {
       loading.value = true;
       UserCredential userCredential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -214,15 +213,16 @@ class SignUpController extends GetxController {
         Map<String, dynamic> map2 = {
           "fullName": "${firstnameController.text} ${lastnameController.text}",
           "Email": emailController.text,
-          "Phone": "$countryCode ${phoneController.text}",
+          "Phone": phoneController.text,
           "Occupation": occupationController.text,
           "City": cityController.text,
           "State": stateController.text,
           "Country": countryController.text,
         };
-        await PrefService.setValue(
-            PrefKeys.firstnameu, firstnameController.text.toString());
-
+        await   PrefService.setValue(PrefKeys.firstnameu,firstnameController.text.toString());
+        await PrefService.setValue(PrefKeys.city, cityController.text.toString());
+        await PrefService.setValue(PrefKeys.state, stateController.text.toString());
+        await PrefService.setValue(PrefKeys.country, countryController.text.toString());
         addDataInFirebase(userUid: userCredential.user?.uid ?? "", map: map2);
       }
 
@@ -289,7 +289,6 @@ class SignUpController extends GetxController {
       showPhoneCode: true,
       onSelect: (Country country) {
         countryModel = country;
-
         update(['phone_filed']);
       },
     );
@@ -301,7 +300,6 @@ class SignUpController extends GetxController {
       showPhoneCode: true,
       onSelect: (Country country) {
         countryModel = country;
-        countryCode = "${country.flagEmoji} +${country.phoneCode}";
         update(['phone_filed']);
       },
     );
@@ -339,6 +337,7 @@ class SignUpController extends GetxController {
   final GoogleSignIn googleSignIn = GoogleSignIn();
 
   void signWithGoogle() async {
+
     if (await googleSignIn.isSignedIn()) {
       await googleSignIn.signOut();
     }
@@ -347,14 +346,13 @@ class SignUpController extends GetxController {
       loading.value = true;
     }
     final GoogleSignInAuthentication authentication =
-        await account!.authentication;
+    await account!.authentication;
 
     final OAuthCredential credential = GoogleAuthProvider.credential(
       idToken: authentication.idToken,
       accessToken: authentication.accessToken,
     );
-    final UserCredential authResult =
-        await auth.signInWithCredential(credential);
+    final UserCredential authResult = await auth.signInWithCredential(credential);
     final User? user = authResult.user;
     if (kDebugMode) {
       print(user!.email);
@@ -384,10 +382,10 @@ class SignUpController extends GetxController {
             if (kDebugMode) {
               print("${value.docs[i]["Email"]}=||||||++++++++++");
             }
-            if (value.docs[i]["Email"] == user!.email &&
-                value.docs[i]["Email"] != "") {
+            if (value.docs[i]["Email"] == user!.email && value.docs[i]["Email"] != "") {
               isUser = true;
-              Get.snackbar("Error", "This email is already registered",
+              Get.snackbar(
+                  "Error", "This email is already registered",
                   colorText: const Color(0xffDA1414));
               if (kDebugMode) {
                 print("$isUser====]]]]]");
@@ -404,19 +402,19 @@ class SignUpController extends GetxController {
           if (isUser == false) {
             String firstNm = user!.displayName.toString().split(" ").first;
             String lastNm = user.displayName.toString().split(" ").last;
-            Get.to(
-              GoogleSignupScreen(
-                uid: user.uid.toString(),
-                email: user.email.toString(),
-                firstName: firstNm,
-                lastName: lastNm,
-              ),
+            Get.to(GoogleSignupScreen(
+              uid: user.uid.toString(),
+              email: user.email.toString(),
+              firstName: firstNm,
+              lastName: lastNm,
+            ),
             );
           } else {
             if (await googleSignIn.isSignedIn()) {
               await googleSignIn.signOut();
             }
-            Get.snackbar("Error", "This email is already registered",
+            Get.snackbar(
+                "Error", "This email is already registered",
                 colorText: const Color(0xffDA1414));
             loading.value = false;
           }
@@ -430,6 +428,11 @@ class SignUpController extends GetxController {
           print("${value.docs.length}=|=|=|");
         }
       });
+
+
+
+
+
 
       // Get.offAll(() => DashBoardScreen());
       loading.value == false;
@@ -454,7 +457,7 @@ class SignUpController extends GetxController {
         }
       });
       final OAuthCredential facebookAuthCredential =
-          FacebookAuthProvider.credential(
+      FacebookAuthProvider.credential(
         loginResult.accessToken!.token,
       );
       if (kDebugMode) {
