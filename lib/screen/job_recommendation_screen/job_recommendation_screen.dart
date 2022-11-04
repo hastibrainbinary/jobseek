@@ -76,59 +76,56 @@ class JobRecommendation extends StatelessWidget {
                     return GestureDetector(
                       onTap: () => controller.onTapJobs2(index),
                       child: Obx(() => Container(
-                            margin: const EdgeInsets.only(right: 10),
-                            height: 32,
-                            width: 70,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: ColorRes.containerColor, width: 2),
-                                borderRadius: const BorderRadius.all(
-                                  Radius.circular(10),
-                                ),
-                                color: controller.selectedJobs2.value == index
-                                    ? ColorRes.containerColor
-                                    : ColorRes.white),
-                            child: Text(
-                              controller.jobs2[index],
-                              style: appTextStyle(
-                                  color: controller.selectedJobs2.value == index
-                                      ? ColorRes.white
-                                      : ColorRes.containerColor,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w600),
+                        margin: const EdgeInsets.only(right: 10),
+                        height: 32,
+                        width: 70,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                                color: ColorRes.containerColor, width: 2),
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(10),
                             ),
-                          )),
+                            color: controller.selectedJobs2.value == index
+                                ? ColorRes.containerColor
+                                : ColorRes.white),
+                        child: Text(
+                          controller.jobs2[index],
+                          style: appTextStyle(
+                              color: controller.selectedJobs2.value == index
+                                  ? ColorRes.white
+                                  : ColorRes.containerColor,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      )),
                     );
                   }),
             ),
             Obx(() => controller.selectedJobs2.value == 0
-                //? allJobs(fireStore.collection("allPost").snapshots(),)
-                ? allJobs(
-                    controller.allNoteCollection.snapshots(),
-                  )
+                ? allJobs(fireStore.collection("allPost").snapshots())
                 : controller.selectedJobs2.value == 1
-                    ? allJobs(fireStore
-                        .collection("category")
-                        .doc("Writer")
-                        .collection("Writer")
-                        .snapshots())
-                    : controller.selectedJobs2.value == 2
-                        ? allJobs(fireStore
-                            .collection("category")
-                            .doc("Design")
-                            .collection("Design")
-                            .snapshots())
-                        : controller.selectedJobs2.value == 3
-                            ? allJobs(fireStore
-                                .collection("category")
-                                .doc("Finance")
-                                .collection("Finance")
-                                .snapshots())
-                            : Center(
-                                child: Text(controller
-                                    .jobs2[controller.selectedJobs2.value]),
-                              )),
+                ? allJobs(fireStore
+                .collection("category")
+                .doc("Writer")
+                .collection("Writer")
+                .snapshots())
+                : controller.selectedJobs2.value == 2
+                ? allJobs(fireStore
+                .collection("category")
+                .doc("Design")
+                .collection("Design")
+                .snapshots())
+                : controller.selectedJobs2.value == 3
+                ? allJobs(fireStore
+                .collection("category")
+                .doc("Finance")
+                .collection("Finance")
+                .snapshots())
+                : Center(
+              child: Text(controller
+                  .jobs2[controller.selectedJobs2.value]),
+            )),
           ],
         ),
       ),

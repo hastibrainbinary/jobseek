@@ -11,10 +11,11 @@ import 'package:jobseek/utils/string.dart';
 
 // ignore: must_be_immutable
 class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
+
   JobDetailsSuccessOrFailedScreen({Key? key}) : super(key: key);
   var args = Get.arguments;
   final JobDetailsUploadCvController controller =
-      JobDetailsUploadCvController();
+  JobDetailsUploadCvController();
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +43,7 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(15),
                       decoration: BoxDecoration(
                           borderRadius:
-                              const BorderRadius.all(Radius.circular(15)),
+                          const BorderRadius.all(Radius.circular(15)),
                           border: Border.all(color: const Color(0xffF3ECFF)),
                           color: ColorRes.white),
                       child: Row(
@@ -77,7 +78,7 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: const Color(0xffEEEBF4),
                         borderRadius:
-                            const BorderRadius.all(Radius.circular(15)),
+                        const BorderRadius.all(Radius.circular(15)),
                         border: Border.all(color: ColorRes.borderColor),
                       ),
                       child: Row(
@@ -120,15 +121,15 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                     const SizedBox(height: 10),
                     args[0]["error"] == false
                         ? Text(Strings.successful,
-                            style: appTextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: ColorRes.containerColor))
+                        style: appTextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                            color: ColorRes.containerColor))
                         : Text(Strings.failed,
-                            style: appTextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: ColorRes.red)),
+                        style: appTextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                            color: ColorRes.red)),
                     const SizedBox(height: 5),
                     Text(
                         args[0]["error"] == false
@@ -192,7 +193,7 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                         margin: const EdgeInsets.only(top: 10, bottom: 30),
                         decoration: BoxDecoration(
                           borderRadius:
-                              const BorderRadius.all(Radius.circular(10)),
+                          const BorderRadius.all(Radius.circular(10)),
                           border: Border.all(color: ColorRes.containerColor),
                         ),
                         child: Text(

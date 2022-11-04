@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/service/pref_services.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 
 class ChatBoxUserController extends GetxController implements GetxService {
   TextEditingController searchController = TextEditingController();
@@ -49,5 +51,13 @@ class ChatBoxUserController extends GetxController implements GetxService {
       // profileController.init();
     }
     update(['bottom_bar']);
+  }
+
+
+  String? userUid;
+  getUid() async {
+    userUid = PrefService.getString(PrefKeys.userId).toString();
+
+    update(["message"]);
   }
 }

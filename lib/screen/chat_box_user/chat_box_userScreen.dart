@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/utils/app_style.dart';
@@ -12,6 +13,7 @@ class ChatBoxUserScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    controller.getUid();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: ColorRes.backgroundColor,
@@ -87,34 +89,72 @@ class ChatBoxUserScreen extends StatelessWidget {
                 return GestureDetector(
                   onTap: () => controller.onTapJobs(index),
                   child: Obx(() => Container(
-                        margin: const EdgeInsets.only(right: 10),
-                        height: 32,
-                        width: 70,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                color: ColorRes.containerColor, width: 2),
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(10),
-                            ),
-                            color: controller.selectedJobs.value == index
-                                ? ColorRes.containerColor
-                                : ColorRes.white),
-                        child: Text(
-                          controller.jobs[index],
-                          style: appTextStyle(
-                              color: controller.selectedJobs.value == index
-                                  ? ColorRes.white
-                                  : ColorRes.containerColor,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600),
+                    margin: const EdgeInsets.only(right: 10),
+                    height: 32,
+                    width: 70,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                            color: ColorRes.containerColor, width: 2),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(10),
                         ),
-                      )),
+                        color: controller.selectedJobs.value == index
+                            ? ColorRes.containerColor
+                            : ColorRes.white),
+                    child: Text(
+                      controller.jobs[index],
+                      style: appTextStyle(
+                          color: controller.selectedJobs.value == index
+                              ? ColorRes.white
+                              : ColorRes.containerColor,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  )),
                 );
               }),
         ),
         Expanded(
-          child: ListView.builder(
+          child: StreamBuilder<
+              QuerySnapshot<Map<String, dynamic>>>(
+            stream: FirebaseFirestore.instance.collection("Auth").doc("Manager").collection("register").snapshots(),
+            builder: (context, snapshot) {
+              if (snapshot.data == null ||
+                  snapshot.hasData == false) {
+                return const SizedBox();
+              }
+              return ListView.builder(
+                  itemCount: snapshot.data!.docs.length,
+                  itemBuilder: (context, index){
+                    return Container(
+                      height: 92,
+                      width: Get.width,
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 18, vertical: 4),
+                      padding: const EdgeInsets.all(15),
+                      decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.all(
+                              Radius.circular(15)),
+                          border: Border.all(
+                              color: const Color(0xffF3ECFF)),
+                          color: ColorRes.white),
+                      child: Text(snapshot.data!.docs[index]['Email']),
+                    );
+                  });
+            },
+          ),
+        ),
+      ]),
+    );
+  }
+}
+
+
+
+
+/*
+ListView.builder(
             padding: const EdgeInsets.all(0),
             itemCount: controller.jobs2.length,
             shrinkWrap: true,
@@ -388,8 +428,4 @@ class ChatBoxUserScreen extends StatelessWidget {
               );
             },
           ),
-        ),
-      ]),
-    );
-  }
-}
+ */

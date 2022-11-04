@@ -1,15 +1,48 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_res.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+
+import '../../../utils/pref_keys.dart';
+
+FirebaseFirestore firestore = FirebaseFirestore.instance;
+//List<String> position = [];
 
 class JobDetailsUploadCvController extends GetxController {
-  onTapApply() {
-    Get.toNamed(AppRes.jobDetailSuccessOrFailed, arguments: [
-      {"error": false, "filename": filepath}
-    ]);
+  onTapApply({var args}) {
+
+    //position.add(args["Position"]);
+
+    //PrefService.setValue(PrefKeys.positionList, position);
+
+    firestore
+        .collection("Apply")
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .set({
+      //'position': PrefService.getList(PrefKeys.positionList),
+      'apply': true,
+      'userName': PrefService.getString(PrefKeys.fullName),
+      'email': PrefService.getString(PrefKeys.email),
+      'phone': PrefService.getString(PrefKeys.phoneNumber),
+      'city': PrefService.getString(PrefKeys.city),
+      'state': PrefService.getString(PrefKeys.state),
+      'country': PrefService.getString(PrefKeys.country),
+      'Occupation': PrefService.getString(PrefKeys.occupation),
+      'uid': FirebaseAuth.instance.currentUser!.uid,
+    });
+
+    Get.toNamed(AppRes.jobDetailSuccessOrFailed,
+        arguments: [
+          {"error": false, "filename": filepath},
+
+        ]);
   }
 
   RxString filepath = "".obs;
@@ -59,66 +92,11 @@ class JobDetailsUploadCvController extends GetxController {
         isPdfUploadError.value = false;
 
         debugPrint("filepath $filepath FileSize $fileSize");
-
-        /*      fileList.forEach((file) async {
-          if (file.size > 67108864) {
-            // showErrorToast("canNotUpload".tr);
-            if (file == fileList.last) {
-              uploadingMedia = false;
-              // notifyListeners();
-            }
-          } else {
-            debugPrint("FILES : "+fileList.toString());
-            // String? imageUrl = await storageService.uploadDocument(
-            //     File(file.path!), roomId!);
-            //
-            // await getUploadPath(file.name, "document").then((filePath) async {
-            //   await File(filePath!).create(recursive: true);
-            //   await File(filePath)
-            //       .writeAsBytes(await File(file.path!).readAsBytes())
-            //       .then((value) {
-            //     if (file == fileList.last) {
-            //       uploadingMedia = false;
-            //       notifyListeners();
-            //     }
-            //   });
-            //   return filePath;
-            // }
-            //
-            // );
-          }
-        });*/
-
       }
-      /*      fileList.forEach((file) async {
-          if (file.size > 67108864) {
-            // showErrorToast("canNotUpload".tr);
-            if (file == fileList.last) {
-              uploadingMedia = false;
-              // notifyListeners();
-            }
-          } else {
-            debugPrint("FILES : "+fileList.toString());
-            // String? imageUrl = await storageService.uploadDocument(
-            //     File(file.path!), roomId!);
-            //
-            // await getUploadPath(file.name, "document").then((filePath) async {
-            //   await File(filePath!).create(recursive: true);
-            //   await File(filePath)
-            //       .writeAsBytes(await File(file.path!).readAsBytes())
-            //       .then((value) {
-            //     if (file == fileList.last) {
-            //       uploadingMedia = false;
-            //       notifyListeners();
-            //     }
-            //   });
-            //   return filePath;
-            // }
-            //
-            // );
-          }
-        });*/
 
+      final File fileForFirebase = File(file.path!);
+
+      uploadImage(file: fileForFirebase, path: "files/${file.name}");
     } else {
       // User canceled the picker
 
@@ -126,9 +104,25 @@ class JobDetailsUploadCvController extends GetxController {
     }
   }
 
-  double getFileSize(File file) {
-    int sizeInBytes = file.lengthSync();
-    double sizeInMb = sizeInBytes / (1024 * 1024);
-    return sizeInMb;
+  Future<String?> uploadImage({File? file, String? path}) async {
+    final firebaseStorage = FirebaseStorage.instance;
+
+    if (file != null) {
+      firebaseStorage.ref().child(path!).putFile(file).snapshot;
+    } else {
+      print('No Image Path Received');
+
+      return '';
+    }
   }
+
+/*void documentFileUpload(String str) {
+
+    var data = {
+      "PDF": str,
+    };
+    snapshot.child("Documents").child('pdf').set(data).then((v) {
+    });
+  }*/
+
 }
