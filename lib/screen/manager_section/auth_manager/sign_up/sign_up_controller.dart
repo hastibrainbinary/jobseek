@@ -35,7 +35,8 @@ class SignUpControllerM extends GetxController {
 
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
-  addDataInFirebase({required String userUid, required Map<String, dynamic> map}) async {
+  addDataInFirebase(
+      {required String userUid, required Map<String, dynamic> map}) async {
     await fireStore
         .collection("Auth")
         .doc("Manager")
@@ -53,20 +54,21 @@ class SignUpControllerM extends GetxController {
     }
   }
 
-
-  void onChanged(String value){
+  void onChanged(String value) {
     update(["dark"]);
   }
 
   singUp(email, password) async {
     try {
       loading.value = true;
-      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
       if (userCredential.user?.uid != null) {
-        PrefService.setValue(PrefKeys.userId, userCredential.user?.uid.toString());
+        PrefService.setValue(
+            PrefKeys.userId, userCredential.user?.uid.toString());
         PrefService.setValue(PrefKeys.rol, "Manager");
         PrefService.setValue(PrefKeys.totalPost, 0);
 
@@ -184,6 +186,7 @@ class SignUpControllerM extends GetxController {
       }
     }
   }
+
   changeDropdwon({required String val}) {
     dropDownValue = val;
     countryController.text = dropDownValue;
@@ -191,6 +194,7 @@ class SignUpControllerM extends GetxController {
     update(["dropdown"]);
     update(["dark"]);
   }
+
   String dropDownValue = 'India';
   var items1 = [
     'India',
@@ -198,8 +202,8 @@ class SignUpControllerM extends GetxController {
     'Europe',
     'china',
     'United Kingdom',
-    " Cuba",
-    "	Havana",
+    "Cuba",
+    "Havana",
     "Cyprus",
     "Nicosia",
     "Czech ",
@@ -360,13 +364,15 @@ class SignUpControllerM extends GetxController {
     if (await googleSignIn.isSignedIn()) {
       loading.value = true;
     }
-    final GoogleSignInAuthentication authentication = await account!.authentication;
+    final GoogleSignInAuthentication authentication =
+        await account!.authentication;
 
     final OAuthCredential credential = GoogleAuthProvider.credential(
       idToken: authentication.idToken,
       accessToken: authentication.accessToken,
     );
-    final UserCredential authResult = await auth.signInWithCredential(credential);
+    final UserCredential authResult =
+        await auth.signInWithCredential(credential);
     final User? user = authResult.user;
     if (kDebugMode) {
       print(user!.email);
@@ -378,7 +384,6 @@ class SignUpControllerM extends GetxController {
       print(user?.displayName);
     }
     if (user?.uid != null && user?.uid != "") {
-
       await fireStore
           .collection("Auth")
           .doc("User")
@@ -396,7 +401,8 @@ class SignUpControllerM extends GetxController {
             if (kDebugMode) {
               print("${value.docs[i]["Email"]}=||||||++++++++++");
             }
-            if (value.docs[i]["Email"] == user!.email && value.docs[i]["Email"] != "") {
+            if (value.docs[i]["Email"] == user!.email &&
+                value.docs[i]["Email"] != "") {
               isManager = true;
               if (kDebugMode) {
                 print("$isManager====]]]]]");
@@ -413,17 +419,17 @@ class SignUpControllerM extends GetxController {
           if (isManager == false) {
             String firstNm = user!.displayName.toString().split(" ").first;
             String lastNm = user.displayName.toString().split(" ").last;
-            Get.to(()=>GoogleSignupScreenM(
-              uid: user.uid.toString(),
-              email: user.email.toString(),
-              firstName: firstNm,
-              lastName: lastNm,
-            ),
+            Get.to(
+              () => GoogleSignupScreenM(
+                uid: user.uid.toString(),
+                email: user.email.toString(),
+                firstName: firstNm,
+                lastName: lastNm,
+              ),
             );
           } else {
             await googleSignIn.signOut();
-            Get.snackbar(
-                "Error", "This email is already registered",
+            Get.snackbar("Error", "This email is already registered",
                 colorText: const Color(0xffDA1414));
             loading.value = false;
           }
