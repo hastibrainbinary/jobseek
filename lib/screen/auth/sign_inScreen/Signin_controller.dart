@@ -45,7 +45,7 @@ class SignInScreenController extends GetxController {
       emailError = 'Please enter email';
     } else {
       if (RegExp(
-              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
           .hasMatch(emailController.text)) {
         emailError = '';
       } else {
@@ -107,6 +107,14 @@ class SignInScreenController extends GetxController {
             if (kDebugMode) {
               print("$isUser====]]]]]");
             }
+
+            PrefService.setValue(PrefKeys.fullName, value.docs[i]["fullName"]);
+            PrefService.setValue(PrefKeys.email, value.docs[i]["Email"]);
+            PrefService.setValue(PrefKeys.phoneNumber, value.docs[i]["Phone"]);
+            PrefService.setValue(PrefKeys.city, value.docs[i]["City"]);
+            PrefService.setValue(PrefKeys.state, value.docs[i]["State"]);
+            PrefService.setValue(PrefKeys.country, value.docs[i]["Country"]);
+            PrefService.setValue(PrefKeys.occupation, value.docs[i]["Occupation"]);
 
             break;
           } else {
@@ -224,7 +232,7 @@ class SignInScreenController extends GetxController {
       loading.value = true;
     }
     final GoogleSignInAuthentication authentication =
-        await account!.authentication;
+    await account!.authentication;
 
     final OAuthCredential credential = GoogleAuthProvider.credential(
       idToken: authentication.idToken,
@@ -232,7 +240,7 @@ class SignInScreenController extends GetxController {
     );
 
     final UserCredential authResult =
-        await auth.signInWithCredential(credential);
+    await auth.signInWithCredential(credential);
     final User? user = authResult.user;
     if (kDebugMode) {
       print(user!.email);
@@ -266,6 +274,7 @@ class SignInScreenController extends GetxController {
               isUser = true;
               PrefService.setValue(PrefKeys.rol, "User");
               PrefService.setValue(PrefKeys.accessToken, user.uid);
+
               Get.offAll(() => DashBoardScreen());
               loading.value == false;
               if (kDebugMode) {
@@ -317,7 +326,7 @@ class SignInScreenController extends GetxController {
         }
       });
       final OAuthCredential facebookAuthCredential =
-          FacebookAuthProvider.credential(
+      FacebookAuthProvider.credential(
         loginResult.accessToken!.token,
       );
       if (kDebugMode) {
