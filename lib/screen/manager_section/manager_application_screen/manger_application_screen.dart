@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/create_vacancies/create_vacancies_screen.dart';
 import 'package:jobseek/screen/manager_section/manager_application_screen/manager_application_screen_controller.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 
 class ManagerApplicationScreen extends StatelessWidget {
   final ManagerApplicationScreenController controller =
@@ -200,7 +202,7 @@ class ManagerApplicationScreen extends StatelessWidget {
                                           if (snapshot.data!.docs[index]
                                                   ["Status"] ==
                                               "Active") {
-                                            return InkWell(
+                                            return (PrefService.getString(PrefKeys.companyName) != snapshot.data!.docs[index]["CompanyName"])?SizedBox():InkWell(
                                               onTap: () {
                                                 Get.toNamed(
                                                     AppRes
@@ -381,7 +383,7 @@ class ManagerApplicationScreen extends StatelessWidget {
                                               if (snapshot.data!.docs[index]
                                                       ["Status"] ==
                                                   "Inactive") {
-                                                return InkWell(
+                                                return (PrefService.getString(PrefKeys.companyName) != snapshot.data!.docs[index]["CompanyName"])?SizedBox():InkWell(
                                                   onTap: () => Get.toNamed(
                                                       AppRes
                                                           .managerApplicationDetailScreen,
@@ -563,7 +565,7 @@ class ManagerApplicationScreen extends StatelessWidget {
                                                 snapshot.data.docs.length,
                                             shrinkWrap: true,
                                             itemBuilder: (context, index) {
-                                              return InkWell(
+                                              return (PrefService.getString(PrefKeys.companyName) != snapshot.data!.docs[index]["CompanyName"])?SizedBox():InkWell(
                                                 onTap: () => Get.toNamed(
                                                     AppRes
                                                         .managerApplicationDetailScreen,
