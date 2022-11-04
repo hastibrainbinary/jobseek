@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_controller.dart';
@@ -68,24 +67,24 @@ class JobDetailScreen extends StatelessWidget {
                                 alignment: Alignment.center,
                                 child: args["saved"] == true
                                     ? InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (con) =>
-                                                SaveJobScreen()));
-                                  },
-                                  child: Image.asset(
-                                    AssetRes.bookMarkFillIcon,
-                                    height: 20,
-                                    width: 20,
-                                  ),
-                                )
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (con) =>
+                                                      SaveJobScreen()));
+                                        },
+                                        child: Image.asset(
+                                          AssetRes.bookMarkFillIcon,
+                                          height: 20,
+                                          width: 20,
+                                        ),
+                                      )
                                     : Image.asset(
-                                  AssetRes.bookMarkBorderIcon,
-                                  height: 20,
-                                  width: 20,
-                                ),
+                                        AssetRes.bookMarkBorderIcon,
+                                        height: 20,
+                                        width: 20,
+                                      ),
                               ),
                             ),
                           ],
@@ -107,7 +106,6 @@ class JobDetailScreen extends StatelessWidget {
                   ),
                 ],
               )),
-
           SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -119,32 +117,27 @@ class JobDetailScreen extends StatelessWidget {
                 Container(
                   height: 92,
                   width: Get.width,
-                  margin: const EdgeInsets.symmetric(
-                      horizontal: 18, vertical: 4),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
                   padding: const EdgeInsets.all(15),
                   decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(
-                          Radius.circular(15)),
-                      border:
-                      Border.all(color: ColorRes.borderColor),
+                      borderRadius: const BorderRadius.all(Radius.circular(15)),
+                      border: Border.all(color: ColorRes.borderColor),
                       color: ColorRes.white),
                   child: Row(
                     children: [
                       Image.asset(AssetRes.airBnbLogo),
                       const SizedBox(width: 20),
                       Column(
-                        mainAxisAlignment:
-                        MainAxisAlignment.center,
-                        crossAxisAlignment:
-                        CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(args["doc"]["Position"],
                               style: appTextStyle(
                                   color: ColorRes.black,
                                   fontSize: 15,
                                   fontWeight: FontWeight.w500)),
-                          Text(
-                              args["doc"]["CompanyName"],
+                          Text(args["doc"]["CompanyName"],
                               style: appTextStyle(
                                   color: ColorRes.black,
                                   fontSize: 12,
@@ -156,29 +149,25 @@ class JobDetailScreen extends StatelessWidget {
                 ),
                 Container(
                   width: Get.width,
-                  margin: const EdgeInsets.symmetric(
-                      horizontal: 18, vertical: 5),
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 18, horizontal: 18),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 18, vertical: 5),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 18, horizontal: 18),
                   decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(
-                          Radius.circular(15)),
-                      border:
-                      Border.all(color: ColorRes.borderColor),
+                      borderRadius: const BorderRadius.all(Radius.circular(15)),
+                      border: Border.all(color: ColorRes.borderColor),
                       color: ColorRes.white),
                   child: Column(
                     children: [
                       Row(
-                        mainAxisAlignment:
-                        MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text("Salary",
                               style: appTextStyle(
                                   color: ColorRes.black,
                                   fontSize: 15,
                                   fontWeight: FontWeight.w500)),
-                          Text(
-                              "\$${args["doc"]["salary"]}",
+                          Text("\$${args["doc"]["salary"]}",
                               style: appTextStyle(
                                   color: ColorRes.containerColor,
                                   fontSize: 15,
@@ -187,8 +176,7 @@ class JobDetailScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       Row(
-                        mainAxisAlignment:
-                        MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text("Type",
                               style: appTextStyle(
@@ -204,8 +192,7 @@ class JobDetailScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       Row(
-                        mainAxisAlignment:
-                        MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text("Location",
                               style: appTextStyle(
@@ -224,8 +211,7 @@ class JobDetailScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 15),
                 Padding(
-                  padding:
-                  const EdgeInsets.only(left: 20, right: 20),
+                  padding: const EdgeInsets.only(left: 20, right: 20),
                   child: Text(
                     Strings.requirements,
                     style: appTextStyle(color: ColorRes.black),
@@ -236,28 +222,23 @@ class JobDetailScreen extends StatelessWidget {
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: args["doc"]["RequirementsList"].length,
                     itemBuilder: (context, index) {
-                      return detailBox(args["doc"]
-                      ["RequirementsList"][index]);
+                      return detailBox(args["doc"]["RequirementsList"][index]);
                     }),
                 GestureDetector(
                   onTap: () {
-                    Get.toNamed(AppRes.jobDetailUploadCvScreen,
-                        arguments: {
-                          "doc": args["doc"],
-                        }
-                    );
+                    Get.toNamed(AppRes.jobDetailUploadCvScreen, arguments: {
+                      "doc": args["doc"],
+                    });
                   },
                   child: Container(
                     height: 50,
                     width: Get.width,
                     alignment: Alignment.center,
-                    padding:
-                    const EdgeInsets.symmetric(vertical: 12),
+                    padding: const EdgeInsets.symmetric(vertical: 12),
                     margin: const EdgeInsets.only(
                         right: 18, left: 18, top: 10, bottom: 30),
                     decoration: const BoxDecoration(
-                      borderRadius:
-                      BorderRadius.all(Radius.circular(10)),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
                       gradient: LinearGradient(colors: [
                         ColorRes.gradientColor,
                         ColorRes.containerColor,
@@ -265,14 +246,12 @@ class JobDetailScreen extends StatelessWidget {
                     ),
                     child: Text(Strings.applyNow,
                         style: appTextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500)),
+                            fontSize: 18, fontWeight: FontWeight.w500)),
                   ),
                 ),
               ],
             ),
           ),
-
         ],
       ),
     );
