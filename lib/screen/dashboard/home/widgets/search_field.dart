@@ -7,10 +7,16 @@ import 'package:jobseek/screen/job_recommendation_screen/job_recommendation_cont
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/color_res.dart';
 
+
+
+
+
+
 Widget searchArea() {
   final HomeController controller = HomeController();
   final jrController = Get.put(JobRecommendationController());
   return Padding(
+
     padding: const EdgeInsets.symmetric(horizontal: 18),
     child: Row(
       children: [
@@ -22,7 +28,10 @@ Widget searchArea() {
             child: TextField(
               controller: controller.searchController,
               onChanged: (value) {
+
                 jrController.searchText.value = value;
+                jrController.update(["search"]);
+
               },
               /*onChanged: (val){
                 jrController.allJob = FirebaseFirestore.instance.collection("allPost").where(val , isGreaterThanOrEqualTo: "Position"

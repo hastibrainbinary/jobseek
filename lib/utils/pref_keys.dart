@@ -17,6 +17,12 @@ class PrefKeys {
   static const lasttName = "lstName";
   static const jobPosition = "jobPosition";
   static const profilePhoto = "profilePhoto";
+  static const city = "city";
+  static const state = "state";
+  static const country = "country";
+  static const positionList = "";
+  static const fullName = "fullName";
+  static const occupation = "Occupation";
 
   ///logout
   static const email = "Email";
