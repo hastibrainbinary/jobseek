@@ -534,7 +534,11 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                             child: Text("Next",
                                                 style: appTextStyle(
                                                     fontSize: 18,
+
+
                                                     fontWeight: FontWeight.w500,
+
+
                                                     color: ColorRes.white)),
                                           ),
                                         );

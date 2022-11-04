@@ -1,13 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/manager_section/Recent%20People%20Application/recent_Application_screen.dart';
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_controller.dart';
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_widget/manager_home_screen_widget.dart';
 import 'package:jobseek/screen/manager_section/notification1/notification1_screen.dart';
-import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
-import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
 class ManagerHomeScreen extends StatelessWidget {
@@ -16,7 +13,6 @@ class ManagerHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
       children: [
         const SizedBox(
@@ -105,7 +101,7 @@ class ManagerHomeScreen extends StatelessWidget {
         // const SizedBox(
         //   height: 20,
         // ),
-       /* Padding(
+        /* Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -371,18 +367,17 @@ class ManagerHomeScreen extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(
-          height: 20,
-        ),
+        // const SizedBox(
+        //   height: 20,
+        // ),
         GetBuilder<ManagerHomeScreenController>(
-          id:"userdata",
-          builder: (contro) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: recentPeopleBox(),
-            );
-          }
-        )
+            id: "userdata",
+            builder: (contro) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: recentPeopleBox(),
+              );
+            })
       ],
     );
   }

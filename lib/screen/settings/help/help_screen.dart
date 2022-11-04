@@ -92,7 +92,7 @@ class HelpScreenU extends StatelessWidget {
                           fontSize: 14,
                           color: ColorRes.black),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     // SizedBox(width: Get.width - 185),
                     const Image(
                       image: AssetImage(AssetRes.settingaArrow),

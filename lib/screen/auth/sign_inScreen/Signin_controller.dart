@@ -182,7 +182,6 @@ class SignInScreenController extends GetxController {
         print("GO TO HOME PAGE");
       }
     }
-
   }
 
   bool show = true;

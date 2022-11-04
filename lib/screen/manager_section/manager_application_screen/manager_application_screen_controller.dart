@@ -5,6 +5,7 @@ class ManagerApplicationScreenController extends GetxController
     implements GetxService {
   TextEditingController searchController = TextEditingController();
   RxString searchText = ''.obs;
+  bool isData=false;
 
 
   RxInt selectedJobs2 = 0.obs;

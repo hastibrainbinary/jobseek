@@ -1,14 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
-
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_controller.dart';
-
-
-import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
-import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_controller.dart';
-
-
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_widget/manager_home_screen_widget.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
@@ -47,24 +40,22 @@ class RecentApplicationScreen extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 5),
-        //  searchArea(),
-        //   const SizedBox(height: 12),
+          // const SizedBox(height: 5),
+          //  searchArea(),
+          //   const SizedBox(height: 12),
           GetBuilder<ManagerHomeScreenController>(
-            id: "userDataSeeAll",
-            builder: (con) {
-              return Expanded(
-                child:  Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 10),
-                        child: InkWell(
-                            onTap: () => Get.toNamed(AppRes.applicantsDetails),
-                            child: recentPeopleBox()),
-                      ),
-              );
-            }
-          ),
-
+              id: "userDataSeeAll",
+              builder: (con) {
+                return Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    child: InkWell(
+                        onTap: () => Get.toNamed(AppRes.applicantsDetails),
+                        child: recentPeopleBox()),
+                  ),
+                );
+              }),
         ],
       ),
     );

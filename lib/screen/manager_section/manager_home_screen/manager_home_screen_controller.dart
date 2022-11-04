@@ -13,7 +13,7 @@ class ManagerHomeScreenController extends GetxController implements GetxService{
     super.onInit();
   }
   getCompanyName()async{
-    companyNAme = await PrefService.getString(PrefKeys.companyName);
+    companyNAme =  PrefService.getString(PrefKeys.companyName);
   }
 
 

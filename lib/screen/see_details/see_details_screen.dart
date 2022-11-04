@@ -253,7 +253,7 @@ class SeeDetailsScreen extends StatelessWidget {
                             border: Border.all(color: ColorRes.containerColor)),
                         child: Text(
                           args['Phone'],
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
                               fontSize: 16),
@@ -303,7 +303,7 @@ class SeeDetailsScreen extends StatelessWidget {
                       const SizedBox(height: 10),
                       Container(
                         alignment: Alignment.centerLeft,
-                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
                         height: 51,
                         width: 339,
                         decoration: BoxDecoration(
@@ -311,7 +311,9 @@ class SeeDetailsScreen extends StatelessWidget {
                             border: Border.all(color: ColorRes.containerColor)),
                         child: Text(
                           args['City'],
-                          style: TextStyle(
+                          style:
+
+                          const TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
                               fontSize: 16),
@@ -342,7 +344,7 @@ class SeeDetailsScreen extends StatelessWidget {
                       const SizedBox(height: 10),
                       Container(
                         alignment: Alignment.centerLeft,
-                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
                         height: 51,
                         width: 339,
                         decoration: BoxDecoration(
@@ -350,7 +352,7 @@ class SeeDetailsScreen extends StatelessWidget {
                             border: Border.all(color: ColorRes.containerColor)),
                         child: Text(
                           args['State'],
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
                               fontSize: 16),
@@ -381,7 +383,7 @@ class SeeDetailsScreen extends StatelessWidget {
                       const SizedBox(height: 10),
                       Container(
                         alignment: Alignment.centerLeft,
-                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
                         height: 51,
                         width: 339,
                         decoration: BoxDecoration(
@@ -389,7 +391,8 @@ class SeeDetailsScreen extends StatelessWidget {
                             border: Border.all(color: ColorRes.containerColor)),
                         child: Text(
                           args['Country'],
-                          style: TextStyle(
+                          style:
+                          const TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
                               fontSize: 16),
