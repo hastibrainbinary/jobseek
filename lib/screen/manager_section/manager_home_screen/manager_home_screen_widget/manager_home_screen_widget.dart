@@ -12,7 +12,7 @@ import 'package:jobseek/utils/color_res.dart';
  Widget recentPeopleBox() {
    final contro = Get.put(ManagerHomeScreenController());
   return SizedBox(
-        height: 200,
+        height: 400,
         child: ListView.builder(
           itemCount: contro.userData.length,
           itemBuilder: (context,i) {

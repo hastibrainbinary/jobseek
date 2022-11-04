@@ -105,7 +105,7 @@ class ManagerHomeScreen extends StatelessWidget {
         // const SizedBox(
         //   height: 20,
         // ),
-        Padding(
+       /* Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -340,7 +340,7 @@ class ManagerHomeScreen extends StatelessWidget {
             }),
         const SizedBox(
           height: 20,
-        ),
+        ),*/
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Row(
