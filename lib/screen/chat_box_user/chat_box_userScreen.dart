@@ -127,19 +127,24 @@ class ChatBoxUserScreen extends StatelessWidget {
               return ListView.builder(
                   itemCount: snapshot.data!.docs.length,
                   itemBuilder: (context, index){
-                    return Container(
-                      height: 92,
-                      width: Get.width,
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 18, vertical: 4),
-                      padding: const EdgeInsets.all(15),
-                      decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(
-                              Radius.circular(15)),
-                          border: Border.all(
-                              color: const Color(0xffF3ECFF)),
-                          color: ColorRes.white),
-                      child: Text(snapshot.data!.docs[index]['Email']),
+                    return InkWell(
+                      onTap: (){
+                        Get.to(ChatLiveScreen());
+                      },
+                      child: Container(
+                        height: 92,
+                        width: Get.width,
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 18, vertical: 4),
+                        padding: const EdgeInsets.all(15),
+                        decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.all(
+                                Radius.circular(15)),
+                            border: Border.all(
+                                color: const Color(0xffF3ECFF)),
+                            color: ColorRes.white),
+                        child: Text(snapshot.data!.docs[index]['Email']),
+                      ),
                     );
                   });
             },
