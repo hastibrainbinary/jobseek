@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/screen/chat_box_user/chat_box_userScreen.dart';
+import 'package:jobseek/screen/manager_section/call/video_joinig_Screen.dart';
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_controller.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
@@ -64,36 +66,53 @@ Widget recentPeopleBox() {
                     ),
                     Row(
                       children: [
-                        Container(
-                          height: 40,
-                          width: 40,
-                          decoration: BoxDecoration(
-                              color: ColorRes.logoColor,
-                              borderRadius: BorderRadius.circular(8)),
-                          child: const GradientIcon(
-                              Icons.chat,
-                              20,
-                              LinearGradient(colors: [
-                                Color(0xFFBE9DFF),
-                                Color(0xFF8B4EFF),
-                              ])),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (con) => ChatBoxUserScreen()));
+                          },
+                          child: Container(
+                            height: 40,
+                            width: 40,
+                            decoration: BoxDecoration(
+                                color: ColorRes.logoColor,
+                                borderRadius: BorderRadius.circular(8)),
+                            child: const GradientIcon(
+                                Icons.chat,
+                                20,
+                                LinearGradient(colors: [
+                                  Color(0xFFBE9DFF),
+                                  Color(0xFF8B4EFF),
+                                ])),
+                          ),
                         ),
                         const SizedBox(
                           width: 10,
                         ),
-                        Container(
-                          height: 40,
-                          width: 40,
-                          decoration: BoxDecoration(
-                              color: ColorRes.logoColor,
-                              borderRadius: BorderRadius.circular(8)),
-                          child: const GradientIcon(
-                              Icons.videocam_sharp,
-                              20,
-                              LinearGradient(colors: [
-                                Color(0xFFBE9DFF),
-                                Color(0xFF8B4EFF),
-                              ])),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (con) =>
+                                        const VideoJoiningScreen()));
+                          },
+                          child: Container(
+                            height: 40,
+                            width: 40,
+                            decoration: BoxDecoration(
+                                color: ColorRes.logoColor,
+                                borderRadius: BorderRadius.circular(8)),
+                            child: const GradientIcon(
+                                Icons.videocam_sharp,
+                                20,
+                                LinearGradient(colors: [
+                                  Color(0xFFBE9DFF),
+                                  Color(0xFF8B4EFF),
+                                ])),
+                          ),
                         ),
                       ],
                     )
