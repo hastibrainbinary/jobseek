@@ -80,7 +80,7 @@ class ManagerHomeScreen extends StatelessWidget {
                       ),
                       Text(
                         overflow: TextOverflow.ellipsis,
-                        controller.companyNAme ?? "",
+                        controller.companyName ?? "",
                         maxLines: 2,
                         style: appTextStyle(
                             color: ColorRes.containerColor,

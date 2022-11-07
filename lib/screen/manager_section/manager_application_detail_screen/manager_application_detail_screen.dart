@@ -177,8 +177,8 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
             SizedBox(
               height: Get.height * 0.6,
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 20, vertical: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: InkWell(
                     onTap: () => Get.toNamed(AppRes.applicantsDetails),
                     child: recentPeopleBox()),
