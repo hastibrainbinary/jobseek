@@ -25,6 +25,7 @@ class JobDetailsUploadCvController extends GetxController {
         .set({
       //'position': PrefService.getList(PrefKeys.positionList),
       'apply': true,
+      'companyName': args['CompanyName'],
       'userName': PrefService.getString(PrefKeys.fullName),
       'email': PrefService.getString(PrefKeys.email),
       'phone': PrefService.getString(PrefKeys.phoneNumber),

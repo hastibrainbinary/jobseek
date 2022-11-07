@@ -37,7 +37,7 @@ Widget homeAppBar() {
                           fontWeight: FontWeight.w600,
                           color: ColorRes.black)),
                   TextSpan(
-                    text: PrefService.getString(PrefKeys.firstnameu).toString(),
+                    text: PrefService.getString(PrefKeys.fullName).toString(),
                     style: appTextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,

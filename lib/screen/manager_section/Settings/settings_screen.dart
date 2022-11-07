@@ -364,6 +364,7 @@ class SettingScreenM extends StatelessWidget {
                         }
                         await FirebaseAuth.instance.signOut();
                         PrefService.clear();
+
                         // ignore: use_build_context_synchronously
                         Navigator.of(context).pushAndRemoveUntil(
                             MaterialPageRoute(
