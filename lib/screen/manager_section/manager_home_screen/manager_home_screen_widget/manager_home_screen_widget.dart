@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_controller.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 
 Widget recentPeopleBox() {
   final contro = Get.put(ManagerHomeScreenController());
@@ -13,7 +15,8 @@ Widget recentPeopleBox() {
     child: ListView.builder(
         itemCount: contro.userData.length,
         itemBuilder: (context, i) {
-          return Column(
+          return (contro.userData[i]['companyName'] == PrefService.getString(PrefKeys.companyName).toString().toLowerCase())
+              ? Column(
             children: [
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
@@ -163,7 +166,8 @@ Widget recentPeopleBox() {
               ),
               SizedBox(height: 10,),
             ],
-          );
+          ):
+          SizedBox();
         }),
   );
 }
