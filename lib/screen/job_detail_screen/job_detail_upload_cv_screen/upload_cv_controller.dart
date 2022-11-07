@@ -1,15 +1,12 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-
 import '../../../utils/pref_keys.dart';
 
 FirebaseFirestore firestore = FirebaseFirestore.instance;
