@@ -23,6 +23,7 @@ class SignInScreenControllerM extends GetxController {
       {required String email, required String password}) async {
 
     loading.value = true;
+
     await fireStore
         .collection("Auth")
         .doc("Manager")
@@ -44,7 +45,22 @@ class SignInScreenControllerM extends GetxController {
             PrefService.setValue(PrefKeys.rol, "Manager");
             PrefService.setValue(PrefKeys.totalPost, value.docs[i]["TotalPost"]);
             PrefService.setValue(PrefKeys.company, value.docs[i]["company"]);
-            PrefService.getString (PrefKeys.companyName);
+            PrefService.setValue(PrefKeys.userId, value.docs[i].id);
+
+            await fireStore
+                .collection("Auth")
+                .doc("Manager")
+                .collection("register")
+                .doc(value.docs[i].id)
+                .collection("company")
+               .get()
+                .then((value) {
+              PrefService.setValue(PrefKeys.companyName, value.docs[0]['name']);
+
+            });
+
+            //PrefService.setValue(PrefKeys.companyName, value.docs[i].);
+
             if (kDebugMode) {
               print("$isManager====]]]]]");
             }

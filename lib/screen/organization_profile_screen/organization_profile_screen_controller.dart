@@ -75,7 +75,9 @@ class OrganizationProfileScreenController extends GetxController
             PrefService.setValue(PrefKeys.companyName,companyNameController.text.toString());
         Get.off(ManagerDashBoardScreen());
       });
+
     }
+    PrefService.setValue(PrefKeys.companyName,companyNameController.text.toString());
   }
 
   validate() {
