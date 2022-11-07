@@ -173,7 +173,7 @@ class SeeDetailsScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(color: ColorRes.containerColor)),
                         child: Text(
-                          args['fullName'],
+                          args['userName'],
                           style: const TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
@@ -213,7 +213,7 @@ class SeeDetailsScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(color: ColorRes.containerColor)),
                         child: Text(
-                          args['Email'],
+                          args['email'],
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
@@ -252,7 +252,7 @@ class SeeDetailsScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(color: ColorRes.containerColor)),
                         child: Text(
-                          args['Phone'],
+                          args['phone'],
                           style: const TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
@@ -310,7 +310,7 @@ class SeeDetailsScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(color: ColorRes.containerColor)),
                         child: Text(
-                          args['City'],
+                          args['city'],
                           style:
 
                           const TextStyle(
@@ -351,7 +351,7 @@ class SeeDetailsScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(color: ColorRes.containerColor)),
                         child: Text(
-                          args['State'],
+                          args['state'],
                           style: const TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
@@ -390,7 +390,7 @@ class SeeDetailsScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(color: ColorRes.containerColor)),
                         child: Text(
-                          args['Country'],
+                          args['country'],
                           style:
                           const TextStyle(
                               color: Colors.black,
@@ -453,7 +453,7 @@ class SeeDetailsScreen extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              SizedBox(
+             /* SizedBox(
                 height: MediaQuery.of(context).viewInsets.bottom > 0
                     ? Get.height * 0.4
                     : Get.height * 0.65,
@@ -694,7 +694,7 @@ class SeeDetailsScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-              )
+              )*/
             ],
           ),
         ),

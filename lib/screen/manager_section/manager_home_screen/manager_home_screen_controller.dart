@@ -18,10 +18,7 @@ class ManagerHomeScreenController extends GetxController implements GetxService{
 
 
   getUserData()async{
-  var data = await  FirebaseFirestore.instance.collection("Auth")
-        .doc("User")
-        .collection("register")
-        .get();
+  var data = await  FirebaseFirestore.instance.collection("Apply").get();
   userData = data.docs;
   update(['userdata']);
   update(['userDataSeeAll']);
