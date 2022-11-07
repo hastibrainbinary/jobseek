@@ -45,7 +45,7 @@ Widget recentPeopleBox() {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "${contro.userData[i]['fullName']}",
+                              "${contro.userData[i]['userName']}",
                               style: appTextStyle(
                                   color: ColorRes.black,
                                   fontSize: 14,
