@@ -19,7 +19,7 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint("Args Print $args");
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18),
@@ -54,12 +54,12 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("UI/UX Designer",
+                              Text(args[0]['doc']['Position'],
                                   style: appTextStyle(
                                       color: ColorRes.black,
                                       fontSize: 15,
                                       fontWeight: FontWeight.w500)),
-                              Text("AirBNB",
+                              Text(args[0]['doc']['CompanyName'],
                                   style: appTextStyle(
                                       color: ColorRes.black,
                                       fontSize: 12,
@@ -93,7 +93,7 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                               SizedBox(
                                 width: Get.width * 0.6,
                                 child: Text(
-                                    args[0]['filename']
+                                    args[1]['filename']
 
                                         .value /*"Resume - Adam Smith.pdf"*/,
                                     style: appTextStyle(
@@ -114,12 +114,12 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
                     Image.asset(
-                        args[0]["error"] == false
+                        args[1]["error"] == false
                             ? AssetRes.successImage
                             : AssetRes.failedImage,
                         height: 130),
                     const SizedBox(height: 10),
-                    args[0]["error"] == false
+                    args[1]["error"] == false
                         ? Text(Strings.successful,
                         style: appTextStyle(
                             fontSize: 20,
@@ -132,7 +132,7 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                             color: ColorRes.red)),
                     const SizedBox(height: 5),
                     Text(
-                        args[0]["error"] == false
+                        args[1]["error"] == false
                             ? Strings.youHaveSuccessfullyApplied
                             : Strings.pleaseMakeSureThatYourInternet,
                         style: appTextStyle(
@@ -143,7 +143,7 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                     const SizedBox(height: 30),
                     GestureDetector(
                       onTap: () {
-                        if (args[0]["error"] == false) {
+                        if (args[1]["error"] == false) {
                           ///see applied job list tap event
                           Navigator.push(
                               context,
@@ -168,7 +168,7 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                           ]),
                         ),
                         child: Text(
-                            args[0]["error"] == false
+                            args[1]["error"] == false
                                 ? Strings.seeAppliedJobsList
                                 : Strings.tryAgain,
                             style: appTextStyle(
@@ -177,7 +177,7 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        if (args[0]["error"] == false) {
+                        if (args[1]["error"] == false) {
                           ///discover more jobs
                           Get.offAll(() => DashBoardScreen());
                         } else {
@@ -197,7 +197,7 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                           border: Border.all(color: ColorRes.containerColor),
                         ),
                         child: Text(
-                            args[0]["error"] == false
+                            args[1]["error"] == false
                                 ? Strings.discoverMoreJobs
                                 : Strings.discoverMoreJobs,
                             style: appTextStyle(

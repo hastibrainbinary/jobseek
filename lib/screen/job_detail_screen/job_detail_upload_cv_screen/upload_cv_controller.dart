@@ -13,11 +13,11 @@ FirebaseFirestore firestore = FirebaseFirestore.instance;
 //List<String> position = [];
 
 class JobDetailsUploadCvController extends GetxController {
+
+  String? pdfUrl;
+
   onTapApply({var args}) {
 
-    //position.add(args["Position"]);
-
-    //PrefService.setValue(PrefKeys.positionList, position);
 
     firestore
         .collection("Apply")
@@ -34,12 +34,13 @@ class JobDetailsUploadCvController extends GetxController {
       'country': PrefService.getString(PrefKeys.country),
       'Occupation': PrefService.getString(PrefKeys.occupation),
       'uid': FirebaseAuth.instance.currentUser!.uid,
+      'resumeUrl': pdfUrl,
     });
 
     Get.toNamed(AppRes.jobDetailSuccessOrFailed,
         arguments: [
+          {"doc": args},
           {"error": false, "filename": filepath},
-
         ]);
   }
 
@@ -106,7 +107,16 @@ class JobDetailsUploadCvController extends GetxController {
     final firebaseStorage = FirebaseStorage.instance;
 
     if (file != null) {
+
       firebaseStorage.ref().child(path!).putFile(file).snapshot;
+
+      dynamic storageRef = FirebaseStorage.instance.ref().child(path).getDownloadURL();
+
+      storageRef.then((result) {
+        pdfUrl = result;
+        print("result is $result");
+      });
+
     } else {
       print('No Image Path Received');
 
