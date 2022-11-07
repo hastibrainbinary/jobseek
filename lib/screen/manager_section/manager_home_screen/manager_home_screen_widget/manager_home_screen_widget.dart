@@ -15,14 +15,10 @@ Widget recentPeopleBox() {
     child: ListView.builder(
         itemCount: contro.userData.length,
         itemBuilder: (context, i) {
-
           return (contro.userData[i]['companyName'].toString().toLowerCase() ==
                   PrefService.getString(PrefKeys.companyName)
                       .toString()
                       .toLowerCase())
-
-          return (contro.userData[i]['companyName'].toString().toLowerCase() == PrefService.getString(PrefKeys.companyName).toString().toLowerCase())
-
               ? Column(
                   children: [
                     Container(
