@@ -44,6 +44,7 @@ class SignInScreenControllerM extends GetxController {
             PrefService.setValue(PrefKeys.rol, "Manager");
             PrefService.setValue(PrefKeys.totalPost, value.docs[i]["TotalPost"]);
             PrefService.setValue(PrefKeys.company, value.docs[i]["company"]);
+            PrefService.getString (PrefKeys.companyName);
             if (kDebugMode) {
               print("$isManager====]]]]]");
             }
