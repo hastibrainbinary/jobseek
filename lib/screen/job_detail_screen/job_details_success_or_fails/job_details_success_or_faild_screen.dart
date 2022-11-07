@@ -11,14 +11,15 @@ import 'package:jobseek/utils/string.dart';
 
 // ignore: must_be_immutable
 class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
+
   JobDetailsSuccessOrFailedScreen({Key? key}) : super(key: key);
   var args = Get.arguments;
   final JobDetailsUploadCvController controller =
-      JobDetailsUploadCvController();
+  JobDetailsUploadCvController();
 
   @override
   Widget build(BuildContext context) {
-    debugPrint("Args Print $args");
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18),
@@ -42,7 +43,7 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(15),
                       decoration: BoxDecoration(
                           borderRadius:
-                              const BorderRadius.all(Radius.circular(15)),
+                          const BorderRadius.all(Radius.circular(15)),
                           border: Border.all(color: const Color(0xffF3ECFF)),
                           color: ColorRes.white),
                       child: Row(
@@ -53,12 +54,12 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("UI/UX Designer",
+                              Text(args[0]['doc']['Position'],
                                   style: appTextStyle(
                                       color: ColorRes.black,
                                       fontSize: 15,
                                       fontWeight: FontWeight.w500)),
-                              Text("AirBNB",
+                              Text(args[0]['doc']['CompanyName'],
                                   style: appTextStyle(
                                       color: ColorRes.black,
                                       fontSize: 12,
@@ -77,7 +78,7 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: const Color(0xffEEEBF4),
                         borderRadius:
-                            const BorderRadius.all(Radius.circular(15)),
+                        const BorderRadius.all(Radius.circular(15)),
                         border: Border.all(color: ColorRes.borderColor),
                       ),
                       child: Row(
@@ -92,7 +93,8 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                               SizedBox(
                                 width: Get.width * 0.6,
                                 child: Text(
-                                    args[0]['filename']
+                                    args[1]['filename']
+
                                         .value /*"Resume - Adam Smith.pdf"*/,
                                     style: appTextStyle(
                                         fontSize: 13,
@@ -112,25 +114,25 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
                     Image.asset(
-                        args[0]["error"] == false
+                        args[1]["error"] == false
                             ? AssetRes.successImage
                             : AssetRes.failedImage,
                         height: 130),
                     const SizedBox(height: 10),
-                    args[0]["error"] == false
+                    args[1]["error"] == false
                         ? Text(Strings.successful,
-                            style: appTextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: ColorRes.containerColor))
+                        style: appTextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                            color: ColorRes.containerColor))
                         : Text(Strings.failed,
-                            style: appTextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: ColorRes.red)),
+                        style: appTextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                            color: ColorRes.red)),
                     const SizedBox(height: 5),
                     Text(
-                        args[0]["error"] == false
+                        args[1]["error"] == false
                             ? Strings.youHaveSuccessfullyApplied
                             : Strings.pleaseMakeSureThatYourInternet,
                         style: appTextStyle(
@@ -141,7 +143,7 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                     const SizedBox(height: 30),
                     GestureDetector(
                       onTap: () {
-                        if (args[0]["error"] == false) {
+                        if (args[1]["error"] == false) {
                           ///see applied job list tap event
                           Navigator.push(
                               context,
@@ -166,7 +168,7 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                           ]),
                         ),
                         child: Text(
-                            args[0]["error"] == false
+                            args[1]["error"] == false
                                 ? Strings.seeAppliedJobsList
                                 : Strings.tryAgain,
                             style: appTextStyle(
@@ -175,7 +177,7 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        if (args[0]["error"] == false) {
+                        if (args[1]["error"] == false) {
                           ///discover more jobs
                           Get.offAll(() => DashBoardScreen());
                         } else {
@@ -191,11 +193,11 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                         margin: const EdgeInsets.only(top: 10, bottom: 30),
                         decoration: BoxDecoration(
                           borderRadius:
-                              const BorderRadius.all(Radius.circular(10)),
+                          const BorderRadius.all(Radius.circular(10)),
                           border: Border.all(color: ColorRes.containerColor),
                         ),
                         child: Text(
-                            args[0]["error"] == false
+                            args[1]["error"] == false
                                 ? Strings.discoverMoreJobs
                                 : Strings.discoverMoreJobs,
                             style: appTextStyle(
