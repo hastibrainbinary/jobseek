@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
@@ -114,6 +115,57 @@ class ChatBoxScreen extends StatelessWidget {
               }),
         ),
         Expanded(
+          child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+            stream: FirebaseFirestore.instance
+                .collection("Auth")
+                .doc("User")
+                .collection("register")
+                .snapshots(),
+            builder: (context, snapshot) {
+              if (snapshot.data == null || snapshot.hasData == false) {
+                return const SizedBox();
+              }
+              return ListView.builder(
+                  itemCount: snapshot.data!.docs.length,
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () async{
+
+
+
+
+                        controller.gotoChatScreen(
+                            context,
+                            snapshot.data!.docs[index].id,
+                            snapshot.data!.docs[index]['Email']);
+
+
+                      },
+                      child: Container(
+                        height: 92,
+                        width: Get.width,
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 18, vertical: 4),
+                        padding: const EdgeInsets.all(15),
+                        decoration: BoxDecoration(
+                            borderRadius:
+                            const BorderRadius.all(Radius.circular(15)),
+                            border: Border.all(color: const Color(0xffF3ECFF)),
+                            color: ColorRes.white),
+                        child: Text(snapshot.data!.docs[index]['fullName']),
+                      ),
+                    );
+                  });
+            },
+          ),
+        ),
+      ]),
+    );
+  }
+}
+
+/*
+ Expanded(
           child: ListView.builder(
             padding: const EdgeInsets.all(0),
             itemCount: controller.jobs2.length,
@@ -388,7 +440,4 @@ class ChatBoxScreen extends StatelessWidget {
             },
           ),
         ),
-      ]),
-    );
-  }
-}
+ */

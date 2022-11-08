@@ -55,7 +55,7 @@ class SignInScreenControllerM extends GetxController {
                 .collection("company")
                .get()
                 .then((value) {
-              PrefService.setValue(PrefKeys.companyName, value.docs[0]['name']);
+              PrefService.setValue(PrefKeys.companyName, value.docs[i]['name']);
 
             });
 

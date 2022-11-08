@@ -242,7 +242,7 @@ class ChatLiveScreen extends StatelessWidget {
                                   // Text(controller.data['time'].toString(),style: sfProTextReguler(fontSize: 12,color:ColorRes.colorF0F0F0 ),),
 
                                   const SizedBox(
-                                    width: 12,
+                                    width: 20,
                                   ),
                                   Container(
                                     padding: const EdgeInsets.all(10),
@@ -258,8 +258,8 @@ class ChatLiveScreen extends StatelessWidget {
                                           Color(0xFFBF9EFF),
                                           Color(0xFF8B4EFF),
                                         ]):const LinearGradient(colors: [
-                                          Color(0xFFffffff),
-                                          Color(0xFFffffff),
+                                          Color(0xFFEEEBF4),
+                                          Color(0xFFEEEBF4),
                                         ])
                                         /* color: data['senderUid']
                                       .toString() ==
