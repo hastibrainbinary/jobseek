@@ -11,15 +11,13 @@ import 'package:jobseek/utils/string.dart';
 
 // ignore: must_be_immutable
 class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
-
   JobDetailsSuccessOrFailedScreen({Key? key}) : super(key: key);
   var args = Get.arguments;
   final JobDetailsUploadCvController controller =
-  JobDetailsUploadCvController();
+      JobDetailsUploadCvController();
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18),
@@ -43,7 +41,7 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(15),
                       decoration: BoxDecoration(
                           borderRadius:
-                          const BorderRadius.all(Radius.circular(15)),
+                              const BorderRadius.all(Radius.circular(15)),
                           border: Border.all(color: const Color(0xffF3ECFF)),
                           color: ColorRes.white),
                       child: Row(
@@ -71,14 +69,13 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 15),
                     Container(
-                      //height: 82,
                       width: Get.width,
                       margin: const EdgeInsets.only(top: 10),
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       decoration: BoxDecoration(
                         color: const Color(0xffEEEBF4),
                         borderRadius:
-                        const BorderRadius.all(Radius.circular(15)),
+                            const BorderRadius.all(Radius.circular(15)),
                         border: Border.all(color: ColorRes.borderColor),
                       ),
                       child: Row(
@@ -94,7 +91,6 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                                 width: Get.width * 0.6,
                                 child: Text(
                                     args[1]['filename']
-
                                         .value /*"Resume - Adam Smith.pdf"*/,
                                     style: appTextStyle(
                                         fontSize: 13,
@@ -120,16 +116,18 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                         height: 130),
                     const SizedBox(height: 10),
                     args[1]["error"] == false
-                        ? Text(Strings.successful,
-                        style: appTextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                            color: ColorRes.containerColor))
+                        ? Text(
+                            Strings.successful,
+                            style: appTextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600,
+                                color: ColorRes.containerColor),
+                          )
                         : Text(Strings.failed,
-                        style: appTextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                            color: ColorRes.red)),
+                            style: appTextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600,
+                                color: ColorRes.red)),
                     const SizedBox(height: 5),
                     Text(
                         args[1]["error"] == false
@@ -193,7 +191,7 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                         margin: const EdgeInsets.only(top: 10, bottom: 30),
                         decoration: BoxDecoration(
                           borderRadius:
-                          const BorderRadius.all(Radius.circular(10)),
+                              const BorderRadius.all(Radius.circular(10)),
                           border: Border.all(color: ColorRes.containerColor),
                         ),
                         child: Text(

@@ -72,7 +72,7 @@ class DashBoardScreen extends StatelessWidget {
                   /// application
                   SalomonBottomBarItem(
                     icon: Image.asset(
-                      AssetRes.application,
+                      AssetRes.applicationIcon,
                       height: 16,
                       width: 16,
                       color: controller.currentTab == 1

@@ -444,7 +444,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                                 // dashboard write
                                 onTap: () {
                                   if (kDebugMode) {
-                                    print("=a4fyj66enum j");
+                                    print("a4fyj66enum j");
                                   }
                                   controller.onLoginBtnTap();
                                 },

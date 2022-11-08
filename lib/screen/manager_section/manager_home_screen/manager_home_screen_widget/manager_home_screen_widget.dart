@@ -12,11 +12,13 @@ Widget recentPeopleBox() {
   final contro = Get.put(ManagerHomeScreenController());
   return SingleChildScrollView(
     child: SizedBox(
-      height: Get.height/1.42,
+      height: Get.height / 1.42,
       child: ListView.builder(
           itemCount: contro.userData.length,
           itemBuilder: (context, i) {
-            return (contro.userData[i]['companyName'].toString().toLowerCase() ==
+            return (contro.userData[i]['companyName']
+                        .toString()
+                        .toLowerCase() ==
                     PrefService.getString(PrefKeys.companyName)
                         .toString()
                         .toLowerCase())
@@ -43,7 +45,8 @@ Widget recentPeopleBox() {
                                         borderRadius: BorderRadius.circular(10),
                                       ),
                                       child: const Image(
-                                        image: AssetImage(AssetRes.detailsImage),
+                                        image:
+                                            AssetImage(AssetRes.detailsImage),
                                         height: 20,
                                       ),
                                     ),
@@ -51,7 +54,8 @@ Widget recentPeopleBox() {
                                       width: 10,
                                     ),
                                     Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
@@ -80,7 +84,8 @@ Widget recentPeopleBox() {
                                       width: 40,
                                       decoration: BoxDecoration(
                                           color: ColorRes.logoColor,
-                                          borderRadius: BorderRadius.circular(8)),
+                                          borderRadius:
+                                              BorderRadius.circular(8)),
                                       child: const GradientIcon(
                                           Icons.chat,
                                           20,
@@ -97,7 +102,8 @@ Widget recentPeopleBox() {
                                       width: 40,
                                       decoration: BoxDecoration(
                                           color: ColorRes.logoColor,
-                                          borderRadius: BorderRadius.circular(8)),
+                                          borderRadius:
+                                              BorderRadius.circular(8)),
                                       child: const GradientIcon(
                                           Icons.videocam_sharp,
                                           20,
@@ -172,12 +178,12 @@ Widget recentPeopleBox() {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                     ],
                   )
-                : SizedBox();
+                : const SizedBox();
           }),
     ),
   );

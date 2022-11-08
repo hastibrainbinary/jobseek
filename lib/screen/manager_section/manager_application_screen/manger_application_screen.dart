@@ -200,7 +200,7 @@ class ManagerApplicationScreen extends StatelessWidget {
                         : GetBuilder<ManagerApplicationScreenController>(
                             id: "status",
                             builder: (con) {
-                              return (controller.isData == false)
+                              return (controller.isData == true)
                                   ? Column(
                                       children: [
                                         const Image(

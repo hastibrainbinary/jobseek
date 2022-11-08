@@ -13,6 +13,7 @@ class ManagerApplicationScreenController extends GetxController
     "All Vacancies",
     "Active",
     "Inactive",
+
   ].obs;
 
   onTapJobs2(int index) {

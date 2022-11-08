@@ -18,11 +18,13 @@ Widget homeAppBar() {
           decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(10)),
               color: ColorRes.logoColor),
-          child: const Text("Logo",
-              style: TextStyle(
-                  color: ColorRes.containerColor,
-                  fontSize: 10,
-                  fontWeight: FontWeight.w600)),
+          child: const Text(
+            "Logo",
+            style: TextStyle(
+                color: ColorRes.containerColor,
+                fontSize: 10,
+                fontWeight: FontWeight.w600),
+          ),
         ),
         Expanded(
           child: Container(
