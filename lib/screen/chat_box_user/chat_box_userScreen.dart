@@ -2,8 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 import 'chat_box_usercontroller.dart';
 import 'chat_live_screen.dart';
 
@@ -13,7 +15,7 @@ class ChatBoxUserScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    controller.getUid();
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: ColorRes.backgroundColor,
@@ -131,8 +133,17 @@ class ChatBoxUserScreen extends StatelessWidget {
                   itemCount: snapshot.data!.docs.length,
                   itemBuilder: (context, index) {
                     return InkWell(
-                      onTap: () {
-                        Get.to(ChatLiveScreen());
+                      onTap: () async{
+
+
+
+
+                       controller.gotoChatScreen(
+                           context,
+                           snapshot.data!.docs[index].id,
+                           snapshot.data!.docs[index]['Email']);
+
+
                       },
                       child: Container(
                         height: 92,

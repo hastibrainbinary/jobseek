@@ -54,6 +54,17 @@ class SignUpControllerM extends GetxController {
     }
   }
 
+  /*chatDataInFirebase({required String userUid, required Map<String, dynamic> map}) async {
+    fireStore
+        .collection("chatManager")
+        .doc(userUid).set(map);
+    loading.value = false;
+
+    if (kDebugMode) {
+      print("*************************** Success");
+    }
+  }*/
+
   void onChanged(String value) {
     update(["dark"]);
   }
@@ -83,6 +94,7 @@ class SignUpControllerM extends GetxController {
           "company": false,
         };
         addDataInFirebase(userUid: userCredential.user?.uid ?? "", map: map2);
+       // chatDataInFirebase(userUid: userCredential.user?.uid ?? "", map: map2);
       }
       loading.value = false;
     } on FirebaseAuthException catch (e) {

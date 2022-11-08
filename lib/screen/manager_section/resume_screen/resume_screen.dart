@@ -1,9 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:get/get.dart';
 
 import 'package:jobseek/utils/app_style.dart';
+import 'package:jobseek/utils/asset_res.dart';
 
 import 'package:jobseek/utils/color_res.dart';
 
@@ -18,8 +20,11 @@ class _ResumeScreenState extends State<ResumeScreen> {
   var args = Get.arguments;
   PDFViewController? _pdfViewController;
 
+   //var docFile;
+
   @override
   Widget build(BuildContext context) {
+    //docFile = DefaultCacheManager().getSingleFile("https://firebasestorage.googleapis.com/v0/b/jobseek-5275d.appspot.com/o/files%2FDocument%20from%20Jyot%20Vavadiya?alt=media&token=e8da4c45-8050-4022-bc4d-32b6b6703634");
     return Scaffold(
       backgroundColor: ColorRes.black,
       body: SingleChildScrollView(
@@ -48,24 +53,29 @@ class _ResumeScreenState extends State<ResumeScreen> {
             const SizedBox(
               height: 20,
             ),
-            SizedBox(
+            /*SizedBox(
               height: Get.height * 0.63,
               width: Get.width,
               child: PDFView(
-                filePath: args['doc'],
+                filePath: docFile.path,
                 onViewCreated: (PDFViewController v) {
                   _pdfViewController = v;
                 },
               ),
-            ),
-
-            /*SizedBox(
+            ),*/
+           /* SizedBox(
                 height: Get.height * 0.68,
                 width: Get.width,
-                child: Image.asset(AssetRes.resumeImage),),*/
+                child: Image.network(args['doc']),),*/
+            SizedBox(
+                height: Get.height * 0.68,
+                width: Get.width,
+                child: Image.asset(AssetRes.resumeImage),),
             const SizedBox(
               height: 20,
+
             ),
+
             InkWell(
               onTap: () {
                 Get.back();
@@ -104,5 +114,6 @@ class _ResumeScreenState extends State<ResumeScreen> {
         ),
       ),
     );
+
   }
 }
