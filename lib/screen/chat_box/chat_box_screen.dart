@@ -137,11 +137,12 @@ class ChatBoxScreen extends StatelessWidget {
                         controller.gotoChatScreen(
                             context,
                             snapshot.data!.docs[index].id,
-                            snapshot.data!.docs[index]['Email']);
+                            snapshot.data!.docs[index]['fullName']);
 
 
                       },
                       child: Container(
+
                         height: 92,
                         width: Get.width,
                         margin: const EdgeInsets.symmetric(
@@ -152,7 +153,76 @@ class ChatBoxScreen extends StatelessWidget {
                             const BorderRadius.all(Radius.circular(15)),
                             border: Border.all(color: const Color(0xffF3ECFF)),
                             color: ColorRes.white),
-                        child: Text(snapshot.data!.docs[index]['fullName']),
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              AssetRes.airBnbLogo,
+                            ),
+                            const SizedBox(width: 20),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  snapshot.data!.docs[index]['fullName'],
+                                  style: appTextStyle(
+                                      color: ColorRes.black,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                const SizedBox(height: 6),
+                                Text(
+                                  "Hi Adam Smith,",
+                                  style: appTextStyle(
+                                      color: ColorRes.black,
+                                      fontSize: 9,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                              ],
+                            ),
+                            const Spacer(),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Container(
+                                  height: 22,
+                                  width: 22,
+                                  decoration: BoxDecoration(
+                                    gradient: const LinearGradient(
+                                      colors: [
+                                        ColorRes.gradientColor,
+                                        ColorRes.containerColor
+                                      ],
+                                    ),
+                                    borderRadius: BorderRadius.circular(22),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top: 5),
+                                    child: Text(
+                                      textAlign: TextAlign.center,
+                                      '1',
+                                      style: appTextStyle(
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.w400,
+                                          color: ColorRes.white),
+                                    ),
+                                  ),
+                                ),
+                                const Spacer(),
+                                Text(
+                                  "20.00",
+                                  style: appTextStyle(
+                                      fontSize: 12,
+                                      color: ColorRes.black.withOpacity(0.8),
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(width: 10),
+                          ],
+                        ),
+
                       ),
                     );
                   });

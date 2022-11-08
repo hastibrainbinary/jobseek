@@ -184,20 +184,11 @@ class ChatLiveScreen extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(height: 10,),
             Expanded(
               child: PaginateFirestore(
-                  onEmpty: SizedBox(
-                    height: Get.height - (86 + 80),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const SizedBox(
-                          height: 20,
-                        ),
-                      ],
-                    ),
-                  ),
-                  padding: const EdgeInsets.only(top: 30),
+
+
                   scrollController: controller.listScrollController,
                   isLive: true,
                   reverse: true,
