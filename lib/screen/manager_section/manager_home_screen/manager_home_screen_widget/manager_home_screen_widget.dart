@@ -131,7 +131,7 @@ Widget recentPeopleBox() {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 InkWell(
-                                  onTap: () => Get.toNamed(AppRes.resumeScreen),
+                                  onTap: () => Get.toNamed(AppRes.resumeScreen, arguments: {"doc": contro.userData[i]['resumeUrl']}),
                                   child: Container(
                                     width: 135,
                                     height: 35,

@@ -1,14 +1,32 @@
+import 'dart:async';
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:path_provider/path_provider.dart';
 
-class ResumeScreen extends StatelessWidget {
-  const ResumeScreen({Key? key}) : super(key: key);
+
+class ResumeScreen extends StatefulWidget {
+   ResumeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<ResumeScreen> createState() => _ResumeScreenState();
+}
+
+class _ResumeScreenState extends State<ResumeScreen> {
+  var args = Get.arguments;
+  File? file;
+
+dynamic pageImage;
+
 
   @override
   Widget build(BuildContext context) {
+    pdf();
     return Scaffold(
       backgroundColor: ColorRes.black,
       body: SingleChildScrollView(
@@ -50,9 +68,16 @@ class ResumeScreen extends StatelessWidget {
               height: 20,
             ),
             SizedBox(
+              height: Get.height * 0.68,
+              width: Get.width,
+              child: Image.file(file!),),
+           /* Image(
+              image: MemoryImage(pageImage.bytes),
+            ),*/
+            /*SizedBox(
                 height: Get.height * 0.68,
                 width: Get.width,
-                child: Image.asset(AssetRes.resumeImage)),
+                child: Image.asset(AssetRes.resumeImage),),*/
             const SizedBox(
               height: 20,
             ),
@@ -94,5 +119,35 @@ class ResumeScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void pdf()async{
+    Completer<File> completer = Completer();
+    try {
+
+      final url = args['doc'];
+      final filename = url.substring(url.lastIndexOf("/") + 1);
+      var request = await HttpClient().getUrl(Uri.parse(url));
+      var response = await request.close();
+      var bytes = await consolidateHttpClientResponseBytes(response);
+      var dir = await getApplicationDocumentsDirectory();
+      print("Download files");
+      print("${dir.path}/$filename");
+       file = File("${dir.path}/$filename");
+
+      await file?.writeAsBytes(bytes, flush: true);
+      completer.complete(file);
+
+    } catch (e) {
+      throw Exception('Error parsing asset file!');
+    }
+
+    /* final PdfImage assetImage = await pdfImageFromImageProvider(
+      pdf: pdf.document,
+      image: const AssetImage('assets/test.jpg'),
+    );*/
+/*    final document = await PdfDocument.openFile(args['doc']);
+    final page = await document.getPage(1);
+     pageImage = await page.render(width: page.width, height: page.height);*/
   }
 }

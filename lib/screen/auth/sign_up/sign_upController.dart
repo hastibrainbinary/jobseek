@@ -219,7 +219,7 @@ class SignUpController extends GetxController {
           "State": stateController.text,
           "Country": countryController.text,
         };
-        await   PrefService.setValue(PrefKeys.firstnameu,firstnameController.text.toString());
+        await   PrefService.setValue(PrefKeys.fullName,firstnameController.text.toString()+lastnameController.text.toString());
         await PrefService.setValue(PrefKeys.city, cityController.text.toString());
         await PrefService.setValue(PrefKeys.state, stateController.text.toString());
         await PrefService.setValue(PrefKeys.country, countryController.text.toString());
