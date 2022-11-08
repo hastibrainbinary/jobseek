@@ -110,14 +110,18 @@ class JobDetailsUploadCvController extends GetxController {
 
       firebaseStorage.ref().child(path!).putFile(file).snapshot;
 
-      dynamic storageRef = FirebaseStorage.instance.ref().child(path).getDownloadURL();
-      //pdfUrl = file.path;
 
+      pdfUrl = file.path;
+
+
+      // PDF url :
+
+     /* dynamic storageRef = FirebaseStorage.instance.ref().child(path).getDownloadURL();
       storageRef.then((result) {
 
-        pdfUrl = result;
+        //pdfUrl = result;
         print("result is $result");
-      });
+      });*/
 
 
     } else {
