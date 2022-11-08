@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
 import 'package:jobseek/utils/app_style.dart';
-import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'chat_box_usercontroller.dart';
 import 'chat_live_screen.dart';
@@ -52,28 +52,29 @@ class ChatBoxUserScreen extends StatelessWidget {
           ),
         ]),
         const SizedBox(height: 20),
-        Container(
-          width: 339,
-          decoration: const BoxDecoration(
-            color: ColorRes.white2,
-            borderRadius: BorderRadius.all(
-              Radius.circular(15),
-            ),
-          ),
-          child: TextField(
-            controller: controller.searchController,
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              suffixIcon: const Icon(Icons.search, color: ColorRes.grey),
-              hintText: "Search",
-              hintStyle: appTextStyle(
-                  fontSize: 14,
-                  color: ColorRes.grey,
-                  fontWeight: FontWeight.w500),
-              contentPadding: const EdgeInsets.only(left: 20, top: 13),
-            ),
-          ),
-        ),
+        // Container(
+        //   width: 339,
+        //   decoration: const BoxDecoration(
+        //     color: ColorRes.white2,
+        //     borderRadius: BorderRadius.all(
+        //       Radius.circular(15),
+        //     ),
+        //   ),
+        //   child: TextField(
+        //     controller: controller.searchController,
+        //     decoration: InputDecoration(
+        //       border: InputBorder.none,
+        //       suffixIcon: const Icon(Icons.search, color: ColorRes.grey),
+        //       hintText: "Search",
+        //       hintStyle: appTextStyle(
+        //           fontSize: 14,
+        //           color: ColorRes.grey,
+        //           fontWeight: FontWeight.w500),
+        //       contentPadding: const EdgeInsets.only(left: 20, top: 13),
+        //     ),
+        //   ),
+        // ),
+        searchArea(),
         const SizedBox(height: 20),
         Container(
           alignment: Alignment.centerLeft,
@@ -89,46 +90,48 @@ class ChatBoxUserScreen extends StatelessWidget {
                 return GestureDetector(
                   onTap: () => controller.onTapJobs(index),
                   child: Obx(() => Container(
-                    margin: const EdgeInsets.only(right: 10),
-                    height: 32,
-                    width: 70,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                            color: ColorRes.containerColor, width: 2),
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(10),
+                        margin: const EdgeInsets.only(right: 10),
+                        height: 32,
+                        width: 70,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                                color: ColorRes.containerColor, width: 2),
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                            color: controller.selectedJobs.value == index
+                                ? ColorRes.containerColor
+                                : ColorRes.white),
+                        child: Text(
+                          controller.jobs[index],
+                          style: appTextStyle(
+                              color: controller.selectedJobs.value == index
+                                  ? ColorRes.white
+                                  : ColorRes.containerColor,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600),
                         ),
-                        color: controller.selectedJobs.value == index
-                            ? ColorRes.containerColor
-                            : ColorRes.white),
-                    child: Text(
-                      controller.jobs[index],
-                      style: appTextStyle(
-                          color: controller.selectedJobs.value == index
-                              ? ColorRes.white
-                              : ColorRes.containerColor,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600),
-                    ),
-                  )),
+                      )),
                 );
               }),
         ),
         Expanded(
-          child: StreamBuilder<
-              QuerySnapshot<Map<String, dynamic>>>(
-            stream: FirebaseFirestore.instance.collection("Auth").doc("Manager").collection("register").snapshots(),
+          child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+            stream: FirebaseFirestore.instance
+                .collection("Auth")
+                .doc("Manager")
+                .collection("register")
+                .snapshots(),
             builder: (context, snapshot) {
-              if (snapshot.data == null ||
-                  snapshot.hasData == false) {
+              if (snapshot.data == null || snapshot.hasData == false) {
                 return const SizedBox();
               }
               return ListView.builder(
                   itemCount: snapshot.data!.docs.length,
-                  itemBuilder: (context, index){
+                  itemBuilder: (context, index) {
                     return InkWell(
-                      onTap: (){
+                      onTap: () {
                         Get.to(ChatLiveScreen());
                       },
                       child: Container(
@@ -138,10 +141,9 @@ class ChatBoxUserScreen extends StatelessWidget {
                             horizontal: 18, vertical: 4),
                         padding: const EdgeInsets.all(15),
                         decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.all(
-                                Radius.circular(15)),
-                            border: Border.all(
-                                color: const Color(0xffF3ECFF)),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(15)),
+                            border: Border.all(color: const Color(0xffF3ECFF)),
                             color: ColorRes.white),
                         child: Text(snapshot.data!.docs[index]['Email']),
                       ),
@@ -154,9 +156,6 @@ class ChatBoxUserScreen extends StatelessWidget {
     );
   }
 }
-
-
-
 
 /*
 ListView.builder(

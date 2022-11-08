@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/dashboard/applications/applications_controller.dart';
 import 'package:jobseek/screen/dashboard/applications/rejected_screen.dart';
+import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
 import 'package:jobseek/screen/savejobs/save_job_screen.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
@@ -86,34 +87,7 @@ class ApplicationsScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 25),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 18),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      decoration: const BoxDecoration(
-                          color: ColorRes.white2,
-                          borderRadius: BorderRadius.all(Radius.circular(15))),
-                      child: TextField(
-                        controller: applicationController.searchController,
-                        decoration: InputDecoration(
-                            border: InputBorder.none,
-                            suffixIcon:
-                                const Icon(Icons.search, color: ColorRes.grey),
-                            hintText: "Search",
-                            hintStyle: appTextStyle(
-                                fontSize: 14,
-                                color: ColorRes.grey,
-                                fontWeight: FontWeight.w500),
-                            contentPadding:
-                                const EdgeInsets.only(left: 20, top: 13)),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            searchArea(),
             const SizedBox(height: 25),
             Container(
               padding: const EdgeInsets.only(left: 20, right: 20),

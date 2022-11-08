@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
@@ -48,28 +49,29 @@ class ChatBoxScreen extends StatelessWidget {
           ),
         ]),
         const SizedBox(height: 20),
-        Container(
-          width: 339,
-          decoration: const BoxDecoration(
-            color: ColorRes.white2,
-            borderRadius: BorderRadius.all(
-              Radius.circular(15),
-            ),
-          ),
-          child: TextField(
-            controller: controller.searchController,
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              suffixIcon: const Icon(Icons.search, color: ColorRes.grey),
-              hintText: "Search",
-              hintStyle: appTextStyle(
-                  fontSize: 14,
-                  color: ColorRes.grey,
-                  fontWeight: FontWeight.w500),
-              contentPadding: const EdgeInsets.only(left: 20, top: 13),
-            ),
-          ),
-        ),
+        // Container(
+        //   width: 339,
+        //   decoration: const BoxDecoration(
+        //     color: ColorRes.white2,
+        //     borderRadius: BorderRadius.all(
+        //       Radius.circular(15),
+        //     ),
+        //   ),
+        //   child: TextField(
+        //     controller: controller.searchController,
+        //     decoration: InputDecoration(
+        //       border: InputBorder.none,
+        //       suffixIcon: const Icon(Icons.search, color: ColorRes.grey),
+        //       hintText: "Search",
+        //       hintStyle: appTextStyle(
+        //           fontSize: 14,
+        //           color: ColorRes.grey,
+        //           fontWeight: FontWeight.w500),
+        //       contentPadding: const EdgeInsets.only(left: 20, top: 13),
+        //     ),
+        //   ),
+        // ),
+        searchArea(),
         const SizedBox(height: 20),
         Container(
           alignment: Alignment.centerLeft,
