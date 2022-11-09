@@ -51,6 +51,7 @@ dependencies:
   firebase_storage: ^10.3.11
   path_provider: ^2.0.2
   permission_handler:
+  country_state_city_pro: ^0.0.3
 
 
 

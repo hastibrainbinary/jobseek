@@ -47,7 +47,7 @@ Widget allJobs(Stream stream) {
                 return InkWell(
                   onTap: () => Get.toNamed(AppRes.jobDetailScreen,
                       arguments: {
-                        "saved": controller.jobTypesSaved[index],
+                        "saved": jrController.documents[index],
                         "docId": index
                       }),
                   child: Container(

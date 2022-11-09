@@ -1,19 +1,24 @@
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jobseek/screen/auth/sign_inScreen/Signin_Screen.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
 import 'package:jobseek/screen/looking_for_screen/looking_for_screen.dart';
+import 'package:jobseek/screen/new_home_page/new_home_page_controller.dart';
 import 'package:jobseek/screen/search_job/search_job_screen.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
 class HomePageNewScreenU extends StatelessWidget {
-  const HomePageNewScreenU({Key? key}) : super(key: key);
+   HomePageNewScreenU({Key? key}) : super(key: key);
+
+   HomePageNewController controller = Get.put(HomePageNewController());
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: ColorRes.backgroundColor,
       body: SingleChildScrollView(
@@ -254,9 +259,13 @@ class HomePageNewScreenU extends StatelessWidget {
                 ),
               ),
             ),
-            const Padding(
+
+
+             Padding(
               padding: EdgeInsets.all(18.0),
               child: TextField(
+                onTap: (){
+                },
                 decoration: InputDecoration(
                   hintText: 'Enter location',
                   focusColor: Colors.green,
@@ -503,4 +512,7 @@ class HomePageNewScreenU extends StatelessWidget {
       ),
     );
   }
+
+
+
 }
