@@ -166,8 +166,8 @@ class HomePageNewScreenU extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   InkWell(
-                    onTap: (){
-                      Get.to(()=>LookingForScreen());
+                    onTap: () {
+                      Get.to(() => const LookingForScreen());
                     },
                     child: Container(
                       margin: const EdgeInsets.only(top: 15),
@@ -189,8 +189,8 @@ class HomePageNewScreenU extends StatelessWidget {
                   ),
                   const SizedBox(width: 10),
                   InkWell(
-                    onTap: (){
-                      Get.to(()=>SigninScreenU());
+                    onTap: () {
+                      Get.to(() => SigninScreenU());
                     },
                     child: Container(
                       margin: const EdgeInsets.only(top: 15),
@@ -211,13 +211,14 @@ class HomePageNewScreenU extends StatelessWidget {
                     ),
                   ),
                   Container(
-                      decoration: const BoxDecoration(),
-                      child: const Image(
-                        image: AssetImage(
-                          AssetRes.HomeImage,
-                        ),
-                        height: 132,
-                      ))
+                    decoration: const BoxDecoration(),
+                    child: const Image(
+                      image: AssetImage(
+                        AssetRes.HomeImage,
+                      ),
+                      height: 132,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -264,8 +265,8 @@ class HomePageNewScreenU extends StatelessWidget {
               ),
             ),
             InkWell(
-              onTap: (){
-                Get.to(()=>SearchJobScreen());
+              onTap: () {
+                Get.to(() => const SearchJobScreen());
               },
               child: Center(
                 child: Container(
@@ -497,7 +498,8 @@ class HomePageNewScreenU extends StatelessWidget {
                       ),
                     )
                   ]),
-            )
+            ),
+            const SizedBox(height: 15),
           ],
         ),
       ),

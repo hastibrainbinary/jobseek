@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/common/widgets/common_textField.dart';
 import 'package:jobseek/screen/auth/sign_inScreen/Signin_Screen.dart';
 import 'package:jobseek/screen/auth/sign_inScreen/Signin_controller.dart';
@@ -32,9 +33,9 @@ class SignUpScreen extends StatelessWidget {
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const SizedBox(
-                            height: 50,
-                          ),
+                          const SizedBox(height: 50),
+                          backButton(),
+
                           Center(
                             child: Container(
                               alignment: Alignment.center,

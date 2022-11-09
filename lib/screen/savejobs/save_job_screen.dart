@@ -45,95 +45,104 @@ class SaveJobScreen extends StatelessWidget {
               ],
             ),
             StreamBuilder(
-              stream: FirebaseFirestore.instance.collection("BookMark").snapshots(),
-              builder: (context,AsyncSnapshot snapshot) {
-                var bookMarkData = snapshot.data.docs;
+                stream: FirebaseFirestore.instance
+                    .collection("BookMark")
+                    .snapshots(),
+                builder: (context, AsyncSnapshot snapshot) {
+                  var bookMarkData = snapshot.data.docs;
 
-                return ListView.builder(
-                    itemCount: bookMarkData.length,
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return Container(
-                        height: 92,
-                        width: Get.width,
-                        margin:
-                            const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
-                        padding: const EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(15)),
-                            border: Border.all(color: const Color(0xffF3ECFF)),
-                            color: ColorRes.white),
-                        child: InkWell(
-                          onTap: (){
-                            String docid =  snapshot.data!.docs[index].id;
-                            bottom(context,bookMarkData[index],controller.jobTypesLogo[index],docid);
-                          },
-                          child: Row(
-                            children: [
-                              Image.asset(controller.jobTypesLogo[index]),
-                              const SizedBox(width: 20),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(bookMarkData[index]['Position'],
-                                      style: appTextStyle(
-                                          color: ColorRes.black,
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w500)),
-                                  Text(bookMarkData[index]['CompanyName'],
-                                      style: appTextStyle(
-                                          color: ColorRes.black,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w400)),
-                                  Text("${bookMarkData[index]['location']} ${bookMarkData[index]['type']}",
-                                      style: appTextStyle(
-                                          color: ColorRes.black,
-                                          fontSize: 9,
-                                          fontWeight: FontWeight.w400)),
-                                ],
-                              ),
-                              const Spacer(),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                     String docid =  snapshot.data!.docs[index].id;
-                                      bottom(context,bookMarkData[index],controller.jobTypesLogo[index],docid);
-                                    },
-                                    child: Image.asset(
-                                      AssetRes.bookMarkFillIcon,
-                                      height: 20,
+                  return ListView.builder(
+                      itemCount: bookMarkData.length,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        return Container(
+                          height: 92,
+                          width: Get.width,
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 18, vertical: 4),
+                          padding: const EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(15)),
+                              border:
+                                  Border.all(color: const Color(0xffF3ECFF)),
+                              color: ColorRes.white),
+                          child: InkWell(
+                            onTap: () {
+                              String docid = snapshot.data!.docs[index].id;
+                              bottom(context, bookMarkData[index],
+                                  controller.jobTypesLogo[index], docid);
+                            },
+                            child: Row(
+                              children: [
+                                Image.asset(controller.jobTypesLogo[index]),
+                                const SizedBox(width: 20),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(bookMarkData[index]['Position'],
+                                        style: appTextStyle(
+                                            color: ColorRes.black,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w500)),
+                                    Text(bookMarkData[index]['CompanyName'],
+                                        style: appTextStyle(
+                                            color: ColorRes.black,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w400)),
+                                    Text(
+                                        "${bookMarkData[index]['location']} ${bookMarkData[index]['type']}",
+                                        style: appTextStyle(
+                                            color: ColorRes.black,
+                                            fontSize: 9,
+                                            fontWeight: FontWeight.w400)),
+                                  ],
+                                ),
+                                const Spacer(),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        String docid =
+                                            snapshot.data!.docs[index].id;
+                                        bottom(
+                                            context,
+                                            bookMarkData[index],
+                                            controller.jobTypesLogo[index],
+                                            docid);
+                                      },
+                                      child: Image.asset(
+                                        AssetRes.bookMarkFillIcon,
+                                        height: 20,
+                                      ),
                                     ),
-                                  ),
-                                  const Spacer(),
-                                  Text(
-                                    bookMarkData[index]['salary'],
-                                    style: appTextStyle(
-                                        fontSize: 16,
-                                        color: ColorRes.containerColor,
-                                        fontWeight: FontWeight.w500),
-                                  )
-                                ],
-                              ),
-                              const SizedBox(width: 10)
-                            ],
+                                    const Spacer(),
+                                    Text(
+                                      bookMarkData[index]['salary'],
+                                      style: appTextStyle(
+                                          fontSize: 16,
+                                          color: ColorRes.containerColor,
+                                          fontWeight: FontWeight.w500),
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(width: 10)
+                              ],
+                            ),
                           ),
-                        ),
-                      );
-                    });
-              }
-            ),
+                        );
+                      });
+                }),
           ]),
     );
   }
 }
 
-Future bottom(context,fileds,image,docId) {
+Future bottom(context, fileds, image, docId) {
   return showModalBottomSheet(
     context: context,
     backgroundColor: Colors.transparent,
@@ -243,7 +252,10 @@ Future bottom(context,fileds,image,docId) {
                 const SizedBox(width: 10),
                 InkWell(
                   onTap: () {
-                    FirebaseFirestore.instance.collection("BookMark").doc(docId).delete();
+                    FirebaseFirestore.instance
+                        .collection("BookMark")
+                        .doc(docId)
+                        .delete();
                     Navigator.of(context).pop();
                   },
                   child: Container(
