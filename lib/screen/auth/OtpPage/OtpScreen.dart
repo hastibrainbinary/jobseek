@@ -19,6 +19,7 @@ class OtpScreen extends StatelessWidget {
       backgroundColor: ColorRes.backgroundColor,
       body: Column(children: [
         SizedBox(height: 50),
+        backButton(),
 
         Row(
           children: [

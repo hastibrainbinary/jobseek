@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/screen/manager_section/auth_manager/Sign_in/sign_in_screen.dart';
 import 'package:jobseek/screen/manager_section/auth_manager/sign_up/sign_up_screen.dart';
 import 'package:jobseek/utils/app_style.dart';
@@ -28,6 +29,7 @@ class FirstPageScreenM extends StatelessWidget {
         ),
         child: Column(
           children: [
+            backButton(),
             SizedBox(height: Get.height * 0.12),
             Text(
               'Logo',

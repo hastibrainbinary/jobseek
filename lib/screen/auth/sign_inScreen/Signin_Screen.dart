@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/common/widgets/common_textField.dart';
 import 'package:jobseek/screen/auth/forgot_password_new/forgot_password_new_screen.dart';
 import 'package:jobseek/screen/auth/sign_inScreen/Signin_controller.dart';
@@ -31,7 +32,9 @@ class SigninScreenU extends StatelessWidget {
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(height: Get.height * 0.061),
+                        const SizedBox(height: 50),
+                        backButton(),
+                        // SizedBox(height: Get.height * 0.061),
                         Center(
                           child: Container(
                             alignment: Alignment.center,

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -259,13 +258,9 @@ class HomePageNewScreenU extends StatelessWidget {
                 ),
               ),
             ),
-
-
-             Padding(
+            const Padding(
               padding: EdgeInsets.all(18.0),
               child: TextField(
-                onTap: (){
-                },
                 decoration: InputDecoration(
                   hintText: 'Enter location',
                   focusColor: Colors.green,
@@ -512,7 +507,4 @@ class HomePageNewScreenU extends StatelessWidget {
       ),
     );
   }
-
-
-
 }

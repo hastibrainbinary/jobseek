@@ -11,7 +11,8 @@ import 'forgot_password_new_controller.dart';
 class ForgotPasswordScreenU extends StatelessWidget {
   ForgotPasswordScreenU({Key? key}) : super(key: key);
 
-  final ForgotPasswordControllerU controller = Get.put(ForgotPasswordControllerU());
+  final ForgotPasswordControllerU controller =
+      Get.put(ForgotPasswordControllerU());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,6 +22,7 @@ class ForgotPasswordScreenU extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(children: [
             const SizedBox(height: 50),
+            backButton(),
             Row(children: [
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
