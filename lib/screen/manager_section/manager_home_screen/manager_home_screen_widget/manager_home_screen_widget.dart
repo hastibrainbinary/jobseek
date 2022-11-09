@@ -26,7 +26,7 @@ Widget recentPeopleBox() {
                     children: [
                       Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 20),
+                            horizontal: 14, vertical: 20),
                         decoration: BoxDecoration(
                             border: Border.all(color: ColorRes.borderColor),
                             borderRadius: BorderRadius.circular(15)),

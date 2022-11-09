@@ -10,6 +10,7 @@ class ChatBoxUserController extends GetxController implements GetxService {
   TextEditingController searchController = TextEditingController();
   RxInt selectedJobs = 0.obs;
   RxBool loader = false.obs;
+  bool search=false;
   String? roomId;
   TextEditingController msController = TextEditingController();
   final ScrollController listScrollController = ScrollController();

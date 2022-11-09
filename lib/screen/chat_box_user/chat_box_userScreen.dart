@@ -15,6 +15,8 @@ class ChatBoxUserScreen extends StatelessWidget {
   ChatBoxUserScreen({Key? key}) : super(key: key);
   final controller = Get.put(ChatBoxUserController());
   //ManagerHomeScreenController managerHomeScreenController = Get.put(ManagerHomeScreenController());
+  List searchedData=[];
+
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +80,74 @@ class ChatBoxUserScreen extends StatelessWidget {
         //     ),
         //   ),
         // ),
-        searchArea(),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 18),
+          child: Row(
+            children: [
+              Expanded(
+                child: Container(
+                  decoration: const BoxDecoration(
+                      color: ColorRes.white2,
+                      borderRadius: BorderRadius.all(Radius.circular(8))),
+                  child: TextField(
+                    controller: controller.searchController,
+                    onChanged: (value) async{
+                      // controller.search=true;
+                      // controller.update();
+                      // controller.searchController.text = value;
+                      // var data = await FirebaseFirestore.instance
+                      //     .collection("Auth")
+                      //     .doc("Manager")
+                      //     .collection("register")
+                      //     .get();
+                      //
+                      // data.docs.forEach((element) async{
+                      //
+                      // var userData =   await FirebaseFirestore.instance
+                      //       .collection('Auth')
+                      //       .doc('Manager')
+                      //       .collection('register')
+                      //       .doc(element.id)
+                      //       .collection('company')
+                      //       .get();
+                      //    userData.docs.forEach((e) {
+                      //        bool isSearch = userData.docs.contains(controller.searchController.text);
+                      //        if(isSearch){
+                      //          searchedData =userData.docs;
+                      //        }
+                      //    });
+                      // });
+                    },
+                    decoration: InputDecoration(
+                        border: InputBorder.none,
+                        suffixIcon: const Icon(Icons.search, color: ColorRes.grey),
+                        hintText: "Search",
+                        hintStyle: appTextStyle(
+                            fontSize: 14,
+                            color: ColorRes.grey,
+                            fontWeight: FontWeight.w500),
+                        contentPadding: const EdgeInsets.only(left: 20, top: 13)),
+                  ),
+                ),
+              ),
+              // const SizedBox(width: 20),
+              // Container(
+              //   height: 40,
+              //   width: 40,
+              //   alignment: Alignment.center,
+              //   decoration: const BoxDecoration(
+              //     borderRadius: BorderRadius.all(Radius.circular(10)),
+              //     color: ColorRes.logoColor,
+              //   ),
+              //   child: Image.asset(
+              //     AssetRes.menuIcon,
+              //     color: ColorRes.containerColor,
+              //     height: 15,
+              //   ),
+              // ),
+            ],
+          ),
+        ),
         const SizedBox(height: 20),
         Container(
           alignment: Alignment.centerLeft,
