@@ -129,20 +129,13 @@ class ChatBoxScreen extends StatelessWidget {
                   itemCount: snapshot.data!.docs.length,
                   itemBuilder: (context, index) {
                     return InkWell(
-                      onTap: () async{
-
-
-
-
+                      onTap: () async {
                         controller.gotoChatScreen(
                             context,
                             snapshot.data!.docs[index].id,
                             snapshot.data!.docs[index]['fullName']);
-
-
                       },
                       child: Container(
-
                         height: 92,
                         width: Get.width,
                         margin: const EdgeInsets.symmetric(
@@ -150,7 +143,7 @@ class ChatBoxScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(15),
                         decoration: BoxDecoration(
                             borderRadius:
-                            const BorderRadius.all(Radius.circular(15)),
+                                const BorderRadius.all(Radius.circular(15)),
                             border: Border.all(color: const Color(0xffF3ECFF)),
                             color: ColorRes.white),
                         child: Row(
@@ -222,7 +215,6 @@ class ChatBoxScreen extends StatelessWidget {
                             const SizedBox(width: 10),
                           ],
                         ),
-
                       ),
                     );
                   });

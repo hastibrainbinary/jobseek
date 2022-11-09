@@ -31,7 +31,7 @@ class ChatLiveScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       backgroundColor: ColorRes.backgroundColor,
       body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -79,32 +79,36 @@ class ChatLiveScreen extends StatelessWidget {
                     color: ColorRes.white),
                 child: Row(
                   children: [
-                    Image.asset(
-                      AssetRes.airBnbLogo,
-                    ),
-                    const SizedBox(width: 20),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    Expanded(child: Row(
                       children: [
-                        Text(
-                          "AirBNB",
-                          style: appTextStyle(
-                              color: ColorRes.black,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500),
+                        Image.asset(
+                          AssetRes.airBnbLogo,
                         ),
-                        const SizedBox(height: 6),
-                        Text(
-                          "Online",
-                          style: appTextStyle(
-                              color: ColorRes.black,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400),
+                        const SizedBox(width: 20),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              name.toString(),
+                              style: appTextStyle(
+                                  color: ColorRes.black,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            const SizedBox(height: 6),
+                            Text(
+                              "Online",
+                              style: appTextStyle(
+                                  color: ColorRes.black,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ],
                         ),
                       ],
-                    ),
-                    const SizedBox(width: 70),
+                    ),),
+
                     InkWell(
                       onTap: () {
                         Navigator.push(
@@ -184,13 +188,14 @@ class ChatLiveScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 10,),
+            SizedBox(height: 15,),
             Expanded(
               child: PaginateFirestore(
 
 
                   scrollController: controller.listScrollController,
                   isLive: true,
+
                   reverse: true,
                   itemBuilder: (context, docementSnapshot, index) {
                     Map<String, dynamic>? data =
@@ -305,12 +310,12 @@ class ChatLiveScreen extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     decoration: BoxDecoration(
                       border: Border.all(
-                          color: ColorRes.containerColor.withOpacity(0.3),
-                          width: 2),
+                          color: ColorRes.containerColor.withOpacity(0.2),
+                          width: 1),
                       borderRadius: const BorderRadius.all(
                         Radius.circular(10),
                       ),
-                      color: Colors.white.withOpacity(0.4),
+                      color: Colors.white,
                     ),
                     child: Row(
                       children: [
@@ -337,13 +342,14 @@ class ChatLiveScreen extends StatelessWidget {
                             },
                             child: Image.asset(
                               AssetRes.chatSend,
-                              height: 16,
-                              width: 18.4,
+                              height: 25,
+                              width: 25,
                             ))
                       ],
                     ),
                   );
-                })
+                }),
+            SizedBox(height: 15,),
           ]),
     );
   }

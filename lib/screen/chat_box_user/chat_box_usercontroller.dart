@@ -112,7 +112,7 @@ class ChatBoxUserController extends GetxController implements GetxService {
     loader.value = true;
     await getRoomId(otherUid);
     loader.value = false;
-    // if user have not subcription show pop up
+
     Get.to(() => ChatLiveScreen(
       roomId: roomId,
       name: name,

@@ -77,32 +77,37 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                     color: ColorRes.white),
                 child: Row(
                   children: [
-                    Image.asset(
-                      AssetRes.chatbox_Men_Image,
-                    ),
-                    const SizedBox(width: 20),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    Expanded(
+                        child: Row(
                       children: [
-                        Text(
-                          "AirBNB",
-                          style: appTextStyle(
-                              color: ColorRes.black,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500),
+                        Image.asset(
+                          AssetRes.chatbox_Men_Image,
                         ),
-                        const SizedBox(height: 6),
-                        Text(
-                          "Online",
-                          style: appTextStyle(
-                              color: ColorRes.black,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400),
+                        const SizedBox(width: 20),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              name.toString(),
+                              style: appTextStyle(
+                                  color: ColorRes.black,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            const SizedBox(height: 6),
+                            Text(
+                              "Online",
+                              style: appTextStyle(
+                                  color: ColorRes.black,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ],
                         ),
                       ],
-                    ),
-                    const SizedBox(width: 70),
+                    )),
+
                     InkWell(
                       onTap: () {
                         Navigator.push(
@@ -182,20 +187,10 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(height: 15,),
             Expanded(
               child: PaginateFirestore(
-                  onEmpty: SizedBox(
-                    height: Get.height - (86 + 80),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const SizedBox(
-                          height: 20,
-                        ),
-                      ],
-                    ),
-                  ),
-                  padding: const EdgeInsets.only(top: 30),
+
                   scrollController: controller.listScrollController,
                   isLive: true,
                   reverse: true,
@@ -350,7 +345,8 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                       ],
                     ),
                   );
-                })
+                }),
+            SizedBox(height: 15,),
           ]),
     );
   }

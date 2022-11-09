@@ -17,7 +17,7 @@ class ChatBoxUserScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+
       backgroundColor: ColorRes.backgroundColor,
       body: Column(children: [
         const SizedBox(height: 50),
@@ -118,6 +118,7 @@ class ChatBoxUserScreen extends StatelessWidget {
                 );
               }),
         ),
+
         Expanded(
           child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
             stream: FirebaseFirestore.instance
@@ -125,19 +126,40 @@ class ChatBoxUserScreen extends StatelessWidget {
                 .doc("Manager")
                 .collection("register")
                 .snapshots(),
-            builder: (context, snapshot) {
-              if (snapshot.data == null || snapshot.hasData == false) {
+            builder: (context, snapshot1) {
+              if (snapshot1.data == null || snapshot1.hasData == false) {
                 return const SizedBox();
               }
               return ListView.builder(
-                  itemCount: snapshot.data!.docs.length,
+                  itemCount: snapshot1.data!.docs.length,
                   itemBuilder: (context, index) {
-                    return InkWell(
+                    return  StreamBuilder<
+                        DocumentSnapshot<
+                            Map<String,
+                                dynamic>>>(
+                      stream: FirebaseFirestore
+                          .instance
+                          .collection('Auth')
+                          .doc('Manager')
+                          .collection('register')
+                          .doc(snapshot1.data!.docs[index].id)
+                          .collection('company')
+                          . doc('details')
+                          .snapshots(),
+
+                      builder:
+                          (context, snapshot) {
+                            Map<String, dynamic>?
+                            data = snapshot.data?.data();
+                            if (data == null) {
+                              return const SizedBox();
+                            }
+                        return InkWell(
                       onTap: () async {
                         controller.gotoChatScreen(
                             context,
-                            snapshot.data!.docs[index].id,
-                            snapshot.data!.docs[index]['Email']);
+                            snapshot1.data!.docs[index].id,
+                            data['name']);
                       },
                       child: Container(
 
@@ -162,7 +184,7 @@ class ChatBoxUserScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  snapshot.data!.docs[index]['FullName'],
+                                  data['name'],
                                   style: appTextStyle(
                                       color: ColorRes.black,
                                       fontSize: 15,
@@ -223,6 +245,9 @@ class ChatBoxUserScreen extends StatelessWidget {
 
                       ),
                     );
+                      },
+                    );
+
                   });
             },
           ),
