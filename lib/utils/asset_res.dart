@@ -22,6 +22,7 @@ class AssetRes {
   static const applies = "${icons}applies.png";
   static const search ="${icons}search.png";
 
+  static const chatSend = "${icons}chatSend.png";
 
   static const dateIcon = '${icons}dateIcon.png';
   static const dropIcon = '${icons}dropIcon.png';
@@ -35,6 +36,7 @@ class AssetRes {
   static const callIcon = '${icons}call_Icon.png';
   static const callReceive = '${icons}call_receive.png';
   static const seePdf = '${icons}see_pdf.png';
+  static const applicationIcon='${icons}applicationIcon.png';
 
   ///-----------------------------images------------------------------------------------------
   static const splash_screenback = '${images}splash_screenback.png';
