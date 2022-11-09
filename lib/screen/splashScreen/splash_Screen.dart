@@ -6,6 +6,7 @@ import 'package:jobseek/screen/dashboard/dashboard_controller.dart';
 import 'package:jobseek/screen/dashboard/dashboard_screen.dart';
 import 'package:jobseek/screen/looking_for_screen/looking_for_screen.dart';
 import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen.dart';
+import 'package:jobseek/screen/new_home_page/new_home_page_screen.dart';
 import 'package:jobseek/screen/organization_profile_screen/organization_profile_screen.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/asset_res.dart';
@@ -35,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
       final DashBoardController controller = Get.put(DashBoardController());
       controller.currentTab = 0;
       Get.off(() => token == ""
-          ? const LookingForScreen()
+          ?  DashBoardScreen()
           : rol == "User"
               ? DashBoardScreen()
               : company
