@@ -16,6 +16,7 @@ class JobDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(args['saved']['location']);
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -132,12 +133,12 @@ class JobDetailScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(args["doc"]["Position"],
+                          Text(args["saved"]["Position"],
                               style: appTextStyle(
                                   color: ColorRes.black,
                                   fontSize: 15,
                                   fontWeight: FontWeight.w500)),
-                          Text(args["doc"]["CompanyName"],
+                          Text(args["saved"]["CompanyName"],
                               style: appTextStyle(
                                   color: ColorRes.black,
                                   fontSize: 12,
@@ -167,7 +168,7 @@ class JobDetailScreen extends StatelessWidget {
                                   color: ColorRes.black,
                                   fontSize: 15,
                                   fontWeight: FontWeight.w500)),
-                          Text("\$${args["doc"]["salary"]}",
+                          Text("\$${args["saved"]["salary"]}",
                               style: appTextStyle(
                                   color: ColorRes.containerColor,
                                   fontSize: 15,
@@ -183,7 +184,7 @@ class JobDetailScreen extends StatelessWidget {
                                   color: ColorRes.black,
                                   fontSize: 15,
                                   fontWeight: FontWeight.w500)),
-                          Text(args["doc"]["type"],
+                          Text(args["saved"]["type"],
                               style: appTextStyle(
                                   color: ColorRes.containerColor,
                                   fontSize: 15,
@@ -199,7 +200,7 @@ class JobDetailScreen extends StatelessWidget {
                                   color: ColorRes.black,
                                   fontSize: 15,
                                   fontWeight: FontWeight.w500)),
-                          Text(args["doc"]["location"],
+                          Text(args["saved"]["location"],
                               style: appTextStyle(
                                   color: ColorRes.containerColor,
                                   fontSize: 15,
@@ -220,14 +221,14 @@ class JobDetailScreen extends StatelessWidget {
                 ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: args["doc"]["RequirementsList"].length,
+                    itemCount: args["saved"]["RequirementsList"].length,
                     itemBuilder: (context, index) {
-                      return detailBox(args["doc"]["RequirementsList"][index]);
+                      return detailBox(args["saved"]["RequirementsList"][index]);
                     }),
                 GestureDetector(
                   onTap: () {
                     Get.toNamed(AppRes.jobDetailUploadCvScreen, arguments: {
-                      "doc": args["doc"],
+                      "doc": args["saved"],
                     });
                   },
                   child: Container(

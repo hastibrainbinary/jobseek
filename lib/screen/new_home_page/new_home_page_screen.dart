@@ -4,16 +4,20 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:jobseek/screen/auth/sign_inScreen/Signin_Screen.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
 import 'package:jobseek/screen/looking_for_screen/looking_for_screen.dart';
+import 'package:jobseek/screen/new_home_page/new_home_page_controller.dart';
 import 'package:jobseek/screen/search_job/search_job_screen.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
 class HomePageNewScreenU extends StatelessWidget {
-  const HomePageNewScreenU({Key? key}) : super(key: key);
+   HomePageNewScreenU({Key? key}) : super(key: key);
+
+   HomePageNewController controller = Get.put(HomePageNewController());
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: ColorRes.backgroundColor,
       body: SingleChildScrollView(
@@ -166,8 +170,8 @@ class HomePageNewScreenU extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   InkWell(
-                    onTap: () {
-                      Get.to(() => const LookingForScreen());
+                    onTap: (){
+                      Get.to(()=>LookingForScreen());
                     },
                     child: Container(
                       margin: const EdgeInsets.only(top: 15),
@@ -189,8 +193,8 @@ class HomePageNewScreenU extends StatelessWidget {
                   ),
                   const SizedBox(width: 10),
                   InkWell(
-                    onTap: () {
-                      Get.to(() => SigninScreenU());
+                    onTap: (){
+                      Get.to(()=>SigninScreenU());
                     },
                     child: Container(
                       margin: const EdgeInsets.only(top: 15),
@@ -211,14 +215,13 @@ class HomePageNewScreenU extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    decoration: const BoxDecoration(),
-                    child: const Image(
-                      image: AssetImage(
-                        AssetRes.HomeImage,
-                      ),
-                      height: 132,
-                    ),
-                  ),
+                      decoration: const BoxDecoration(),
+                      child: const Image(
+                        image: AssetImage(
+                          AssetRes.HomeImage,
+                        ),
+                        height: 132,
+                      ))
                 ],
               ),
             ),
@@ -265,8 +268,8 @@ class HomePageNewScreenU extends StatelessWidget {
               ),
             ),
             InkWell(
-              onTap: () {
-                Get.to(() => const SearchJobScreen());
+              onTap: (){
+
               },
               child: Center(
                 child: Container(
@@ -480,7 +483,7 @@ class HomePageNewScreenU extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Text(
-                        "Top companies on Job Seeker are hiring by directly \nreaching out to JobSeekers without posting a job. \nLearn how you can get the most out of this opportunity",
+                        "Top companies on Job Seeker are hiring by directly \nreaching out to Jobseekers without posting a job. \nLearn how you can get the most out of this opportunity",
                         style: TextStyle(
                             fontSize: 9,
                             fontWeight: FontWeight.w400,
@@ -496,10 +499,9 @@ class HomePageNewScreenU extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                             fontSize: 10),
                       ),
-                    ),
+                    )
                   ]),
-            ),
-            const SizedBox(height: 15),
+            )
           ],
         ),
       ),

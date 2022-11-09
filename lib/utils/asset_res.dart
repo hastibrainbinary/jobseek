@@ -20,7 +20,8 @@ class AssetRes {
   static const person = '${icons}person.png';
   static const cloud = '${icons}cloud.png';
   static const applies = "${icons}applies.png";
-  static const search = "${icons}search.png";
+  static const search ="${icons}search.png";
+
 
   static const dateIcon = '${icons}dateIcon.png';
   static const dropIcon = '${icons}dropIcon.png';
