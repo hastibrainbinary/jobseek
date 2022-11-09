@@ -97,7 +97,7 @@ class ManagerDashBoardScreen extends StatelessWidget {
                     /// Profile
                     SalomonBottomBarItem(
                       icon: Image.asset(
-                        AssetRes.profile,
+                        AssetRes.profile1,
                         height: 16,
                         width: 16,
                         color: controller.currentTab.value == 3

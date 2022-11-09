@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/screen/applies_logo_screen/applies_logo_screen.dart';
 import 'package:jobseek/screen/chat_box_user/chat_box_userScreen.dart';
 import 'package:jobseek/screen/dashboard/dashboard_controller.dart';
 import 'package:jobseek/screen/dashboard/home/home_screen.dart';
 import 'package:jobseek/screen/dashboard/widget.dart';
+import 'package:jobseek/screen/inbox_logo_screen/inbox_logo_screen.dart';
 import 'package:jobseek/screen/new_home_page/new_home_page_screen.dart';
 import 'package:jobseek/screen/profile/Profile_screen.dart';
+import 'package:jobseek/screen/profile_logo_screen/profile_logo_screen.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
@@ -33,19 +36,27 @@ class DashBoardScreen extends StatelessWidget {
           id: "bottom_bar",
           builder: (controller) {
             return controller.currentTab == 0
-                ? token == ""?HomePageNewScreenU():HomeScreen()
+                ? token == ""
+                    ? HomePageNewScreenU()
+                    : HomeScreen()
                 : controller.currentTab == 1
-                    ? ApplicationsScreen()
+                    ? token == ""
+                        ? const AppliesLogoScreen()
+                        : ApplicationsScreen()
                     : controller.currentTab == 2
-                        ? ChatBoxUserScreen()
-                        : ProfileUserScreenU();
+                        ? token == ""
+                            ? const InboxLogoScreen()
+                            : ChatBoxUserScreen()
+                        : token == ""
+                            ? const ProfileLogoScreen()
+                            : ProfileUserScreenU();
           },
         ),
         bottomNavigationBar: GetBuilder<DashBoardController>(
           id: "bottom_bar",
           builder: (controller) {
             return Container(
-              margin: const EdgeInsets.only(left: 18,right: 18,bottom: 10),
+              margin: const EdgeInsets.only(left: 18, right: 18, bottom: 10),
               decoration: const BoxDecoration(
                   color: ColorRes.white,
                   // border: Border.all(),
@@ -70,7 +81,10 @@ class DashBoardScreen extends StatelessWidget {
                           ? ColorRes.containerColor
                           : ColorRes.grey.withOpacity(0.6),
                     ),
-                    title: Text("Home", style: controller.currentTab == 0?bottomTitleStyle:bottomTitleStyleDisable),
+                    title: Text("Home",
+                        style: controller.currentTab == 0
+                            ? bottomTitleStyle
+                            : bottomTitleStyleDisable),
                   ),
 
                   /// application
@@ -83,7 +97,10 @@ class DashBoardScreen extends StatelessWidget {
                           ? ColorRes.containerColor
                           : ColorRes.grey.withOpacity(0.6),
                     ),
-                    title: Text("Applies", style: controller.currentTab == 1?bottomTitleStyle:bottomTitleStyleDisable),
+                    title: Text("Applies",
+                        style: controller.currentTab == 1
+                            ? bottomTitleStyle
+                            : bottomTitleStyleDisable),
                   ),
 
                   /// chat
@@ -98,21 +115,26 @@ class DashBoardScreen extends StatelessWidget {
                     ),
                     title: Text(
                       "Inbox",
-                      style: controller.currentTab == 2?bottomTitleStyle:bottomTitleStyleDisable,
+                      style: controller.currentTab == 2
+                          ? bottomTitleStyle
+                          : bottomTitleStyleDisable,
                     ),
                   ),
 
                   /// Profile
                   SalomonBottomBarItem(
                     icon: Image.asset(
-                      AssetRes.profile,
+                      AssetRes.profile1,
                       height: 16,
                       width: 16,
                       color: controller.currentTab == 3
                           ? ColorRes.containerColor
                           : ColorRes.grey.withOpacity(0.6),
                     ),
-                    title: Text("Profile", style: controller.currentTab == 3?bottomTitleStyle:bottomTitleStyleDisable),
+                    title: Text("Profile",
+                        style: controller.currentTab == 3
+                            ? bottomTitleStyle
+                            : bottomTitleStyleDisable),
                   ),
                 ],
               ),
