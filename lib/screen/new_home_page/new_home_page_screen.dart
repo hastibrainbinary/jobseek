@@ -480,7 +480,7 @@ class HomePageNewScreenU extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Text(
-                        "Top companies on Job Seeker are hiring by directly \nreaching out to Jobseekers without posting a job. \nLearn how you can get the most out of this opportunity",
+                        "Top companies on Job Seeker are hiring by directly \nreaching out to JobSeekers without posting a job. \nLearn how you can get the most out of this opportunity",
                         style: TextStyle(
                             fontSize: 9,
                             fontWeight: FontWeight.w400,
@@ -496,7 +496,7 @@ class HomePageNewScreenU extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                             fontSize: 10),
                       ),
-                    )
+                    ),
                   ]),
             ),
             const SizedBox(height: 15),

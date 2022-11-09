@@ -99,56 +99,56 @@ class SettingsScreenU extends StatelessWidget {
               height: 1,
             ),
             const SizedBox(height: 10),
-            InkWell(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (con) => const SecurityScreenU()));
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Container(
-                          height: 55,
-                          width: 55,
-                          decoration: BoxDecoration(
-                            color: ColorRes.logoColor,
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          child: const Icon(
-                            Icons.lock,
-                            color: ColorRes.containerColor,
-                          ),
-                        ),
-                        const SizedBox(width: 15),
-                        Text(
-                          Strings.security,
-                          style: appTextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14,
-                              color: ColorRes.black),
-                        ),
-                      ],
-                    ),
-                    const Image(
-                      image: AssetImage(AssetRes.settingaArrow),
-                      height: 15,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(height: 3),
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 10),
-              color: ColorRes.lightGrey.withOpacity(0.8),
-              height: 1,
-            ),
+            // InkWell(
+            //   onTap: () {
+            //     Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //             builder: (con) => const SecurityScreenU()));
+            //   },
+            //   child: Padding(
+            //     padding: const EdgeInsets.all(12.0),
+            //     child: Row(
+            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //       children: [
+            //         Row(
+            //           children: [
+            //             Container(
+            //               height: 55,
+            //               width: 55,
+            //               decoration: BoxDecoration(
+            //                 color: ColorRes.logoColor,
+            //                 borderRadius: BorderRadius.circular(15),
+            //               ),
+            //               child: const Icon(
+            //                 Icons.lock,
+            //                 color: ColorRes.containerColor,
+            //               ),
+            //             ),
+            //             const SizedBox(width: 15),
+            //             Text(
+            //               Strings.security,
+            //               style: appTextStyle(
+            //                   fontWeight: FontWeight.w500,
+            //                   fontSize: 14,
+            //                   color: ColorRes.black),
+            //             ),
+            //           ],
+            //         ),
+            //         const Image(
+            //           image: AssetImage(AssetRes.settingaArrow),
+            //           height: 15,
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
+            // const SizedBox(height: 3),
+            // Container(
+            //   margin: const EdgeInsets.symmetric(horizontal: 10),
+            //   color: ColorRes.lightGrey.withOpacity(0.8),
+            //   height: 1,
+            // ),
             const SizedBox(height: 10),
             InkWell(
               onTap: () {

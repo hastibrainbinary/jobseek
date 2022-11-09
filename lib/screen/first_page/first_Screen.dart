@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/screen/auth/sign_inScreen/Signin_Screen.dart';
 import 'package:jobseek/screen/auth/sign_up/sign_upScreen.dart';
 import 'package:jobseek/screen/first_page/first_controller.dart';
@@ -38,6 +39,10 @@ class FirstScreen extends StatelessWidget {
         ),
         child: Column(
           children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: backButton(),
+            ),
             const SizedBox(height: 110),
             // Get.height * 0.12),
             Text(
