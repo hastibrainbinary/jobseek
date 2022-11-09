@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
 import 'package:jobseek/utils/app_style.dart';
@@ -274,6 +275,211 @@ class HomePageNewScreenU extends StatelessWidget {
               color: ColorRes.logoColor,
               height: 10,
             ),
+            const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Row(
+                children: [
+                  Text(
+                    'Job recommendation',
+                    style: appTextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        height: 1,
+                        color: ColorRes.black),
+                  ),
+                  const SizedBox(width: 90),
+                  Text(
+                    'View all',
+                    style: appTextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        height: 1,
+                        color: ColorRes.containerColor),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              height: 92,
+              width: Get.width,
+              margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
+              padding: const EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(15),
+                  ),
+                  border: Border.all(
+                    color: const Color(0xffF3ECFF),
+                  ),
+                  color: ColorRes.white),
+              child: Row(
+                children: [
+                  Image.asset(
+                    AssetRes.airBnbLogo,
+                  ),
+                  const SizedBox(width: 20),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "UI/UX Designer",
+                        style: appTextStyle(
+                            color: ColorRes.black,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        "AirBNB",
+                        style: appTextStyle(
+                            color: ColorRes.black,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      Text(
+                        "United States - Full Time",
+                        style: appTextStyle(
+                            color: ColorRes.black.withOpacity(0.5),
+                            fontSize: 10,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ],
+                  ),
+                  const Spacer(),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      const Spacer(),
+                      const Icon(Icons.bookmark,
+                          color: ColorRes.containerColor),
+                      const SizedBox(height: 10),
+                      Text("\$2.350",
+                          style: appTextStyle(
+                              color: ColorRes.containerColor,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600)),
+                    ],
+                  ),
+                  const SizedBox(width: 10),
+                ],
+              ),
+            ),
+            const SizedBox(height: 10),
+            Container(
+              height: 92,
+              width: Get.width,
+              margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
+              padding: const EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(15),
+                  ),
+                  border: Border.all(
+                    color: const Color(0xffF3ECFF),
+                  ),
+                  color: ColorRes.white),
+              child: Row(
+                children: [
+                  Image.asset(
+                    AssetRes.twitterLogo,
+                  ),
+                  const SizedBox(width: 20),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Financial planner",
+                        style: appTextStyle(
+                            color: ColorRes.black,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        "Twitter",
+                        style: appTextStyle(
+                            color: ColorRes.black,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      Text(
+                        "United Kingdom - Part Time",
+                        style: appTextStyle(
+                            color: ColorRes.black.withOpacity(0.5),
+                            fontSize: 10,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ],
+                  ),
+                  const Spacer(),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      const Spacer(),
+                      const Icon(Icons.bookmark,
+                          color: ColorRes.containerColor),
+                      const SizedBox(height: 10),
+                      Text("\$2.200",
+                          style: appTextStyle(
+                              color: ColorRes.containerColor,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600)),
+                    ],
+                  ),
+                  const SizedBox(width: 10),
+                ],
+              ),
+            ),
+            const SizedBox(height: 20),
+            Container(
+              height: 227,
+              width: 375,
+              decoration: BoxDecoration(
+                color: ColorRes.logoColor,
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 20),
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(
+                        "70% hiring \nhappens without \nany job post",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                            color: ColorRes.containerColor.withOpacity(0.4)),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Text(
+                        "Top companies on Job Seeker are hiring by directly \nreaching out to Jobseekers without posting a job. \nLearn how you can get the most out of this opportunity",
+                        style: TextStyle(
+                            fontSize: 9,
+                            fontWeight: FontWeight.w400,
+                            color: ColorRes.black.withOpacity(0.6)),
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Text(
+                        "Learn more",
+                        style: TextStyle(
+                            color: ColorRes.containerColor,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 10),
+                      ),
+                    )
+                  ]),
+            )
           ],
         ),
       ),

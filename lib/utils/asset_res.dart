@@ -76,4 +76,6 @@ class AssetRes {
   static const videoReceivedMen = '${images}videoReceived_men.png';
   static const failedImages = "${images}failedImages.png";
   static const unSave = "${images}unSave.png";
+  static const HomeImage ='${images}HomeImage.png';
+  static const Home2 ="${images}Home2.png";
 }
