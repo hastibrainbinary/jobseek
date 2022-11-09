@@ -9,7 +9,7 @@ class AssetRes {
   static const home = '${icons}home.png';
   static const application = '${icons}application.png';
   static const chat = '${icons}chat.png';
-  static const profile = '${icons}profile.png';
+  static const profile1 = '${icons}profile1.png';
   static const menuIcon = '${icons}menu_icon.png';
   static const bookMarkBorderIcon = '${icons}bookmark_border.png';
   static const bookMarkFillIcon = '${icons}bookmark_fill.png';
@@ -20,8 +20,7 @@ class AssetRes {
   static const person = '${icons}person.png';
   static const cloud = '${icons}cloud.png';
   static const applies = "${icons}applies.png";
-  static const search ="${icons}search.png";
-
+  static const search = "${icons}search.png";
 
   static const dateIcon = '${icons}dateIcon.png';
   static const dropIcon = '${icons}dropIcon.png';
@@ -80,4 +79,8 @@ class AssetRes {
 
   static const HomeImage = "${images}HomeImage.png";
   static const Home2 = "${images}Home2.png";
+  static const appliesLogo = "${images}appliesLogo.png";
+  static const Inbox = "${images}Inbox.png";
+  static const profileLogo = "${images}profileLogo.png";
+  static const companyProfile ='${images}companyProfile.png';
 }
