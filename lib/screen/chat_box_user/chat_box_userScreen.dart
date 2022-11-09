@@ -132,7 +132,7 @@ class ChatBoxUserScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {
-                        Get.to(ChatLiveScreen());
+                        Get.to(const ChatLiveScreen());
                       },
                       child: Container(
                         height: 92,
@@ -141,11 +141,14 @@ class ChatBoxUserScreen extends StatelessWidget {
                             horizontal: 18, vertical: 4),
                         padding: const EdgeInsets.all(15),
                         decoration: BoxDecoration(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(15)),
-                            border: Border.all(color: const Color(0xffF3ECFF)),
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(15),
+                            ),
+                            border: Border.all(
+                              color: const Color(0xffF3ECFF),
+                            ),
                             color: ColorRes.white),
-                        child: Text(snapshot.data!.docs[index]['Email']),
+                        child: Text(snapshot.data!.docs[index]['FullName']),
                       ),
                     );
                   });

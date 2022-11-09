@@ -1,22 +1,11 @@
-import 'dart:async';
-
-import 'dart:io';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:get/get.dart';
-
 import 'package:jobseek/utils/app_style.dart';
-
 import 'package:jobseek/utils/color_res.dart';
 
-import 'package:path_provider/path_provider.dart';
-import 'package:http/http.dart'as http;
-import 'package:permission_handler/permission_handler.dart';
-
 class ResumeScreen extends StatefulWidget {
-   ResumeScreen({Key? key}) : super(key: key);
+  ResumeScreen({Key? key}) : super(key: key);
 
   @override
   State<ResumeScreen> createState() => _ResumeScreenState();
@@ -40,7 +29,6 @@ class _ResumeScreenState extends State<ResumeScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Stack(
                 children: [
-
                   Align(
                     alignment: Alignment.center,
                     child: Padding(
@@ -60,11 +48,14 @@ class _ResumeScreenState extends State<ResumeScreen> {
             SizedBox(
               height: Get.height * 0.63,
               width: Get.width,
-              child: PDFView(filePath: args['doc'],onViewCreated: (PDFViewController v){
-                _pdfViewController = v;
-              },),
+              child: PDFView(
+                filePath: args['doc'],
+                onViewCreated: (PDFViewController v) {
+                  _pdfViewController = v;
+                },
+              ),
             ),
-           /*SingleChildScrollView(
+            /*SingleChildScrollView(
              child: Image.network(args['doc']),
            ),*/
             /*SizedBox(
@@ -113,5 +104,4 @@ class _ResumeScreenState extends State<ResumeScreen> {
       ),
     );
   }
-
 }
