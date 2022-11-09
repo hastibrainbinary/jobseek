@@ -41,13 +41,13 @@ class DashBoardScreen extends StatelessWidget {
           id: "bottom_bar",
           builder: (controller) {
             return Container(
-              margin: const EdgeInsets.only(left: 18, right: 18, bottom: 10),
+              margin: const EdgeInsets.only(left: 18,right: 18,bottom: 10),
               decoration: const BoxDecoration(
                   color: ColorRes.white,
                   // border: Border.all(),
                   borderRadius: BorderRadius.all(Radius.circular(15))),
               child: SalomonBottomBar(
-                margin: const EdgeInsets.all(12),
+                margin: const EdgeInsets.all(5),
                 selectedItemColor: ColorRes.containerColor,
                 unselectedItemColor: ColorRes.containerColor,
                 currentIndex: controller.currentTab,
@@ -64,22 +64,22 @@ class DashBoardScreen extends StatelessWidget {
                       width: 16,
                       color: controller.currentTab == 0
                           ? ColorRes.containerColor
-                          : ColorRes.containerColor,
+                          : ColorRes.grey.withOpacity(0.6),
                     ),
-                    title: Text("Home", style: bottomTitleStyle),
+                    title: Text("Home", style: controller.currentTab == 0?bottomTitleStyle:bottomTitleStyleDisable),
                   ),
 
                   /// application
                   SalomonBottomBarItem(
                     icon: Image.asset(
-                      AssetRes.applicationIcon,
+                      AssetRes.applies,
                       height: 16,
                       width: 16,
                       color: controller.currentTab == 1
                           ? ColorRes.containerColor
-                          : ColorRes.containerColor,
+                          : ColorRes.grey.withOpacity(0.6),
                     ),
-                    title: Text("Applications", style: bottomTitleStyle),
+                    title: Text("Applies", style: controller.currentTab == 1?bottomTitleStyle:bottomTitleStyleDisable),
                   ),
 
                   /// chat
@@ -90,11 +90,11 @@ class DashBoardScreen extends StatelessWidget {
                       width: 16,
                       color: controller.currentTab == 2
                           ? ColorRes.containerColor
-                          : ColorRes.containerColor,
+                          : ColorRes.grey.withOpacity(0.6),
                     ),
                     title: Text(
-                      "Chat",
-                      style: bottomTitleStyle,
+                      "Inbox",
+                      style: controller.currentTab == 2?bottomTitleStyle:bottomTitleStyleDisable,
                     ),
                   ),
 
@@ -106,9 +106,9 @@ class DashBoardScreen extends StatelessWidget {
                       width: 16,
                       color: controller.currentTab == 3
                           ? ColorRes.containerColor
-                          : ColorRes.containerColor,
+                          : ColorRes.grey.withOpacity(0.6),
                     ),
-                    title: Text("Profile", style: bottomTitleStyle),
+                    title: Text("Profile", style: controller.currentTab == 3?bottomTitleStyle:bottomTitleStyleDisable),
                   ),
                 ],
               ),

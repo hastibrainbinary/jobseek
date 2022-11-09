@@ -19,6 +19,8 @@ class AssetRes {
   static const wantJob = '${icons}want_job.png';
   static const person = '${icons}person.png';
   static const cloud = '${icons}cloud.png';
+  static const applies = "${icons}applies.png";
+
 
   static const dateIcon = '${icons}dateIcon.png';
   static const dropIcon = '${icons}dropIcon.png';
@@ -32,7 +34,6 @@ class AssetRes {
   static const callIcon = '${icons}call_Icon.png';
   static const callReceive = '${icons}call_receive.png';
   static const seePdf = '${icons}see_pdf.png';
-  static const applicationIcon = '${icons}applicationIcon.png';
 
   ///-----------------------------images------------------------------------------------------
   static const splash_screenback = '${images}splash_screenback.png';
@@ -75,6 +76,4 @@ class AssetRes {
   static const videoReceivedMen = '${images}videoReceived_men.png';
   static const failedImages = "${images}failedImages.png";
   static const unSave = "${images}unSave.png";
-  static const HomeImage = "${images}HomeImage.png";
-  static const Home2 = "${images}Home2.png";
 }
