@@ -60,22 +60,22 @@ class ManagerDashBoardScreen extends StatelessWidget {
                         width: 16,
                         color: controller.currentTab.value == 0
                             ? ColorRes.containerColor
-                            : ColorRes.containerColor,
+                            : ColorRes.grey.withOpacity(0.6),
                       ),
-                      title: Text("Home", style: bottomTitleStyle),
+                      title: Text("Home", style: controller.currentTab.value == 0?bottomTitleStyle:bottomTitleStyleDisable),
                     ),
 
                     /// application
                     SalomonBottomBarItem(
                       icon: Image.asset(
-                        AssetRes.application,
+                        AssetRes.applies,
                         height: 16,
                         width: 16,
                         color: controller.currentTab.value == 1
                             ? ColorRes.containerColor
-                            : ColorRes.containerColor,
+                            : ColorRes.grey.withOpacity(0.6),
                       ),
-                      title: Text("Applications", style: bottomTitleStyle),
+                      title: Text("Applies", style: controller.currentTab.value == 1?bottomTitleStyle:bottomTitleStyleDisable),
                     ),
 
                     /// chat
@@ -86,11 +86,11 @@ class ManagerDashBoardScreen extends StatelessWidget {
                         width: 16,
                         color: controller.currentTab.value == 2
                             ? ColorRes.containerColor
-                            : ColorRes.containerColor,
+                            : ColorRes.grey.withOpacity(0.6),
                       ),
                       title: Text(
-                        "Chat",
-                        style: bottomTitleStyle,
+                        "Inbox",
+                        style: controller.currentTab.value == 2?bottomTitleStyle:bottomTitleStyleDisable,
                       ),
                     ),
 
@@ -102,9 +102,9 @@ class ManagerDashBoardScreen extends StatelessWidget {
                         width: 16,
                         color: controller.currentTab.value == 3
                             ? ColorRes.containerColor
-                            : ColorRes.containerColor,
+                            : ColorRes.grey.withOpacity(0.6),
                       ),
-                      title: Text("Profile", style: bottomTitleStyle),
+                      title: Text("Profile", style: controller.currentTab.value == 3?bottomTitleStyle:bottomTitleStyleDisable),
                     ),
                   ],
                 ),

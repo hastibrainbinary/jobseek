@@ -8,7 +8,7 @@ class ManagerHomeScreenController extends GetxController
   String? companyName;
   List userData = [];
   @override
-  void onInit() {
+  Future<void> onInit() async {
     getCompanyName();
     getUserData();
     super.onInit();

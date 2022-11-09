@@ -129,7 +129,8 @@ class ChatBovLiveScreen extends StatelessWidget {
                     '\nCongratulations!'
                     '\nAfter we reviewed your application for the position'
                     '\nof UI/UX Designer,we congratulate you for being'
-                    '\npart of us.After this you will be contacted'
+                    '\npart of us.After this you will be con'
+                        'tacted'
                     '\npersonally by our team.Thank You ...'
                     '\nGreetings,'
                     '\n Hiring Manager',

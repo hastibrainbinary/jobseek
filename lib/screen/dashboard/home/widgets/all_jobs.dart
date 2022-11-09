@@ -18,7 +18,9 @@ Widget allJobs(Stream stream) {
     return StreamBuilder(
         stream: stream,
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if(snapshot.hasData){
           jrController.documents = snapshot.data.docs;
+          }
           controller.jobTypesSaved = List.generate(jrController.documents.length, (index) => false).obs;
 
           if (jrController.searchText.value.isNotEmpty) {

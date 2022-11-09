@@ -230,6 +230,7 @@ class SignUpController extends GetxController {
         await PrefService.setValue(
             PrefKeys.country, countryController.text.toString());
         addDataInFirebase(userUid: userCredential.user?.uid ?? "", map: map2);
+
       }
 
       loading.value = false;
@@ -274,6 +275,8 @@ class SignUpController extends GetxController {
       print("*************************** Success");
     }
   }
+
+
 
   bool show = true;
   Country countryModel = Country.from(json: {
