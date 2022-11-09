@@ -47,13 +47,16 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: const HomePageNewScreenU(),
+      home: const SplashScreen(),
       initialRoute: "/",
       getPages: [
         GetPage(
             name: AppRes.notificationScreen,
             page: () => const NotificationScreen()),
         // GetPage(name: AppRes.jobDetailScreen, page: () => JobDetailScreen()),
+        GetPage(
+            name: AppRes.newHomePageUi,
+            page: () => HomePageNewScreenU()),
         GetPage(
             name: AppRes.jobDetailUploadCvScreen,
             page: () => JobDetailsUploadCvScreen()),

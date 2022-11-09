@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jobseek/screen/auth/sign_inScreen/Signin_Screen.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
+import 'package:jobseek/screen/looking_for_screen/looking_for_screen.dart';
+import 'package:jobseek/screen/search_job/search_job_screen.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
@@ -161,38 +165,48 @@ class HomePageNewScreenU extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    margin: const EdgeInsets.only(top: 15),
-                    height: 36,
-                    width: 95,
-                    decoration: BoxDecoration(
-                        color: ColorRes.containerColor,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: const Center(
-                      child: Text(
-                        "Register",
-                        style: TextStyle(
-                            color: ColorRes.white,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14),
+                  InkWell(
+                    onTap: (){
+                      Get.to(()=>LookingForScreen());
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.only(top: 15),
+                      height: 36,
+                      width: 95,
+                      decoration: BoxDecoration(
+                          color: ColorRes.containerColor,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: const Center(
+                        child: Text(
+                          "Register",
+                          style: TextStyle(
+                              color: ColorRes.white,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14),
+                        ),
                       ),
                     ),
                   ),
                   const SizedBox(width: 10),
-                  Container(
-                    margin: const EdgeInsets.only(top: 15),
-                    height: 36,
-                    width: 95,
-                    decoration: BoxDecoration(
-                        color: ColorRes.logoColor,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: const Center(
-                      child: Text(
-                        "Log in",
-                        style: TextStyle(
-                            color: ColorRes.containerColor,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14),
+                  InkWell(
+                    onTap: (){
+                      Get.to(()=>SigninScreenU());
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.only(top: 15),
+                      height: 36,
+                      width: 95,
+                      decoration: BoxDecoration(
+                          color: ColorRes.logoColor,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: const Center(
+                        child: Text(
+                          "Log in",
+                          style: TextStyle(
+                              color: ColorRes.containerColor,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14),
+                        ),
                       ),
                     ),
                   ),
@@ -249,21 +263,26 @@ class HomePageNewScreenU extends StatelessWidget {
                 ),
               ),
             ),
-            Center(
-              child: Container(
-                margin: const EdgeInsets.only(top: 15),
-                height: 36,
-                width: 119,
-                decoration: BoxDecoration(
-                    color: ColorRes.containerColor,
-                    borderRadius: BorderRadius.circular(10)),
-                child: const Center(
-                  child: Text(
-                    "Search jobs",
-                    style: TextStyle(
-                        color: ColorRes.white,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14),
+            InkWell(
+              onTap: (){
+                Get.to(()=>SearchJobScreen());
+              },
+              child: Center(
+                child: Container(
+                  margin: const EdgeInsets.only(top: 15),
+                  height: 36,
+                  width: 119,
+                  decoration: BoxDecoration(
+                      color: ColorRes.containerColor,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: const Center(
+                    child: Text(
+                      "Search jobs",
+                      style: TextStyle(
+                          color: ColorRes.white,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14),
+                    ),
                   ),
                 ),
               ),

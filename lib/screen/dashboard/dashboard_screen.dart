@@ -4,10 +4,13 @@ import 'package:jobseek/screen/chat_box_user/chat_box_userScreen.dart';
 import 'package:jobseek/screen/dashboard/dashboard_controller.dart';
 import 'package:jobseek/screen/dashboard/home/home_screen.dart';
 import 'package:jobseek/screen/dashboard/widget.dart';
+import 'package:jobseek/screen/new_home_page/new_home_page_screen.dart';
 import 'package:jobseek/screen/profile/Profile_screen.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'applications/applications_screen.dart';
 
@@ -17,6 +20,7 @@ class DashBoardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String token = PrefService.getString(PrefKeys.userId);
     return WillPopScope(
       onWillPop: () async {
         alertU(context);
@@ -29,7 +33,7 @@ class DashBoardScreen extends StatelessWidget {
           id: "bottom_bar",
           builder: (controller) {
             return controller.currentTab == 0
-                ? HomeScreen()
+                ? token == ""?HomePageNewScreenU():HomeScreen()
                 : controller.currentTab == 1
                     ? ApplicationsScreen()
                     : controller.currentTab == 2
