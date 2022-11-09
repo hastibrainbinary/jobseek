@@ -16,6 +16,7 @@ Widget allJobs(Stream stream) {
       stream: stream,
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         jrController.documents = snapshot.data.docs;
+        controller.jobTypesSaved = List.generate(jrController.documents.length, (index) => false).obs;
 
         if (jrController.searchText.value.isNotEmpty) {
           jrController.documents = jrController.documents.where((element) {
@@ -43,7 +44,7 @@ Widget allJobs(Stream stream) {
                   return InkWell(
                     onTap: () => Get.toNamed(AppRes.jobDetailScreen,
                         arguments: {
-                          "saved": controller.jobTypesSaved[index % 5],
+                          "saved": controller.jobTypesSaved[index],
                           "docId": index
                         }),
                     child: Container(
@@ -93,11 +94,12 @@ Widget allJobs(Stream stream) {
                             children: [
                               InkWell(
                                 onTap: () {
-                                  controller.onTapSave(index);
+                                 String docId = snapshot.data.docs[index].id;
+                                  controller.onTapSave(index,jrController.documents[index],docId);
                                 },
                                 child: Obx(() {
                                   return Image.asset(
-                                    controller.jobTypesSaved[index % 5]
+                                    controller.jobTypesSaved[index]
                                         ? AssetRes.bookMarkFillIcon
                                         : AssetRes.bookMarkBorderIcon,
                                     height: 20,

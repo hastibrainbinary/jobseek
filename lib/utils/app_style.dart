@@ -5,6 +5,9 @@ import 'package:jobseek/utils/color_res.dart';
 final TextStyle bottomTitleStyle = GoogleFonts.poppins(
     color: ColorRes.containerColor, fontSize: 12, fontWeight: FontWeight.w500);
 
+final TextStyle bottomTitleStyleDisable = GoogleFonts.poppins(
+    color: ColorRes.grey.withOpacity(0.6), fontSize: 12, fontWeight: FontWeight.w500);
+
 TextStyle appTextStyle(
     {FontWeight? fontWeight,
     Color? color,
