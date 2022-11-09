@@ -265,7 +265,7 @@ class HomePageNewScreenU extends StatelessWidget {
             ),
             InkWell(
               onTap: (){
-                Get.to(()=>SearchJobScreen());
+
               },
               child: Center(
                 child: Container(
