@@ -8,14 +8,18 @@ import 'package:jobseek/screen/dashboard/home/widgets/all_jobs.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/appbar.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/tips_for_you_section.dart';
+import 'package:jobseek/screen/job_recommendation_screen/job_recommendation_controller.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/string.dart';
 
+import 'home_controller.dart';
+
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
   final HomeController controller = HomeController();
+  JobRecommendationController jrcontroller = Get.put(JobRecommendationController());
   FirebaseFirestore fireStore = FirebaseFirestore.instance;
   var args = Get.arguments;
 
@@ -120,13 +124,13 @@ class HomeScreen extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 20, right: 20),
                     height: 32,
                     child: ListView.builder(
-                        itemCount: controller.jobs2.length,
+                        itemCount: jrcontroller.jobs2.length,
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
                         physics: const BouncingScrollPhysics(),
                         itemBuilder: (context, index) {
                           return GestureDetector(
-                            onTap: () => controller.onTapJobs2(index),
+                            onTap: () => jrcontroller.onTapJobs2(index),
                             child: Obx(() => Container(
                                   margin: const EdgeInsets.only(right: 10),
                                   height: 32,
@@ -139,14 +143,14 @@ class HomeScreen extends StatelessWidget {
                                       borderRadius: const BorderRadius.all(
                                         Radius.circular(10),
                                       ),
-                                      color: controller.selectedJobs2.value ==
+                                      color: jrcontroller.selectedJobs2.value ==
                                               index
                                           ? ColorRes.containerColor
                                           : ColorRes.white),
                                   child: Text(
-                                    controller.jobs2[index],
+                                    jrcontroller.jobs2[index],
                                     style: appTextStyle(
-                                        color: controller.selectedJobs2.value ==
+                                        color: jrcontroller.selectedJobs2.value ==
                                                 index
                                             ? ColorRes.white
                                             : ColorRes.containerColor,
@@ -159,9 +163,9 @@ class HomeScreen extends StatelessWidget {
                   ),
 
                   Obx(
-                    () => controller.selectedJobs2.value == 0
+                    () => jrcontroller.selectedJobs2.value == 0
                         ? allJobs(fireStore.collection("allPost").snapshots())
-                        : controller.selectedJobs2.value == 1
+                        : jrcontroller.selectedJobs2.value == 1
                             ? allJobs(
                                 fireStore
                                     .collection("category")
@@ -169,7 +173,7 @@ class HomeScreen extends StatelessWidget {
                                     .collection("Writer")
                                     .snapshots(),
                               )
-                            : controller.selectedJobs2.value == 2
+                            : jrcontroller.selectedJobs2.value == 2
                                 ? allJobs(
                                     fireStore
                                         .collection("category")
@@ -177,7 +181,7 @@ class HomeScreen extends StatelessWidget {
                                         .collection("Design")
                                         .snapshots(),
                                   )
-                                : controller.selectedJobs2.value == 3
+                                : jrcontroller.selectedJobs2.value == 3
                                     ? allJobs(
                                         fireStore
                                             .collection("category")
@@ -186,8 +190,8 @@ class HomeScreen extends StatelessWidget {
                                             .snapshots(),
                                       )
                                     : Center(
-                                        child: Text(controller.jobs2[
-                                            controller.selectedJobs2.value]),
+                                        child: Text(jrcontroller.jobs2[
+                                        jrcontroller.selectedJobs2.value]),
                                       ),
                   ),
                 ],

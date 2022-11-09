@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
+import 'package:jobseek/screen/dashboard/home/home_controller.dart';
 import 'package:jobseek/screen/savejobs/save_job_controller.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
@@ -42,82 +44,105 @@ class SaveJobScreen extends StatelessWidget {
                 ),
               ],
             ),
-            ListView.builder(
-                itemCount: controller.jobTypes.length,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return Container(
-                    height: 92,
-                    width: Get.width,
-                    margin:
-                        const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
-                    padding: const EdgeInsets.all(15),
-                    decoration: BoxDecoration(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(15)),
-                        border: Border.all(color: const Color(0xffF3ECFF)),
-                        color: ColorRes.white),
-                    child: Row(
-                      children: [
-                        Image.asset(controller.jobTypesLogo[index]),
-                        const SizedBox(width: 20),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(controller.jobTypes[index],
-                                style: appTextStyle(
-                                    color: ColorRes.black,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500)),
-                            Text("AirBNB",
-                                style: appTextStyle(
-                                    color: ColorRes.black,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400)),
-                            Text("United States - Full Time",
-                                style: appTextStyle(
-                                    color: ColorRes.black,
-                                    fontSize: 9,
-                                    fontWeight: FontWeight.w400)),
-                          ],
-                        ),
-                        const Spacer(),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                bottom(context);
-                              },
-                              child: Image.asset(
-                                AssetRes.bookMarkFillIcon,
-                                height: 20,
-                              ),
+            StreamBuilder(
+                stream: FirebaseFirestore.instance
+                    .collection("BookMark")
+                    .snapshots(),
+                builder: (context, AsyncSnapshot snapshot) {
+                  var bookMarkData = snapshot.data.docs;
+
+                  return ListView.builder(
+                      itemCount: bookMarkData.length,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        return Container(
+                          height: 92,
+                          width: Get.width,
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 18, vertical: 4),
+                          padding: const EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(15)),
+                              border:
+                                  Border.all(color: const Color(0xffF3ECFF)),
+                              color: ColorRes.white),
+                          child: InkWell(
+                            onTap: () {
+                              String docid = snapshot.data!.docs[index].id;
+                              bottom(context, bookMarkData[index],
+                                  controller.jobTypesLogo[index], docid);
+                            },
+                            child: Row(
+                              children: [
+                                Image.asset(controller.jobTypesLogo[index]),
+                                const SizedBox(width: 20),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(bookMarkData[index]['Position'],
+                                        style: appTextStyle(
+                                            color: ColorRes.black,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w500)),
+                                    Text(bookMarkData[index]['CompanyName'],
+                                        style: appTextStyle(
+                                            color: ColorRes.black,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w400)),
+                                    Text(
+                                        "${bookMarkData[index]['location']} ${bookMarkData[index]['type']}",
+                                        style: appTextStyle(
+                                            color: ColorRes.black,
+                                            fontSize: 9,
+                                            fontWeight: FontWeight.w400)),
+                                  ],
+                                ),
+                                const Spacer(),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        String docid =
+                                            snapshot.data!.docs[index].id;
+                                        bottom(
+                                            context,
+                                            bookMarkData[index],
+                                            controller.jobTypesLogo[index],
+                                            docid);
+                                      },
+                                      child: Image.asset(
+                                        AssetRes.bookMarkFillIcon,
+                                        height: 20,
+                                      ),
+                                    ),
+                                    const Spacer(),
+                                    Text(
+                                      bookMarkData[index]['salary'],
+                                      style: appTextStyle(
+                                          fontSize: 16,
+                                          color: ColorRes.containerColor,
+                                          fontWeight: FontWeight.w500),
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(width: 10)
+                              ],
                             ),
-                            const Spacer(),
-                            Text(
-                              "\$2.350",
-                              style: appTextStyle(
-                                  fontSize: 16,
-                                  color: ColorRes.containerColor,
-                                  fontWeight: FontWeight.w500),
-                            )
-                          ],
-                        ),
-                        const SizedBox(width: 10)
-                      ],
-                    ),
-                  );
+                          ),
+                        );
+                      });
                 }),
           ]),
     );
   }
 }
 
-Future bottom(context) {
+Future bottom(context, fileds, image, docId) {
   return showModalBottomSheet(
     context: context,
     backgroundColor: Colors.transparent,
@@ -146,23 +171,23 @@ Future bottom(context) {
                   color: ColorRes.white),
               child: Row(
                 children: [
-                  Image.asset(AssetRes.twitterLogo),
+                  Image.asset(image),
                   const SizedBox(width: 20),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Financial planner",
+                      Text(fileds['Position'],
                           style: appTextStyle(
                               color: ColorRes.black,
                               fontSize: 15,
                               fontWeight: FontWeight.w500)),
-                      Text("AirBNB",
+                      Text(fileds['CompanyName'],
                           style: appTextStyle(
                               color: ColorRes.black,
                               fontSize: 12,
                               fontWeight: FontWeight.w400)),
-                      Text("United States - Full Time",
+                      Text("${fileds['location']} ${fileds['type']}",
                           style: appTextStyle(
                               color: ColorRes.black,
                               fontSize: 9,
@@ -177,7 +202,7 @@ Future bottom(context) {
                       Image.asset(AssetRes.bookMarkFillIcon, height: 20),
                       const Spacer(),
                       Text(
-                        "\$2.350",
+                        fileds['salary'],
                         style: appTextStyle(
                             fontSize: 16,
                             color: ColorRes.containerColor,
@@ -227,7 +252,11 @@ Future bottom(context) {
                 const SizedBox(width: 10),
                 InkWell(
                   onTap: () {
-                    Navigator.of(context).pop(true);
+                    FirebaseFirestore.instance
+                        .collection("BookMark")
+                        .doc(docId)
+                        .delete();
+                    Navigator.of(context).pop();
                   },
                   child: Container(
                     height: 50,

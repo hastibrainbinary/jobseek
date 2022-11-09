@@ -18,7 +18,7 @@ Widget searchArea() {
           child: Container(
             decoration: const BoxDecoration(
                 color: ColorRes.white2,
-                borderRadius: BorderRadius.all(Radius.circular(15))),
+                borderRadius: BorderRadius.all(Radius.circular(8))),
             child: TextField(
               controller: controller.searchController,
               onChanged: (value) {

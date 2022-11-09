@@ -1,12 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/screen/job_recommendation_screen/job_recommendation_controller.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 
+  JobRecommendationController jcon = Get.put(JobRecommendationController());
 class HomeController extends GetxController implements GetxService {
   TextEditingController searchController = TextEditingController();
-
 
   RxList jobTypes = [
     "UI/UX Designer",
@@ -15,7 +17,9 @@ class HomeController extends GetxController implements GetxService {
     "Financial planner",
     "UI/UX Designer"
   ].obs;
-  RxList jobTypesSaved = [true, false, false, true, false].obs;
+  RxList jobTypesSaved = List.generate(2, (index) => false).obs;
+
+
   RxList jobTypesLogo = [
     AssetRes.airBnbLogo,
     AssetRes.twitterLogo,
@@ -24,26 +28,34 @@ class HomeController extends GetxController implements GetxService {
     AssetRes.airBnbLogo
   ].obs;
 
-
-
-  onTapSave(index) {
-    if (jobTypesSaved[index] == true) {
-      jobTypesSaved.removeAt(index);
-      jobTypesSaved.insert(index, false);
-    } else {
-      jobTypesSaved.removeAt(index);
-      jobTypesSaved.insert(index, true);
-    }
+  @override
+  void onInit() {
+    super.onInit();
+    getfirstName();
+    jobTypesSaved = List.generate(jcon.documents.length, (index) => false).obs;
   }
 
-  RxList allJob = [].obs;
+  onTapSave(index,field,docId) {
+    if (jobTypesSaved[index] == true) {
+   //   jobTypesSaved[index] = false;
 
-  // RxInt selectedJobs = 0.obs;
-  // RxList jobs = ["All Job", "Writer", "Design", "Finance"].obs;
-  // onTapJobs(int index){
-  //   debugPrint("OnTAP $index");
-  //   selectedJobs.value = index;
-  // }
+    //  FirebaseFirestore.instance.collection("BookMark").doc(docId).delete();
+    } else {
+      jobTypesSaved[index] = true;
+
+      Map<String, dynamic> map = {
+        "Position": field['Position'],
+        "CompanyName": field['CompanyName'],
+        "salary": field['salary'],
+        "location": field['location'],
+        "type": field['type'],
+      };
+      FirebaseFirestore.instance.collection('BookMark').doc().set(
+       map
+      );
+    }
+    }
+
 
   RxInt selectedJobs2 = 0.obs;
   RxList jobs2 = ["All Job", "Writer", "Design", "Finance"].obs;
@@ -52,13 +64,11 @@ class HomeController extends GetxController implements GetxService {
     selectedJobs2.value = index;
     //update(["hList"]);
   }
-  String?  firstNAme;
-  @override
-  void onInit() {
-    getfirstName();
-    super.onInit();
-  }
-  getfirstName()async{
+
+  String? firstNAme;
+
+
+  getfirstName() async {
     firstNAme = await PrefService.getString(PrefKeys.firstnameu);
   }
 }

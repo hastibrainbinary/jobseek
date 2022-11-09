@@ -68,7 +68,7 @@ class SalomonBottomBar extends StatelessWidget {
           for (final item in items)
             TweenAnimationBuilder<double>(
               tween: Tween(
-                end: items.indexOf(item) == currentIndex ? 1.0 : 0.0,
+                end: items.indexOf(item) == currentIndex ? 0.0 : 0.0,
               ),
               curve: curve,
               duration: duration,
@@ -88,10 +88,11 @@ class SalomonBottomBar extends StatelessWidget {
                       t),
                   shape: itemShape,
                   child: Container(
-                    decoration: const BoxDecoration(
-                      color: Color(0xffE2D3FE),
-                      borderRadius: BorderRadius.all(Radius.circular(10))
-                    ),
+                    height: 54,
+                    // decoration: const BoxDecoration(
+                    //   color: Color(0xffE2D3FE),
+                    //   borderRadius: BorderRadius.all(Radius.circular(10))
+                    // ),
                     child: InkWell(
                       onTap: () => onTap?.call(items.indexOf(item)),
                       customBorder: itemShape,
@@ -99,12 +100,14 @@ class SalomonBottomBar extends StatelessWidget {
                       highlightColor: _selectedColor.withOpacity(0.1),
                       splashColor: _selectedColor.withOpacity(0.1),
                       hoverColor: _selectedColor.withOpacity(0.1),
-                      child: Padding(
+                      child:Padding(
                         padding: itemPadding -
                             (Directionality.of(context) == TextDirection.ltr
-                                ? EdgeInsets.only(right: itemPadding.right * t)
-                                : EdgeInsets.only(left: itemPadding.left * t)),
-                        child: Row(
+                                ? EdgeInsets.only(right: itemPadding.right * 0.8)
+                                : EdgeInsets.only(left: itemPadding.left * 0.3)),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
                           children: [
                             IconTheme(
                               data: IconThemeData(
@@ -116,7 +119,18 @@ class SalomonBottomBar extends StatelessWidget {
                                   ? item.activeIcon ?? item.icon
                                   : item.icon,
                             ),
-                            ClipRect(
+                            DefaultTextStyle(
+                              style: TextStyle(
+                                color: Color.lerp(
+                                    _selectedColor.withOpacity(0.0),
+                                    _selectedColor,
+                                    t),
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              child: item.title,
+                            ),
+                          /*  ClipRect(
                               clipBehavior: Clip.antiAlias,
                               child: SizedBox(
                                 /// TODO: Constrain item height without a fixed value
@@ -149,7 +163,7 @@ class SalomonBottomBar extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                            ),
+                            ),*/
                           ],
                         ),
                       ),
