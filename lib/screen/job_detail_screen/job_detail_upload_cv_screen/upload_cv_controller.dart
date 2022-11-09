@@ -11,21 +11,39 @@ import '../../../utils/pref_keys.dart';
 
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 //List<String> position = [];
+List companyList = [];
 
 class JobDetailsUploadCvController extends GetxController {
+
+  init(){
+    final list = firestore.collection("Apply").doc(PrefService.getString(PrefKeys.userId));
+
+    list.get().then(
+          (DocumentSnapshot snapshot) {
+
+            companyList = snapshot['companyName'];
+
+      },
+
+    );
+  }
 
   String? pdfUrl;
 
   onTapApply({var args}) {
 
+    companyList.add(args['CompanyName']);
+
+    List<String> companyNameList = List.generate(
+        companyList.length, (index) => companyList[index].toString());
+    print(companyNameList);
 
     firestore
         .collection("Apply")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .set({
-      //'position': PrefService.getList(PrefKeys.positionList),
       'apply': true,
-      'companyName': args['CompanyName'],
+      'companyName': companyNameList,
       'userName': PrefService.getString(PrefKeys.fullName),
       'email': PrefService.getString(PrefKeys.email),
       'phone': PrefService.getString(PrefKeys.phoneNumber),

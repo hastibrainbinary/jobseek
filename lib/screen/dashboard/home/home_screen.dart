@@ -8,6 +8,7 @@ import 'package:jobseek/screen/dashboard/home/widgets/all_jobs.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/appbar.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/tips_for_you_section.dart';
+import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_controller.dart';
 import 'package:jobseek/screen/job_recommendation_screen/job_recommendation_controller.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
@@ -22,9 +23,12 @@ class HomeScreen extends StatelessWidget {
   JobRecommendationController jrcontroller = Get.put(JobRecommendationController());
   FirebaseFirestore fireStore = FirebaseFirestore.instance;
   var args = Get.arguments;
+  JobDetailsUploadCvController jobDetailsUploadCvController = Get.put(JobDetailsUploadCvController());
 
   @override
   Widget build(BuildContext context) {
+
+    jobDetailsUploadCvController.init();
     final controller = Get.put(HomeController());
 
     return Container(

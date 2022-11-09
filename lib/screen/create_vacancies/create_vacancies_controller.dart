@@ -95,10 +95,13 @@ class CreateVacanciesController extends GetxController implements GetxService {
     String uid = PrefService.getString(PrefKeys.userId);
     int totalPost = PrefService.getInt(PrefKeys.totalPost);
     String pUid = "$uid*${totalPost + 1}";
+
     List<String> requirementsList = List.generate(
         addRequirementsList.length, (index) => addRequirementsList[index].text);
     print(requirementsList);
+
     if (kDebugMode) {
+
       print("**************$totalPost");
     }
     Map<String, dynamic> map = {
