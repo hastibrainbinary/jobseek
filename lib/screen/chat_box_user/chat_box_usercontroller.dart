@@ -188,4 +188,13 @@ class ChatBoxUserController extends GetxController implements GetxService {
     }
     return "just now";
   }
+
+  List  userData = [];
+
+  getUserData() async {
+    var data = await FirebaseFirestore.instance.collection("Apply").get();
+    userData = data.docs;
+    update(['userdata']);
+    //update(['userDataSeeAll']);
+  }
 }

@@ -307,12 +307,12 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     decoration: BoxDecoration(
                       border: Border.all(
-                          color: ColorRes.containerColor.withOpacity(0.3),
-                          width: 2),
+                          color: ColorRes.containerColor.withOpacity(0.2),
+                          width: 1),
                       borderRadius: const BorderRadius.all(
                         Radius.circular(10),
                       ),
-                      color: Colors.white.withOpacity(0.4),
+                      color: Colors.white,
                     ),
                     child: Row(
                       children: [
@@ -339,8 +339,8 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                             },
                             child: Image.asset(
                               AssetRes.chatSend,
-                              height: 16,
-                              width: 18.4,
+                              height: 25,
+                              width: 25,
                             ))
                       ],
                     ),

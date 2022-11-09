@@ -2,9 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 import 'chat_box_controller.dart';
 import 'chat_box_live-Screen.dart';
 
@@ -117,10 +119,13 @@ class ChatBoxScreen extends StatelessWidget {
         Expanded(
           child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
             stream: FirebaseFirestore.instance
+                .collection("Apply")
+                .snapshots(),
+            /*FirebaseFirestore.instance
                 .collection("Auth")
                 .doc("User")
                 .collection("register")
-                .snapshots(),
+                .snapshots(),*/
             builder: (context, snapshot) {
               if (snapshot.data == null || snapshot.hasData == false) {
                 return const SizedBox();
@@ -128,12 +133,15 @@ class ChatBoxScreen extends StatelessWidget {
               return ListView.builder(
                   itemCount: snapshot.data!.docs.length,
                   itemBuilder: (context, index) {
-                    return InkWell(
+                    return (snapshot.data!.docs[index]['companyName'].toString().toLowerCase() == PrefService.getString(PrefKeys.companyName)
+                        .toString()
+                        .toLowerCase())
+                        ?InkWell(
                       onTap: () async {
                         controller.gotoChatScreen(
                             context,
                             snapshot.data!.docs[index].id,
-                            snapshot.data!.docs[index]['fullName']);
+                            snapshot.data!.docs[index]['Occupation']);
                       },
                       child: Container(
                         height: 92,
@@ -157,7 +165,7 @@ class ChatBoxScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  snapshot.data!.docs[index]['fullName'],
+                                  snapshot.data!.docs[index]['Occupation'],
                                   style: appTextStyle(
                                       color: ColorRes.black,
                                       fontSize: 15,
@@ -216,7 +224,8 @@ class ChatBoxScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                    );
+                    )
+                        :SizedBox();
                   });
             },
           ),
