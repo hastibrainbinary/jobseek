@@ -81,8 +81,9 @@ class AppliesLogoScreen extends StatelessWidget {
                 height: 36,
                 width: 147,
                 decoration: BoxDecoration(
-                    color: ColorRes.containerColor,
-                    borderRadius: BorderRadius.circular(10)),
+                  color: ColorRes.containerColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 child: const Center(
                   child: Text(
                     "Register for free",

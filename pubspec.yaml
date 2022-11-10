@@ -74,6 +74,7 @@ dependencies:
   url_launcher: ^6.1.5
   internet_file: ^1.2.0
   flutter_pdfview: ^1.0.1
+  advanced_search: ^2.2.3
 
 dev_dependencies:
   flutter_test:
