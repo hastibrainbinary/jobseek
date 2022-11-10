@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
+import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_controller.dart';
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_controller.dart';
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_widget/manager_home_screen_widget.dart';
 import 'package:jobseek/utils/app_res.dart';
@@ -8,10 +9,12 @@ import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/color_res.dart';
 
 class RecentApplicationScreen extends StatelessWidget {
-  const RecentApplicationScreen({Key? key}) : super(key: key);
+   RecentApplicationScreen({Key? key}) : super(key: key);
+  JobDetailsUploadCvController jobDetailsUploadCvController = Get.put(JobDetailsUploadCvController());
 
   @override
   Widget build(BuildContext context) {
+    jobDetailsUploadCvController.init();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: ColorRes.backgroundColor,

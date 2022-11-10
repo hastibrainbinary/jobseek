@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_controller.dart';
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_controller.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_res.dart';
@@ -9,19 +10,26 @@ import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 
 Widget recentPeopleBox() {
+
   final contro = Get.put(ManagerHomeScreenController());
+  JobDetailsUploadCvController jobDetailsUploadCvController = Get.put(JobDetailsUploadCvController());
+  jobDetailsUploadCvController.init();
   return SingleChildScrollView(
     child: SizedBox(
       height: Get.height / 1.42,
       child: ListView.builder(
           itemCount: contro.userData.length,
           itemBuilder: (context, i) {
-            return (contro.userData[i]['companyName']
-                        .toString()
-                        .toLowerCase() ==
-                    PrefService.getString(PrefKeys.companyName)
-                        .toString()
-                        .toLowerCase())
+
+            String? o;
+
+            companyList.forEach((element) {
+              if(element == PrefService.getString(PrefKeys.companyName).toString().toLowerCase()){
+                print(element);
+                o = element;
+              }
+            });
+            return (o.toString().toLowerCase() == PrefService.getString(PrefKeys.companyName).toString().toLowerCase())
                 ? Column(
                     children: [
                       Container(
