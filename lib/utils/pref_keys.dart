@@ -11,6 +11,8 @@ class PrefKeys {
   static const imageId = "imageId";
   static const openConfirmSignUpPage = "openConfirmSignUpPage";
   static const totalPost = "totalPost";
+  static const allCountryData="allCountryData";
+  static const allDesignation ="allDesignation";
 
   /// User Data
   static const firstName = "firstName";
