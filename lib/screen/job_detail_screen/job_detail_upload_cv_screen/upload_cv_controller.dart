@@ -16,7 +16,9 @@ List companyList = [];
 bool abc = false;
 
 class JobDetailsUploadCvController extends GetxController {
+
   init() async {
+
     await firestore.collection("Apply").get().then((value) {
       value.docs.forEach((element) {
         if (element['uid'] == PrefService.getString(PrefKeys.userId)) {
@@ -29,6 +31,7 @@ class JobDetailsUploadCvController extends GetxController {
           companyList = value.docs[i]['companyName'];
         }
       }*/
+
     });
   }
 

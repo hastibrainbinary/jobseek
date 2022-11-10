@@ -15,8 +15,11 @@ import 'chat_live_screen.dart';
 class ChatBoxUserScreen extends StatelessWidget {
   ChatBoxUserScreen({Key? key}) : super(key: key);
   final controller = Get.put(ChatBoxUserController());
+
   //ManagerHomeScreenController managerHomeScreenController = Get.put(ManagerHomeScreenController());
-  JobDetailsUploadCvController jobDetailsUploadCvController = Get.put(JobDetailsUploadCvController());
+  JobDetailsUploadCvController jobDetailsUploadCvController =
+      Get.put(JobDetailsUploadCvController());
+
   @override
   Widget build(BuildContext context) {
     jobDetailsUploadCvController.init();
@@ -136,10 +139,11 @@ class ChatBoxUserScreen extends StatelessWidget {
               }
               return ListView.builder(
                   itemCount: snapshot1.data!.docs.length,
-                  itemBuilder: (context,  index) {
+                  itemBuilder: (context, index) {
                     return StreamBuilder<
                         DocumentSnapshot<Map<String, dynamic>>>(
-                      stream: FirebaseFirestore.instance
+                      stream:
+                      FirebaseFirestore.instance
                           .collection('Auth')
                           .doc('Manager')
                           .collection('register')
@@ -147,130 +151,122 @@ class ChatBoxUserScreen extends StatelessWidget {
                           .collection('company')
                           .doc('details')
                           .snapshots(),
-                      builder: (context, snapshot) {
+                     builder: (context, snapshot) {
                         Map<String, dynamic>? data = snapshot.data?.data();
                         if (data == null) {
                           return const SizedBox();
                         }
+
+
                         String? o;
 
                         companyList.forEach((element) {
-                          if(element == data['name']){
+                          if (element.toString().toLowerCase() == data['name'].toString().toLowerCase()) {
                             print(element);
                             o = element;
                           }
                         });
 
-                          return (o == data['name'])
-                              ?InkWell(
-                          onTap: () async {
-                            controller.gotoChatScreen(
-                                context,
-                                snapshot1.data!.docs[index].id,
-                                data['name']);
-                          },
-                          child: Container(
-                            height: 92,
-                            width: Get.width,
-                            margin: const EdgeInsets.symmetric(
-                                horizontal: 18, vertical: 4),
-                            padding: const EdgeInsets.all(15),
-                            decoration: BoxDecoration(
-                                borderRadius:
-                                const BorderRadius.all(
-                                    Radius.circular(15)),
-                                border: Border.all(
-                                    color: const Color(0xffF3ECFF)),
-                                color: ColorRes.white),
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  AssetRes.airBnbLogo,
-                                ),
-                                const SizedBox(width: 20),
-                                Column(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.center,
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      data['name'],
-                                      style: appTextStyle(
-                                          color: ColorRes.black,
-                                          fontSize: 15,
-                                          fontWeight:
-                                          FontWeight.w500),
-                                    ),
-                                    const SizedBox(height: 6),
-                                    Text(
-                                      "Hi Adam Smith,",
-                                      style: appTextStyle(
-                                          color: ColorRes.black,
-                                          fontSize: 9,
-                                          fontWeight:
-                                          FontWeight.w400),
-                                    ),
-                                  ],
-                                ),
-                                const Spacer(),
-                                Column(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.start,
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.end,
-                                  children: [
-                                    Container(
-                                      height: 22,
-                                      width: 22,
-                                      decoration: BoxDecoration(
-                                        gradient:
-                                        const LinearGradient(
-                                          colors: [
-                                            ColorRes.gradientColor,
-                                            ColorRes.containerColor
-                                          ],
-                                        ),
-                                        borderRadius:
-                                        BorderRadius.circular(
-                                            22),
-                                      ),
-                                      child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(
-                                            top: 5),
-                                        child: Text(
-                                          textAlign:
-                                          TextAlign.center,
-                                          '1',
-                                          style: appTextStyle(
-                                              fontSize: 10,
-                                              fontWeight:
-                                              FontWeight.w400,
-                                              color:
-                                              ColorRes.white),
-                                        ),
-                                      ),
-                                    ),
-                                    const Spacer(),
-                                    Text(
-                                      "20.00",
-                                      style: appTextStyle(
-                                          fontSize: 12,
-                                          color: ColorRes.black
-                                              .withOpacity(0.8),
-                                          fontWeight:
-                                          FontWeight.w500),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(width: 10),
-                              ],
-                            ),
-                          ),
-                        )
-                              :SizedBox();
 
+                       return (o.toString().toLowerCase() == data['name'].toString().toLowerCase())
+                            ? InkWell(
+                                onTap: () async {
+                                  controller.gotoChatScreen(
+                                      context,
+                                      snapshot1.data!.docs[index].id,
+                                      data['name']);
+                                },
+                                child: Container(
+                                  height: 92,
+                                  width: Get.width,
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 18, vertical: 4),
+                                  padding: const EdgeInsets.all(15),
+                                  decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(15)),
+                                      border: Border.all(
+                                          color: const Color(0xffF3ECFF)),
+                                      color: ColorRes.white),
+                                  child: Row(
+                                    children: [
+                                      Image.asset(
+                                        AssetRes.airBnbLogo,
+                                      ),
+                                      const SizedBox(width: 20),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            data['name'],
+                                            style: appTextStyle(
+                                                color: ColorRes.black,
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                          const SizedBox(height: 6),
+                                          Text(
+                                            "Hi Adam Smith,",
+                                            style: appTextStyle(
+                                                color: ColorRes.black,
+                                                fontSize: 9,
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                        ],
+                                      ),
+                                      const Spacer(),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        children: [
+                                          Container(
+                                            height: 22,
+                                            width: 22,
+                                            decoration: BoxDecoration(
+                                              gradient: const LinearGradient(
+                                                colors: [
+                                                  ColorRes.gradientColor,
+                                                  ColorRes.containerColor
+                                                ],
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(22),
+                                            ),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.only(top: 5),
+                                              child: Text(
+                                                textAlign: TextAlign.center,
+                                                '1',
+                                                style: appTextStyle(
+                                                    fontSize: 10,
+                                                    fontWeight: FontWeight.w400,
+                                                    color: ColorRes.white),
+                                              ),
+                                            ),
+                                          ),
+                                          const Spacer(),
+                                          Text(
+                                            "20.00",
+                                            style: appTextStyle(
+                                                fontSize: 12,
+                                                color: ColorRes.black
+                                                    .withOpacity(0.8),
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(width: 10),
+                                    ],
+                                  ),
+                                ),
+                              )
+                            : SizedBox();
 
 
                         /*ListView.builder(
@@ -402,6 +398,7 @@ class ChatBoxUserScreen extends StatelessWidget {
       ]),
     );
   }
+
 }
 
 /*

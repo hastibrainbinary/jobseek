@@ -213,18 +213,18 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                         ? SizedBox()
                         : Column(
                       children: [
-                        /* SizedBox(
+                         SizedBox(
                                 width: Get.width,
                                 height: 35,
                                 child: Center(
                                   child: Text(
                                     controller.timeAgo(data['time'].toDate()),
                                     style: TextStyle(
-                                      color: Colors.green.withOpacity(0.5),
+                                      color: Colors.grey.withOpacity(0.5),
                                     ),
                                   ),
                                 ),
-                              ),*/
+                              ),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment:
