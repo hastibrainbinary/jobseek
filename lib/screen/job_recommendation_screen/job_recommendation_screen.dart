@@ -6,9 +6,7 @@ import 'package:jobseek/screen/dashboard/home/home_controller.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/all_jobs.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
 import 'package:jobseek/screen/job_recommendation_screen/job_recommendation_controller.dart';
-import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
-import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
 class JobRecommendation extends StatelessWidget {
