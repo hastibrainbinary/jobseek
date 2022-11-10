@@ -25,9 +25,15 @@ class SignInScreenController extends GetxController {
       var email = prefs.getString("email") ?? "";
       var password = prefs.getString("password") ?? "";
       var remeberMe = prefs.getBool("remember_me") ?? false;
-      print(remeberMe);
-      print(email);
-      print(password);
+      if (kDebugMode) {
+        print(remeberMe);
+      }
+      if (kDebugMode) {
+        print(email);
+      }
+      if (kDebugMode) {
+        print(password);
+      }
       // if (remeberMe) {
       //   setState(() {
       //     isChecked = true;
@@ -36,7 +42,9 @@ class SignInScreenController extends GetxController {
       //   passwordController.text = password ?? "";
       // }
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 
