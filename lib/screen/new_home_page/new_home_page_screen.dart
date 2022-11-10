@@ -86,7 +86,52 @@ class HomePageNewScreenU extends StatelessWidget {
               ),
             ]),
             const SizedBox(height: 10),
-            searchArea(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          color: ColorRes.white2,
+                          borderRadius: BorderRadius.all(Radius.circular(8))),
+                      child: TextField(
+                        controller: controller.searchControllerNew,
+                        onChanged: (value) {
+                        },
+                        onTap: (){
+                          Get.to(()=>SearchJobScreen());
+                        },
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            suffixIcon: const Icon(Icons.search, color: ColorRes.grey),
+                            hintText: "Search",
+                            hintStyle: appTextStyle(
+                                fontSize: 14,
+                                color: ColorRes.grey,
+                                fontWeight: FontWeight.w500),
+                            contentPadding: const EdgeInsets.only(left: 20, top: 13)),
+                      ),
+                    ),
+                  ),
+                  // const SizedBox(width: 20),
+                  // Container(
+                  //   height: 40,
+                  //   width: 40,
+                  //   alignment: Alignment.center,
+                  //   decoration: const BoxDecoration(
+                  //     borderRadius: BorderRadius.all(Radius.circular(10)),
+                  //     color: ColorRes.logoColor,
+                  //   ),
+                  //   child: Image.asset(
+                  //     AssetRes.menuIcon,
+                  //     color: ColorRes.containerColor,
+                  //     height: 15,
+                  //   ),
+                  // ),
+                ],
+              ),
+            ),
             const SizedBox(height: 15),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 1),
