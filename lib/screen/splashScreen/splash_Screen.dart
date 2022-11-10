@@ -169,6 +169,7 @@ class _SplashScreenState extends State<SplashScreen> {
       });
     });
 
+    print(PrefService.getList(PrefKeys.allDesignation));
     if(PrefService.getList(PrefKeys.allCountryData)==null || PrefService.getList(PrefKeys.allCountryData).isEmpty){
       PrefService.setValue(PrefKeys.allCountryData, controller.allData);
     }

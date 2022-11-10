@@ -104,7 +104,6 @@ class ApplicationsScreen extends StatelessWidget {
                             margin: const EdgeInsets.only(right: 10),
                             padding: const EdgeInsets.symmetric(horizontal: 15),
                             height: 32,
-                            // width: 70,
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
                                 border: Border.all(
@@ -137,44 +136,376 @@ class ApplicationsScreen extends StatelessWidget {
               height: Get.height - 309,
               child: SingleChildScrollView(
                 child: Obx(() {
-                    return Column(
-                      children: [
-                        applicationController
-                            .selectedJobs.value ==0?Column(
+                  return Column(
+                    children: [
+                      applicationController.selectedJobs.value == 0
+                          ? Column(
                               children: [
                                 Container(
-                          height: 135,
-                          width: Get.width,
-                          margin: const EdgeInsets.symmetric(
+                                  height: 135,
+                                  width: Get.width,
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 18, vertical: 4),
+                                  padding: const EdgeInsets.all(15),
+                                  decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(15)),
+                                      border: Border.all(
+                                          color: const Color(0xffF3ECFF)),
+                                      color: ColorRes.white),
+                                  child: Column(
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 8),
+                                        child: Row(
+                                          children: [
+                                            Image.asset(AssetRes.airBnbLogo,
+                                                height: 40),
+                                            const SizedBox(width: 20),
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text("UI/UX Designer",
+                                                    style: appTextStyle(
+                                                        color: ColorRes.black,
+                                                        fontSize: 15,
+                                                        fontWeight:
+                                                            FontWeight.w500)),
+                                                Text("AirBNB",
+                                                    style: appTextStyle(
+                                                        color: ColorRes.black,
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w400)),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      const Divider(
+                                        color: ColorRes.grey,
+                                      ),
+                                      const SizedBox(height: 10),
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (con) =>
+                                                      const AcceptedScreen()));
+                                        },
+                                        child: Container(
+                                          height: 28,
+                                          width: Get.width,
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xffEDF9F0),
+                                            borderRadius:
+                                                BorderRadius.circular(99),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              "Application Accepted",
+                                              style: appTextStyle(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w500,
+                                                  color:
+                                                      const Color(0xff23A757)),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  height: 135,
+                                  width: Get.width,
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 18, vertical: 4),
+                                  padding: const EdgeInsets.all(15),
+                                  decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(15)),
+                                      border: Border.all(
+                                          color: const Color(0xffF3ECFF)),
+                                      color: ColorRes.white),
+                                  child: Column(
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 8),
+                                        child: Row(
+                                          children: [
+                                            Image.asset(AssetRes.airBnbLogo,
+                                                height: 40),
+                                            const SizedBox(width: 20),
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text("UI/UX Designer",
+                                                    style: appTextStyle(
+                                                        color: ColorRes.black,
+                                                        fontSize: 15,
+                                                        fontWeight:
+                                                            FontWeight.w500)),
+                                                Text("AirBNB",
+                                                    style: appTextStyle(
+                                                        color: ColorRes.black,
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w400)),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      const Divider(
+                                        color: ColorRes.grey,
+                                      ),
+                                      const SizedBox(height: 10),
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (con) =>
+                                                      const UiUxDesignerScreen()));
+                                        },
+                                        child: Container(
+                                          height: 28,
+                                          width: Get.width,
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xffEEF2FA),
+                                            borderRadius:
+                                                BorderRadius.circular(99),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              "Application Sent",
+                                              style: appTextStyle(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w500,
+                                                  color:
+                                                      const Color(0xff2E5AAC)),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  height: 135,
+                                  width: Get.width,
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 18, vertical: 4),
+                                  padding: const EdgeInsets.all(15),
+                                  decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(15)),
+                                      border: Border.all(
+                                          color: const Color(0xffF3ECFF)),
+                                      color: ColorRes.white),
+                                  child: Column(
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 8),
+                                        child: Row(
+                                          children: [
+                                            Image.asset(AssetRes.twitterLogo,
+                                                height: 40),
+                                            const SizedBox(width: 20),
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text("Financial Planner",
+                                                    style: appTextStyle(
+                                                        color: ColorRes.black,
+                                                        fontSize: 15,
+                                                        fontWeight:
+                                                            FontWeight.w500)),
+                                                Text("Twitter",
+                                                    style: appTextStyle(
+                                                        color: ColorRes.black,
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w400)),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      const Divider(
+                                        color: ColorRes.grey,
+                                      ),
+                                      const SizedBox(height: 10),
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (con) =>
+                                                      const FinancialPlannerScreen()));
+                                        },
+                                        child: Container(
+                                          height: 28,
+                                          width: Get.width,
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xffFFFBED),
+                                            borderRadius:
+                                                BorderRadius.circular(99),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              "Application Pending",
+                                              style: appTextStyle(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w500,
+                                                  color:
+                                                      const Color(0xffF1C100)),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  height: 135,
+                                  width: Get.width,
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 18, vertical: 4),
+                                  padding: const EdgeInsets.all(15),
+                                  decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(15)),
+                                      border: Border.all(
+                                          color: const Color(0xffF3ECFF)),
+                                      color: ColorRes.white),
+                                  child: Column(
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 8),
+                                        child: Row(
+                                          children: [
+                                            Image.asset(AssetRes.facebook,
+                                                height: 40),
+                                            const SizedBox(width: 20),
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Product Designer",
+                                                  style: appTextStyle(
+                                                      color: ColorRes.black,
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                ),
+                                                Text("Facebook",
+                                                    style: appTextStyle(
+                                                        color: ColorRes.black,
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w400)),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      const Divider(
+                                        color: ColorRes.grey,
+                                      ),
+                                      const SizedBox(height: 10),
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (con) =>
+                                                      const RejectedScreen()));
+                                        },
+                                        child: Container(
+                                          height: 28,
+                                          width: Get.width,
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xffFEEFEF),
+                                            borderRadius:
+                                                BorderRadius.circular(99),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              "Application Rejected",
+                                              style: appTextStyle(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w500,
+                                                  color:
+                                                      const Color(0xffDA1414)),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            )
+                          : SizedBox(),
+                      applicationController.selectedJobs.value == 1
+                          ? Container(
+                              height: 135,
+                              width: Get.width,
+                              margin: const EdgeInsets.symmetric(
                                   horizontal: 18, vertical: 4),
-                          padding: const EdgeInsets.all(15),
-                          decoration: BoxDecoration(
-                                  borderRadius:
-                                      const BorderRadius.all(Radius.circular(15)),
-                                  border: Border.all(color: const Color(0xffF3ECFF)),
+                              padding: const EdgeInsets.all(15),
+                              decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(15)),
+                                  border: Border.all(
+                                      color: const Color(0xffF3ECFF)),
                                   color: ColorRes.white),
-                          child: Column(
+                              child: Column(
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.only(bottom: 8),
                                     child: Row(
                                       children: [
-                                        Image.asset(AssetRes.airBnbLogo, height: 40),
+                                        Image.asset(AssetRes.airBnbLogo,
+                                            height: 40),
                                         const SizedBox(width: 20),
                                         Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Text("UI/UX Designer",
                                                 style: appTextStyle(
                                                     color: ColorRes.black,
                                                     fontSize: 15,
-                                                    fontWeight: FontWeight.w500)),
+                                                    fontWeight:
+                                                        FontWeight.w500)),
                                             Text("AirBNB",
                                                 style: appTextStyle(
                                                     color: ColorRes.black,
                                                     fontSize: 12,
-                                                    fontWeight: FontWeight.w400)),
+                                                    fontWeight:
+                                                        FontWeight.w400)),
                                           ],
                                         ),
                                       ],
@@ -211,519 +542,250 @@ class ApplicationsScreen extends StatelessWidget {
                                     ),
                                   ),
                                 ],
-                          ),
-                        ),
-                                Container(
-                                  height: 135,
-                                  width: Get.width,
-                                  margin: const EdgeInsets.symmetric(
-                                      horizontal: 18, vertical: 4),
-                                  padding: const EdgeInsets.all(15),
-                                  decoration: BoxDecoration(
-                                      borderRadius:
-                                      const BorderRadius.all(Radius.circular(15)),
-                                      border: Border.all(color: const Color(0xffF3ECFF)),
-                                      color: ColorRes.white),
-                                  child: Column(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(bottom: 8),
-                                        child: Row(
+                              ),
+                            )
+                          : SizedBox(),
+                      applicationController.selectedJobs.value == 4
+                          ? Container(
+                              height: 135,
+                              width: Get.width,
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 18, vertical: 4),
+                              padding: const EdgeInsets.all(15),
+                              decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(15)),
+                                  border: Border.all(
+                                      color: const Color(0xffF3ECFF)),
+                                  color: ColorRes.white),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 8),
+                                    child: Row(
+                                      children: [
+                                        Image.asset(AssetRes.airBnbLogo,
+                                            height: 40),
+                                        const SizedBox(width: 20),
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
-                                            Image.asset(AssetRes.airBnbLogo, height: 40),
-                                            const SizedBox(width: 20),
-                                            Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text("UI/UX Designer",
-                                                    style: appTextStyle(
-                                                        color: ColorRes.black,
-                                                        fontSize: 15,
-                                                        fontWeight: FontWeight.w500)),
-                                                Text("AirBNB",
-                                                    style: appTextStyle(
-                                                        color: ColorRes.black,
-                                                        fontSize: 12,
-                                                        fontWeight: FontWeight.w400)),
-                                              ],
-                                            ),
+                                            Text("UI/UX Designer",
+                                                style: appTextStyle(
+                                                    color: ColorRes.black,
+                                                    fontSize: 15,
+                                                    fontWeight:
+                                                        FontWeight.w500)),
+                                            Text("AirBNB",
+                                                style: appTextStyle(
+                                                    color: ColorRes.black,
+                                                    fontSize: 12,
+                                                    fontWeight:
+                                                        FontWeight.w400)),
                                           ],
                                         ),
-                                      ),
-                                      const Divider(
-                                        color: ColorRes.grey,
-                                      ),
-                                      const SizedBox(height: 10),
-                                      InkWell(
-                                        onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (con) =>
+                                      ],
+                                    ),
+                                  ),
+                                  const Divider(
+                                    color: ColorRes.grey,
+                                  ),
+                                  const SizedBox(height: 10),
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (con) =>
                                                   const UiUxDesignerScreen()));
-                                        },
-                                        child: Container(
-                                          height: 28,
-                                          width: Get.width,
-                                          decoration: BoxDecoration(
-                                            color: const Color(0xffEEF2FA),
-                                            borderRadius: BorderRadius.circular(99),
-                                          ),
-                                          child: Center(
-                                            child: Text(
-                                              "Application Sent",
-                                              style: appTextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: const Color(0xff2E5AAC)),
-                                            ),
-                                          ),
-                                        ),
+                                    },
+                                    child: Container(
+                                      height: 28,
+                                      width: Get.width,
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xffEEF2FA),
+                                        borderRadius: BorderRadius.circular(99),
                                       ),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  height: 135,
-                                  width: Get.width,
-                                  margin: const EdgeInsets.symmetric(
-                                      horizontal: 18, vertical: 4),
-                                  padding: const EdgeInsets.all(15),
-                                  decoration: BoxDecoration(
-                                      borderRadius:
-                                      const BorderRadius.all(Radius.circular(15)),
-                                      border: Border.all(color: const Color(0xffF3ECFF)),
-                                      color: ColorRes.white),
-                                  child: Column(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(bottom: 8),
-                                        child: Row(
-                                          children: [
-                                            Image.asset(AssetRes.twitterLogo, height: 40),
-                                            const SizedBox(width: 20),
-                                            Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text("Financial Planner",
-                                                    style: appTextStyle(
-                                                        color: ColorRes.black,
-                                                        fontSize: 15,
-                                                        fontWeight: FontWeight.w500)),
-                                                Text("Twitter",
-                                                    style: appTextStyle(
-                                                        color: ColorRes.black,
-                                                        fontSize: 12,
-                                                        fontWeight: FontWeight.w400)),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      const Divider(
-                                        color: ColorRes.grey,
-                                      ),
-                                      const SizedBox(height: 10),
-                                      InkWell(
-                                        onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (con) =>
-                                                  const FinancialPlannerScreen()));
-                                        },
-                                        child: Container(
-                                          height: 28,
-                                          width: Get.width,
-                                          decoration: BoxDecoration(
-                                            color: const Color(0xffFFFBED),
-                                            borderRadius: BorderRadius.circular(99),
-                                          ),
-                                          child: Center(
-                                            child: Text(
-                                              "Application Pending",
-                                              style: appTextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: const Color(0xffF1C100)),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  height: 135,
-                                  width: Get.width,
-                                  margin: const EdgeInsets.symmetric(
-                                      horizontal: 18, vertical: 4),
-                                  padding: const EdgeInsets.all(15),
-                                  decoration: BoxDecoration(
-                                      borderRadius:
-                                      const BorderRadius.all(Radius.circular(15)),
-                                      border: Border.all(color: const Color(0xffF3ECFF)),
-                                      color: ColorRes.white),
-                                  child: Column(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(bottom: 8),
-                                        child: Row(
-                                          children: [
-                                            Image.asset(AssetRes.facebook, height: 40),
-                                            const SizedBox(width: 20),
-                                            Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  "Product Designer",
-                                                  style: appTextStyle(
-                                                      color: ColorRes.black,
-                                                      fontSize: 15,
-                                                      fontWeight: FontWeight.w500),
-                                                ),
-                                                Text("Facebook",
-                                                    style: appTextStyle(
-                                                        color: ColorRes.black,
-                                                        fontSize: 12,
-                                                        fontWeight: FontWeight.w400)),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      const Divider(
-                                        color: ColorRes.grey,
-                                      ),
-                                      const SizedBox(height: 10),
-                                      InkWell(
-                                        onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (con) =>
-                                                  const RejectedScreen()));
-                                        },
-                                        child: Container(
-                                          height: 28,
-                                          width: Get.width,
-                                          decoration: BoxDecoration(
-                                            color: const Color(0xffFEEFEF),
-                                            borderRadius: BorderRadius.circular(99),
-                                          ),
-                                          child: Center(
-                                            child: Text(
-                                              "Application Rejected",
-                                              style: appTextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: const Color(0xffDA1414)),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ):SizedBox(),
-                        applicationController
-                            .selectedJobs.value ==1?Container(
-                  height: 135,
-                  width: Get.width,
-                  margin: const EdgeInsets.symmetric(
-                  horizontal: 18, vertical: 4),
-                  padding: const EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                  borderRadius:
-                  const BorderRadius.all(Radius.circular(15)),
-                  border: Border.all(color: const Color(0xffF3ECFF)),
-                  color: ColorRes.white),
-                  child: Column(
-                  children: [
-                  Padding(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child: Row(
-                  children: [
-                  Image.asset(AssetRes.airBnbLogo, height: 40),
-                  const SizedBox(width: 20),
-                  Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                  Text("UI/UX Designer",
-                  style: appTextStyle(
-                  color: ColorRes.black,
-                  fontSize: 15,
-                  fontWeight: FontWeight.w500)),
-                  Text("AirBNB",
-                  style: appTextStyle(
-                  color: ColorRes.black,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400)),
-                  ],
-                  ),
-                  ],
-                  ),
-                  ),
-                  const Divider(
-                  color: ColorRes.grey,
-                  ),
-                  const SizedBox(height: 10),
-                  InkWell(
-                  onTap: () {
-                  Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                  builder: (con) =>
-                  const AcceptedScreen()));
-                  },
-                  child: Container(
-                  height: 28,
-                  width: Get.width,
-                  decoration: BoxDecoration(
-                  color: const Color(0xffEDF9F0),
-                  borderRadius: BorderRadius.circular(99),
-                  ),
-                  child: Center(
-                  child: Text(
-                  "Application Accepted",
-                  style: appTextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
-                  color: const Color(0xff23A757)),
-                  ),
-                  ),
-                  ),
-                  ),
-                  ],
-                  ),
-                  ):SizedBox(),
-                        applicationController
-                            .selectedJobs.value ==2?Container(
-                          height: 135,
-                          width: Get.width,
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 18, vertical: 4),
-                          padding: const EdgeInsets.all(15),
-                          decoration: BoxDecoration(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(15)),
-                              border: Border.all(color: const Color(0xffF3ECFF)),
-                              color: ColorRes.white),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: Row(
-                                  children: [
-                                    Image.asset(AssetRes.twitterLogo, height: 40),
-                                    const SizedBox(width: 20),
-                                    Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text("Financial Planner",
-                                            style: appTextStyle(
-                                                color: ColorRes.black,
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w500)),
-                                        Text("Twitter",
-                                            style: appTextStyle(
-                                                color: ColorRes.black,
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w400)),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              const Divider(
-                                color: ColorRes.grey,
-                              ),
-                              const SizedBox(height: 10),
-                              InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (con) =>
-                                              const FinancialPlannerScreen()));
-                                },
-                                child: Container(
-                                  height: 28,
-                                  width: Get.width,
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xffFFFBED),
-                                    borderRadius: BorderRadius.circular(99),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      "Application Pending",
-                                      style: appTextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w500,
-                                          color: const Color(0xffF1C100)),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ):SizedBox(),
-                        applicationController
-                            .selectedJobs.value ==3?Container(
-                          height: 135,
-                          width: Get.width,
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 18, vertical: 4),
-                          padding: const EdgeInsets.all(15),
-                          decoration: BoxDecoration(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(15)),
-                              border: Border.all(color: const Color(0xffF3ECFF)),
-                              color: ColorRes.white),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: Row(
-                                  children: [
-                                    Image.asset(AssetRes.facebook, height: 40),
-                                    const SizedBox(width: 20),
-                                    Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Product Designer",
+                                      child: Center(
+                                        child: Text(
+                                          "Application Sent",
                                           style: appTextStyle(
-                                              color: ColorRes.black,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w500),
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w500,
+                                              color: const Color(0xff2E5AAC)),
                                         ),
-                                        Text("Facebook",
-                                            style: appTextStyle(
-                                                color: ColorRes.black,
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w400)),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              const Divider(
-                                color: ColorRes.grey,
-                              ),
-                              const SizedBox(height: 10),
-                              InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (con) =>
-                                              const RejectedScreen()));
-                                },
-                                child: Container(
-                                  height: 28,
-                                  width: Get.width,
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xffFEEFEF),
-                                    borderRadius: BorderRadius.circular(99),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      "Application Rejected",
-                                      style: appTextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w500,
-                                          color: const Color(0xffDA1414)),
+                                      ),
                                     ),
                                   ),
-                                ),
+                                ],
                               ),
-                            ],
-                          ),
-                        ):SizedBox(),
-                        applicationController
-                            .selectedJobs.value ==4?Container(
-                          height: 135,
-                          width: Get.width,
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 18, vertical: 4),
-                          padding: const EdgeInsets.all(15),
-                          decoration: BoxDecoration(
-                              borderRadius:
-                              const BorderRadius.all(Radius.circular(15)),
-                              border: Border.all(color: const Color(0xffF3ECFF)),
-                              color: ColorRes.white),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: Row(
-                                  children: [
-                                    Image.asset(AssetRes.airBnbLogo, height: 40),
-                                    const SizedBox(width: 20),
-                                    Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                            )
+                          : SizedBox(),
+                      applicationController.selectedJobs.value == 2
+                          ? Container(
+                              height: 135,
+                              width: Get.width,
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 18, vertical: 4),
+                              padding: const EdgeInsets.all(15),
+                              decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(15)),
+                                  border: Border.all(
+                                      color: const Color(0xffF3ECFF)),
+                                  color: ColorRes.white),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 8),
+                                    child: Row(
                                       children: [
-                                        Text("UI/UX Designer",
-                                            style: appTextStyle(
-                                                color: ColorRes.black,
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w500)),
-                                        Text("AirBNB",
-                                            style: appTextStyle(
-                                                color: ColorRes.black,
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w400)),
+                                        Image.asset(AssetRes.twitterLogo,
+                                            height: 40),
+                                        const SizedBox(width: 20),
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text("Financial Planner",
+                                                style: appTextStyle(
+                                                    color: ColorRes.black,
+                                                    fontSize: 15,
+                                                    fontWeight:
+                                                        FontWeight.w500)),
+                                            Text("Twitter",
+                                                style: appTextStyle(
+                                                    color: ColorRes.black,
+                                                    fontSize: 12,
+                                                    fontWeight:
+                                                        FontWeight.w400)),
+                                          ],
+                                        ),
                                       ],
                                     ),
-                                  ],
-                                ),
-                              ),
-                              const Divider(
-                                color: ColorRes.grey,
-                              ),
-                              const SizedBox(height: 10),
-                              InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (con) =>
-                                          const UiUxDesignerScreen()));
-                                },
-                                child: Container(
-                                  height: 28,
-                                  width: Get.width,
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xffEEF2FA),
-                                    borderRadius: BorderRadius.circular(99),
                                   ),
-                                  child: Center(
-                                    child: Text(
-                                      "Application Sent",
-                                      style: appTextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w500,
-                                          color: const Color(0xff2E5AAC)),
+                                  const Divider(
+                                    color: ColorRes.grey,
+                                  ),
+                                  const SizedBox(height: 10),
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (con) =>
+                                                  const FinancialPlannerScreen()));
+                                    },
+                                    child: Container(
+                                      height: 28,
+                                      width: Get.width,
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xffFFFBED),
+                                        borderRadius: BorderRadius.circular(99),
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          "Application Pending",
+                                          style: appTextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w500,
+                                              color: const Color(0xffF1C100)),
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                ),
+                                ],
                               ),
-                            ],
-                          ),
-                        ):SizedBox(),
-                      ],
-                    );
-                  }
-                ),
+                            )
+                          : SizedBox(),
+                      applicationController.selectedJobs.value == 3
+                          ? Container(
+                              height: 135,
+                              width: Get.width,
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 18, vertical: 4),
+                              padding: const EdgeInsets.all(15),
+                              decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(15)),
+                                  border: Border.all(
+                                      color: const Color(0xffF3ECFF)),
+                                  color: ColorRes.white),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 8),
+                                    child: Row(
+                                      children: [
+                                        Image.asset(AssetRes.facebook,
+                                            height: 40),
+                                        const SizedBox(width: 20),
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Product Designer",
+                                              style: appTextStyle(
+                                                  color: ColorRes.black,
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                            Text("Facebook",
+                                                style: appTextStyle(
+                                                    color: ColorRes.black,
+                                                    fontSize: 12,
+                                                    fontWeight:
+                                                        FontWeight.w400)),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const Divider(
+                                    color: ColorRes.grey,
+                                  ),
+                                  const SizedBox(height: 10),
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (con) =>
+                                                  const RejectedScreen()));
+                                    },
+                                    child: Container(
+                                      height: 28,
+                                      width: Get.width,
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xffFEEFEF),
+                                        borderRadius: BorderRadius.circular(99),
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          "Application Rejected",
+                                          style: appTextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w500,
+                                              color: const Color(0xffDA1414)),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          : SizedBox(),
+                    ],
+                  );
+                }),
               ),
             )
           ],
