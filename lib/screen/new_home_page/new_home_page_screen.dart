@@ -1,3 +1,4 @@
+import 'package:advanced_search/advanced_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -6,9 +7,12 @@ import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
 import 'package:jobseek/screen/looking_for_screen/looking_for_screen.dart';
 import 'package:jobseek/screen/new_home_page/new_home_page_controller.dart';
 import 'package:jobseek/screen/search_job/search_job_screen.dart';
+import 'package:jobseek/screen/splashScreen/splash_controller.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 
 class HomePageNewScreenU extends StatelessWidget {
    HomePageNewScreenU({Key? key}) : super(key: key);
@@ -249,22 +253,33 @@ class HomePageNewScreenU extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 13),
-            const Padding(
-              padding: EdgeInsets.all(18.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Enter skills, designations, companies',
-                  focusColor: Colors.green,
-                ),
+             Padding(
+              padding: EdgeInsets.only(top: 18.0,left: 18,right: 18,bottom: 8),
+              child: AdvancedSearch(
+                clearSearchEnabled: true,
+                singleItemHeight: 40,
+                hintText: 'Enter skills,designation,companies',
+                hintTextColor: Colors.black.withOpacity(0.5),
+                autoListing: true,
+                unSelectedTextColor: Colors.black.withOpacity(0.5),
+                maxElementsToDisplay: 10,
+                onItemTap: (int index, String value) {  },
+                searchItems: PrefService.getList(PrefKeys.allDesignation),
+
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.all(18.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Enter location',
-                  focusColor: Colors.green,
-                ),
+             Padding(
+              padding: const EdgeInsets.only(bottom: 18.0,left: 18,right: 18),
+              child:AdvancedSearch(
+                clearSearchEnabled: true,
+                singleItemHeight: 40,
+                hintText: 'Enter location',
+                hintTextColor: Colors.black.withOpacity(0.5),
+                autoListing: true,
+                maxElementsToDisplay: 10,
+                onItemTap: (int index, String value) {  },
+                searchItems: PrefService.getList(PrefKeys.allCountryData),
+
               ),
             ),
             InkWell(

@@ -2,12 +2,14 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jobseek/api/api_country.dart';
 import 'package:jobseek/screen/dashboard/dashboard_controller.dart';
 import 'package:jobseek/screen/dashboard/dashboard_screen.dart';
 import 'package:jobseek/screen/looking_for_screen/looking_for_screen.dart';
 import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen.dart';
 import 'package:jobseek/screen/new_home_page/new_home_page_screen.dart';
 import 'package:jobseek/screen/organization_profile_screen/organization_profile_screen.dart';
+import 'package:jobseek/screen/splashScreen/splash_controller.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
@@ -21,11 +23,14 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
+  SplashController controller = Get.put(SplashController());
   @override
   void initState() {
     super.initState();
 
     splash();
+    countryApi();
   }
 
   void splash() async {
@@ -148,5 +153,29 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
       ),
     );
+  }
+
+
+  countryApi()async{
+    controller.countryData = await CountrySearch.countNotification();
+
+    controller.countryData!.forEach((element) {
+      controller.allData.add(element.name ?? "");
+      element.state!.forEach((el) {
+        controller.allData.add(el.name ?? "");
+          el.city!.forEach((e) {
+            controller.allData.add(e.name??"");
+          });
+      });
+    });
+
+    if(PrefService.getList(PrefKeys.allCountryData)==null || PrefService.getList(PrefKeys.allCountryData).isEmpty){
+      PrefService.setValue(PrefKeys.allCountryData, controller.allData);
+    }
+
+    if(PrefService.getList(PrefKeys.allDesignation)==null || PrefService.getList(PrefKeys.allDesignation).isEmpty)
+      {
+    PrefService.setValue(PrefKeys.allDesignation, controller.allDesignation);
+      }
   }
 }
