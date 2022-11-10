@@ -16,15 +16,15 @@ class ChatBoxLiveScreenM extends StatelessWidget {
   final String? otherUserUid;
   final String? userUid;
 
+  ChatBoxLiveScreenM({
+    Key? key,
+    this.name,
+    this.userUid,
+    this.otherUserUid,
+    this.roomId,
+  }) : super(key: key);
 
-   ChatBoxLiveScreenM({Key? key,
-     this.name,
-     this.userUid,
-     this.otherUserUid,
-     this.roomId,
-   }) : super(key: key);
-
-   ChatBoxController controller = Get.put(ChatBoxController());
+  ChatBoxController controller = Get.put(ChatBoxController());
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +107,6 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                         ),
                       ],
                     )),
-
                     InkWell(
                       onTap: () {
                         Navigator.push(
@@ -187,16 +186,17 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 15,),
+            const SizedBox(
+              height: 15,
+            ),
             Expanded(
               child: PaginateFirestore(
-
                   scrollController: controller.listScrollController,
                   isLive: true,
                   reverse: true,
                   itemBuilder: (context, docementSnapshot, index) {
                     Map<String, dynamic>? data =
-                    docementSnapshot[index].data() as Map<String, dynamic>?;
+                        docementSnapshot[index].data() as Map<String, dynamic>?;
                     if (data == null) {
                       return const SizedBox();
                     }
@@ -210,10 +210,10 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                     }
 
                     Widget box = data['type'] == "alert"
-                        ? SizedBox()
+                        ? const SizedBox()
                         : Column(
-                      children: [
-                        /* SizedBox(
+                            children: [
+                              /* SizedBox(
                                 width: Get.width,
                                 height: 35,
                                 child: Center(
@@ -225,58 +225,61 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                                   ),
                                 ),
                               ),*/
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment:
-                          data['senderUid'].toString() == userUid
-                              ? MainAxisAlignment.end
-                              : MainAxisAlignment.start,
-                          children: [
-                            // Text(controller.data['time'].toString(),style: sfProTextReguler(fontSize: 12,color:ColorRes.colorF0F0F0 ),),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    data['senderUid'].toString() == userUid
+                                        ? MainAxisAlignment.end
+                                        : MainAxisAlignment.start,
+                                children: [
+                                  // Text(controller.data['time'].toString(),style: sfProTextReguler(fontSize: 12,color:ColorRes.colorF0F0F0 ),),
 
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            Container(
-                              padding: const EdgeInsets.all(10),
-                              constraints: BoxConstraints(
-                                maxWidth: Get.width / 1.3,
-                              ),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  gradient: data['senderUid']
-                                      .toString() ==
-                                      userUid?
-                                  const LinearGradient(colors: [
-                                    Color(0xFFBF9EFF),
-                                    Color(0xFF8B4EFF),
-                                  ]):const LinearGradient(colors: [
-                                    Color(0xFFEEEBF4),
-                                    Color(0xFFEEEBF4),
-                                  ])
-                                /* color: data['senderUid']
+                                  const SizedBox(
+                                    width: 20,
+                                  ),
+                                  Container(
+                                    padding: const EdgeInsets.all(10),
+                                    constraints: BoxConstraints(
+                                      maxWidth: Get.width / 1.3,
+                                    ),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        gradient:
+                                            data['senderUid'].toString() ==
+                                                    userUid
+                                                ? const LinearGradient(colors: [
+                                                    Color(0xFFBF9EFF),
+                                                    Color(0xFF8B4EFF),
+                                                  ])
+                                                : const LinearGradient(colors: [
+                                                    Color(0xFFEEEBF4),
+                                                    Color(0xFFEEEBF4),
+                                                  ])
+                                        /* color: data['senderUid']
                                       .toString() ==
                                       userUid
                                       ? Colors.green
                                       : Colors.lightBlue*/
+                                        ),
+                                    child: Text(
+                                      data['content'].toString(),
+                                      style: data['senderUid'].toString() ==
+                                              userUid
+                                          ? const TextStyle(
+                                              fontSize: 17, color: Colors.white)
+                                          : const TextStyle(
+                                              fontSize: 17,
+                                              color: Colors.black),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 20,
+                                  ),
+                                ],
                               ),
-                              child: Text(
-                                data['content'].toString(),
-                                style: data['senderUid']
-                                    .toString() ==
-                                    userUid?const TextStyle(
-                                    fontSize: 17, color: Colors.white):const TextStyle(
-                                    fontSize: 17, color: Colors.black),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 20,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                      ],
-                    );
+                              const SizedBox(height: 10),
+                            ],
+                          );
                     if ((index + 1) == docementSnapshot.length) {
                       return Column(
                         // mainAxisAlignment: MainAxisAlignment.center,
@@ -323,7 +326,7 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                             decoration: const InputDecoration(
                                 hintText: "Type message...",
                                 hintStyle:
-                                TextStyle(fontSize: 17, color: Colors.grey),
+                                    TextStyle(fontSize: 17, color: Colors.grey),
                                 border: InputBorder.none),
                           ),
                         ),
@@ -346,7 +349,9 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                     ),
                   );
                 }),
-            SizedBox(height: 15,),
+            const SizedBox(
+              height: 15,
+            ),
           ]),
     );
   }

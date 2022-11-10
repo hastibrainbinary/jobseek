@@ -34,6 +34,7 @@ class AssetRes {
   static const callIcon = '${icons}call_Icon.png';
   static const callReceive = '${icons}call_receive.png';
   static const seePdf = '${icons}see_pdf.png';
+  static const chatSend ="${icons}chatSend.png";
 
   ///-----------------------------images------------------------------------------------------
   static const splash_screenback = '${images}splash_screenback.png';
@@ -83,4 +84,5 @@ class AssetRes {
   static const Inbox = "${images}Inbox.png";
   static const profileLogo = "${images}profileLogo.png";
   static const companyProfile ='${images}companyProfile.png';
+
 }
