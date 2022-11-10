@@ -138,30 +138,6 @@ class ChatBoxUserScreen extends StatelessWidget {
                 return const SizedBox();
               }
               return ListView.builder(
-<<<<<<<<< Temporary merge branch 1
-                  itemCount: snapshot.data!.docs.length,
-                  itemBuilder: (context, index) {
-                    return InkWell(
-                      onTap: () {
-                        Get.to(const ChatLiveScreen());
-                      },
-                      child: Container(
-                        height: 92,
-                        width: Get.width,
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 18, vertical: 4),
-                        padding: const EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(15),
-                            ),
-                            border: Border.all(
-                              color: const Color(0xffF3ECFF),
-                            ),
-                            color: ColorRes.white),
-                        child: Text(snapshot.data!.docs[index]['FullName']),
-                      ),
-=========
                   itemCount: snapshot1.data!.docs.length,
                   itemBuilder: (context, index) {
                     return StreamBuilder<

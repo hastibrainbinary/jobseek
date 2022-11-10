@@ -23,7 +23,7 @@ class AssetRes {
   static const applies = "${icons}applies.png";
   static const search ="${icons}search.png";
 
-  static const chatSend = "${icons}chatSend.png";
+
 
   static const dateIcon = '${icons}dateIcon.png';
   static const dropIcon = '${icons}dropIcon.png';
