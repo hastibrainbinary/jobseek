@@ -11,21 +11,56 @@ import '../../../utils/pref_keys.dart';
 
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 //List<String> position = [];
+List companyList = [];
+
+bool abc = false;
 
 class JobDetailsUploadCvController extends GetxController {
+
+  init() async {
+
+    await firestore.collection("Apply").get().then((value) {
+      value.docs.forEach((element) {
+        if (element['uid'] == PrefService.getString(PrefKeys.userId)) {
+          companyList = element['companyName'];
+        }
+      });
+
+      /*for (int i = 1; i <= value.docs.length; i++) {
+        if (value.docs[i]['uid'] == PrefService.getString(PrefKeys.userId)) {
+          companyList = value.docs[i]['companyName'];
+        }
+      }*/
+
+    });
+  }
 
   String? pdfUrl;
 
   onTapApply({var args}) {
 
+    abc = false;
+    for (int i = 0; i < companyList.length; i++) {
+      if (companyList[i] == args['CompanyName']) {
+        abc = true;
+      }
+    }
+
+    if (!abc) {
+      companyList.add(args['CompanyName']);
+    }
+
+    List<String> companyNameList = List.generate(companyList.length, (index) {
+      return companyList[index].toString();
+    });
+    print(companyNameList);
 
     firestore
         .collection("Apply")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .set({
-      //'position': PrefService.getList(PrefKeys.positionList),
       'apply': true,
-      'companyName': args['CompanyName'],
+      'companyName': companyNameList,
       'userName': PrefService.getString(PrefKeys.fullName),
       'email': PrefService.getString(PrefKeys.email),
       'phone': PrefService.getString(PrefKeys.phoneNumber),
@@ -37,11 +72,10 @@ class JobDetailsUploadCvController extends GetxController {
       'resumeUrl': pdfUrl,
     });
 
-    Get.toNamed(AppRes.jobDetailSuccessOrFailed,
-        arguments: [
-          {"doc": args},
-          {"error": false, "filename": filepath},
-        ]);
+    Get.toNamed(AppRes.jobDetailSuccessOrFailed, arguments: [
+      {"doc": args},
+      {"error": false, "filename": filepath},
+    ]);
   }
 
   RxString filepath = "".obs;
@@ -107,23 +141,18 @@ class JobDetailsUploadCvController extends GetxController {
     final firebaseStorage = FirebaseStorage.instance;
 
     if (file != null) {
-
       firebaseStorage.ref().child(path!).putFile(file).snapshot;
-
 
       //pdfUrl = file.path;
 
-
       // PDF url :
 
-      dynamic storageRef = FirebaseStorage.instance.ref().child(path).getDownloadURL();
+      dynamic storageRef =
+          FirebaseStorage.instance.ref().child(path).getDownloadURL();
       storageRef.then((result) {
-
         pdfUrl = result;
         print("result is $result");
       });
-
-
     } else {
       print('No Image Path Received');
 

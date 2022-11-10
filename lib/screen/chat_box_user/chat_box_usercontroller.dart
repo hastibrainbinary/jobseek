@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/common/widgets/helper.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 
@@ -14,6 +15,7 @@ class ChatBoxUserController extends GetxController implements GetxService {
   String? roomId;
   TextEditingController msController = TextEditingController();
   final ScrollController listScrollController = ScrollController();
+  DateTime lastMsg = DateTime.now();
 
   RxList jobs = [
     "All chat",
@@ -125,11 +127,17 @@ class ChatBoxUserController extends GetxController implements GetxService {
 
   void sendMessage(String roomId, otherUid) async {
 
+    if (isToday(lastMsg) == false) {
+      await sendAlertMsg();
+    }
+
     String msg = msController.text;
 
+    await setLastMsgInDoc(msg);
     await setMessage(roomId, msg, userUid);
 
     update(['message']);
+
 
   }
 
@@ -158,6 +166,29 @@ class ChatBoxUserController extends GetxController implements GetxService {
         .doc(docId)
         .update({"read": true});
     //await setReadInChatDoc(true);
+  }
+
+  Future<void> setLastMsgInDoc(String msg) async {
+    await FirebaseFirestore.instance.collection("chats").doc(roomId).update({
+      "lastMessage": msg,
+      "lastMessageSender": userUid,
+      "lastMessageTime": DateTime.now(),
+      "lastMessageRead": false,
+    });
+  }
+
+  Future<void> sendAlertMsg() async {
+    await FirebaseFirestore.instance
+        .collection("chats")
+        .doc(roomId)
+        .collection(roomId!)
+        .doc()
+        .set({
+      "content": "new Day",
+      "senderUid": userUid,
+      "type": "alert",
+      "time": DateTime.now()
+    });
   }
 
   /*Future<void> setReadInChatDoc(bool status) async {

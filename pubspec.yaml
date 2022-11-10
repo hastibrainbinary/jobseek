@@ -53,6 +53,8 @@ dependencies:
   permission_handler:
   flutter_cache_manager: ^3.3.0
   paginate_firestore: ^1.0.3+1
+  country_state_city_pro: ^0.0.3
+
 
 
 
@@ -74,7 +76,6 @@ dependencies:
   url_launcher: ^6.1.5
   internet_file: ^1.2.0
   flutter_pdfview: ^1.0.1
-  advanced_search: ^2.2.3
 
 dev_dependencies:
   flutter_test:

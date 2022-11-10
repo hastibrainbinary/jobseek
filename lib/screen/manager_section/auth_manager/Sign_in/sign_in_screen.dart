@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/common/widgets/common_textField.dart';
+import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_controller.dart';
 import 'package:jobseek/screen/manager_section/auth_manager/Sign_in/sign_in_controller.dart';
 import 'package:jobseek/screen/manager_section/auth_manager/forgot_Password/forgot_password_screen.dart';
 import 'package:jobseek/screen/manager_section/auth_manager/sign_up/sign_up_screen.dart';
@@ -14,9 +15,12 @@ class SignInScreenM extends StatelessWidget {
   SignInScreenControllerM controller = Get.put(SignInScreenControllerM());
 
   final formGlobalKey = GlobalKey<FormState>();
+  JobDetailsUploadCvController jobDetailsUploadCvController = Get.put(JobDetailsUploadCvController());
 
   @override
   Widget build(BuildContext context) {
+
+    jobDetailsUploadCvController.init();
     return Scaffold(
         backgroundColor: ColorRes.white,
         body: Obx(() {

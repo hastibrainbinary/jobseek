@@ -188,9 +188,10 @@ class ChatLiveScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 15,),
+            const SizedBox(height: 15,),
             Expanded(
-              child: PaginateFirestore(
+            flex: 3,
+              child:  PaginateFirestore(
 
 
                   scrollController: controller.listScrollController,
@@ -199,13 +200,13 @@ class ChatLiveScreen extends StatelessWidget {
                   reverse: true,
                   itemBuilder: (context, docementSnapshot, index) {
                     Map<String, dynamic>? data =
-                        docementSnapshot[index].data() as Map<String, dynamic>?;
+                    docementSnapshot[index].data() as Map<String, dynamic>?;
                     if (data == null) {
                       return const SizedBox();
                     }
                     /* if (index == 0) {
-                      controller.lastMsg = data['time'].toDate();
-                    }*/
+                        controller.lastMsg = data['time'].toDate();
+                      }*/
 
                     if (data['read'] != true &&
                         data['senderUid'].toString() != userUid) {
@@ -215,71 +216,71 @@ class ChatLiveScreen extends StatelessWidget {
                     Widget box = data['type'] == "alert"
                         ? SizedBox()
                         : Column(
-                            children: [
-                             /* SizedBox(
-                                width: Get.width,
-                                height: 35,
-                                child: Center(
-                                  child: Text(
-                                    controller.timeAgo(data['time'].toDate()),
-                                    style: TextStyle(
-                                      color: Colors.green.withOpacity(0.5),
-                                    ),
-                                  ),
-                                ),
-                              ),*/
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    data['senderUid'].toString() == userUid
-                                        ? MainAxisAlignment.end
-                                        : MainAxisAlignment.start,
-                                children: [
-                                  // Text(controller.data['time'].toString(),style: sfProTextReguler(fontSize: 12,color:ColorRes.colorF0F0F0 ),),
-
-                                  const SizedBox(
-                                    width: 20,
-                                  ),
-                                  Container(
-                                    padding: const EdgeInsets.all(10),
-                                    constraints: BoxConstraints(
-                                      maxWidth: Get.width / 1.3,
-                                    ),
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        gradient: data['senderUid']
-                                            .toString() ==
-                    userUid?
-                                        const LinearGradient(colors: [
-                                          Color(0xFFBF9EFF),
-                                          Color(0xFF8B4EFF),
-                                        ]):const LinearGradient(colors: [
-                                          Color(0xFFEEEBF4),
-                                          Color(0xFFEEEBF4),
-                                        ])
-                                        /* color: data['senderUid']
-                                      .toString() ==
-                                      userUid
-                                      ? Colors.green
-                                      : Colors.lightBlue*/
-                                        ),
+                      children: [
+                        /* SizedBox(
+                                  width: Get.width,
+                                  height: 35,
+                                  child: Center(
                                     child: Text(
-                                      data['content'].toString(),
-                                      style: data['senderUid']
-                                          .toString() ==
-                                          userUid?const TextStyle(
-                                          fontSize: 17, color: Colors.white):const TextStyle(
-                                          fontSize: 17, color: Colors.black),
+                                      controller.timeAgo(data['time'].toDate()),
+                                      style: TextStyle(
+                                        color: Colors.green.withOpacity(0.5),
+                                      ),
                                     ),
                                   ),
-                                  const SizedBox(
-                                    width: 20,
-                                  ),
-                                ],
+                                ),*/
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment:
+                          data['senderUid'].toString() == userUid
+                              ? MainAxisAlignment.end
+                              : MainAxisAlignment.start,
+                          children: [
+                            // Text(controller.data['time'].toString(),style: sfProTextReguler(fontSize: 12,color:ColorRes.colorF0F0F0 ),),
+
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(10),
+                              constraints: BoxConstraints(
+                                maxWidth: Get.width / 1.3,
                               ),
-                              const SizedBox(height: 10),
-                            ],
-                          );
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  gradient: data['senderUid']
+                                      .toString() ==
+                                      userUid?
+                                  const LinearGradient(colors: [
+                                    Color(0xFFBF9EFF),
+                                    Color(0xFF8B4EFF),
+                                  ]):const LinearGradient(colors: [
+                                    Color(0xFFEEEBF4),
+                                    Color(0xFFEEEBF4),
+                                  ])
+                                /* color: data['senderUid']
+                                        .toString() ==
+                                        userUid
+                                        ? Colors.green
+                                        : Colors.lightBlue*/
+                              ),
+                              child: Text(
+                                data['content'].toString(),
+                                style: data['senderUid']
+                                    .toString() ==
+                                    userUid?const TextStyle(
+                                    fontSize: 17, color: Colors.white):const TextStyle(
+                                    fontSize: 17, color: Colors.black),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                      ],
+                    );
                     if ((index + 1) == docementSnapshot.length) {
                       return Column(
                         // mainAxisAlignment: MainAxisAlignment.center,
@@ -300,12 +301,12 @@ class ChatLiveScreen extends StatelessWidget {
                       .doc(roomId)
                       .collection(roomId!)
                       .orderBy("time", descending: true),
-                  itemBuilderType: PaginateBuilderType.listView),
-            ),
+                  itemBuilderType: PaginateBuilderType.listView),),
             GetBuilder<ChatBoxUserController>(
                 id: "message",
                 builder: (controller) {
                   return Container(
+
                     margin: const EdgeInsets.symmetric(horizontal: 20),
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     decoration: BoxDecoration(
@@ -326,7 +327,7 @@ class ChatLiveScreen extends StatelessWidget {
                             decoration: const InputDecoration(
                                 hintText: "Type message...",
                                 hintStyle:
-                                    TextStyle(fontSize: 17, color: Colors.grey),
+                                TextStyle(fontSize: 17, color: Colors.grey),
                                 border: InputBorder.none),
                           ),
                         ),
@@ -349,7 +350,7 @@ class ChatLiveScreen extends StatelessWidget {
                     ),
                   );
                 }),
-            SizedBox(height: 15,),
+            const SizedBox(height: 15,),
           ]),
     );
   }

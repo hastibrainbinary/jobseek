@@ -19,6 +19,7 @@ class AssetRes {
   static const wantJob = '${icons}want_job.png';
   static const person = '${icons}person.png';
   static const cloud = '${icons}cloud.png';
+  static const chatSend = "${icons}chatSend.png";
   static const applies = "${icons}applies.png";
   static const search ="${icons}search.png";
 
@@ -36,6 +37,7 @@ class AssetRes {
   static const callIcon = '${icons}call_Icon.png';
   static const callReceive = '${icons}call_receive.png';
   static const seePdf = '${icons}see_pdf.png';
+  static const applicationIcon='${icons}applicationIcon.png';
 
   ///-----------------------------images------------------------------------------------------
   static const splash_screenback = '${images}splash_screenback.png';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_controller.dart';
 import 'package:jobseek/screen/manager_section/Recent%20People%20Application/recent_Application_screen.dart';
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_controller.dart';
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_widget/manager_home_screen_widget.dart';
@@ -11,8 +12,11 @@ class ManagerHomeScreen extends StatelessWidget {
   ManagerHomeScreen({Key? key}) : super(key: key);
   final controller = Get.put(ManagerHomeScreenController());
 
+  JobDetailsUploadCvController jobDetailsUploadCvController = Get.put(JobDetailsUploadCvController());
+
   @override
   Widget build(BuildContext context) {
+    jobDetailsUploadCvController.init();
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -355,7 +359,7 @@ class ManagerHomeScreen extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (con) => const RecentApplicationScreen()));
+                            builder: (con) =>  RecentApplicationScreen()));
                   },
                   child: Text(
                     "See all",

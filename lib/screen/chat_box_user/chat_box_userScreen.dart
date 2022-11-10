@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
+import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_controller.dart';
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_controller.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
@@ -14,12 +15,14 @@ import 'chat_live_screen.dart';
 class ChatBoxUserScreen extends StatelessWidget {
   ChatBoxUserScreen({Key? key}) : super(key: key);
   final controller = Get.put(ChatBoxUserController());
-  //ManagerHomeScreenController managerHomeScreenController = Get.put(ManagerHomeScreenController());
-  List searchedData=[];
 
+  //ManagerHomeScreenController managerHomeScreenController = Get.put(ManagerHomeScreenController());
+  JobDetailsUploadCvController jobDetailsUploadCvController =
+      Get.put(JobDetailsUploadCvController());
 
   @override
   Widget build(BuildContext context) {
+    jobDetailsUploadCvController.init();
     controller.getUserData();
     return Scaffold(
       backgroundColor: ColorRes.backgroundColor,
@@ -80,74 +83,7 @@ class ChatBoxUserScreen extends StatelessWidget {
         //     ),
         //   ),
         // ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18),
-          child: Row(
-            children: [
-              Expanded(
-                child: Container(
-                  decoration: const BoxDecoration(
-                      color: ColorRes.white2,
-                      borderRadius: BorderRadius.all(Radius.circular(8))),
-                  child: TextField(
-                    controller: controller.searchController,
-                    onChanged: (value) async{
-                      // controller.search=true;
-                      // controller.update();
-                      // controller.searchController.text = value;
-                      // var data = await FirebaseFirestore.instance
-                      //     .collection("Auth")
-                      //     .doc("Manager")
-                      //     .collection("register")
-                      //     .get();
-                      //
-                      // data.docs.forEach((element) async{
-                      //
-                      // var userData =   await FirebaseFirestore.instance
-                      //       .collection('Auth')
-                      //       .doc('Manager')
-                      //       .collection('register')
-                      //       .doc(element.id)
-                      //       .collection('company')
-                      //       .get();
-                      //    userData.docs.forEach((e) {
-                      //        bool isSearch = userData.docs.contains(controller.searchController.text);
-                      //        if(isSearch){
-                      //          searchedData =userData.docs;
-                      //        }
-                      //    });
-                      // });
-                    },
-                    decoration: InputDecoration(
-                        border: InputBorder.none,
-                        suffixIcon: const Icon(Icons.search, color: ColorRes.grey),
-                        hintText: "Search",
-                        hintStyle: appTextStyle(
-                            fontSize: 14,
-                            color: ColorRes.grey,
-                            fontWeight: FontWeight.w500),
-                        contentPadding: const EdgeInsets.only(left: 20, top: 13)),
-                  ),
-                ),
-              ),
-              // const SizedBox(width: 20),
-              // Container(
-              //   height: 40,
-              //   width: 40,
-              //   alignment: Alignment.center,
-              //   decoration: const BoxDecoration(
-              //     borderRadius: BorderRadius.all(Radius.circular(10)),
-              //     color: ColorRes.logoColor,
-              //   ),
-              //   child: Image.asset(
-              //     AssetRes.menuIcon,
-              //     color: ColorRes.containerColor,
-              //     height: 15,
-              //   ),
-              // ),
-            ],
-          ),
-        ),
+        searchArea(),
         const SizedBox(height: 20),
         Container(
           alignment: Alignment.centerLeft,
@@ -189,6 +125,7 @@ class ChatBoxUserScreen extends StatelessWidget {
                 );
               }),
         ),
+
         Expanded(
           child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
             stream: FirebaseFirestore.instance
@@ -201,11 +138,36 @@ class ChatBoxUserScreen extends StatelessWidget {
                 return const SizedBox();
               }
               return ListView.builder(
+<<<<<<<<< Temporary merge branch 1
+                  itemCount: snapshot.data!.docs.length,
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () {
+                        Get.to(const ChatLiveScreen());
+                      },
+                      child: Container(
+                        height: 92,
+                        width: Get.width,
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 18, vertical: 4),
+                        padding: const EdgeInsets.all(15),
+                        decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(15),
+                            ),
+                            border: Border.all(
+                              color: const Color(0xffF3ECFF),
+                            ),
+                            color: ColorRes.white),
+                        child: Text(snapshot.data!.docs[index]['FullName']),
+                      ),
+=========
                   itemCount: snapshot1.data!.docs.length,
-                  itemBuilder: (context,  index) {
+                  itemBuilder: (context, index) {
                     return StreamBuilder<
                         DocumentSnapshot<Map<String, dynamic>>>(
-                      stream: FirebaseFirestore.instance
+                      stream:
+                      FirebaseFirestore.instance
                           .collection('Auth')
                           .doc('Manager')
                           .collection('register')
@@ -213,237 +175,123 @@ class ChatBoxUserScreen extends StatelessWidget {
                           .collection('company')
                           .doc('details')
                           .snapshots(),
-                      builder: (context, snapshot) {
+                     builder: (context, snapshot) {
                         Map<String, dynamic>? data = snapshot.data?.data();
                         if (data == null) {
                           return const SizedBox();
                         }
-                       /* String? o;
 
-                          controller.userData.forEach((element) {
-                          if(element['companyName'] == data['name']){
-                            print(element['companyName']);
-                            o = element['companyName'];
+
+                        String? o;
+
+                        companyList.forEach((element) {
+                          if (element.toString().toLowerCase() == data['name'].toString().toLowerCase()) {
+                            print(element);
+                            o = element;
                           }
                         });
 
-                          return (o == data['name'])
-                              ?InkWell(
-                          onTap: () async {
-                            controller.gotoChatScreen(
-                                context,
-                                snapshot1.data!.docs[index].id,
-                                data['name']);
-                          },
-                          child: Container(
-                            height: 92,
-                            width: Get.width,
-                            margin: const EdgeInsets.symmetric(
-                                horizontal: 18, vertical: 4),
-                            padding: const EdgeInsets.all(15),
-                            decoration: BoxDecoration(
-                                borderRadius:
-                                const BorderRadius.all(
-                                    Radius.circular(15)),
-                                border: Border.all(
-                                    color: const Color(0xffF3ECFF)),
-                                color: ColorRes.white),
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  AssetRes.airBnbLogo,
-                                ),
-                                const SizedBox(width: 20),
-                                Column(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.center,
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      data['name'],
-                                      style: appTextStyle(
-                                          color: ColorRes.black,
-                                          fontSize: 15,
-                                          fontWeight:
-                                          FontWeight.w500),
-                                    ),
-                                    const SizedBox(height: 6),
-                                    Text(
-                                      "Hi Adam Smith,",
-                                      style: appTextStyle(
-                                          color: ColorRes.black,
-                                          fontSize: 9,
-                                          fontWeight:
-                                          FontWeight.w400),
-                                    ),
-                                  ],
-                                ),
-                                const Spacer(),
-                                Column(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.start,
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.end,
-                                  children: [
-                                    Container(
-                                      height: 22,
-                                      width: 22,
-                                      decoration: BoxDecoration(
-                                        gradient:
-                                        const LinearGradient(
-                                          colors: [
-                                            ColorRes.gradientColor,
-                                            ColorRes.containerColor
-                                          ],
-                                        ),
-                                        borderRadius:
-                                        BorderRadius.circular(
-                                            22),
-                                      ),
-                                      child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(
-                                            top: 5),
-                                        child: Text(
-                                          textAlign:
-                                          TextAlign.center,
-                                          '1',
-                                          style: appTextStyle(
-                                              fontSize: 10,
-                                              fontWeight:
-                                              FontWeight.w400,
-                                              color:
-                                              ColorRes.white),
-                                        ),
-                                      ),
-                                    ),
-                                    const Spacer(),
-                                    Text(
-                                      "20.00",
-                                      style: appTextStyle(
-                                          fontSize: 12,
-                                          color: ColorRes.black
-                                              .withOpacity(0.8),
-                                          fontWeight:
-                                          FontWeight.w500),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(width: 10),
-                              ],
-                            ),
-                          ),
-                        )
-                              :SizedBox();*/
 
-                          return InkWell(
-                            onTap: () async {
-                              controller.gotoChatScreen(
-                                  context,
-                                  snapshot1.data!.docs[index].id,
-                                  data['name']);
-                            },
-                            child: Container(
-                              height: 92,
-                              width: Get.width,
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 18, vertical: 4),
-                              padding: const EdgeInsets.all(15),
-                              decoration: BoxDecoration(
-                                  borderRadius:
-                                  const BorderRadius.all(
-                                      Radius.circular(15)),
-                                  border: Border.all(
-                                      color: const Color(0xffF3ECFF)),
-                                  color: ColorRes.white),
-                              child: Row(
-                                children: [
-                                  Image.asset(
-                                    AssetRes.airBnbLogo,
-                                  ),
-                                  const SizedBox(width: 20),
-                                  Column(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                       return (o.toString().toLowerCase() == data['name'].toString().toLowerCase())
+                            ? InkWell(
+                                onTap: () async {
+                                  controller.gotoChatScreen(
+                                      context,
+                                      snapshot1.data!.docs[index].id,
+                                      data['name']);
+                                },
+                                child: Container(
+                                  height: 92,
+                                  width: Get.width,
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 18, vertical: 4),
+                                  padding: const EdgeInsets.all(15),
+                                  decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(15)),
+                                      border: Border.all(
+                                          color: const Color(0xffF3ECFF)),
+                                      color: ColorRes.white),
+                                  child: Row(
                                     children: [
-                                      Text(
-                                        data['name'],
-                                        style: appTextStyle(
-                                            color: ColorRes.black,
-                                            fontSize: 15,
-                                            fontWeight:
-                                            FontWeight.w500),
+                                      Image.asset(
+                                        AssetRes.airBnbLogo,
                                       ),
-                                      const SizedBox(height: 6),
-                                      Text(
-                                        "Hi Adam Smith,",
-                                        style: appTextStyle(
-                                            color: ColorRes.black,
-                                            fontSize: 9,
-                                            fontWeight:
-                                            FontWeight.w400),
-                                      ),
-                                    ],
-                                  ),
-                                  const Spacer(),
-                                  Column(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.end,
-                                    children: [
-                                      Container(
-                                        height: 22,
-                                        width: 22,
-                                        decoration: BoxDecoration(
-                                          gradient:
-                                          const LinearGradient(
-                                            colors: [
-                                              ColorRes.gradientColor,
-                                              ColorRes.containerColor
-                                            ],
-                                          ),
-                                          borderRadius:
-                                          BorderRadius.circular(
-                                              22),
-                                        ),
-                                        child: Padding(
-                                          padding:
-                                          const EdgeInsets.only(
-                                              top: 5),
-                                          child: Text(
-                                            textAlign:
-                                            TextAlign.center,
-                                            '1',
+                                      const SizedBox(width: 20),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            data['name'],
                                             style: appTextStyle(
-                                                fontSize: 10,
-                                                fontWeight:
-                                                FontWeight.w400,
-                                                color:
-                                                ColorRes.white),
+                                                color: ColorRes.black,
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w500),
                                           ),
-                                        ),
+                                          const SizedBox(height: 6),
+                                          Text(
+                                            "Hi Adam Smith,",
+                                            style: appTextStyle(
+                                                color: ColorRes.black,
+                                                fontSize: 9,
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                        ],
                                       ),
                                       const Spacer(),
-                                      Text(
-                                        "20.00",
-                                        style: appTextStyle(
-                                            fontSize: 12,
-                                            color: ColorRes.black
-                                                .withOpacity(0.8),
-                                            fontWeight:
-                                            FontWeight.w500),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        children: [
+                                          Container(
+                                            height: 22,
+                                            width: 22,
+                                            decoration: BoxDecoration(
+                                              gradient: const LinearGradient(
+                                                colors: [
+                                                  ColorRes.gradientColor,
+                                                  ColorRes.containerColor
+                                                ],
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(22),
+                                            ),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.only(top: 5),
+                                              child: Text(
+                                                textAlign: TextAlign.center,
+                                                '1',
+                                                style: appTextStyle(
+                                                    fontSize: 10,
+                                                    fontWeight: FontWeight.w400,
+                                                    color: ColorRes.white),
+                                              ),
+                                            ),
+                                          ),
+                                          const Spacer(),
+                                          Text(
+                                            "20.00",
+                                            style: appTextStyle(
+                                                fontSize: 12,
+                                                color: ColorRes.black
+                                                    .withOpacity(0.8),
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                        ],
                                       ),
+                                      const SizedBox(width: 10),
                                     ],
                                   ),
-                                  const SizedBox(width: 10),
-                                ],
-                              ),
-                            ),
-                          );
+                                ),
+                              )
+                            : SizedBox();
+
 
                         /*ListView.builder(
                             itemCount:
@@ -574,6 +422,7 @@ class ChatBoxUserScreen extends StatelessWidget {
       ]),
     );
   }
+
 }
 
 /*
