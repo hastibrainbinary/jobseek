@@ -328,9 +328,7 @@ class HomePageNewScreenU extends StatelessWidget {
               ),
             ),
             InkWell(
-              onTap: (){
-
-              },
+              onTap: () {},
               child: Center(
                 child: Container(
                   margin: const EdgeInsets.only(top: 15),

@@ -25,9 +25,15 @@ class SignInScreenController extends GetxController {
       var email = prefs.getString("email") ?? "";
       var password = prefs.getString("password") ?? "";
       var remeberMe = prefs.getBool("remember_me") ?? false;
-      print(remeberMe);
-      print(email);
-      print(password);
+      if (kDebugMode) {
+        print(remeberMe);
+      }
+      if (kDebugMode) {
+        print(email);
+      }
+      if (kDebugMode) {
+        print(password);
+      }
       // if (remeberMe) {
       //   setState(() {
       //     isChecked = true;
@@ -36,7 +42,9 @@ class SignInScreenController extends GetxController {
       //   passwordController.text = password ?? "";
       // }
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 
@@ -108,6 +116,7 @@ class SignInScreenController extends GetxController {
               print("$isUser====]]]]]");
             }
 
+            PrefService.setValue(PrefKeys.userId, value.docs[i].id);
             PrefService.setValue(PrefKeys.fullName, value.docs[i]["fullName"]);
             PrefService.setValue(PrefKeys.email, value.docs[i]["Email"]);
             PrefService.setValue(PrefKeys.phoneNumber, value.docs[i]["Phone"]);

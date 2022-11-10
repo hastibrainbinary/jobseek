@@ -6,6 +6,7 @@ import 'package:jobseek/common/widgets/common_textField.dart';
 import 'package:jobseek/screen/auth/forgot_password_new/forgot_password_new_screen.dart';
 import 'package:jobseek/screen/auth/sign_inScreen/Signin_controller.dart';
 import 'package:jobseek/screen/auth/sign_up/sign_upScreen.dart';
+import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_controller.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
@@ -15,9 +16,11 @@ class SigninScreenU extends StatelessWidget {
   SigninScreenU({Key? key}) : super(key: key);
 
   SignInScreenController controller = Get.put(SignInScreenController());
+  JobDetailsUploadCvController jobDetailsUploadCvController = Get.put(JobDetailsUploadCvController());
 
   @override
   Widget build(BuildContext context) {
+    jobDetailsUploadCvController.init();
     return Scaffold(
         backgroundColor: ColorRes.white,
         body: GestureDetector(
