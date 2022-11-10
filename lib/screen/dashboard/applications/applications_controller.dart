@@ -9,6 +9,6 @@ class ApplicationsController extends GetxController {
 
   onTapJobs2(int index) {
     selectedJobs.value = index;
-    //update(["hList"]);
+    //update(["List"]);
   }
 }

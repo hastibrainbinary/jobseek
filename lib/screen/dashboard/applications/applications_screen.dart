@@ -104,7 +104,6 @@ class ApplicationsScreen extends StatelessWidget {
                             margin: const EdgeInsets.only(right: 10),
                             padding: const EdgeInsets.symmetric(horizontal: 15),
                             height: 32,
-                            // width: 70,
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
                                 border: Border.all(
@@ -303,16 +302,20 @@ class ApplicationsScreen extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text("Financial Planner",
-                                        style: appTextStyle(
-                                            color: ColorRes.black,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w500)),
-                                    Text("Twitter",
-                                        style: appTextStyle(
-                                            color: ColorRes.black,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w400)),
+                                    Text(
+                                      "Financial Planner",
+                                      style: appTextStyle(
+                                          color: ColorRes.black,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    Text(
+                                      "Twitter",
+                                      style: appTextStyle(
+                                          color: ColorRes.black,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w400),
+                                    ),
                                   ],
                                 ),
                               ],
@@ -358,9 +361,12 @@ class ApplicationsScreen extends StatelessWidget {
                           horizontal: 18, vertical: 4),
                       padding: const EdgeInsets.all(15),
                       decoration: BoxDecoration(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(15)),
-                          border: Border.all(color: const Color(0xffF3ECFF)),
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(15),
+                          ),
+                          border: Border.all(
+                            color: const Color(0xffF3ECFF),
+                          ),
                           color: ColorRes.white),
                       child: Column(
                         children: [
@@ -398,10 +404,10 @@ class ApplicationsScreen extends StatelessWidget {
                           InkWell(
                             onTap: () {
                               Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (con) =>
-                                          const RejectedScreen()));
+                                context,
+                                MaterialPageRoute(
+                                    builder: (con) => const RejectedScreen()),
+                              );
                             },
                             child: Container(
                               height: 28,

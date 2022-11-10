@@ -5,19 +5,17 @@ import 'package:jobseek/screen/auth/sign_inScreen/Signin_Screen.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
 import 'package:jobseek/screen/looking_for_screen/looking_for_screen.dart';
 import 'package:jobseek/screen/new_home_page/new_home_page_controller.dart';
-import 'package:jobseek/screen/search_job/search_job_screen.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
 class HomePageNewScreenU extends StatelessWidget {
-   HomePageNewScreenU({Key? key}) : super(key: key);
+  HomePageNewScreenU({Key? key}) : super(key: key);
 
-   HomePageNewController controller = Get.put(HomePageNewController());
+  HomePageNewController controller = Get.put(HomePageNewController());
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: ColorRes.backgroundColor,
       body: SingleChildScrollView(
@@ -170,8 +168,8 @@ class HomePageNewScreenU extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   InkWell(
-                    onTap: (){
-                      Get.to(()=>LookingForScreen());
+                    onTap: () {
+                      Get.to(() => const LookingForScreen());
                     },
                     child: Container(
                       margin: const EdgeInsets.only(top: 15),
@@ -193,8 +191,8 @@ class HomePageNewScreenU extends StatelessWidget {
                   ),
                   const SizedBox(width: 10),
                   InkWell(
-                    onTap: (){
-                      Get.to(()=>SigninScreenU());
+                    onTap: () {
+                      Get.to(() => SigninScreenU());
                     },
                     child: Container(
                       margin: const EdgeInsets.only(top: 15),
@@ -268,9 +266,7 @@ class HomePageNewScreenU extends StatelessWidget {
               ),
             ),
             InkWell(
-              onTap: (){
-
-              },
+              onTap: () {},
               child: Center(
                 child: Container(
                   margin: const EdgeInsets.only(top: 15),
@@ -375,8 +371,11 @@ class HomePageNewScreenU extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       const Spacer(),
-                      const Icon(Icons.bookmark,
-                          color: ColorRes.containerColor),
+                      Image.asset(
+                        AssetRes.bookMarkBorderIcon,
+                        height: 20,
+                        width: 20,
+                      ),
                       const SizedBox(height: 10),
                       Text("\$2.350",
                           style: appTextStyle(
@@ -443,14 +442,19 @@ class HomePageNewScreenU extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       const Spacer(),
-                      const Icon(Icons.bookmark,
-                          color: ColorRes.containerColor),
+                      Image.asset(
+                        AssetRes.bookMarkFillIcon,
+                        height: 20,
+                        width: 20,
+                      ),
                       const SizedBox(height: 10),
-                      Text("\$2.200",
-                          style: appTextStyle(
-                              color: ColorRes.containerColor,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600)),
+                      Text(
+                        "\$2.200",
+                        style: appTextStyle(
+                            color: ColorRes.containerColor,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600),
+                      ),
                     ],
                   ),
                   const SizedBox(width: 10),
@@ -475,19 +479,21 @@ class HomePageNewScreenU extends StatelessWidget {
                       child: Text(
                         "70% hiring \nhappens without \nany job post",
                         style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                            color: ColorRes.containerColor.withOpacity(0.4)),
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          color: ColorRes.containerColor.withOpacity(0.4),
+                        ),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Text(
-                        "Top companies on Job Seeker are hiring by directly \nreaching out to Jobseekers without posting a job. \nLearn how you can get the most out of this opportunity",
+                        "Top companies on Job Seeker are hiring by directly \nreaching out to JobSeekers without posting a job. \nLearn how you can get the most out of this opportunity",
                         style: TextStyle(
-                            fontSize: 9,
-                            fontWeight: FontWeight.w400,
-                            color: ColorRes.black.withOpacity(0.6)),
+                          fontSize: 9,
+                          fontWeight: FontWeight.w400,
+                          color: ColorRes.black.withOpacity(0.6),
+                        ),
                       ),
                     ),
                     const Padding(
@@ -499,9 +505,9 @@ class HomePageNewScreenU extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                             fontSize: 10),
                       ),
-                    )
+                    ),
                   ]),
-            )
+            ),
           ],
         ),
       ),
