@@ -166,6 +166,8 @@ class HomeScreen extends StatelessWidget {
                         }),
                   ),
 
+                  const SizedBox(height: 18),
+
                   Obx(
                     () => jrcontroller.selectedJobs2.value == 0
                         ? allJobs(fireStore.collection("allPost").snapshots())

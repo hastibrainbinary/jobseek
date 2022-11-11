@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/common/widgets/common_loader.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_controller.dart';
 import 'package:jobseek/screen/manager_section/Recent%20People%20Application/recent_Application_screen.dart';
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_controller.dart';
@@ -380,7 +381,9 @@ class ManagerHomeScreen extends StatelessWidget {
               builder: (contro) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
-                  child: recentPeopleBox(),
+                  child: (contro.loader==true)?
+                      const CommonLoader()
+                      :recentPeopleBox(),
                 );
               })
         ],

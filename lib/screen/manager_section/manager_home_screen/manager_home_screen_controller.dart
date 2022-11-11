@@ -7,6 +7,8 @@ class ManagerHomeScreenController extends GetxController
     implements GetxService {
   String? companyName;
   List userData = [];
+    bool loader=false;
+
   @override
   Future<void> onInit() async {
     getCompanyName();
@@ -19,8 +21,13 @@ class ManagerHomeScreenController extends GetxController
   }
 
   getUserData() async {
+    loader=true;
+    update(['userdata']);
+
     var data = await FirebaseFirestore.instance.collection("Apply").get();
     userData = data.docs;
+
+    loader =false;
     update(['userdata']);
     update(['userDataSeeAll']);
   }

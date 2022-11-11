@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/common/widgets/common_loader.dart';
 import 'package:jobseek/screen/chat_box_user/chat_live_screen.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_controller.dart';
@@ -133,7 +134,7 @@ class ChatBoxScreen extends StatelessWidget {
                 .snapshots(),*/
                   builder: (context, snapshot) {
                     if (snapshot.data == null || snapshot.hasData == false) {
-                      return const SizedBox();
+                      return const CommonLoader();
                     }
 
                     return ListView.builder(
