@@ -421,8 +421,8 @@ class SeeDetailsScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(12),
                             gradient: const LinearGradient(
                               colors: [
-                                Color(0xFFBF9EFF),
-                                Color(0xFF8B4EFF),
+                             ColorRes.logoColor,
+                               ColorRes.containerColor,
                               ],
                             ),
                           ),
@@ -433,7 +433,7 @@ class SeeDetailsScreen extends StatelessWidget {
                               children: [
                                 const Icon(
                                   Icons.arrow_back,
-                                  color: Colors.white,
+                                  color:ColorRes.white,
                                 ),
                                 const SizedBox(
                                   width: 10,
@@ -441,7 +441,7 @@ class SeeDetailsScreen extends StatelessWidget {
                                 Text(
                                   "Back",
                                   style: appTextStyle(
-                                      color: Colors.white,
+                                      color:ColorRes.white,
                                       fontSize: 20,
                                       fontWeight: FontWeight.w500),
                                 ),
