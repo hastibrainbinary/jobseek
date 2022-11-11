@@ -45,7 +45,7 @@ Widget homeAppBar() {
                           fontWeight: FontWeight.w600),
                     ),
                     Text(
-                      PrefService.getString(PrefKeys.fullName) ?? "",
+                      PrefService.getString(PrefKeys.fullName),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                       style: appTextStyle(

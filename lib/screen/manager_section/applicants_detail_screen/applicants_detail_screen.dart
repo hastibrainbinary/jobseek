@@ -10,6 +10,8 @@ import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/string.dart';
 
 class ApplicantsDetailScreen extends StatelessWidget {
+
+  dynamic args = Get.arguments;
   final bool isWrong;
   ApplicantsDetailScreen({
     Key? key,
@@ -107,14 +109,14 @@ class ApplicantsDetailScreen extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Adam Smith",
+                                        args['userName'],
                                         style: appTextStyle(
                                             color: ColorRes.black,
                                             fontSize: 14,
                                             fontWeight: FontWeight.w500),
                                       ),
                                       Text(
-                                        "UI/UX Designer",
+                                        args['Occupation'],
                                         style: appTextStyle(
                                             color: ColorRes.grey,
                                             fontSize: 12,
