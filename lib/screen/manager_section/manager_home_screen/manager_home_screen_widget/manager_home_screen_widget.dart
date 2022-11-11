@@ -130,8 +130,8 @@ Widget recentPeopleBox() {
                                           Icons.videocam_sharp,
                                           20,
                                           LinearGradient(colors: [
-                                          ColorRes.logoColor,
-                                          ColorRes.containerColor,
+                                            ColorRes.logoColor,
+                                            ColorRes.containerColor,
                                           ])),
                                     ),
                                   ],
