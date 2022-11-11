@@ -16,9 +16,10 @@ class ProfileUserScreenU extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       backgroundColor: ColorRes.backgroundColor,
       body: SingleChildScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         child: Column(
           children: [
             const SizedBox(height: 50),
@@ -86,15 +87,25 @@ class ProfileUserScreenU extends StatelessWidget {
                       children: [
                         Stack(
                           children: [
-                            Container(
-                              width: 100,
-                              height: 100,
-                              decoration: BoxDecoration(
-                                  color: Colors.black,
-                                  borderRadius: BorderRadius.circular(50),
-                                  image: const DecorationImage(
-                                      image: AssetImage(
-                                          AssetRes.userprofileLogo))),
+                            GetBuilder<ProfileUserController>(
+                              id:"pic",
+                              builder: (context) {
+                                return Container(
+                                  width: 100,
+                                  height: 100,
+                                  decoration: BoxDecoration(
+                                      color: Colors.black,
+                                      borderRadius: BorderRadius.circular(50),
+                                      image:  (controller.image!=null)?DecorationImage(
+                                          image: FileImage(
+                                              controller.image!)
+                                      ):const DecorationImage(
+                                          image: AssetImage(
+                                              AssetRes.userprofileLogo)
+                                      )
+                                  ),
+                                );
+                              }
                             ),
                             Positioned(
                               bottom: 0,

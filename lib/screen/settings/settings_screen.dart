@@ -200,8 +200,8 @@ class SettingsScreenU extends StatelessWidget {
               color: ColorRes.lightGrey.withOpacity(0.8),
               height: 1,
             ),
-            const SizedBox(height: 10),
-            InkWell(
+           // const SizedBox(height: 10),
+           /* InkWell(
               onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (con) => const HelpScreenU()));
@@ -253,6 +253,8 @@ class SettingsScreenU extends StatelessWidget {
               color: ColorRes.lightGrey.withOpacity(0.8),
               height: 1,
             ),
+            */
+
             const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.all(12.0),

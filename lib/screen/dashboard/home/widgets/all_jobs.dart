@@ -36,6 +36,7 @@ Widget allJobs(Stream stream) {
 
           return snapshot.hasData
               ? ListView.builder(
+            padding: EdgeInsets.all(0),
               itemCount: jrController.documents.length,
               shrinkWrap: true,
               physics: const BouncingScrollPhysics(),

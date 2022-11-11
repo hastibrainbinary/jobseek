@@ -93,6 +93,12 @@ class SignInScreenControllerM extends GetxController {
               Get.off(() => PrefService.getBool(PrefKeys.company)
                   ? ManagerDashBoardScreen()
                   : const OrganizationProfileScreen());
+
+              emailController.text="";
+              passwordController.text="";
+              update(["loginForm", "showEmail", "pwdError"]);
+
+
             }
           } on FirebaseAuthException catch (e) {
             if (e.code == 'user-not-found') {

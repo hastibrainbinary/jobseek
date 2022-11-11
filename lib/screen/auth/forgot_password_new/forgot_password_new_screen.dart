@@ -22,16 +22,10 @@ class ForgotPasswordScreenU extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(children: [
             const SizedBox(height: 50),
-            backButton(),
             Row(children: [
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
-                child: InkWell(
-                  onTap: () {
-                    Get.back();
-                  },
-                  child: backButton(),
-                ),
+                child: backButton(),
               ),
             ]),
             const SizedBox(height: 18),

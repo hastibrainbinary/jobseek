@@ -1,9 +1,14 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/see_details/see_details_controller.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:flutter/foundation.dart';
+import 'package:http/http.dart';
 
 class SeeDetailsScreen extends StatelessWidget {
   const SeeDetailsScreen({Key? key}) : super(key: key);
@@ -66,74 +71,94 @@ class SeeDetailsScreen extends StatelessWidget {
                             height: 40,
                           ),
                         ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: Get.width * 0.3,
-                              child: Text(
-                                  controller.filepath
-                                      .value /*"Resume - Adam Smith.pdf"*/,
-                                  style: appTextStyle(
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w600,
-                                      color: ColorRes.black)),
-                            ),
-                            Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 1),
-                                  child: Text(
-                                    "Get started.pdf",
+                        InkWell(
+                          onTap: ()async{
+                            if(args['resumeUrl']!=null)
+                            {
+
+                              var url = Uri.parse(args['resumeUrl']);
+                              print(url);// <-- 1
+                              var response = await get(url); // <--2
+                              var documentDirectory = await getExternalStorageDirectory();
+                              var firstPath = "${documentDirectory!.path}/images";
+                              var filePathAndName = "${documentDirectory.path}/images/${DateTime.now().millisecondsSinceEpoch}.pdf";
+
+                              await Directory(firstPath).create(recursive: true); // <-- 1
+                              File file2 = File(filePathAndName); // <-- 2
+                              file2.writeAsBytesSync(response.bodyBytes); // <--
+
+                              print(file2);// 3
+                            }
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                width: Get.width * 0.3,
+                                child: Text(
+                                    controller.filepath
+                                        .value /*"Resume - Adam Smith.pdf"*/,
                                     style: appTextStyle(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w500,
-                                        color: ColorRes.black),
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w600,
+                                        color: ColorRes.black)),
+                              ),
+                              Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 1),
+                                    child: Text(
+                                      "Get started.pdf",
+                                      style: appTextStyle(
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.w500,
+                                          color: ColorRes.black),
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(width: 50),
-                                Container(
-                                  height: 16,
-                                  width: 16,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(16),
-                                      border:
-                                          Border.all(color: ColorRes.black)),
-                                  child: const Icon(
-                                    Icons.arrow_downward,
-                                    size: 10,
+                                  const SizedBox(width: 50),
+                                  Container(
+                                    height: 16,
+                                    width: 16,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(16),
+                                        border:
+                                            Border.all(color: ColorRes.black)),
+                                    child: const Icon(
+                                      Icons.arrow_downward,
+                                      size: 10,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text("13/06/2022",
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text("13/06/2022",
+                                      style: appTextStyle(
+                                          fontSize: 8,
+                                          fontWeight: FontWeight.w400,
+                                          color:
+                                              ColorRes.black.withOpacity(0.6))),
+                                  const SizedBox(width: 10),
+                                  Text(
+                                    "9:58",
                                     style: appTextStyle(
-                                        fontSize: 8,
                                         fontWeight: FontWeight.w400,
-                                        color:
-                                            ColorRes.black.withOpacity(0.6))),
-                                const SizedBox(width: 10),
-                                Text(
-                                  "9:58",
-                                  style: appTextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 8,
-                                      color: ColorRes.black.withOpacity(0.6)),
-                                ),
-                                const SizedBox(width: 12),
-                                Text(
-                                  "258.4 KB",
-                                  style: appTextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 8,
-                                      color: ColorRes.black.withOpacity(0.6)),
-                                ),
-                              ],
-                            )
-                          ],
+                                        fontSize: 8,
+                                        color: ColorRes.black.withOpacity(0.6)),
+                                  ),
+                                  const SizedBox(width: 12),
+                                  Text(
+                                    "258.4 KB",
+                                    style: appTextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 8,
+                                        color: ColorRes.black.withOpacity(0.6)),
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
                         )
                       ],
                     ),
