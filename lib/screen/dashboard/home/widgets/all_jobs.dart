@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/common/widgets/common_loader.dart';
 import 'package:jobseek/screen/dashboard/home/home_controller.dart';
 import 'package:jobseek/screen/job_recommendation_screen/job_recommendation_controller.dart';
 import 'package:jobseek/utils/app_res.dart';
@@ -128,9 +129,7 @@ Widget allJobs(Stream stream) {
                   ),
                 );
               })
-              : const Center(
-            child: CircularProgressIndicator(),
-          );
+              : const CommonLoader();
         });
   });
 }
