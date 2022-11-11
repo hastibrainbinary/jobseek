@@ -1,21 +1,14 @@
-import 'dart:io';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:get/get.dart';
-import 'package:pdf_render/pdf_render.dart' ;
-
 
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 
 import 'package:jobseek/utils/color_res.dart';
-import 'package:pdf_render/pdf_render_widgets.dart';
 
 class ResumeScreen extends StatefulWidget {
-   const ResumeScreen({Key? key}) : super(key: key);
+  const ResumeScreen({Key? key}) : super(key: key);
 
   @override
   State<ResumeScreen> createState() => _ResumeScreenState();
@@ -25,7 +18,7 @@ class _ResumeScreenState extends State<ResumeScreen> {
   var args = Get.arguments;
   PDFViewController? _pdfViewController;
 
-   //var docFile;
+  //var docFile;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +36,6 @@ class _ResumeScreenState extends State<ResumeScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Stack(
                 children: [
-
                   Align(
                     alignment: Alignment.center,
                     child: Padding(
@@ -60,7 +52,7 @@ class _ResumeScreenState extends State<ResumeScreen> {
             const SizedBox(
               height: 20,
             ),
-       /* SizedBox(
+            /* SizedBox(
           height: 500,
           child: FutureBuilder(
               future: DefaultCacheManager().getSingleFile(
@@ -98,19 +90,18 @@ class _ResumeScreenState extends State<ResumeScreen> {
                 },
               ),
             ),*/
-           /* SizedBox(
+            /* SizedBox(
                 height: Get.height * 0.68,
                 width: Get.width,
                 child: Image.network(args['doc']),),*/
             SizedBox(
-                height: Get.height * 0.68,
-                width: Get.width,
-                child: Image.asset(AssetRes.resumeImage),),
+              height: Get.height * 0.68,
+              width: Get.width,
+              child: Image.asset(AssetRes.resumeImage),
+            ),
             const SizedBox(
               height: 20,
-
             ),
-
             InkWell(
               onTap: () {
                 Get.back();
@@ -149,48 +140,47 @@ class _ResumeScreenState extends State<ResumeScreen> {
         ),
       ),
     );
-
   }
 
-    // imageFromPdfFile2(File pdfFile) async {
-    //   List imageList = [];
-    //   int height = 0, width = 0;
-    //
-    //   final document = await pdf_ren.PDFDocument.openFile(pdfFile.path);
-    //   im.Image imImage;
-    //   for (int i = 1; i <= document.pagesCount; i++) {
-    //     final page = await document.getPage(i);
-    //     final pdfPageImage =
-    //     await page.render(width: page.width, height: page.height);
-    //     imImage = im.decodeImage(pdfPageImage.bytes); // First issue in this line
-    //     height += imImage.height;
-    //     // the width should correspond to the maximum
-    //     // width of the image: it should not exceed it
-    //     if (imImage.width > width ) {
-    //       width =  imImage.width;
-    //     }
-    //     imageList.add(imImage);
-    //     await page.close();
-    //   }
-    //
-    //   im.Image mergedImage = im.Image(width, height);
-    //   // Merge generated image vertically as vertical-orientated-multi-pdf
-    //   for (var i = 0; i < imageList.length; i++) {
-    //     // one page height
-    //     final onePageImageOffset = height / document.pagesCount;
-    //     // offset for actual page from by y axis
-    //     final actualPageOffset = onePageImageOffset  * i;
-    //
-    //     im.copyInto(
-    //       mergedImage,
-    //       imageList[i],
-    //       blend: true,
-    //       srcY: actualPageOffset, // or dstY
-    //     );
-    //   }
-    //
-    //   savePdfAndImageDB(pdfFile, imImage.getBytes());
-    // }
+  // imageFromPdfFile2(File pdfFile) async {
+  //   List imageList = [];
+  //   int height = 0, width = 0;
+  //
+  //   final document = await pdf_ren.PDFDocument.openFile(pdfFile.path);
+  //   im.Image imImage;
+  //   for (int i = 1; i <= document.pagesCount; i++) {
+  //     final page = await document.getPage(i);
+  //     final pdfPageImage =
+  //     await page.render(width: page.width, height: page.height);
+  //     imImage = im.decodeImage(pdfPageImage.bytes); // First issue in this line
+  //     height += imImage.height;
+  //     // the width should correspond to the maximum
+  //     // width of the image: it should not exceed it
+  //     if (imImage.width > width ) {
+  //       width =  imImage.width;
+  //     }
+  //     imageList.add(imImage);
+  //     await page.close();
+  //   }
+  //
+  //   im.Image mergedImage = im.Image(width, height);
+  //   // Merge generated image vertically as vertical-orientated-multi-pdf
+  //   for (var i = 0; i < imageList.length; i++) {
+  //     // one page height
+  //     final onePageImageOffset = height / document.pagesCount;
+  //     // offset for actual page from by y axis
+  //     final actualPageOffset = onePageImageOffset  * i;
+  //
+  //     im.copyInto(
+  //       mergedImage,
+  //       imageList[i],
+  //       blend: true,
+  //       srcY: actualPageOffset, // or dstY
+  //     );
+  //   }
+  //
+  //   savePdfAndImageDB(pdfFile, imImage.getBytes());
+  // }
 
   // pdf()async{
   //

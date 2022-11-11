@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/see_details/see_details_controller.dart';
@@ -72,22 +71,28 @@ class SeeDetailsScreen extends StatelessWidget {
                           ),
                         ),
                         InkWell(
-                          onTap: ()async{
-                            if(args['resumeUrl']!=null)
-                            {
-
+                          onTap: () async {
+                            if (args['resumeUrl'] != null) {
                               var url = Uri.parse(args['resumeUrl']);
-                              print(url);// <-- 1
+                              if (kDebugMode) {
+                                print(url);
+                              } // <-- 1
                               var response = await get(url); // <--2
-                              var documentDirectory = await getExternalStorageDirectory();
-                              var firstPath = "${documentDirectory!.path}/images";
-                              var filePathAndName = "${documentDirectory.path}/images/${DateTime.now().millisecondsSinceEpoch}.pdf";
+                              var documentDirectory =
+                                  await getExternalStorageDirectory();
+                              var firstPath =
+                                  "${documentDirectory!.path}/images";
+                              var filePathAndName =
+                                  "${documentDirectory.path}/images/${DateTime.now().millisecondsSinceEpoch}.pdf";
 
-                              await Directory(firstPath).create(recursive: true); // <-- 1
+                              await Directory(firstPath)
+                                  .create(recursive: true); // <-- 1
                               File file2 = File(filePathAndName); // <-- 2
                               file2.writeAsBytesSync(response.bodyBytes); // <--
 
-                              print(file2);// 3
+                              if (kDebugMode) {
+                                print(file2);
+                              } // 3
                             }
                           },
                           child: Column(
