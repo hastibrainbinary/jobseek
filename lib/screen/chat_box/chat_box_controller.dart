@@ -154,7 +154,21 @@ class ChatBoxController extends GetxController implements GetxService {
     });
     msController.clear();
     update(['message']);
+
+
   }
+
+  Future<void> deleteUserChat(String otherUid) async{
+
+
+    await FirebaseFirestore.instance
+        .collection("chats")
+        .doc(roomId)
+        .delete();
+
+    update(["message"]);
+  }
+
 
   Future<void> setReadTrue(String docId) async {
     await FirebaseFirestore.instance
