@@ -228,8 +228,8 @@ class ChatBoxUserScreen extends StatelessWidget {
                                        Text(
                                          dataM?['lastMessage'] ?? "",
                                          style: appTextStyle(
-                                             color: ColorRes.black,
-                                             fontSize: 9,
+                                             color: ColorRes.black.withOpacity(0.8),
+                                             fontSize: 12,
                                              fontWeight: FontWeight.w400),
                                        ),
                                      ],
