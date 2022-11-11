@@ -30,6 +30,7 @@ class UpdateVacanciesRequirementController extends GetxController {
   TextEditingController locationController = TextEditingController();
   TextEditingController typeController = TextEditingController();
   TextEditingController statusController = TextEditingController();
+  List requirmentList=[];
   RxBool isPositionValidate = false.obs;
   RxBool isSalaryValidate = false.obs;
   RxBool isLocationValidate = false.obs;
@@ -72,6 +73,7 @@ class UpdateVacanciesRequirementController extends GetxController {
     locationController.text =data['docs']["location"];
     typeController.text =data['docs']["type"];
     statusController.text =data['docs']["Status"];
+    requirmentList = data['docs']['RequirementsList'];
     DocumentSnapshot document = await FirebaseFirestore.instance.collection("allPost").doc(args['docs'].id.toString()).get();
     var ref = document.data();
     print(ref);

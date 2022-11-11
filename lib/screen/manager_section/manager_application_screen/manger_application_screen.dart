@@ -1,3 +1,5 @@
+
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,6 +23,8 @@ class ManagerApplicationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+      backgroundColor: ColorRes.backgroundColor,
       body: Column(
         children: [
           const SizedBox(
@@ -99,8 +103,8 @@ class ManagerApplicationScreen extends StatelessWidget {
             child: TextField(
               controller: controller.searchController,
               onChanged: (value) {
-                jrController.searchText.value = value;
-                jrController.update(["search"]);
+                controller.searchText.value = value;
+                controller.update(["search"]);
               },
               decoration: InputDecoration(
                   border: InputBorder.none,
@@ -179,130 +183,289 @@ class ManagerApplicationScreen extends StatelessWidget {
           //                     controller.jobs2[controller.selectedJobs2.value]),
           //               ))
           const SizedBox(height: 18),
+          GetBuilder<ManagerApplicationScreenController>(
+            id: "search",
+            builder: (context) {
+              return StreamBuilder(
+                stream:
+                    FirebaseFirestore.instance.collection("allPost").snapshots(),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
 
-          StreamBuilder(
-            stream:
-                FirebaseFirestore.instance.collection("allPost").snapshots(),
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              if (snapshot.data != null) {
-                snapshot.data.docs.forEach((e) {
-                  if (PrefService.getString(PrefKeys.companyName) ==
-                      e["CompanyName"]) {
-                    controller.isData = false;
+                  if(snapshot.hasData){
+                    controller.documentData = snapshot.data.docs;
                   }
-                });
-              }
-              return Expanded(
-                child: (snapshot.data == null)
-                    ? SizedBox()
-                    : snapshot.data.docs.length == 0
+                  if (snapshot.data != null) {
+                    snapshot.data.docs.forEach((e) {
+                      if (PrefService.getString(PrefKeys.companyName) ==
+                          e["CompanyName"]) {
+                        controller.isData = false;
+                      }
+                    });
+                  }
+                  controller.documentData = controller.documentData.where((element) {
+
+                    print(element.get("Position").toString()
+                        .toLowerCase()
+                        .contains(controller.searchController.text.toLowerCase()));
+                   return element.get("Position").toString()
+                        .toLowerCase()
+                        .contains(controller.searchController.text.toLowerCase());
+                  }).toList();
+
+
+                  return SizedBox(
+                    child: (snapshot.data == null)
                         ? SizedBox()
-                        : GetBuilder<ManagerApplicationScreenController>(
-                            id: "status",
-                            builder: (con) {
-                              return (controller.isData == true)
-                                  ? Column(
-                                      children: [
-                                        const Image(
-                                          image:
-                                              AssetImage(AssetRes.successImage),
-                                        ),
-                                        Text(
-                                          textAlign: TextAlign.center,
-                                          "Empty",
-                                          style: TextStyle(
-                                              color: ColorRes.containerColor,
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                        const SizedBox(height: 18),
-                                        Padding(
-                                          padding: const EdgeInsets.all(13.0),
-                                          child: Text(
-                                            maxLines: 2,
-                                            "Create a job vacancy for your company and start \n             find new high quality employee.",
-                                            style: TextStyle(
-                                                color: ColorRes.black
-                                                    .withOpacity(0.7),
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 13),
-                                          ),
-                                        ),
-                                        const SizedBox(height: 95),
-                                        InkWell(
-                                          onTap: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (con) =>
-                                                        CreateVacanciesScreenM()));
-                                          },
-                                          child: Container(
-                                            height: 50,
-                                            width: 339,
-                                            alignment: Alignment.center,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              gradient:
-                                                  const LinearGradient(colors: [
-                                                ColorRes.gradientColor,
-                                                ColorRes.containerColor,
-                                              ]),
+                        : snapshot.data.docs.length == 0
+                            ? SizedBox()
+                            : GetBuilder<ManagerApplicationScreenController>(
+                                id: "status",
+                                builder: (con) {
+                                  return (controller.isData == true)
+                                      ? Column(
+                                          children: [
+                                            const Image(
+                                              image:
+                                                  AssetImage(AssetRes.successImage),
                                             ),
-                                            child: Text("Create Vacancies Now",
-                                                style: appTextStyle(
+                                            Text(
+                                              textAlign: TextAlign.center,
+                                              "Empty",
+                                              style: TextStyle(
+                                                  color: ColorRes.containerColor,
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                            const SizedBox(height: 18),
+                                            Padding(
+                                              padding: const EdgeInsets.all(13.0),
+                                              child: Text(
+                                                maxLines: 2,
+                                                "Create a job vacancy for your company and start \n             find new high quality employee.",
+                                                style: TextStyle(
+                                                    color: ColorRes.black
+                                                        .withOpacity(0.7),
                                                     fontWeight: FontWeight.w500,
-                                                    fontSize: 18,
-                                                    color: ColorRes.white)),
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                                  : SizedBox(
-                                      height: Get.height * 0.65,
-                                      child:
-                                          (controller.selectedJobs2.value == 1)
+                                                    fontSize: 13),
+                                              ),
+                                            ),
+                                            const SizedBox(height: 95),
+                                            InkWell(
+                                              onTap: () {
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (con) =>
+                                                            CreateVacanciesScreenM()));
+                                              },
+                                              child: Container(
+                                                height: 50,
+                                                width: 339,
+                                                alignment: Alignment.center,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  gradient:
+                                                      const LinearGradient(colors: [
+                                                    ColorRes.gradientColor,
+                                                    ColorRes.containerColor,
+                                                  ]),
+                                                ),
+                                                child: Text("Create Vacancies Now",
+                                                    style: appTextStyle(
+                                                        fontWeight: FontWeight.w500,
+                                                        fontSize: 18,
+                                                        color: ColorRes.white)),
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      : (controller.selectedJobs2.value == 1)
+                                          ? ListView.builder(
+                                              padding:
+                                                  const EdgeInsets.all(0),
+                                              itemCount:
+                                                  snapshot.data.docs.length,
+                                              shrinkWrap: true,
+                                              itemBuilder:
+                                                  (context, index) {
+                                                if (controller.documentData[index]
+                                                        ["Status"] ==
+                                                    "Active") {
+                                                  return (PrefService.getString(
+                                                              PrefKeys
+                                                                  .companyName) !=
+                                                      controller.documentData[
+                                                                  index][
+                                                              "CompanyName"])
+                                                      ? SizedBox()
+                                                      : InkWell(
+                                                          onTap: () {
+                                                            Get.toNamed(
+                                                                AppRes
+                                                                    .managerApplicationDetailScreen,
+                                                                arguments: {
+                                                                  "docs": controller.documentData[index],
+                                                                  "DocId": controller.documentData[
+                                                                          index]
+                                                                      .id
+                                                                });
+                                                          },
+                                                          child: Container(
+                                                            height: 92,
+                                                            width:
+                                                                Get.width,
+                                                            margin: const EdgeInsets
+                                                                    .symmetric(
+                                                                horizontal:
+                                                                    18,
+                                                                vertical:
+                                                                    4),
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(15),
+                                                            decoration: BoxDecoration(
+                                                                borderRadius: const BorderRadius
+                                                                        .all(
+                                                                    Radius.circular(
+                                                                        15)),
+                                                                border: Border.all(
+                                                                    color: const Color(
+                                                                        0xffF3ECFF)),
+                                                                color: ColorRes
+                                                                    .white),
+                                                            child: Row(
+                                                              children: [
+                                                                Image.asset(
+                                                                    AssetRes
+                                                                        .airBnbLogo),
+                                                                const SizedBox(
+                                                                    width:
+                                                                        20),
+                                                                Column(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Text(
+                                                                        controller.documentData[index][
+                                                                            "Position"],
+                                                                        style: appTextStyle(
+                                                                            color: ColorRes.black,
+                                                                            fontSize: 15,
+                                                                            fontWeight: FontWeight.w500)),
+                                                                    Text(
+                                                                        controller.documentData[index][
+                                                                            "CompanyName"],
+                                                                        style: appTextStyle(
+                                                                            color: ColorRes.black,
+                                                                            fontSize: 12,
+                                                                            fontWeight: FontWeight.w400)),
+                                                                    Row(
+                                                                      children: [
+                                                                        Text(
+                                                                          controller.documentData[index]["location"],
+                                                                          style: appTextStyle(color: ColorRes.black, fontSize: 10, fontWeight: FontWeight.w400),
+                                                                        ),
+                                                                        // const SizedBox(width: 1),
+                                                                        Text(controller.documentData[index]["type"],
+                                                                            style: appTextStyle(color: ColorRes.black, fontSize: 10, fontWeight: FontWeight.w400)),
+                                                                      ],
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                                const Spacer(),
+                                                                Column(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .start,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .end,
+                                                                  children: [
+                                                                    Container(
+                                                                      height:
+                                                                          20,
+                                                                      padding:
+                                                                          const EdgeInsets.symmetric(horizontal: 14),
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        color: controller.documentData[index]["Status"] == "Active"
+                                                                            ? ColorRes.lightGreen
+                                                                            : ColorRes.invalidColor,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(20),
+                                                                      ),
+                                                                      child:
+                                                                          Text(
+                                                                            controller.documentData[index]["Status"],
+                                                                        style:
+                                                                            appTextStyle(color: controller.documentData[index]["Status"] == "Active" ? ColorRes.darkGreen : ColorRes.starColor, fontSize: 12),
+                                                                      ),
+                                                                    ),
+                                                                    const Spacer(),
+                                                                    Text(
+                                                                      controller.documentData[index]["salary"],
+                                                                      style: appTextStyle(
+                                                                          fontSize: 16,
+                                                                          color: ColorRes.containerColor,
+                                                                          fontWeight: FontWeight.w500),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                                const SizedBox(
+                                                                    width:
+                                                                        10)
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        );
+                                                } else {
+                                                  return SizedBox();
+                                                }
+                                              },
+                                            )
+                                          : (controller.selectedJobs2
+                                                      .value ==
+                                                  2)
                                               ? ListView.builder(
                                                   padding:
-                                                      const EdgeInsets.all(0),
-                                                  itemCount:
-                                                      snapshot.data.docs.length,
+                                                      const EdgeInsets.all(
+                                                          0),
+                                                  itemCount: controller.documentData.length,
                                                   shrinkWrap: true,
                                                   itemBuilder:
                                                       (context, index) {
-                                                    if (snapshot.data!
-                                                                .docs[index]
+                                                    if (controller.documentData[index]
                                                             ["Status"] ==
-                                                        "Active") {
-                                                      return (PrefService.getString(
-                                                                  PrefKeys
-                                                                      .companyName) !=
-                                                              snapshot.data!
-                                                                          .docs[
-                                                                      index][
+                                                        "Inactive") {
+                                                      return (PrefService
+                                                                  .getString(
+                                                                      PrefKeys
+                                                                          .companyName) !=
+                                                          controller.documentData[
+                                                                      index]
+                                                                  [
                                                                   "CompanyName"])
                                                           ? SizedBox()
                                                           : InkWell(
-                                                              onTap: () {
-                                                                Get.toNamed(
-                                                                    AppRes
-                                                                        .managerApplicationDetailScreen,
-                                                                    arguments: {
-                                                                      "docs": snapshot
-                                                                          .data!
-                                                                          .docs[index],
-                                                                      "DocId": snapshot
-                                                                          .data!
-                                                                          .docs[
-                                                                              index]
-                                                                          .id
-                                                                    });
-                                                              },
-                                                              child: Container(
+                                                              onTap: () =>
+                                                                  Get.toNamed(
+                                                                      AppRes
+                                                                          .managerApplicationDetailScreen,
+                                                                      arguments: {
+                                                                    "docs": controller.documentData[index],
+                                                                    "DocId":
+                                                                        index
+                                                                  }),
+                                                              child:
+                                                                  Container(
                                                                 height: 92,
-                                                                width:
-                                                                    Get.width,
+                                                                width: Get
+                                                                    .width,
                                                                 margin: const EdgeInsets
                                                                         .symmetric(
                                                                     horizontal:
@@ -310,12 +473,11 @@ class ManagerApplicationScreen extends StatelessWidget {
                                                                     vertical:
                                                                         4),
                                                                 padding:
-                                                                    const EdgeInsets
-                                                                        .all(15),
+                                                                    const EdgeInsets.all(
+                                                                        15),
                                                                 decoration: BoxDecoration(
-                                                                    borderRadius: const BorderRadius
-                                                                            .all(
-                                                                        Radius.circular(
+                                                                    borderRadius:
+                                                                        const BorderRadius.all(Radius.circular(
                                                                             15)),
                                                                     border: Border.all(
                                                                         color: const Color(
@@ -325,42 +487,28 @@ class ManagerApplicationScreen extends StatelessWidget {
                                                                 child: Row(
                                                                   children: [
                                                                     Image.asset(
-                                                                        AssetRes
-                                                                            .airBnbLogo),
+                                                                        AssetRes.airBnbLogo),
                                                                     const SizedBox(
                                                                         width:
                                                                             20),
                                                                     Column(
                                                                       mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .center,
+                                                                          MainAxisAlignment.center,
                                                                       crossAxisAlignment:
-                                                                          CrossAxisAlignment
-                                                                              .start,
+                                                                          CrossAxisAlignment.start,
                                                                       children: [
-                                                                        Text(
-                                                                            snapshot.data!.docs[index][
-                                                                                "Position"],
-                                                                            style: appTextStyle(
-                                                                                color: ColorRes.black,
-                                                                                fontSize: 15,
-                                                                                fontWeight: FontWeight.w500)),
-                                                                        Text(
-                                                                            snapshot.data!.docs[index][
-                                                                                "CompanyName"],
-                                                                            style: appTextStyle(
-                                                                                color: ColorRes.black,
-                                                                                fontSize: 12,
-                                                                                fontWeight: FontWeight.w400)),
+                                                                        Text(controller.documentData[index]["Position"],
+                                                                            style: appTextStyle(color: ColorRes.black, fontSize: 15, fontWeight: FontWeight.w500)),
+                                                                        Text(controller.documentData[index]["CompanyName"],
+                                                                            style: appTextStyle(color: ColorRes.black, fontSize: 12, fontWeight: FontWeight.w400)),
                                                                         Row(
                                                                           children: [
                                                                             Text(
-                                                                              snapshot.data!.docs[index]["location"],
+                                                                              controller.documentData[index]["location"],
                                                                               style: appTextStyle(color: ColorRes.black, fontSize: 10, fontWeight: FontWeight.w400),
                                                                             ),
                                                                             // const SizedBox(width: 1),
-                                                                            Text(snapshot.data!.docs[index]["type"],
-                                                                                style: appTextStyle(color: ColorRes.black, fontSize: 10, fontWeight: FontWeight.w400)),
+                                                                            Text(controller.documentData[index]["type"], style: appTextStyle(color: ColorRes.black, fontSize: 10, fontWeight: FontWeight.w400)),
                                                                           ],
                                                                         ),
                                                                       ],
@@ -368,41 +516,26 @@ class ManagerApplicationScreen extends StatelessWidget {
                                                                     const Spacer(),
                                                                     Column(
                                                                       mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .start,
+                                                                          MainAxisAlignment.start,
                                                                       crossAxisAlignment:
-                                                                          CrossAxisAlignment
-                                                                              .end,
+                                                                          CrossAxisAlignment.end,
                                                                       children: [
                                                                         Container(
-                                                                          height:
-                                                                              20,
-                                                                          padding:
-                                                                              const EdgeInsets.symmetric(horizontal: 14),
-                                                                          decoration:
-                                                                              BoxDecoration(
-                                                                            color: snapshot.data!.docs[index]["Status"] == "Active"
-                                                                                ? ColorRes.lightGreen
-                                                                                : ColorRes.invalidColor,
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(20),
+                                                                          height: 20,
+                                                                          padding: const EdgeInsets.symmetric(horizontal: 14),
+                                                                          decoration: BoxDecoration(
+                                                                            color: controller.documentData[index]["Status"] == "Active" ? ColorRes.lightGreen : ColorRes.invalidColor,
+                                                                            borderRadius: BorderRadius.circular(20),
                                                                           ),
-                                                                          child:
-                                                                              Text(
-                                                                            snapshot.data!.docs[index]["Status"],
-                                                                            style:
-                                                                                appTextStyle(color: snapshot.data!.docs[index]["Status"] == "Active" ? ColorRes.darkGreen : ColorRes.starColor, fontSize: 12),
+                                                                          child: Text(
+                                                                            controller.documentData[index]["Status"],
+                                                                            style: appTextStyle(color: controller.documentData[index]["Status"] == "Active" ? ColorRes.darkGreen : ColorRes.starColor, fontSize: 12),
                                                                           ),
                                                                         ),
                                                                         const Spacer(),
                                                                         Text(
-                                                                          snapshot
-                                                                              .data!
-                                                                              .docs[index]["salary"],
-                                                                          style: appTextStyle(
-                                                                              fontSize: 16,
-                                                                              color: ColorRes.containerColor,
-                                                                              fontWeight: FontWeight.w500),
+                                                                          controller.documentData[index]["salary"],
+                                                                          style: appTextStyle(fontSize: 16, color: ColorRes.containerColor, fontWeight: FontWeight.w500),
                                                                         ),
                                                                       ],
                                                                     ),
@@ -418,266 +551,135 @@ class ManagerApplicationScreen extends StatelessWidget {
                                                     }
                                                   },
                                                 )
-                                              : (controller.selectedJobs2
-                                                          .value ==
-                                                      2)
-                                                  ? ListView.builder(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              0),
-                                                      itemCount: snapshot
-                                                          .data.docs.length,
-                                                      shrinkWrap: true,
-                                                      itemBuilder:
-                                                          (context, index) {
-                                                        if (snapshot.data!
-                                                                    .docs[index]
-                                                                ["Status"] ==
-                                                            "Inactive") {
-                                                          return (PrefService
-                                                                      .getString(
-                                                                          PrefKeys
-                                                                              .companyName) !=
-                                                                  snapshot.data!
-                                                                              .docs[
-                                                                          index]
-                                                                      [
-                                                                      "CompanyName"])
-                                                              ? SizedBox()
-                                                              : InkWell(
-                                                                  onTap: () =>
-                                                                      Get.toNamed(
-                                                                          AppRes
-                                                                              .managerApplicationDetailScreen,
-                                                                          arguments: {
-                                                                        "docs": snapshot
-                                                                            .data!
-                                                                            .docs[index],
-                                                                        "DocId":
-                                                                            index
-                                                                      }),
-                                                                  child:
-                                                                      Container(
-                                                                    height: 92,
-                                                                    width: Get
-                                                                        .width,
-                                                                    margin: const EdgeInsets
-                                                                            .symmetric(
-                                                                        horizontal:
-                                                                            18,
-                                                                        vertical:
-                                                                            4),
-                                                                    padding:
-                                                                        const EdgeInsets.all(
-                                                                            15),
-                                                                    decoration: BoxDecoration(
-                                                                        borderRadius:
-                                                                            const BorderRadius.all(Radius.circular(
-                                                                                15)),
-                                                                        border: Border.all(
-                                                                            color: const Color(
-                                                                                0xffF3ECFF)),
-                                                                        color: ColorRes
-                                                                            .white),
-                                                                    child: Row(
-                                                                      children: [
-                                                                        Image.asset(
-                                                                            AssetRes.airBnbLogo),
-                                                                        const SizedBox(
-                                                                            width:
-                                                                                20),
-                                                                        Column(
-                                                                          mainAxisAlignment:
-                                                                              MainAxisAlignment.center,
-                                                                          crossAxisAlignment:
-                                                                              CrossAxisAlignment.start,
-                                                                          children: [
-                                                                            Text(snapshot.data!.docs[index]["Position"],
-                                                                                style: appTextStyle(color: ColorRes.black, fontSize: 15, fontWeight: FontWeight.w500)),
-                                                                            Text(snapshot.data!.docs[index]["CompanyName"],
-                                                                                style: appTextStyle(color: ColorRes.black, fontSize: 12, fontWeight: FontWeight.w400)),
-                                                                            Row(
-                                                                              children: [
-                                                                                Text(
-                                                                                  snapshot.data!.docs[index]["location"],
-                                                                                  style: appTextStyle(color: ColorRes.black, fontSize: 10, fontWeight: FontWeight.w400),
-                                                                                ),
-                                                                                // const SizedBox(width: 1),
-                                                                                Text(snapshot.data!.docs[index]["type"], style: appTextStyle(color: ColorRes.black, fontSize: 10, fontWeight: FontWeight.w400)),
-                                                                              ],
-                                                                            ),
-                                                                          ],
-                                                                        ),
-                                                                        const Spacer(),
-                                                                        Column(
-                                                                          mainAxisAlignment:
-                                                                              MainAxisAlignment.start,
-                                                                          crossAxisAlignment:
-                                                                              CrossAxisAlignment.end,
-                                                                          children: [
-                                                                            Container(
-                                                                              height: 20,
-                                                                              padding: const EdgeInsets.symmetric(horizontal: 14),
-                                                                              decoration: BoxDecoration(
-                                                                                color: snapshot.data!.docs[index]["Status"] == "Active" ? ColorRes.lightGreen : ColorRes.invalidColor,
-                                                                                borderRadius: BorderRadius.circular(20),
-                                                                              ),
-                                                                              child: Text(
-                                                                                snapshot.data!.docs[index]["Status"],
-                                                                                style: appTextStyle(color: snapshot.data!.docs[index]["Status"] == "Active" ? ColorRes.darkGreen : ColorRes.starColor, fontSize: 12),
-                                                                              ),
-                                                                            ),
-                                                                            const Spacer(),
-                                                                            Text(
-                                                                              snapshot.data!.docs[index]["salary"],
-                                                                              style: appTextStyle(fontSize: 16, color: ColorRes.containerColor, fontWeight: FontWeight.w500),
-                                                                            ),
-                                                                          ],
-                                                                        ),
-                                                                        const SizedBox(
-                                                                            width:
-                                                                                10)
-                                                                      ],
-                                                                    ),
-                                                                  ),
-                                                                );
-                                                        } else {
-                                                          return SizedBox();
-                                                        }
-                                                      },
-                                                    )
-                                                  : ListView.builder(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              0),
-                                                      itemCount: snapshot
-                                                          .data.docs.length,
-                                                      shrinkWrap: true,
-                                                      itemBuilder:
-                                                          (context, index) {
-                                                        return (PrefService
-                                                                    .getString(
-                                                                        PrefKeys
-                                                                            .companyName) !=
-                                                                snapshot.data!
-                                                                            .docs[
-                                                                        index][
-                                                                    "CompanyName"])
-                                                            ? SizedBox()
-                                                            : InkWell(
-                                                                onTap: () =>
-                                                                    Get.toNamed(
-                                                                        AppRes
-                                                                            .managerApplicationDetailScreen,
-                                                                        arguments: {
-                                                                      "docs": snapshot
-                                                                          .data!
-                                                                          .docs[index],
-                                                                      "DocId":
-                                                                          index
-                                                                    }),
-                                                                child:
-                                                                    Container(
-                                                                  height: 92,
-                                                                  width:
-                                                                      Get.width,
-                                                                  margin: const EdgeInsets
-                                                                          .symmetric(
-                                                                      horizontal:
-                                                                          18,
-                                                                      vertical:
-                                                                          4),
-                                                                  padding:
-                                                                      const EdgeInsets
-                                                                          .all(15),
-                                                                  decoration: BoxDecoration(
-                                                                      borderRadius: const BorderRadius
-                                                                              .all(
-                                                                          Radius.circular(
-                                                                              15)),
-                                                                      border: Border.all(
-                                                                          color: const Color(
-                                                                              0xffF3ECFF)),
-                                                                      color: ColorRes
-                                                                          .white),
-                                                                  child: Row(
+                                              : ListView.builder(
+                                                  padding:
+                                                      const EdgeInsets.all(
+                                                          0),
+                                                  itemCount: controller.documentData.length,
+                                                  shrinkWrap: true,
+                                                  itemBuilder:
+                                                      (context, index) {
+                                                    return (PrefService
+                                                                .getString(
+                                                                    PrefKeys
+                                                                        .companyName) !=
+                                                        controller.documentData[
+                                                                    index][
+                                                                "CompanyName"])
+                                                        ? SizedBox()
+                                                        : InkWell(
+                                                            onTap: () =>
+                                                                Get.toNamed(
+                                                                    AppRes
+                                                                        .managerApplicationDetailScreen,
+                                                                    arguments: {
+                                                                  "docs": controller.documentData[index],
+                                                                  "DocId":
+                                                                      index
+                                                                }),
+                                                            child:
+                                                                Container(
+                                                              height: 92,
+                                                              width:
+                                                                  Get.width,
+                                                              margin: const EdgeInsets
+                                                                      .symmetric(
+                                                                  horizontal:
+                                                                      18,
+                                                                  vertical:
+                                                                      4),
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(15),
+                                                              decoration: BoxDecoration(
+                                                                  borderRadius: const BorderRadius
+                                                                          .all(
+                                                                      Radius.circular(
+                                                                          15)),
+                                                                  border: Border.all(
+                                                                      color: const Color(
+                                                                          0xffF3ECFF)),
+                                                                  color: ColorRes
+                                                                      .white),
+                                                              child: Row(
+                                                                children: [
+                                                                  Image.asset(
+                                                                      AssetRes
+                                                                          .airBnbLogo),
+                                                                  const SizedBox(
+                                                                      width:
+                                                                          20),
+                                                                  Column(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment.center,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment.start,
                                                                     children: [
-                                                                      Image.asset(
-                                                                          AssetRes
-                                                                              .airBnbLogo),
-                                                                      const SizedBox(
-                                                                          width:
-                                                                              20),
-                                                                      Column(
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.center,
-                                                                        crossAxisAlignment:
-                                                                            CrossAxisAlignment.start,
+                                                                      Text(
+                                                                          controller.documentData[index]["Position"],
+                                                                          style: appTextStyle(color: ColorRes.black, fontSize: 15, fontWeight: FontWeight.w500)),
+                                                                      Text(
+                                                                          controller.documentData[index]["CompanyName"],
+                                                                          style: appTextStyle(color: ColorRes.black, fontSize: 12, fontWeight: FontWeight.w400)),
+                                                                      Row(
                                                                         children: [
                                                                           Text(
-                                                                              snapshot.data!.docs[index]["Position"],
-                                                                              style: appTextStyle(color: ColorRes.black, fontSize: 15, fontWeight: FontWeight.w500)),
-                                                                          Text(
-                                                                              snapshot.data!.docs[index]["CompanyName"],
-                                                                              style: appTextStyle(color: ColorRes.black, fontSize: 12, fontWeight: FontWeight.w400)),
-                                                                          Row(
-                                                                            children: [
-                                                                              Text(
-                                                                                snapshot.data!.docs[index]["location"],
-                                                                                style: appTextStyle(color: ColorRes.black, fontSize: 10, fontWeight: FontWeight.w400),
-                                                                              ),
-                                                                              // const SizedBox(width: 1),
-                                                                              Text(snapshot.data!.docs[index]["type"], style: appTextStyle(color: ColorRes.black, fontSize: 10, fontWeight: FontWeight.w400)),
-                                                                            ],
+                                                                            controller.documentData[index]["location"],
+                                                                            style: appTextStyle(color: ColorRes.black, fontSize: 10, fontWeight: FontWeight.w400),
                                                                           ),
+                                                                          // const SizedBox(width: 1),
+                                                                          Text(controller.documentData[index]["type"], style: appTextStyle(color: ColorRes.black, fontSize: 10, fontWeight: FontWeight.w400)),
                                                                         ],
                                                                       ),
-                                                                      const Spacer(),
-                                                                      Column(
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.start,
-                                                                        crossAxisAlignment:
-                                                                            CrossAxisAlignment.end,
-                                                                        children: [
-                                                                          Container(
-                                                                            height:
-                                                                                20,
-                                                                            padding:
-                                                                                const EdgeInsets.symmetric(horizontal: 14),
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              color: snapshot.data!.docs[index]["Status"] == "Active" ? ColorRes.lightGreen : ColorRes.invalidColor,
-                                                                              borderRadius: BorderRadius.circular(20),
-                                                                            ),
-                                                                            child:
-                                                                                Text(
-                                                                              snapshot.data!.docs[index]["Status"],
-                                                                              style: appTextStyle(color: snapshot.data!.docs[index]["Status"] == "Active" ? ColorRes.darkGreen : ColorRes.starColor, fontSize: 12),
-                                                                            ),
-                                                                          ),
-                                                                          const Spacer(),
-                                                                          Text(
-                                                                            snapshot.data!.docs[index]["salary"],
-                                                                            style: appTextStyle(
-                                                                                fontSize: 16,
-                                                                                color: ColorRes.containerColor,
-                                                                                fontWeight: FontWeight.w500),
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                      const SizedBox(
-                                                                          width:
-                                                                              10)
                                                                     ],
                                                                   ),
-                                                                ),
-                                                              );
-                                                      },
-                                                    ),
-                                    );
-                            }),
+                                                                  const Spacer(),
+                                                                  Column(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment.start,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment.end,
+                                                                    children: [
+                                                                      Container(
+                                                                        height:
+                                                                            20,
+                                                                        padding:
+                                                                            const EdgeInsets.symmetric(horizontal: 14),
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: controller.documentData[index]["Status"] == "Active" ? ColorRes.lightGreen : ColorRes.invalidColor,
+                                                                          borderRadius: BorderRadius.circular(20),
+                                                                        ),
+                                                                        child:
+                                                                            Text(
+                                                                              controller.documentData[index]["Status"],
+                                                                          style: appTextStyle(color: controller.documentData[index]["Status"] == "Active" ? ColorRes.darkGreen : ColorRes.starColor, fontSize: 12),
+                                                                        ),
+                                                                      ),
+                                                                      const Spacer(),
+                                                                      Text(
+                                                                        controller.documentData[index]["salary"],
+                                                                        style: appTextStyle(
+                                                                            fontSize: 16,
+                                                                            color: ColorRes.containerColor,
+                                                                            fontWeight: FontWeight.w500),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                  const SizedBox(
+                                                                      width:
+                                                                          10)
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          );
+                                                  },
+                                                );
+                                }),
+                  );
+                },
               );
-            },
+            }
           ),
         ],
       ),

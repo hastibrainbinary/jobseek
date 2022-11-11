@@ -177,10 +177,12 @@ class SignUpController extends GetxController {
   onSignUpBtnTap() {
     if (validator()) {
       singUp(emailController.text, passwordController.text);
+
       if (kDebugMode) {
         print("GO TO HOME PAGE");
       }
     }
+
     update(["showEmail"]);
     update(["showLastname"]);
     update(["showFirstname"]);
@@ -271,6 +273,15 @@ class SignUpController extends GetxController {
     loading.value = false;
 
     Get.off(() => DashBoardScreen());
+    firstnameController.text="";
+    lastnameController.text="";
+    emailController.text="";
+    phoneController.text="";
+    passwordController.text="";
+    cityController.text="";
+    stateController.text="";
+    countryController.text="";
+    occupationController.text="";
     if (kDebugMode) {
       print("*************************** Success");
     }

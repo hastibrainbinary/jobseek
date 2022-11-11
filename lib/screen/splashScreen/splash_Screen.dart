@@ -30,7 +30,9 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     splash();
+    if(PrefService.getList(PrefKeys.allDesignation)==null || PrefService.getList(PrefKeys.allDesignation).isEmpty || PrefService.getList(PrefKeys.allCountryData)==null || PrefService.getList(PrefKeys.allCountryData).isEmpty){
     countryApi();
+    }
   }
 
   void splash() async {

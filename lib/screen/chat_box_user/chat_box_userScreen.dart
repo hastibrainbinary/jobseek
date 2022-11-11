@@ -18,7 +18,7 @@ class ChatBoxUserScreen extends StatelessWidget {
 
   //ManagerHomeScreenController managerHomeScreenController = Get.put(ManagerHomeScreenController());
   JobDetailsUploadCvController jobDetailsUploadCvController =
-      Get.put(JobDetailsUploadCvController());
+  Get.put(JobDetailsUploadCvController());
 
   @override
   Widget build(BuildContext context) {
@@ -99,29 +99,29 @@ class ChatBoxUserScreen extends StatelessWidget {
                 return GestureDetector(
                   onTap: () => controller.onTapJobs(index),
                   child: Obx(() => Container(
-                        margin: const EdgeInsets.only(right: 10),
-                        height: 32,
-                        width: 70,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                color: ColorRes.containerColor, width: 2),
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(10),
-                            ),
-                            color: controller.selectedJobs.value == index
-                                ? ColorRes.containerColor
-                                : ColorRes.white),
-                        child: Text(
-                          controller.jobs[index],
-                          style: appTextStyle(
-                              color: controller.selectedJobs.value == index
-                                  ? ColorRes.white
-                                  : ColorRes.containerColor,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600),
+                    margin: const EdgeInsets.only(right: 10),
+                    height: 32,
+                    width: 70,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                            color: ColorRes.containerColor, width: 2),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(10),
                         ),
-                      )),
+                        color: controller.selectedJobs.value == index
+                            ? ColorRes.containerColor
+                            : ColorRes.white),
+                    child: Text(
+                      controller.jobs[index],
+                      style: appTextStyle(
+                          color: controller.selectedJobs.value == index
+                              ? ColorRes.white
+                              : ColorRes.containerColor,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  )),
                 );
               }),
         ),
@@ -138,30 +138,6 @@ class ChatBoxUserScreen extends StatelessWidget {
                 return const SizedBox();
               }
               return ListView.builder(
-<<<<<<<<< Temporary merge branch 1
-                  itemCount: snapshot.data!.docs.length,
-                  itemBuilder: (context, index) {
-                    return InkWell(
-                      onTap: () {
-                        Get.to(const ChatLiveScreen());
-                      },
-                      child: Container(
-                        height: 92,
-                        width: Get.width,
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 18, vertical: 4),
-                        padding: const EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(15),
-                            ),
-                            border: Border.all(
-                              color: const Color(0xffF3ECFF),
-                            ),
-                            color: ColorRes.white),
-                        child: Text(snapshot.data!.docs[index]['FullName']),
-                      ),
-=========
                   itemCount: snapshot1.data!.docs.length,
                   itemBuilder: (context, index) {
                     return StreamBuilder<
@@ -175,7 +151,7 @@ class ChatBoxUserScreen extends StatelessWidget {
                           .collection('company')
                           .doc('details')
                           .snapshots(),
-                     builder: (context, snapshot) {
+                      builder: (context, snapshot) {
                         Map<String, dynamic>? data = snapshot.data?.data();
                         if (data == null) {
                           return const SizedBox();
@@ -192,104 +168,104 @@ class ChatBoxUserScreen extends StatelessWidget {
                         });
 
 
-                       return (o.toString().toLowerCase() == data['name'].toString().toLowerCase())
+                        return (o.toString().toLowerCase() == data['name'].toString().toLowerCase())
                             ? InkWell(
-                                onTap: () async {
-                                  controller.gotoChatScreen(
-                                      context,
-                                      snapshot1.data!.docs[index].id,
-                                      data['name']);
-                                },
-                                child: Container(
-                                  height: 92,
-                                  width: Get.width,
-                                  margin: const EdgeInsets.symmetric(
-                                      horizontal: 18, vertical: 4),
-                                  padding: const EdgeInsets.all(15),
-                                  decoration: BoxDecoration(
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(15)),
-                                      border: Border.all(
-                                          color: const Color(0xffF3ECFF)),
-                                      color: ColorRes.white),
-                                  child: Row(
-                                    children: [
-                                      Image.asset(
-                                        AssetRes.airBnbLogo,
-                                      ),
-                                      const SizedBox(width: 20),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            data['name'],
-                                            style: appTextStyle(
-                                                color: ColorRes.black,
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w500),
-                                          ),
-                                          const SizedBox(height: 6),
-                                          Text(
-                                            "Hi Adam Smith,",
-                                            style: appTextStyle(
-                                                color: ColorRes.black,
-                                                fontSize: 9,
-                                                fontWeight: FontWeight.w400),
-                                          ),
-                                        ],
-                                      ),
-                                      const Spacer(),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        children: [
-                                          Container(
-                                            height: 22,
-                                            width: 22,
-                                            decoration: BoxDecoration(
-                                              gradient: const LinearGradient(
-                                                colors: [
-                                                  ColorRes.gradientColor,
-                                                  ColorRes.containerColor
-                                                ],
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(22),
-                                            ),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 5),
-                                              child: Text(
-                                                textAlign: TextAlign.center,
-                                                '1',
-                                                style: appTextStyle(
-                                                    fontSize: 10,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: ColorRes.white),
-                                              ),
-                                            ),
-                                          ),
-                                          const Spacer(),
-                                          Text(
-                                            "20.00",
-                                            style: appTextStyle(
-                                                fontSize: 12,
-                                                color: ColorRes.black
-                                                    .withOpacity(0.8),
-                                                fontWeight: FontWeight.w500),
-                                          ),
-                                        ],
-                                      ),
-                                      const SizedBox(width: 10),
-                                    ],
-                                  ),
+                          onTap: () async {
+                            controller.gotoChatScreen(
+                                context,
+                                snapshot1.data!.docs[index].id,
+                                data['name']);
+                          },
+                          child: Container(
+                            height: 92,
+                            width: Get.width,
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 18, vertical: 4),
+                            padding: const EdgeInsets.all(15),
+                            decoration: BoxDecoration(
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(15)),
+                                border: Border.all(
+                                    color: const Color(0xffF3ECFF)),
+                                color: ColorRes.white),
+                            child: Row(
+                              children: [
+                                Image.asset(
+                                  AssetRes.airBnbLogo,
                                 ),
-                              )
+                                const SizedBox(width: 20),
+                                Column(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.center,
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      data['name'],
+                                      style: appTextStyle(
+                                          color: ColorRes.black,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    const SizedBox(height: 6),
+                                    Text(
+                                      "Hi Adam Smith,",
+                                      style: appTextStyle(
+                                          color: ColorRes.black,
+                                          fontSize: 9,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                  ],
+                                ),
+                                const Spacer(),
+                                Column(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.start,
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.end,
+                                  children: [
+                                    Container(
+                                      height: 22,
+                                      width: 22,
+                                      decoration: BoxDecoration(
+                                        gradient: const LinearGradient(
+                                          colors: [
+                                            ColorRes.gradientColor,
+                                            ColorRes.containerColor
+                                          ],
+                                        ),
+                                        borderRadius:
+                                        BorderRadius.circular(22),
+                                      ),
+                                      child: Padding(
+                                        padding:
+                                        const EdgeInsets.only(top: 5),
+                                        child: Text(
+                                          textAlign: TextAlign.center,
+                                          '1',
+                                          style: appTextStyle(
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w400,
+                                              color: ColorRes.white),
+                                        ),
+                                      ),
+                                    ),
+                                    const Spacer(),
+                                    Text(
+                                      "20.00",
+                                      style: appTextStyle(
+                                          fontSize: 12,
+                                          color: ColorRes.black
+                                              .withOpacity(0.8),
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(width: 10),
+                              ],
+                            ),
+                          ),
+                        )
                             : SizedBox();
 
 

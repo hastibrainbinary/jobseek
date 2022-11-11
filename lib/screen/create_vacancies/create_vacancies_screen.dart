@@ -34,7 +34,18 @@ class CreateVacanciesScreenM extends StatelessWidget {
                           controller.onTapBack("vacancies");
                           Get.back();
                         },
-                        child: backButton(),
+                        child: Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                            color: ColorRes.logoColor,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: const Icon(
+                            Icons.arrow_back_ios_new_rounded,
+                            color: ColorRes.containerColor,
+                          ),
+                        ),
                       ),
                     ),
                     const SizedBox(width: 40),

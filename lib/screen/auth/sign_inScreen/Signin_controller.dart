@@ -147,6 +147,8 @@ class SignInScreenController extends GetxController {
               PrefService.setValue(
                   PrefKeys.userId, credential.user!.uid.toString());
               Get.off(() => DashBoardScreen());
+              emailController.text="";
+              passwordController.text="";
             }
           } on FirebaseAuthException catch (e) {
             if (e.code == 'user-not-found') {

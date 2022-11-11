@@ -49,6 +49,24 @@ class SignUpControllerM extends GetxController {
       }
     });
     Get.off(() => const OrganizationProfileScreen());
+    firstnameController.text="";
+    lastnameController.text="";
+    emailController.text="";
+    phoneController.text="";
+    passwordController.text="";
+    cityController.text="";
+    stateController.text="";
+    countryController.text="";
+    update(["showEmail"]);
+    update(["showLastname"]);
+    update(["showFirstname"]);
+    update(["showPhoneNumber"]);
+    update(["loginForm"]);
+    update(["showPassword"]);
+    update(["showCity"]);
+    update(["showState"]);
+    update(["showCountry"]);
+    update(['dark']);
     if (kDebugMode) {
       print("*************************** Success");
     }

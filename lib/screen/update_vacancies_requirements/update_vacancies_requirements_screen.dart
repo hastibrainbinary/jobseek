@@ -621,11 +621,11 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                               child: ListView.builder(
                                   padding: const EdgeInsets.all(0),
                                   shrinkWrap: true,
-                                  itemCount: 1,
+                                  itemCount: controller.requirmentList.length,
                                   itemBuilder: (context, index) {
                                     return Column(
                                       children: [
-                                        detailBox('1'),
+                                        detailBox(controller.requirmentList[index].toString()),
                                         (controller.text.value == true)
                                             ? Container(
                                                 //padding: EdgeInsets.symmetric( vertical: 10),
@@ -706,6 +706,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                       fontWeight: FontWeight.w500,
                                       color: ColorRes.white)),
                             ),
+                            const SizedBox(height: 20),
                           ],
                         ),
                 ],

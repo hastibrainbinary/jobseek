@@ -99,17 +99,18 @@ class ProfileUserController extends GetxController implements GetxService {
   String path = img!.path;
   image = File(path);
   imagePicker();
+  Get.back();
 }
  ontapGallery()async{
    XFile? gallery = await picker.pickImage(source: ImageSource.gallery);
    String path = gallery!.path;
-   gallery = File(path) as XFile? ;
+   image = File(path) ;
    imagePicker();
+   Get.back();
 
  }
   imagePicker(){
-    update(['image']);
-    update(['gallery']);
+    update(['pic']);
     update();
   }
 }
