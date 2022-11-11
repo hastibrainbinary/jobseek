@@ -104,7 +104,6 @@ class ApplicationsScreen extends StatelessWidget {
                             margin: const EdgeInsets.only(right: 10),
                             padding: const EdgeInsets.symmetric(horizontal: 15),
                             height: 32,
-                            // width: 70,
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
                                 border: Border.all(
