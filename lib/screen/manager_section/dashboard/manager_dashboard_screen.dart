@@ -62,7 +62,10 @@ class ManagerDashBoardScreen extends StatelessWidget {
                             ? ColorRes.containerColor
                             : ColorRes.grey.withOpacity(0.6),
                       ),
-                      title: Text("Home", style: controller.currentTab.value == 0?bottomTitleStyle:bottomTitleStyleDisable),
+                      title: Text("Home",
+                          style: controller.currentTab.value == 0
+                              ? bottomTitleStyle
+                              : bottomTitleStyleDisable),
                     ),
 
                     /// application
@@ -75,7 +78,10 @@ class ManagerDashBoardScreen extends StatelessWidget {
                             ? ColorRes.containerColor
                             : ColorRes.grey.withOpacity(0.6),
                       ),
-                      title: Text("Applies", style: controller.currentTab.value == 1?bottomTitleStyle:bottomTitleStyleDisable),
+                      title: Text("Applies",
+                          style: controller.currentTab.value == 1
+                              ? bottomTitleStyle
+                              : bottomTitleStyleDisable),
                     ),
 
                     /// chat
@@ -90,7 +96,9 @@ class ManagerDashBoardScreen extends StatelessWidget {
                       ),
                       title: Text(
                         "Inbox",
-                        style: controller.currentTab.value == 2?bottomTitleStyle:bottomTitleStyleDisable,
+                        style: controller.currentTab.value == 2
+                            ? bottomTitleStyle
+                            : bottomTitleStyleDisable,
                       ),
                     ),
 
@@ -104,7 +112,10 @@ class ManagerDashBoardScreen extends StatelessWidget {
                             ? ColorRes.containerColor
                             : ColorRes.grey.withOpacity(0.6),
                       ),
-                      title: Text("Profile", style: controller.currentTab.value == 3?bottomTitleStyle:bottomTitleStyleDisable),
+                      title: Text("Profile",
+                          style: controller.currentTab.value == 3
+                              ? bottomTitleStyle
+                              : bottomTitleStyleDisable),
                     ),
                   ],
                 ),

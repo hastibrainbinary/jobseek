@@ -204,7 +204,7 @@ class SeeDetailsScreen extends StatelessWidget {
                         child: Text(
                           args['userName'],
                           style: const TextStyle(
-                              color: Colors.black,
+                              color: ColorRes.black,
                               fontWeight: FontWeight.bold,
                               fontSize: 16),
                         ),
@@ -236,7 +236,7 @@ class SeeDetailsScreen extends StatelessWidget {
                         child: Text(
                           args['email'],
                           style: const TextStyle(
-                              color: Colors.black,
+                              color: ColorRes.black,
                               fontWeight: FontWeight.bold,
                               fontSize: 16),
                         ),
@@ -275,7 +275,7 @@ class SeeDetailsScreen extends StatelessWidget {
                         child: Text(
                           args['phone'],
                           style: const TextStyle(
-                              color: Colors.black,
+                              color: ColorRes.black,
                               fontWeight: FontWeight.bold,
                               fontSize: 16),
                         ),
@@ -333,7 +333,7 @@ class SeeDetailsScreen extends StatelessWidget {
                         child: Text(
                           args['city'],
                           style: const TextStyle(
-                              color: Colors.black,
+                              color: ColorRes.black,
                               fontWeight: FontWeight.bold,
                               fontSize: 16),
                         ),
@@ -372,7 +372,7 @@ class SeeDetailsScreen extends StatelessWidget {
                         child: Text(
                           args['state'],
                           style: const TextStyle(
-                              color: Colors.black,
+                              color: ColorRes.black,
                               fontWeight: FontWeight.bold,
                               fontSize: 16),
                         ),
@@ -403,7 +403,7 @@ class SeeDetailsScreen extends StatelessWidget {
                         child: Text(
                           args['country'],
                           style: const TextStyle(
-                              color: Colors.black,
+                              color: ColorRes.black,
                               fontWeight: FontWeight.bold,
                               fontSize: 16),
                         ),
@@ -421,8 +421,8 @@ class SeeDetailsScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(12),
                             gradient: const LinearGradient(
                               colors: [
-                             ColorRes.logoColor,
-                               ColorRes.containerColor,
+                                ColorRes.logoColor,
+                                ColorRes.containerColor,
                               ],
                             ),
                           ),
@@ -433,7 +433,7 @@ class SeeDetailsScreen extends StatelessWidget {
                               children: [
                                 const Icon(
                                   Icons.arrow_back,
-                                  color:ColorRes.white,
+                                  color: ColorRes.white,
                                 ),
                                 const SizedBox(
                                   width: 10,
@@ -441,7 +441,7 @@ class SeeDetailsScreen extends StatelessWidget {
                                 Text(
                                   "Back",
                                   style: appTextStyle(
-                                      color:ColorRes.white,
+                                      color: ColorRes.white,
                                       fontSize: 20,
                                       fontWeight: FontWeight.w500),
                                 ),

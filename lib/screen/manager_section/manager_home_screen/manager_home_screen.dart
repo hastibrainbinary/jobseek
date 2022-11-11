@@ -12,7 +12,8 @@ class ManagerHomeScreen extends StatelessWidget {
   ManagerHomeScreen({Key? key}) : super(key: key);
   final controller = Get.put(ManagerHomeScreenController());
 
-  JobDetailsUploadCvController jobDetailsUploadCvController = Get.put(JobDetailsUploadCvController());
+  JobDetailsUploadCvController jobDetailsUploadCvController =
+      Get.put(JobDetailsUploadCvController());
 
   @override
   Widget build(BuildContext context) {
@@ -359,7 +360,7 @@ class ManagerHomeScreen extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (con) =>  RecentApplicationScreen()));
+                            builder: (con) => RecentApplicationScreen()));
                   },
                   child: Text(
                     "See all",
@@ -379,7 +380,8 @@ class ManagerHomeScreen extends StatelessWidget {
               id: "userdata",
               builder: (contro) {
                 return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                   child: recentPeopleBox(),
                 );
               })
