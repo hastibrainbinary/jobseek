@@ -98,7 +98,7 @@ Widget recentPeopleBox() {
                                   children: [
                                     InkWell(
                                       onTap: () =>
-                                          Get.toNamed(AppRes.applicantsDetails),
+                                          Get.toNamed(AppRes.applicantsDetails,arguments:contro.userData[i] ),
                                       child: Container(
                                         height: 40,
                                         width: 40,
