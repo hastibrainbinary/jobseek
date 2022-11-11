@@ -379,7 +379,7 @@ class ManagerHomeScreen extends StatelessWidget {
               id: "userdata",
               builder: (contro) {
                 return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
                   child: recentPeopleBox(),
                 );
               })
