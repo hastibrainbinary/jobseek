@@ -58,7 +58,7 @@ Widget recentPeopleBox() {
                                       height: 50,
                                       width: 50,
                                       decoration: BoxDecoration(
-                                        color: Colors.black,
+                                        color: ColorRes.black,
                                         borderRadius: BorderRadius.circular(10),
                                       ),
                                       child: const Image(
@@ -97,8 +97,9 @@ Widget recentPeopleBox() {
                                 Row(
                                   children: [
                                     InkWell(
-                                      onTap: () =>
-                                          Get.toNamed(AppRes.applicantsDetails,arguments:contro.userData[i] ),
+                                      onTap: () => Get.toNamed(
+                                          AppRes.applicantsDetails,
+                                          arguments: contro.userData[i]),
                                       child: Container(
                                         height: 40,
                                         width: 40,
@@ -110,8 +111,8 @@ Widget recentPeopleBox() {
                                             Icons.chat,
                                             20,
                                             LinearGradient(colors: [
-                                              Color(0xFFBE9DFF),
-                                              Color(0xFF8B4EFF),
+                                              ColorRes.logoColor,
+                                              ColorRes.containerColor,
                                             ])),
                                       ),
                                     ),
@@ -129,8 +130,8 @@ Widget recentPeopleBox() {
                                           Icons.videocam_sharp,
                                           20,
                                           LinearGradient(colors: [
-                                            Color(0xFFBE9DFF),
-                                            Color(0xFF8B4EFF),
+                                            ColorRes.logoColor,
+                                            ColorRes.containerColor,
                                           ])),
                                     ),
                                   ],
@@ -162,15 +163,16 @@ Widget recentPeopleBox() {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
                                       gradient: const LinearGradient(colors: [
-                                        Color(0xFFBF9EFF),
-                                        Color(0xFF8B4EFF),
+                                        ColorRes.logoColor,
+                                        ColorRes.containerColor,
                                       ]),
                                     ),
                                     child: Center(
                                       child: Text(
                                         "See Resume",
                                         style: appTextStyle(
-                                            color: Colors.white, fontSize: 15),
+                                            color: ColorRes.white,
+                                            fontSize: 15),
                                       ),
                                     ),
                                   ),
@@ -187,7 +189,7 @@ Widget recentPeopleBox() {
                                         border: Border.all(
                                             color: ColorRes.containerColor,
                                             width: 2),
-                                        color: Colors.white),
+                                        color: ColorRes.white),
                                     child: Center(
                                       child: Text(
                                         "See Details",
@@ -231,7 +233,7 @@ class GradientIcon extends StatelessWidget {
         child: Icon(
           icon,
           size: size,
-          color: Colors.white,
+          color: ColorRes.white,
         ),
       ),
       shaderCallback: (Rect bounds) {

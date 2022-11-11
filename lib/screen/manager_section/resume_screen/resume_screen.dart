@@ -20,9 +20,10 @@ class _ResumeScreenState extends State<ResumeScreen> {
   PDFViewController? _pdfViewController;
 
   //var docFile;
+
   @override
   Widget build(BuildContext context) {
-
+    //pdf();
     //docFile = DefaultCacheManager().getSingleFile("https://firebasestorage.googleapis.com/v0/b/jobseek-5275d.appspot.com/o/files%2FDocument%20from%20Jyot%20Vavadiya?alt=media&token=e8da4c45-8050-4022-bc4d-32b6b6703634");
     return Scaffold(
       backgroundColor: ColorRes.black,

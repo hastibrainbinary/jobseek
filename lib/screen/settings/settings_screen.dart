@@ -3,14 +3,12 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/screen/looking_for_screen/looking_for_screen.dart';
-import 'package:jobseek/screen/settings/security/security_screen.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/string.dart';
 import 'appearance/appearance_screen.dart';
-import 'help/help_screen.dart';
 import 'notification/notification_screen.dart';
 
 class SettingsScreenU extends StatelessWidget {
@@ -200,8 +198,8 @@ class SettingsScreenU extends StatelessWidget {
               color: ColorRes.lightGrey.withOpacity(0.8),
               height: 1,
             ),
-           // const SizedBox(height: 10),
-           /* InkWell(
+            // const SizedBox(height: 10),
+            /* InkWell(
               onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (con) => const HelpScreenU()));
