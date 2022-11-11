@@ -241,7 +241,7 @@ class ChatBoxUserScreen extends StatelessWidget {
                                      crossAxisAlignment:
                                      CrossAxisAlignment.end,
                                      children: [
-                                       Container(
+                                      /* Container(
                                          height: 22,
                                          width: 22,
                                          decoration: BoxDecoration(
@@ -266,7 +266,7 @@ class ChatBoxUserScreen extends StatelessWidget {
                                                  color: ColorRes.white),
                                            ),
                                          ),
-                                       ),
+                                       ),*/
                                        const Spacer(),
                                        Text(
                                          dataM?['lastMessageTime'] == null ?"":
