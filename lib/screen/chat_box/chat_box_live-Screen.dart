@@ -29,7 +29,7 @@ class ChatBoxLiveScreenM extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       backgroundColor: ColorRes.backgroundColor,
       body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -153,41 +153,7 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: Container(
-                height: 214,
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                decoration: BoxDecoration(
-                  color: const Color(0xffEEEBF4),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                    border: InputBorder.none,
-                  ),
-                  maxLines: 6,
-                ),
-              ),
-            ),
-            Container(
-              height: 50,
-              width: Get.width,
-              margin: const EdgeInsets.symmetric(horizontal: 20),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  gradient: const LinearGradient(colors: [
-                    Color(0xFFBF9EFF),
-                    Color(0xFF8B4EFF),
-                  ])),
-              child: Center(
-                child: Text(
-                  "Join Interview",
-                  style: appTextStyle(color: Colors.white, fontSize: 20),
-                ),
-              ),
-            ),
-            SizedBox(height: 15,),
+            const SizedBox(height: 15,),
             Expanded(
               child: PaginateFirestore(
 
@@ -299,6 +265,7 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                       .orderBy("time", descending: true),
                   itemBuilderType: PaginateBuilderType.listView),
             ),
+            const SizedBox(height: 15,),
             GetBuilder<ChatBoxController>(
                 id: "message",
                 builder: (controller) {
@@ -346,7 +313,7 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                     ),
                   );
                 }),
-            SizedBox(height: 15,),
+            const SizedBox(height: 15,),
           ]),
     );
   }
