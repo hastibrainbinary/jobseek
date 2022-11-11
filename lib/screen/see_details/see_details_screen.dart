@@ -200,8 +200,9 @@ class SeeDetailsScreen extends StatelessWidget {
                         height: 51,
                         width: 339,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: ColorRes.containerColor)),
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: ColorRes.containerColor),
+                        ),
                         child: Text(
                           args['email'],
                           style: const TextStyle(
@@ -387,11 +388,14 @@ class SeeDetailsScreen extends StatelessWidget {
                           height: 50,
                           width: Get.width,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              gradient: const LinearGradient(colors: [
+                            borderRadius: BorderRadius.circular(12),
+                            gradient: const LinearGradient(
+                              colors: [
                                 Color(0xFFBF9EFF),
                                 Color(0xFF8B4EFF),
-                              ])),
+                              ],
+                            ),
+                          ),
                           child: Center(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -410,7 +414,7 @@ class SeeDetailsScreen extends StatelessWidget {
                                       color: Colors.white,
                                       fontSize: 20,
                                       fontWeight: FontWeight.w500),
-                                )
+                                ),
                               ],
                             ),
                           ),

@@ -29,24 +29,32 @@ Widget homeAppBar() {
         Expanded(
           child: Container(
             alignment: Alignment.center,
-            child: RichText(
-              text: TextSpan(
-                children: <TextSpan>[
-                  TextSpan(
-                      text: 'Hello, ',
+            child: Align(
+              alignment: Alignment.center,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 5),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Hello,",
                       style: appTextStyle(
+                          color: ColorRes.black,
                           fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                          color: ColorRes.black)),
-                  TextSpan(
-                    text: PrefService.getString(PrefKeys.fullName).toString(),
-                    style: appTextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                      color: ColorRes.containerColor,
+                          fontWeight: FontWeight.w600),
                     ),
-                  )
-                ],
+                    Text(
+                      PrefService.getString(PrefKeys.fullName) ?? "",
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                      style: appTextStyle(
+                          color: ColorRes.containerColor,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

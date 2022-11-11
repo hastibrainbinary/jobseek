@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
-import 'package:jobseek/screen/dashboard/home/home_controller.dart';
 import 'package:jobseek/screen/savejobs/save_job_controller.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
@@ -15,7 +14,6 @@ class SaveJobScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(SaveJobController());
-
 
     return Scaffold(
       backgroundColor: ColorRes.backgroundColor,
@@ -51,100 +49,119 @@ class SaveJobScreen extends StatelessWidget {
                   stream: FirebaseFirestore.instance
                       .collection("BookMark")
                       .snapshots(),
-                  builder: (context, AsyncSnapshot<QuerySnapshot<Map<String,dynamic>>> snapshot) {
+                  builder: (context,
+                      AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
+                          snapshot) {
+                    List bookMarkData = (snapshot != null)
+                        ? (snapshot.data != null)
+                            ? snapshot.data!.docs
+                            : []
+                        : [];
 
-                    List bookMarkData = (snapshot!=null)?(snapshot.data!=null)?snapshot.data!.docs:[]:[];
-
-                    return (snapshot.data!=null)?ListView.builder(
-                        itemCount: bookMarkData.length,
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          return Container(
-                            height: 92,
-                            width: Get.width,
-                            margin: const EdgeInsets.symmetric(
-                                horizontal: 18, vertical: 4),
-                            padding: const EdgeInsets.all(15),
-                            decoration: BoxDecoration(
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(15)),
-                                border:
-                                    Border.all(color: const Color(0xffF3ECFF)),
-                                color: ColorRes.white),
-                            child: InkWell(
-                              onTap: () {
-                                String docid = snapshot.data!.docs[index].id;
-                                bottom(context, bookMarkData[index],
-                                    controller.jobTypesLogo[index], docid);
-                              },
-                              child: Row(
-                                children: [
-                                  Image.asset(controller.jobTypesLogo[index % 1]),
-                                  const SizedBox(width: 20),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                    return (snapshot.data != null)
+                        ? ListView.builder(
+                            itemCount: bookMarkData.length,
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              return Container(
+                                height: 92,
+                                width: Get.width,
+                                margin: const EdgeInsets.symmetric(
+                                    horizontal: 18, vertical: 4),
+                                padding: const EdgeInsets.all(15),
+                                decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(15)),
+                                    border: Border.all(
+                                        color: const Color(0xffF3ECFF)),
+                                    color: ColorRes.white),
+                                child: InkWell(
+                                  onTap: () {
+                                    String docid =
+                                        snapshot.data!.docs[index].id;
+                                    bottom(context, bookMarkData[index],
+                                        controller.jobTypesLogo[index], docid);
+                                  },
+                                  child: Row(
                                     children: [
-                                      Text(bookMarkData[index]['Position'] ?? "",
-                                          style: appTextStyle(
-                                              color: ColorRes.black,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w500)),
-                                      Text(bookMarkData[index]['CompanyName']??"",
-                                          style: appTextStyle(
-                                              color: ColorRes.black,
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w400)),
-                                      Text(
-                                          "${bookMarkData[index]['location']} ${bookMarkData[index]['type']}",
-                                          style: appTextStyle(
-                                              color: ColorRes.black,
-                                              fontSize: 9,
-                                              fontWeight: FontWeight.w400)),
-                                    ],
-                                  ),
-                                  const Spacer(),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: [
-                                      InkWell(
-                                        onTap: () {
-                                          String docid =
-                                              snapshot.data!.docs[index].id;
-                                          bottom(
-                                              context,
-                                              bookMarkData[index],
-                                              controller.jobTypesLogo[index],
-                                              docid);
-                                        },
-                                        child: Image.asset(
-                                          AssetRes.bookMarkFillIcon,
-                                          height: 20,
-                                        ),
+                                      Image.asset(
+                                          controller.jobTypesLogo[index % 1]),
+                                      const SizedBox(width: 20),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                              bookMarkData[index]['Position'] ??
+                                                  "",
+                                              style: appTextStyle(
+                                                  color: ColorRes.black,
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w500)),
+                                          Text(
+                                              bookMarkData[index]
+                                                      ['CompanyName'] ??
+                                                  "",
+                                              style: appTextStyle(
+                                                  color: ColorRes.black,
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w400)),
+                                          Text(
+                                              "${bookMarkData[index]['location']} ${bookMarkData[index]['type']}",
+                                              style: appTextStyle(
+                                                  color: ColorRes.black,
+                                                  fontSize: 9,
+                                                  fontWeight: FontWeight.w400)),
+                                        ],
                                       ),
                                       const Spacer(),
-                                      Text(
-                                        bookMarkData[index]['salary']??"",
-                                        style: appTextStyle(
-                                            fontSize: 16,
-                                            color: ColorRes.containerColor,
-                                            fontWeight: FontWeight.w500),
-                                      )
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        children: [
+                                          InkWell(
+                                            onTap: () {
+                                              String docid =
+                                                  snapshot.data!.docs[index].id;
+                                              bottom(
+                                                  context,
+                                                  bookMarkData[index],
+                                                  controller
+                                                      .jobTypesLogo[index],
+                                                  docid);
+                                            },
+                                            child: Image.asset(
+                                              AssetRes.bookMarkFillIcon,
+                                              height: 20,
+                                            ),
+                                          ),
+                                          const Spacer(),
+                                          Text(
+                                            bookMarkData[index]['salary'] ?? "",
+                                            style: appTextStyle(
+                                                fontSize: 16,
+                                                color: ColorRes.containerColor,
+                                                fontWeight: FontWeight.w500),
+                                          )
+                                        ],
+                                      ),
+                                      const SizedBox(width: 10)
                                     ],
                                   ),
-                                  const SizedBox(width: 10)
-                                ],
-                              ),
-                            ),
+                                ),
+                              );
+                            })
+                        : Container(
+                            height: Get.height,
+                            width: Get.width,
+                            alignment: Alignment.center,
+                            child: const CircularProgressIndicator(),
                           );
-                        }):Container(
-                      height: Get.height,
-                      width: Get.width,
-                      alignment: Alignment.center,
-                      child: CircularProgressIndicator(),
-                    );
                   }),
             ]),
       ),

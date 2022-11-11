@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_controller.dart';
@@ -10,9 +11,9 @@ import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 
 Widget recentPeopleBox() {
-
   final contro = Get.put(ManagerHomeScreenController());
-  JobDetailsUploadCvController jobDetailsUploadCvController = Get.put(JobDetailsUploadCvController());
+  JobDetailsUploadCvController jobDetailsUploadCvController =
+      Get.put(JobDetailsUploadCvController());
   jobDetailsUploadCvController.init();
   return SingleChildScrollView(
     child: SizedBox(
@@ -20,17 +21,24 @@ Widget recentPeopleBox() {
       child: ListView.builder(
           itemCount: contro.userData.length,
           itemBuilder: (context, i) {
-
             String? o;
 
             contro.userData[i]['companyName'].forEach((element) {
-              if(element == PrefService.getString(PrefKeys.companyName).toString().toLowerCase()){
-                print(element);
+              if (element ==
+                  PrefService.getString(PrefKeys.companyName)
+                      .toString()
+                      .toLowerCase()) {
+                if (kDebugMode) {
+                  print(element);
+                }
                 o = element;
               }
             });
 
-            return (o.toString().toLowerCase() == PrefService.getString(PrefKeys.companyName).toString().toLowerCase())
+            return (o.toString().toLowerCase() ==
+                    PrefService.getString(PrefKeys.companyName)
+                        .toString()
+                        .toLowerCase())
                 ? Column(
                     children: [
                       Container(
@@ -88,20 +96,24 @@ Widget recentPeopleBox() {
                                 ),
                                 Row(
                                   children: [
-                                    Container(
-                                      height: 40,
-                                      width: 40,
-                                      decoration: BoxDecoration(
-                                          color: ColorRes.logoColor,
-                                          borderRadius:
-                                              BorderRadius.circular(8)),
-                                      child: const GradientIcon(
-                                          Icons.chat,
-                                          20,
-                                          LinearGradient(colors: [
-                                            Color(0xFFBE9DFF),
-                                            Color(0xFF8B4EFF),
-                                          ])),
+                                    InkWell(
+                                      onTap: () =>
+                                          Get.toNamed(AppRes.applicantsDetails),
+                                      child: Container(
+                                        height: 40,
+                                        width: 40,
+                                        decoration: BoxDecoration(
+                                            color: ColorRes.logoColor,
+                                            borderRadius:
+                                                BorderRadius.circular(8)),
+                                        child: const GradientIcon(
+                                            Icons.chat,
+                                            20,
+                                            LinearGradient(colors: [
+                                              Color(0xFFBE9DFF),
+                                              Color(0xFF8B4EFF),
+                                            ])),
+                                      ),
                                     ),
                                     const SizedBox(
                                       width: 10,
@@ -122,7 +134,7 @@ Widget recentPeopleBox() {
                                           ])),
                                     ),
                                   ],
-                                )
+                                ),
                               ],
                             ),
                             const SizedBox(
@@ -140,16 +152,20 @@ Widget recentPeopleBox() {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 InkWell(
-                                  onTap: () => Get.toNamed(AppRes.resumeScreen, arguments: {"doc": contro.userData[i]['resumeUrl']}),
+                                  onTap: () => Get.toNamed(AppRes.resumeScreen,
+                                      arguments: {
+                                        "doc": contro.userData[i]['resumeUrl']
+                                      }),
                                   child: Container(
                                     width: 135,
                                     height: 35,
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        gradient: const LinearGradient(colors: [
-                                          Color(0xFFBF9EFF),
-                                          Color(0xFF8B4EFF),
-                                        ])),
+                                      borderRadius: BorderRadius.circular(10),
+                                      gradient: const LinearGradient(colors: [
+                                        Color(0xFFBF9EFF),
+                                        Color(0xFF8B4EFF),
+                                      ]),
+                                    ),
                                     child: Center(
                                       child: Text(
                                         "See Resume",

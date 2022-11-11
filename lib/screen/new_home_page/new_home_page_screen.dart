@@ -6,24 +6,20 @@ import 'package:jobseek/screen/auth/sign_inScreen/Signin_Screen.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
 import 'package:jobseek/screen/looking_for_screen/looking_for_screen.dart';
 import 'package:jobseek/screen/new_home_page/new_home_page_controller.dart';
-
 import 'package:jobseek/screen/search_job/search_job_screen.dart';
-import 'package:jobseek/screen/splashScreen/splash_controller.dart';
 import 'package:jobseek/service/pref_services.dart';
-
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 
 class HomePageNewScreenU extends StatelessWidget {
-   HomePageNewScreenU({Key? key}) : super(key: key);
+  HomePageNewScreenU({Key? key}) : super(key: key);
 
-   HomePageNewController controller = Get.put(HomePageNewController());
+  HomePageNewController controller = Get.put(HomePageNewController());
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: ColorRes.backgroundColor,
       body: SingleChildScrollView(
@@ -95,24 +91,28 @@ class HomePageNewScreenU extends StatelessWidget {
                   Expanded(
                     child: Container(
                       decoration: const BoxDecoration(
-                          color: ColorRes.white2,
-                          borderRadius: BorderRadius.all(Radius.circular(8))),
+                        color: ColorRes.white2,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(8),
+                        ),
+                      ),
                       child: TextField(
                         controller: controller.searchControllerNew,
-                        onChanged: (value) {
-                        },
-                        onTap: (){
-                          Get.to(()=>SearchJobScreen());
+                        onChanged: (value) {},
+                        onTap: () {
+                          Get.to(() => const SearchJobScreen());
                         },
                         decoration: InputDecoration(
                             border: InputBorder.none,
-                            suffixIcon: const Icon(Icons.search, color: ColorRes.grey),
+                            suffixIcon:
+                                const Icon(Icons.search, color: ColorRes.grey),
                             hintText: "Search",
                             hintStyle: appTextStyle(
                                 fontSize: 14,
                                 color: ColorRes.grey,
                                 fontWeight: FontWeight.w500),
-                            contentPadding: const EdgeInsets.only(left: 20, top: 13)),
+                            contentPadding:
+                                const EdgeInsets.only(left: 20, top: 13)),
                       ),
                     ),
                   ),
@@ -221,8 +221,8 @@ class HomePageNewScreenU extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   InkWell(
-                    onTap: (){
-                      Get.to(()=>LookingForScreen());
+                    onTap: () {
+                      Get.to(() => const LookingForScreen());
                     },
                     child: Container(
                       margin: const EdgeInsets.only(top: 15),
@@ -244,8 +244,8 @@ class HomePageNewScreenU extends StatelessWidget {
                   ),
                   const SizedBox(width: 10),
                   InkWell(
-                    onTap: (){
-                      Get.to(()=>SigninScreenU());
+                    onTap: () {
+                      Get.to(() => SigninScreenU());
                     },
                     child: Container(
                       margin: const EdgeInsets.only(top: 15),
@@ -300,8 +300,9 @@ class HomePageNewScreenU extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 13),
-             Padding(
-              padding: EdgeInsets.only(top: 18.0,left: 18,right: 18,bottom: 8),
+            Padding(
+              padding: const EdgeInsets.only(
+                  top: 18.0, left: 18, right: 18, bottom: 8),
               child: AdvancedSearch(
                 clearSearchEnabled: true,
                 singleItemHeight: 40,
@@ -310,29 +311,25 @@ class HomePageNewScreenU extends StatelessWidget {
                 autoListing: true,
                 unSelectedTextColor: Colors.black.withOpacity(0.5),
                 maxElementsToDisplay: 10,
-                onItemTap: (int index, String value) {  },
+                onItemTap: (int index, String value) {},
                 searchItems: PrefService.getList(PrefKeys.allDesignation),
-
               ),
             ),
-             Padding(
-              padding: const EdgeInsets.only(bottom: 18.0,left: 18,right: 18),
-              child:AdvancedSearch(
+            Padding(
+              padding: const EdgeInsets.only(bottom: 18.0, left: 18, right: 18),
+              child: AdvancedSearch(
                 clearSearchEnabled: true,
                 singleItemHeight: 40,
                 hintText: 'Enter location',
                 hintTextColor: Colors.black.withOpacity(0.5),
                 autoListing: true,
                 maxElementsToDisplay: 10,
-                onItemTap: (int index, String value) {  },
+                onItemTap: (int index, String value) {},
                 searchItems: PrefService.getList(PrefKeys.allCountryData),
-
               ),
             ),
             InkWell(
-              onTap: (){
-
-              },
+              onTap: () {},
               child: Center(
                 child: Container(
                   margin: const EdgeInsets.only(top: 15),

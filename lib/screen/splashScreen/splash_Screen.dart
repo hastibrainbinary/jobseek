@@ -23,7 +23,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   SplashController controller = Get.put(SplashController());
   @override
   void initState() {
@@ -41,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
       final DashBoardController controller = Get.put(DashBoardController());
       controller.currentTab = 0;
       Get.off(() => token == ""
-          ?  DashBoardScreen()
+          ? DashBoardScreen()
           : rol == "User"
               ? DashBoardScreen()
               : company
@@ -155,28 +154,28 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-
-  countryApi()async{
+  countryApi() async {
     controller.countryData = await CountrySearch.countNotification();
 
     controller.countryData!.forEach((element) {
       controller.allData.add(element.name ?? "");
       element.state!.forEach((el) {
         controller.allData.add(el.name ?? "");
-          el.city!.forEach((e) {
-            controller.allData.add(e.name??"");
-          });
+        el.city!.forEach((e) {
+          controller.allData.add(e.name ?? "");
+        });
       });
     });
 
     print(PrefService.getList(PrefKeys.allDesignation));
-    if(PrefService.getList(PrefKeys.allCountryData)==null || PrefService.getList(PrefKeys.allCountryData).isEmpty){
+    if (PrefService.getList(PrefKeys.allCountryData) == null ||
+        PrefService.getList(PrefKeys.allCountryData).isEmpty) {
       PrefService.setValue(PrefKeys.allCountryData, controller.allData);
     }
 
-    if(PrefService.getList(PrefKeys.allDesignation)==null || PrefService.getList(PrefKeys.allDesignation).isEmpty)
-      {
-    PrefService.setValue(PrefKeys.allDesignation, controller.allDesignation);
-      }
+    if (PrefService.getList(PrefKeys.allDesignation) == null ||
+        PrefService.getList(PrefKeys.allDesignation).isEmpty) {
+      PrefService.setValue(PrefKeys.allDesignation, controller.allDesignation);
+    }
   }
 }

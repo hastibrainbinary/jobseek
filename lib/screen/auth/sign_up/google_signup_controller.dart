@@ -102,7 +102,7 @@ class GoogleSignupController extends GetxController {
 
   bool buttonColor = false;
 
-  void onChanged(String value){
+  void onChanged(String value) {
     update(["dark"]);
   }
 
@@ -113,7 +113,7 @@ class GoogleSignupController extends GetxController {
       emailError = 'Please enter email';
     } else {
       if (RegExp(
-          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
           .hasMatch(emailController.text)) {
         emailError = '';
       } else {
@@ -242,6 +242,15 @@ class GoogleSignupController extends GetxController {
       print("GO TO HOME PAGE");
     }
     await addDataInFirebase(userUid: uid, map: map2);
+
+    PrefService.setValue(PrefKeys.fullName,
+        "${firstnameController.text} ${lastnameController.text}");
+    PrefService.setValue(PrefKeys.email, emailController.text);
+    PrefService.setValue(PrefKeys.phoneNumber, phoneController.text);
+    PrefService.setValue(PrefKeys.city, cityController.text);
+    PrefService.setValue(PrefKeys.state, stateController.text);
+    PrefService.setValue(PrefKeys.country, countryController.text);
+    PrefService.setValue(PrefKeys.occupation, occupationController.text);
     PrefService.setValue(PrefKeys.userId, uid);
     PrefService.setValue(PrefKeys.rol, "User");
     Get.offAll(() => DashBoardScreen());
@@ -256,5 +265,27 @@ class GoogleSignupController extends GetxController {
     update(["showState"]);
     update(["showCountry"]);
     update(['dark']);
+  }
+
+  String dropDownValue = 'India';
+  var items = [
+    'India',
+    'United States',
+    'Europe',
+    'china',
+    'United Kingdom',
+    " Cuba",
+    "	Havana",
+    "Cyprus",
+    "Nicosia",
+    "Czech ",
+    "Republic",
+    "Prague",
+  ];
+  changeDropdwon({required String val}) {
+    dropDownValue = val;
+    countryController.text = dropDownValue;
+
+    update(["dropdown"]);
   }
 }

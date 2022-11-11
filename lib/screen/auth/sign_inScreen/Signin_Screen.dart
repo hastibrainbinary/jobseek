@@ -16,7 +16,8 @@ class SigninScreenU extends StatelessWidget {
   SigninScreenU({Key? key}) : super(key: key);
 
   SignInScreenController controller = Get.put(SignInScreenController());
-  JobDetailsUploadCvController jobDetailsUploadCvController = Get.put(JobDetailsUploadCvController());
+  JobDetailsUploadCvController jobDetailsUploadCvController =
+      Get.put(JobDetailsUploadCvController());
 
   @override
   Widget build(BuildContext context) {
