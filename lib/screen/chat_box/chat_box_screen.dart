@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/common/widgets/helper.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_controller.dart';
 import 'package:jobseek/service/pref_services.dart';
@@ -57,28 +58,7 @@ class ChatBoxScreen extends StatelessWidget {
             ),
           ]),
           const SizedBox(height: 20),
-          // Container(
-          //   width: 339,
-          //   decoration: const BoxDecoration(
-          //     color: ColorRes.white2,
-          //     borderRadius: BorderRadius.all(
-          //       Radius.circular(15),
-          //     ),
-          //   ),
-          //   child: TextField(
-          //     controller: controller.searchController,
-          //     decoration: InputDecoration(
-          //       border: InputBorder.none,
-          //       suffixIcon: const Icon(Icons.search, color: ColorRes.grey),
-          //       hintText: "Search",
-          //       hintStyle: appTextStyle(
-          //           fontSize: 14,
-          //           color: ColorRes.grey,
-          //           fontWeight: FontWeight.w500),
-          //       contentPadding: const EdgeInsets.only(left: 20, top: 13),
-          //     ),
-          //   ),
-          // ),
+
           searchArea(),
           const SizedBox(height: 20),
           Container(
@@ -122,194 +102,18 @@ class ChatBoxScreen extends StatelessWidget {
                 }),
           ),
 
-        /*  Expanded(
+          Expanded(
             child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-                stream: FirebaseFirestore.instance
-                    .collection('chats')
-                    .where("uidList", arrayContains: controller.userUid)
-                    .orderBy("lastMessageTime", descending: true)
-                    .snapshots(),
-                builder: (context, snapshotM) {
-                  if (snapshotM.data == null || snapshotM.hasData == false) {
+                stream:
+                    FirebaseFirestore.instance.collection("Apply").snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.data == null || snapshot.hasData == false) {
                     return const SizedBox();
                   }
 
                   return ListView.builder(
-                    itemCount: snapshotM.data!.docs.length,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    itemBuilder: (BuildContext context, int index) {
-                      List<String> idList =
-                          (snapshotM.data!.docs[index].data()['uidList'] ?? [])
-                              .map<String>((e) => e.toString())
-                              .toList();
-
-                      Map<String, dynamic> docData =
-                          snapshotM.data!.docs[index].data();
-                      String userId = "";
-                      for (var value in idList) {
-                        if (value != controller.userUid) {
-                          userId = value;
-                        }
-                      }
-                      if (userId.isEmpty) {
-                        return const SizedBox();
-                      }
-
-                      if (userId.isEmpty) {
-                        return const SizedBox();
-                      }
-                      return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-                          stream: FirebaseFirestore.instance
-                              .collection("Apply")
-                              .snapshots(),
-                          builder: (context, snapshot) {
-                            if (snapshot.data == null ||
-                                snapshot.hasData == false) {
-                              return const SizedBox();
-                            }
-
-                           *//* String? o;
-
-                            snapshot.data!.docs[index]['companyName']
-                                .forEach((element) {
-                              if (element ==
-                                  PrefService.getString(
-                                      PrefKeys.companyName)
-                                      .toString()
-                                      .toLowerCase()) {
-                                print(element);
-                                o = element;
-                              }
-                            });*//*
-                            return InkWell(
-                              onTap: () async {
-                                controller.gotoChatScreen(
-                                    context,
-                                    "fgdfgh",
-                                    "dfgf"
-                                    //snapshot.data!.docs[index].id,
-                                   // snapshot.data!.docs[index]['Occupation']
-                                );
-                              },
-                              child: Container(
-                                height: 92,
-                                width: Get.width,
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 18, vertical: 4),
-                                padding: const EdgeInsets.all(15),
-                                decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(15)),
-                                    border: Border.all(
-                                        color: const Color(0xffF3ECFF)),
-                                    color: ColorRes.white),
-                                child: Row(
-                                  children: [
-                                    Image.asset(
-                                      AssetRes.airBnbLogo,
-                                    ),
-                                    const SizedBox(width: 20),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Occupation",
-                                          style: appTextStyle(
-                                              color: ColorRes.black,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                        const SizedBox(height: 6),
-                                        Text(
-                                          docData['lastMessage'],
-                                          style: appTextStyle(
-                                              color: ColorRes.black,
-                                              fontSize: 9,
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                      ],
-                                    ),
-                                    const Spacer(),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      children: [
-                                        Container(
-                                          height: 22,
-                                          width: 22,
-                                          decoration: BoxDecoration(
-                                            gradient: const LinearGradient(
-                                              colors: [
-                                                ColorRes.gradientColor,
-                                                ColorRes.containerColor
-                                              ],
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(22),
-                                          ),
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 5),
-                                            child: Text(
-                                              textAlign: TextAlign.center,
-                                              '1',
-                                              style: appTextStyle(
-                                                  fontSize: 10,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: ColorRes.white),
-                                            ),
-                                          ),
-                                        ),
-                                        const Spacer(),
-                                        Text(
-                                          "20.00",
-                                          style: appTextStyle(
-                                              fontSize: 12,
-                                              color: ColorRes.black
-                                                  .withOpacity(0.8),
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(width: 10),
-                                  ],
-                                ),
-                              ),
-                            );
-                          });
-
-
-                    },
-                  );
-                }),
-          ),*/
-
-
-Expanded(
-              child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-                  stream: FirebaseFirestore.instance
-                      .collection("Apply")
-                      .snapshots(),
-                  /*FirebaseFirestore.instance
-                .collection("Auth")
-                .doc("User")
-                .collection("register")
-                .snapshots(),*/
-                  builder: (context, snapshot) {
-                    if (snapshot.data == null || snapshot.hasData == false) {
-                      return const SizedBox();
-                    }
-
-                    return ListView.builder(
                       itemCount: snapshot.data!.docs.length,
                       itemBuilder: (context, index) {
-
                         String? o;
 
                         snapshot.data!.docs[index]['companyName']
@@ -323,113 +127,137 @@ Expanded(
                           }
                         });
 
-                        return (o.toString().toLowerCase() ==
-                                PrefService.getString(PrefKeys.companyName)
-                                    .toString()
-                                    .toLowerCase())
-                            ? InkWell(
-                                onTap: () async {
-                                  controller.gotoChatScreen(
-                                      context,
-                                      snapshot.data!.docs[index].id,
-                                      snapshot.data!.docs[index]['Occupation']);
-                                },
-                                child: Container(
-                                  height: 92,
-                                  width: Get.width,
-                                  margin: const EdgeInsets.symmetric(
-                                      horizontal: 18, vertical: 4),
-                                  padding: const EdgeInsets.all(15),
-                                  decoration: BoxDecoration(
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(15)),
-                                      border: Border.all(
-                                          color: const Color(0xffF3ECFF)),
-                                      color: ColorRes.white),
-                                  child: Row(
-                                    children: [
-                                      Image.asset(
-                                        AssetRes.airBnbLogo,
-                                      ),
-                                      const SizedBox(width: 20),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                        return StreamBuilder<
+                            DocumentSnapshot<Map<String, dynamic>>>(
+                          stream: FirebaseFirestore.instance
+                              .collection('chats')
+                              .doc(controller.getChatId(controller.userUid,
+                                  snapshot.data!.docs[index].id))
+                              .snapshots(),
+                          builder: (context, snapshotM) {
+                            if (snapshotM.data == null ||
+                                snapshotM.hasData == false) {
+                              return const SizedBox();
+                            }
+
+                            Map<String, dynamic>? dataM =
+                                snapshotM.data?.data();
+
+                            return (o.toString().toLowerCase() ==
+                                    PrefService.getString(PrefKeys.companyName)
+                                        .toString()
+                                        .toLowerCase())
+                                ? InkWell(
+                                    onTap: () async {
+                                      controller.gotoChatScreen(
+                                          context,
+                                          snapshot.data!.docs[index].id,
+                                          snapshot.data!.docs[index]
+                                              ['userName']);
+                                    },
+                                    child: Container(
+                                      height: 92,
+                                      width: Get.width,
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 18, vertical: 4),
+                                      padding: const EdgeInsets.all(15),
+                                      decoration: BoxDecoration(
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(15)),
+                                          border: Border.all(
+                                              color: const Color(0xffF3ECFF)),
+                                          color: ColorRes.white),
+                                      child: Row(
                                         children: [
-                                          Text(
-                                            snapshot.data!.docs[index]
-                                                ['Occupation'],
-                                            style: appTextStyle(
-                                                color: ColorRes.black,
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w500),
+                                          Image.asset(
+                                            AssetRes.airBnbLogo,
                                           ),
-                                          const SizedBox(height: 6),
-                                          Text(
-                                            "last msg",
-                                            style: appTextStyle(
-                                                color: ColorRes.black,
-                                                fontSize: 9,
-                                                fontWeight: FontWeight.w400),
-                                          ),
-                                        ],
-                                      ),
-                                      const Spacer(),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        children: [
-                                          Container(
-                                            height: 22,
-                                            width: 22,
-                                            decoration: BoxDecoration(
-                                              gradient: const LinearGradient(
-                                                colors: [
-                                                  ColorRes.gradientColor,
-                                                  ColorRes.containerColor
-                                                ],
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(22),
-                                            ),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 5),
-                                              child: Text(
-                                                textAlign: TextAlign.center,
-                                                '1',
+                                          const SizedBox(width: 20),
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                snapshot.data!.docs[index]
+                                                    ['userName'],
                                                 style: appTextStyle(
-                                                    fontSize: 10,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: ColorRes.white),
+                                                    color: ColorRes.black,
+                                                    fontSize: 15,
+                                                    fontWeight:
+                                                        FontWeight.w500),
                                               ),
-                                            ),
+                                              const SizedBox(height: 6),
+                                              Text(
+                                                dataM?['lastMessage'] ?? "",
+                                                style: appTextStyle(
+                                                    color: ColorRes.black.withOpacity(0.8),
+                                                    fontSize: 12,
+                                                    fontWeight:
+                                                        FontWeight.w400),
+                                              ),
+                                            ],
                                           ),
                                           const Spacer(),
-                                          Text(
-                                            "20.00",
-                                            style: appTextStyle(
-                                                fontSize: 12,
-                                                color: ColorRes.black
-                                                    .withOpacity(0.8),
-                                                fontWeight: FontWeight.w500),
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.end,
+                                            children: [
+                                              Container(
+                                                height: 22,
+                                                width: 22,
+                                                decoration: BoxDecoration(
+                                                  gradient:
+                                                      const LinearGradient(
+                                                    colors: [
+                                                      ColorRes.gradientColor,
+                                                      ColorRes.containerColor
+                                                    ],
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(22),
+                                                ),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 5),
+                                                  child: Text(
+                                                    textAlign: TextAlign.center,
+                                                    '1',
+                                                    style: appTextStyle(
+                                                        fontSize: 10,
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                        color: ColorRes.white),
+                                                  ),
+                                                ),
+                                              ),
+                                              const Spacer(),
+                                              Text(
+                                                  dataM?['lastMessageTime'] == null ?"":
+                                                " ${getFormattedTime(dataM?['lastMessageTime'].toDate() ?? "")}",
+                                                style: appTextStyle(
+                                                    fontSize: 12,
+                                                    color: Colors.grey,
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                              ),
+                                            ],
                                           ),
+                                          const SizedBox(width: 10),
                                         ],
                                       ),
-                                      const SizedBox(width: 10),
-                                    ],
-                                  ),
-                                ),
-                              )
-                            : SizedBox();
-                      },
-                    );
-                  })),
-
+                                    ),
+                                  )
+                                : SizedBox();
+                          },
+                        );
+                      });
+                }),
+          ),
 
 
         ],
@@ -438,128 +266,7 @@ Expanded(
   }
 }
 
-///return
-/*
-(o.toString().toLowerCase() ==
-                            PrefService.getString(
-                                PrefKeys.companyName)
-                                .toString()
-                                .toLowerCase())
-                            ? InkWell(
-                          onTap: () async {
-                            controller.gotoChatScreen(
-                                context,
-                                snapshot.data!.docs[index].id,
-                                snapshot.data!.docs[index]
-                                ['Occupation']);
-                          },
-                          child: Container(
-                            height: 92,
-                            width: Get.width,
-                            margin: const EdgeInsets.symmetric(
-                                horizontal: 18, vertical: 4),
-                            padding: const EdgeInsets.all(15),
-                            decoration: BoxDecoration(
-                                borderRadius:
-                                const BorderRadius.all(
-                                    Radius.circular(15)),
-                                border: Border.all(
-                                    color:
-                                    const Color(0xffF3ECFF)),
-                                color: ColorRes.white),
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  AssetRes.airBnbLogo,
-                                ),
-                                const SizedBox(width: 20),
-                                Column(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.center,
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      snapshot.data!.docs[index]
-                                      ['Occupation'],
-                                      style: appTextStyle(
-                                          color: ColorRes.black,
-                                          fontSize: 15,
-                                          fontWeight:
-                                          FontWeight.w500),
-                                    ),
-                                    const SizedBox(height: 6),
-                                    Text(
-                                      "last msg",
-                                      //docData['lastMessage'],
-                                      style: appTextStyle(
-                                          color: ColorRes.black,
-                                          fontSize: 9,
-                                          fontWeight:
-                                          FontWeight.w400),
-                                    ),
-                                  ],
-                                ),
-                                const Spacer(),
-                                Column(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.start,
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.end,
-                                  children: [
-                                    Container(
-                                      height: 22,
-                                      width: 22,
-                                      decoration: BoxDecoration(
-                                        gradient:
-                                        const LinearGradient(
-                                          colors: [
-                                            ColorRes
-                                                .gradientColor,
-                                            ColorRes
-                                                .containerColor
-                                          ],
-                                        ),
-                                        borderRadius:
-                                        BorderRadius.circular(
-                                            22),
-                                      ),
-                                      child: Padding(
-                                        padding:
-                                        const EdgeInsets.only(
-                                            top: 5),
-                                        child: Text(
-                                          textAlign:
-                                          TextAlign.center,
-                                          '1',
-                                          style: appTextStyle(
-                                              fontSize: 10,
-                                              fontWeight:
-                                              FontWeight.w400,
-                                              color:
-                                              ColorRes.white),
-                                        ),
-                                      ),
-                                    ),
-                                    const Spacer(),
-                                    Text(
-                                      "20.00",
-                                      style: appTextStyle(
-                                          fontSize: 12,
-                                          color: ColorRes.black
-                                              .withOpacity(0.8),
-                                          fontWeight:
-                                          FontWeight.w500),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(width: 10),
-                              ],
-                            ),
-                          ),
-                        )
-                            : SizedBox();
- */
+
 
 ///delete chat flow done
 /*
@@ -902,144 +609,4 @@ Expanded(
           ),
 */
 
-/// real
-/*
-Expanded(
-              child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-                  stream: FirebaseFirestore.instance
-                      .collection("Apply")
-                      .snapshots(),
-                  /*FirebaseFirestore.instance
-                .collection("Auth")
-                .doc("User")
-                .collection("register")
-                .snapshots(),*/
-                  builder: (context, snapshot) {
-                    if (snapshot.data == null || snapshot.hasData == false) {
-                      return const SizedBox();
-                    }
 
-                    return ListView.builder(
-                      itemCount: snapshot.data!.docs.length,
-                      itemBuilder: (context, index) {
-
-                        String? o;
-
-                        snapshot.data!.docs[index]['companyName']
-                            .forEach((element) {
-                          if (element ==
-                              PrefService.getString(PrefKeys.companyName)
-                                  .toString()
-                                  .toLowerCase()) {
-                            print(element);
-                            o = element;
-                          }
-                        });
-
-                        return (o.toString().toLowerCase() ==
-                                PrefService.getString(PrefKeys.companyName)
-                                    .toString()
-                                    .toLowerCase())
-                            ? InkWell(
-                                onTap: () async {
-                                  controller.gotoChatScreen(
-                                      context,
-                                      snapshot.data!.docs[index].id,
-                                      snapshot.data!.docs[index]['Occupation']);
-                                },
-                                child: Container(
-                                  height: 92,
-                                  width: Get.width,
-                                  margin: const EdgeInsets.symmetric(
-                                      horizontal: 18, vertical: 4),
-                                  padding: const EdgeInsets.all(15),
-                                  decoration: BoxDecoration(
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(15)),
-                                      border: Border.all(
-                                          color: const Color(0xffF3ECFF)),
-                                      color: ColorRes.white),
-                                  child: Row(
-                                    children: [
-                                      Image.asset(
-                                        AssetRes.airBnbLogo,
-                                      ),
-                                      const SizedBox(width: 20),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            snapshot.data!.docs[index]
-                                                ['Occupation'],
-                                            style: appTextStyle(
-                                                color: ColorRes.black,
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w500),
-                                          ),
-                                          const SizedBox(height: 6),
-                                          Text(
-                                            "last msg",
-                                            style: appTextStyle(
-                                                color: ColorRes.black,
-                                                fontSize: 9,
-                                                fontWeight: FontWeight.w400),
-                                          ),
-                                        ],
-                                      ),
-                                      const Spacer(),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        children: [
-                                          Container(
-                                            height: 22,
-                                            width: 22,
-                                            decoration: BoxDecoration(
-                                              gradient: const LinearGradient(
-                                                colors: [
-                                                  ColorRes.gradientColor,
-                                                  ColorRes.containerColor
-                                                ],
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(22),
-                                            ),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 5),
-                                              child: Text(
-                                                textAlign: TextAlign.center,
-                                                '1',
-                                                style: appTextStyle(
-                                                    fontSize: 10,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: ColorRes.white),
-                                              ),
-                                            ),
-                                          ),
-                                          const Spacer(),
-                                          Text(
-                                            "20.00",
-                                            style: appTextStyle(
-                                                fontSize: 12,
-                                                color: ColorRes.black
-                                                    .withOpacity(0.8),
-                                                fontWeight: FontWeight.w500),
-                                          ),
-                                        ],
-                                      ),
-                                      const SizedBox(width: 10),
-                                    ],
-                                  ),
-                                ),
-                              )
-                            : SizedBox();
-                      },
-                    );
-                  })),
- */

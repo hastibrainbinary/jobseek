@@ -53,11 +53,11 @@ class _ResumeScreenState extends State<ResumeScreen> {
             const SizedBox(
               height: 20,
             ),
-            /*SizedBox(
+           /* SizedBox(
               height: Get.height * 0.63,
               width: Get.width,
               child: PDFView(
-                filePath: docFile.path,
+                filePath: args['doc'],
                 onViewCreated: (PDFViewController v) {
                   _pdfViewController = v;
                 },

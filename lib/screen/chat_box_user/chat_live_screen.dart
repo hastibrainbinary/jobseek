@@ -154,6 +154,7 @@ class ChatLiveScreen extends StatelessWidget {
                 ),
               ),
             ),
+
             const SizedBox(height: 15,),
             Expanded(
             flex: 3,
@@ -162,8 +163,8 @@ class ChatLiveScreen extends StatelessWidget {
 
                   scrollController: controller.listScrollController,
                   isLive: true,
-
                   reverse: true,
+
                   itemBuilder: (context, docementSnapshot, index) {
                     Map<String, dynamic>? data =
                     docementSnapshot[index].data() as Map<String, dynamic>?;
