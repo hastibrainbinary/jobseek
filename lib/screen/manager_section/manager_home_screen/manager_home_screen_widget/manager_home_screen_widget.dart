@@ -148,7 +148,7 @@ Widget recentPeopleBox() {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (con) =>
-                                                      VideoReceiveScreen()));
+                                                      const VideoReceiveScreen()));
                                         },
                                         child: Container(
                                           height: 40,
