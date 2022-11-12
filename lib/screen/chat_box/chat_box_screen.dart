@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/common_loader.dart';
+import 'package:jobseek/common/widgets/helper.dart';
+import 'package:jobseek/screen/chat_box_user/chat_box_usercontroller.dart';
 import 'package:jobseek/screen/chat_box_user/chat_live_screen.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_controller.dart';
@@ -19,7 +21,8 @@ class ChatBoxScreen extends StatelessWidget {
   JobDetailsUploadCvController jobDetailsUploadCvController =
       Get.put(JobDetailsUploadCvController());
 
-  ChatBoxUserController chatBoxUserController = Get.put(ChatBoxUserController());
+  ChatBoxUserController chatBoxUserController =
+      Get.put(ChatBoxUserController());
 
   @override
   Widget build(BuildContext context) {
@@ -126,24 +129,22 @@ class ChatBoxScreen extends StatelessWidget {
                 }),
           ),
           Expanded(
-              child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-                  stream: FirebaseFirestore.instance
-                      .collection("Apply")
-                      .snapshots(),
-                  /*FirebaseFirestore.instance
+            child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+                stream:
+                    FirebaseFirestore.instance.collection("Apply").snapshots(),
+                /*FirebaseFirestore.instance
                 .collection("Auth")
                 .doc("User")
                 .collection("register")
                 .snapshots(),*/
-                  builder: (context, snapshot) {
-                    if (snapshot.data == null || snapshot.hasData == false) {
-                      return const CommonLoader();
-                    }
+                builder: (context, snapshot) {
+                  if (snapshot.data == null || snapshot.hasData == false) {
+                    return const CommonLoader();
+                  }
 
-                    return ListView.builder(
+                  return ListView.builder(
                       itemCount: snapshot.data!.docs.length,
                       itemBuilder: (context, index) {
-
                         String? o;
 
                         snapshot.data!.docs[index]['companyName']
@@ -179,8 +180,8 @@ class ChatBoxScreen extends StatelessWidget {
                                         .toLowerCase())
                                 ? InkWell(
                                     onTap: () async {
-
-                                      controller.lastMessageTrue(snapshot.data!.docs[index].id);
+                                      controller.lastMessageTrue(
+                                          snapshot.data!.docs[index].id);
 
                                       controller.gotoChatScreen(
                                           context,
@@ -225,7 +226,8 @@ class ChatBoxScreen extends StatelessWidget {
                                               Text(
                                                 dataM?['lastMessage'] ?? "",
                                                 style: appTextStyle(
-                                                    color: ColorRes.black.withOpacity(0.8),
+                                                    color: ColorRes.black
+                                                        .withOpacity(0.8),
                                                     fontSize: 12,
                                                     fontWeight:
                                                         FontWeight.w400),
@@ -239,41 +241,50 @@ class ChatBoxScreen extends StatelessWidget {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.end,
                                             children: [
-                                              (dataM?['countU'] == 0 || dataM?['countU'] == null)
-                                                  ?SizedBox()
-                                                  :Container(
-                                                height: 22,
-                                                width: 22,
-                                                decoration: BoxDecoration(
-                                                  gradient:
-                                                      const LinearGradient(
-                                                    colors: [
-                                                      ColorRes.gradientColor,
-                                                      ColorRes.containerColor
-                                                    ],
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(22),
-                                                ),
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 5),
-                                                  child: Text(
-                                                    textAlign: TextAlign.center,
-                                                   "${ dataM?['countU'] ?? ""}",
-                                                    style: appTextStyle(
-                                                        fontSize: 10,
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                        color: ColorRes.white),
-                                                  ),
-                                                ),
-                                              ),
+                                              (dataM?['countU'] == 0 ||
+                                                      dataM?['countU'] == null)
+                                                  ? SizedBox()
+                                                  : Container(
+                                                      height: 22,
+                                                      width: 22,
+                                                      decoration: BoxDecoration(
+                                                        gradient:
+                                                            const LinearGradient(
+                                                          colors: [
+                                                            ColorRes
+                                                                .gradientColor,
+                                                            ColorRes
+                                                                .containerColor
+                                                          ],
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(22),
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(top: 5),
+                                                        child: Text(
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          "${dataM?['countU'] ?? ""}",
+                                                          style: appTextStyle(
+                                                              fontSize: 10,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              color: ColorRes
+                                                                  .white),
+                                                        ),
+                                                      ),
+                                                    ),
                                               const Spacer(),
                                               Text(
-                                                  dataM?['lastMessageTime'] == null ?"":
-                                                " ${getFormattedTime(dataM?['lastMessageTime'].toDate() ?? "")}",
+                                                dataM?['lastMessageTime'] ==
+                                                        null
+                                                    ? ""
+                                                    : " ${getFormattedTime(dataM?['lastMessageTime'].toDate() ?? "")}",
                                                 style: appTextStyle(
                                                     fontSize: 12,
                                                     color: Colors.grey,
@@ -293,15 +304,11 @@ class ChatBoxScreen extends StatelessWidget {
                       });
                 }),
           ),
-
-
         ],
       ),
     );
   }
 }
-
-
 
 ///delete chat flow done
 /*
@@ -643,5 +650,3 @@ Expanded(
                   }),
           ),
 */
-
-
