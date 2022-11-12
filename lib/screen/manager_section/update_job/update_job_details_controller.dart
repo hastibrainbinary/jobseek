@@ -65,6 +65,6 @@ class UpdateJobController extends GetxController implements GetxService {
   String? dropDownValueStatus;
   var items2 = [
     'Active'
-        'Away'
+        'Inactive'
   ];
 }

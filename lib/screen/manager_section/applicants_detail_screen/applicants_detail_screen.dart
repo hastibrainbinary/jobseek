@@ -10,7 +10,6 @@ import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/string.dart';
 
 class ApplicantsDetailScreen extends StatelessWidget {
-
   dynamic args = Get.arguments;
   final bool isWrong;
   ApplicantsDetailScreen({
@@ -158,7 +157,7 @@ class ApplicantsDetailScreen extends StatelessWidget {
                                         Icons.videocam_sharp,
                                         20,
                                         LinearGradient(colors: [
-                                        ColorRes.gradientColor,
+                                          ColorRes.gradientColor,
                                           ColorRes.containerColor,
                                         ])),
                                   ),
@@ -184,14 +183,14 @@ class ApplicantsDetailScreen extends StatelessWidget {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(15),
                                   gradient: const LinearGradient(colors: [
-                                    Color(0xFFBF9EFF),
-                                    Color(0xFF8B4EFF),
+                                    ColorRes.gradientColor,
+                                    ColorRes.containerColor,
                                   ])),
                               child: Center(
                                 child: Text(
                                   "See Resume",
                                   style: appTextStyle(
-                                      color: Colors.white, fontSize: 15),
+                                      color: ColorRes.white, fontSize: 15),
                                 ),
                               ),
                             ),
@@ -220,7 +219,7 @@ class ApplicantsDetailScreen extends StatelessWidget {
                                   Icons.arrow_drop_down,
                                   color: controller.selectedValue == "Rejected"
                                       ? ColorRes.red
-                                      : (controller.selectedValue == "Active"
+                                      : (controller.selectedValue == "Accepted"
                                           ? ColorRes.darkGreen
                                           : ColorRes.containerColor),
                                 ),
@@ -236,7 +235,7 @@ class ApplicantsDetailScreen extends StatelessWidget {
                                                   "Rejected"
                                               ? ColorRes.red
                                               : (controller.selectedValue ==
-                                                      "Active"
+                                                      "Accepted"
                                                   ? ColorRes.darkGreen
                                                   : ColorRes.containerColor),
                                           fontSize: 14),
@@ -272,27 +271,29 @@ class ApplicantsDetailScreen extends StatelessWidget {
                                     Row(
                                       children: [
                                         Expanded(
-                                            child: Padding(
-                                          padding:
-                                              const EdgeInsets.only(right: 10),
-                                          child: dateTimeBox(
-                                              text: "Date",
-                                              image: AssetRes.calender,
-                                              onTap: controller.selectDate,
-                                              value: controller.showDate,
-                                              context: context),
-                                        )),
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 10),
+                                            child: dateTimeBox(
+                                                text: "Date",
+                                                image: AssetRes.calender,
+                                                onTap: controller.selectDate,
+                                                value: controller.showDate,
+                                                context: context),
+                                          ),
+                                        ),
                                         Expanded(
-                                            child: Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 10),
-                                          child: dateTimeBox(
-                                              text: "Hour",
-                                              image: AssetRes.time,
-                                              onTap: controller.selectTime,
-                                              value: controller.showTime,
-                                              context: context),
-                                        )),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsets.only(left: 10),
+                                            child: dateTimeBox(
+                                                text: "Hour",
+                                                image: AssetRes.time,
+                                                onTap: controller.selectTime,
+                                                value: controller.showTime,
+                                                context: context),
+                                          ),
+                                        ),
                                       ],
                                     ),
                                     const SizedBox(
@@ -316,7 +317,7 @@ class ApplicantsDetailScreen extends StatelessWidget {
                                   Text(
                                     "*",
                                     style: appTextStyle(color: ColorRes.red),
-                                  )
+                                  ),
                                 ],
                               ),
                               const SizedBox(
@@ -336,7 +337,7 @@ class ApplicantsDetailScreen extends StatelessWidget {
                                       hintText: "Message"),
                                   maxLines: 6,
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ],
@@ -358,8 +359,8 @@ class ApplicantsDetailScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         gradient: const LinearGradient(colors: [
-                          Color(0xFFBF9EFF),
-                          Color(0xFFBF9EFF),
+                          ColorRes.gradientColor,
+                          ColorRes.containerColor,
                         ])),
                     child: Center(
                       child: Text(

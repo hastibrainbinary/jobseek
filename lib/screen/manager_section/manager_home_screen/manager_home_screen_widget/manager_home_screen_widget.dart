@@ -91,7 +91,7 @@ Widget recentPeopleBox() {
                                               fontWeight: FontWeight.w500),
                                         ),
                                       ],
-                                    )
+                                    ),
                                   ],
                                 ),
                                 Row(
@@ -108,12 +108,13 @@ Widget recentPeopleBox() {
                                             borderRadius:
                                                 BorderRadius.circular(8)),
                                         child: const GradientIcon(
-                                            Icons.chat,
-                                            20,
-                                            LinearGradient(colors: [
-                                              ColorRes.logoColor,
-                                              ColorRes.containerColor,
-                                            ])),
+                                          Icons.chat,
+                                          20,
+                                          LinearGradient(colors: [
+                                            ColorRes.logoColor,
+                                            ColorRes.containerColor,
+                                          ]),
+                                        ),
                                       ),
                                     ),
                                     const SizedBox(
@@ -127,12 +128,13 @@ Widget recentPeopleBox() {
                                           borderRadius:
                                               BorderRadius.circular(8)),
                                       child: const GradientIcon(
-                                          Icons.videocam_sharp,
-                                          20,
-                                          LinearGradient(colors: [
-                                            ColorRes.logoColor,
-                                            ColorRes.containerColor,
-                                          ])),
+                                        Icons.videocam_sharp,
+                                        20,
+                                        LinearGradient(colors: [
+                                          ColorRes.logoColor,
+                                          ColorRes.containerColor,
+                                        ]),
+                                      ),
                                     ),
                                   ],
                                 ),

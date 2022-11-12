@@ -296,7 +296,7 @@ class _ResumeScreenState extends State<ResumeScreen> {
                       filePath: remotePDFpath,
                       enableSwipe: true,
                       swipeHorizontal: true,
-                     
+
                       autoSpacing: false,
                       pageFling: true,
                       pageSnap: true,
