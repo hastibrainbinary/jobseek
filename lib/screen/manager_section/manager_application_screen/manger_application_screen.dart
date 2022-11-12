@@ -185,181 +185,318 @@ class ManagerApplicationScreen extends StatelessWidget {
           GetBuilder<ManagerApplicationScreenController>(
               id: "search",
               builder: (context) {
-                return StreamBuilder(
-                  stream: FirebaseFirestore.instance
-                      .collection("allPost")
-                      .snapshots(),
-                  builder: (BuildContext context, AsyncSnapshot snapshot) {
-                    if (snapshot.hasData) {
-                      controller.documentData = snapshot.data.docs;
-                    }
-                    if (snapshot.data != null) {
-                      snapshot.data.docs.forEach((e) {
-                        if (PrefService.getString(PrefKeys.companyName) ==
-                            e["CompanyName"]) {
-                          controller.isData = false;
-                        }
-                      });
-                    }
-                    controller.documentData =
-                        controller.documentData.where((element) {
-                      print(element
-                          .get("Position")
-                          .toString()
-                          .toLowerCase()
-                          .contains(
-                              controller.searchController.text.toLowerCase()));
-                      return element
-                          .get("Position")
-                          .toString()
-                          .toLowerCase()
-                          .contains(
-                              controller.searchController.text.toLowerCase());
-                    }).toList();
+                return Expanded(
+                  child: StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection("allPost")
+                        .snapshots(),
+                    builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      if (snapshot.hasData) {
+                        controller.documentData = snapshot.data.docs;
+                      }
+                      if (snapshot.data != null) {
+                        snapshot.data.docs.forEach((e) {
+                          if (PrefService.getString(PrefKeys.companyName) ==
+                              e["CompanyName"]) {
+                            controller.isData = false;
+                          }
+                        });
+                      }
+                      controller.documentData =
+                          controller.documentData.where((element) {
+                        print(element
+                            .get("Position")
+                            .toString()
+                            .toLowerCase()
+                            .contains(
+                                controller.searchController.text.toLowerCase()));
+                        return element
+                            .get("Position")
+                            .toString()
+                            .toLowerCase()
+                            .contains(
+                                controller.searchController.text.toLowerCase());
+                      }).toList();
 
-                    return snapshot.hasData
-                        ? SizedBox(
-                            child: (snapshot.data == null)
-                                ? const SizedBox()
-                                : snapshot.data.docs.length == 0
-                                    ? const SizedBox()
-                                    : GetBuilder<
-                                            ManagerApplicationScreenController>(
-                                        id: "status",
-                                        builder: (con) {
-                                          return (controller.isData == true)
-                                              ? Column(
-                                                  children: [
-                                                    const Image(
-                                                      image: AssetImage(AssetRes
-                                                          .successImage),
-                                                    ),
-                                                    Text(
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      "Empty",
-                                                      style: TextStyle(
-                                                          color: ColorRes
-                                                              .containerColor,
-                                                          fontSize: 20,
-                                                          fontWeight:
-                                                              FontWeight.w600),
-                                                    ),
-                                                    const SizedBox(height: 18),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              13.0),
-                                                      child: Text(
-                                                        maxLines: 2,
-                                                        "Create a job vacancy for your company and start \n             find new high quality employee.",
+                      return snapshot.hasData
+                          ? SizedBox(
+                              child: (snapshot.data == null)
+                                  ? const SizedBox()
+                                  : snapshot.data.docs.length == 0
+                                      ? const SizedBox()
+                                      : GetBuilder<
+                                              ManagerApplicationScreenController>(
+                                          id: "status",
+                                          builder: (con) {
+                                            return (controller.isData == true)
+                                                ? Column(
+                                                    children: [
+                                                      const Image(
+                                                        image: AssetImage(AssetRes
+                                                            .successImage),
+                                                      ),
+                                                      Text(
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        "Empty",
                                                         style: TextStyle(
                                                             color: ColorRes
-                                                                .black
-                                                                .withOpacity(
-                                                                    0.7),
+                                                                .containerColor,
+                                                            fontSize: 20,
                                                             fontWeight:
-                                                                FontWeight.w500,
-                                                            fontSize: 13),
+                                                                FontWeight.w600),
                                                       ),
-                                                    ),
-                                                    const SizedBox(height: 95),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        Navigator.push(
-                                                            context,
-                                                            MaterialPageRoute(
-                                                                builder: (con) =>
-                                                                    const CreateVacanciesScreenM()));
-                                                      },
-                                                      child: Container(
-                                                        height: 50,
-                                                        width: 339,
-                                                        alignment:
-                                                            Alignment.center,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(10),
-                                                          gradient:
-                                                              const LinearGradient(
-                                                                  colors: [
-                                                                ColorRes
-                                                                    .gradientColor,
-                                                                ColorRes
-                                                                    .containerColor,
-                                                              ]),
-                                                        ),
+                                                      const SizedBox(height: 18),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets.all(
+                                                                13.0),
                                                         child: Text(
-                                                            "Create Vacancies Now",
-                                                            style: appTextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                fontSize: 18,
-                                                                color: ColorRes
-                                                                    .white)),
+                                                          maxLines: 2,
+                                                          "Create a job vacancy for your company and start \n             find new high quality employee.",
+                                                          style: TextStyle(
+                                                              color: ColorRes
+                                                                  .black
+                                                                  .withOpacity(
+                                                                      0.7),
+                                                              fontWeight:
+                                                                  FontWeight.w500,
+                                                              fontSize: 13),
+                                                        ),
                                                       ),
-                                                    ),
-                                                  ],
-                                                )
-                                              : (controller.selectedJobs2
-                                                          .value ==
-                                                      1)
-                                                  ? ListView.builder(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              0),
-                                                      itemCount: snapshot
-                                                          .data.docs.length,
-                                                      shrinkWrap: true,
-                                                      itemBuilder:
-                                                          (context, index) {
-                                                        if (controller.documentData[
-                                                                    index]
-                                                                ["Status"] ==
-                                                            "Active") {
-                                                          return (PrefService
-                                                                      .getString(
-                                                                          PrefKeys
-                                                                              .companyName) !=
-                                                                  controller.documentData[
-                                                                          index]
-                                                                      [
-                                                                      "CompanyName"])
-                                                              ? const SizedBox()
-                                                              : InkWell(
+                                                      const SizedBox(height: 95),
+                                                      InkWell(
+                                                        onTap: () {
+                                                          Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                  builder: (con) =>
+                                                                      const CreateVacanciesScreenM()));
+                                                        },
+                                                        child: Container(
+                                                          height: 50,
+                                                          width: 339,
+                                                          alignment:
+                                                              Alignment.center,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(10),
+                                                            gradient:
+                                                                const LinearGradient(
+                                                                    colors: [
+                                                                  ColorRes
+                                                                      .gradientColor,
+                                                                  ColorRes
+                                                                      .containerColor,
+                                                                ]),
+                                                          ),
+                                                          child: Text(
+                                                              "Create Vacancies Now",
+                                                              style: appTextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                  fontSize: 18,
+                                                                  color: ColorRes
+                                                                      .white)),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  )
+                                                : (controller.selectedJobs2
+                                                            .value ==
+                                                        1)
+                                                    ? ListView.builder(
+                                                        padding:
+                                                            const EdgeInsets.all(
+                                                                0),
+                                                        itemCount: snapshot
+                                                            .data.docs.length,
+                                                        shrinkWrap: true,
+                                                        itemBuilder:
+                                                            (context, index) {
+                                                          if (controller.documentData[
+                                                                      index]
+                                                                  ["Status"] ==
+                                                              "Active") {
+                                                            return (PrefService
+                                                                        .getString(
+                                                                            PrefKeys
+                                                                                .companyName) !=
+                                                                    controller.documentData[
+                                                                            index]
+                                                                        [
+                                                                        "CompanyName"])
+                                                                ? const SizedBox()
+                                                                : InkWell(
+                                                                    onTap: () {
+                                                                      Get.toNamed(
+                                                                          AppRes
+                                                                              .managerApplicationDetailScreen,
+                                                                          arguments: {
+                                                                            "docs":
+                                                                                controller.documentData[index],
+                                                                            "DocId": controller
+                                                                                .documentData[index]
+                                                                                .id
+                                                                          });
+                                                                    },
+                                                                    child:
+                                                                        Container(
+                                                                      height: 92,
+                                                                      width: Get
+                                                                          .width,
+                                                                      margin: const EdgeInsets
+                                                                              .symmetric(
+                                                                          horizontal:
+                                                                              18,
+                                                                          vertical:
+                                                                              4),
+                                                                      padding: EdgeInsets.only(left: 15),
+                                                                      decoration: BoxDecoration(
+                                                                          borderRadius:
+                                                                              const BorderRadius.all(Radius.circular(
+                                                                                  15)),
+                                                                          border: Border.all(
+                                                                              color: const Color(
+                                                                                  0xffF3ECFF)),
+                                                                          color: ColorRes
+                                                                              .white),
+                                                                      child: Row(
+                                                                        children: [
+                                                                          Image.asset(
+                                                                              AssetRes.airBnbLogo,height: 62,width: 62,),
+                                                                          const SizedBox(
+                                                                              width:
+                                                                                  20),
+                                                                          Padding(
+                                                                            padding: const EdgeInsets.only(top: 12),
+                                                                            child: Column(
+
+                                                                              crossAxisAlignment:
+                                                                                  CrossAxisAlignment.start,
+                                                                              children: [
+                                                                                Text(controller.documentData[index]["Position"],
+                                                                                    style: appTextStyle(color: ColorRes.black, fontSize: 15, fontWeight: FontWeight.w500)),
+                                                                                SizedBox(height: 2,),
+                                                                                Text(controller.documentData[index]["CompanyName"],
+                                                                                    style: appTextStyle(color: ColorRes.black, fontSize: 12, fontWeight: FontWeight.w400)),
+                                                                                SizedBox(height: 6,),
+                                                                                Row(
+                                                                                  children: [
+                                                                                    Text(
+                                                                                      controller.documentData[index]["location"],
+                                                                                      style: appTextStyle(color: ColorRes.black, fontSize: 10, fontWeight: FontWeight.w400),
+                                                                                    ),
+                                                                                     const SizedBox(width: 10,child: Text(" - "),),
+                                                                                    Text(controller.documentData[index]["type"], style: appTextStyle(color: ColorRes.black, fontSize: 10, fontWeight: FontWeight.w400)),
+                                                                                  ],
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                          ),
+                                                                          const Spacer(),
+                                                                          Padding(
+                                                                            padding: const EdgeInsets.only(top: 12),
+                                                                            child: Column(
+                                                                              mainAxisAlignment:
+                                                                                  MainAxisAlignment.start,
+                                                                              crossAxisAlignment:
+                                                                                  CrossAxisAlignment.end,
+                                                                              children: [
+                                                                                Padding(
+                                                                                  padding: const EdgeInsets.only(top: 5),
+                                                                                  child: Container(
+                                                                                    height: 20,
+                                                                                    padding: const EdgeInsets.symmetric(horizontal: 14),
+                                                                                    decoration: BoxDecoration(
+                                                                                      color: controller.documentData[index]["Status"] == "Active" ? ColorRes.lightGreen : ColorRes.invalidColor,
+                                                                                      borderRadius: BorderRadius.circular(20),
+                                                                                    ),
+                                                                                    child: Text(
+                                                                                      controller.documentData[index]["Status"],
+                                                                                      style: appTextStyle(color: controller.documentData[index]["Status"] == "Active" ? ColorRes.darkGreen : ColorRes.starColor, fontSize: 12),
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                                SizedBox(height: 19,),
+
+                                                                                Text(
+                                                                                  controller.documentData[index]["salary"],
+                                                                                  style: appTextStyle(fontSize: 16, color: ColorRes.containerColor, fontWeight: FontWeight.w500),
+                                                                                ),
+                                                                                SizedBox(height: 10,)
+                                                                              ],
+                                                                            ),
+                                                                          ),
+                                                                          const SizedBox(
+                                                                              width:
+                                                                                  10)
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                          } else {
+                                                            return const SizedBox();
+                                                          }
+                                                        },
+                                                      )
+                                                    : (controller.selectedJobs2
+                                                                .value ==
+                                                            2)
+                                                        ? ListView.builder(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(0),
+                                                            itemCount: controller
+                                                                .documentData
+                                                                .length,
+                                                            shrinkWrap: true,
+                                                            itemBuilder:
+                                                                (context, index) {
+                                                              if (controller.documentData[
+                                                                          index][
+                                                                      "Status"] ==
+                                                                  "Inactive") {
+                                                                return (PrefService.getString(
+                                                                            PrefKeys
+                                                                                .companyName) !=
+                                                                        controller
+                                                                                .documentData[index]
+                                                                            [
+                                                                            "CompanyName"])
+                                                                    ? const SizedBox()
+                                                                    : InkWell(
                                                                   onTap: () {
                                                                     Get.toNamed(
                                                                         AppRes
                                                                             .managerApplicationDetailScreen,
                                                                         arguments: {
                                                                           "docs":
-                                                                              controller.documentData[index],
+                                                                          controller.documentData[index],
                                                                           "DocId": controller
                                                                               .documentData[index]
                                                                               .id
                                                                         });
                                                                   },
                                                                   child:
-                                                                      Container(
+                                                                  Container(
                                                                     height: 92,
                                                                     width: Get
                                                                         .width,
                                                                     margin: const EdgeInsets
-                                                                            .symmetric(
+                                                                        .symmetric(
                                                                         horizontal:
-                                                                            18,
+                                                                        18,
                                                                         vertical:
-                                                                            4),
-                                                                    padding:
-                                                                        const EdgeInsets.all(
-                                                                            15),
+                                                                        4),
+                                                                    padding: EdgeInsets.only(left: 15),
                                                                     decoration: BoxDecoration(
                                                                         borderRadius:
-                                                                            const BorderRadius.all(Radius.circular(
-                                                                                15)),
+                                                                        const BorderRadius.all(Radius.circular(
+                                                                            15)),
                                                                         border: Border.all(
                                                                             color: const Color(
                                                                                 0xffF3ECFF)),
@@ -368,152 +505,48 @@ class ManagerApplicationScreen extends StatelessWidget {
                                                                     child: Row(
                                                                       children: [
                                                                         Image.asset(
-                                                                            AssetRes.airBnbLogo),
+                                                                          AssetRes.airBnbLogo,height: 62,width: 62,),
                                                                         const SizedBox(
                                                                             width:
-                                                                                20),
-                                                                        Column(
-                                                                          mainAxisAlignment:
-                                                                              MainAxisAlignment.center,
-                                                                          crossAxisAlignment:
-                                                                              CrossAxisAlignment.start,
-                                                                          children: [
-                                                                            Text(controller.documentData[index]["Position"],
-                                                                                style: appTextStyle(color: ColorRes.black, fontSize: 15, fontWeight: FontWeight.w500)),
-                                                                            Text(controller.documentData[index]["CompanyName"],
-                                                                                style: appTextStyle(color: ColorRes.black, fontSize: 12, fontWeight: FontWeight.w400)),
-                                                                            Row(
-                                                                              children: [
-                                                                                Text(
-                                                                                  controller.documentData[index]["location"],
-                                                                                  style: appTextStyle(color: ColorRes.black, fontSize: 10, fontWeight: FontWeight.w400),
-                                                                                ),
-                                                                                // const SizedBox(width: 1),
-                                                                                Text(controller.documentData[index]["type"], style: appTextStyle(color: ColorRes.black, fontSize: 10, fontWeight: FontWeight.w400)),
-                                                                              ],
-                                                                            ),
-                                                                          ],
+                                                                            20),
+                                                                        Padding(
+                                                                          padding: const EdgeInsets.only(top: 12),
+                                                                          child: Column(
+
+                                                                            crossAxisAlignment:
+                                                                            CrossAxisAlignment.start,
+                                                                            children: [
+                                                                              Text(controller.documentData[index]["Position"],
+                                                                                  style: appTextStyle(color: ColorRes.black, fontSize: 15, fontWeight: FontWeight.w500)),
+                                                                              SizedBox(height: 2,),
+                                                                              Text(controller.documentData[index]["CompanyName"],
+                                                                                  style: appTextStyle(color: ColorRes.black, fontSize: 12, fontWeight: FontWeight.w400)),
+                                                                              SizedBox(height: 6,),
+                                                                              Row(
+                                                                                children: [
+                                                                                  Text(
+                                                                                    controller.documentData[index]["location"],
+                                                                                    style: appTextStyle(color: ColorRes.black, fontSize: 10, fontWeight: FontWeight.w400),
+                                                                                  ),
+                                                                                  const SizedBox(width: 10,child: Text(" - "),),
+                                                                                  Text(controller.documentData[index]["type"], style: appTextStyle(color: ColorRes.black, fontSize: 10, fontWeight: FontWeight.w400)),
+                                                                                ],
+                                                                              ),
+                                                                            ],
+                                                                          ),
                                                                         ),
                                                                         const Spacer(),
-                                                                        Column(
-                                                                          mainAxisAlignment:
-                                                                              MainAxisAlignment.start,
-                                                                          crossAxisAlignment:
-                                                                              CrossAxisAlignment.end,
-                                                                          children: [
-                                                                            Container(
-                                                                              height: 20,
-                                                                              padding: const EdgeInsets.symmetric(horizontal: 14),
-                                                                              decoration: BoxDecoration(
-                                                                                color: controller.documentData[index]["Status"] == "Active" ? ColorRes.lightGreen : ColorRes.invalidColor,
-                                                                                borderRadius: BorderRadius.circular(20),
-                                                                              ),
-                                                                              child: Text(
-                                                                                controller.documentData[index]["Status"],
-                                                                                style: appTextStyle(color: controller.documentData[index]["Status"] == "Active" ? ColorRes.darkGreen : ColorRes.starColor, fontSize: 12),
-                                                                              ),
-                                                                            ),
-                                                                            const Spacer(),
-                                                                            Text(
-                                                                              controller.documentData[index]["salary"],
-                                                                              style: appTextStyle(fontSize: 16, color: ColorRes.containerColor, fontWeight: FontWeight.w500),
-                                                                            ),
-                                                                          ],
-                                                                        ),
-                                                                        const SizedBox(
-                                                                            width:
-                                                                                10)
-                                                                      ],
-                                                                    ),
-                                                                  ),
-                                                                );
-                                                        } else {
-                                                          return const SizedBox();
-                                                        }
-                                                      },
-                                                    )
-                                                  : (controller.selectedJobs2
-                                                              .value ==
-                                                          2)
-                                                      ? ListView.builder(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .all(0),
-                                                          itemCount: controller
-                                                              .documentData
-                                                              .length,
-                                                          shrinkWrap: true,
-                                                          itemBuilder:
-                                                              (context, index) {
-                                                            if (controller.documentData[
-                                                                        index][
-                                                                    "Status"] ==
-                                                                "Inactive") {
-                                                              return (PrefService.getString(
-                                                                          PrefKeys
-                                                                              .companyName) !=
-                                                                      controller
-                                                                              .documentData[index]
-                                                                          [
-                                                                          "CompanyName"])
-                                                                  ? const SizedBox()
-                                                                  : InkWell(
-                                                                      onTap: () => Get.toNamed(
-                                                                          AppRes
-                                                                              .managerApplicationDetailScreen,
-                                                                          arguments: {
-                                                                            "docs":
-                                                                                controller.documentData[index],
-                                                                            "DocId":
-                                                                                index
-                                                                          }),
-                                                                      child:
-                                                                          Container(
-                                                                        height:
-                                                                            92,
-                                                                        width: Get
-                                                                            .width,
-                                                                        margin: const EdgeInsets.symmetric(
-                                                                            horizontal:
-                                                                                18,
-                                                                            vertical:
-                                                                                4),
-                                                                        padding:
-                                                                            const EdgeInsets.all(15),
-                                                                        decoration: BoxDecoration(
-                                                                            borderRadius:
-                                                                                const BorderRadius.all(Radius.circular(15)),
-                                                                            border: Border.all(color: const Color(0xffF3ECFF)),
-                                                                            color: ColorRes.white),
-                                                                        child:
-                                                                            Row(
-                                                                          children: [
-                                                                            Image.asset(AssetRes.airBnbLogo),
-                                                                            const SizedBox(width: 20),
-                                                                            Column(
-                                                                              mainAxisAlignment: MainAxisAlignment.center,
-                                                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                                                              children: [
-                                                                                Text(controller.documentData[index]["Position"], style: appTextStyle(color: ColorRes.black, fontSize: 15, fontWeight: FontWeight.w500)),
-                                                                                Text(controller.documentData[index]["CompanyName"], style: appTextStyle(color: ColorRes.black, fontSize: 12, fontWeight: FontWeight.w400)),
-                                                                                Row(
-                                                                                  children: [
-                                                                                    Text(
-                                                                                      controller.documentData[index]["location"],
-                                                                                      style: appTextStyle(color: ColorRes.black, fontSize: 10, fontWeight: FontWeight.w400),
-                                                                                    ),
-                                                                                    // const SizedBox(width: 1),
-                                                                                    Text(controller.documentData[index]["type"], style: appTextStyle(color: ColorRes.black, fontSize: 10, fontWeight: FontWeight.w400)),
-                                                                                  ],
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                            const Spacer(),
-                                                                            Column(
-                                                                              mainAxisAlignment: MainAxisAlignment.start,
-                                                                              crossAxisAlignment: CrossAxisAlignment.end,
-                                                                              children: [
-                                                                                Container(
+                                                                        Padding(
+                                                                          padding: const EdgeInsets.only(top: 12),
+                                                                          child: Column(
+                                                                            mainAxisAlignment:
+                                                                            MainAxisAlignment.start,
+                                                                            crossAxisAlignment:
+                                                                            CrossAxisAlignment.end,
+                                                                            children: [
+                                                                              Padding(
+                                                                                padding: const EdgeInsets.only(top: 5),
+                                                                                child: Container(
                                                                                   height: 20,
                                                                                   padding: const EdgeInsets.symmetric(horizontal: 14),
                                                                                   decoration: BoxDecoration(
@@ -525,107 +558,126 @@ class ManagerApplicationScreen extends StatelessWidget {
                                                                                     style: appTextStyle(color: controller.documentData[index]["Status"] == "Active" ? ColorRes.darkGreen : ColorRes.starColor, fontSize: 12),
                                                                                   ),
                                                                                 ),
-                                                                                const Spacer(),
+                                                                              ),
+                                                                              SizedBox(height: 19,),
+
+                                                                              Text(
+                                                                                controller.documentData[index]["salary"],
+                                                                                style: appTextStyle(fontSize: 16, color: ColorRes.containerColor, fontWeight: FontWeight.w500),
+                                                                              ),
+                                                                              SizedBox(height: 10,)
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                        const SizedBox(
+                                                                            width:
+                                                                            10)
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                              } else {
+                                                                return const SizedBox();
+                                                              }
+                                                            },
+                                                          )
+                                                        : ListView.builder(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(0),
+                                                            itemCount: controller
+                                                                .documentData
+                                                                .length,
+                                                            shrinkWrap: true,
+                                                            itemBuilder:
+                                                                (context, index) {
+                                                              return (PrefService.getString(
+                                                                          PrefKeys
+                                                                              .companyName) !=
+                                                                      controller.documentData[
+                                                                              index]
+                                                                          [
+                                                                          "CompanyName"])
+                                                                  ? const SizedBox()
+                                                                  : InkWell(
+                                                                onTap: () {
+                                                                  Get.toNamed(
+                                                                      AppRes
+                                                                          .managerApplicationDetailScreen,
+                                                                      arguments: {
+                                                                        "docs":
+                                                                        controller.documentData[index],
+                                                                        "DocId": controller
+                                                                            .documentData[index]
+                                                                            .id
+                                                                      });
+                                                                },
+                                                                child:
+                                                                Container(
+                                                                  height: 92,
+                                                                  width: Get
+                                                                      .width,
+                                                                  margin: const EdgeInsets
+                                                                      .symmetric(
+                                                                      horizontal:
+                                                                      18,
+                                                                      vertical:
+                                                                      4),
+                                                                  padding: EdgeInsets.only(left: 15),
+                                                                  decoration: BoxDecoration(
+                                                                      borderRadius:
+                                                                      const BorderRadius.all(Radius.circular(
+                                                                          15)),
+                                                                      border: Border.all(
+                                                                          color: const Color(
+                                                                              0xffF3ECFF)),
+                                                                      color: ColorRes
+                                                                          .white),
+                                                                  child: Row(
+                                                                    children: [
+                                                                      Image.asset(
+                                                                        AssetRes.airBnbLogo,height: 62,width: 62,),
+                                                                      const SizedBox(
+                                                                          width:
+                                                                          20),
+                                                                      Padding(
+                                                                        padding: const EdgeInsets.only(top: 12),
+                                                                        child: Column(
+
+                                                                          crossAxisAlignment:
+                                                                          CrossAxisAlignment.start,
+                                                                          children: [
+                                                                            Text(controller.documentData[index]["Position"],
+                                                                                style: appTextStyle(color: ColorRes.black, fontSize: 15, fontWeight: FontWeight.w500)),
+                                                                            SizedBox(height: 2,),
+                                                                            Text(controller.documentData[index]["CompanyName"],
+                                                                                style: appTextStyle(color: ColorRes.black, fontSize: 12, fontWeight: FontWeight.w400)),
+                                                                            SizedBox(height: 6,),
+                                                                            Row(
+                                                                              children: [
                                                                                 Text(
-                                                                                  controller.documentData[index]["salary"],
-                                                                                  style: appTextStyle(fontSize: 16, color: ColorRes.containerColor, fontWeight: FontWeight.w500),
+                                                                                  controller.documentData[index]["location"],
+                                                                                  style: appTextStyle(color: ColorRes.black, fontSize: 10, fontWeight: FontWeight.w400),
                                                                                 ),
+                                                                                const SizedBox(width: 10,child: Text(" - "),),
+                                                                                Text(controller.documentData[index]["type"], style: appTextStyle(color: ColorRes.black, fontSize: 10, fontWeight: FontWeight.w400)),
                                                                               ],
                                                                             ),
-                                                                            const SizedBox(width: 10)
                                                                           ],
                                                                         ),
                                                                       ),
-                                                                    );
-                                                            } else {
-                                                              return const SizedBox();
-                                                            }
-                                                          },
-                                                        )
-                                                      : ListView.builder(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .all(0),
-                                                          itemCount: controller
-                                                              .documentData
-                                                              .length,
-                                                          shrinkWrap: true,
-                                                          itemBuilder:
-                                                              (context, index) {
-                                                            return (PrefService.getString(
-                                                                        PrefKeys
-                                                                            .companyName) !=
-                                                                    controller.documentData[
-                                                                            index]
-                                                                        [
-                                                                        "CompanyName"])
-                                                                ? const SizedBox()
-                                                                : InkWell(
-                                                                    onTap: () => Get.toNamed(
-                                                                        AppRes
-                                                                            .managerApplicationDetailScreen,
-                                                                        arguments: {
-                                                                          "docs":
-                                                                              controller.documentData[index],
-                                                                          "DocId":
-                                                                              index
-                                                                        }),
-                                                                    child:
-                                                                        Container(
-                                                                      height:
-                                                                          92,
-                                                                      width: Get
-                                                                          .width,
-                                                                      margin: const EdgeInsets
-                                                                              .symmetric(
-                                                                          horizontal:
-                                                                              18,
-                                                                          vertical:
-                                                                              4),
-                                                                      padding:
-                                                                          const EdgeInsets.all(
-                                                                              15),
-                                                                      decoration: BoxDecoration(
-                                                                          borderRadius: const BorderRadius.all(Radius.circular(
-                                                                              15)),
-                                                                          border:
-                                                                              Border.all(color: const Color(0xffF3ECFF)),
-                                                                          color: ColorRes.white),
-                                                                      child:
-                                                                          Row(
-                                                                        children: [
-                                                                          Image.asset(
-                                                                              AssetRes.airBnbLogo),
-                                                                          const SizedBox(
-                                                                              width: 20),
-                                                                          Column(
-                                                                            mainAxisAlignment:
-                                                                                MainAxisAlignment.center,
-                                                                            crossAxisAlignment:
-                                                                                CrossAxisAlignment.start,
-                                                                            children: [
-                                                                              Text(controller.documentData[index]["Position"], style: appTextStyle(color: ColorRes.black, fontSize: 15, fontWeight: FontWeight.w500)),
-                                                                              Text(controller.documentData[index]["CompanyName"], style: appTextStyle(color: ColorRes.black, fontSize: 12, fontWeight: FontWeight.w400)),
-                                                                              Row(
-                                                                                children: [
-                                                                                  Text(
-                                                                                    controller.documentData[index]["location"],
-                                                                                    style: appTextStyle(color: ColorRes.black, fontSize: 10, fontWeight: FontWeight.w400),
-                                                                                  ),
-                                                                                  // const SizedBox(width: 1),
-                                                                                  Text(controller.documentData[index]["type"], style: appTextStyle(color: ColorRes.black, fontSize: 10, fontWeight: FontWeight.w400)),
-                                                                                ],
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                          const Spacer(),
-                                                                          Column(
-                                                                            mainAxisAlignment:
-                                                                                MainAxisAlignment.start,
-                                                                            crossAxisAlignment:
-                                                                                CrossAxisAlignment.end,
-                                                                            children: [
-                                                                              Container(
+                                                                      const Spacer(),
+                                                                      Padding(
+                                                                        padding: const EdgeInsets.only(top: 12),
+                                                                        child: Column(
+                                                                          mainAxisAlignment:
+                                                                          MainAxisAlignment.start,
+                                                                          crossAxisAlignment:
+                                                                          CrossAxisAlignment.end,
+                                                                          children: [
+                                                                            Padding(
+                                                                              padding: const EdgeInsets.only(top: 5),
+                                                                              child: Container(
                                                                                 height: 20,
                                                                                 padding: const EdgeInsets.symmetric(horizontal: 14),
                                                                                 decoration: BoxDecoration(
@@ -637,25 +689,31 @@ class ManagerApplicationScreen extends StatelessWidget {
                                                                                   style: appTextStyle(color: controller.documentData[index]["Status"] == "Active" ? ColorRes.darkGreen : ColorRes.starColor, fontSize: 12),
                                                                                 ),
                                                                               ),
-                                                                              const Spacer(),
-                                                                              Text(
-                                                                                controller.documentData[index]["salary"],
-                                                                                style: appTextStyle(fontSize: 16, color: ColorRes.containerColor, fontWeight: FontWeight.w500),
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                          const SizedBox(
-                                                                              width: 10)
-                                                                        ],
+                                                                            ),
+                                                                            SizedBox(height: 19,),
+
+                                                                            Text(
+                                                                              controller.documentData[index]["salary"],
+                                                                              style: appTextStyle(fontSize: 16, color: ColorRes.containerColor, fontWeight: FontWeight.w500),
+                                                                            ),
+                                                                            SizedBox(height: 10,)
+                                                                          ],
+                                                                        ),
                                                                       ),
-                                                                    ),
-                                                                  );
-                                                          },
-                                                        );
-                                        }),
-                          )
-                        : const CommonLoader();
-                  },
+                                                                      const SizedBox(
+                                                                          width:
+                                                                          10)
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              );
+                                                            },
+                                                          );
+                                          }),
+                            )
+                          : const CommonLoader();
+                    },
+                  ),
                 );
               }),
         ],

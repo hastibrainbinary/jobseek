@@ -256,6 +256,8 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                           ).toList(),
                                           onChanged: (String? val) {
                                             controller.changeDropwon(val: val!);
+                                            controller.update(["profile"]);
+
                                           });
                                     },
                                   ),
@@ -327,6 +329,8 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                           ).toList(),
                                           onChanged: (String? val) {
                                             controller.changetype(val: val!);
+                                            controller.update(["profile"]);
+
                                           });
                                     },
                                   ),
@@ -399,6 +403,8 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                           onChanged: (String? val) {
                                             controller.changeCategory(
                                                 val: val!);
+                                            controller.update(["profile"]);
+
                                           });
                                     },
                                   ),
@@ -470,6 +476,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                           ).toList(),
                                           onChanged: (String? val) {
                                             controller.changeStatus(val: val!);
+                                            controller.update(["profile"]);
                                           });
                                     },
                                   ),
@@ -545,8 +552,6 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                             child: Text("Next",
                                                 style: appTextStyle(
                                                     fontSize: 18,
-
-
                                                     fontWeight: FontWeight.w500,
 
 
