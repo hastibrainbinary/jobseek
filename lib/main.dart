@@ -1,4 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -8,6 +10,7 @@ import 'package:jobseek/screen/job_detail_screen/job_detail_screen.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_screen.dart';
 import 'package:jobseek/screen/job_detail_screen/job_details_success_or_fails/job_details_success_or_faild_screen.dart';
 import 'package:jobseek/screen/job_recommendation_screen/job_recommendation_screen.dart';
+import 'package:jobseek/screen/manager_section/Notification/notification_services.dart';
 import 'package:jobseek/screen/manager_section/applicants_detail_screen/applicants_detail_screen.dart';
 import 'package:jobseek/screen/manager_section/auth_manager/first_page/first_screen.dart';
 import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen.dart';
@@ -24,9 +27,16 @@ import 'package:jobseek/utils/app_res.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-  await Firebase.initializeApp();
+  NotificationService.init();
+
+  await FirebaseMessaging.instance.getToken().then((value) {
+    if (kDebugMode) {
+      print("FCM Token => $value");
+    }
+  });
   await PrefService.init();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       systemNavigationBarColor: Colors.transparent, // navigation bar color

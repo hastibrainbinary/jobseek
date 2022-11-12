@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/screen/manager_section/Notification/notification_services.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 
@@ -7,12 +8,15 @@ class ManagerHomeScreenController extends GetxController
     implements GetxService {
   String? companyName;
   List userData = [];
-    bool loader=false;
+  bool loader = false;
+  String? token;
 
   @override
   Future<void> onInit() async {
+    token = await NotificationService.getFcmToken();
     getCompanyName();
     getUserData();
+    print(token);
     super.onInit();
   }
 
@@ -21,13 +25,13 @@ class ManagerHomeScreenController extends GetxController
   }
 
   getUserData() async {
-    loader=true;
+    loader = true;
     update(['userdata']);
 
     var data = await FirebaseFirestore.instance.collection("Apply").get();
     userData = data.docs;
 
-    loader =false;
+    loader = false;
     update(['userdata']);
     update(['userDataSeeAll']);
   }
