@@ -296,6 +296,9 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                         ),
                         InkWell(
                             onTap: () {
+
+
+
                               if (controller.validation()) {
                                 controller.sendMessage(
                                   roomId.toString(),

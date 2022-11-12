@@ -16,6 +16,7 @@ class ChatBoxUserController extends GetxController implements GetxService {
   TextEditingController msController = TextEditingController();
   final ScrollController listScrollController = ScrollController();
   DateTime lastMsg = DateTime.now();
+  List countU = [];
 
   RxList jobs = [
     "All chat",
@@ -133,6 +134,8 @@ class ChatBoxUserController extends GetxController implements GetxService {
 
     String msg = msController.text;
 
+    countU.add(msg);
+
     await setLastMsgInDoc(msg);
     await setMessage(roomId, msg, userUid);
 
@@ -158,6 +161,11 @@ class ChatBoxUserController extends GetxController implements GetxService {
     update(['message']);
   }
 
+  Future<void> lastMessageTrue(String otherUid)async {
+    await FirebaseFirestore.instance.collection("chats")
+        .doc(getChatId(userUid, otherUid)).update({"lastMessageRead" : true, "countM" : null});
+  }
+
   Future<void> setReadTrue(String docId) async {
     await FirebaseFirestore.instance
         .collection("chats")
@@ -174,6 +182,7 @@ class ChatBoxUserController extends GetxController implements GetxService {
       "lastMessageSender": userUid,
       "lastMessageTime": DateTime.now(),
       "lastMessageRead": false,
+      "countU" : countU.length,
     });
   }
 
