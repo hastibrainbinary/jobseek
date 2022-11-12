@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/common/widgets/helper.dart';
-import 'package:jobseek/screen/chat_box_user/chat_box_usercontroller.dart';
+import 'package:jobseek/common/widgets/common_loader.dart';
+import 'package:jobseek/screen/chat_box_user/chat_live_screen.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_controller.dart';
 import 'package:jobseek/service/pref_services.dart';
@@ -61,7 +61,28 @@ class ChatBoxScreen extends StatelessWidget {
             ),
           ]),
           const SizedBox(height: 20),
-
+          // Container(
+          //   width: 339,
+          //   decoration: const BoxDecoration(
+          //     color: ColorRes.white2,
+          //     borderRadius: BorderRadius.all(
+          //       Radius.circular(15),
+          //     ),
+          //   ),
+          //   child: TextField(
+          //     controller: controller.searchController,
+          //     decoration: InputDecoration(
+          //       border: InputBorder.none,
+          //       suffixIcon: const Icon(Icons.search, color: ColorRes.grey),
+          //       hintText: "Search",
+          //       hintStyle: appTextStyle(
+          //           fontSize: 14,
+          //           color: ColorRes.grey,
+          //           fontWeight: FontWeight.w500),
+          //       contentPadding: const EdgeInsets.only(left: 20, top: 13),
+          //     ),
+          //   ),
+          // ),
           searchArea(),
           const SizedBox(height: 20),
           Container(
@@ -104,19 +125,25 @@ class ChatBoxScreen extends StatelessWidget {
                   );
                 }),
           ),
-
           Expanded(
-            child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-                stream:
-                    FirebaseFirestore.instance.collection("Apply").snapshots(),
-                builder: (context, snapshot) {
-                  if (snapshot.data == null || snapshot.hasData == false) {
-                    return const SizedBox();
-                  }
+              child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+                  stream: FirebaseFirestore.instance
+                      .collection("Apply")
+                      .snapshots(),
+                  /*FirebaseFirestore.instance
+                .collection("Auth")
+                .doc("User")
+                .collection("register")
+                .snapshots(),*/
+                  builder: (context, snapshot) {
+                    if (snapshot.data == null || snapshot.hasData == false) {
+                      return const CommonLoader();
+                    }
 
-                  return ListView.builder(
+                    return ListView.builder(
                       itemCount: snapshot.data!.docs.length,
                       itemBuilder: (context, index) {
+
                         String? o;
 
                         snapshot.data!.docs[index]['companyName']

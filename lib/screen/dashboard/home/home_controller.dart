@@ -50,7 +50,31 @@ class HomeController extends GetxController implements GetxService {
         "location": field['location'],
         "type": field['type'],
       };
-      FirebaseFirestore.instance.collection('BookMark').doc().set(
+
+
+      List bookmark =[];
+      bookmark = field['BookMarkUserId'];
+      if(bookmark.length==0){
+        bookmark.add(PrefService.getString(PrefKeys.userId));
+      }
+      for(int i=0;i< bookmark.length;i++)
+        {
+
+          if(bookmark[i] != PrefService.getString(PrefKeys.userId))
+            {
+              bookmark.add(PrefService.getString(PrefKeys.userId));
+            }
+        }
+      List<String> bookmarkList = List.generate(bookmark.length, (index) {
+        return bookmark[index].toString();
+      });
+      Map<String, dynamic> map2={
+        "BookMarkUserId":bookmarkList,
+      };
+
+      FirebaseFirestore.instance.collection('allPost').doc(docId).update(map2);
+
+      FirebaseFirestore.instance.collection('BookMark').doc(PrefService.getString(PrefKeys.userId)).collection("BookMark1")..doc().set(
        map
       );
     }

@@ -4,9 +4,11 @@ import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/common/widgets/common_loader.dart';
 import 'package:jobseek/screen/savejobs/save_job_controller.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 
 class SaveJobScreen extends StatelessWidget {
   SaveJobScreen({Key? key}) : super(key: key);
@@ -48,7 +50,7 @@ class SaveJobScreen extends StatelessWidget {
               ),
               StreamBuilder(
                   stream: FirebaseFirestore.instance
-                      .collection("BookMark")
+                      .collection("BookMark").doc(PrefService.getString(PrefKeys.userId)).collection("BookMark1")
                       .snapshots(),
                   builder: (context,
                       AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>

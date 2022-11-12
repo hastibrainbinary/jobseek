@@ -1,12 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_controller.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_widget/job_detail_widget.dart';
+import 'package:jobseek/screen/job_recommendation_screen/job_recommendation_controller.dart';
 import 'package:jobseek/screen/savejobs/save_job_screen.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 import 'package:jobseek/utils/string.dart';
 
 class JobDetailScreen extends StatelessWidget {
@@ -65,28 +69,75 @@ class JobDetailScreen extends StatelessWidget {
                                   color: ColorRes.logoColor,
                                   borderRadius: BorderRadius.circular(10),
                                 ),
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: args["saved"] == true
-                                      ? InkWell(
-                                          onTap: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (con) =>
-                                                        SaveJobScreen()));
-                                          },
-                                          child: Image.asset(
-                                            AssetRes.bookMarkFillIcon,
-                                            height: 20,
-                                            width: 20,
+                                child: GetBuilder<JobDetailsController>(
+                                  id: "bookmark",
+                                  builder: (con) {
+                                    return Align(
+                                      alignment: Alignment.center,
+                                      child: (args['saved']['BookMarkUserId'].contains(PrefService.getString(PrefKeys.userId)))
+                                          ? InkWell(
+                                              onTap: () {
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (con) =>
+                                                            SaveJobScreen()));
+                                              },
+                                              child: Image.asset(
+                                                AssetRes.bookMarkFillIcon,
+                                                height: 20,
+                                                width: 20,
+                                              ),
+                                            )
+                                          : InkWell(
+                                        onTap: (){
+
+
+                                          Map<String, dynamic> map = {
+                                            "Position": args['saved']['Position'],
+                                            "CompanyName": args['saved']['CompanyName'],
+                                            "salary": args['saved']['salary'],
+                                            "location": args['saved']['location'],
+                                            "type": args['saved']['type'],
+                                          };
+
+                                          List bookmark =[];
+                                          bookmark = args['saved']['BookMarkUserId'];
+                                          if(bookmark.length==0){
+                                            bookmark.add(PrefService.getString(PrefKeys.userId));
+                                          }
+                                          for(int i=0;i< bookmark.length;i++)
+                                          {
+
+                                            if(bookmark[i] != PrefService.getString(PrefKeys.userId))
+                                            {
+                                              bookmark.add(PrefService.getString(PrefKeys.userId));
+                                            }
+                                          }
+                                          List<String> bookmarkList = List.generate(bookmark.length, (index) {
+                                            return bookmark[index].toString();
+                                          });
+                                          Map<String, dynamic> map2={
+                                            "BookMarkUserId":bookmarkList,
+                                          };
+
+                                          FirebaseFirestore.instance.collection('allPost').doc(args['saved'].id).update(map2);
+
+                                          FirebaseFirestore.instance.collection('BookMark').doc(PrefService.getString(PrefKeys.userId)).collection("BookMark1")..doc().set(
+                                              map
+                                          );
+
+
+                                          controller.update(['bookmark']);
+                                        },
+                                            child: Image.asset(
+                                                AssetRes.bookMarkBorderIcon,
+                                                height: 20,
+                                                width: 20,
+                                              ),
                                           ),
-                                        )
-                                      : Image.asset(
-                                          AssetRes.bookMarkBorderIcon,
-                                          height: 20,
-                                          width: 20,
-                                        ),
+                                    );
+                                  }
                                 ),
                               ),
                             ],

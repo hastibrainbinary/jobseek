@@ -52,6 +52,7 @@ class UpdateVacanciesRequirementController extends GetxController {
         "location": locationController.text.trim(),
         "type": typeController.text.trim(),
         "Status": statusController.text.trim(),
+        "BookMarkUserId":[],
       };
 
       FirebaseFirestore.instance
