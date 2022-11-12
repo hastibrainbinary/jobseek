@@ -91,7 +91,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
     update(["colorChange"]);
   }
 
-   onTapNext() async {
+  onTapNext() async {
     String uid = PrefService.getString(PrefKeys.userId);
     int totalPost = PrefService.getInt(PrefKeys.totalPost);
     String pUid = "$uid*${totalPost + 1}";
@@ -101,7 +101,6 @@ class CreateVacanciesController extends GetxController implements GetxService {
     print(requirementsList);
 
     if (kDebugMode) {
-
       print("**************$totalPost");
     }
     Map<String, dynamic> map = {

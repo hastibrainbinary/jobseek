@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen.dart';
+import 'package:jobseek/screen/organization_profile_screen/organization_profile_screen.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 import 'package:jobseek/utils/shared_preferences.dart';
@@ -230,7 +231,7 @@ class GoogleSignUpControllerM extends GetxController {
     await addDataInFirebase(userUid: uid, map: map2);
     PrefService.setValue(PrefKeys.userId, uid);
     PrefService.setValue(PrefKeys.rol, "Manager");
-    Get.offAll(() => ManagerDashBoardScreen());
+    Get.offAll(() => const OrganizationProfileScreen());
     update(["showEmail"]);
     update(["showLastname"]);
     update(["showFirstname"]);
@@ -240,5 +241,26 @@ class GoogleSignUpControllerM extends GetxController {
     update(["showState"]);
     update(["showCountry"]);
     update(['dark']);
+  }
+  String dropDownValue = 'India';
+  var items = [
+    'India',
+    'United States',
+    'Europe',
+    'china',
+    'United Kingdom',
+    " Cuba",
+    "	Havana",
+    "Cyprus",
+    "Nicosia",
+    "Czech ",
+    "Republic",
+    "Prague",
+  ];
+  changeDropdwon({required String val}) {
+    dropDownValue = val;
+    countryController.text = dropDownValue;
+
+    update(["dropdown"]);
   }
 }

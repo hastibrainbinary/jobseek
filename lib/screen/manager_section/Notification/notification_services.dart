@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +7,6 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class NotificationService {
-
-
   static Future<void> init() async {
     await FirebaseMessaging.instance
         .setForegroundNotificationPresentationOptions(
@@ -25,11 +22,11 @@ class NotificationService {
     );
 
     final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
+        FlutterLocalNotificationsPlugin();
 
     await flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
-        AndroidFlutterLocalNotificationsPlugin>()
+            AndroidFlutterLocalNotificationsPlugin>()
         ?.createNotificationChannel(channel);
 
     FirebaseMessaging.onMessage.listen((RemoteMessage? message) {
@@ -63,45 +60,40 @@ class NotificationService {
 
     FirebaseMessaging.instance
         .getInitialMessage()
-        .then((RemoteMessage? message) async {
-    });
+        .then((RemoteMessage? message) async {});
     await FirebaseMessaging.instance.setAutoInitEnabled(true);
-
 
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
     const AndroidInitializationSettings initializationSettingsAndroid =
-    AndroidInitializationSettings('@mipmap/ic_launcher');
+        AndroidInitializationSettings('@mipmap/ic_launcher');
     const IOSInitializationSettings initializationSettingsIOS =
-    IOSInitializationSettings(
-        onDidReceiveLocalNotification: onDidReceiveLocalNotification);
+        IOSInitializationSettings(
+            onDidReceiveLocalNotification: onDidReceiveLocalNotification);
     const InitializationSettings initializationSettings =
-    InitializationSettings(
-        android: initializationSettingsAndroid,
-        iOS: initializationSettingsIOS);
+        InitializationSettings(
+            android: initializationSettingsAndroid,
+            iOS: initializationSettingsIOS);
 
     flutterLocalNotificationsPlugin.initialize(initializationSettings,
         onSelectNotification: (String? payload) async {
-          if (payload != null) {
-            if (true) {
-
-            }
-          }
-        });
+      if (payload != null) {
+        if (true) {}
+      }
+    });
   }
 
   static Future<void> _firebaseMessagingBackgroundHandler(
       RemoteMessage message) async {
     await Firebase.initializeApp();
-
   }
 
   static Future onDidReceiveLocalNotification(
-      int id,
-      String? title,
-      String? body,
-      String? payload,
-      ) async {}
+    int id,
+    String? title,
+    String? body,
+    String? payload,
+  ) async {}
 
   static Future<String?> getToken() async {
     try {
@@ -134,7 +126,6 @@ class NotificationService {
   }
 }
 
-
 class SendNotificationModel {
   String? id;
   String? chatId;
@@ -151,17 +142,17 @@ class SendNotificationModel {
   });
 
   Map<String, dynamic> toMap() => {
-    "registration_ids": fcmTokens,
-    "data": {
-      "id": id,
-      "chatId": chatId,
-      "click_action": "FLUTTER_NOTIFICATION_CLICK",
-      "sound": "default",
-    },
-    "priority": "high",
-    "notification": {
-      "title": title,
-      "body": body,
-    }
-  };
+        "registration_ids": fcmTokens,
+        "data": {
+          "id": id,
+          "chatId": chatId,
+          "click_action": "FLUTTER_NOTIFICATION_CLICK",
+          "sound": "default",
+        },
+        "priority": "high",
+        "notification": {
+          "title": title,
+          "body": body,
+        }
+      };
 }

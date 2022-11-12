@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/screen/call/video_ReceiveScreen.dart';
+import 'package:jobseek/screen/chat_box/chat_box_screen.dart';
 import 'package:jobseek/screen/manager_section/applicants_detail_screen/applicants_detail_screen_widget/applicants_details_screen_widget.dart';
 import 'package:jobseek/screen/manager_section/applicants_detail_screen/applicants_details_controller.dart';
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_widget/manager_home_screen_widget.dart';
@@ -127,39 +129,58 @@ class ApplicantsDetailScreen extends StatelessWidget {
                               ),
                               Row(
                                 children: [
-                                  Container(
-                                    height: 40,
-                                    width: 40,
-                                    decoration: BoxDecoration(
-                                        color: ColorRes.logoColor,
-                                        borderRadius:
-                                            BorderRadius.circular(12)),
-                                    child: const GradientIcon(
-                                      Icons.chat,
-                                      20,
-                                      LinearGradient(colors: [
-                                        Color(0xFFBE9DFF),
-                                        Color(0xFF8B4EFF),
-                                      ]),
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (con) => ChatBoxScreen(),
+                                        ),
+                                      );
+                                    },
+                                    child: Container(
+                                      height: 40,
+                                      width: 40,
+                                      decoration: BoxDecoration(
+                                          color: ColorRes.logoColor,
+                                          borderRadius:
+                                              BorderRadius.circular(12)),
+                                      child: const GradientIcon(
+                                        Icons.chat,
+                                        20,
+                                        LinearGradient(colors: [
+                                          Color(0xFFBE9DFF),
+                                          Color(0xFF8B4EFF),
+                                        ]),
+                                      ),
                                     ),
                                   ),
                                   const SizedBox(
                                     width: 10,
                                   ),
-                                  Container(
-                                    height: 40,
-                                    width: 40,
-                                    decoration: BoxDecoration(
-                                        color: ColorRes.logoColor,
-                                        borderRadius:
-                                            BorderRadius.circular(12)),
-                                    child: const GradientIcon(
-                                        Icons.videocam_sharp,
-                                        20,
-                                        LinearGradient(colors: [
-                                          ColorRes.gradientColor,
-                                          ColorRes.containerColor,
-                                        ])),
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (con) =>
+                                                  const VideoReceiveScreen()));
+                                    },
+                                    child: Container(
+                                      height: 40,
+                                      width: 40,
+                                      decoration: BoxDecoration(
+                                          color: ColorRes.logoColor,
+                                          borderRadius:
+                                              BorderRadius.circular(12)),
+                                      child: const GradientIcon(
+                                          Icons.videocam_sharp,
+                                          20,
+                                          LinearGradient(colors: [
+                                            ColorRes.gradientColor,
+                                            ColorRes.containerColor,
+                                          ])),
+                                    ),
                                   ),
                                 ],
                               )

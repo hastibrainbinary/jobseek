@@ -506,7 +506,9 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                           controller.typeController.text ==
                                               '' ||
                                           controller.categoryController.text ==
-                                              ''||controller.statusController.text=='')
+                                              '' ||
+                                          controller.statusController.text ==
+                                              '')
                                       ? Container(
                                           height: 50,
                                           width:
@@ -553,8 +555,6 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                                 style: appTextStyle(
                                                     fontSize: 18,
                                                     fontWeight: FontWeight.w500,
-
-
                                                     color: ColorRes.white)),
                                           ),
                                         );

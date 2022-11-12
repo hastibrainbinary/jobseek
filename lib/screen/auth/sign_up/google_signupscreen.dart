@@ -325,7 +325,7 @@ class GoogleSignupScreen extends StatelessWidget {
                                       fontSize: 9,
                                       fontWeight: FontWeight.w400,
                                       color: ColorRes.starColor),
-                                )
+                                ),
                               ]),
                         ),
                 ],

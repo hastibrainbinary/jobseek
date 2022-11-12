@@ -27,27 +27,61 @@ class JobDetailsScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 60),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: InkWell(
-                      onTap: () {
-                        Get.back();
-                      },
-                      child: backButton(),
+              // Row(
+              //   children: [
+              //     Padding(
+              //       padding: const EdgeInsets.all(10),
+              //       child: InkWell(
+              //         onTap: () {
+              //           Get.back();
+              //         },
+              //         child: backButton(),
+              //       ),
+              //     ),
+              //     SizedBox(width: Get.width - 280),
+              //     Text(
+              //       Strings.jobDetails,
+              //       style: appTextStyle(
+              //           fontSize: 20,
+              //           fontWeight: FontWeight.w500,
+              //           height: 1,
+              //           color: ColorRes.black),
+              //     ),
+              //   ],
+              // ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Stack(
+                  children: [
+                    Container(
+                      height: 40,
+                      width: 40,
+                      padding: const EdgeInsets.only(left: 10),
+                      decoration: BoxDecoration(
+                          color: ColorRes.logoColor,
+                          borderRadius: BorderRadius.circular(8)),
+                      child: InkWell(
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: const Icon(
+                          Icons.arrow_back_ios,
+                          color: ColorRes.containerColor,
+                        ),
+                      ),
                     ),
-                  ),
-                  SizedBox(width: Get.width - 280),
-                  Text(
-                    Strings.jobDetails,
-                    style: appTextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                        height: 1,
-                        color: ColorRes.black),
-                  ),
-                ],
+                    Align(
+                      alignment: Alignment.center,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 5),
+                        child: Text(
+                          "Job Details",
+                          style: appTextStyle(color: ColorRes.black, fontSize: 20),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
               const SizedBox(height: 20),
               Container(

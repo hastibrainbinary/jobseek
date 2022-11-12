@@ -62,7 +62,7 @@ class ApplicationsScreen extends StatelessWidget {
                       debugPrint("ON TAP SAVE BTN");
                     },
                     child: InkWell(
-                      onTap: () {
+                     onTap: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
