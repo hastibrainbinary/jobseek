@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/common/widgets/common_loader.dart';
 import 'package:jobseek/screen/job_recommendation_screen/job_recommendation_controller.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
@@ -64,11 +65,14 @@ Widget application(Stream stream) {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(snapshot.data!.docs[index]["Position"],
-                                        style: appTextStyle(
-                                            color: ColorRes.black,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w500)),
+                                    Text(
+                                      snapshot.data!.docs[index]["Position"],
+                                      style: appTextStyle(
+                                          color: ColorRes.black,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    SizedBox(height: 5),
                                     Text(
                                         snapshot.data!.docs[index]
                                             ["CompanyName"],
@@ -76,6 +80,7 @@ Widget application(Stream stream) {
                                             color: ColorRes.black,
                                             fontSize: 12,
                                             fontWeight: FontWeight.w400)),
+                                    SizedBox(height: 5),
                                     Row(
                                       children: [
                                         Text(
@@ -86,7 +91,7 @@ Widget application(Stream stream) {
                                               fontSize: 10,
                                               fontWeight: FontWeight.w400),
                                         ),
-                                        // const SizedBox(width: 1),
+                                        const SizedBox(width: 10),
                                         Text(snapshot.data!.docs[index]["type"],
                                             style: appTextStyle(
                                                 color: ColorRes.black,
@@ -143,7 +148,7 @@ Widget application(Stream stream) {
                 ),
               )
             : const Center(
-                child: CircularProgressIndicator(),
+                child:CommonLoader(),
               );
       });
 }

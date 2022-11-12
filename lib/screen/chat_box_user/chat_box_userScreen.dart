@@ -188,6 +188,9 @@ class ChatBoxUserScreen extends StatelessWidget {
                            return (o.toString().toLowerCase() == data['name'].toString().toLowerCase())
                                ? InkWell(
                              onTap: () async {
+
+                               controller.lastMessageTrue(snapshot1.data!.docs[index].id);
+
                                controller.gotoChatScreen(
                                    context,
                                    snapshot1.data!.docs[index].id,
@@ -241,11 +244,14 @@ class ChatBoxUserScreen extends StatelessWidget {
                                      crossAxisAlignment:
                                      CrossAxisAlignment.end,
                                      children: [
-                                      /* Container(
+                                       (dataM?['countM'] == 0 || dataM?['countM'] == null)
+                                           ?SizedBox()
+                                           :Container(
                                          height: 22,
                                          width: 22,
                                          decoration: BoxDecoration(
-                                           gradient: const LinearGradient(
+                                           gradient:
+                                           const LinearGradient(
                                              colors: [
                                                ColorRes.gradientColor,
                                                ColorRes.containerColor
@@ -256,17 +262,19 @@ class ChatBoxUserScreen extends StatelessWidget {
                                          ),
                                          child: Padding(
                                            padding:
-                                           const EdgeInsets.only(top: 5),
+                                           const EdgeInsets.only(
+                                               top: 5),
                                            child: Text(
                                              textAlign: TextAlign.center,
-                                             '1',
+                                             "${ dataM?['countM'] ?? ""}",
                                              style: appTextStyle(
                                                  fontSize: 10,
-                                                 fontWeight: FontWeight.w400,
+                                                 fontWeight:
+                                                 FontWeight.w400,
                                                  color: ColorRes.white),
                                            ),
                                          ),
-                                       ),*/
+                                       ),
                                        const Spacer(),
                                        Text(
                                          dataM?['lastMessageTime'] == null ?"":
@@ -284,7 +292,7 @@ class ChatBoxUserScreen extends StatelessWidget {
                                ),
                              ),
                            )
-                               : SizedBox();
+                               : const SizedBox();
                          },
                        );
 

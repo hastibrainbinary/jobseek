@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/screen/call/video_ReceiveScreen.dart';
+import 'package:jobseek/screen/chat_box/chat_box_screen.dart';
 import 'package:jobseek/screen/manager_section/applicants_detail_screen/applicants_detail_screen_widget/applicants_details_screen_widget.dart';
 import 'package:jobseek/screen/manager_section/applicants_detail_screen/applicants_details_controller.dart';
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_widget/manager_home_screen_widget.dart';
@@ -10,7 +12,6 @@ import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/string.dart';
 
 class ApplicantsDetailScreen extends StatelessWidget {
-
   dynamic args = Get.arguments;
   final bool isWrong;
   ApplicantsDetailScreen({
@@ -128,39 +129,58 @@ class ApplicantsDetailScreen extends StatelessWidget {
                               ),
                               Row(
                                 children: [
-                                  Container(
-                                    height: 40,
-                                    width: 40,
-                                    decoration: BoxDecoration(
-                                        color: ColorRes.logoColor,
-                                        borderRadius:
-                                            BorderRadius.circular(12)),
-                                    child: const GradientIcon(
-                                      Icons.chat,
-                                      20,
-                                      LinearGradient(colors: [
-                                        Color(0xFFBE9DFF),
-                                        Color(0xFF8B4EFF),
-                                      ]),
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (con) => ChatBoxScreen(),
+                                        ),
+                                      );
+                                    },
+                                    child: Container(
+                                      height: 40,
+                                      width: 40,
+                                      decoration: BoxDecoration(
+                                          color: ColorRes.logoColor,
+                                          borderRadius:
+                                              BorderRadius.circular(12)),
+                                      child: const GradientIcon(
+                                        Icons.chat,
+                                        20,
+                                        LinearGradient(colors: [
+                                          Color(0xFFBE9DFF),
+                                          Color(0xFF8B4EFF),
+                                        ]),
+                                      ),
                                     ),
                                   ),
                                   const SizedBox(
                                     width: 10,
                                   ),
-                                  Container(
-                                    height: 40,
-                                    width: 40,
-                                    decoration: BoxDecoration(
-                                        color: ColorRes.logoColor,
-                                        borderRadius:
-                                            BorderRadius.circular(12)),
-                                    child: const GradientIcon(
-                                        Icons.videocam_sharp,
-                                        20,
-                                        LinearGradient(colors: [
-                                          Color(0xFFBE9DFF),
-                                          Color(0xFF8B4EFF),
-                                        ])),
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (con) =>
+                                                  const VideoReceiveScreen()));
+                                    },
+                                    child: Container(
+                                      height: 40,
+                                      width: 40,
+                                      decoration: BoxDecoration(
+                                          color: ColorRes.logoColor,
+                                          borderRadius:
+                                              BorderRadius.circular(12)),
+                                      child: const GradientIcon(
+                                          Icons.videocam_sharp,
+                                          20,
+                                          LinearGradient(colors: [
+                                            ColorRes.gradientColor,
+                                            ColorRes.containerColor,
+                                          ])),
+                                    ),
                                   ),
                                 ],
                               )
@@ -184,14 +204,14 @@ class ApplicantsDetailScreen extends StatelessWidget {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(15),
                                   gradient: const LinearGradient(colors: [
-                                    Color(0xFFBF9EFF),
-                                    Color(0xFF8B4EFF),
+                                    ColorRes.gradientColor,
+                                    ColorRes.containerColor,
                                   ])),
                               child: Center(
                                 child: Text(
                                   "See Resume",
                                   style: appTextStyle(
-                                      color: Colors.white, fontSize: 15),
+                                      color: ColorRes.white, fontSize: 15),
                                 ),
                               ),
                             ),
@@ -220,7 +240,7 @@ class ApplicantsDetailScreen extends StatelessWidget {
                                   Icons.arrow_drop_down,
                                   color: controller.selectedValue == "Rejected"
                                       ? ColorRes.red
-                                      : (controller.selectedValue == "Active"
+                                      : (controller.selectedValue == "Accepted"
                                           ? ColorRes.darkGreen
                                           : ColorRes.containerColor),
                                 ),
@@ -236,7 +256,7 @@ class ApplicantsDetailScreen extends StatelessWidget {
                                                   "Rejected"
                                               ? ColorRes.red
                                               : (controller.selectedValue ==
-                                                      "Active"
+                                                      "Accepted"
                                                   ? ColorRes.darkGreen
                                                   : ColorRes.containerColor),
                                           fontSize: 14),
@@ -272,27 +292,29 @@ class ApplicantsDetailScreen extends StatelessWidget {
                                     Row(
                                       children: [
                                         Expanded(
-                                            child: Padding(
-                                          padding:
-                                              const EdgeInsets.only(right: 10),
-                                          child: dateTimeBox(
-                                              text: "Date",
-                                              image: AssetRes.calender,
-                                              onTap: controller.selectDate,
-                                              value: controller.showDate,
-                                              context: context),
-                                        )),
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 10),
+                                            child: dateTimeBox(
+                                                text: "Date",
+                                                image: AssetRes.calender,
+                                                onTap: controller.selectDate,
+                                                value: controller.showDate,
+                                                context: context),
+                                          ),
+                                        ),
                                         Expanded(
-                                            child: Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 10),
-                                          child: dateTimeBox(
-                                              text: "Hour",
-                                              image: AssetRes.time,
-                                              onTap: controller.selectTime,
-                                              value: controller.showTime,
-                                              context: context),
-                                        )),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsets.only(left: 10),
+                                            child: dateTimeBox(
+                                                text: "Hour",
+                                                image: AssetRes.time,
+                                                onTap: controller.selectTime,
+                                                value: controller.showTime,
+                                                context: context),
+                                          ),
+                                        ),
                                       ],
                                     ),
                                     const SizedBox(
@@ -316,7 +338,7 @@ class ApplicantsDetailScreen extends StatelessWidget {
                                   Text(
                                     "*",
                                     style: appTextStyle(color: ColorRes.red),
-                                  )
+                                  ),
                                 ],
                               ),
                               const SizedBox(
@@ -336,7 +358,7 @@ class ApplicantsDetailScreen extends StatelessWidget {
                                       hintText: "Message"),
                                   maxLines: 6,
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ],
@@ -358,8 +380,8 @@ class ApplicantsDetailScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         gradient: const LinearGradient(colors: [
-                          Color(0xFFBF9EFF),
-                          Color(0xFFBF9EFF),
+                          ColorRes.gradientColor,
+                          ColorRes.containerColor,
                         ])),
                     child: Center(
                       child: Text(

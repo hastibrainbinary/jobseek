@@ -101,7 +101,7 @@ class HomePageNewScreenU extends StatelessWidget {
                         onChanged: (value) {
                         },
                         onTap: (){
-                          Get.to(()=>SearchJobScreen());
+                          Get.to(()=>const SearchJobScreen());
                         },
                         decoration: InputDecoration(
                             border: InputBorder.none,
@@ -221,7 +221,7 @@ class HomePageNewScreenU extends StatelessWidget {
                 children: [
                   InkWell(
                     onTap: (){
-                      Get.to(()=>LookingForScreen());
+                      Get.to(()=>const LookingForScreen());
                     },
                     child: Container(
                       margin: const EdgeInsets.only(top: 15),
@@ -331,7 +331,7 @@ class HomePageNewScreenU extends StatelessWidget {
                           color: Colors.red
                         ),),
                       ),
-                    ):SizedBox(),
+                    ):const SizedBox(),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 18.0,left: 18,right: 18),
                       child:AdvancedSearch(
@@ -357,7 +357,7 @@ class HomePageNewScreenU extends StatelessWidget {
                             color: Colors.red
                         ),),
                       ),
-                    ):SizedBox(),
+                    ):const SizedBox(),
                   ],
                 );
               }

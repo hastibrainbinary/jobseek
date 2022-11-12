@@ -69,6 +69,6 @@ class CreateVacancies2Controller extends GetxController implements GetxService {
   String? dropDownValueStatus;
   var items2 = [
     'Active'
-        'Away'
+        'Inactive'
   ];
 }

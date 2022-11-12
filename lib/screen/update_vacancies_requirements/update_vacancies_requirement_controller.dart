@@ -5,10 +5,9 @@ import 'package:get/get.dart';
 import 'package:jobseek/screen/create_vacancies/create_vacancies_screen.dart';
 
 class UpdateVacanciesRequirementController extends GetxController {
-
   final args = Get.arguments;
 
-  List requirments=[];
+  List requirments = [];
   RxBool isJobDetails = true.obs;
   ontap() {
     isJobDetails.value = false;
@@ -30,13 +29,13 @@ class UpdateVacanciesRequirementController extends GetxController {
   TextEditingController locationController = TextEditingController();
   TextEditingController typeController = TextEditingController();
   TextEditingController statusController = TextEditingController();
-  List requirmentList=[];
+  List requirmentList = [];
   RxBool isPositionValidate = false.obs;
   RxBool isSalaryValidate = false.obs;
   RxBool isLocationValidate = false.obs;
   RxBool isTypeValidate = false.obs;
   RxBool isStatusValidate = false.obs;
-  onLoginBtnTap() async{
+  onLoginBtnTap() async {
     validate();
     if (isPositionValidate.value == false &&
         isSalaryValidate.value == false &&
@@ -47,7 +46,6 @@ class UpdateVacanciesRequirementController extends GetxController {
         print("GO TO HOME PAGE");
       }
 
-
       Map<String, dynamic> map = {
         "Position": positionController.text.trim(),
         "salary": salaryController.text.trim(),
@@ -57,25 +55,26 @@ class UpdateVacanciesRequirementController extends GetxController {
         "BookMarkUserId":[],
       };
 
-      FirebaseFirestore.instance.collection("allPost").doc(args['docs'].id.toString()).update(
-        map
-      );
+      FirebaseFirestore.instance
+          .collection("allPost")
+          .doc(args['docs'].id.toString())
+          .update(map);
 
       Get.back();
-
     }
   }
 
-
-
-  initState(dynamic data)async{
+  initState(dynamic data) async {
     positionController.text = data['docs']["Position"];
-    salaryController.text =data['docs']["salary"];
-    locationController.text =data['docs']["location"];
-    typeController.text =data['docs']["type"];
-    statusController.text =data['docs']["Status"];
+    salaryController.text = data['docs']["salary"];
+    locationController.text = data['docs']["location"];
+    typeController.text = data['docs']["type"];
+    statusController.text = data['docs']["Status"];
     requirmentList = data['docs']['RequirementsList'];
-    DocumentSnapshot document = await FirebaseFirestore.instance.collection("allPost").doc(args['docs'].id.toString()).get();
+    DocumentSnapshot document = await FirebaseFirestore.instance
+        .collection("allPost")
+        .doc(args['docs'].id.toString())
+        .get();
     var ref = document.data();
     print(ref);
   }
@@ -123,6 +122,7 @@ class UpdateVacanciesRequirementController extends GetxController {
 
     update(["dropdown"]);
   }
+
   String dropDownValue = 'India';
   var items1 = [
     'India',
@@ -144,6 +144,7 @@ class UpdateVacanciesRequirementController extends GetxController {
 
     update(["dropdown"]);
   }
+
   String dropDownValueType = 'part Time';
 
   var items = [
@@ -151,20 +152,16 @@ class UpdateVacanciesRequirementController extends GetxController {
     'Full Time',
   ];
 
-
-
   changeDropdwonStatus({required String val}) {
     dropDownValueStatus = val;
     statusController.text = dropDownValueStatus;
 
     update(["dropdown"]);
   }
+
   String dropDownValueStatus = 'Active';
   var items2 = [
     'Active',
-    'Away',
+    'Inactive',
   ];
-
-
-
 }

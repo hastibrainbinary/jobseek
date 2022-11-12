@@ -18,7 +18,7 @@ class OtpScreen extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       backgroundColor: ColorRes.backgroundColor,
       body: Column(children: [
-        SizedBox(height: 50),
+        const SizedBox(height: 50),
         backButton(),
 
         Row(

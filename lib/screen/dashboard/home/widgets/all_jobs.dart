@@ -1,138 +1,145 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/common_loader.dart';
 import 'package:jobseek/screen/dashboard/home/home_controller.dart';
 import 'package:jobseek/screen/job_recommendation_screen/job_recommendation_controller.dart';
-import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
-import 'package:jobseek/utils/pref_keys.dart';
 
 Widget allJobs(Stream stream) {
   final HomeController controller = HomeController();
 
   //final jrController = Get.put(JobRecommendationController());
   return GetBuilder<JobRecommendationController>(
-    id: "search",
-      builder: (jrController){
-    return StreamBuilder(
-        stream: stream,
-        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-          if(snapshot.hasData){
-          jrController.documents = snapshot.data.docs;
-          }
-          controller.jobTypesSaved = List.generate(jrController.documents.length, (index) => false).obs;
+      id: "search",
+      builder: (jrController) {
+        return StreamBuilder(
+            stream: stream,
+            builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+              if (snapshot.hasData) {
+                jrController.documents = snapshot.data.docs;
+              }
+              controller.jobTypesSaved =
+                  List.generate(jrController.documents.length, (index) => false)
+                      .obs;
 
-          if (jrController.searchText.value.isNotEmpty) {
-            jrController.documents = jrController.documents.where((element) {
-              //print(element.get('Position'));
-              return element
-                  .get('Position')
-                  .toString()
-                  .toLowerCase()
-                  .contains(jrController.searchText.value.toLowerCase());
-            }).toList();
-          }
+              if (jrController.searchText.value.isNotEmpty) {
+                jrController.documents =
+                    jrController.documents.where((element) {
+                  //print(element.get('Position'));
+                  return element
+                      .get('Position')
+                      .toString()
+                      .toLowerCase()
+                      .contains(jrController.searchText.value.toLowerCase());
+                }).toList();
+              }
 
-          return snapshot.hasData
-              ? ListView.builder(
-            padding: EdgeInsets.all(0),
-              itemCount: jrController.documents.length,
-              shrinkWrap: true,
-              physics: const BouncingScrollPhysics(),
-              itemBuilder: (context, index) {
-                if (kDebugMode) {
-                  print(index);
-                }
-                if (kDebugMode) {
-
-                  print(jrController.documents[index].id);
-                }
-                return InkWell(
-                  onTap: () => Get.toNamed(AppRes.jobDetailScreen,
-                      arguments: {
-                        "saved": jrController.documents[index],
-                        "docId": index
-                      }),
-                  child: Container(
-                    height: 92,
-                    width: Get.width,
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 18, vertical: 4),
-                    padding: const EdgeInsets.all(15),
-                    decoration: BoxDecoration(
-                        borderRadius:
-                        const BorderRadius.all(Radius.circular(15)),
-                        border: Border.all(color: const Color(0xffF3ECFF)),
-                        color: ColorRes.white),
-                    child: Row(
-                      children: [
-                        Image.asset(controller.jobTypesLogo[index % 5]),
-                        const SizedBox(width: 20),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              // controller.jobTypes[index],
-                                jrController.documents[index]["Position"],
-                                style: appTextStyle(
-                                    color: ColorRes.black,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500)),
-                            Text(jrController.documents[index]["CompanyName"],
-                                style: appTextStyle(
-                                    color: ColorRes.black,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400)),
-                            Text(
-                                "${jrController.documents[index]["location"]} "
-                                    " ${jrController.documents[index]["type"]}",
-                                style: appTextStyle(
-                                    color: ColorRes.black,
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w400)),
-                          ],
-                        ),
-                        const Spacer(),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                String docId = snapshot.data.docs[index].id;
-
-                                controller.onTapSave(index,jrController.documents[index],docId);
-                              },
-                              child:  Image.asset(
-                                   (jrController.documents[index]['BookMarkUserId'].contains(PrefService.getString(PrefKeys.userId)))
-                                      ? AssetRes.bookMarkFillIcon
-                                      : AssetRes.bookMarkBorderIcon,
-                                  height: 20,
+              return snapshot.hasData
+                  ? ListView.builder(
+                      padding: const EdgeInsets.all(0),
+                      itemCount: jrController.documents.length,
+                      shrinkWrap: true,
+                      physics: const BouncingScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        if (kDebugMode) {
+                          print(index);
+                        }
+                        if (kDebugMode) {
+                          print(jrController.documents[index].id);
+                        }
+                        return InkWell(
+                          onTap: () => Get.toNamed(AppRes.jobDetailScreen,
+                              arguments: {
+                                "saved": jrController.documents[index],
+                                "docId": index
+                              }),
+                          child: Container(
+                            height: 92,
+                            width: Get.width,
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 18, vertical: 4),
+                            padding: const EdgeInsets.all(15),
+                            decoration: BoxDecoration(
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(15)),
+                                border:
+                                    Border.all(color: const Color(0xffF3ECFF)),
+                                color: ColorRes.white),
+                            child: Row(
+                              children: [
+                                Image.asset(controller.jobTypesLogo[index % 5]),
+                                const SizedBox(width: 20),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                        jrController.documents[index]
+                                            ["Position"],
+                                        style: appTextStyle(
+                                            color: ColorRes.black,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w500)),
+                                    Text(
+                                        jrController.documents[index]
+                                            ["CompanyName"],
+                                        style: appTextStyle(
+                                            color: ColorRes.black,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w400)),
+                                    Text(
+                                        "${jrController.documents[index]["location"]} "
+                                        " ${jrController.documents[index]["type"]}",
+                                        style: appTextStyle(
+                                            color: ColorRes.black,
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w400)),
+                                  ],
                                 ),
+                                const Spacer(),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        String docId =
+                                            snapshot.data.docs[index].id;
+                                        controller.onTapSave(
+                                            index,
+                                            jrController.documents[index],
+                                            docId);
+                                      },
+                                      child: Obx(() {
+                                        return Image.asset(
+                                          controller.jobTypesSaved[index]
+                                              ? AssetRes.bookMarkFillIcon
+                                              : AssetRes.bookMarkBorderIcon,
+                                          height: 20,
+                                        );
+                                      }),
+                                    ),
+                                    const Spacer(),
+                                    Text(
+                                      "\$${jrController.documents[index]["salary"]}",
+                                      style: appTextStyle(
+                                          fontSize: 16,
+                                          color: ColorRes.containerColor,
+                                          fontWeight: FontWeight.w500),
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(width: 10)
+                              ],
                             ),
-                            const Spacer(),
-                            Text(
-                              "\$${jrController.documents[index]["salary"]}",
-                              style: appTextStyle(
-                                  fontSize: 16,
-                                  color: ColorRes.containerColor,
-                                  fontWeight: FontWeight.w500),
-                            )
-                          ],
-                        ),
-                        const SizedBox(width: 10)
-                      ],
-                    ),
-                  ),
-                );
-              })
-              : const CommonLoader();
-        });
-  });
+                          ),
+                        );
+                      })
+                  : const CommonLoader();
+            });
+      });
 }

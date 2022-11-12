@@ -23,22 +23,23 @@ class ProfileScreen extends StatelessWidget {
             children: [
               const SizedBox(height: 60),
               Row(children: [
-                Container(
-                  margin: const EdgeInsets.all(15),
-                  height: 40,
-                  width: 40,
-                  decoration: BoxDecoration(
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
                       color: ColorRes.logoColor,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 11),
-                    child: Text(
-                      textAlign: TextAlign.center,
-                      "Logo",
-                      style: appTextStyle(
-                          color: ColorRes.containerColor,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 10),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Logo',
+                        style: appTextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.w600,
+                            color: ColorRes.containerColor),
+                      ),
                     ),
                   ),
                 ),

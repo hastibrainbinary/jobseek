@@ -1308,7 +1308,7 @@ class SignUpScreenM extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Don't have account?",
+                          "already have account?",
                           style: appTextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 15,

@@ -4,7 +4,6 @@ import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_controller.dart';
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_controller.dart';
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_widget/manager_home_screen_widget.dart';
-import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/color_res.dart';
 

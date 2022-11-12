@@ -21,7 +21,7 @@ class VideoReceiveScreen extends StatelessWidget {
           top: 630,
           left: 145,
           child: Text(
-            '04:37 mins',
+            '04:37 mines',
             style: appTextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w400,

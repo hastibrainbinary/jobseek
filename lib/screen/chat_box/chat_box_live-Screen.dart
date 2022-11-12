@@ -176,7 +176,7 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                     }
 
                     Widget box = data['type'] == "alert"
-                        ? SizedBox()
+                        ? const SizedBox()
                         : Column(
                       children: [
                          SizedBox(
@@ -296,6 +296,9 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                         ),
                         InkWell(
                             onTap: () {
+
+
+
                               if (controller.validation()) {
                                 controller.sendMessage(
                                   roomId.toString(),

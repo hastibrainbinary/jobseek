@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 
 class ApplicantsDetailsController extends GetxController
     implements GetxService {
-  List list = ["Active", "Rejected", "Schedule Interview"];
+  List list = ["Accepted", "Rejected", "Schedule Interview","Sent"];
   String? selectedValue;
   TimeOfDay selectedTime = TimeOfDay.now();
   DateTime? selectedDate = DateTime.now();

@@ -87,11 +87,13 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(args["docs"]["Position"],
-                            style: appTextStyle(
-                                color: ColorRes.black,
-                                fontSize: 13,
-                                fontWeight: FontWeight.w500)),
+                        Text(
+                          args["docs"]["Position"],
+                          style: appTextStyle(
+                              color: ColorRes.black,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w500),
+                        ),
                         Text(args["docs"]["CompanyName"],
                             style: appTextStyle(
                                 color: ColorRes.black,

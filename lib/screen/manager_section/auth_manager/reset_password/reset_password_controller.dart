@@ -96,7 +96,7 @@ class ResetPasswordControllerM extends GetxController {
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (con) => CongratsScreenM()));
+              builder: (con) => const CongratsScreenM()));
     }
   }
 

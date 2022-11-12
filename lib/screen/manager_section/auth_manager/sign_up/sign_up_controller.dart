@@ -416,7 +416,7 @@ class SignUpControllerM extends GetxController {
     if (user?.uid != null && user?.uid != "") {
       await fireStore
           .collection("Auth")
-          .doc("User")
+          .doc("Manager")
           .collection("register")
           .get()
           .then((value) async {

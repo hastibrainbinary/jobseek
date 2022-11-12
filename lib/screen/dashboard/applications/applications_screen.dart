@@ -62,7 +62,7 @@ class ApplicationsScreen extends StatelessWidget {
                       debugPrint("ON TAP SAVE BTN");
                     },
                     child: InkWell(
-                      onTap: () {
+                     onTap: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -100,34 +100,35 @@ class ApplicationsScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () => applicationController.onTapJobs2(index),
-                      child: Obx(() => Container(
-                            margin: const EdgeInsets.only(right: 10),
-                            padding: const EdgeInsets.symmetric(horizontal: 15),
-                            height: 32,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: ColorRes.containerColor, width: 2),
-                                borderRadius: const BorderRadius.all(
-                                  Radius.circular(10),
-                                ),
+                      child: Obx(
+                        () => Container(
+                          margin: const EdgeInsets.only(right: 10),
+                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                          height: 32,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: ColorRes.containerColor, width: 2),
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                              color: applicationController.selectedJobs.value ==
+                                      index
+                                  ? ColorRes.containerColor
+                                  : ColorRes.white),
+                          child: Text(
+                            applicationController.jobs[index],
+                            style: appTextStyle(
                                 color:
                                     applicationController.selectedJobs.value ==
                                             index
-                                        ? ColorRes.containerColor
-                                        : ColorRes.white),
-                            child: Text(
-                              applicationController.jobs[index],
-                              style: appTextStyle(
-                                  color: applicationController
-                                              .selectedJobs.value ==
-                                          index
-                                      ? ColorRes.white
-                                      : ColorRes.containerColor,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                          )),
+                                        ? ColorRes.white
+                                        : ColorRes.containerColor,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                      ),
                     );
                   }),
             ),
@@ -465,7 +466,7 @@ class ApplicationsScreen extends StatelessWidget {
                                 )
                               ],
                             )
-                          : SizedBox(),
+                          : const SizedBox(),
                       applicationController.selectedJobs.value == 1
                           ? Container(
                               height: 135,
@@ -544,7 +545,7 @@ class ApplicationsScreen extends StatelessWidget {
                                 ],
                               ),
                             )
-                          : SizedBox(),
+                          : const SizedBox(),
                       applicationController.selectedJobs.value == 4
                           ? Container(
                               height: 135,
@@ -623,7 +624,7 @@ class ApplicationsScreen extends StatelessWidget {
                                 ],
                               ),
                             )
-                          : SizedBox(),
+                          : const SizedBox(),
                       applicationController.selectedJobs.value == 2
                           ? Container(
                               height: 135,
@@ -702,7 +703,7 @@ class ApplicationsScreen extends StatelessWidget {
                                 ],
                               ),
                             )
-                          : SizedBox(),
+                          : const SizedBox(),
                       applicationController.selectedJobs.value == 3
                           ? Container(
                               height: 135,
@@ -782,7 +783,7 @@ class ApplicationsScreen extends StatelessWidget {
                                 ],
                               ),
                             )
-                          : SizedBox(),
+                          : const SizedBox(),
                     ],
                   );
                 }),
