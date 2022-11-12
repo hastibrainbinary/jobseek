@@ -1,13 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/common_loader.dart';
 import 'package:jobseek/screen/dashboard/home/home_controller.dart';
 import 'package:jobseek/screen/job_recommendation_screen/job_recommendation_controller.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 
 Widget allJobs(Stream stream) {
   final HomeController controller = HomeController();
@@ -46,6 +49,7 @@ Widget allJobs(Stream stream) {
                   print(index);
                 }
                 if (kDebugMode) {
+
                   print(jrController.documents[index].id);
                 }
                 return InkWell(
@@ -102,16 +106,15 @@ Widget allJobs(Stream stream) {
                             InkWell(
                               onTap: () {
                                 String docId = snapshot.data.docs[index].id;
+
                                 controller.onTapSave(index,jrController.documents[index],docId);
                               },
-                              child: Obx(() {
-                                return Image.asset(
-                                  controller.jobTypesSaved[index]
+                              child:  Image.asset(
+                                   (jrController.documents[index]['BookMarkUserId'].contains(PrefService.getString(PrefKeys.userId)))
                                       ? AssetRes.bookMarkFillIcon
                                       : AssetRes.bookMarkBorderIcon,
                                   height: 20,
-                                );
-                              }),
+                                ),
                             ),
                             const Spacer(),
                             Text(
