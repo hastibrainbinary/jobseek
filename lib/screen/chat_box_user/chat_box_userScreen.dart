@@ -16,6 +16,8 @@ import 'chat_live_screen.dart';
 class ChatBoxUserScreen extends StatelessWidget {
   ChatBoxUserScreen({Key? key}) : super(key: key);
   final controller = Get.put(ChatBoxUserController());
+  List p=[];
+  bool abc = false;
 
   //ManagerHomeScreenController managerHomeScreenController = Get.put(ManagerHomeScreenController());
   JobDetailsUploadCvController jobDetailsUploadCvController =
@@ -159,14 +161,6 @@ class ChatBoxUserScreen extends StatelessWidget {
                         }
 
 
-                        String? o;
-
-                        companyList.forEach((element) {
-                          if (element.toString().toLowerCase() == data['name'].toString().toLowerCase()) {
-                            print(element);
-                            o = element;
-                          }
-                        });
 
 
                        return  StreamBuilder<
@@ -184,6 +178,42 @@ class ChatBoxUserScreen extends StatelessWidget {
 
                            Map<String, dynamic>? dataM =
                            snapshotM.data?.data();
+
+                           String? o;
+                           String? u;
+
+                           companyList.forEach((element) {
+                             if (element.toString().toLowerCase() == data['name'].toString().toLowerCase()) {
+
+                               abc = false;
+
+                               for (int i = 0; i < p.length; i++) {
+                                 if (p[i] == element) {
+                                   abc = true;
+                                 }
+                               }
+
+                               if (!abc) {
+                                 p.add(element);
+                               }
+                             }
+                           });
+
+                           print(p);
+
+                           p.forEach((element) {
+                             o = element;
+                             print(element);
+                           });
+
+                          /* snapshot1.data!.docs.forEach((element) {
+                             if(p.contains(element)){
+                               p.remove(element);
+                               print(element);
+                               u = element;
+                             }
+                           });*/
+
 
                            return (o.toString().toLowerCase() == data['name'].toString().toLowerCase())
                                ? InkWell(
@@ -295,10 +325,7 @@ class ChatBoxUserScreen extends StatelessWidget {
                                : SizedBox();
                          },
                        );
-
-
-
-                      },
+                        },
                     );
                   });
             },
