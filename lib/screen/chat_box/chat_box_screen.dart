@@ -136,6 +136,19 @@ class ChatBoxScreen extends StatelessWidget {
                   if (snapshot.data == null || snapshot.hasData == false) {
                     return const SizedBox();
                   }
+              child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+                  stream: FirebaseFirestore.instance
+                      .collection("Apply")
+                      .snapshots(),
+                  /*FirebaseFirestore.instance
+                .collection("Auth")
+                .doc("User")
+                .collection("register")
+                .snapshots(),*/
+                  builder: (context, snapshot) {
+                    if (snapshot.data == null || snapshot.hasData == false) {
+                      return const CommonLoader();
+                    }
 
                   return ListView.builder(
                       itemCount: snapshot.data!.docs.length,
@@ -153,18 +166,6 @@ class ChatBoxScreen extends StatelessWidget {
                           }
                         });
 
-                        return StreamBuilder<
-                            DocumentSnapshot<Map<String, dynamic>>>(
-                          stream: FirebaseFirestore.instance
-                              .collection('chats')
-                              .doc(controller.getChatId(controller.userUid,
-                                  snapshot.data!.docs[index].id))
-                              .snapshots(),
-                          builder: (context, snapshotM) {
-                            if (snapshotM.data == null ||
-                                snapshotM.hasData == false) {
-                              return const SizedBox();
-                            }
 
                             Map<String, dynamic>? dataM =
                                 snapshotM.data?.data();
