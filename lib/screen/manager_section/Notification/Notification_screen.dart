@@ -119,7 +119,7 @@ class NotificationScreen extends StatelessWidget {
                         color: ColorRes.black),
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 // SizedBox(width: Get.width - 220),
                 Obx(
                   () => FlutterSwitch(

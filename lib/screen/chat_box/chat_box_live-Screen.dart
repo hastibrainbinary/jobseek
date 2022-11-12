@@ -176,7 +176,7 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                     }
 
                     Widget box = data['type'] == "alert"
-                        ? SizedBox()
+                        ? const SizedBox()
                         : Column(
                       children: [
                          SizedBox(

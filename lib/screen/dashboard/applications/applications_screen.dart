@@ -465,7 +465,7 @@ class ApplicationsScreen extends StatelessWidget {
                                 )
                               ],
                             )
-                          : SizedBox(),
+                          : const SizedBox(),
                       applicationController.selectedJobs.value == 1
                           ? Container(
                               height: 135,
@@ -544,7 +544,10 @@ class ApplicationsScreen extends StatelessWidget {
                                 ],
                               ),
                             )
-                          : SizedBox(),
+                          :
+
+
+                      const SizedBox(),
                       applicationController.selectedJobs.value == 4
                           ? Container(
                               height: 135,
@@ -623,7 +626,7 @@ class ApplicationsScreen extends StatelessWidget {
                                 ],
                               ),
                             )
-                          : SizedBox(),
+                          : const SizedBox(),
                       applicationController.selectedJobs.value == 2
                           ? Container(
                               height: 135,
@@ -702,7 +705,7 @@ class ApplicationsScreen extends StatelessWidget {
                                 ],
                               ),
                             )
-                          : SizedBox(),
+                          : const SizedBox(),
                       applicationController.selectedJobs.value == 3
                           ? Container(
                               height: 135,
@@ -782,7 +785,7 @@ class ApplicationsScreen extends StatelessWidget {
                                 ],
                               ),
                             )
-                          : SizedBox(),
+                          : const SizedBox(),
                     ],
                   );
                 }),

@@ -52,8 +52,8 @@ class SearchJobScreen extends StatelessWidget {
                 ),
               ],
             ),
-             Padding(
-              padding: const EdgeInsets.only(left: 18,right: 18,bottom: 8),
+            Padding(
+              padding: const EdgeInsets.only(left: 18, right: 18, bottom: 8),
               child: AdvancedSearch(
                 clearSearchEnabled: true,
                 singleItemHeight: 40,
@@ -62,13 +62,12 @@ class SearchJobScreen extends StatelessWidget {
                 autoListing: true,
                 unSelectedTextColor: Colors.black.withOpacity(0.5),
                 maxElementsToDisplay: 10,
-                onItemTap: (int index, String value) {  },
+                onItemTap: (int index, String value) {},
                 searchItems: PrefService.getList(PrefKeys.allDesignation),
-
               ),
             ),
-             Padding(
-              padding: EdgeInsets.only(left: 18.0,bottom: 18,right: 18),
+            Padding(
+              padding: const EdgeInsets.only(left: 18.0, bottom: 18, right: 18),
               child: AdvancedSearch(
                 clearSearchEnabled: true,
                 singleItemHeight: 40,
@@ -76,15 +75,12 @@ class SearchJobScreen extends StatelessWidget {
                 hintTextColor: Colors.black.withOpacity(0.5),
                 autoListing: true,
                 maxElementsToDisplay: 10,
-                onItemTap: (int index, String value) {  },
+                onItemTap: (int index, String value) {},
                 searchItems: PrefService.getList(PrefKeys.allCountryData),
-
               ),
             ),
             InkWell(
-              onTap: (){
-
-              },
+              onTap: () {},
               child: Center(
                 child: Container(
                   margin: const EdgeInsets.only(top: 15),
@@ -131,7 +127,7 @@ class SearchJobScreen extends StatelessWidget {
                 width: 200,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(6),
-                color: ColorRes.white,
+                  color: ColorRes.white,
                 ),
                 alignment: Alignment.center,
                 child: Padding(
@@ -139,23 +135,31 @@ class SearchJobScreen extends StatelessWidget {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children:  [
-                      Image.asset(AssetRes.search,height: 15,width: 15,),
-                      const SizedBox(width: 10,),
+                    children: [
+                      Image.asset(
+                        AssetRes.search,
+                        height: 15,
+                        width: 15,
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Supervisor,Gurgaon/Guru...",style: GoogleFonts.poppins(
-                            fontSize: 11,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black
-                          )),
-                          const SizedBox(height: 6,),
-                          Text("2 new",style: GoogleFonts.poppins(
-                              fontSize: 11,
-                              fontWeight: FontWeight.w400,
-                              color: ColorRes.containerColor
-                          )),
+                          Text("Supervisor,Gurgaon/Guru...",
+                              style: GoogleFonts.poppins(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black)),
+                          const SizedBox(
+                            height: 6,
+                          ),
+                          Text("2 new",
+                              style: GoogleFonts.poppins(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w400,
+                                  color: ColorRes.containerColor)),
                         ],
                       ),
                     ],

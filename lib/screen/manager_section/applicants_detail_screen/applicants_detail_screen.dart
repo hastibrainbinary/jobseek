@@ -158,8 +158,8 @@ class ApplicantsDetailScreen extends StatelessWidget {
                                         Icons.videocam_sharp,
                                         20,
                                         LinearGradient(colors: [
-                                          Color(0xFFBE9DFF),
-                                          Color(0xFF8B4EFF),
+                                        ColorRes.gradientColor,
+                                          ColorRes.containerColor,
                                         ])),
                                   ),
                                 ],

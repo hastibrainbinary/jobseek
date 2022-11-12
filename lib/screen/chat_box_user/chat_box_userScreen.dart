@@ -284,7 +284,7 @@ class ChatBoxUserScreen extends StatelessWidget {
                                ),
                              ),
                            )
-                               : SizedBox();
+                               : const SizedBox();
                          },
                        );
 
