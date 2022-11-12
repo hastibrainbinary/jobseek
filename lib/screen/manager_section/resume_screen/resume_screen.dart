@@ -225,14 +225,10 @@ class _ResumeScreenState extends State<ResumeScreen> {
   String remotePDFpath = "";
   bool loader = false;
 
-
-  @override
-  Widget build(BuildContext context) {
-
   //var docFile;
   int? pages = 0;
   final Completer<PDFViewController> _controller =
-      Completer<PDFViewController>();
+  Completer<PDFViewController>();
   int? currentPage = 0;
   bool isReady = false;
   String errorMessage = '';
@@ -282,141 +278,141 @@ class _ResumeScreenState extends State<ResumeScreen> {
       backgroundColor: ColorRes.black,
       body: loader == true
           ? const Center(
-              child: CommonLoader(),
-            )
+        child: CommonLoader(),
+      )
           : Stack(
-              children: <Widget>[
-                Container(
-                  height: Get.height,
-                  width: Get.width,
-                  color: ColorRes.black,
-                ),
-                Positioned(
-                  top: 50,
-                  child: SizedBox(
-                    height: 600,
-                    width: Get.width,
-                    child: PDFView(
-                      filePath: remotePDFpath,
-                      enableSwipe: true,
-                      swipeHorizontal: true,
+        children: <Widget>[
+          Container(
+            height: Get.height,
+            width: Get.width,
+            color: ColorRes.black,
+          ),
+          Positioned(
+            top: 50,
+            child: SizedBox(
+              height: 600,
+              width: Get.width,
+              child: PDFView(
+                filePath: remotePDFpath,
+                enableSwipe: true,
+                swipeHorizontal: true,
 
-                      autoSpacing: false,
-                      pageFling: true,
-                      pageSnap: true,
-                      defaultPage: currentPage!,
-                      fitPolicy: FitPolicy.BOTH,
-                      preventLinkNavigation: false,
-                      // if set to true the link is handled in flutter
-                      onRender: (pages) {
-                        setState(() {
-                          pages = pages;
-                          isReady = true;
-                        });
-                      },
-                      onError: (error) {
-                        setState(() {
-                          errorMessage = error.toString();
-                        });
-                        if (kDebugMode) {
-                          print(error.toString());
-                        }
-                      },
-                      onPageError: (page, error) {
-                        setState(() {
-                          errorMessage = '$page: ${error.toString()}';
-                        });
-                        if (kDebugMode) {
-                          print('$page: ${error.toString()}');
-                        }
-                      },
-                      onViewCreated: (PDFViewController pdfViewController) {
-                        _controller.complete(pdfViewController);
-                      },
-                      onLinkHandler: (String? uri) {
-                        if (kDebugMode) {
-                          print('goto uri: $uri');
-                        }
-                      },
-                      onPageChanged: (int? page, int? total) {
-                        if (kDebugMode) {
-                          print('page change: $page/$total');
-                        }
-                        setState(() {
-                          currentPage = page;
-                        });
-                      },
-                    ),
-                  ),
-                ),
-                const Positioned(
-                  top: 10,
-                  left: 150,
-                  child: Center(
-                    child: Text(
-                      "See Resume",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 20,
-                          color: ColorRes.white),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  bottom: 10,
-                  child: InkWell(
-                    onTap: () {
-                      Get.back();
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 20),
-                      height: 50,
-                      width: Get.width - 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        gradient: const LinearGradient(
-                          colors: [
-                            ColorRes.logoColor,
-                            ColorRes.containerColor,
-                          ],
-                        ),
-                      ),
-                      child: Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const Icon(
-                              Icons.arrow_back,
-                              color: ColorRes.white,
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              "Back",
-                              style: appTextStyle(
-                                  color: ColorRes.white,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                errorMessage.isEmpty
-                    ? !isReady
-                        ? const Center(
-                            child: CircularProgressIndicator(),
-                          )
-                        : const SizedBox()
-                    : Center(
-                        child: Text(errorMessage),
-                      )
-              ],
+                autoSpacing: false,
+                pageFling: true,
+                pageSnap: true,
+                defaultPage: currentPage!,
+                fitPolicy: FitPolicy.BOTH,
+                preventLinkNavigation: false,
+                // if set to true the link is handled in flutter
+                onRender: (pages) {
+                  setState(() {
+                    pages = pages;
+                    isReady = true;
+                  });
+                },
+                onError: (error) {
+                  setState(() {
+                    errorMessage = error.toString();
+                  });
+                  if (kDebugMode) {
+                    print(error.toString());
+                  }
+                },
+                onPageError: (page, error) {
+                  setState(() {
+                    errorMessage = '$page: ${error.toString()}';
+                  });
+                  if (kDebugMode) {
+                    print('$page: ${error.toString()}');
+                  }
+                },
+                onViewCreated: (PDFViewController pdfViewController) {
+                  _controller.complete(pdfViewController);
+                },
+                onLinkHandler: (String? uri) {
+                  if (kDebugMode) {
+                    print('goto uri: $uri');
+                  }
+                },
+                onPageChanged: (int? page, int? total) {
+                  if (kDebugMode) {
+                    print('page change: $page/$total');
+                  }
+                  setState(() {
+                    currentPage = page;
+                  });
+                },
+              ),
             ),
+          ),
+          const Positioned(
+            top: 10,
+            left: 150,
+            child: Center(
+              child: Text(
+                "See Resume",
+                style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 20,
+                    color: ColorRes.white),
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: 10,
+            child: InkWell(
+              onTap: () {
+                Get.back();
+              },
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 20),
+                height: 50,
+                width: Get.width - 40,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  gradient: const LinearGradient(
+                    colors: [
+                      ColorRes.logoColor,
+                      ColorRes.containerColor,
+                    ],
+                  ),
+                ),
+                child: Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.arrow_back,
+                        color: ColorRes.white,
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "Back",
+                        style: appTextStyle(
+                            color: ColorRes.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          errorMessage.isEmpty
+              ? !isReady
+              ? const Center(
+            child: CircularProgressIndicator(),
+          )
+              : const SizedBox()
+              : Center(
+            child: Text(errorMessage),
+          )
+        ],
+      ),
     );
   }
 }
