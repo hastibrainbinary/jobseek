@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/helper.dart';
+import 'package:jobseek/screen/chat_box_user/chat_box_usercontroller.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_controller.dart';
 import 'package:jobseek/service/pref_services.dart';
@@ -17,6 +18,8 @@ class ChatBoxScreen extends StatelessWidget {
   final controller = Get.put(ChatBoxController());
   JobDetailsUploadCvController jobDetailsUploadCvController =
       Get.put(JobDetailsUploadCvController());
+
+  ChatBoxUserController chatBoxUserController = Get.put(ChatBoxUserController());
 
   @override
   Widget build(BuildContext context) {
@@ -149,6 +152,9 @@ class ChatBoxScreen extends StatelessWidget {
                                         .toLowerCase())
                                 ? InkWell(
                                     onTap: () async {
+
+                                      controller.lastMessageTrue(snapshot.data!.docs[index].id);
+
                                       controller.gotoChatScreen(
                                           context,
                                           snapshot.data!.docs[index].id,
@@ -206,7 +212,9 @@ class ChatBoxScreen extends StatelessWidget {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.end,
                                             children: [
-                                             /* Container(
+                                              (dataM?['countU'] == 0 || dataM?['countU'] == null)
+                                                  ?SizedBox()
+                                                  :Container(
                                                 height: 22,
                                                 width: 22,
                                                 decoration: BoxDecoration(
@@ -226,7 +234,7 @@ class ChatBoxScreen extends StatelessWidget {
                                                           top: 5),
                                                   child: Text(
                                                     textAlign: TextAlign.center,
-                                                    '1',
+                                                   "${ dataM?['countU'] ?? ""}",
                                                     style: appTextStyle(
                                                         fontSize: 10,
                                                         fontWeight:
@@ -234,7 +242,7 @@ class ChatBoxScreen extends StatelessWidget {
                                                         color: ColorRes.white),
                                                   ),
                                                 ),
-                                              ),*/
+                                              ),
                                               const Spacer(),
                                               Text(
                                                   dataM?['lastMessageTime'] == null ?"":

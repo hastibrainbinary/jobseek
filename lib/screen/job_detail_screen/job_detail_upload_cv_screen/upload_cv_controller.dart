@@ -152,6 +152,7 @@ class JobDetailsUploadCvController extends GetxController {
       storageRef.then((result) {
         pdfUrl = result;
         print("result is $result");
+
       });
     } else {
       print('No Image Path Received');
