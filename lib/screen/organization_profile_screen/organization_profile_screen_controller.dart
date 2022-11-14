@@ -37,6 +37,7 @@ class OrganizationProfileScreenController extends GetxController
 
   void onChanged(String value) {
     update(["colorChange"]);
+    update(["Organization"]);
   }
 
   onLoginBtnTap() async {

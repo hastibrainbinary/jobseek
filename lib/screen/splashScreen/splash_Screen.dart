@@ -85,8 +85,7 @@ class _SplashScreenState extends State<SplashScreen> {
               child: Row(
                 children: [
                   Container(
-                    height: 110,
-                    margin: const EdgeInsets.only(bottom: 20),
+                    margin: const EdgeInsets.only(bottom:15),
                     child: RichText(
                       text: TextSpan(
                         children: <TextSpan>[
@@ -120,22 +119,25 @@ class _SplashScreenState extends State<SplashScreen> {
                     ),
                   ),
                   const Spacer(),
-                  Container(
-                    height: 140,
-                    alignment: Alignment.bottomRight,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
                     child: Container(
-                      margin: const EdgeInsets.only(right: 35),
-                      alignment: Alignment.center,
-                      height: 70,
-                      width: 70,
-                      decoration: BoxDecoration(
-                          border: Border.all(),
-                          shape: BoxShape.circle,
-                          color: ColorRes.black2),
-                      child: const Icon(
-                        Icons.search,
-                        color: Colors.white,
-                        size: 40,
+                      height: 140,
+                      alignment: Alignment.bottomRight,
+                      child: Container(
+                        margin: const EdgeInsets.only(right: 33),
+                        alignment: Alignment.center,
+                        height: 70,
+                        width: 70,
+                        decoration: BoxDecoration(
+                            border: Border.all(),
+                            shape: BoxShape.circle,
+                            color: ColorRes.black2),
+                        child: const Icon(
+                          Icons.search,
+                          color: Colors.white,
+                          size: 40,
+                        ),
                       ),
                     ),
                   )
@@ -147,7 +149,7 @@ class _SplashScreenState extends State<SplashScreen> {
               AssetRes.splashBoyImg,
               height: Get.height < 657 ? Get.height / 2 : Get.height / 1.6,
               width: Get.width,
-              fit: BoxFit.fill,
+              fit: BoxFit.cover,
               filterQuality: FilterQuality.none,
             )
           ],

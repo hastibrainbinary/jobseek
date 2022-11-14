@@ -19,9 +19,16 @@ class SignInScreenControllerM extends GetxController {
   String emailError = "";
   String pwdError = "";
 
+  getRememberEmailData() {
+    if (PrefService.getString(PrefKeys.emailRemember) != "") {
+      emailController.text = PrefService.getString(PrefKeys.emailRemember);
+      passwordController.text =
+          PrefService.getString(PrefKeys.passwordRemember);
+    }
+  }
+
   void signInWithEmailAndPassword(
       {required String email, required String password}) async {
-
     loading.value = true;
 
     await fireStore
@@ -43,7 +50,8 @@ class SignInScreenControllerM extends GetxController {
           if (value.docs[i]["Email"] == email && value.docs[i]["Email"] != "") {
             isManager = true;
             PrefService.setValue(PrefKeys.rol, "Manager");
-            PrefService.setValue(PrefKeys.totalPost, value.docs[i]["TotalPost"]);
+            PrefService.setValue(
+                PrefKeys.totalPost, value.docs[i]["TotalPost"]);
             PrefService.setValue(PrefKeys.company, value.docs[i]["company"]);
             PrefService.setValue(PrefKeys.userId, value.docs[i].id);
 
@@ -53,13 +61,12 @@ class SignInScreenControllerM extends GetxController {
                 .collection("register")
                 .doc(value.docs[i].id)
                 .collection("company")
-               .get()
+                .get()
                 .then((value2) {
-              for (int j = 0; j < value2.docs.length; j++){
-                PrefService.setValue(PrefKeys.companyName, value2.docs[j]['name']);
+              for (int j = 0; j < value2.docs.length; j++) {
+                PrefService.setValue(
+                    PrefKeys.companyName, value2.docs[j]['name']);
               }
-
-
             });
 
             //PrefService.setValue(PrefKeys.companyName, value.docs[i].);
@@ -94,11 +101,9 @@ class SignInScreenControllerM extends GetxController {
                   ? ManagerDashBoardScreen()
                   : const OrganizationProfileScreen());
 
-              emailController.text="";
-              passwordController.text="";
+              emailController.text = "";
+              passwordController.text = "";
               update(["loginForm", "showEmail", "pwdError"]);
-
-
             }
           } on FirebaseAuthException catch (e) {
             if (e.code == 'user-not-found') {
@@ -137,7 +142,8 @@ class SignInScreenControllerM extends GetxController {
       print("${value.docs.length}=|=|=|");
     });
   }
-  void onChanged(String value){
+
+  void onChanged(String value) {
     update(["colorChange"]);
   }
 
@@ -178,7 +184,12 @@ class SignInScreenControllerM extends GetxController {
     }
   }
 
-  onLoginBtnTap() {
+  onLoginBtnTap() async {
+    if (rememberMe == true) {
+      await PrefService.setValue(PrefKeys.emailRemember, emailController.text);
+      await PrefService.setValue(
+          PrefKeys.passwordRemember, passwordController.text);
+    }
     if (validator()) {
       signInWithEmailAndPassword(
           password: passwordController.text.trim(),
@@ -200,7 +211,7 @@ class SignInScreenControllerM extends GetxController {
 
   bool rememberMe = false;
 
-  void onRememberMeChange(bool? value) {
+  Future<void> onRememberMeChange(bool? value) async {
     if (value != null) {
       rememberMe = value;
       update(['remember_me']);
@@ -239,7 +250,8 @@ class SignInScreenControllerM extends GetxController {
       accessToken: authentication.accessToken,
     );
 
-    final UserCredential authResult = await auth.signInWithCredential(credential);
+    final UserCredential authResult =
+        await auth.signInWithCredential(credential);
     final User? user = authResult.user;
     if (kDebugMode) {
       print(user!.email);
@@ -269,10 +281,12 @@ class SignInScreenControllerM extends GetxController {
             if (kDebugMode) {
               print("${value.docs[i]["Email"]}=||||||++++++++++");
             }
-            if (value.docs[i]["Email"] == user!.email && value.docs[i]["Email"] != "") {
+            if (value.docs[i]["Email"] == user!.email &&
+                value.docs[i]["Email"] != "") {
               isManager = true;
               PrefService.setValue(PrefKeys.rol, "Manager");
-              PrefService.setValue(PrefKeys.totalPost, value.docs[i]["TotalPost"]);
+              PrefService.setValue(
+                  PrefKeys.totalPost, value.docs[i]["TotalPost"]);
               PrefService.setValue(PrefKeys.company, value.docs[i]["company"]);
               PrefService.setValue(PrefKeys.userId, user.uid);
               Get.off(() => PrefService.getBool(PrefKeys.company)
@@ -284,8 +298,8 @@ class SignInScreenControllerM extends GetxController {
               break;
             } else {
               isManager = false;
-              Get.snackbar(
-                  "Error", "Please create account,\n your email is not registered",
+              Get.snackbar("Error",
+                  "Please create account,\n your email is not registered",
                   colorText: const Color(0xffDA1414));
               if (await googleSignIn.isSignedIn()) {
                 await googleSignIn.signOut();
@@ -304,7 +318,6 @@ class SignInScreenControllerM extends GetxController {
       });
 
       PrefService.setValue(PrefKeys.userId, user?.uid.toString());
-
 
       loading.value == false;
       // loader false

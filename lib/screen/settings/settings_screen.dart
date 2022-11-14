@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
+import 'package:jobseek/screen/dashboard/dashboard_controller.dart';
 import 'package:jobseek/screen/looking_for_screen/looking_for_screen.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
@@ -16,6 +17,7 @@ class SettingsScreenU extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DashBoardController controller = Get.put(DashBoardController());
     return Scaffold(
       backgroundColor: ColorRes.backgroundColor,
       body: Column(
@@ -258,6 +260,8 @@ class SettingsScreenU extends StatelessWidget {
               padding: const EdgeInsets.all(12.0),
               child: InkWell(
                 onTap: () async {
+                  controller.currentTab = 0;
+                  controller.update(["bottom_bar"]);
                   final GoogleSignIn googleSignIn = GoogleSignIn();
                   if (await googleSignIn.isSignedIn()) {
                     await googleSignIn.signOut();

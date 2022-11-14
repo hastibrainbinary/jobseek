@@ -19,7 +19,7 @@ class SignInScreenM extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    controller.getRememberEmailData();
     jobDetailsUploadCvController.init();
     return Scaffold(
         backgroundColor: ColorRes.white,

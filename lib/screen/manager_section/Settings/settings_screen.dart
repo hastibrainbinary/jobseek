@@ -13,6 +13,7 @@ import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 import 'package:jobseek/utils/string.dart';
 
 class SettingScreenM extends StatelessWidget {
@@ -364,7 +365,17 @@ class SettingScreenM extends StatelessWidget {
                           await googleSignIn.signOut();
                         }
                         await FirebaseAuth.instance.signOut();
-                        PrefService.clear();
+                       /* PrefService.clear();*/
+                        PrefService.setValue(PrefKeys.password,"");
+                        PrefService.setValue(PrefKeys.rememberMe,"");
+                        PrefService.setValue(PrefKeys.registerToken,"");
+                        PrefService.setValue(PrefKeys.userId,"");
+                        PrefService.setValue(PrefKeys.country,"");
+                        PrefService.setValue(PrefKeys.email,"");
+                        PrefService.setValue(PrefKeys.totalPost,"");
+                        PrefService.setValue(PrefKeys.phoneNumber,"");
+                        PrefService.setValue(PrefKeys.city,"");
+                        PrefService.setValue(PrefKeys.state,"");
 
                         // ignore: use_build_context_synchronously
                         Navigator.of(context).pushAndRemoveUntil(
