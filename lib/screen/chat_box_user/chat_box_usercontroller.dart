@@ -2,10 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/helper.dart';
+import 'package:jobseek/screen/chat_box/chat_box_controller.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 
 import 'chat_live_screen.dart';
+
+ChatBoxController chatBoxController = Get.put(ChatBoxController());
 
 class ChatBoxUserController extends GetxController implements GetxService {
   TextEditingController searchController = TextEditingController();
@@ -15,6 +18,7 @@ class ChatBoxUserController extends GetxController implements GetxService {
   String? roomId;
   TextEditingController msController = TextEditingController();
   final ScrollController listScrollController = ScrollController();
+
   DateTime lastMsg = DateTime.now();
   List countU = [];
 
@@ -125,6 +129,8 @@ class ChatBoxUserController extends GetxController implements GetxService {
     ));
   }
 
+  int? msgCount;
+
 
   void sendMessage(String roomId, otherUid) async {
 
@@ -134,7 +140,23 @@ class ChatBoxUserController extends GetxController implements GetxService {
 
     String msg = msController.text;
 
-    countU.add(msg);
+    await FirebaseFirestore.instance
+        .collection("chats")
+        .doc(getChatId(userUid, otherUid))
+        .get()
+        .then((value) {
+      //print(value['countU']);
+      msgCount = value['countU'] ;
+      if (msgCount == null) {
+        countU = [];
+        countU.add(msg);
+
+      } else{
+        print(msgCount);
+        countU.add(msg);
+      }
+      print(countU);
+    });
 
     await setLastMsgInDoc(msg);
     await setMessage(roomId, msg, userUid);
@@ -162,6 +184,8 @@ class ChatBoxUserController extends GetxController implements GetxService {
   }
 
   Future<void> lastMessageTrue(String otherUid)async {
+    chatBoxController.countM = [];
+    countU = [];
     await FirebaseFirestore.instance.collection("chats")
         .doc(getChatId(userUid, otherUid)).update({"lastMessageRead" : true, "countM" : null});
   }
@@ -177,6 +201,7 @@ class ChatBoxUserController extends GetxController implements GetxService {
   }
 
   Future<void> setLastMsgInDoc(String msg) async {
+    print(countU.length);
     await FirebaseFirestore.instance.collection("chats").doc(roomId).update({
       "lastMessage": msg,
       "lastMessageSender": userUid,
@@ -184,6 +209,8 @@ class ChatBoxUserController extends GetxController implements GetxService {
       "lastMessageRead": false,
       "countU" : countU.length,
     });
+
+
   }
 
   Future<void> sendAlertMsg() async {
