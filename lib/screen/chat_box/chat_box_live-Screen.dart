@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/screen/chat_box/chat_box_controller.dart';
+import 'package:jobseek/screen/chat_box_user/chat_box_usercontroller.dart';
 import 'package:jobseek/screen/manager_section/call/call_join_Screen.dart';
 import 'package:jobseek/screen/manager_section/call/video_joinig_Screen.dart';
 import 'package:jobseek/utils/app_style.dart';
@@ -25,6 +26,7 @@ class ChatBoxLiveScreenM extends StatelessWidget {
    }) : super(key: key);
 
    ChatBoxController controller = Get.put(ChatBoxController());
+   ChatBoxUserController chatBoxUserController = Get.put(ChatBoxUserController());
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +44,8 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                   padding: const EdgeInsets.all(15),
                   child: InkWell(
                     onTap: () {
+                      controller.lastMessageTrue(otherUserUid!);
+
                       Get.back();
                     },
                     child: backButton(),

@@ -27,6 +27,7 @@ class ChatLiveScreen extends StatelessWidget {
   }) : super(key: key);
 
   ChatBoxUserController controller = Get.put(ChatBoxUserController());
+  ChatBoxController chatBoxController = Get.put(ChatBoxController());
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +45,12 @@ class ChatLiveScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(15),
                   child: InkWell(
                     onTap: () {
+                      controller.lastMessageTrue(otherUserUid!);
+
                       Get.back();
                     },
                     child: backButton(),
+
                   ),
                 ),
                 const SizedBox(width: 80),
