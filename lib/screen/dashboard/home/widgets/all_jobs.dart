@@ -116,10 +116,17 @@ Widget allJobs(Stream stream) {
                                             jrController.documents[index],
                                             docId);
                                       },
-                                      child: Obx(() {
-
+                                      child: GetBuilder<JobRecommendationController>(
+                                              builder: (con) {
                                         return Image.asset(
-                                          (jrController.documents[index]['BookMarkUserId'].contains(PrefService.getString(PrefKeys.userId)))
+                                          (jrController.documents[index]
+                                          ['BookMarkUserList']==null || jrController.documents[index]
+                                          ['BookMarkUserList'].length==0)?AssetRes.bookMarkBorderIcon:
+                                          (jrController.documents[index]
+                                                      ['BookMarkUserList']
+                                                  .contains(
+                                                      PrefService.getString(
+                                                          PrefKeys.userId)))
                                               ? AssetRes.bookMarkFillIcon
                                               : AssetRes.bookMarkBorderIcon,
                                           height: 20,

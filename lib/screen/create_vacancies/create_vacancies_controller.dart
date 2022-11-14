@@ -112,6 +112,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
       "Status": statusController.text.trim(),
       "CompanyName": companyName,
       "RequirementsList": requirementsList,
+      "BookMarkUserList":[],
     };
     validate();
     if (isPositionValidate.value == false &&

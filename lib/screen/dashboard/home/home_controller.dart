@@ -55,7 +55,7 @@ class HomeController extends GetxController implements GetxService {
 
 
       List bookmark =[];
-      bookmark = field['BookMarkUserId'];
+      bookmark = field['BookMarkUserList'];
       if(bookmark.length==0){
         bookmark.add(PrefService.getString(PrefKeys.userId));
       }
@@ -71,7 +71,7 @@ class HomeController extends GetxController implements GetxService {
         return bookmark[index].toString();
       });
       Map<String, dynamic> map2={
-        "BookMarkUserId":bookmarkList,
+        "BookMarkUserList":bookmarkList,
       };
 
       FirebaseFirestore.instance.collection('allPost').doc(docId).update(map2);

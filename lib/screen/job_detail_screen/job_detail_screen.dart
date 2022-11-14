@@ -74,7 +74,7 @@ class JobDetailScreen extends StatelessWidget {
                                   builder: (con) {
                                     return Align(
                                       alignment: Alignment.center,
-                                      child: (args['saved']['BookMarkUserId'].contains(PrefService.getString(PrefKeys.userId)))
+                                      child: (args['saved']['BookMarkUserList'].contains(PrefService.getString(PrefKeys.userId)))
                                           ? InkWell(
                                               onTap: () {
                                                 Navigator.push(
@@ -102,7 +102,7 @@ class JobDetailScreen extends StatelessWidget {
                                           };
 
                                           List bookmark =[];
-                                          bookmark = args['saved']['BookMarkUserId'];
+                                          bookmark = args['saved']['BookMarkUserList'];
                                           if(bookmark.length==0){
                                             bookmark.add(PrefService.getString(PrefKeys.userId));
                                           }
@@ -118,7 +118,7 @@ class JobDetailScreen extends StatelessWidget {
                                             return bookmark[index].toString();
                                           });
                                           Map<String, dynamic> map2={
-                                            "BookMarkUserId":bookmarkList,
+                                            "BookMarkUserList":bookmarkList,
                                           };
 
                                           FirebaseFirestore.instance.collection('allPost').doc(args['saved'].id).update(map2);
