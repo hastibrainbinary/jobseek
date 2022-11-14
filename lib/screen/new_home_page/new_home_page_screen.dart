@@ -16,13 +16,12 @@ import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 
 class HomePageNewScreenU extends StatelessWidget {
-   HomePageNewScreenU({Key? key}) : super(key: key);
+  HomePageNewScreenU({Key? key}) : super(key: key);
 
-   HomePageNewController controller = Get.put(HomePageNewController());
+  HomePageNewController controller = Get.put(HomePageNewController());
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: ColorRes.backgroundColor,
       body: SingleChildScrollView(
@@ -98,20 +97,21 @@ class HomePageNewScreenU extends StatelessWidget {
                           borderRadius: BorderRadius.all(Radius.circular(8))),
                       child: TextField(
                         controller: controller.searchControllerNew,
-                        onChanged: (value) {
-                        },
-                        onTap: (){
-                          Get.to(()=>const SearchJobScreen());
+                        onChanged: (value) {},
+                        onTap: () {
+                          Get.to(() => const SearchJobScreen());
                         },
                         decoration: InputDecoration(
                             border: InputBorder.none,
-                            suffixIcon: const Icon(Icons.search, color: ColorRes.grey),
+                            suffixIcon:
+                                const Icon(Icons.search, color: ColorRes.grey),
                             hintText: "Search",
                             hintStyle: appTextStyle(
                                 fontSize: 14,
                                 color: ColorRes.grey,
                                 fontWeight: FontWeight.w500),
-                            contentPadding: const EdgeInsets.only(left: 20, top: 13)),
+                            contentPadding:
+                                const EdgeInsets.only(left: 20, top: 13)),
                       ),
                     ),
                   ),
@@ -220,8 +220,8 @@ class HomePageNewScreenU extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   InkWell(
-                    onTap: (){
-                      Get.to(()=>const LookingForScreen());
+                    onTap: () {
+                      Get.to(() => const LookingForScreen());
                     },
                     child: Container(
                       margin: const EdgeInsets.only(top: 15),
@@ -243,8 +243,8 @@ class HomePageNewScreenU extends StatelessWidget {
                   ),
                   const SizedBox(width: 10),
                   InkWell(
-                    onTap: (){
-                      Get.to(()=>SigninScreenU());
+                    onTap: () {
+                      Get.to(() => SigninScreenU());
                     },
                     child: Container(
                       margin: const EdgeInsets.only(top: 15),
@@ -300,68 +300,73 @@ class HomePageNewScreenU extends StatelessWidget {
             ),
             const SizedBox(height: 13),
             GetBuilder<HomePageNewController>(
-              id: "popup",
-              builder: (con) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 18.0,left: 18,right: 18,bottom: 8),
-                      child: AdvancedSearch(
-                        clearSearchEnabled: true,
-                        singleItemHeight: 40,
-                        hintText: 'Enter skills,designation,companies',
-                        hintTextColor: Colors.black.withOpacity(0.5),
-                        autoListing: true,
-                        unSelectedTextColor: Colors.black.withOpacity(0.5),
-                        maxElementsToDisplay: 10,
-                        onItemTap: (int index, String value) {
-                          controller.skills=value;
-
-                        },
-                        searchItems: PrefService.getList(PrefKeys.allDesignation),
-
+                id: "popup",
+                builder: (con) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            top: 18.0, left: 18, right: 18, bottom: 8),
+                        child: AdvancedSearch(
+                          clearSearchEnabled: true,
+                          singleItemHeight: 40,
+                          hintText: 'Enter skills,designation,companies',
+                          hintTextColor: Colors.black.withOpacity(0.5),
+                          autoListing: true,
+                          unSelectedTextColor: Colors.black.withOpacity(0.5),
+                          maxElementsToDisplay: 10,
+                          onItemTap: (int index, String value) {
+                            controller.skills = value;
+                          },
+                          searchItems:
+                              PrefService.getList(PrefKeys.allDesignation),
+                        ),
                       ),
-                    ),
-                    (controller.skillError!="")?Padding(
-                      padding: const EdgeInsets.only(left: 18.0),
-                      child: SizedBox(
-                        child: Text(controller.skillError,style: const TextStyle(
-                          fontSize: 12,
-                          color: Colors.red
-                        ),),
+                      (controller.skillError != "")
+                          ? Padding(
+                              padding: const EdgeInsets.only(left: 18.0),
+                              child: SizedBox(
+                                child: Text(
+                                  controller.skillError,
+                                  style: const TextStyle(
+                                      fontSize: 12, color: Colors.red),
+                                ),
+                              ),
+                            )
+                          : const SizedBox(),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            bottom: 18.0, left: 18, right: 18),
+                        child: AdvancedSearch(
+                          clearSearchEnabled: true,
+                          singleItemHeight: 40,
+                          hintText: 'Enter location',
+                          hintTextColor: Colors.black.withOpacity(0.5),
+                          autoListing: true,
+                          maxElementsToDisplay: 10,
+                          onItemTap: (int index, String value) {
+                            controller.location = value;
+                          },
+                          searchItems:
+                              PrefService.getList(PrefKeys.allCountryData),
+                        ),
                       ),
-                    ):const SizedBox(),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 18.0,left: 18,right: 18),
-                      child:AdvancedSearch(
-                        clearSearchEnabled: true,
-                        singleItemHeight: 40,
-                        hintText: 'Enter location',
-                        hintTextColor: Colors.black.withOpacity(0.5),
-                        autoListing: true,
-                        maxElementsToDisplay: 10,
-                        onItemTap: (int index, String value) {
-                          controller.location =value;
-
-                        },
-                        searchItems: PrefService.getList(PrefKeys.allCountryData),
-
-                      ),
-                    ),
-                    (controller.locationError!="")?Padding(
-                      padding: const EdgeInsets.only(left: 18.0),
-                      child: SizedBox(
-                        child: Text(controller.locationError,style: const TextStyle(
-                            fontSize: 12,
-                            color: Colors.red
-                        ),),
-                      ),
-                    ):const SizedBox(),
-                  ],
-                );
-              }
-            ),
+                      (controller.locationError != "")
+                          ? Padding(
+                              padding: const EdgeInsets.only(left: 18.0),
+                              child: SizedBox(
+                                child: Text(
+                                  controller.locationError,
+                                  style: const TextStyle(
+                                      fontSize: 12, color: Colors.red),
+                                ),
+                              ),
+                            )
+                          : const SizedBox(),
+                    ],
+                  );
+                }),
             InkWell(
               onTap: controller.searchJob,
               child: Center(
@@ -405,8 +410,8 @@ class HomePageNewScreenU extends StatelessWidget {
                   ),
                   const SizedBox(width: 90),
                   InkWell(
-                    onTap: (){
-                      Get.to(()=>JobRecomandationSearch());
+                    onTap: () {
+                      Get.to(() => JobRecomandationSearch());
                     },
                     child: Text(
                       'View all',
@@ -558,7 +563,7 @@ class HomePageNewScreenU extends StatelessWidget {
             const SizedBox(height: 20),
             Container(
               height: 227,
-              width: 375,
+              width: Get.width,
               decoration: BoxDecoration(
                 color: ColorRes.logoColor,
                 borderRadius: BorderRadius.circular(30),
@@ -599,7 +604,8 @@ class HomePageNewScreenU extends StatelessWidget {
                       ),
                     )
                   ]),
-            )
+            ),
+            const SizedBox(height: 20),
           ],
         ),
       ),
