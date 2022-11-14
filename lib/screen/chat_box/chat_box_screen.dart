@@ -151,7 +151,7 @@ class ChatBoxScreen extends StatelessWidget {
 
                         snapshot.data!.docs[index]['companyName']
                             .forEach((element) {
-                          if (element ==
+                          if (element.toString().toLowerCase() ==
                               PrefService.getString(PrefKeys.companyName)
                                   .toString()
                                   .toLowerCase()) {
