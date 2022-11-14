@@ -10,6 +10,8 @@ import 'package:jobseek/utils/pref_keys.dart';
 class HomeController extends GetxController implements GetxService {
   TextEditingController searchController = TextEditingController();
 
+  RxBool isBookMark=false.obs;
+
   RxList jobTypes = [
     "UI/UX Designer",
     "Financial planner",
