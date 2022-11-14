@@ -18,8 +18,12 @@ class SignInScreenControllerM extends GetxController {
   bool isManager = false;
   String emailError = "";
   String pwdError = "";
+@override
+  void onInit(){
 
-  getRememberEmailData() {
+  super.onInit();
+}
+  getRememberEmailDataManger() {
     if (PrefService.getString(PrefKeys.emailRememberManager) != "") {
       emailController.text = PrefService.getString(PrefKeys.emailRememberManager);
       passwordController.text =

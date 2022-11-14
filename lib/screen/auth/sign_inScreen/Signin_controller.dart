@@ -20,7 +20,7 @@ class SignInScreenController extends GetxController {
   String pwdError = "";
   bool rememberMe = false;
 
-  getRememberEmailData() {
+  getRememberEmailDataUser() {
     if (PrefService.getString(PrefKeys.emailRememberUser) != "") {
       emailController.text = PrefService.getString(PrefKeys.emailRememberUser);
       passwordController.text =

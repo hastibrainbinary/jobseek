@@ -10,16 +10,26 @@ import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
-class SignInScreenM extends StatelessWidget {
+class SignInScreenM extends StatefulWidget {
   SignInScreenM({Key? key}) : super(key: key);
+
+  @override
+  State<SignInScreenM> createState() => _SignInScreenMState();
+}
+
+class _SignInScreenMState extends State<SignInScreenM> {
   SignInScreenControllerM controller = Get.put(SignInScreenControllerM());
 
   final formGlobalKey = GlobalKey<FormState>();
-  JobDetailsUploadCvController jobDetailsUploadCvController = Get.put(JobDetailsUploadCvController());
 
+  JobDetailsUploadCvController jobDetailsUploadCvController = Get.put(JobDetailsUploadCvController());
+@override
+  void initState() {
+  controller.getRememberEmailDataManger();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
-    controller.getRememberEmailData();
     jobDetailsUploadCvController.init();
     return Scaffold(
         backgroundColor: ColorRes.white,

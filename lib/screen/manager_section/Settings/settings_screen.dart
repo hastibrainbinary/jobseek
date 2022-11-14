@@ -7,6 +7,7 @@ import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/screen/looking_for_screen/looking_for_screen.dart';
 import 'package:jobseek/screen/manager_section/Appearance/Appearance_screen.dart';
 import 'package:jobseek/screen/manager_section/Notification/Notification_screen.dart';
+import 'package:jobseek/screen/manager_section/auth_manager/Sign_in/sign_in_controller.dart';
 import 'package:jobseek/screen/manager_section/help/help_screen.dart';
 import 'package:jobseek/screen/manager_section/security/security_screen.dart';
 import 'package:jobseek/service/pref_services.dart';
@@ -360,6 +361,7 @@ class SettingScreenM extends StatelessWidget {
                     const SizedBox(width: 10),
                     InkWell(
                       onTap: () async {
+
                         final GoogleSignIn googleSignIn = GoogleSignIn();
                         if (await googleSignIn.isSignedIn()) {
                           await googleSignIn.signOut();

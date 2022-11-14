@@ -14,10 +14,10 @@ class PrefKeys {
   static const totalPost = "totalPost";
   static const allCountryData="allCountryData";
   static const allDesignation ="allDesignation";
-  static const emailRememberManager ="emailRemember";
-  static const emailRememberUser="emailRemember";
-  static const passwordRememberUser ="passwordRemember";
-  static const passwordRememberManager ="passwordRemember";
+  static const emailRememberManager ="emailRememberManager";
+  static const emailRememberUser="emailRememberUser";
+  static const passwordRememberUser ="passwordRememberUser";
+  static const passwordRememberManager ="passwordRememberManager";
 
   /// User Data
   static const firstName = "firstName";

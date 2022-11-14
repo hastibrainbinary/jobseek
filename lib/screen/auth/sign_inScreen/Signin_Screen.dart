@@ -12,16 +12,27 @@ import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 
-class SigninScreenU extends StatelessWidget {
+class SigninScreenU extends StatefulWidget {
   SigninScreenU({Key? key}) : super(key: key);
 
+  @override
+  State<SigninScreenU> createState() => _SigninScreenUState();
+}
+
+class _SigninScreenUState extends State<SigninScreenU> {
   SignInScreenController controller = Get.put(SignInScreenController());
+
   JobDetailsUploadCvController jobDetailsUploadCvController =
       Get.put(JobDetailsUploadCvController());
+  @override
+  void initState() {
+    controller.getRememberEmailDataUser();
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    controller.getRememberEmailData();
     jobDetailsUploadCvController.init();
     return Scaffold(
         backgroundColor: ColorRes.white,
