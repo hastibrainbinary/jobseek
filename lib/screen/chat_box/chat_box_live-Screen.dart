@@ -329,6 +329,6 @@ class ChatBoxLiveScreenM extends StatelessWidget {
               const SizedBox(height: 15,),
             ]),
       ),
-    ));
+    );
   }
 }

@@ -11,6 +11,7 @@ class ApplicantsDetailsController extends GetxController
   String? showTime;
   String? showDate;
   var inputFormat = DateFormat('dd/MM/yyyy');
+  TextEditingController msgController = TextEditingController();
 
   onChangeStatus(String value) {
     selectedValue = value;
