@@ -18,7 +18,7 @@ class VideoReceiveScreen extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: 630,
+          top: 620,
           left: 145,
           child: Text(
             '04:37 mines',
@@ -29,7 +29,7 @@ class VideoReceiveScreen extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: 680,
+          top: 650,
           left: 120,
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Container(
