@@ -16,7 +16,7 @@ import 'chat_live_screen.dart';
 class ChatBoxUserScreen extends StatelessWidget {
   ChatBoxUserScreen({Key? key}) : super(key: key);
   final controller = Get.put(ChatBoxUserController());
-  List p=[];
+  List p = [];
   bool abc = false;
 
   //ManagerHomeScreenController managerHomeScreenController = Get.put(ManagerHomeScreenController());
@@ -145,8 +145,7 @@ class ChatBoxUserScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return StreamBuilder<
                         DocumentSnapshot<Map<String, dynamic>>>(
-                      stream:
-                      FirebaseFirestore.instance
+                      stream: FirebaseFirestore.instance
                           .collection('Auth')
                           .doc('Manager')
                           .collection('register')
@@ -154,59 +153,56 @@ class ChatBoxUserScreen extends StatelessWidget {
                           .collection('company')
                           .doc('details')
                           .snapshots(),
-                     builder: (context, snapshot) {
+                      builder: (context, snapshot) {
                         Map<String, dynamic>? data = snapshot.data?.data();
                         if (data == null) {
                           return const SizedBox();
                         }
 
+                        return StreamBuilder<
+                            DocumentSnapshot<Map<String, dynamic>>>(
+                          stream: FirebaseFirestore.instance
+                              .collection('chats')
+                              .doc(controller.getChatId(controller.userUid,
+                                  snapshot1.data!.docs[index].id))
+                              .snapshots(),
+                          builder: (context, snapshotM) {
+                            if (snapshotM.data == null ||
+                                snapshotM.hasData == false) {
+                              return const SizedBox();
+                            }
 
+                            Map<String, dynamic>? dataM =
+                                snapshotM.data?.data();
 
+                            String? o;
+                            String? u;
 
-                       return  StreamBuilder<
-                           DocumentSnapshot<Map<String, dynamic>>>(
-                         stream: FirebaseFirestore.instance
-                             .collection('chats')
-                             .doc(controller.getChatId(controller.userUid,
-                             snapshot1.data!.docs[index].id))
-                             .snapshots(),
-                         builder: (context, snapshotM) {
-                           if (snapshotM.data == null ||
-                               snapshotM.hasData == false) {
-                             return const SizedBox();
-                           }
+                            companyList.forEach((element) {
+                              if (element.toString().toLowerCase() ==
+                                  data['name'].toString().toLowerCase()) {
+                                abc = false;
 
-                           Map<String, dynamic>? dataM =
-                           snapshotM.data?.data();
+                                for (int i = 0; i < p.length; i++) {
+                                  if (p[i] == element) {
+                                    abc = true;
+                                  }
+                                }
 
-                           String? o;
-                           String? u;
+                                if (!abc) {
+                                  p.add(element);
+                                }
+                              }
+                            });
 
-                           companyList.forEach((element) {
-                             if (element.toString().toLowerCase() == data['name'].toString().toLowerCase()) {
+                            print(p);
 
-                               abc = false;
+                            p.forEach((element) {
+                              o = element;
+                              print(element);
+                            });
 
-                               for (int i = 0; i < p.length; i++) {
-                                 if (p[i] == element) {
-                                   abc = true;
-                                 }
-                               }
-
-                               if (!abc) {
-                                 p.add(element);
-                               }
-                             }
-                           });
-
-                           print(p);
-
-                           p.forEach((element) {
-                             o = element;
-                             print(element);
-                           });
-
-                          /* snapshot1.data!.docs.forEach((element) {
+                            /* snapshot1.data!.docs.forEach((element) {
                              if(p.contains(element)){
                                p.remove(element);
                                print(element);
@@ -214,118 +210,130 @@ class ChatBoxUserScreen extends StatelessWidget {
                              }
                            });*/
 
+                            return (o.toString().toLowerCase() == data['name'].toString().toLowerCase())
+                                ? InkWell(
+                                    onTap: () async {
+                                      controller.lastMessageTrue(
+                                          snapshot1.data!.docs[index].id);
 
-                           return (o.toString().toLowerCase() == data['name'].toString().toLowerCase())
-                               ? InkWell(
-                             onTap: () async {
-
-                               controller.lastMessageTrue(snapshot1.data!.docs[index].id);
-
-                               controller.gotoChatScreen(
-                                   context,
-                                   snapshot1.data!.docs[index].id,
-                                   data['name']);
-                             },
-                             child: Container(
-                               height: 92,
-                               width: Get.width,
-                               margin: const EdgeInsets.symmetric(
-                                   horizontal: 18, vertical: 4),
-                               padding: const EdgeInsets.all(15),
-                               decoration: BoxDecoration(
-                                   borderRadius: const BorderRadius.all(
-                                       Radius.circular(15)),
-                                   border: Border.all(
-                                       color: const Color(0xffF3ECFF)),
-                                   color: ColorRes.white),
-                               child: Row(
-                                 children: [
-                                   Image.asset(
-                                     AssetRes.airBnbLogo,
-                                   ),
-                                   const SizedBox(width: 20),
-                                   Column(
-                                     mainAxisAlignment:
-                                     MainAxisAlignment.center,
-                                     crossAxisAlignment:
-                                     CrossAxisAlignment.start,
-                                     children: [
-                                       Text(
-                                         data['name'],
-                                         style: appTextStyle(
-                                             color: ColorRes.black,
-                                             fontSize: 15,
-                                             fontWeight: FontWeight.w500),
-                                       ),
-                                       const SizedBox(height: 6),
-                                       Text(
-                                         dataM?['lastMessage'] ?? "",
-                                         style: appTextStyle(
-                                             color: ColorRes.black.withOpacity(0.8),
-                                             fontSize: 12,
-                                             fontWeight: FontWeight.w400),
-                                       ),
-                                     ],
-                                   ),
-                                   const Spacer(),
-                                   Column(
-                                     mainAxisAlignment:
-                                     MainAxisAlignment.start,
-                                     crossAxisAlignment:
-                                     CrossAxisAlignment.end,
-                                     children: [
-                                       (dataM?['countM'] == 0 || dataM?['countM'] == null)
-                                           ?SizedBox()
-                                           :Container(
-                                         height: 22,
-                                         width: 22,
-                                         decoration: BoxDecoration(
-                                           gradient:
-                                           const LinearGradient(
-                                             colors: [
-                                               ColorRes.gradientColor,
-                                               ColorRes.containerColor
-                                             ],
-                                           ),
-                                           borderRadius:
-                                           BorderRadius.circular(22),
-                                         ),
-                                         child: Padding(
-                                           padding:
-                                           const EdgeInsets.only(
-                                               top: 5),
-                                           child: Text(
-                                             textAlign: TextAlign.center,
-                                             "${ dataM?['countM'] ?? ""}",
-                                             style: appTextStyle(
-                                                 fontSize: 10,
-                                                 fontWeight:
-                                                 FontWeight.w400,
-                                                 color: ColorRes.white),
-                                           ),
-                                         ),
-                                       ),
-                                       const Spacer(),
-                                       Text(
-                                         dataM?['lastMessageTime'] == null ?"":
-                                         " ${getFormattedTime(dataM?['lastMessageTime'].toDate() ?? "")}",
-                                         style: appTextStyle(
-                                             fontSize: 12,
-                                             color: ColorRes.black
-                                                 .withOpacity(0.8),
-                                             fontWeight: FontWeight.w500),
-                                       ),
-                                     ],
-                                   ),
-                                   const SizedBox(width: 10),
-                                 ],
-                               ),
-                             ),
-                           )
-                               : SizedBox();
-                         },
-                       );
-                        },
+                                      controller.gotoChatScreen(
+                                          context,
+                                          snapshot1.data!.docs[index].id,
+                                          data['name']);
+                                    },
+                                    child: Container(
+                                      height: 92,
+                                      width: Get.width,
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 18, vertical: 4),
+                                      padding: const EdgeInsets.all(15),
+                                      decoration: BoxDecoration(
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(15)),
+                                          border: Border.all(
+                                              color: const Color(0xffF3ECFF)),
+                                          color: ColorRes.white),
+                                      child: Row(
+                                        children: [
+                                          Image.asset(
+                                            AssetRes.airBnbLogo,
+                                          ),
+                                          const SizedBox(width: 20),
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                data['name'],
+                                                style: appTextStyle(
+                                                    color: ColorRes.black,
+                                                    fontSize: 15,
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                              ),
+                                              const SizedBox(height: 6),
+                                              Text(
+                                                dataM?['lastMessage'] ?? "",
+                                                style: appTextStyle(
+                                                    color: ColorRes.black
+                                                        .withOpacity(0.8),
+                                                    fontSize: 12,
+                                                    fontWeight:
+                                                        FontWeight.w400),
+                                              ),
+                                            ],
+                                          ),
+                                          const Spacer(),
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.end,
+                                            children: [
+                                              (dataM?['countM'] == 0 ||
+                                                      dataM?['countM'] == null)
+                                                  ? SizedBox()
+                                                  : Container(
+                                                      height: 22,
+                                                      width: 22,
+                                                      decoration: BoxDecoration(
+                                                        gradient:
+                                                            const LinearGradient(
+                                                          colors: [
+                                                            ColorRes
+                                                                .gradientColor,
+                                                            ColorRes
+                                                                .containerColor
+                                                          ],
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(22),
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(top: 5),
+                                                        child: Text(
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          "${dataM?['countM'] ?? ""}",
+                                                          style: appTextStyle(
+                                                              fontSize: 10,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              color: ColorRes
+                                                                  .white),
+                                                        ),
+                                                      ),
+                                                    ),
+                                              const Spacer(),
+                                              Text(
+                                                dataM?['lastMessageTime'] ==
+                                                        null
+                                                    ? ""
+                                                    : " ${getFormattedTime(dataM?['lastMessageTime'].toDate() ?? "")}",
+                                                style: appTextStyle(
+                                                    fontSize: 12,
+                                                    color: ColorRes.black
+                                                        .withOpacity(0.8),
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(width: 10),
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                : SizedBox();
+                          },
+                        );
+                      },
                     );
                   });
             },
@@ -334,10 +342,7 @@ class ChatBoxUserScreen extends StatelessWidget {
       ]),
     );
   }
-
 }
-
-
 
 /*
 (o.toString().toLowerCase() == data['name'].toString().toLowerCase())
@@ -440,8 +445,6 @@ class ChatBoxUserScreen extends StatelessWidget {
                               )
                             : SizedBox();
  */
-
-
 
 /*
 ListView.builder(
