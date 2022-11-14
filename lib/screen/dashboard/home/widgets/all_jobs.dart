@@ -4,10 +4,12 @@ import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/common_loader.dart';
 import 'package:jobseek/screen/dashboard/home/home_controller.dart';
 import 'package:jobseek/screen/job_recommendation_screen/job_recommendation_controller.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 
 Widget allJobs(Stream stream) {
   final HomeController controller = HomeController();
@@ -115,8 +117,9 @@ Widget allJobs(Stream stream) {
                                             docId);
                                       },
                                       child: Obx(() {
+
                                         return Image.asset(
-                                          controller.jobTypesSaved[index]
+                                          (jrController.documents[index]['BookMarkUserId'].contains(PrefService.getString(PrefKeys.userId)))
                                               ? AssetRes.bookMarkFillIcon
                                               : AssetRes.bookMarkBorderIcon,
                                           height: 20,
