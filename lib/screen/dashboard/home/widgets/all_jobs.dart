@@ -66,10 +66,12 @@ Widget allJobs(Stream stream) {
                                 horizontal: 18, vertical: 4),
                             padding: const EdgeInsets.all(15),
                             decoration: BoxDecoration(
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(15)),
-                                border:
-                                    Border.all(color: const Color(0xffF3ECFF)),
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(15),
+                                ),
+                                border: Border.all(
+                                  color: const Color(0xffF3ECFF),
+                                ),
                                 color: ColorRes.white),
                             child: Row(
                               children: [
@@ -116,19 +118,26 @@ Widget allJobs(Stream stream) {
                                             jrController.documents[index],
                                             docId);
                                       },
-                                      child: GetBuilder<JobRecommendationController>(
-                                              builder: (con) {
+                                      child: GetBuilder<
+                                              JobRecommendationController>(
+                                          builder: (con) {
                                         return Image.asset(
-                                          (jrController.documents[index]
-                                          ['BookMarkUserList']==null || jrController.documents[index]
-                                          ['BookMarkUserList'].length==0)?AssetRes.bookMarkBorderIcon:
-                                          (jrController.documents[index]
-                                                      ['BookMarkUserList']
-                                                  .contains(
-                                                      PrefService.getString(
-                                                          PrefKeys.userId)))
-                                              ? AssetRes.bookMarkFillIcon
-                                              : AssetRes.bookMarkBorderIcon,
+                                          (jrController.documents[index][
+                                                          'BookMarkUserList'] ==
+                                                      null ||
+                                                  jrController
+                                                          .documents[index][
+                                                              'BookMarkUserList']
+                                                          .length ==
+                                                      0)
+                                              ? AssetRes.bookMarkBorderIcon
+                                              : (jrController.documents[index]
+                                                          ['BookMarkUserList']
+                                                      .contains(
+                                                          PrefService.getString(
+                                                              PrefKeys.userId)))
+                                                  ? AssetRes.bookMarkFillIcon
+                                                  : AssetRes.bookMarkBorderIcon,
                                           height: 20,
                                         );
                                       }),
