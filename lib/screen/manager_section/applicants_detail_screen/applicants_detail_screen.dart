@@ -124,7 +124,7 @@ class ApplicantsDetailScreen extends StatelessWidget {
                                             fontWeight: FontWeight.w500),
                                       ),
                                     ],
-                                  )
+                                  ),
                                 ],
                               ),
                               Row(
@@ -149,8 +149,8 @@ class ApplicantsDetailScreen extends StatelessWidget {
                                         Icons.chat,
                                         20,
                                         LinearGradient(colors: [
-                                          Color(0xFFBE9DFF),
-                                          Color(0xFF8B4EFF),
+                                          ColorRes.gradientColor,
+                                          ColorRes.containerColor,
                                         ]),
                                       ),
                                     ),
