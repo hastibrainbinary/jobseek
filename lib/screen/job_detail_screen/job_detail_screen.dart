@@ -70,75 +70,98 @@ class JobDetailScreen extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: GetBuilder<JobDetailsController>(
-                                  id: "bookmark",
-                                  builder: (con) {
-                                    return Align(
-                                      alignment: Alignment.center,
-                                      child: (args['saved']['BookMarkUserList'].contains(PrefService.getString(PrefKeys.userId)))
-                                          ? InkWell(
-                                              onTap: () {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (con) =>
-                                                            SaveJobScreen()));
-                                              },
-                                              child: Image.asset(
-                                                AssetRes.bookMarkFillIcon,
-                                                height: 20,
-                                                width: 20,
+                                    id: "bookmark",
+                                    builder: (con) {
+                                      return Align(
+                                        alignment: Alignment.center,
+                                        child: (args['saved']
+                                                    ['BookMarkUserList']
+                                                .contains(PrefService.getString(
+                                                    PrefKeys.userId)))
+                                            ? InkWell(
+                                                onTap: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (con) =>
+                                                              SaveJobScreen()));
+                                                },
+                                                child: Image.asset(
+                                                  AssetRes.bookMarkFillIcon,
+                                                  height: 20,
+                                                  width: 20,
+                                                ),
+                                              )
+                                            : InkWell(
+                                                onTap: () {
+                                                  Map<String, dynamic> map = {
+                                                    "Position": args['saved']
+                                                        ['Position'],
+                                                    "CompanyName": args['saved']
+                                                        ['CompanyName'],
+                                                    "salary": args['saved']
+                                                        ['salary'],
+                                                    "location": args['saved']
+                                                        ['location'],
+                                                    "type": args['saved']
+                                                        ['type'],
+                                                  };
+
+                                                  List bookmark = [];
+                                                  bookmark = args['saved']
+                                                      ['BookMarkUserList'];
+                                                  if (bookmark.length == 0) {
+                                                    bookmark.add(
+                                                        PrefService.getString(
+                                                            PrefKeys.userId));
+                                                  }
+                                                  for (int i = 0;
+                                                      i < bookmark.length;
+                                                      i++) {
+                                                    if (bookmark[i] !=
+                                                        PrefService.getString(
+                                                            PrefKeys.userId)) {
+                                                      bookmark.add(
+                                                          PrefService.getString(
+                                                              PrefKeys.userId));
+                                                    }
+                                                  }
+                                                  List<String> bookmarkList =
+                                                      List.generate(
+                                                          bookmark.length,
+                                                          (index) {
+                                                    return bookmark[index]
+                                                        .toString();
+                                                  });
+                                                  Map<String, dynamic> map2 = {
+                                                    "BookMarkUserList":
+                                                        bookmarkList,
+                                                  };
+
+                                                  FirebaseFirestore.instance
+                                                      .collection('allPost')
+                                                      .doc(args['saved'].id)
+                                                      .update(map2);
+
+                                                  FirebaseFirestore.instance
+                                                      .collection('BookMark')
+                                                      .doc(
+                                                          PrefService.getString(
+                                                              PrefKeys.userId))
+                                                      .collection("BookMark1")
+                                                    ..doc().set(map);
+
+                                                  controller
+                                                      .update(['bookmark']);
+                                                },
+                                                child: Image.asset(
+                                                  AssetRes.bookMarkBorderIcon,
+                                                  height: 20,
+                                                  width: 20,
+                                                ),
                                               ),
-                                            )
-                                          : InkWell(
-                                        onTap: (){
-
-
-                                          Map<String, dynamic> map = {
-                                            "Position": args['saved']['Position'],
-                                            "CompanyName": args['saved']['CompanyName'],
-                                            "salary": args['saved']['salary'],
-                                            "location": args['saved']['location'],
-                                            "type": args['saved']['type'],
-                                          };
-
-                                          List bookmark =[];
-                                          bookmark = args['saved']['BookMarkUserList'];
-                                          if(bookmark.length==0){
-                                            bookmark.add(PrefService.getString(PrefKeys.userId));
-                                          }
-                                          for(int i=0;i< bookmark.length;i++)
-                                          {
-
-                                            if(bookmark[i] != PrefService.getString(PrefKeys.userId))
-                                            {
-                                              bookmark.add(PrefService.getString(PrefKeys.userId));
-                                            }
-                                          }
-                                          List<String> bookmarkList = List.generate(bookmark.length, (index) {
-                                            return bookmark[index].toString();
-                                          });
-                                          Map<String, dynamic> map2={
-                                            "BookMarkUserList":bookmarkList,
-                                          };
-
-                                          FirebaseFirestore.instance.collection('allPost').doc(args['saved'].id).update(map2);
-
-                                          FirebaseFirestore.instance.collection('BookMark').doc(PrefService.getString(PrefKeys.userId)).collection("BookMark1")..doc().set(
-                                              map
-                                          );
-
-
-                                          controller.update(['bookmark']);
-                                        },
-                                            child: Image.asset(
-                                                AssetRes.bookMarkBorderIcon,
-                                                height: 20,
-                                                width: 20,
-                                              ),
-                                          ),
-                                    );
-                                  }
-                                ),
+                                      );
+                                    }),
                               ),
                             ],
                           ),
@@ -153,7 +176,7 @@ class JobDetailScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),

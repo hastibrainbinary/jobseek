@@ -1,8 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/screen/call/video_ReceiveScreen.dart';
 import 'package:jobseek/screen/chat_box/chat_box_screen.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_controller.dart';
+import 'package:jobseek/screen/manager_section/call/video_joinig_Screen.dart';
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_controller.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_res.dart';
@@ -22,13 +23,16 @@ Widget recentPeopleBox() {
       child: ListView.builder(
           itemCount: contro.userData.length,
           itemBuilder: (context, i) {
-
             String? o;
 
             contro.userData[i]['companyName'].forEach((element) {
-
-              if(element.toString().toLowerCase() == PrefService.getString(PrefKeys.companyName).toString().toLowerCase()){
-                print(element);
+              if (element.toString().toLowerCase() ==
+                  PrefService.getString(PrefKeys.companyName)
+                      .toString()
+                      .toLowerCase()) {
+                if (kDebugMode) {
+                  print(element);
+                }
                 o = element;
               }
             });
@@ -117,7 +121,7 @@ Widget recentPeopleBox() {
                                         },
                                         // onTap: () => Get.toNamed(
                                         //     AppRes.applicantsDetails,
-                                        //     arguments: contro.userData[i]),
+                                        //     arguments: control.userData[i]),
                                         child: Container(
                                           height: 40,
                                           width: 40,
@@ -144,7 +148,7 @@ Widget recentPeopleBox() {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (con) =>
-                                                      const VideoReceiveScreen()));
+                                                      const VideoJoiningScreen()));
                                         },
                                         child: Container(
                                           height: 40,

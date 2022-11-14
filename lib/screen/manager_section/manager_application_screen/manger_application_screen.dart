@@ -207,11 +207,11 @@ class ManagerApplicationScreen extends StatelessWidget {
                           controller.documentData.where((element) {
                         if (kDebugMode) {
                           print(element
-                            .get("Position")
-                            .toString()
-                            .toLowerCase()
-                            .contains(controller.searchController.text
-                                .toLowerCase()));
+                              .get("Position")
+                              .toString()
+                              .toLowerCase()
+                              .contains(controller.searchController.text
+                                  .toLowerCase()));
                         }
                         return element
                             .get("Position")
@@ -362,7 +362,8 @@ class ManagerApplicationScreen extends StatelessWidget {
                                                                               18,
                                                                           vertical:
                                                                               4),
-                                                                      padding: const EdgeInsets.only(
+                                                                      padding: const EdgeInsets
+                                                                              .only(
                                                                           left:
                                                                               15),
                                                                       decoration: BoxDecoration(

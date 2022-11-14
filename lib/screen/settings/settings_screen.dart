@@ -26,26 +26,42 @@ class SettingsScreenU extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 60),
-            Row(
+            Stack(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: InkWell(
-                    onTap: () {
-                      Get.back();
-                    },
-                    child: backButton(),
+                GestureDetector(
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    padding: const EdgeInsets.only(left: 10),
+                    margin: const EdgeInsets.only(left: 20),
+                    decoration: BoxDecoration(
+                      color: ColorRes.logoColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: const Align(
+                      alignment: Alignment.center,
+                      child: Icon(
+                        Icons.arrow_back_ios,
+                        color: ColorRes.containerColor,
+                      ),
+                    ),
                   ),
                 ),
-                const SizedBox(width: 85),
-                Text(
-                  Strings.settings,
-                  style: appTextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                      height: 1,
-                      color: ColorRes.black),
-                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Center(
+                    child: Text(
+                      "Settings",
+                      style: appTextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                )
               ],
             ),
             const SizedBox(height: 10),
@@ -267,17 +283,17 @@ class SettingsScreenU extends StatelessWidget {
                   if (await googleSignIn.isSignedIn()) {
                     await googleSignIn.signOut();
                   }
-               /*   PrefService.clear();*/
-                  PrefService.setValue(PrefKeys.password,"");
-                  PrefService.setValue(PrefKeys.rememberMe,"");
-                  PrefService.setValue(PrefKeys.registerToken,"");
-                  PrefService.setValue(PrefKeys.userId,"");
-                  PrefService.setValue(PrefKeys.country,"");
-                  PrefService.setValue(PrefKeys.email,"");
-                  PrefService.setValue(PrefKeys.totalPost,"");
-                  PrefService.setValue(PrefKeys.phoneNumber,"");
-                  PrefService.setValue(PrefKeys.city,"");
-                  PrefService.setValue(PrefKeys.state,"");
+                  /*   PrefService.clear();*/
+                  PrefService.setValue(PrefKeys.password, "");
+                  PrefService.setValue(PrefKeys.rememberMe, "");
+                  PrefService.setValue(PrefKeys.registerToken, "");
+                  PrefService.setValue(PrefKeys.userId, "");
+                  PrefService.setValue(PrefKeys.country, "");
+                  PrefService.setValue(PrefKeys.email, "");
+                  PrefService.setValue(PrefKeys.totalPost, "");
+                  PrefService.setValue(PrefKeys.phoneNumber, "");
+                  PrefService.setValue(PrefKeys.city, "");
+                  PrefService.setValue(PrefKeys.state, "");
                   // ignore: use_build_context_synchronously
                   Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(

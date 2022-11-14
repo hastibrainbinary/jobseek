@@ -188,7 +188,7 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                       }
 
                       Widget box = data['type'] == "alert"
-                          ? SizedBox()
+                          ? const SizedBox()
                           : Column(
                               children: [
                                 SizedBox(
@@ -221,35 +221,34 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                                         maxWidth: Get.width / 1.3,
                                       ),
                                       decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          gradient: data['senderUid']
-                                                      .toString() ==
-                                                  userUid
-                                              ? const LinearGradient(colors: [
-                                                  Color(0xFFBF9EFF),
-                                                  Color(0xFF8B4EFF),
-                                                ])
-                                              : const LinearGradient(colors: [
-                                                  Color(0xFFEEEBF4),
-                                                  Color(0xFFEEEBF4),
-                                                ])
-                                          /* color: data['senderUid']
+                                        borderRadius: BorderRadius.circular(10),
+                                        gradient:
+                                            data['senderUid'].toString() ==
+                                                    userUid
+                                                ? const LinearGradient(colors: [
+                                                    ColorRes.gradientColor,
+                                                    ColorRes.containerColor,
+                                                  ])
+                                                : const LinearGradient(colors: [
+                                                    Color(0xFFEEEBF4),
+                                                    Color(0xFFEEEBF4),
+                                                  ]),
+                                        /* color: data['senderUid']
                                         .toString() ==
                                         userUid
                                         ? Colors.green
                                         : Colors.lightBlue*/
-                                          ),
+                                      ),
                                       child: Text(
                                         data['content'].toString(),
                                         style: data['senderUid'].toString() ==
                                                 userUid
                                             ? const TextStyle(
                                                 fontSize: 17,
-                                                color: Colors.white)
+                                                color: ColorRes.white)
                                             : const TextStyle(
                                                 fontSize: 17,
-                                                color: Colors.black),
+                                                color: ColorRes.black),
                                       ),
                                     ),
                                     const SizedBox(
@@ -298,14 +297,14 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                         borderRadius: const BorderRadius.all(
                           Radius.circular(10),
                         ),
-                        color: Colors.white,
+                        color: ColorRes.white,
                       ),
                       child: Row(
                         children: [
                           Expanded(
                             child: TextFormField(
                               controller: controller.msController,
-                              style: const TextStyle(color: Colors.black),
+                              style: const TextStyle(color: ColorRes.black),
                               decoration: const InputDecoration(
                                   hintText: "Type message...",
                                   hintStyle: TextStyle(
@@ -314,20 +313,21 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                             ),
                           ),
                           InkWell(
-                              onTap: () {
-                                if (controller.validation()) {
-                                  controller.sendMessage(
-                                    roomId.toString(),
-                                    otherUserUid,
-                                  );
-                                  FocusScope.of(context).unfocus();
-                                }
-                              },
-                              child: Image.asset(
-                                AssetRes.chatSend,
-                                height: 25,
-                                width: 25,
-                              ))
+                            onTap: () {
+                              if (controller.validation()) {
+                                controller.sendMessage(
+                                  roomId.toString(),
+                                  otherUserUid,
+                                );
+                                FocusScope.of(context).unfocus();
+                              }
+                            },
+                            child: Image.asset(
+                              AssetRes.chatSend,
+                              height: 25,
+                              width: 25,
+                            ),
+                          ),
                         ],
                       ),
                     );
