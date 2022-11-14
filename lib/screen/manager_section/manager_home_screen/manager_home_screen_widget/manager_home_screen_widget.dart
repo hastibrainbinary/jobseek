@@ -24,7 +24,8 @@ Widget recentPeopleBox() {
             String? o;
 
             contro.userData[i]['companyName'].forEach((element) {
-              if(element == PrefService.getString(PrefKeys.companyName).toString().toLowerCase()){
+
+              if(element.toString().toLowerCase() == PrefService.getString(PrefKeys.companyName).toString().toLowerCase()){
                 print(element);
                 o = element;
               }

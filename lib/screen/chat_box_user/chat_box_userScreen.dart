@@ -176,7 +176,13 @@ class ChatBoxUserScreen extends StatelessWidget {
                                 snapshotM.data?.data();
 
                             String? o;
-                            String? u;
+
+                           /* companyList.forEach((element) {
+                              if (element.toString().toLowerCase() == data['name'].toString().toLowerCase()) {
+                                print(element);
+                                o = element;
+                              }
+                            });*/
 
                             companyList.forEach((element) {
                               if (element.toString().toLowerCase() ==
@@ -201,14 +207,6 @@ class ChatBoxUserScreen extends StatelessWidget {
                               o = element;
                               print(element);
                             });
-
-                            /* snapshot1.data!.docs.forEach((element) {
-                             if(p.contains(element)){
-                               p.remove(element);
-                               print(element);
-                               u = element;
-                             }
-                           });*/
 
                             return (o.toString().toLowerCase() == data['name'].toString().toLowerCase())
                                 ? InkWell(

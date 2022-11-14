@@ -134,17 +134,23 @@ class ChatBoxController extends GetxController implements GetxService {
         .doc(getChatId(userUid, otherUid))
         .get()
         .then((value) {
-      //print(value['countU']);
-      msgCount = value['countM'] ;
-      if (msgCount == null) {
-        countM = [];
-        countM.add(msg);
 
-      } else{
-        print(msgCount);
+      if(value['countM'] == null){
         countM.add(msg);
       }
-      print(countM);
+      else{
+        msgCount = value['countM'] ;
+        if (msgCount == null) {
+          countM = [];
+          countM.add(msg);
+
+        } else{
+          print(msgCount);
+          countM.add(msg);
+        }
+        print(countM);
+      }
+
     });
 
 

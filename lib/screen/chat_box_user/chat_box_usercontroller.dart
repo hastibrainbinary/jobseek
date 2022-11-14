@@ -139,23 +139,32 @@ class ChatBoxUserController extends GetxController implements GetxService {
 
     String msg = msController.text;
 
-    await FirebaseFirestore.instance
-        .collection("chats")
-        .doc(getChatId(userUid, otherUid))
-        .get()
-        .then((value) {
-      //print(value['countU']);
-      msgCount = value['countU'] ;
-      if (msgCount == null) {
-        countU = [];
-        countU.add(msg);
 
-      } else{
-        print(msgCount);
-        countU.add(msg);
-      }
-      print(countU);
-    });
+      await FirebaseFirestore.instance
+          .collection("chats")
+          .doc(getChatId(userUid, otherUid))
+          .get()
+          .then((value) {
+
+            if(value['countU'] == null){
+              countU.add(msg);
+            }
+           else{
+              msgCount = value['countU'] ;
+              if (msgCount == null) {
+                countU = [];
+                countU.add(msg);
+
+              } else{
+                print(msgCount);
+                countU.add(msg);
+              }
+              print(countU);
+            }
+      });
+
+
+
 
     await setLastMsgInDoc(msg);
     await setMessage(roomId, msg, userUid);
