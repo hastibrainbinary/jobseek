@@ -5,6 +5,7 @@ import 'package:jobseek/common/widgets/common_loader.dart';
 import 'package:jobseek/common/widgets/helper.dart';
 import 'package:jobseek/screen/chat_box_user/chat_box_usercontroller.dart';
 import 'package:jobseek/screen/chat_box_user/chat_live_screen.dart';
+
 import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_controller.dart';
 import 'package:jobseek/service/pref_services.dart';
@@ -145,6 +146,7 @@ class ChatBoxScreen extends StatelessWidget {
                   return ListView.builder(
                       itemCount: snapshot.data!.docs.length,
                       itemBuilder: (context, index) {
+
                         String? o;
 
                         snapshot.data!.docs[index]['companyName']
@@ -304,11 +306,15 @@ class ChatBoxScreen extends StatelessWidget {
                       });
                 }),
           ),
+
         ],
       ),
     );
   }
 }
+
+
+
 
 ///delete chat flow done
 /*
