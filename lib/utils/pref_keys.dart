@@ -14,8 +14,10 @@ class PrefKeys {
   static const totalPost = "totalPost";
   static const allCountryData="allCountryData";
   static const allDesignation ="allDesignation";
-  static const emailRemember ="emailRemember";
-  static const passwordRemember ="passwordRemember";
+  static const emailRememberManager ="emailRemember";
+  static const emailRememberUser="emailRemember";
+  static const passwordRememberUser ="passwordRemember";
+  static const passwordRememberManager ="passwordRemember";
 
   /// User Data
   static const firstName = "firstName";
