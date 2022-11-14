@@ -6,7 +6,10 @@ import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
 class AcceptedScreen extends StatelessWidget {
-  const AcceptedScreen({Key? key}) : super(key: key);
+  String? userOccupation;
+  String? companyName;
+  String? message;
+   AcceptedScreen({Key? key,  this.userOccupation, this.companyName, this.message}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -77,12 +80,12 @@ class AcceptedScreen extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text("UI/UX Designer",
+                                      Text(userOccupation??"",
                                           style: appTextStyle(
                                               color: ColorRes.black,
                                               fontSize: 15,
                                               fontWeight: FontWeight.w500)),
-                                      Text("AirBNB",
+                                      Text(companyName??"",
                                           style: appTextStyle(
                                               color: ColorRes.black,
                                               fontSize: 12,
@@ -184,59 +187,15 @@ class AcceptedScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Text(
-                          " Hi,Adam Smith,",
+                          message??"",
                           style: appTextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w500,
                               color: ColorRes.black.withOpacity(0.9)),
                         ),
                       ),
-                      const SizedBox(height: 30),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 19),
-                        child: Text(
-                          " congratulation!",
-                          style: appTextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              color: ColorRes.black.withOpacity(0.9)),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "After we reviewed your application for the position of UI/UX Designer,we congratulate you for beinga part of us.After this you will be contacted personally by our team.Thank You ...",
-                            style: appTextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
-                                color: ColorRes.black.withOpacity(0.9)),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Text(
-                          " Greetings,",
-                          style: appTextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              color: ColorRes.black.withOpacity(0.9)),
-                        ),
-                      ),
-                      const SizedBox(height: 5),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Text(
-                          " Hiring Manager",
-                          style: appTextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              color: ColorRes.black.withOpacity(0.9)),
-                        ),
-                      ),
+
+
                       const SizedBox(height: 55),
                       Container(
                         height: 50,

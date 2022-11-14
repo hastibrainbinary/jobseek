@@ -6,7 +6,10 @@ import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
 class UiUxDesignerScreen extends StatelessWidget {
-  const UiUxDesignerScreen({Key? key}) : super(key: key);
+  String? userOccupation;
+  String? companyName;
+  String? message;
+   UiUxDesignerScreen({Key? key, this.userOccupation, this.companyName, this.message}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -76,12 +79,12 @@ class UiUxDesignerScreen extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text("UI/UX Designer",
+                                    Text(userOccupation??"",
                                         style: appTextStyle(
                                             color: ColorRes.black,
                                             fontSize: 15,
                                             fontWeight: FontWeight.w500)),
-                                    Text("AirBNB",
+                                    Text(companyName??"",
                                         style: appTextStyle(
                                             color: ColorRes.black,
                                             fontSize: 12,
@@ -183,59 +186,14 @@ class UiUxDesignerScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
-                        " Hi,Adam Smith,",
+                       message??"",
                         style: appTextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
                             color: ColorRes.black.withOpacity(0.9)),
                       ),
                     ),
-                    const SizedBox(height: 30),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 19),
-                      child: Text(
-                        " We are sorry,",
-                        style: appTextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            color: ColorRes.black.withOpacity(0.9)),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Padding(
-                        padding: const EdgeInsets.all(7.0),
-                        child: Text(
-                          'After we have had an in-depth discussion about your application,we would like to convey that \nyour profile is not suitable and you cannot become part of us.Good luck with your other applications.',
-                          style: appTextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              color: ColorRes.black.withOpacity(0.9)),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Text(
-                        " Best Regards,",
-                        style: appTextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            color: ColorRes.black.withOpacity(0.9)),
-                      ),
-                    ),
-                    const SizedBox(height: 5),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Text(
-                        " Hiring Manager",
-                        style: appTextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            color: ColorRes.black.withOpacity(0.9)),
-                      ),
-                    ),
+
                     const SizedBox(height: 55),
                     Container(
                       height: 50,

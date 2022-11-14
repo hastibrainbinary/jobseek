@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/call/video_ReceiveScreen.dart';
@@ -5,10 +7,12 @@ import 'package:jobseek/screen/chat_box/chat_box_screen.dart';
 import 'package:jobseek/screen/manager_section/applicants_detail_screen/applicants_detail_screen_widget/applicants_details_screen_widget.dart';
 import 'package:jobseek/screen/manager_section/applicants_detail_screen/applicants_details_controller.dart';
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_widget/manager_home_screen_widget.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 import 'package:jobseek/utils/string.dart';
 
 class ApplicantsDetailScreen extends StatelessWidget {
@@ -20,6 +24,8 @@ class ApplicantsDetailScreen extends StatelessWidget {
   }) : super(key: key);
   final ApplicantsDetailsController controller =
       Get.put(ApplicantsDetailsController());
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -198,7 +204,7 @@ class ApplicantsDetailScreen extends StatelessWidget {
                             height: 20,
                           ),
                           InkWell(
-                            onTap: () => Get.toNamed(AppRes.resumeScreen),
+                            onTap: () => Get.toNamed(AppRes.resumeScreen, arguments: {"doc": args['resumeUrl']}),
                             child: Container(
                               height: 50,
                               decoration: BoxDecoration(
@@ -353,6 +359,7 @@ class ApplicantsDetailScreen extends StatelessWidget {
                                         color: ColorRes.containerColor,
                                         width: 1.5)),
                                 child: TextFormField(
+                                  controller: controller.msgController,
                                   decoration: const InputDecoration(
                                       border: InputBorder.none,
                                       hintText: "Message"),
@@ -371,7 +378,13 @@ class ApplicantsDetailScreen extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    settingModalBottomSheet(context, isWrong);
+                    FocusScopeNode currentFocus = FocusScope.of(context);
+
+                    if (!currentFocus.hasPrimaryFocus) {
+                      currentFocus.unfocus();
+                    }
+
+                    settingModalBottomSheet(context, isWrong, controller, args);
                   },
                   child: Container(
                     height: 50,
@@ -400,12 +413,13 @@ class ApplicantsDetailScreen extends StatelessWidget {
   }
 }
 
-void settingModalBottomSheet(context, bool isWrong) {
+void settingModalBottomSheet(context, bool isWrong, controller, var args) {
   showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
       builder: (BuildContext bc) {
-        return Container(
+        return ( isWrong == false)
+            ? Container(
           height: 390,
           decoration: const BoxDecoration(
             color: ColorRes.white,
@@ -418,43 +432,111 @@ void settingModalBottomSheet(context, bool isWrong) {
             children: [
               const SizedBox(height: 50),
               Image.asset(
-                  isWrong == false
-                      ? AssetRes.successImage
-                      : AssetRes.failedImage,
+                  AssetRes.successImage,
                   height: 130),
               const SizedBox(height: 20),
               Center(
-                child: isWrong == false
-                    ? Text("Successful!",
-                        style: appTextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                            color: ColorRes.containerColor))
-                    : Text("Oops, Failed",
-                        style: appTextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                            color: ColorRes.starColor)),
+                child: Text("Successful!",
+                    style: appTextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        color: ColorRes.containerColor)),
               ),
               const SizedBox(height: 10),
               Center(
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
-                  child: isWrong == false
-                      ? Text("Notifications have been sent to applicants..",
-                          style: appTextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                            color: ColorRes.black.withOpacity(0.6),
-                          ),
-                          textAlign: TextAlign.center)
-                      : Text(Strings.pleaseMakeSureThatYour,
-                          style: appTextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                            color: ColorRes.black.withOpacity(0.6),
-                          ),
-                          textAlign: TextAlign.center),
+                  child: Text("Notifications have been sent to applicants..",
+                      style: appTextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                        color: ColorRes.black.withOpacity(0.6),
+                      ),
+                      textAlign: TextAlign.center),
+                ),
+              ),
+              const SizedBox(height: 10),
+             InkWell(
+               onTap: (){
+                 Navigator.of(context).pop();
+
+
+                 FirebaseFirestore.instance
+                     .collection("Applicants")
+                     .doc(FirebaseAuth.instance.currentUser!.uid)
+                     .set({
+                   'companyName': PrefService.getString(PrefKeys.companyName),
+                 });
+
+                 FirebaseFirestore.instance
+                     .collection("Applicants")
+                     .doc(FirebaseAuth.instance.currentUser!.uid)
+                     .collection("userDetails")
+                     .doc(args['uid'])
+                     .set({
+                   'userName': args['userName'],
+                   'status': controller.selectedValue,
+                   'userUid': args['uid'],
+                   'message': controller.msgController.text,
+                   'userOccupation' : args['Occupation']
+                 });
+
+
+               },
+               child:  Container(
+                 height: 50,
+                 alignment: Alignment.center,
+                 padding: const EdgeInsets.symmetric(vertical: 12),
+                 margin: const EdgeInsets.only(right: 18, left: 18, top: 10),
+                 decoration: const BoxDecoration(
+                   borderRadius: BorderRadius.all(Radius.circular(10)),
+                   gradient: LinearGradient(colors: [
+                     ColorRes.gradientColor,
+                     ColorRes.containerColor,
+                   ]),
+                 ),
+                 child: Text(Strings.ok,
+                     style: appTextStyle(
+                         fontSize: 18, fontWeight: FontWeight.w500)),
+               ),
+             ),
+            ],
+          ),
+        )
+            : Container(
+          height: 390,
+          decoration: const BoxDecoration(
+            color: ColorRes.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(45),
+              topRight: Radius.circular(45),
+            ),
+          ),
+          child: Column(
+            children: [
+              const SizedBox(height: 50),
+              Image.asset(
+                  AssetRes.failedImage,
+                  height: 130),
+              const SizedBox(height: 20),
+              Center(
+                child: Text("Oops, Failed",
+                    style: appTextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        color: ColorRes.starColor)),
+              ),
+              const SizedBox(height: 10),
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text(Strings.pleaseMakeSureThatYour,
+                      style: appTextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                        color: ColorRes.black.withOpacity(0.6),
+                      ),
+                      textAlign: TextAlign.center),
                 ),
               ),
               const SizedBox(height: 10),
@@ -470,7 +552,7 @@ void settingModalBottomSheet(context, bool isWrong) {
                     ColorRes.containerColor,
                   ]),
                 ),
-                child: Text(isWrong == false ? Strings.ok : Strings.tryAgain,
+                child: Text(Strings.tryAgain,
                     style: appTextStyle(
                         fontSize: 18, fontWeight: FontWeight.w500)),
               ),
