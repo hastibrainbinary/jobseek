@@ -48,6 +48,11 @@ class ApplicantsDetailScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8)),
                 child: InkWell(
                   onTap: () {
+                    controller.selectedValue = "";
+                    controller.msgController.clear();
+                    controller.msgController.text = "";
+                    controller.showTime = "Hour";
+                    controller.showDate = "Date";
                     Get.back();
                   },
                   child: const Icon(
@@ -251,7 +256,7 @@ class ApplicantsDetailScreen extends StatelessWidget {
                                           : ColorRes.containerColor),
                                 ),
                                 isExpanded: true,
-                                value: controller.selectedValue,
+                                value: controller.selectedValue == "" ? null : controller.selectedValue,
                                 items: controller.list.map((e) {
                                   return DropdownMenuItem<String>(
                                     value: e,
@@ -415,7 +420,7 @@ class ApplicantsDetailScreen extends StatelessWidget {
   }
 }
 
-void settingModalBottomSheet(context, bool isWrong, controller, var args) {
+void settingModalBottomSheet(context, bool isWrong, ApplicantsDetailsController controller, var args) {
   showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
@@ -459,25 +464,20 @@ void settingModalBottomSheet(context, bool isWrong, controller, var args) {
               ),
               const SizedBox(height: 10),
              InkWell(
-               onTap: (){
-
-                 controller.msgController.clear();
-                 controller.msgController.text = "";
-                 controller.showTime = "";
-                 controller.showDate = "";
+               onTap: () async{
 
 
                  Navigator.of(context).pop();
 
 
-                 FirebaseFirestore.instance
+                 await FirebaseFirestore.instance
                      .collection("Applicants")
                      .doc(FirebaseAuth.instance.currentUser!.uid)
                      .set({
                    'companyName': PrefService.getString(PrefKeys.companyName),
                  });
 
-                 FirebaseFirestore.instance
+                 await FirebaseFirestore.instance
                      .collection("Applicants")
                      .doc(FirebaseAuth.instance.currentUser!.uid)
                      .collection("userDetails")
@@ -489,6 +489,8 @@ void settingModalBottomSheet(context, bool isWrong, controller, var args) {
                    'message': controller.msgController.text,
                    'userOccupation' : args['Occupation']
                  });
+
+
 
 
                },
