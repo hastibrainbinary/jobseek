@@ -223,6 +223,7 @@ class GoogleSignUpControllerM extends GetxController {
       "City": cityController.text,
       "State": stateController.text,
       "Country": countryController.text,
+      "TotalPost":0
     };
 
     if (kDebugMode) {

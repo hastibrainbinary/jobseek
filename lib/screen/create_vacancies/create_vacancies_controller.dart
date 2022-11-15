@@ -24,7 +24,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
   String companyName = "";
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
   List<TextEditingController> addRequirementsList = [];
-
+RxBool loader = false.obs;
   onTapNextBut() {
     final docRef = fireStore
         .collection("Auth")
@@ -92,6 +92,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
   }
 
   onTapNext() async {
+    loader.value = true;
     String uid = PrefService.getString(PrefKeys.userId);
     int totalPost = PrefService.getInt(PrefKeys.totalPost);
     String pUid = "$uid*${totalPost + 1}";
@@ -154,6 +155,8 @@ class CreateVacanciesController extends GetxController implements GetxService {
             ));
       });
     }
+    loader.value = false;
+
   }
 
   validate() {

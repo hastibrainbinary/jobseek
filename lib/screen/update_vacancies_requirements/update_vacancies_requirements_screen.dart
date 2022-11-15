@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/common_error_box.dart';
@@ -9,13 +10,13 @@ import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
 class UpdateVacanciesRequirementsScreen extends StatelessWidget {
-  UpdateVacanciesRequirementsScreen({
-    Key? key,
-  }) : super(key: key);
+  UpdateVacanciesRequirementsScreen({Key? key,})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(UpdateVacanciesRequirementController());
+
 
     return Scaffold(
       backgroundColor: ColorRes.backgroundColor,

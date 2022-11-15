@@ -2,16 +2,36 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/screen/create_vacancies/create_vacancies_screen.dart';
 
 class UpdateVacanciesRequirementController extends GetxController {
   final args = Get.arguments;
 
   List requirments = [];
   RxBool isJobDetails = true.obs;
+
   ontap() {
     isJobDetails.value = false;
     update();
+  }
+
+  bool editValues = false;
+  List<bool> moreOption = [];
+
+  void onTapMore(int index) {
+    if (moreOption[index] == false) {
+      moreOption[index] = true;
+    } else {
+      moreOption[index] = false;
+    }
+    update(['more']);
+  }
+  editOnTap() {
+    if (editValues == false) {
+      editValues = true;
+    } else {
+      editValues = false;
+    }
+    update(["editValues"]);
   }
 
   RxBool text = false.obs;
@@ -29,12 +49,16 @@ class UpdateVacanciesRequirementController extends GetxController {
   TextEditingController locationController = TextEditingController();
   TextEditingController typeController = TextEditingController();
   TextEditingController statusController = TextEditingController();
+  TextEditingController requirementController = TextEditingController();
   List requirmentList = [];
+  List<TextEditingController> addRequirementsList = [];
+
   RxBool isPositionValidate = false.obs;
   RxBool isSalaryValidate = false.obs;
   RxBool isLocationValidate = false.obs;
   RxBool isTypeValidate = false.obs;
   RxBool isStatusValidate = false.obs;
+
   onLoginBtnTap() async {
     validate();
     if (isPositionValidate.value == false &&
@@ -52,7 +76,7 @@ class UpdateVacanciesRequirementController extends GetxController {
         "location": locationController.text.trim(),
         "type": typeController.text.trim(),
         "Status": statusController.text.trim(),
-        "BookMarkUserList":[],
+        "BookMarkUserList": [],
       };
 
       FirebaseFirestore.instance
@@ -63,7 +87,10 @@ class UpdateVacanciesRequirementController extends GetxController {
       Get.back();
     }
   }
-
+onTapNewRequirement(){
+  addRequirementsList.add(TextEditingController());
+  update();
+}
   initState(dynamic data) async {
     positionController.text = data['docs']["Position"];
     salaryController.text = data['docs']["salary"];
@@ -77,6 +104,17 @@ class UpdateVacanciesRequirementController extends GetxController {
         .get();
     var ref = document.data();
     print(ref);
+  }
+
+  onTapRequirements(){
+    Map<String, dynamic> map = {
+      "RequirementsList":requirmentList,
+    };
+
+    FirebaseFirestore.instance
+        .collection("allPost")
+        .doc(args['docs'].id.toString())
+        .update(map);
   }
 
   validate() {
@@ -138,6 +176,7 @@ class UpdateVacanciesRequirementController extends GetxController {
     "Republic",
     "Prague",
   ];
+
   changeDropwonType({required String val}) {
     dropDownValueType = val;
     typeController.text = dropDownValueType;

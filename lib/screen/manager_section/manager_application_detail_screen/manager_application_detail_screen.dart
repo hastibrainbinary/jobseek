@@ -41,7 +41,7 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    width: Get.width - 80,
+                    width: Get.width - 110,
                     alignment: Alignment.center,
                     child: Text(
                       "Applications",
