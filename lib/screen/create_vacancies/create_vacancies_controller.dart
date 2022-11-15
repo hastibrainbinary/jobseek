@@ -25,7 +25,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
   List<TextEditingController> addRequirementsList = [];
 
-  onTapNextBut() {
+  onTapNextBut(String position) {
     final docRef = fireStore
         .collection("Auth")
         .doc("Manager")
@@ -42,7 +42,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
       onError: (e) => print("Error getting document: $e"),
     );
 
-    Get.to(RequirementsScreen());
+    Get.to(RequirementsScreen(position: position));
   }
 
   void onTapBack(String value) {
@@ -91,7 +91,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
     update(["colorChange"]);
   }
 
-  onTapNext() async {
+  onTapNext(String position) async {
     String uid = PrefService.getString(PrefKeys.userId);
     int totalPost = PrefService.getInt(PrefKeys.totalPost);
     String pUid = "$uid*${totalPost + 1}";
@@ -151,6 +151,8 @@ class CreateVacanciesController extends GetxController implements GetxService {
         onTapBack("");
         Get.off(() => JobDetailsScreen(
               isError: true,
+          position: position,
+
             ));
       });
     }
