@@ -59,7 +59,8 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                         fontWeight: FontWeight.w500),
                   ),
                 ),
-              )
+              ),
+
             ],
           ),
           const SizedBox(height: 20),
@@ -580,7 +581,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                       children: [
                                         detailBox(controller
                                             .requirmentList[index]
-                                            .toString()),
+                                            .toString(),true),
                                         (controller.text.value == true)
                                             ? Container(
                                                 //padding: EdgeInsets.symmetric( vertical: 10),
