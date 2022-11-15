@@ -384,6 +384,8 @@ class ApplicantsDetailScreen extends StatelessWidget {
                       currentFocus.unfocus();
                     }
 
+
+
                     settingModalBottomSheet(context, isWrong, controller, args);
                   },
                   child: Container(
@@ -458,6 +460,13 @@ void settingModalBottomSheet(context, bool isWrong, controller, var args) {
               const SizedBox(height: 10),
              InkWell(
                onTap: (){
+
+                 controller.msgController.clear();
+                 controller.msgController.text = "";
+                 controller.showTime = "";
+                 controller.showDate = "";
+
+
                  Navigator.of(context).pop();
 
 
