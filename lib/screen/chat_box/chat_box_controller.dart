@@ -20,6 +20,8 @@ class ChatBoxController extends GetxController implements GetxService {
   final ScrollController listScrollController = ScrollController();
   List countM = [];
 
+  RxString searchText = ''.obs;
+
   RxList jobs = [
     "All chat",
     "Unread",

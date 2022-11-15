@@ -87,7 +87,7 @@ class ChatBoxUserScreen extends StatelessWidget {
         //     ),
         //   ),
         // ),
-        searchAreaChat(),
+        searchAreaChatU(),
         const SizedBox(height: 20),
         Container(
           alignment: Alignment.centerLeft,
@@ -406,7 +406,7 @@ class ChatBoxUserScreen extends StatelessWidget {
                             });
 
 
-                          if(o.toString().contains(controller.searchText.value.toLowerCase())){
+                          if(o.toString().contains(controller.searchText.value.capitalize.toString()) || o.toString().contains(controller.searchText.value.toLowerCase().toString())){
 
                             return InkWell(
                               onTap: () async {
