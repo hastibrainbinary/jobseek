@@ -6,14 +6,18 @@ import 'package:jobseek/screen/dashboard/dashboard_screen.dart';
 import 'package:jobseek/screen/manager_section/Jobdetails/Jobdetails_controller.dart';
 import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen.dart';
 import 'package:jobseek/screen/manager_section/manager_application_screen/manger_application_screen.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 import 'package:jobseek/utils/string.dart';
 
 class JobDetailsScreen extends StatelessWidget {
   final bool isError;
-  JobDetailsScreen({Key? key, required this.isError}) : super(key: key);
+  String? position;
+
+  JobDetailsScreen({Key? key, required this.isError, this.position}) : super(key: key);
   final JobDetailsController controller = Get.put(JobDetailsController());
   // var args = Get.arguments;
 

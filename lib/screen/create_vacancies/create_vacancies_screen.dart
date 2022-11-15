@@ -533,7 +533,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                       : InkWell(
                                           // add screen
                                           onTap: () =>
-                                              controller.onTapNextBut(),
+                                              controller.onTapNextBut(controller.positionController.text),
                                           child: Container(
                                             height: 50,
                                             width: MediaQuery.of(context)

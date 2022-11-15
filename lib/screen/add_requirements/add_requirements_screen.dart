@@ -9,7 +9,9 @@ import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
 class RequirementsScreen extends StatelessWidget {
-  RequirementsScreen({Key? key}) : super(key: key);
+  String? position;
+
+  RequirementsScreen({Key? key, this.position}) : super(key: key);
   final controller = Get.put(CreateVacanciesController());
 
   @override
@@ -155,7 +157,7 @@ class RequirementsScreen extends StatelessWidget {
       ),
       floatingActionButton: InkWell(
         onTap: () {
-          controller.onTapNext();
+          controller.onTapNext(position!);
         },
         child: Container(
           height: 50,
