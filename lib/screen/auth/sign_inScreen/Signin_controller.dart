@@ -19,6 +19,15 @@ class SignInScreenController extends GetxController {
   String emailError = "";
   String pwdError = "";
   bool rememberMe = false;
+
+  getRememberEmailDataUser() {
+    if (PrefService.getString(PrefKeys.emailRememberUser) != "") {
+      emailController.text = PrefService.getString(PrefKeys.emailRememberUser);
+      passwordController.text =
+          PrefService.getString(PrefKeys.passwordRememberUser);
+    }
+  }
+
   void loadUserEmailPassword() async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -193,7 +202,11 @@ class SignInScreenController extends GetxController {
     });
   }
 
-  onLoginBtnTap({String? email, String? password}) {
+  onLoginBtnTap({String? email, String? password}) async {
+    if(rememberMe ==true){
+      await PrefService.setValue(PrefKeys.emailRememberUser, emailController.text);
+      await PrefService.setValue(PrefKeys.passwordRememberUser, passwordController.text);
+    }
     if (validator()) {
       loading.value = true;
       signInWithEmailAndPassword(password: password!, email: email!);

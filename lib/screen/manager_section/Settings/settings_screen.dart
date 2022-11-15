@@ -7,12 +7,11 @@ import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/screen/looking_for_screen/looking_for_screen.dart';
 import 'package:jobseek/screen/manager_section/Appearance/Appearance_screen.dart';
 import 'package:jobseek/screen/manager_section/Notification/Notification_screen.dart';
-import 'package:jobseek/screen/manager_section/help/help_screen.dart';
-import 'package:jobseek/screen/manager_section/security/security_screen.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 import 'package:jobseek/utils/string.dart';
 
 class SettingScreenM extends StatelessWidget {
@@ -28,26 +27,42 @@ class SettingScreenM extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 60),
-            Row(
+            Stack(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: InkWell(
-                    onTap: () {
-                      Get.back();
-                    },
-                    child: backButton(),
+                GestureDetector(
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    padding: const EdgeInsets.only(left: 10),
+                    margin: const EdgeInsets.only(left: 20),
+                    decoration: BoxDecoration(
+                      color: ColorRes.logoColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: const Align(
+                      alignment: Alignment.center,
+                      child: Icon(
+                        Icons.arrow_back_ios,
+                        color: ColorRes.containerColor,
+                      ),
+                    ),
                   ),
                 ),
-                const SizedBox(width: 85),
-                Text(
-                  'Settings',
-                  style: appTextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                      height: 1,
-                      color: ColorRes.black),
-                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Center(
+                    child: Text(
+                      "Settings",
+                      style: appTextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                )
               ],
             ),
             const SizedBox(height: 10),
@@ -203,7 +218,7 @@ class SettingScreenM extends StatelessWidget {
               color: ColorRes.lightGrey.withOpacity(0.8),
               height: 1,
             ),
-           /* const SizedBox(height: 10),
+            /* const SizedBox(height: 10),
             InkWell(
               onTap: () {
                 Navigator.push(context,
@@ -364,7 +379,17 @@ class SettingScreenM extends StatelessWidget {
                           await googleSignIn.signOut();
                         }
                         await FirebaseAuth.instance.signOut();
-                        PrefService.clear();
+                        /* PrefService.clear();*/
+                        PrefService.setValue(PrefKeys.password, "");
+                        PrefService.setValue(PrefKeys.rememberMe, "");
+                        PrefService.setValue(PrefKeys.registerToken, "");
+                        PrefService.setValue(PrefKeys.userId, "");
+                        PrefService.setValue(PrefKeys.country, "");
+                        PrefService.setValue(PrefKeys.email, "");
+                        PrefService.setValue(PrefKeys.totalPost, "");
+                        PrefService.setValue(PrefKeys.phoneNumber, "");
+                        PrefService.setValue(PrefKeys.city, "");
+                        PrefService.setValue(PrefKeys.state, "");
 
                         // ignore: use_build_context_synchronously
                         Navigator.of(context).pushAndRemoveUntil(

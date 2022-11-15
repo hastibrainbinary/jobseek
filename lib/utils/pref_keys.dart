@@ -1,4 +1,5 @@
 class PrefKeys {
+  /// sign in
   static const isLogin = "is_login";
   static const register = "register";
   static const accessToken = "token";
@@ -13,6 +14,10 @@ class PrefKeys {
   static const totalPost = "totalPost";
   static const allCountryData="allCountryData";
   static const allDesignation ="allDesignation";
+  static const emailRememberManager ="emailRememberManager";
+  static const emailRememberUser="emailRememberUser";
+  static const passwordRememberUser ="passwordRememberUser";
+  static const passwordRememberManager ="passwordRememberManager";
 
   /// User Data
   static const firstName = "firstName";

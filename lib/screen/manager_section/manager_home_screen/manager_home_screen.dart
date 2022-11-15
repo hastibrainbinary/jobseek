@@ -85,6 +85,7 @@ class ManagerHomeScreen extends StatelessWidget {
                               fontWeight: FontWeight.w600),
                         ),
                         Text(
+                           textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis,
                           controller.companyName ?? "",
                           maxLines: 2,

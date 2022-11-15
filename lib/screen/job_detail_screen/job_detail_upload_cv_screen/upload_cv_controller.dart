@@ -76,6 +76,8 @@ class JobDetailsUploadCvController extends GetxController {
       {"doc": args},
       {"error": false, "filename": filepath},
     ]);
+
+    filepath.value = "";
   }
 
   RxString filepath = "".obs;

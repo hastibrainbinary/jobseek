@@ -25,7 +25,7 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            jobDetailsAppBar(),
+            jobDetailsSuccessAppBar(context),
             SizedBox(
               height: Get.height - 100,
               child: SingleChildScrollView(

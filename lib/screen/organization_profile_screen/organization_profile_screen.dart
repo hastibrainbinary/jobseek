@@ -347,6 +347,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                                 ).toList(),
                                 onChanged: (String? val) {
                                   controller.changeDropdwon(val: val!);
+                                  controller.update(["Organization"]);
                                 });
                           },
                         ),

@@ -34,36 +34,77 @@ class ChatBoxScreen extends StatelessWidget {
       body: Column(
         children: [
           const SizedBox(height: 50),
-          Row(children: [
-            Container(
-              margin: const EdgeInsets.all(15),
-              height: 40,
-              width: 40,
-              decoration: BoxDecoration(
-                  color: ColorRes.logoColor,
-                  borderRadius: BorderRadius.circular(10)),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 11),
-                child: Text(
-                  textAlign: TextAlign.center,
-                  "Logo",
-                  style: appTextStyle(
-                      color: ColorRes.containerColor,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 10),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 18.0),
+            child: Stack(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      color: ColorRes.logoColor,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Logo',
+                        style: appTextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 10,
+                            color: ColorRes.containerColor),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Center(
+                    child: Text(
+                      "Chat Box",
+                      style: appTextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                )
+              ],
             ),
-            const SizedBox(width: 80),
-            Text(
-              'Chat Box',
-              style: appTextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500,
-                  height: 1,
-                  color: ColorRes.black),
-            ),
-          ]),
+          ),
+          // Row(children: [
+          //   Container(
+          //     margin: const EdgeInsets.all(15),
+          //     height: 40,
+          //     width: 40,
+          //     decoration: BoxDecoration(
+          //         color: ColorRes.logoColor,
+          //         borderRadius: BorderRadius.circular(10)),
+          //     child: Padding(
+          //       padding: const EdgeInsets.only(top: 11),
+          //       child: Text(
+          //         textAlign: TextAlign.center,
+          //         "Logo",
+          //         style: appTextStyle(
+          //             color: ColorRes.containerColor,
+          //             fontWeight: FontWeight.w600,
+          //             fontSize: 10),
+          //       ),
+          //     ),
+          //   ),
+          //   const SizedBox(width: 80),
+          //   Text(
+          //     'Chat Box',
+          //     style: appTextStyle(
+          //         fontSize: 20,
+          //         fontWeight: FontWeight.w500,
+          //         height: 1,
+          //         color: ColorRes.black),
+          //   ),
+          // ]),
           const SizedBox(height: 20),
           // Container(
           //   width: 339,
@@ -146,7 +187,6 @@ class ChatBoxScreen extends StatelessWidget {
                   return ListView.builder(
                       itemCount: snapshot.data!.docs.length,
                       itemBuilder: (context, index) {
-
                         String? o;
 
                         snapshot.data!.docs[index]['companyName']
@@ -306,15 +346,11 @@ class ChatBoxScreen extends StatelessWidget {
                       });
                 }),
           ),
-
         ],
       ),
     );
   }
 }
-
-
-
 
 ///delete chat flow done
 /*
