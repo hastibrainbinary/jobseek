@@ -47,7 +47,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 40),
+                     SizedBox(width: Get.width/10,),
                     Text(
                       'Create Vacancies',
                       style: appTextStyle(
@@ -254,6 +254,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                           onChanged: (String? val) {
                                             controller.changeDropwon(val: val!);
                                             controller.update(["profile"]);
+
                                           });
                                     },
                                   ),
@@ -326,6 +327,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                           onChanged: (String? val) {
                                             controller.changetype(val: val!);
                                             controller.update(["profile"]);
+
                                           });
                                     },
                                   ),
@@ -399,6 +401,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                             controller.changeCategory(
                                                 val: val!);
                                             controller.update(["profile"]);
+
                                           });
                                     },
                                   ),
@@ -492,8 +495,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                             GetBuilder<CreateVacanciesController>(
                                 id: "profile",
                                 builder: (controller) {
-                                  return
-                                      /* (controller.positionController.text == '' ||
+                                  return (controller.positionController.text == '' ||
                                           controller.salaryController.text ==
                                               '' ||
                                           controller.locationController.text ==

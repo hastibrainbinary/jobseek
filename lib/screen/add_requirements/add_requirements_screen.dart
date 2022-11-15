@@ -38,7 +38,7 @@ class RequirementsScreen extends StatelessWidget {
                         child: backButton(),
                       ),
                     ),
-                    SizedBox(width: Get.width / 5.8),
+                    SizedBox(width: Get.width / 10),
                     Text(
                       'Add Requirements',
                       style: appTextStyle(
@@ -152,6 +152,43 @@ class RequirementsScreen extends StatelessWidget {
                 )
               ],
             ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 40),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: InkWell(
+                  onTap: () {
+                    controller.onTapNext();
+                  },
+                  child: Container(
+                    height: 50,
+                    width: 339,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      gradient: const LinearGradient(
+                        colors: [
+                          ColorRes.gradientColor,
+                          ColorRes.containerColor,
+                        ],
+                      ),
+                    ),
+                    child: Text("Post Job Vacancy",
+                        style: appTextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                            color: ColorRes.white)),
+                  ),
+                ),
+              ),
+            ),
+            Obx(() => controller.loader.isTrue
+                ? const CommonLoader()
+                : const SizedBox()),
+          ],
+        ),
+      ),
+      /*  floatingActionButton: InkWell(
             Obx(() => controller.loader.isTrue
                 ? const CommonLoader()
                 : const SizedBox()),
@@ -181,7 +218,7 @@ class RequirementsScreen extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                   color: ColorRes.white)),
         ),
-      ),
+      ),*/
     );
   }
 }
