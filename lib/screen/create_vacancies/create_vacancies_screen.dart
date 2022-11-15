@@ -48,7 +48,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                         ),
                       ),
                     ),
-                     SizedBox(width: Get.width/6,),
+                     SizedBox(width: Get.width/10,),
                     Text(
                       'Create Vacancies',
                       style: appTextStyle(

@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/common/widgets/common_loader.dart';
 import 'package:jobseek/screen/create_vacancies/create_vacancies_controller.dart';
-import 'package:jobseek/screen/manager_section/Jobdetails/Jobdetails_screen.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
@@ -37,7 +36,7 @@ class RequirementsScreen extends StatelessWidget {
                         child: backButton(),
                       ),
                     ),
-                     SizedBox(width: Get.width/5.8),
+                    SizedBox(width: Get.width / 10),
                     Text(
                       'Add Requirements',
                       style: appTextStyle(
@@ -78,15 +77,16 @@ class RequirementsScreen extends StatelessWidget {
                                   child: Container(
                                     height: 50,
                                     width: 339,
-                                    margin:
-                                        const EdgeInsets.only(top: 22, bottom: 15),
+                                    margin: const EdgeInsets.only(
+                                        top: 22, bottom: 15),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
                                       border: Border.all(
                                           color: ColorRes.containerColor),
                                     ),
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         const Image(
                                           image: AssetImage(AssetRes.addIcon),
@@ -106,7 +106,8 @@ class RequirementsScreen extends StatelessWidget {
                                 )
                               : Container(
                                   padding: const EdgeInsets.only(right: 10),
-                                  margin: const EdgeInsets.only(top: 5, bottom: 5),
+                                  margin:
+                                      const EdgeInsets.only(top: 5, bottom: 5),
                                   width: 339,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
@@ -126,8 +127,8 @@ class RequirementsScreen extends StatelessWidget {
                                       ),
                                       Expanded(
                                         child: TextField(
-                                          controller:
-                                              controller.addRequirementsList[index],
+                                          controller: controller
+                                              .addRequirementsList[index],
                                           keyboardType: TextInputType.multiline,
                                           maxLines: null,
                                           decoration: const InputDecoration(
@@ -149,11 +150,43 @@ class RequirementsScreen extends StatelessWidget {
                 )
               ],
             ),
-            Obx(() => controller.loader.isTrue?const CommonLoader(): const SizedBox()),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 40),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: InkWell(
+                  onTap: () {
+                    controller.onTapNext();
+                  },
+                  child: Container(
+                    height: 50,
+                    width: 339,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      gradient: const LinearGradient(
+                        colors: [
+                          ColorRes.gradientColor,
+                          ColorRes.containerColor,
+                        ],
+                      ),
+                    ),
+                    child: Text("Post Job Vacancy",
+                        style: appTextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                            color: ColorRes.white)),
+                  ),
+                ),
+              ),
+            ),
+            Obx(() => controller.loader.isTrue
+                ? const CommonLoader()
+                : const SizedBox()),
           ],
         ),
       ),
-      floatingActionButton: InkWell(
+      /*  floatingActionButton: InkWell(
         onTap: () {
           controller.onTapNext();
         },
@@ -176,7 +209,7 @@ class RequirementsScreen extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                   color: ColorRes.white)),
         ),
-      ),
+      ),*/
     );
   }
 }

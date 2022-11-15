@@ -1,7 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/screen/dashboard/dashboard_screen.dart';
+import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen.dart';
 
 class UpdateVacanciesRequirementController extends GetxController {
   final args = Get.arguments;
@@ -25,6 +28,7 @@ class UpdateVacanciesRequirementController extends GetxController {
     }
     update(['more']);
   }
+
   editOnTap() {
     if (editValues == false) {
       editValues = true;
@@ -87,10 +91,14 @@ class UpdateVacanciesRequirementController extends GetxController {
       Get.back();
     }
   }
-onTapNewRequirement(){
-  addRequirementsList.add(TextEditingController());
-  update();
-}
+
+  onTapNewRequirement() {
+    text.value = true;
+    update(["more"]);
+    addRequirementsList.add(TextEditingController());
+    update();
+  }
+
   initState(dynamic data) async {
     positionController.text = data['docs']["Position"];
     salaryController.text = data['docs']["salary"];
@@ -104,17 +112,42 @@ onTapNewRequirement(){
         .get();
     var ref = document.data();
     print(ref);
+    moreOption = List.filled(data['docs']['RequirementsList'].length, false);
+    update(["more"]);
   }
 
-  onTapRequirements(){
+  deleteNewRequirement(int index) async {
+    requirmentList.removeAt(index);
+    print(requirmentList);
     Map<String, dynamic> map = {
-      "RequirementsList":requirmentList,
+      "RequirementsList": requirmentList,
     };
 
     FirebaseFirestore.instance
         .collection("allPost")
         .doc(args['docs'].id.toString())
         .update(map);
+    update(["more"]);
+  }
+RxBool loader = false.obs;
+  onTapRequirements(BuildContext context) {
+    loader.value=true;
+    requirmentList.add(    requirementController.text);
+    print(requirmentList);
+    Map<String, dynamic> map = {
+      "RequirementsList": requirmentList,
+    };
+
+    FirebaseFirestore.instance
+        .collection("allPost")
+        .doc(args['docs'].id.toString())
+        .update(map);
+    update(["update"]);
+    loader.value=false;
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+      return ManagerDashBoardScreen();
+    },));
+
   }
 
   validate() {
