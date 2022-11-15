@@ -495,7 +495,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                             GetBuilder<CreateVacanciesController>(
                                 id: "profile",
                                 builder: (controller) {
-                                  return (controller.positionController.text == '' ||
+                                  return /*(controller.positionController.text == '' ||
                                           controller.salaryController.text ==
                                               '' ||
                                           controller.locationController.text ==
