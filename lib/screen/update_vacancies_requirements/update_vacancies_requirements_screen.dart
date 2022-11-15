@@ -625,13 +625,55 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                        shrinkWrap: true,
                                        itemCount: controller.requirmentList.length+controller.addRequirementsList.length,
                                        itemBuilder: (context, index) {
+                                         int values =  (controller.requirmentList.length+controller.addRequirementsList.length)-controller.requirmentList.length;
+                                         print(values);
                                          return Column(
                                            children: [
                                              /*  detailBox(
                                                 controller.requirmentList[index]
                                                     .toString(),
                                                 true),*/
-                                             controller.requirmentList.isEmpty?const SizedBox():Stack(children: [
+                                             index>= controller.requirmentList.length?  GetBuilder<UpdateVacanciesRequirementController>(id:"more",
+                                               builder: (controller) {
+                                                 return (controller.text.value == true)
+                                                     ? Padding(padding: const EdgeInsets.only(bottom: 10),
+                                                   child: Container(
+                                                     //padding: EdgeInsets.symmetric( vertical: 10),
+                                                     height: 46,
+                                                     width: 339,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius:
+                                                       BorderRadius.circular(10),
+                                                       color:
+                                                       const Color(0xffF3F0F8),
+                                                     ),
+                                                     child:  TextField(onChanged: (value) {
+                                                          controller.onchangeValues=value;
+                                                          print(controller.onchangeValues);
+                                                     },
+                                                       onSubmitted: (value) {
+                                                         controller.requirmentList.add(value);
+                                                         controller.addRequirementsList=[];
+                                                         controller.moreOption = List.generate(controller.requirmentList.length, (index) =>false);
+
+                                                         controller.update(["more"]);
+                                                       },
+                                                       controller: controller
+                                                           .addRequirementsList[values-1],
+                                                       decoration: const InputDecoration(
+                                                         border: InputBorder.none,
+                                                         prefixIcon:  Icon(
+                                                           Icons
+                                                               .check_circle_outline,
+                                                           color: ColorRes
+                                                               .containerColor,
+                                                           size: 30,
+                                                         ),),
+                                                     ),
+                                                   ),
+                                                 )
+                                                     : const SizedBox();
+                                               },):Stack(children: [
                                                /*  Container(
                                               //padding: EdgeInsets.symmetric( vertical: 10),
                                               height: 46,
@@ -758,34 +800,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                                    ):const SizedBox();
                                                  },)
                                              ],),
-                                             GetBuilder<UpdateVacanciesRequirementController>(id:"more",
-                                               builder: (controller) {
-                                               return (controller.text.value == true)
-                                                   ? Container(
-                                                 //padding: EdgeInsets.symmetric( vertical: 10),
-                                                 height: 46,
-                                                 width: 339,
-                                                 decoration: BoxDecoration(
-                                                   borderRadius:
-                                                   BorderRadius.circular(10),
-                                                   color:
-                                                   const Color(0xffF3F0F8),
-                                                 ),
-                                                 child:  TextField(
-                                                   controller: controller.requirementController,
-                                                   decoration: const InputDecoration(
-                                                     border: InputBorder.none,
-                                                     prefixIcon:  Icon(
-                                                       Icons
-                                                           .check_circle_outline,
-                                                       color: ColorRes
-                                                           .containerColor,
-                                                       size: 30,
-                                                     ),),
-                                                 ),
-                                               )
-                                                   : const SizedBox();
-                                             },),
+
                                            ],
                                          );
                                        }),

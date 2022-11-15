@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/screen/dashboard/dashboard_screen.dart';
 import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen.dart';
 
 class UpdateVacanciesRequirementController extends GetxController {
@@ -40,7 +39,7 @@ class UpdateVacanciesRequirementController extends GetxController {
 
   RxBool text = false.obs;
   RxBool add = true.obs;
-
+  String? onchangeValues ;
   @override
   void onInit() {
     // TODO: implement onInit
@@ -93,9 +92,13 @@ class UpdateVacanciesRequirementController extends GetxController {
   }
 
   onTapNewRequirement() {
+    if(addRequirementsList.isEmpty){
+      addRequirementsList.add(TextEditingController());
+    }else if(addRequirementsList.isNotEmpty){
+          Get.snackbar("Error", "Please Fill Up Filed",colorText: Colors.red);
+    }
     text.value = true;
     update(["more"]);
-    addRequirementsList.add(TextEditingController());
     update();
   }
 
@@ -118,7 +121,6 @@ class UpdateVacanciesRequirementController extends GetxController {
 
   deleteNewRequirement(int index) async {
     requirmentList.removeAt(index);
-    print(requirmentList);
     Map<String, dynamic> map = {
       "RequirementsList": requirmentList,
     };
@@ -129,25 +131,33 @@ class UpdateVacanciesRequirementController extends GetxController {
         .update(map);
     update(["more"]);
   }
-RxBool loader = false.obs;
-  onTapRequirements(BuildContext context) {
-    loader.value=true;
-    requirmentList.add(    requirementController.text);
-    print(requirmentList);
+
+  RxBool loader = false.obs;
+
+  onTapRequirements(BuildContext context) async {
+    loader.value = true;
+
+   /* List<String> requirementsList1 = List.generate(
+        addRequirementsList.length, (index) => addRequirementsList[index].text);
+    print(requirementsList1);
+    requirmentList=requirementsList1;
+    print(requirmentList);*/
+    print(onchangeValues);
     Map<String, dynamic> map = {
       "RequirementsList": requirmentList,
     };
 
-    FirebaseFirestore.instance
+    await FirebaseFirestore.instance
         .collection("allPost")
         .doc(args['docs'].id.toString())
-        .update(map);
+        .update({"RequirementsList": requirmentList});
     update(["update"]);
-    loader.value=false;
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-      return ManagerDashBoardScreen();
-    },));
-
+    loader.value = false;
+    Navigator.pushReplacement(context, MaterialPageRoute(
+      builder: (context) {
+        return ManagerDashBoardScreen();
+      },
+    ));
   }
 
   validate() {

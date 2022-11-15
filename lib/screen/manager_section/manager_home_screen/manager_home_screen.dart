@@ -6,8 +6,10 @@ import 'package:jobseek/screen/manager_section/Recent%20People%20Application/rec
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_controller.dart';
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_widget/manager_home_screen_widget.dart';
 import 'package:jobseek/screen/manager_section/notification1/notification1_screen.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 
 class ManagerHomeScreen extends StatelessWidget {
   ManagerHomeScreen({Key? key}) : super(key: key);
@@ -88,7 +90,7 @@ class ManagerHomeScreen extends StatelessWidget {
                         Text(
                           textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis,
-                          controller.companyName ?? "",
+                          PrefService.getString(PrefKeys.companyName).toString()?? "",
                           maxLines: 2,
                           style: appTextStyle(
                               color: ColorRes.containerColor,
