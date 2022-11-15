@@ -302,14 +302,15 @@ class ManagerApplicationScreen extends StatelessWidget {
                                                                 ]),
                                                           ),
                                                           child: Text(
-                                                              "Create Vacancies Now",
-                                                              style: appTextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                  fontSize: 18,
-                                                                  color: ColorRes
-                                                                      .white)),
+                                                            "Create Vacancies Now",
+                                                            style: appTextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                                fontSize: 18,
+                                                                color: ColorRes
+                                                                    .white),
+                                                          ),
                                                         ),
                                                       ),
                                                     ],

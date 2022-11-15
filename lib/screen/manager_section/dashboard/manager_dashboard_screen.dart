@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/chat_box/chat_box_screen.dart';
-import 'package:jobseek/screen/manager_section/Profile/edit_profile/edit_profile_screen.dart';
 import 'package:jobseek/screen/manager_section/Profile/profile_screen.dart';
 import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen_controller.dart';
 import 'package:jobseek/screen/manager_section/dashboard/widget.dart';
@@ -29,19 +28,24 @@ class ManagerDashBoardScreen extends StatelessWidget {
       child: Scaffold(
           resizeToAvoidBottomInset: false,
           backgroundColor: ColorRes.backgroundColor,
-          body: Obx(() => controller.currentTab.value == 0
-              ? ManagerHomeScreen()
-              : controller.currentTab.value == 1
-                  ? ManagerApplicationScreen()
-                  : controller.currentTab.value == 2
-                      ? ChatBoxScreen()
-                      : ProfileScreen()),
+          body: Obx(
+            () => controller.currentTab.value == 0
+                ? ManagerHomeScreen()
+                : controller.currentTab.value == 1
+                    ? ManagerApplicationScreen()
+                    : controller.currentTab.value == 2
+                        ? ChatBoxScreen()
+                        : ProfileScreen(),
+          ),
           bottomNavigationBar: Obx(() => Container(
                 margin: const EdgeInsets.only(left: 18, right: 18, bottom: 10),
                 decoration: const BoxDecoration(
-                    color: ColorRes.white,
-                    // border: Border.all(),
-                    borderRadius: BorderRadius.all(Radius.circular(15))),
+                  color: ColorRes.white,
+                  // border: Border.all(),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(15),
+                  ),
+                ),
                 child: SalomonBottomBar(
                   margin: const EdgeInsets.all(12),
                   selectedItemColor: const Color(0xff8B4EFF),
