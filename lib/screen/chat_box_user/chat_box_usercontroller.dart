@@ -22,6 +22,9 @@ class ChatBoxUserController extends GetxController implements GetxService {
   DateTime lastMsg = DateTime.now();
   List countU = [];
 
+  String documents = "";
+  RxString searchText = ''.obs;
+
   RxList jobs = [
     "All chat",
     "Unread",

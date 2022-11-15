@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
+import 'package:jobseek/screen/chat_box_user/chat_box_usercontroller.dart';
 import 'package:jobseek/screen/dashboard/home/home_controller.dart';
 import 'package:jobseek/screen/job_recommendation_screen/job_recommendation_controller.dart';
 import 'package:jobseek/utils/app_style.dart';
@@ -10,6 +11,8 @@ import 'package:jobseek/utils/color_res.dart';
 Widget searchArea() {
   final HomeController controller = HomeController();
   final jrController = Get.put(JobRecommendationController());
+  final chatBoxUserController = Get.put(ChatBoxUserController());
+
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 18),
     child: Row(
@@ -22,8 +25,13 @@ Widget searchArea() {
             child: TextField(
               controller: controller.searchController,
               onChanged: (value) {
+
                 jrController.searchText.value = value;
                 jrController.update(["search"]);
+
+                chatBoxUserController.searchText.value = value;
+                chatBoxUserController.update(["search"]);
+
               },
               /*onChanged: (val){
                 jrController.allJob = FirebaseFirestore.instance.collection("allPost").where(val , isGreaterThanOrEqualTo: "Position"

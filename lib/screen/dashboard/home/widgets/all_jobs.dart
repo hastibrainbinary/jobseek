@@ -53,7 +53,8 @@ Widget allJobs(Stream stream) {
                         if (kDebugMode) {
                           print(jrController.documents[index].id);
                         }
-                        return InkWell(
+                        return ( jrController.documents[index]["Status"] != 'Inactive')
+                            ?InkWell(
                           onTap: () => Get.toNamed(AppRes.jobDetailScreen,
                               arguments: {
                                 "saved": jrController.documents[index],
@@ -157,7 +158,8 @@ Widget allJobs(Stream stream) {
                               ],
                             ),
                           ),
-                        );
+                        )
+                            :SizedBox();
                       })
                   : const CommonLoader();
             });
