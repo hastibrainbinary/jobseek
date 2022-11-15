@@ -1,11 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/common_loader.dart';
 import 'package:jobseek/common/widgets/helper.dart';
 import 'package:jobseek/screen/chat_box_user/chat_box_usercontroller.dart';
-import 'package:jobseek/screen/chat_box_user/chat_live_screen.dart';
-
 import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_controller.dart';
 import 'package:jobseek/service/pref_services.dart';
@@ -14,7 +13,6 @@ import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 import 'chat_box_controller.dart';
-import 'chat_box_live-Screen.dart';
 
 class ChatBoxScreen extends StatelessWidget {
   ChatBoxScreen({Key? key}) : super(key: key);
@@ -143,30 +141,32 @@ class ChatBoxScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () => controller.onTapJobs(index),
-                    child: Obx(() => Container(
-                          margin: const EdgeInsets.only(right: 10),
-                          height: 32,
-                          width: 70,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: ColorRes.containerColor, width: 2),
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(10),
-                              ),
+                    child: Obx(
+                      () => Container(
+                        margin: const EdgeInsets.only(right: 10),
+                        height: 32,
+                        width: 70,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                                color: ColorRes.containerColor, width: 2),
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                            color: controller.selectedJobs.value == index
+                                ? ColorRes.containerColor
+                                : ColorRes.white),
+                        child: Text(
+                          controller.jobs[index],
+                          style: appTextStyle(
                               color: controller.selectedJobs.value == index
-                                  ? ColorRes.containerColor
-                                  : ColorRes.white),
-                          child: Text(
-                            controller.jobs[index],
-                            style: appTextStyle(
-                                color: controller.selectedJobs.value == index
-                                    ? ColorRes.white
-                                    : ColorRes.containerColor,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600),
-                          ),
-                        )),
+                                  ? ColorRes.white
+                                  : ColorRes.containerColor,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ),
                   );
                 }),
           ),
@@ -195,7 +195,9 @@ class ChatBoxScreen extends StatelessWidget {
                               PrefService.getString(PrefKeys.companyName)
                                   .toString()
                                   .toLowerCase()) {
-                            print(element);
+                            if (kDebugMode) {
+                              print(element);
+                            }
                             o = element;
                           }
                         });
@@ -241,7 +243,8 @@ class ChatBoxScreen extends StatelessWidget {
                                           borderRadius: const BorderRadius.all(
                                               Radius.circular(15)),
                                           border: Border.all(
-                                              color: const Color(0xffF3ECFF)),
+                                            color: const Color(0xffF3ECFF),
+                                          ),
                                           color: ColorRes.white),
                                       child: Row(
                                         children: [
@@ -285,7 +288,7 @@ class ChatBoxScreen extends StatelessWidget {
                                             children: [
                                               (dataM?['countU'] == 0 ||
                                                       dataM?['countU'] == null)
-                                                  ? SizedBox()
+                                                  ? const SizedBox()
                                                   : Container(
                                                       height: 22,
                                                       width: 22,
@@ -340,7 +343,7 @@ class ChatBoxScreen extends StatelessWidget {
                                       ),
                                     ),
                                   )
-                                : SizedBox();
+                                : const SizedBox();
                           },
                         );
                       });

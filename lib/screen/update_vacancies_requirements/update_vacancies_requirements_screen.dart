@@ -61,7 +61,6 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
               )
             ],
           ),
-
           const SizedBox(height: 20),
           Obx(() => Column(
                 children: [
@@ -303,7 +302,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                       "*",
                                       style: appTextStyle(
                                           color: ColorRes.starColor),
-                                    )
+                                    ),
                                   ],
                                 ),
                                 const SizedBox(

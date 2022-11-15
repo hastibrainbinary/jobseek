@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 
-
 class VideoJoiningScreen extends StatelessWidget {
   const VideoJoiningScreen({Key? key}) : super(key: key);
 
@@ -48,7 +47,7 @@ class VideoJoiningScreen extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: 680,
+          top: 640,
           left: 125,
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Container(

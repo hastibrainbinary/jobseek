@@ -82,19 +82,20 @@ Widget allJobs(Stream stream) {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                        jrController.documents[index]
-                                            ["Position"],
-                                        style: appTextStyle(
-                                            color: ColorRes.black,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w500)),
+                                      jrController.documents[index]["Position"],
+                                      style: appTextStyle(
+                                          color: ColorRes.black,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w500),
+                                    ),
                                     Text(
-                                        jrController.documents[index]
-                                            ["CompanyName"],
-                                        style: appTextStyle(
-                                            color: ColorRes.black,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w400)),
+                                      jrController.documents[index]
+                                          ["CompanyName"],
+                                      style: appTextStyle(
+                                          color: ColorRes.black,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w400),
+                                    ),
                                     Text(
                                         "${jrController.documents[index]["location"]} "
                                         " ${jrController.documents[index]["type"]}",
