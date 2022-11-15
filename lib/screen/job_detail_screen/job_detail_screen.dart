@@ -300,7 +300,7 @@ class JobDetailScreen extends StatelessWidget {
                       itemCount: args["saved"]["RequirementsList"].length,
                       itemBuilder: (context, index) {
                         return detailBox(
-                            args["saved"]["RequirementsList"][index],false);
+                            args["saved"]["RequirementsList"][index], false);
                       }),
                   GestureDetector(
                     onTap: () {

@@ -13,7 +13,7 @@ class ProfileUserController extends GetxController implements GetxService {
   RxBool isNameValidate = false.obs;
   RxBool isEmailValidate = false.obs;
   RxBool isAddressValidate = false.obs;
-  RxBool isoccupationValidate = false.obs;
+  RxBool isOccupationValidate = false.obs;
   RxBool isbirthValidate = false.obs;
   DateTime? startTime;
   ImagePicker picker = ImagePicker();
@@ -57,7 +57,7 @@ class ProfileUserController extends GetxController implements GetxService {
     if (isNameValidate.value == false &&
         isEmailValidate.value == false &&
         isAddressValidate.value == false &&
-        isoccupationValidate.value == false &&
+        isOccupationValidate.value == false &&
         isbirthValidate.value == false) {
       if (kDebugMode) {
         print("GO TO HOME PAGE");
@@ -84,9 +84,9 @@ class ProfileUserController extends GetxController implements GetxService {
       isAddressValidate.value = false;
     }
     if (occupationController.text.isEmpty) {
-      isoccupationValidate.value = true;
+      isOccupationValidate.value = true;
     } else {
-      isoccupationValidate.value = false;
+      isOccupationValidate.value = false;
     }
     if (dateOfBirthController .text.isEmpty) {
       isbirthValidate.value = true;
@@ -113,4 +113,6 @@ class ProfileUserController extends GetxController implements GetxService {
     update(['pic']);
     update();
   }
+
+
 }

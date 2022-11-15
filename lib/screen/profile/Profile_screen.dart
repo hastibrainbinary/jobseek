@@ -1,29 +1,19 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/common_error_box.dart';
 import 'package:jobseek/common/widgets/common_textField.dart';
 import 'package:jobseek/screen/profile/profile_controller.dart';
 import 'package:jobseek/screen/settings/settings_screen.dart';
-import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
-import 'package:jobseek/utils/pref_keys.dart';
 
 class ProfileUserScreenU extends StatelessWidget {
   ProfileUserScreenU({Key? key}) : super(key: key);
   final controller = Get.put(ProfileUserController());
 
-
-
   @override
   Widget build(BuildContext context) {
-
-    controller.fullNameController.text = PrefService.getString(PrefKeys.fullName);
-    controller.emailController.text = PrefService.getString(PrefKeys.email);
-    controller.occupationController.text = PrefService.getString(PrefKeys.occupation);
-
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: ColorRes.backgroundColor,
@@ -97,25 +87,23 @@ class ProfileUserScreenU extends StatelessWidget {
                         Stack(
                           children: [
                             GetBuilder<ProfileUserController>(
-                              id:"pic",
-                              builder: (context) {
-                                return Container(
-                                  width: 100,
-                                  height: 100,
-                                  decoration: BoxDecoration(
-                                      color: Colors.black,
-                                      borderRadius: BorderRadius.circular(50),
-                                      image:  (controller.image!=null)?DecorationImage(
-                                          image: FileImage(
-                                              controller.image!)
-                                      ):const DecorationImage(
-                                          image: AssetImage(
-                                              AssetRes.userprofileLogo)
-                                      )
-                                  ),
-                                );
-                              }
-                            ),
+                                id: "pic",
+                                builder: (context) {
+                                  return Container(
+                                    width: 100,
+                                    height: 100,
+                                    decoration: BoxDecoration(
+                                        color: ColorRes.black,
+                                        borderRadius: BorderRadius.circular(50),
+                                        image: (controller.image != null)
+                                            ? DecorationImage(
+                                                image: FileImage(
+                                                    controller.image!))
+                                            : const DecorationImage(
+                                                image: AssetImage(
+                                                    AssetRes.userprofileLogo))),
+                                  );
+                                }),
                             Positioned(
                               bottom: 0,
                               right: 2,
@@ -304,7 +292,7 @@ class ProfileUserScreenU extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              PrefService.getString(PrefKeys.fullName),
+                              'Adam Smith',
                               style: appTextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w500,
@@ -312,7 +300,7 @@ class ProfileUserScreenU extends StatelessWidget {
                             ),
                             const SizedBox(height: 2),
                             Text(
-                              PrefService.getString(PrefKeys.email),
+                              'adam.smith@yourdomain.com',
                               style: appTextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: 12,
@@ -320,7 +308,7 @@ class ProfileUserScreenU extends StatelessWidget {
                             ),
                             const SizedBox(height: 2),
                             Text(
-                              PrefService.getString(PrefKeys.occupation),
+                              'UI/UX Designer',
                               style: appTextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: 12,
@@ -357,18 +345,18 @@ class ProfileUserScreenU extends StatelessWidget {
                           const SizedBox(
                             height: 10,
                           ),
-
                           commonTextFormField(
                               onChanged: controller.onChanged,
                               textDecoration: InputDecoration(
-                                  contentPadding: const EdgeInsets.all(15),
-                                  border: InputBorder.none,
-                                  hintText: "  Full Name",
-                                  hintStyle: appTextStyle(
-                                      fontSize: 14,
-                                      color: ColorRes.black.withOpacity(0.15))),
-                              controller: controller.fullNameController
-                          ),
+                                contentPadding: const EdgeInsets.all(15),
+                                border: InputBorder.none,
+                                hintText: "  Full Name",
+                                hintStyle: appTextStyle(
+                                  fontSize: 14,
+                                  color: ColorRes.black.withOpacity(0.15),
+                                ),
+                              ),
+                              controller: controller.fullNameController),
                           controller.isNameValidate.value == true
                               ? Column(
                                   children: [
@@ -455,8 +443,9 @@ class ProfileUserScreenU extends StatelessWidget {
                                   border: InputBorder.none,
                                   hintText: "  Date of birth",
                                   hintStyle: appTextStyle(
-                                      fontSize: 14,
-                                      color: ColorRes.black.withOpacity(0.15)),
+                                    fontSize: 14,
+                                    color: ColorRes.black.withOpacity(0.15),
+                                  ),
                                   suffixIcon: Container(
                                     padding: const EdgeInsets.all(15),
                                     child: Image(
@@ -540,7 +529,7 @@ class ProfileUserScreenU extends StatelessWidget {
                                 ),
                               ),
                               controller: controller.occupationController),
-                          controller.isoccupationValidate.value == true
+                          controller.isOccupationValidate.value == true
                               ? Column(
                                   children: [
                                     const SizedBox(

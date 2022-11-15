@@ -73,59 +73,7 @@ class ChatBoxScreen extends StatelessWidget {
               ],
             ),
           ),
-          // Row(children: [
-          //   Container(
-          //     margin: const EdgeInsets.all(15),
-          //     height: 40,
-          //     width: 40,
-          //     decoration: BoxDecoration(
-          //         color: ColorRes.logoColor,
-          //         borderRadius: BorderRadius.circular(10)),
-          //     child: Padding(
-          //       padding: const EdgeInsets.only(top: 11),
-          //       child: Text(
-          //         textAlign: TextAlign.center,
-          //         "Logo",
-          //         style: appTextStyle(
-          //             color: ColorRes.containerColor,
-          //             fontWeight: FontWeight.w600,
-          //             fontSize: 10),
-          //       ),
-          //     ),
-          //   ),
-          //   const SizedBox(width: 80),
-          //   Text(
-          //     'Chat Box',
-          //     style: appTextStyle(
-          //         fontSize: 20,
-          //         fontWeight: FontWeight.w500,
-          //         height: 1,
-          //         color: ColorRes.black),
-          //   ),
-          // ]),
           const SizedBox(height: 20),
-          // Container(
-          //   width: 339,
-          //   decoration: const BoxDecoration(
-          //     color: ColorRes.white2,
-          //     borderRadius: BorderRadius.all(
-          //       Radius.circular(15),
-          //     ),
-          //   ),
-          //   child: TextField(
-          //     controller: controller.searchController,
-          //     decoration: InputDecoration(
-          //       border: InputBorder.none,
-          //       suffixIcon: const Icon(Icons.search, color: ColorRes.grey),
-          //       hintText: "Search",
-          //       hintStyle: appTextStyle(
-          //           fontSize: 14,
-          //           color: ColorRes.grey,
-          //           fontWeight: FontWeight.w500),
-          //       contentPadding: const EdgeInsets.only(left: 20, top: 13),
-          //     ),
-          //   ),
-          // ),
           searchArea(),
           const SizedBox(height: 20),
           Container(

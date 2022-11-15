@@ -50,7 +50,9 @@ class SaveJobScreen extends StatelessWidget {
               ),
               StreamBuilder(
                   stream: FirebaseFirestore.instance
-                      .collection("BookMark").doc(PrefService.getString(PrefKeys.userId)).collection("BookMark1")
+                      .collection("BookMark")
+                      .doc(PrefService.getString(PrefKeys.userId))
+                      .collection("BookMark1")
                       .snapshots(),
                   builder: (context,
                       AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
@@ -159,11 +161,11 @@ class SaveJobScreen extends StatelessWidget {
                                 ),
                               );
                             })
-                        :Container(
-                        height: Get.height,
-                        width: Get.width,
-                        alignment: Alignment.center,
-                        child: const CommonLoader());
+                        : Container(
+                            height: Get.height,
+                            width: Get.width,
+                            alignment: Alignment.center,
+                            child: const CommonLoader());
                   }),
             ]),
       ),
