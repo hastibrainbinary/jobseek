@@ -73,8 +73,60 @@ class ChatBoxScreen extends StatelessWidget {
               ],
             ),
           ),
+          // Row(children: [
+          //   Container(
+          //     margin: const EdgeInsets.all(15),
+          //     height: 40,
+          //     width: 40,
+          //     decoration: BoxDecoration(
+          //         color: ColorRes.logoColor,
+          //         borderRadius: BorderRadius.circular(10)),
+          //     child: Padding(
+          //       padding: const EdgeInsets.only(top: 11),
+          //       child: Text(
+          //         textAlign: TextAlign.center,
+          //         "Logo",
+          //         style: appTextStyle(
+          //             color: ColorRes.containerColor,
+          //             fontWeight: FontWeight.w600,
+          //             fontSize: 10),
+          //       ),
+          //     ),
+          //   ),
+          //   const SizedBox(width: 80),
+          //   Text(
+          //     'Chat Box',
+          //     style: appTextStyle(
+          //         fontSize: 20,
+          //         fontWeight: FontWeight.w500,
+          //         height: 1,
+          //         color: ColorRes.black),
+          //   ),
+          // ]),
           const SizedBox(height: 20),
-          searchArea(),
+          // Container(
+          //   width: 339,
+          //   decoration: const BoxDecoration(
+          //     color: ColorRes.white2,
+          //     borderRadius: BorderRadius.all(
+          //       Radius.circular(15),
+          //     ),
+          //   ),
+          //   child: TextField(
+          //     controller: controller.searchController,
+          //     decoration: InputDecoration(
+          //       border: InputBorder.none,
+          //       suffixIcon: const Icon(Icons.search, color: ColorRes.grey),
+          //       hintText: "Search",
+          //       hintStyle: appTextStyle(
+          //           fontSize: 14,
+          //           color: ColorRes.grey,
+          //           fontWeight: FontWeight.w500),
+          //       contentPadding: const EdgeInsets.only(left: 20, top: 13),
+          //     ),
+          //   ),
+          // ),
+          searchAreaChatM(),
           const SizedBox(height: 20),
           Container(
             alignment: Alignment.centerLeft,
@@ -118,186 +170,380 @@ class ChatBoxScreen extends StatelessWidget {
                   );
                 }),
           ),
-          Expanded(
-            child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-                stream:
-                    FirebaseFirestore.instance.collection("Apply").snapshots(),
-                /*FirebaseFirestore.instance
+
+          GetBuilder<ChatBoxController>(
+            id: "searchChat",
+              builder: (controller){
+            return  controller.searchController.text.isEmpty
+                ? Expanded(
+              child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+                  stream:
+                  FirebaseFirestore.instance.collection("Apply").snapshots(),
+                  /*FirebaseFirestore.instance
                 .collection("Auth")
                 .doc("User")
                 .collection("register")
                 .snapshots(),*/
-                builder: (context, snapshot) {
-                  if (snapshot.data == null || snapshot.hasData == false) {
-                    return const CommonLoader();
-                  }
+                  builder: (context, snapshot) {
+                    if (snapshot.data == null || snapshot.hasData == false) {
+                      return const CommonLoader();
+                    }
 
-                  return ListView.builder(
-                      itemCount: snapshot.data!.docs.length,
-                      itemBuilder: (context, index) {
-                        String? o;
+                    return ListView.builder(
+                        itemCount: snapshot.data!.docs.length,
+                        itemBuilder: (context, index) {
+                          String? o;
 
-                        snapshot.data!.docs[index]['companyName']
-                            .forEach((element) {
-                          if (element.toString().toLowerCase() ==
-                              PrefService.getString(PrefKeys.companyName)
-                                  .toString()
-                                  .toLowerCase()) {
-                            if (kDebugMode) {
-                              print(element);
+                          snapshot.data!.docs[index]['companyName']
+                              .forEach((element) {
+                            if (element.toString().toLowerCase() ==
+                                PrefService.getString(PrefKeys.companyName)
+                                    .toString()
+                                    .toLowerCase()) {
+                              if (kDebugMode) {
+                                print(element);
+                              }
+                              o = element;
                             }
-                            o = element;
-                          }
-                        });
+                          });
 
-                        return StreamBuilder<
-                            DocumentSnapshot<Map<String, dynamic>>>(
-                          stream: FirebaseFirestore.instance
-                              .collection('chats')
-                              .doc(controller.getChatId(controller.userUid,
-                                  snapshot.data!.docs[index].id))
-                              .snapshots(),
-                          builder: (context, snapshotM) {
-                            if (snapshotM.data == null ||
-                                snapshotM.hasData == false) {
-                              return const SizedBox();
-                            }
+                          return StreamBuilder<
+                              DocumentSnapshot<Map<String, dynamic>>>(
+                            stream: FirebaseFirestore.instance
+                                .collection('chats')
+                                .doc(controller.getChatId(controller.userUid,
+                                snapshot.data!.docs[index].id))
+                                .snapshots(),
+                            builder: (context, snapshotM) {
+                              if (snapshotM.data == null ||
+                                  snapshotM.hasData == false) {
+                                return const SizedBox();
+                              }
 
-                            Map<String, dynamic>? dataM =
-                                snapshotM.data?.data();
+                              Map<String, dynamic>? dataM =
+                              snapshotM.data?.data();
 
-                            return (o.toString().toLowerCase() ==
-                                    PrefService.getString(PrefKeys.companyName)
-                                        .toString()
-                                        .toLowerCase())
-                                ? InkWell(
-                                    onTap: () async {
-                                      controller.lastMessageTrue(
-                                          snapshot.data!.docs[index].id);
+                              return (o.toString().toLowerCase() ==
+                                  PrefService.getString(PrefKeys.companyName)
+                                      .toString()
+                                      .toLowerCase())
+                                  ? InkWell(
+                                onTap: () async {
+                                  controller.lastMessageTrue(
+                                      snapshot.data!.docs[index].id);
 
-                                      controller.gotoChatScreen(
-                                          context,
-                                          snapshot.data!.docs[index].id,
-                                          snapshot.data!.docs[index]
-                                              ['userName']);
-                                    },
-                                    child: Container(
-                                      height: 92,
-                                      width: Get.width,
-                                      margin: const EdgeInsets.symmetric(
-                                          horizontal: 18, vertical: 4),
-                                      padding: const EdgeInsets.all(15),
-                                      decoration: BoxDecoration(
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(15)),
-                                          border: Border.all(
-                                            color: const Color(0xffF3ECFF),
-                                          ),
-                                          color: ColorRes.white),
-                                      child: Row(
+                                  controller.gotoChatScreen(
+                                      context,
+                                      snapshot.data!.docs[index].id,
+                                      snapshot.data!.docs[index]
+                                      ['userName']);
+                                },
+                                child: Container(
+                                  height: 92,
+                                  width: Get.width,
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 18, vertical: 4),
+                                  padding: const EdgeInsets.all(15),
+                                  decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(15)),
+                                      border: Border.all(
+                                        color: const Color(0xffF3ECFF),
+                                      ),
+                                      color: ColorRes.white),
+                                  child: Row(
+                                    children: [
+                                      Image.asset(
+                                        AssetRes.airBnbLogo,
+                                      ),
+                                      const SizedBox(width: 20),
+                                      Column(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                         children: [
-                                          Image.asset(
-                                            AssetRes.airBnbLogo,
+                                          Text(
+                                            snapshot.data!.docs[index]
+                                            ['userName'],
+                                            style: appTextStyle(
+                                                color: ColorRes.black,
+                                                fontSize: 15,
+                                                fontWeight:
+                                                FontWeight.w500),
                                           ),
-                                          const SizedBox(width: 20),
-                                          Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                snapshot.data!.docs[index]
-                                                    ['userName'],
-                                                style: appTextStyle(
-                                                    color: ColorRes.black,
-                                                    fontSize: 15,
-                                                    fontWeight:
-                                                        FontWeight.w500),
-                                              ),
-                                              const SizedBox(height: 6),
-                                              Text(
-                                                dataM?['lastMessage'] ?? "",
-                                                style: appTextStyle(
-                                                    color: ColorRes.black
-                                                        .withOpacity(0.8),
-                                                    fontSize: 12,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                              ),
-                                            ],
+                                          const SizedBox(height: 6),
+                                          Text(
+                                            dataM?['lastMessage'] ?? "",
+                                            style: appTextStyle(
+                                                color: ColorRes.black
+                                                    .withOpacity(0.8),
+                                                fontSize: 12,
+                                                fontWeight:
+                                                FontWeight.w400),
                                           ),
-                                          const Spacer(),
-                                          Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.end,
-                                            children: [
-                                              (dataM?['countU'] == 0 ||
-                                                      dataM?['countU'] == null)
-                                                  ? const SizedBox()
-                                                  : Container(
-                                                      height: 22,
-                                                      width: 22,
-                                                      decoration: BoxDecoration(
-                                                        gradient:
-                                                            const LinearGradient(
-                                                          colors: [
-                                                            ColorRes
-                                                                .gradientColor,
-                                                            ColorRes
-                                                                .containerColor
-                                                          ],
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(22),
-                                                      ),
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(top: 5),
-                                                        child: Text(
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          "${dataM?['countU'] ?? ""}",
-                                                          style: appTextStyle(
-                                                              fontSize: 10,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
-                                                              color: ColorRes
-                                                                  .white),
-                                                        ),
-                                                      ),
-                                                    ),
-                                              const Spacer(),
-                                              Text(
-                                                dataM?['lastMessageTime'] ==
-                                                        null
-                                                    ? ""
-                                                    : " ${getFormattedTime(dataM?['lastMessageTime'].toDate() ?? "")}",
-                                                style: appTextStyle(
-                                                    fontSize: 12,
-                                                    color: Colors.grey,
-                                                    fontWeight:
-                                                        FontWeight.w500),
-                                              ),
-                                            ],
-                                          ),
-                                          const SizedBox(width: 10),
                                         ],
                                       ),
-                                    ),
-                                  )
-                                : const SizedBox();
-                          },
-                        );
-                      });
-                }),
-          ),
-        ],
+                                      const Spacer(),
+                                      Column(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.end,
+                                        children: [
+                                          (dataM?['countU'] == 0 ||
+                                              dataM?['countU'] == null)
+                                              ? const SizedBox()
+                                              : Container(
+                                            height: 22,
+                                            width: 22,
+                                            decoration: BoxDecoration(
+                                              gradient:
+                                              const LinearGradient(
+                                                colors: [
+                                                  ColorRes
+                                                      .gradientColor,
+                                                  ColorRes
+                                                      .containerColor
+                                                ],
+                                              ),
+                                              borderRadius:
+                                              BorderRadius
+                                                  .circular(22),
+                                            ),
+                                            child: Padding(
+                                              padding:
+                                              const EdgeInsets
+                                                  .only(top: 5),
+                                              child: Text(
+                                                textAlign:
+                                                TextAlign.center,
+                                                "${dataM?['countU'] ?? ""}",
+                                                style: appTextStyle(
+                                                    fontSize: 10,
+                                                    fontWeight:
+                                                    FontWeight
+                                                        .w400,
+                                                    color: ColorRes
+                                                        .white),
+                                              ),
+                                            ),
+                                          ),
+                                          const Spacer(),
+                                          Text(
+                                            dataM?['lastMessageTime'] ==
+                                                null
+                                                ? ""
+                                                : " ${getFormattedTime(dataM?['lastMessageTime'].toDate() ?? "")}",
+                                            style: appTextStyle(
+                                                fontSize: 12,
+                                                color: Colors.grey,
+                                                fontWeight:
+                                                FontWeight.w500),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(width: 10),
+                                    ],
+                                  ),
+                                ),
+                              )
+                                  : const SizedBox();
+                            },
+                          );
+                        });
+                  }),
+            )
+                : Expanded(
+              child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+                  stream:
+                  FirebaseFirestore.instance.collection("Apply").snapshots(),
+                  /*FirebaseFirestore.instance
+                .collection("Auth")
+                .doc("User")
+                .collection("register")
+                .snapshots(),*/
+                  builder: (context, snapshot) {
+                    if (snapshot.data == null || snapshot.hasData == false) {
+                      return const CommonLoader();
+                    }
+
+                    return ListView.builder(
+                        itemCount: snapshot.data!.docs.length,
+                        itemBuilder: (context, index) {
+                          String? o;
+                          List userName = [];
+                          String? u;
+
+                          snapshot.data!.docs[index]['companyName']
+                              .forEach((element) {
+                            if (element.toString().toLowerCase() ==
+                                PrefService.getString(PrefKeys.companyName)
+                                    .toString()
+                                    .toLowerCase()) {
+
+                              //userName.add(snapshot.data!.docs[index]['userName']);
+
+                              o = element;
+                            }
+                              });
+
+                         /* userName.forEach((element) {
+                            u = element;
+                          });*/
+
+                          return StreamBuilder<
+                              DocumentSnapshot<Map<String, dynamic>>>(
+                            stream: FirebaseFirestore.instance
+                                .collection('chats')
+                                .doc(controller.getChatId(controller.userUid,
+                                snapshot.data!.docs[index].id))
+                                .snapshots(),
+                            builder: (context, snapshotM) {
+                              if (snapshotM.data == null ||
+                                  snapshotM.hasData == false) {
+                                return const SizedBox();
+                              }
+
+                              Map<String, dynamic>? dataM =
+                              snapshotM.data?.data();
+
+                              return (o.toString().toLowerCase() ==
+                                  PrefService.getString(PrefKeys.companyName)
+                                      .toString()
+                                      .toLowerCase())
+                                  ? (snapshot.data!.docs[index]['userName'].toString().contains(controller.searchText.value.capitalize.toString()) || snapshot.data!.docs[index]['userName'].toString().contains(controller.searchText.value.toLowerCase().toString()))
+                                  ? InkWell(
+                                onTap: () async {
+                                  controller.lastMessageTrue(
+                                      snapshot.data!.docs[index].id);
+
+                                  controller.gotoChatScreen(
+                                      context,
+                                      snapshot.data!.docs[index].id,
+                                      snapshot.data!.docs[index]
+                                      ['userName']);
+                                },
+                                child: Container(
+                                  height: 92,
+                                  width: Get.width,
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 18, vertical: 4),
+                                  padding: const EdgeInsets.all(15),
+                                  decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(15)),
+                                      border: Border.all(
+                                        color: const Color(0xffF3ECFF),
+                                      ),
+                                      color: ColorRes.white),
+                                  child: Row(
+                                    children: [
+                                      Image.asset(
+                                        AssetRes.airBnbLogo,
+                                      ),
+                                      const SizedBox(width: 20),
+                                      Column(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            snapshot.data!.docs[index]
+                                            ['userName'],
+                                            style: appTextStyle(
+                                                color: ColorRes.black,
+                                                fontSize: 15,
+                                                fontWeight:
+                                                FontWeight.w500),
+                                          ),
+                                          const SizedBox(height: 6),
+                                          Text(
+                                            dataM?['lastMessage'] ?? "",
+                                            style: appTextStyle(
+                                                color: ColorRes.black
+                                                    .withOpacity(0.8),
+                                                fontSize: 12,
+                                                fontWeight:
+                                                FontWeight.w400),
+                                          ),
+                                        ],
+                                      ),
+                                      const Spacer(),
+                                      Column(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.end,
+                                        children: [
+                                          (dataM?['countU'] == 0 ||
+                                              dataM?['countU'] == null)
+                                              ? const SizedBox()
+                                              : Container(
+                                            height: 22,
+                                            width: 22,
+                                            decoration: BoxDecoration(
+                                              gradient:
+                                              const LinearGradient(
+                                                colors: [
+                                                  ColorRes
+                                                      .gradientColor,
+                                                  ColorRes
+                                                      .containerColor
+                                                ],
+                                              ),
+                                              borderRadius:
+                                              BorderRadius
+                                                  .circular(22),
+                                            ),
+                                            child: Padding(
+                                              padding:
+                                              const EdgeInsets
+                                                  .only(top: 5),
+                                              child: Text(
+                                                textAlign:
+                                                TextAlign.center,
+                                                "${dataM?['countU'] ?? ""}",
+                                                style: appTextStyle(
+                                                    fontSize: 10,
+                                                    fontWeight:
+                                                    FontWeight
+                                                        .w400,
+                                                    color: ColorRes
+                                                        .white),
+                                              ),
+                                            ),
+                                          ),
+                                          const Spacer(),
+                                          Text(
+                                            dataM?['lastMessageTime'] ==
+                                                null
+                                                ? ""
+                                                : " ${getFormattedTime(dataM?['lastMessageTime'].toDate() ?? "")}",
+                                            style: appTextStyle(
+                                                fontSize: 12,
+                                                color: Colors.grey,
+                                                fontWeight:
+                                                FontWeight.w500),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(width: 10),
+                                    ],
+                                  ),
+                                ),
+                              )
+                                  : SizedBox()
+                                  : const SizedBox();
+                            },
+                          );
+                        });
+                  }),
+            );
+          })
+
+    )],
       ),
     );
   }
