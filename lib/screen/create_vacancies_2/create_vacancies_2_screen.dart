@@ -388,7 +388,8 @@ class CreateVacancies2Screen extends StatelessWidget {
                         GetBuilder<CreateVacancies2Controller>(
                             id: "profile",
                             builder: (controller) {
-                              return (controller.positionController.text == '' ||
+                              return
+                                  /* (controller.positionController.text == '' ||
                                       controller.salaryController.text == '' ||
                                       controller.locationController.text ==
                                           '' ||
@@ -421,32 +422,30 @@ class CreateVacancies2Screen extends StatelessWidget {
                                                 color: ColorRes.white)),
                                       ),
                                     )
-                                  : InkWell(
-                                      // dashboard write
-                                      onTap: () => controller.validate(),
-                                      child: Container(
-                                        height: 50,
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        alignment: Alignment.center,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          gradient: const LinearGradient(
-                                              colors: [
-                                                ColorRes.gradientColor,
-                                                ColorRes.containerColor
-                                              ]),
-                                        ),
-                                        child: Text(
-                                          "Update Vacancy",
-                                          style: appTextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w500,
-                                              color: ColorRes.white),
-                                        ),
-                                      ),
-                                    );
+                                  : */
+                                  InkWell(
+                                // dashboard write
+                                onTap: () => controller.validate(),
+                                child: Container(
+                                  height: 50,
+                                  width: MediaQuery.of(context).size.width,
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    gradient: const LinearGradient(colors: [
+                                      ColorRes.gradientColor,
+                                      ColorRes.containerColor
+                                    ]),
+                                  ),
+                                  child: Text(
+                                    "Update Vacancy",
+                                    style: appTextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500,
+                                        color: ColorRes.white),
+                                  ),
+                                ),
+                              );
                             }),
                         const SizedBox(
                           height: 20,

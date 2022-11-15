@@ -151,7 +151,8 @@ class ForgotPasswordScreenU extends StatelessWidget {
             GetBuilder<ForgotPasswordControllerU>(
                 id: "colorChange",
                 builder: (controller) {
-                  return (controller.forgotEmailController.text == '')
+                  return
+                   /* (controller.forgotEmailController.text == '')
                       ? Container(
                           height: 50,
                           width: MediaQuery.of(context).size.width,
@@ -169,7 +170,7 @@ class ForgotPasswordScreenU extends StatelessWidget {
                                   fontWeight: FontWeight.w500,
                                   color: ColorRes.white)),
                         )
-                      : InkWell(
+                      :*/ InkWell(
                           onTap: controller.onLoginBtnTap,
                           child: Container(
                             height: 50,

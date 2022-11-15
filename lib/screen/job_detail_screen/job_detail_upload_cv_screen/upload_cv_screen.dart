@@ -10,18 +10,19 @@ import 'package:jobseek/utils/string.dart';
 class JobDetailsUploadCvScreen extends StatelessWidget {
   JobDetailsUploadCvScreen({Key? key}) : super(key: key);
   final JobDetailsUploadCvController controller =
-  Get.put(JobDetailsUploadCvController());
+      Get.put(JobDetailsUploadCvController());
   var args = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorRes.backgroundColor,
-      body: WillPopScope(onWillPop: () async {
-         Get.back();
-         controller.filepath.value="";
-        return true;
-      },
+      body: WillPopScope(
+        onWillPop: () async {
+          Get.back();
+          controller.filepath.value = "";
+          return true;
+        },
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 18),
           child: Column(
@@ -44,7 +45,7 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(15),
                         decoration: BoxDecoration(
                             borderRadius:
-                            const BorderRadius.all(Radius.circular(15)),
+                                const BorderRadius.all(Radius.circular(15)),
                             border: Border.all(color: const Color(0xffF3ECFF)),
                             color: ColorRes.white),
                         child: Row(
@@ -91,87 +92,88 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                       ///upload pdf error Container
                       Obx(() => controller.isPdfUploadError.value
                           ? Container(
-                        width: Get.width,
-                        // height: 28,
-                        margin: const EdgeInsets.only(top: 10),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            color: ColorRes.invalidColor),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 15,
-                          vertical: 18,
-                        ),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const Image(
-                                image: AssetImage(
-                                  AssetRes.invalid,
-                                ),
-                                height: 25,
+                              width: Get.width,
+                              // height: 28,
+                              margin: const EdgeInsets.only(top: 10),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50),
+                                  color: ColorRes.invalidColor),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 15,
+                                vertical: 18,
                               ),
-                              const SizedBox(width: 10),
-                              SizedBox(
-                                width: Get.width * 0.65,
-                                child: Text(
-                                    "Upload failed,please re-upload your file",
-                                    style: appTextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 12,
-                                        color: ColorRes.starColor)),
-                              ),
-                              const Spacer(),
-                              const Icon(
-                                Icons.clear,
-                                color: ColorRes.starColor,
-                              )
-                            ]),
-                      )
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    const Image(
+                                      image: AssetImage(
+                                        AssetRes.invalid,
+                                      ),
+                                      height: 25,
+                                    ),
+                                    const SizedBox(width: 10),
+                                    SizedBox(
+                                      width: Get.width * 0.65,
+                                      child: Text(
+                                          "Upload failed,please re-upload your file",
+                                          style: appTextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 12,
+                                              color: ColorRes.starColor)),
+                                    ),
+                                    const Spacer(),
+                                    const Icon(
+                                      Icons.clear,
+                                      color: ColorRes.starColor,
+                                    )
+                                  ]),
+                            )
                           : const SizedBox()),
 
                       Obx(() => controller.filepath.value != ""
                           ? Container(
-                        // height: 82,
-                        width: Get.width,
-                        margin: const EdgeInsets.only(top: 10),
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        decoration: BoxDecoration(
-                          color: const Color(0xffEEEBF4),
-                          borderRadius:
-                          const BorderRadius.all(Radius.circular(15)),
-                          border: Border.all(color: ColorRes.borderColor),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Image.asset(AssetRes.pdfIcon, height: 90),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  width: Get.width * 0.6,
-                                  child: Text(
-                                      controller.filepath
-                                          .value /*"Resume - Adam Smith.pdf"*/,
-                                      style: appTextStyle(
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w600,
-                                          color: ColorRes.black)),
-                                ),
-                                const SizedBox(height: 10),
-                                Text("440 kb",
-                                    style: appTextStyle(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w400,
-                                        color: ColorRes.grey))
-                              ],
+                              // height: 82,
+                              width: Get.width,
+                              margin: const EdgeInsets.only(top: 10),
+                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              decoration: BoxDecoration(
+                                color: const Color(0xffEEEBF4),
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(15)),
+                                border: Border.all(color: ColorRes.borderColor),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Image.asset(AssetRes.pdfIcon, height: 90),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        width: Get.width * 0.6,
+                                        child: Text(
+                                            controller.filepath
+                                                .value /*"Resume - Adam Smith.pdf"*/,
+                                            style: appTextStyle(
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w600,
+                                                color: ColorRes.black)),
+                                      ),
+                                      const SizedBox(height: 10),
+                                      Text("440 kb",
+                                          style: appTextStyle(
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w400,
+                                              color: ColorRes.grey))
+                                    ],
+                                  )
+                                ],
+                              ),
                             )
-                          ],
-                        ),
-                      )
                           : const SizedBox()),
 
                       GestureDetector(
@@ -183,7 +185,7 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                             color: ColorRes.white,
                             borderRadius:
-                            const BorderRadius.all(Radius.circular(15)),
+                                const BorderRadius.all(Radius.circular(15)),
                             border: Border.all(color: ColorRes.borderColor),
                           ),
                           child: Column(
@@ -248,16 +250,16 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                                 right: 10, left: 10, top: 10, bottom: 30),
                             decoration: BoxDecoration(
                               borderRadius:
-                              const BorderRadius.all(Radius.circular(10)),
+                                  const BorderRadius.all(Radius.circular(10)),
                               gradient: controller.filepath.value == ""
-                                  ? LinearGradient(colors: [
-                                ColorRes.gradientColor.withOpacity(0.4),
-                                ColorRes.containerColor.withOpacity(0.4),
-                              ])
+                                  ? const LinearGradient(colors: [
+                                      ColorRes.gradientColor,
+                                      ColorRes.containerColor,
+                                    ])
                                   : const LinearGradient(colors: [
-                                ColorRes.gradientColor,
-                                ColorRes.containerColor,
-                              ]),
+                                      ColorRes.gradientColor,
+                                      ColorRes.containerColor,
+                                    ]),
                             ),
                             child: Text(Strings.apply,
                                 style: appTextStyle(

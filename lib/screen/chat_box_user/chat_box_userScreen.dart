@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/common/widgets/common_loader.dart';
 import 'package:jobseek/common/widgets/helper.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
@@ -29,38 +30,47 @@ class ChatBoxUserScreen extends StatelessWidget {
       backgroundColor: ColorRes.backgroundColor,
       body: Column(children: [
         const SizedBox(height: 50),
-        Row(children: [
-          Container(
-            margin: const EdgeInsets.all(15),
-            height: 40,
-            width: 40,
-            decoration: BoxDecoration(
-                color: ColorRes.logoColor,
-                borderRadius: BorderRadius.circular(10)),
-            child: Padding(
-              padding: const EdgeInsets.only(top: 11),
-              child: Text(
-                textAlign: TextAlign.center,
-                "Logo",
-                style: appTextStyle(
-                    color: ColorRes.containerColor,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 10),
+        Stack(
+          children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Container(
+                margin: const EdgeInsets.all(15),
+                height: 40,
+                width: 40,
+                decoration: BoxDecoration(
+                    color: ColorRes.logoColor,
+                    borderRadius: BorderRadius.circular(10)),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 11),
+                  child: Text(
+                    textAlign: TextAlign.center,
+                    "Logo",
+                    style: appTextStyle(
+                        color: ColorRes.containerColor,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 10),
+                  ),
+                ),
               ),
             ),
-          ),
-          const SizedBox(width: 80),
-          Center(
-            child: Text(
-              'Chat Box',
-              style: appTextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500,
-                  height: 1,
-                  color: ColorRes.black),
+            Padding(
+              padding: const EdgeInsets.only(top: 25.0),
+              child: Align(
+                alignment: Alignment.center,
+                child: Text(
+                  'Chat Box',
+                  style: appTextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                      height: 1,
+                      color: ColorRes.black),
+                ),
+              ),
             ),
-          ),
-        ]),
+          ],
+        ),
+
         const SizedBox(height: 20),
         searchArea(),
         const SizedBox(height: 20),

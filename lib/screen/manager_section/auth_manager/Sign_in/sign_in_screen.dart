@@ -22,12 +22,14 @@ class _SignInScreenMState extends State<SignInScreenM> {
 
   final formGlobalKey = GlobalKey<FormState>();
 
-  JobDetailsUploadCvController jobDetailsUploadCvController = Get.put(JobDetailsUploadCvController());
-@override
+  JobDetailsUploadCvController jobDetailsUploadCvController =
+      Get.put(JobDetailsUploadCvController());
+  @override
   void initState() {
-  controller.getRememberEmailDataManger();
+    controller.getRememberEmailDataManger();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     jobDetailsUploadCvController.init();
@@ -393,7 +395,8 @@ class _SignInScreenMState extends State<SignInScreenM> {
                       GetBuilder<SignInScreenControllerM>(
                           id: "colorChange",
                           builder: (controller) {
-                            return (controller.emailController.text == '' ||
+                            return
+                                /* (controller.emailController.text == '' ||
                                     controller.passwordController.text == '')
                                 ? Container(
                                     height: 50,
@@ -412,26 +415,27 @@ class _SignInScreenMState extends State<SignInScreenM> {
                                             fontWeight: FontWeight.w500,
                                             color: ColorRes.white)),
                                   )
-                                : InkWell(
-                                    onTap: controller.onLoginBtnTap,
-                                    child: Container(
-                                      height: 50,
-                                      width: MediaQuery.of(context).size.width,
-                                      alignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        gradient: const LinearGradient(colors: [
-                                          ColorRes.gradientColor,
-                                          ColorRes.containerColor
-                                        ]),
-                                      ),
-                                      child: Text("Sign In",
-                                          style: appTextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w500,
-                                              color: ColorRes.white)),
-                                    ),
-                                  );
+                                :*/
+                                InkWell(
+                              onTap: controller.onLoginBtnTap,
+                              child: Container(
+                                height: 50,
+                                width: MediaQuery.of(context).size.width,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  gradient: const LinearGradient(colors: [
+                                    ColorRes.gradientColor,
+                                    ColorRes.containerColor
+                                  ]),
+                                ),
+                                child: Text("Sign In",
+                                    style: appTextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500,
+                                        color: ColorRes.white)),
+                              ),
+                            );
                           }),
                       const SizedBox(height: 18),
                       Center(

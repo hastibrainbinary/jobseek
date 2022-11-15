@@ -443,7 +443,8 @@ class _SigninScreenUState extends State<SigninScreenU> {
                         GetBuilder<SignInScreenController>(
                             id: "colorChange",
                             builder: (controller) {
-                              return (controller.emailController.text == '' ||
+                              return
+                                  /*(controller.emailController.text == '' ||
                                       controller.passwordController.text == '')
                                   ? Container(
                                       height: 50,
@@ -464,7 +465,8 @@ class _SigninScreenUState extends State<SigninScreenU> {
                                               fontWeight: FontWeight.w500,
                                               color: ColorRes.white)),
                                     )
-                                  : InkWell(
+                                  :*/
+                                InkWell(
                                       onTap: () {
                                         controller.onLoginBtnTap(
                                             password: controller

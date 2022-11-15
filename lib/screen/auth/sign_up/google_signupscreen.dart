@@ -510,7 +510,8 @@ class GoogleSignupScreen extends StatelessWidget {
             GetBuilder<GoogleSignupController>(
                 id: "dark",
                 builder: (controller) {
-                  return (controller.firstnameController.text == '' ||
+                  return
+                   /* (controller.firstnameController.text == '' ||
                           controller.lastnameController.text == '' ||
                           controller.emailController.text == '' ||
                           controller.phoneController.text == '' ||
@@ -535,7 +536,7 @@ class GoogleSignupScreen extends StatelessWidget {
                                   fontWeight: FontWeight.w500,
                                   color: ColorRes.white)),
                         )
-                      : InkWell(
+                      :*/ InkWell(
                           // dashboard write
                           onTap: controller.onSignUpBtnTap,
                           child: Container(

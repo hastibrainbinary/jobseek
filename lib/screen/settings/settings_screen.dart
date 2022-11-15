@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/screen/dashboard/dashboard_controller.dart';
 import 'package:jobseek/screen/looking_for_screen/looking_for_screen.dart';
 import 'package:jobseek/service/pref_services.dart';
@@ -36,7 +35,7 @@ class SettingsScreenU extends StatelessWidget {
                     height: 40,
                     width: 40,
                     padding: const EdgeInsets.only(left: 10),
-                    margin: const EdgeInsets.only(left: 20),
+                    margin: const EdgeInsets.only(left: 14),
                     decoration: BoxDecoration(
                       color: ColorRes.logoColor,
                       borderRadius: BorderRadius.circular(10),

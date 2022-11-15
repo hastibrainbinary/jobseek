@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:jobseek/common/widgets/common_error_box.dart';
+import 'package:jobseek/common/widgets/common_loader.dart';
 import 'package:jobseek/common/widgets/common_textField.dart';
 import 'package:jobseek/screen/looking_for_screen/looking_for_screen.dart';
 import 'package:jobseek/screen/organization_profile_screen/organization_profile_screen_controller.dart';
@@ -45,7 +46,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: 10),
+              const Spacer(),
               Text(
                 'Organization Profile',
                 style: appTextStyle(
@@ -413,7 +414,8 @@ class OrganizationProfileScreen extends StatelessWidget {
                   GetBuilder<OrganizationProfileScreenController>(
                       id: "Organization",
                       builder: (controller) {
-                        return (controller.companyNameController.text == '' ||
+                        return
+                            /* (controller.companyNameController.text == '' ||
                                 controller.companyEmailController.text == '' ||
                                 controller.dateController.text == '' ||
                                 controller.countryController.text == '' ||
@@ -441,33 +443,36 @@ class OrganizationProfileScreen extends StatelessWidget {
                                           color: ColorRes.white)),
                                 ),
                               )
-                            : InkWell(
-                                // dashboard write
-                                onTap: () {
-                                  if (kDebugMode) {
-                                    print("a4fyj66enum j");
-                                  }
-                                  controller.onLoginBtnTap();
-                                },
+                            : */
+                            InkWell(
+                          // dashboard write
+                          onTap: () {
+                            if (kDebugMode) {
+                              print("a4fyj66enum j");
+                            }
+                            controller.onLoginBtnTap();
+                          },
 
-                                child: Container(
-                                  height: 50,
-                                  width: MediaQuery.of(context).size.width,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    gradient: const LinearGradient(colors: [
-                                      ColorRes.gradientColor,
-                                      ColorRes.containerColor
-                                    ]),
-                                  ),
-                                  child: Text("Confirm",
-                                      style: appTextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500,
-                                          color: ColorRes.white)),
-                                ),
-                              );
+                          child: Container(
+                            height: 50,
+                            width: MediaQuery.of(context).size.width,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              gradient: const LinearGradient(colors: [
+                                ColorRes.gradientColor,
+                                ColorRes.containerColor
+                              ]),
+                            ),
+                            child: controller.conLoader.value
+                                ? const CommonLoader()
+                                : Text("Confirm",
+                                    style: appTextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500,
+                                        color: ColorRes.white)),
+                          ),
+                        );
                       }),
                   const SizedBox(
                     height: 20,
@@ -577,9 +582,9 @@ class OrganizationProfileScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                    )
+                    ),
                   ],
-                )
+                ),
               ],
             ),
           );

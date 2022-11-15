@@ -37,7 +37,7 @@ class SettingScreenM extends StatelessWidget {
                     height: 40,
                     width: 40,
                     padding: const EdgeInsets.only(left: 10),
-                    margin: const EdgeInsets.only(left: 20),
+                    margin: const EdgeInsets.only(left: 14),
                     decoration: BoxDecoration(
                       color: ColorRes.logoColor,
                       borderRadius: BorderRadius.circular(10),

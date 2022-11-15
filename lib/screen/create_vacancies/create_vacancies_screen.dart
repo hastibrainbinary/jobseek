@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/common/widgets/common_error_box.dart';
 import 'package:jobseek/common/widgets/common_textField.dart';
 import 'package:jobseek/utils/app_style.dart';
@@ -48,7 +47,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                         ),
                       ),
                     ),
-                     SizedBox(width: Get.width/6,),
+                    const SizedBox(width: 40),
                     Text(
                       'Create Vacancies',
                       style: appTextStyle(
@@ -255,7 +254,6 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                           onChanged: (String? val) {
                                             controller.changeDropwon(val: val!);
                                             controller.update(["profile"]);
-
                                           });
                                     },
                                   ),
@@ -328,7 +326,6 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                           onChanged: (String? val) {
                                             controller.changetype(val: val!);
                                             controller.update(["profile"]);
-
                                           });
                                     },
                                   ),
@@ -402,7 +399,6 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                             controller.changeCategory(
                                                 val: val!);
                                             controller.update(["profile"]);
-
                                           });
                                     },
                                   ),
@@ -496,7 +492,8 @@ class CreateVacanciesScreenM extends StatelessWidget {
                             GetBuilder<CreateVacanciesController>(
                                 id: "profile",
                                 builder: (controller) {
-                                  return (controller.positionController.text == '' ||
+                                  return
+                                      /* (controller.positionController.text == '' ||
                                           controller.salaryController.text ==
                                               '' ||
                                           controller.locationController.text ==
@@ -530,32 +527,29 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                                   fontWeight: FontWeight.w500,
                                                   color: ColorRes.white)),
                                         )
-                                      : InkWell(
-                                          // add screen
-                                          onTap: () =>
-                                              controller.onTapNextBut(controller.positionController.text),
-                                          child: Container(
-                                            height: 50,
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            alignment: Alignment.center,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              gradient: const LinearGradient(
-                                                  colors: [
-                                                    ColorRes.gradientColor,
-                                                    ColorRes.containerColor
-                                                  ]),
-                                            ),
-                                            child: Text("Next",
-                                                style: appTextStyle(
-                                                    fontSize: 18,
-                                                    fontWeight: FontWeight.w500,
-                                                    color: ColorRes.white)),
-                                          ),
-                                        );
+                                      : */
+                                      InkWell(
+                                    // add screen
+                                    onTap: () => controller.onTapNextBut(
+                                        controller.positionController.text),
+                                    child: Container(
+                                      height: 50,
+                                      width: MediaQuery.of(context).size.width,
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        gradient: const LinearGradient(colors: [
+                                          ColorRes.gradientColor,
+                                          ColorRes.containerColor
+                                        ]),
+                                      ),
+                                      child: Text("Next",
+                                          style: appTextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w500,
+                                              color: ColorRes.white)),
+                                    ),
+                                  );
                                 }),
                             const SizedBox(
                               height: 10,

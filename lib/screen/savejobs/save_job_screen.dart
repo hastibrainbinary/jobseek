@@ -37,7 +37,7 @@ class SaveJobScreen extends StatelessWidget {
                       child: backButton(),
                     ),
                   ),
-                  const SizedBox(width: 85),
+                  const SizedBox(width: 71),
                   Text(
                     'Saved Jobs',
                     style: appTextStyle(

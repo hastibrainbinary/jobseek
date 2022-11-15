@@ -31,7 +31,7 @@ class AppearanceScreen extends StatelessWidget {
                     child: backButton(),
                   ),
                 ),
-                const SizedBox(width: 75),
+                const SizedBox(width: 67),
                 Text(
                   'Appearance',
                   style: appTextStyle(

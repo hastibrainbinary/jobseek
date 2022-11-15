@@ -115,14 +115,14 @@ class JobDetailsScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            Strings.uIUXDesigner,
+                            position!,
                             style: appTextStyle(
                                 color: ColorRes.black,
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500),
                           ),
                           Text(
-                            Strings.airBNB,
+                           PrefService.getString(PrefKeys.companyName),
                             style: appTextStyle(
                                 color: ColorRes.black,
                                 fontSize: 12,

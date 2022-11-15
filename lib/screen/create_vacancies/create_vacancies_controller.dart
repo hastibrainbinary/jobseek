@@ -21,6 +21,8 @@ class CreateVacanciesController extends GetxController implements GetxService {
   RxBool isTypeValidate = false.obs;
   RxBool isCategoryValidate = false.obs;
   RxBool isStatusValidate = false.obs;
+  RxBool loader = false.obs;
+
   String companyName = "";
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
   List<TextEditingController> addRequirementsList = [];
@@ -112,7 +114,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
       "Status": statusController.text.trim(),
       "CompanyName": companyName,
       "RequirementsList": requirementsList,
-      "BookMarkUserList":[],
+      "BookMarkUserList": [],
     };
     validate();
     if (isPositionValidate.value == false &&
@@ -151,8 +153,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
         onTapBack("");
         Get.off(() => JobDetailsScreen(
               isError: true,
-          position: position,
-
+              position: position,
             ));
       });
     }
