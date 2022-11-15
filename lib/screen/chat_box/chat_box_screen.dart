@@ -382,15 +382,15 @@ class ChatBoxScreen extends StatelessWidget {
                                     .toString()
                                     .toLowerCase()) {
 
-                              userName.add(snapshot.data!.docs[index]['userName']);
+                              //userName.add(snapshot.data!.docs[index]['userName']);
 
                               o = element;
                             }
                               });
 
-                          userName.forEach((element) {
+                         /* userName.forEach((element) {
                             u = element;
-                          });
+                          });*/
 
                           return StreamBuilder<
                               DocumentSnapshot<Map<String, dynamic>>>(
@@ -408,7 +408,7 @@ class ChatBoxScreen extends StatelessWidget {
                               Map<String, dynamic>? dataM =
                               snapshotM.data?.data();
 
-                              if(u.toString().contains(controller.searchText.value.capitalize.toString()) || u.toString().contains(controller.searchText.value.toLowerCase().toString())){
+                            /*  if(snapshot.data!.docs[index]['userName'].toString().contains(controller.searchText.value.capitalize.toString()) || snapshot.data!.docs[index]['userName'].toString().contains(controller.searchText.value.toLowerCase().toString())){
 
                                 return InkWell(
                                   onTap: () async {
@@ -535,13 +535,14 @@ class ChatBoxScreen extends StatelessWidget {
                               }
                               else{
                                 return const SizedBox();
-                              }
+                              }*/
 
 
-                             /* return (o.toString().toLowerCase() ==
+                              return (o.toString().toLowerCase() ==
                                   PrefService.getString(PrefKeys.companyName)
                                       .toString()
                                       .toLowerCase())
+                                  ? (snapshot.data!.docs[index]['userName'].toString().contains(controller.searchText.value.capitalize.toString()) || snapshot.data!.docs[index]['userName'].toString().contains(controller.searchText.value.toLowerCase().toString()))
                                   ? InkWell(
                                 onTap: () async {
                                   controller.lastMessageTrue(
@@ -663,7 +664,8 @@ class ChatBoxScreen extends StatelessWidget {
                                   ),
                                 ),
                               )
-                                  : const SizedBox();*/
+                                  : SizedBox()
+                                  : const SizedBox();
                             },
                           );
                         });
