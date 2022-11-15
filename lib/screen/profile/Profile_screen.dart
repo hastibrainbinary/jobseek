@@ -5,16 +5,25 @@ import 'package:jobseek/common/widgets/common_error_box.dart';
 import 'package:jobseek/common/widgets/common_textField.dart';
 import 'package:jobseek/screen/profile/profile_controller.dart';
 import 'package:jobseek/screen/settings/settings_screen.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 
 class ProfileUserScreenU extends StatelessWidget {
   ProfileUserScreenU({Key? key}) : super(key: key);
   final controller = Get.put(ProfileUserController());
 
+
+
   @override
   Widget build(BuildContext context) {
+
+    controller.fullNameController.text = PrefService.getString(PrefKeys.fullName);
+    controller.emailController.text = PrefService.getString(PrefKeys.email);
+    controller.occupationController.text = PrefService.getString(PrefKeys.occupation);
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: ColorRes.backgroundColor,
@@ -295,7 +304,7 @@ class ProfileUserScreenU extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Adam Smith',
+                              PrefService.getString(PrefKeys.fullName),
                               style: appTextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w500,
@@ -303,7 +312,7 @@ class ProfileUserScreenU extends StatelessWidget {
                             ),
                             const SizedBox(height: 2),
                             Text(
-                              'adam.smith@yourdomain.com',
+                              PrefService.getString(PrefKeys.email),
                               style: appTextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: 12,
@@ -311,7 +320,7 @@ class ProfileUserScreenU extends StatelessWidget {
                             ),
                             const SizedBox(height: 2),
                             Text(
-                              'UI/UX Designer',
+                              PrefService.getString(PrefKeys.occupation),
                               style: appTextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: 12,
@@ -348,6 +357,7 @@ class ProfileUserScreenU extends StatelessWidget {
                           const SizedBox(
                             height: 10,
                           ),
+
                           commonTextFormField(
                               onChanged: controller.onChanged,
                               textDecoration: InputDecoration(
@@ -357,7 +367,8 @@ class ProfileUserScreenU extends StatelessWidget {
                                   hintStyle: appTextStyle(
                                       fontSize: 14,
                                       color: ColorRes.black.withOpacity(0.15))),
-                              controller: controller.fullNameController),
+                              controller: controller.fullNameController
+                          ),
                           controller.isNameValidate.value == true
                               ? Column(
                                   children: [

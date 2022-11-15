@@ -30,6 +30,8 @@ class PrefKeys {
   static const positionList = "";
   static const fullName = "fullName";
   static const occupation = "Occupation";
+  static const dateOfBirth = 'dateOfBirth';
+  static const address = "address";
 
   ///logout
   static const email = "Email";
