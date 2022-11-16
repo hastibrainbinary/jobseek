@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/cupertino.dart';
@@ -54,7 +53,7 @@ class GoogleSignUpControllerM extends GetxController {
     }
   }
 
-  void onChanged(String value){
+  void onChanged(String value) {
     update(["dark"]);
   }
 
@@ -102,7 +101,6 @@ class GoogleSignUpControllerM extends GetxController {
 
   bool buttonColor = false;
 
-
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
   emailValidation() {
@@ -110,7 +108,7 @@ class GoogleSignUpControllerM extends GetxController {
       emailError = 'Please Enter email';
     } else {
       if (RegExp(
-          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
           .hasMatch(emailController.text)) {
         emailError = '';
       } else {
@@ -191,8 +189,7 @@ class GoogleSignUpControllerM extends GetxController {
         lastError == "" &&
         cityError == "" &&
         stateError == "" &&
-        countryError == ""
-    ) {
+        countryError == "") {
       return true;
     } else {
       return false;
@@ -222,7 +219,7 @@ class GoogleSignUpControllerM extends GetxController {
       "City": cityController.text,
       "State": stateController.text,
       "Country": countryController.text,
-      "TotalPost":0
+      "TotalPost": 0
     };
 
     if (kDebugMode) {
@@ -242,6 +239,7 @@ class GoogleSignUpControllerM extends GetxController {
     update(["showCountry"]);
     update(['dark']);
   }
+
   String dropDownValue = 'India';
   var items = [
     'India',

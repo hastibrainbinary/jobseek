@@ -420,7 +420,8 @@ class SignUpControllerM extends GetxController {
           .collection("register")
           .get()
           .then((value) async {
-        if (value.docs.length.isEqual(0)) {
+        // ignore: unnecessary_null_comparison
+        if (value == null) {
           loading.value = true;
           isManager = false;
           Get.snackbar(

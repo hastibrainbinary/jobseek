@@ -277,7 +277,8 @@ class SignInScreenControllerM extends GetxController {
           .collection("register")
           .get()
           .then((value) async {
-        if (value.docs.length.isEqual(0)) {
+        // ignore: unnecessary_null_comparison
+        if (value == null) {
           loading.value = true;
           Get.snackbar(
               "Error", "Please create account,\n your email is not registered",
@@ -289,6 +290,18 @@ class SignInScreenControllerM extends GetxController {
             }
             if (value.docs[i]["Email"] == user!.email &&
                 value.docs[i]["Email"] != "") {
+              isManager = false;
+              Get.snackbar("Error",
+                  "Please create account,\n your email is not registered",
+                  colorText: const Color(0xffDA1414));
+              if (await googleSignIn.isSignedIn()) {
+                await googleSignIn.signOut();
+              }
+              loading.value = false;
+              if (kDebugMode) {
+                print("$isManager====]]]]]");
+              }
+            } else {
               isManager = true;
               PrefService.setValue(PrefKeys.rol, "Manager");
               PrefService.setValue(
@@ -302,18 +315,6 @@ class SignInScreenControllerM extends GetxController {
                 print("$isManager====]]]]]");
               }
               break;
-            } else {
-              isManager = false;
-              Get.snackbar("Error",
-                  "Please create account,\n your email is not registered",
-                  colorText: const Color(0xffDA1414));
-              if (await googleSignIn.isSignedIn()) {
-                await googleSignIn.signOut();
-              }
-              loading.value = false;
-              if (kDebugMode) {
-                print("$isManager====]]]]]");
-              }
             }
           }
           loading.value = false;

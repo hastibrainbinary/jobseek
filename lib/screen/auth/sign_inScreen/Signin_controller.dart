@@ -157,8 +157,8 @@ class SignInScreenController extends GetxController {
               PrefService.setValue(
                   PrefKeys.userId, credential.user!.uid.toString());
               Get.off(() => DashBoardScreen());
-              emailController.text="";
-              passwordController.text="";
+              emailController.text = "";
+              passwordController.text = "";
             }
           } on FirebaseAuthException catch (e) {
             if (e.code == 'user-not-found') {
@@ -203,9 +203,11 @@ class SignInScreenController extends GetxController {
   }
 
   onLoginBtnTap({String? email, String? password}) async {
-    if(rememberMe ==true){
-      await PrefService.setValue(PrefKeys.emailRememberUser, emailController.text);
-      await PrefService.setValue(PrefKeys.passwordRememberUser, passwordController.text);
+    if (rememberMe == true) {
+      await PrefService.setValue(
+          PrefKeys.emailRememberUser, emailController.text);
+      await PrefService.setValue(
+          PrefKeys.passwordRememberUser, passwordController.text);
     }
     if (validator()) {
       loading.value = true;
