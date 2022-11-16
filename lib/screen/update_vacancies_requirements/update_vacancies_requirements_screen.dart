@@ -564,8 +564,8 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                                       '')
                                               ? InkWell(
                                                   // dashboard write
-                                                  onTap:
-                                                      controller.onLoginBtnTap,
+                                                  onTap: controller
+                                                      .onUpdateVacancyTap,
 
                                                   child: Container(
                                                     height: 50,
@@ -607,7 +607,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                                             true
                                                         ? InkWell(
                                                             onTap: controller
-                                                                .onLoginBtnTap,
+                                                                .onUpdateVacancyTap,
                                                             child: Container(
                                                               height: 50,
                                                               width:

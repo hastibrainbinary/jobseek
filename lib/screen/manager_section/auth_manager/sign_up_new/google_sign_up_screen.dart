@@ -14,9 +14,10 @@ class GoogleSignupScreenM extends StatelessWidget {
   final String uid;
   const GoogleSignupScreenM(
       {Key? key,
-        required this.email,
-        required this.firstName,
-        required this.lastName, required this.uid})
+      required this.email,
+      required this.firstName,
+      required this.lastName,
+      required this.uid})
       : super(key: key);
 
   @override
@@ -30,7 +31,8 @@ class GoogleSignupScreenM extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             const SizedBox(
               height: 50,
             ),
@@ -106,7 +108,8 @@ class GoogleSignupScreenM extends StatelessWidget {
                           color: ColorRes.black.withOpacity(0.6))),
                   Text(
                     '*',
-                    style: appTextStyle(fontSize: 15, color: ColorRes.starColor),
+                    style:
+                        appTextStyle(fontSize: 15, color: ColorRes.starColor),
                   ),
                 ],
               ),
@@ -125,8 +128,8 @@ class GoogleSignupScreenM extends StatelessWidget {
                           color: controller.phoneController.text.trim().isEmpty
                               ? ColorRes.borderColor
                               : controller.phoneError == ""
-                              ? ColorRes.containerColor
-                              : ColorRes.starColor),
+                                  ? ColorRes.containerColor
+                                  : ColorRes.starColor),
                       boxShadow: [
                         BoxShadow(
                             offset: const Offset(6, 6),
@@ -149,7 +152,7 @@ class GoogleSignupScreenM extends StatelessWidget {
                               controller: controller.phoneController,
                               onChanged: controller.onChanged,
                               decoration: InputDecoration(
-                                // prefix:countryCodePicker(context) ,
+                                  // prefix:countryCodePicker(context) ,
                                   hintText: 'Phone number',
                                   fillColor: ColorRes.white,
                                   filled: true,
@@ -167,33 +170,33 @@ class GoogleSignupScreenM extends StatelessWidget {
                   controller.phoneError == ""
                       ? SizedBox(height: Get.height * 0.0197)
                       : Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 28,
-                    margin: const EdgeInsets.symmetric(vertical: 10),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        color: ColorRes.invalidColor),
-                    padding: const EdgeInsets.only(left: 15),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const Image(
-                            image: AssetImage(
-                              AssetRes.invalid,
-                            ),
-                            height: 14,
-                          ),
-                          const SizedBox(width: 10),
-                          Text(
-                            controller.phoneError,
-                            style: appTextStyle(
-                                fontSize: 9,
-                                fontWeight: FontWeight.w400,
-                                color: ColorRes.starColor),
-                          )
-                        ]),
-                  ),
+                          width: MediaQuery.of(context).size.width,
+                          height: 28,
+                          margin: const EdgeInsets.symmetric(vertical: 10),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: ColorRes.invalidColor),
+                          padding: const EdgeInsets.only(left: 15),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const Image(
+                                  image: AssetImage(
+                                    AssetRes.invalid,
+                                  ),
+                                  height: 14,
+                                ),
+                                const SizedBox(width: 10),
+                                Text(
+                                  controller.phoneError,
+                                  style: appTextStyle(
+                                      fontSize: 9,
+                                      fontWeight: FontWeight.w400,
+                                      color: ColorRes.starColor),
+                                )
+                              ]),
+                        ),
                   // Text(controller.phoneError)
                 ],
               ),
@@ -212,22 +215,22 @@ class GoogleSignupScreenM extends StatelessWidget {
             GetBuilder<GoogleSignUpControllerM>(
                 id: "showState",
                 builder: (controller) => texFieldColumn(
-                  title: 'State',
-                  hintText: 'State',
-                  onChanged: controller.onChanged,
-                  error: controller.stateError,
-                  txtController: controller.stateController,
-                )),
+                      title: 'State',
+                      hintText: 'State',
+                      onChanged: controller.onChanged,
+                      error: controller.stateError,
+                      txtController: controller.stateController,
+                    )),
             const SizedBox(height: 10),
             GetBuilder<GoogleSignUpControllerM>(
                 id: "showCountry",
                 builder: (controller) => texFieldColumn(
-                  title: 'Country',
-                  hintText: 'Country',
-                  onChanged: controller.onChanged,
-                  error: controller.countryError,
-                  txtController: controller.countryController,
-                )),
+                      title: 'Country',
+                      hintText: 'Country',
+                      onChanged: controller.onChanged,
+                      error: controller.countryError,
+                      txtController: controller.countryController,
+                    )),
             GetBuilder<GoogleSignUpControllerM>(
                 id: "remember_me",
                 builder: (controller) {
@@ -262,7 +265,8 @@ class GoogleSignupScreenM extends StatelessWidget {
             GetBuilder<GoogleSignUpControllerM>(
                 id: "dark",
                 builder: (controller) {
-                  return (controller.firstnameController.text == '' ||
+                  return
+                      /* (controller.firstnameController.text == '' ||
                       controller.lastnameController.text == '' ||
                       controller.emailController.text == '' ||
                       controller.phoneController.text == '' ||
@@ -286,7 +290,8 @@ class GoogleSignupScreenM extends StatelessWidget {
                             fontWeight: FontWeight.w500,
                             color: ColorRes.white)),
                   )
-                      : InkWell(
+                      :*/
+                      InkWell(
                     // dashboard write
                     onTap: controller.onSignUpBtnTap,
                     child: Container(

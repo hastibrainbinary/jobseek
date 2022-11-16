@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -39,7 +38,7 @@ class UpdateVacanciesRequirementController extends GetxController {
 
   RxBool text = false.obs;
   RxBool add = true.obs;
-  String? onchangeValues ;
+  String? onchangeValues;
   @override
   void onInit() {
     // TODO: implement onInit
@@ -62,7 +61,7 @@ class UpdateVacanciesRequirementController extends GetxController {
   RxBool isTypeValidate = false.obs;
   RxBool isStatusValidate = false.obs;
 
-  onLoginBtnTap() async {
+  onUpdateVacancyTap() async {
     validate();
     if (isPositionValidate.value == false &&
         isSalaryValidate.value == false &&
@@ -92,10 +91,10 @@ class UpdateVacanciesRequirementController extends GetxController {
   }
 
   onTapNewRequirement() {
-    if(addRequirementsList.isEmpty){
+    if (addRequirementsList.isEmpty) {
       addRequirementsList.add(TextEditingController());
-    }else if(addRequirementsList.isNotEmpty){
-          Get.snackbar("Error", "Please Fill Up Filed",colorText: Colors.red);
+    } else if (addRequirementsList.isNotEmpty) {
+      Get.snackbar("Error", "Please Fill Up Filed", colorText: Colors.red);
     }
     text.value = true;
     update(["more"]);
@@ -114,7 +113,9 @@ class UpdateVacanciesRequirementController extends GetxController {
         .doc(args['docs'].id.toString())
         .get();
     var ref = document.data();
-    print(ref);
+    if (kDebugMode) {
+      print(ref);
+    }
     moreOption = List.filled(data['docs']['RequirementsList'].length, false);
     update(["more"]);
   }
@@ -137,12 +138,14 @@ class UpdateVacanciesRequirementController extends GetxController {
   onTapRequirements(BuildContext context) async {
     loader.value = true;
 
-   /* List<String> requirementsList1 = List.generate(
+    /* List<String> requirementsList1 = List.generate(
         addRequirementsList.length, (index) => addRequirementsList[index].text);
     print(requirementsList1);
-    requirmentList=requirementsList1;
-    print(requirmentList);*/
-    print(onchangeValues);
+    requirementList=requirementsList1;
+    print(requirementList);*/
+    if (kDebugMode) {
+      print(onchangeValues);
+    }
     Map<String, dynamic> map = {
       "RequirementsList": requirmentList,
     };
