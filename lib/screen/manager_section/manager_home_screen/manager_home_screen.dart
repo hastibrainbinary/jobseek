@@ -90,7 +90,7 @@ class ManagerHomeScreen extends StatelessWidget {
                         Text(
                           textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis,
-                          PrefService.getString(PrefKeys.companyName).toString()?? "",
+                          PrefService.getString(PrefKeys.companyName).toString()??"",
                           maxLines: 2,
                           style: appTextStyle(
                               color: ColorRes.containerColor,

@@ -226,6 +226,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/common/widgets/common_loader.dart';
+import 'package:jobseek/screen/add_requirements/add_requirements_controller.dart';
 import 'package:jobseek/screen/create_vacancies/create_vacancies_controller.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
@@ -233,7 +234,7 @@ import 'package:jobseek/utils/color_res.dart';
 
 class RequirementsScreen extends StatelessWidget {
   RequirementsScreen({Key? key}) : super(key: key);
-  final controller = Get.put(CreateVacanciesController());
+  final controller = Get.put(AddRequirementController());
 
   @override
   Widget build(BuildContext context) {
@@ -254,7 +255,7 @@ class RequirementsScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(12),
                       child: InkWell(
                         onTap: () {
-                          controller.onTapBack("require");
+                         // controller.onTapBack("require");
                           Get.back();
                         },
                         child: backButton(),
@@ -380,7 +381,7 @@ class RequirementsScreen extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: InkWell(
                   onTap: () {
-                    controller.onTapNext();
+                  //  controller.onTapNext();
                   },
                   child: Container(
                     height: 50,
