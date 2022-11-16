@@ -1,14 +1,13 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen.dart';
 import 'package:jobseek/screen/organization_profile_screen/organization_profile_screen.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/pref_keys.dart';
-import 'package:jobseek/utils/shared_preferences.dart';
 
 class GoogleSignUpControllerM extends GetxController {
   final String email;
@@ -111,7 +110,7 @@ class GoogleSignUpControllerM extends GetxController {
       emailError = 'Please Enter email';
     } else {
       if (RegExp(
-              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
           .hasMatch(emailController.text)) {
         emailError = '';
       } else {
@@ -193,7 +192,7 @@ class GoogleSignUpControllerM extends GetxController {
         cityError == "" &&
         stateError == "" &&
         countryError == ""
-        ) {
+    ) {
       return true;
     } else {
       return false;

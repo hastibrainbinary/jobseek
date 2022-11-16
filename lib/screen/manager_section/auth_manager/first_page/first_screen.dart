@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/screen/manager_section/auth_manager/Sign_in/sign_in_screen.dart';
-import 'package:jobseek/screen/manager_section/auth_manager/sign_up/sign_up_screen.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../sign_up_new/sign_up_new_screen.dart';
 
 class FirstPageScreenM extends StatelessWidget {
   const FirstPageScreenM({Key? key}) : super(key: key);

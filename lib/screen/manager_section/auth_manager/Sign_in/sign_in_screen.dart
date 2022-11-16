@@ -5,7 +5,7 @@ import 'package:jobseek/common/widgets/common_textField.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_controller.dart';
 import 'package:jobseek/screen/manager_section/auth_manager/Sign_in/sign_in_controller.dart';
 import 'package:jobseek/screen/manager_section/auth_manager/forgot_Password/forgot_password_screen.dart';
-import 'package:jobseek/screen/manager_section/auth_manager/sign_up/sign_up_screen.dart';
+import 'package:jobseek/screen/manager_section/auth_manager/sign_up_new/sign_up_new_screen.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';

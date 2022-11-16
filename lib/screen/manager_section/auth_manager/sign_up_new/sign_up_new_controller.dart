@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:jobseek/screen/manager_section/auth_manager/sign_up/goole_signup_screenM.dart';
+import 'package:jobseek/screen/manager_section/auth_manager/sign_up_new/google_sign_up_screen.dart';
 import 'package:jobseek/screen/organization_profile_screen/organization_profile_screen.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/pref_keys.dart';
@@ -49,14 +49,14 @@ class SignUpControllerM extends GetxController {
       }
     });
     Get.off(() => const OrganizationProfileScreen());
-    firstnameController.text="";
-    lastnameController.text="";
-    emailController.text="";
-    phoneController.text="";
-    passwordController.text="";
-    cityController.text="";
-    stateController.text="";
-    countryController.text="";
+    firstnameController.text = "";
+    lastnameController.text = "";
+    emailController.text = "";
+    phoneController.text = "";
+    passwordController.text = "";
+    cityController.text = "";
+    stateController.text = "";
+    countryController.text = "";
     update(["showEmail"]);
     update(["showLastname"]);
     update(["showFirstname"]);
@@ -112,7 +112,7 @@ class SignUpControllerM extends GetxController {
           "company": false,
         };
         addDataInFirebase(userUid: userCredential.user?.uid ?? "", map: map2);
-       // chatDataInFirebase(userUid: userCredential.user?.uid ?? "", map: map2);
+        // chatDataInFirebase(userUid: userCredential.user?.uid ?? "", map: map2);
       }
       loading.value = false;
     } on FirebaseAuthException catch (e) {

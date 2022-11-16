@@ -12,12 +12,12 @@ import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
 class UpdateVacanciesRequirementsScreen extends StatelessWidget {
-  UpdateVacanciesRequirementsScreen({Key? key,})
-      : super(key: key);
+  UpdateVacanciesRequirementsScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     final controller = Get.put(UpdateVacanciesRequirementController());
     return Scaffold(
       backgroundColor: ColorRes.backgroundColor,
@@ -58,7 +58,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                       child: Text(
                         "Update  Vacancies",
                         style: appTextStyle(
-                            color: Colors.black,
+                            color: ColorRes.black,
                             fontSize: 20,
                             fontWeight: FontWeight.w500),
                       ),
@@ -185,7 +185,8 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                     Stack(
                                       children: [
                                         const Image(
-                                          image: AssetImage(AssetRes.airBnbLogo),
+                                          image:
+                                              AssetImage(AssetRes.airBnbLogo),
                                           height: 70,
                                         ),
                                         Positioned(
@@ -211,7 +212,8 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                     Container(
                                       margin: const EdgeInsets.symmetric(
                                           horizontal: 20),
-                                      color: ColorRes.lightGrey.withOpacity(0.8),
+                                      color:
+                                          ColorRes.lightGrey.withOpacity(0.8),
                                       height: 1,
                                     ),
                                     const SizedBox(
@@ -220,12 +222,13 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                     Row(
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.only(left: 15),
+                                          padding:
+                                              const EdgeInsets.only(left: 15),
                                           child: Text(
                                             "Open Position",
                                             style: appTextStyle(
-                                              color:
-                                                  ColorRes.black.withOpacity(0.6),
+                                              color: ColorRes.black
+                                                  .withOpacity(0.6),
                                               fontSize: 14,
                                             ),
                                           ),
@@ -249,7 +252,8 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                             hintStyle: appTextStyle(
                                                 fontSize: 14,
                                                 color: ColorRes.black)),
-                                        controller: controller.positionController),
+                                        controller:
+                                            controller.positionController),
                                     controller.isPositionValidate.value == true
                                         ? Column(
                                             children: [
@@ -267,11 +271,13 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                     Row(
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.only(left: 15),
+                                          padding:
+                                              const EdgeInsets.only(left: 15),
                                           child: Text(
                                             "Salary",
                                             style: appTextStyle(
-                                                color: ColorRes.grey, fontSize: 14),
+                                                color: ColorRes.grey,
+                                                fontSize: 14),
                                           ),
                                         ),
                                         Text(
@@ -286,30 +292,34 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                     ),
                                     commonTextFormField(
                                         textDecoration: InputDecoration(
-                                          contentPadding: const EdgeInsets.all(15),
+                                          contentPadding:
+                                              const EdgeInsets.all(15),
                                           border: InputBorder.none,
                                           hintText: '15000',
                                           hintStyle: appTextStyle(
-                                              fontSize: 14, color: ColorRes.black),
+                                              fontSize: 14,
+                                              color: ColorRes.black),
                                           suffixIcon: Container(
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 15),
                                             child: Image(
                                               image: const AssetImage(
                                                   AssetRes.currencyIcon),
-                                              color:
-                                                  ColorRes.black.withOpacity(0.30),
+                                              color: ColorRes.black
+                                                  .withOpacity(0.30),
                                             ),
                                           ),
                                         ),
-                                        controller: controller.salaryController),
+                                        controller:
+                                            controller.salaryController),
                                     controller.isSalaryValidate.value == true
                                         ? Column(
                                             children: [
                                               const SizedBox(
                                                 height: 10,
                                               ),
-                                              commonErrorBox("Please Enter Salary"),
+                                              commonErrorBox(
+                                                  "Please Enter Salary"),
                                             ],
                                           )
                                         : const SizedBox(),
@@ -319,11 +329,13 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                     Row(
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.only(left: 15),
+                                          padding:
+                                              const EdgeInsets.only(left: 15),
                                           child: Text(
                                             "Location",
                                             style: appTextStyle(
-                                                color: ColorRes.grey, fontSize: 14),
+                                                color: ColorRes.grey,
+                                                fontSize: 14),
                                           ),
                                         ),
                                         Text(
@@ -338,7 +350,8 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                     ),
                                     commonTextFormField(
                                         textDecoration: InputDecoration(
-                                          contentPadding: const EdgeInsets.all(15),
+                                          contentPadding:
+                                              const EdgeInsets.all(15),
                                           border: InputBorder.none,
                                           hintText: 'india',
                                           hintStyle: appTextStyle(
@@ -374,7 +387,8 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                             },
                                           ),
                                         ),
-                                        controller: controller.locationController),
+                                        controller:
+                                            controller.locationController),
                                     controller.isLocationValidate.value == true
                                         ? Column(
                                             children: [
@@ -392,11 +406,13 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                     Row(
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.only(left: 15),
+                                          padding:
+                                              const EdgeInsets.only(left: 15),
                                           child: Text(
                                             "Type",
                                             style: appTextStyle(
-                                                color: ColorRes.grey, fontSize: 14),
+                                                color: ColorRes.grey,
+                                                fontSize: 14),
                                           ),
                                         ),
                                         Text(
@@ -411,7 +427,8 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                     ),
                                     commonTextFormField(
                                         textDecoration: InputDecoration(
-                                          contentPadding: const EdgeInsets.all(15),
+                                          contentPadding:
+                                              const EdgeInsets.all(15),
                                           border: InputBorder.none,
                                           hintText: 'Full time',
                                           hintStyle: appTextStyle(
@@ -420,10 +437,13 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                           ),
                                           suffixIcon: DropdownButton(
                                             iconSize: 35.0,
-                                            iconEnabledColor: Colors.grey.shade400,
-                                            iconDisabledColor: Colors.grey.shade400,
+                                            iconEnabledColor:
+                                                Colors.grey.shade400,
+                                            iconDisabledColor:
+                                                Colors.grey.shade400,
                                             underline: Container(),
-                                            icon: const Icon(Icons.arrow_drop_down),
+                                            icon: const Icon(
+                                                Icons.arrow_drop_down),
                                             items: controller.items.map(
                                               (val) {
                                                 return DropdownMenuItem<String>(
@@ -432,8 +452,9 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                                 );
                                               },
                                             ).toList(),
-                                            onChanged: (String? val) => controller
-                                                .changeDropwonType(val: val!),
+                                            onChanged: (String? val) =>
+                                                controller.changeDropwonType(
+                                                    val: val!),
                                           ),
                                         ),
                                         controller: controller.typeController),
@@ -443,7 +464,8 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                               const SizedBox(
                                                 height: 10,
                                               ),
-                                              commonErrorBox("Please Enter Type"),
+                                              commonErrorBox(
+                                                  "Please Enter Type"),
                                             ],
                                           )
                                         : const SizedBox(),
@@ -456,11 +478,13 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                     Row(
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.only(left: 15),
+                                          padding:
+                                              const EdgeInsets.only(left: 15),
                                           child: Text(
                                             "Status",
                                             style: appTextStyle(
-                                                color: ColorRes.grey, fontSize: 14),
+                                                color: ColorRes.grey,
+                                                fontSize: 14),
                                           ),
                                         ),
                                         Text(
@@ -475,7 +499,8 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                     ),
                                     commonTextFormField(
                                         textDecoration: InputDecoration(
-                                          contentPadding: const EdgeInsets.all(15),
+                                          contentPadding:
+                                              const EdgeInsets.all(15),
                                           border: InputBorder.none,
                                           hintText: 'Active',
                                           hintStyle: appTextStyle(
@@ -484,10 +509,13 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                           ),
                                           suffixIcon: DropdownButton(
                                             iconSize: 35.0,
-                                            iconEnabledColor: Colors.grey.shade400,
-                                            iconDisabledColor: Colors.grey.shade400,
+                                            iconEnabledColor:
+                                                Colors.grey.shade400,
+                                            iconDisabledColor:
+                                                Colors.grey.shade400,
                                             underline: Container(),
-                                            icon: const Icon(Icons.arrow_drop_down),
+                                            icon: const Icon(
+                                                Icons.arrow_drop_down),
                                             items: controller.items2.map(
                                               (val) {
                                                 return DropdownMenuItem<String>(
@@ -496,18 +524,21 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                                 );
                                               },
                                             ).toList(),
-                                            onChanged: (String? val) => controller
-                                                .changeDropdwonStatus(val: val!),
+                                            onChanged: (String? val) =>
+                                                controller.changeDropdwonStatus(
+                                                    val: val!),
                                           ),
                                         ),
-                                        controller: controller.statusController),
+                                        controller:
+                                            controller.statusController),
                                     controller.isStatusValidate.value == true
                                         ? Column(
                                             children: [
                                               const SizedBox(
                                                 height: 10,
                                               ),
-                                              commonErrorBox("Please Enter Status"),
+                                              commonErrorBox(
+                                                  "Please Enter Status"),
                                             ],
                                           )
                                         : const SizedBox(),
@@ -519,64 +550,74 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                         id: "Vacancies",
                                         builder: (controller) {
                                           return (controller.positionController.text == '' ||
-                                                  controller
-                                                          .salaryController.text ==
+                                                  controller.salaryController
+                                                          .text ==
                                                       '' ||
                                                   controller.locationController
                                                           .text ==
                                                       '' ||
-                                                  controller.typeController.text ==
+                                                  controller.typeController
+                                                          .text ==
                                                       '' ||
-                                                  controller
-                                                          .statusController.text ==
+                                                  controller.statusController
+                                                          .text ==
                                                       '')
                                               ? InkWell(
                                                   // dashboard write
-                                                  onTap: controller.onLoginBtnTap,
+                                                  onTap:
+                                                      controller.onLoginBtnTap,
 
                                                   child: Container(
                                                     height: 50,
-                                                    width: MediaQuery.of(context)
-                                                        .size
-                                                        .width,
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                            .size
+                                                            .width,
                                                     alignment: Alignment.center,
                                                     decoration: BoxDecoration(
                                                       borderRadius:
-                                                          BorderRadius.circular(10),
+                                                          BorderRadius.circular(
+                                                              10),
                                                       gradient: LinearGradient(
                                                         colors: [
                                                           ColorRes.gradientColor
                                                               .withOpacity(0.2),
-                                                          ColorRes.containerColor
+                                                          ColorRes
+                                                              .containerColor
                                                               .withOpacity(0.4)
                                                         ],
                                                       ),
                                                     ),
-                                                    child: Text("Update Vacancy",
+                                                    child: Text(
+                                                        "Update Vacancy",
                                                         style: appTextStyle(
                                                             fontSize: 18,
                                                             fontWeight:
                                                                 FontWeight.w500,
-                                                            color: ColorRes.white)),
+                                                            color: ColorRes
+                                                                .white)),
                                                   ),
                                                 )
                                               : GetBuilder<
                                                   UpdateVacanciesRequirementController>(
                                                   id: "editValues",
                                                   builder: (controller) {
-                                                    return controller.editValues ==
+                                                    return controller
+                                                                .editValues ==
                                                             true
                                                         ? InkWell(
                                                             onTap: controller
                                                                 .onLoginBtnTap,
                                                             child: Container(
                                                               height: 50,
-                                                              width: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .width,
+                                                              width:
+                                                                  MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width,
                                                               alignment:
-                                                                  Alignment.center,
+                                                                  Alignment
+                                                                      .center,
                                                               decoration:
                                                                   BoxDecoration(
                                                                 borderRadius:
@@ -595,7 +636,8 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                                               child: Text(
                                                                   "Update Vacancy",
                                                                   style: appTextStyle(
-                                                                      fontSize: 18,
+                                                                      fontSize:
+                                                                          18,
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .w500,
@@ -616,65 +658,118 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                             )
                           : Column(
                               children: [
-                               GetBuilder<UpdateVacanciesRequirementController>(id:"more",
-                                 builder: (controller) {
-                                 return  SizedBox(
-                                   height: 350,
-                                   child: ListView.builder(
-                                       padding: const EdgeInsets.all(0),
-                                       shrinkWrap: true,
-                                       itemCount: controller.requirmentList.length+controller.addRequirementsList.length,
-                                       itemBuilder: (context, index) {
-                                         int values =  (controller.requirmentList.length+controller.addRequirementsList.length)-controller.requirmentList.length;
-                                         print(values);
-                                         return Column(
-                                           children: [
-                                             /*  detailBox(
+                                GetBuilder<
+                                    UpdateVacanciesRequirementController>(
+                                  id: "more",
+                                  builder: (controller) {
+                                    return SizedBox(
+                                      height: 350,
+                                      child: ListView.builder(
+                                          padding: const EdgeInsets.all(0),
+                                          shrinkWrap: true,
+                                          itemCount:
+                                              controller.requirmentList.length +
+                                                  controller.addRequirementsList
+                                                      .length,
+                                          itemBuilder: (context, index) {
+                                            int values = (controller
+                                                        .requirmentList.length +
+                                                    controller
+                                                        .addRequirementsList
+                                                        .length) -
+                                                controller
+                                                    .requirmentList.length;
+                                            print(values);
+                                            return Column(
+                                              children: [
+                                                /*  detailBox(
                                                 controller.requirmentList[index]
                                                     .toString(),
                                                 true),*/
-                                             index>= controller.requirmentList.length?  GetBuilder<UpdateVacanciesRequirementController>(id:"more",
-                                               builder: (controller) {
-                                                 return (controller.text.value == true)
-                                                     ? Padding(padding: const EdgeInsets.only(bottom: 10),
-                                                   child: Container(
-                                                     //padding: EdgeInsets.symmetric( vertical: 10),
-                                                     height: 46,
-                                                     width: 339,
-                                                     decoration: BoxDecoration(
-                                                       borderRadius:
-                                                       BorderRadius.circular(10),
-                                                       color:
-                                                       const Color(0xffF3F0F8),
-                                                     ),
-                                                     child:  TextField(onChanged: (value) {
-                                                          controller.onchangeValues=value;
-                                                          print(controller.onchangeValues);
-                                                     },
-                                                       onSubmitted: (value) {
-                                                         controller.requirmentList.add(value);
-                                                         controller.addRequirementsList=[];
-                                                         controller.moreOption = List.generate(controller.requirmentList.length, (index) =>false);
+                                                index >=
+                                                        controller
+                                                            .requirmentList
+                                                            .length
+                                                    ? GetBuilder<
+                                                        UpdateVacanciesRequirementController>(
+                                                        id: "more",
+                                                        builder: (controller) {
+                                                          return (controller
+                                                                      .text
+                                                                      .value ==
+                                                                  true)
+                                                              ? Padding(
+                                                                  padding: const EdgeInsets
+                                                                          .only(
+                                                                      bottom:
+                                                                          10),
+                                                                  child:
+                                                                      Container(
+                                                                    //padding: EdgeInsets.symmetric( vertical: 10),
+                                                                    height: 46,
+                                                                    width: 339,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              10),
+                                                                      color: const Color(
+                                                                          0xffF3F0F8),
+                                                                    ),
+                                                                    child:
+                                                                        TextField(
+                                                                      onChanged:
+                                                                          (value) {
+                                                                        controller.onchangeValues =
+                                                                            value;
+                                                                        print(controller
+                                                                            .onchangeValues);
+                                                                      },
+                                                                      onSubmitted:
+                                                                          (value) {
+                                                                        controller
+                                                                            .requirmentList
+                                                                            .add(value);
+                                                                        controller.addRequirementsList =
+                                                                            [];
+                                                                        controller.moreOption = List.generate(
+                                                                            controller
+                                                                                .requirmentList.length,
+                                                                            (index) =>
+                                                                                false);
 
-                                                         controller.update(["more"]);
-                                                       },
-                                                       controller: controller
-                                                           .addRequirementsList[values-1],
-                                                       decoration: const InputDecoration(
-                                                         border: InputBorder.none,
-                                                         prefixIcon:  Icon(
-                                                           Icons
-                                                               .check_circle_outline,
-                                                           color: ColorRes
-                                                               .containerColor,
-                                                           size: 30,
-                                                         ),),
-                                                     ),
-                                                   ),
-                                                 )
-                                                     : const SizedBox();
-                                               },):Stack(children: [
-                                               /*  Container(
+                                                                        controller
+                                                                            .update([
+                                                                          "more"
+                                                                        ]);
+                                                                      },
+                                                                      controller: controller
+                                                                              .addRequirementsList[
+                                                                          values -
+                                                                              1],
+                                                                      decoration:
+                                                                          const InputDecoration(
+                                                                        border:
+                                                                            InputBorder.none,
+                                                                        prefixIcon:
+                                                                            Icon(
+                                                                          Icons
+                                                                              .check_circle_outline,
+                                                                          color:
+                                                                              ColorRes.containerColor,
+                                                                          size:
+                                                                              30,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                )
+                                                              : const SizedBox();
+                                                        },
+                                                      )
+                                                    : Stack(
+                                                        children: [
+                                                          /*  Container(
                                               //padding: EdgeInsets.symmetric( vertical: 10),
                                               height: 46,
                                               width: 339,
@@ -696,116 +791,170 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                                   ),),
                                               ),
                                             ),*/
-                                               Container(
-                                                 // height: 50,
-                                                 width: Get.width,
-                                                 padding: const EdgeInsets.symmetric(
-                                                     horizontal: 10, vertical: 10),
-                                                 margin: const EdgeInsets.symmetric(
-                                                     horizontal: 18, vertical: 4),
-                                                 decoration: BoxDecoration(
-                                                   gradient: LinearGradient(
-                                                       colors: [
-                                                         const Color(0xFFF3F0F8),
-                                                         const Color(0xFFF3F0F8)
-                                                             .withOpacity(0.1),
-                                                       ],
-                                                       begin: Alignment.centerLeft,
-                                                       end: Alignment.centerRight),
-                                                   borderRadius:
-                                                   BorderRadius.circular(13),
-                                                 ),
-                                                 child: Row(
-                                                   children: [
-                                                     const Icon(
-                                                       Icons.check_circle_outline,
-                                                       color: ColorRes.containerColor,
-                                                       size: 30,
-                                                     ),
-                                                     const SizedBox(
-                                                       width: 20,
-                                                     ),
-                                                     SizedBox(
-                                                       width: Get.width * 0.57,
-                                                       child: Text(
-                                                         controller.requirmentList[index]
-                                                             .toString(),
-                                                         style: appTextStyle(
-                                                             color: Colors.black,
-                                                             fontSize: 12,
-                                                             fontWeight:
-                                                             FontWeight.w400),
-                                                       ),
-                                                     ),
-                                                     const Spacer(),
-                                                     InkWell(onTap: () {
-                                                       controller.onTapMore(index);
-                                                       controller.update(["more"]);
-                                                     },
-                                                       child: const Icon(
-                                                         Icons.more_vert,
-                                                         color: Colors.black,
-                                                         size: 20,
-                                                       ),
-                                                     ),
-                                                     const SizedBox(
-                                                       width: 8,
-                                                     ),
-                                                   ],
-                                                 ),
-                                               ),
-                                               GetBuilder<UpdateVacanciesRequirementController>(id:"more",
-                                                 builder: (controller) {
-                                                   return controller.moreOption[index]==true? Align(alignment: Alignment.topRight,
-                                                     child: Padding(
-                                                       padding: const EdgeInsets.all(40.0),
-                                                       child: Container(
-                                                         height: 50,
-                                                         width: 116,
-                                                         padding: const EdgeInsets.only(
-                                                             left: 10, right: 10),
-                                                         decoration: const BoxDecoration(
-                                                             color: Colors.white70,
-                                                             borderRadius: BorderRadius.only(
-                                                                 bottomRight:
-                                                                 Radius.circular(15),
-                                                                 bottomLeft:
-                                                                 Radius.circular(15),
-                                                                 topLeft:
-                                                                 Radius.circular(15))),
-                                                         child: InkWell(onTap: () {
-                                                           controller.deleteNewRequirement(index);
-
-                                                         },
-                                                           child: Column(children: [
-                                                             const Spacer(),
-                                                             Row(
-                                                               children:  [
-                                                                 Image.asset(AssetRes.del,height:19,width: 19, ),
-                                                                 const SizedBox(
-                                                                   width: 10,
-                                                                 ),
-                                                                 Text(
-                                                                   "Remove",
-                                                                   style:
-                                                                   GoogleFonts.poppins(fontSize: 12,color: Colors.black),
-                                                                 )
-                                                               ],
-                                                             ),
-                                                             const Spacer(),
-                                                           ]),
-                                                         ),
-                                                       ),
-                                                     ),
-                                                   ):const SizedBox();
-                                                 },)
-                                             ],),
-
-                                           ],
-                                         );
-                                       }),
-                                 );
-                               },),
+                                                          Container(
+                                                            // height: 50,
+                                                            width: Get.width,
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .symmetric(
+                                                                    horizontal:
+                                                                        10,
+                                                                    vertical:
+                                                                        10),
+                                                            margin:
+                                                                const EdgeInsets
+                                                                        .symmetric(
+                                                                    horizontal:
+                                                                        18,
+                                                                    vertical:
+                                                                        4),
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              gradient: LinearGradient(
+                                                                  colors: [
+                                                                    const Color(
+                                                                        0xFFF3F0F8),
+                                                                    const Color(
+                                                                            0xFFF3F0F8)
+                                                                        .withOpacity(
+                                                                            0.1),
+                                                                  ],
+                                                                  begin: Alignment
+                                                                      .centerLeft,
+                                                                  end: Alignment
+                                                                      .centerRight),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          13),
+                                                            ),
+                                                            child: Row(
+                                                              children: [
+                                                                const Icon(
+                                                                  Icons
+                                                                      .check_circle_outline,
+                                                                  color: ColorRes
+                                                                      .containerColor,
+                                                                  size: 30,
+                                                                ),
+                                                                const SizedBox(
+                                                                  width: 20,
+                                                                ),
+                                                                SizedBox(
+                                                                  width:
+                                                                      Get.width *
+                                                                          0.57,
+                                                                  child: Text(
+                                                                    controller
+                                                                        .requirmentList[
+                                                                            index]
+                                                                        .toString(),
+                                                                    style: appTextStyle(
+                                                                        color: ColorRes
+                                                                            .black,
+                                                                        fontSize:
+                                                                            12,
+                                                                        fontWeight:
+                                                                            FontWeight.w400),
+                                                                  ),
+                                                                ),
+                                                                const Spacer(),
+                                                                InkWell(
+                                                                  onTap: () {
+                                                                    controller
+                                                                        .onTapMore(
+                                                                            index);
+                                                                    controller
+                                                                        .update([
+                                                                      "more"
+                                                                    ]);
+                                                                  },
+                                                                  child:
+                                                                      const Icon(
+                                                                    Icons
+                                                                        .more_vert,
+                                                                    color: ColorRes
+                                                                        .black,
+                                                                    size: 20,
+                                                                  ),
+                                                                ),
+                                                                const SizedBox(
+                                                                  width: 8,
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          GetBuilder<
+                                                              UpdateVacanciesRequirementController>(
+                                                            id: "more",
+                                                            builder:
+                                                                (controller) {
+                                                              return controller
+                                                                              .moreOption[
+                                                                          index] ==
+                                                                      true
+                                                                  ? Align(
+                                                                      alignment:
+                                                                          Alignment
+                                                                              .topRight,
+                                                                      child:
+                                                                          Padding(
+                                                                        padding:
+                                                                            const EdgeInsets.all(40.0),
+                                                                        child:
+                                                                            Container(
+                                                                          height:
+                                                                              50,
+                                                                          width:
+                                                                              116,
+                                                                          padding: const EdgeInsets.only(
+                                                                              left: 10,
+                                                                              right: 10),
+                                                                          decoration: const BoxDecoration(
+                                                                              color: Colors.white70,
+                                                                              borderRadius: BorderRadius.only(bottomRight: Radius.circular(15), bottomLeft: Radius.circular(15), topLeft: Radius.circular(15))),
+                                                                          child:
+                                                                              InkWell(
+                                                                            onTap:
+                                                                                () {
+                                                                              controller.deleteNewRequirement(index);
+                                                                            },
+                                                                            child:
+                                                                                Column(children: [
+                                                                              const Spacer(),
+                                                                              Row(
+                                                                                children: [
+                                                                                  Image.asset(
+                                                                                    AssetRes.del,
+                                                                                    height: 19,
+                                                                                    width: 19,
+                                                                                  ),
+                                                                                  const SizedBox(
+                                                                                    width: 10,
+                                                                                  ),
+                                                                                  Text(
+                                                                                    "Remove",
+                                                                                    style: GoogleFonts.poppins(fontSize: 12, color: ColorRes.black),
+                                                                                  )
+                                                                                ],
+                                                                              ),
+                                                                              const Spacer(),
+                                                                            ]),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    )
+                                                                  : const SizedBox();
+                                                            },
+                                                          )
+                                                        ],
+                                                      ),
+                                              ],
+                                            );
+                                          }),
+                                    );
+                                  },
+                                ),
                                 const SizedBox(height: 22),
                                 InkWell(
                                   onTap: () {
@@ -821,7 +970,8 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                           color: ColorRes.containerColor),
                                     ),
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         const Image(
                                           image: AssetImage(AssetRes.addIcon),
@@ -840,40 +990,48 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                   ),
                                 ),
                                 const SizedBox(height: 60),
-                              GetBuilder<UpdateVacanciesRequirementController>(id: "update",
-                                builder: (controller) {
-                                return   InkWell(onTap: () {
-                                  controller.onTapRequirements(context);
-
-                                },
-                                  child: Container(
-                                    height: 50,
-                                    width: 339,
-                                    alignment: Alignment.center,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      gradient: const LinearGradient(
-                                        colors: [
-                                          ColorRes.gradientColor,
-                                          ColorRes.containerColor,
-                                        ],
+                                GetBuilder<
+                                    UpdateVacanciesRequirementController>(
+                                  id: "update",
+                                  builder: (controller) {
+                                    return InkWell(
+                                      onTap: () {
+                                        controller.onTapRequirements(context);
+                                      },
+                                      child: Container(
+                                        height: 50,
+                                        width: 339,
+                                        alignment: Alignment.center,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          gradient: const LinearGradient(
+                                            colors: [
+                                              ColorRes.gradientColor,
+                                              ColorRes.containerColor,
+                                            ],
+                                          ),
+                                        ),
+                                        child: Text("Update Vacancy",
+                                            style: appTextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w500,
+                                                color: ColorRes.white)),
                                       ),
-                                    ),
-                                    child: Text("Update Vacancy",
-                                        style: appTextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w500,
-                                            color: ColorRes.white)),
-                                  ),
-                                );
-                              },),
+                                    );
+                                  },
+                                ),
                                 const SizedBox(height: 20),
                               ],
                             ),
                     ],
                   ))
             ]),
-            Obx(() => controller.loader.isTrue? const Center(child: CommonLoader(),):const SizedBox())
+            Obx(() => controller.loader.isTrue
+                ? const Center(
+                    child: CommonLoader(),
+                  )
+                : const SizedBox())
           ],
         ),
       ),

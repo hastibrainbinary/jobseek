@@ -352,6 +352,22 @@ class GoogleSignupScreen extends StatelessWidget {
                       txtController: controller.stateController,
                     )),
             const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.only(left: 13, bottom: 10),
+              child: Row(
+                children: [
+                  Text('Country',
+                      style: appTextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14,
+                          color: ColorRes.black.withOpacity(0.6))),
+                  const Text(
+                    '*',
+                    style: TextStyle(fontSize: 15, color: ColorRes.starColor),
+                  ),
+                ],
+              ),
+            ),
             GetBuilder<GoogleSignupController>(
               id: "showCountry",
               builder: (controller) => Column(
@@ -511,7 +527,7 @@ class GoogleSignupScreen extends StatelessWidget {
                 id: "dark",
                 builder: (controller) {
                   return
-                   /* (controller.firstnameController.text == '' ||
+                      /* (controller.firstnameController.text == '' ||
                           controller.lastnameController.text == '' ||
                           controller.emailController.text == '' ||
                           controller.phoneController.text == '' ||
@@ -536,27 +552,28 @@ class GoogleSignupScreen extends StatelessWidget {
                                   fontWeight: FontWeight.w500,
                                   color: ColorRes.white)),
                         )
-                      :*/ InkWell(
-                          // dashboard write
-                          onTap: controller.onSignUpBtnTap,
-                          child: Container(
-                            height: 50,
-                            width: MediaQuery.of(context).size.width,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              gradient: const LinearGradient(colors: [
-                                ColorRes.gradientColor,
-                                ColorRes.containerColor
-                              ]),
-                            ),
-                            child: Text("Sign up",
-                                style: appTextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500,
-                                    color: ColorRes.white)),
-                          ),
-                        );
+                      :*/
+                      InkWell(
+                    // dashboard write
+                    onTap: controller.onSignUpBtnTap,
+                    child: Container(
+                      height: 50,
+                      width: MediaQuery.of(context).size.width,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        gradient: const LinearGradient(colors: [
+                          ColorRes.gradientColor,
+                          ColorRes.containerColor
+                        ]),
+                      ),
+                      child: Text("Sign up",
+                          style: appTextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              color: ColorRes.white)),
+                    ),
+                  );
                 }),
             const SizedBox(height: 28),
           ]),
