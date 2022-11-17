@@ -10,6 +10,7 @@ import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/tips_for_you_section.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_controller.dart';
 import 'package:jobseek/screen/job_recommendation_screen/job_recommendation_controller.dart';
+import 'package:jobseek/screen/search_job/search_job_screen.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/color_res.dart';
@@ -48,13 +49,68 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 children: [
                   const SizedBox(height: 23),
-                  searchArea(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 18),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              color: ColorRes.white2,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(8),
+                              ),
+                            ),
+                            child: TextField(
+                                readOnly: true,
+                              //controller: controller.searchNewController,
+                              onChanged: (value) {},
+                              onTap: () {
+                                Get.to(() => const SearchJobScreen());
+                              },
+                              decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  suffixIcon: const Icon(Icons.search,
+
+                                      color: ColorRes.grey),
+                                  hintText: "Search",
+                                  hintStyle: appTextStyle(
+                                      fontSize: 14,
+                                      color: ColorRes.grey,
+                                      fontWeight: FontWeight.w500),
+                                  contentPadding:
+                                      const EdgeInsets.only(left: 20, top: 13)),
+                            ),
+                          ),
+                        ),
+                        // const SizedBox(width: 20),
+                        // Container(
+                        //   height: 40,
+                        //   width: 40,
+                        //   alignment: Alignment.center,
+                        //   decoration: const BoxDecoration(
+                        //     borderRadius: BorderRadius.all(Radius.circular(10)),
+                        //     color: ColorRes.logoColor,
+                        //   ),
+                        //   child: Image.asset(
+                        //     AssetRes.menuIcon,
+                        //     color: ColorRes.containerColor,
+                        //     height: 15,
+                        //   ),
+                        // ),
+                      ],
+                    ),
+                  ),
+
+                  //searchArea(),
                   InkWell(
                       onTap: () {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (con) => const TipsForYouScreen()));
+                          context,
+                          MaterialPageRoute(
+                            builder: (con) => const TipsForYouScreen(),
+                          ),
+                        );
                       },
                       child: tipsForYouSection()),
                   Padding(

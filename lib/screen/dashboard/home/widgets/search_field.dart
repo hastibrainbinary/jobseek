@@ -24,15 +24,13 @@ Widget searchArea() {
                 color: ColorRes.white2,
                 borderRadius: BorderRadius.all(Radius.circular(8))),
             child: TextField(
-              controller: controller.searchController,
+              controller: controller.searchNewController,
               onChanged: (value) {
-
                 jrController.searchText.value = value;
                 jrController.update(["search"]);
 
                 chatBoxUserController.searchText.value = value;
                 chatBoxUserController.update(["searchChat"]);
-
               },
               /*onChanged: (val){
                 jrController.allJob = FirebaseFirestore.instance.collection("allPost").where(val , isGreaterThanOrEqualTo: "Position"
@@ -74,7 +72,6 @@ Widget searchArea() {
 }
 
 Widget searchAreaChatU() {
-
   final chatBoxUserController = Get.put(ChatBoxUserController());
 
   return Padding(
@@ -89,10 +86,8 @@ Widget searchAreaChatU() {
             child: TextField(
               controller: chatBoxUserController.searchController,
               onChanged: (value) {
-
                 chatBoxUserController.searchText.value = value;
                 chatBoxUserController.update(["searchChat"]);
-
               },
               /*onChanged: (val){
                 jrController.allJob = FirebaseFirestore.instance.collection("allPost").where(val , isGreaterThanOrEqualTo: "Position"
@@ -134,7 +129,6 @@ Widget searchAreaChatU() {
 }
 
 Widget searchAreaChatM() {
-
   final chatBoxController = Get.put(ChatBoxController());
 
   return Padding(
@@ -149,10 +143,8 @@ Widget searchAreaChatM() {
             child: TextField(
               controller: chatBoxController.searchController,
               onChanged: (value) {
-
                 chatBoxController.searchText.value = value;
                 chatBoxController.update(["searchChat"]);
-
               },
               /*onChanged: (val){
                 jrController.allJob = FirebaseFirestore.instance.collection("allPost").where(val , isGreaterThanOrEqualTo: "Position"

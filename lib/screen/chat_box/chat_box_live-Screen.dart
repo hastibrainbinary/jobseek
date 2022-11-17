@@ -51,7 +51,7 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                     child: InkWell(
                       onTap: () {
                         controller.lastMessageTrue(otherUserUid!);
-
+                        controller.msController.clear();
                         Get.back();
                       },
                       child: backButton(),

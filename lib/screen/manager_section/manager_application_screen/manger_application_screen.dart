@@ -411,7 +411,10 @@ class ManagerApplicationScreen extends StatelessWidget {
                                                                                       width: 10,
                                                                                       child: Text(" - "),
                                                                                     ),
-                                                                                    Text(controller.documentData[index]["type"], style: appTextStyle(color: ColorRes.black, fontSize: 10, fontWeight: FontWeight.w400)),
+                                                                                    Text(
+                                                                                      controller.documentData[index]["type"],
+                                                                                      style: appTextStyle(color: ColorRes.black, fontSize: 10, fontWeight: FontWeight.w400),
+                                                                                    ),
                                                                                   ],
                                                                                 ),
                                                                               ],

@@ -139,17 +139,14 @@ class ChatBoxController extends GetxController implements GetxService {
         .doc(getChatId(userUid, otherUid))
         .get()
         .then((value) {
-
-      if(value['countM'] == null){
+      if (value['countM'] == null) {
         countM.add(msg);
-      }
-      else{
-        msgCount = value['countM'] ;
+      } else {
+        msgCount = value['countM'];
         if (msgCount == null) {
           countM = [];
           countM.add(msg);
-
-        } else{
+        } else {
           if (kDebugMode) {
             print(msgCount);
           }
@@ -159,10 +156,7 @@ class ChatBoxController extends GetxController implements GetxService {
           print(countM);
         }
       }
-
     });
-
-
 
     setLastMsgInDoc(msg);
     await setMessage(roomId, msg, userUid);

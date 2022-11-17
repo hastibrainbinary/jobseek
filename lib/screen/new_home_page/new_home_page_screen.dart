@@ -92,7 +92,7 @@ class HomePageNewScreenU extends StatelessWidget {
                     child: Container(
                       decoration: const BoxDecoration(
                           color: ColorRes.white2,
-                          borderRadius: BorderRadius.all(Radius.circular(8))),
+                          borderRadius: BorderRadius.all(Radius.circular(8),),),
                       child: TextField(
                         controller: controller.searchControllerNew,
                         onChanged: (value) {},

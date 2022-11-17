@@ -233,6 +233,8 @@ class CreateVacanciesController extends GetxController implements GetxService {
 
   var items1 = [
     'Part time',
+    'Freelancer',
+    'Remote',
     'Full time',
   ];
   String? dropDownValueCategory;

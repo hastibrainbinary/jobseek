@@ -362,6 +362,7 @@ class EditProfileUser extends StatelessWidget {
                           height: 10,
                         ),
                         commonTextFormField(
+                            readOnly: true,
                             onChanged: controller.onChanged,
                             textDecoration: InputDecoration(
                               contentPadding: const EdgeInsets.all(15),

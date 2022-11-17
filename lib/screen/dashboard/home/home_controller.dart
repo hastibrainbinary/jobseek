@@ -8,7 +8,7 @@ import 'package:jobseek/utils/pref_keys.dart';
 
   JobRecommendationController jcon = Get.put(JobRecommendationController());
 class HomeController extends GetxController implements GetxService {
-  TextEditingController searchController = TextEditingController();
+  TextEditingController searchNewController = TextEditingController();
 
   RxBool isBookMark=false.obs;
 
