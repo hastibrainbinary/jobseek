@@ -58,16 +58,9 @@ class ApplicantsDetailScreen extends StatelessWidget {
                     // Get.back();
                     ManagerDashBoardScreenController controller2 =
                         Get.find<ManagerDashBoardScreenController>();
-
-                    Get.offAll(() => ManagerDashBoardScreen())
-                        ?.then((value) => {
-                              // controller2.currentTab.value = 1
-                              controller2.onBottomBarChange(1)
-                            });
-
-                    Future.delayed(const Duration(seconds: 2),(){
-                      controller2.onBottomBarChange(1);
-                    });
+                    controller2.currentTab.value = 1;
+                    controller2.update(["bottom_bar"]);
+                    Get.offAll(() => ManagerDashBoardScreen(),arguments: {"index":"1"});
                   },
                   child: const Icon(
                     Icons.arrow_back_ios,
