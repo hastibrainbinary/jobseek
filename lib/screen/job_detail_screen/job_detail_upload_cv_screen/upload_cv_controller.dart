@@ -70,7 +70,13 @@ class JobDetailsUploadCvController extends GetxController {
       'Occupation': PrefService.getString(PrefKeys.occupation),
       'uid': FirebaseAuth.instance.currentUser!.uid,
       'resumeUrl': pdfUrl,
+      'salary':args['salary'],
+      'location':args['location'],
+      'type':args['type'],
     });
+
+
+
 
     Get.toNamed(AppRes.jobDetailSuccessOrFailed, arguments: [
       {"doc": args},

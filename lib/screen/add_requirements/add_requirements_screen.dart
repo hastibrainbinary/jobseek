@@ -156,7 +156,7 @@ class RequirementsScreen extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: InkWell(
                   onTap: () {
-                    controller.onTapNext();
+                    controller.onTapNext(position: controller.positionController.text);
                   },
                   child: Container(
                     height: 50,
