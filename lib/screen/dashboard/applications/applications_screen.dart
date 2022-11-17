@@ -56,7 +56,7 @@ class ApplicationsScreen extends StatelessWidget {
                           "Applications",
                           style: appTextStyle(
                               fontSize: 20,
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w600,
                               color: ColorRes.black),
                         )),
                   ),

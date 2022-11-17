@@ -45,7 +45,10 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
                     alignment: Alignment.center,
                     child: Text(
                       "Applications",
-                      style: appTextStyle(color: ColorRes.black, fontSize: 20),
+                      style: appTextStyle(
+                          color: ColorRes.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600),
                     ),
                   ),
                 ],

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/helper.dart';
 import 'package:jobseek/screen/chat_box_user/chat_box_usercontroller.dart';
@@ -57,7 +58,9 @@ class ChatBoxController extends GetxController implements GetxService {
 
   bool validation() {
     if (msController.text.isEmpty) {
-      print("Please enter message");
+      if (kDebugMode) {
+        print("Please enter message");
+      }
       return false;
     }
     return true;
@@ -147,10 +150,14 @@ class ChatBoxController extends GetxController implements GetxService {
           countM.add(msg);
 
         } else{
-          print(msgCount);
+          if (kDebugMode) {
+            print(msgCount);
+          }
           countM.add(msg);
         }
-        print(countM);
+        if (kDebugMode) {
+          print(countM);
+        }
       }
 
     });
@@ -206,7 +213,9 @@ class ChatBoxController extends GetxController implements GetxService {
   }
 
   Future<void> setLastMsgInDoc(String msg) async {
-    print(countM.length);
+    if (kDebugMode) {
+      print(countM.length);
+    }
     await FirebaseFirestore.instance.collection("chats").doc(roomId).update({
       "lastMessage": msg,
       "lastMessageSender": userUid,

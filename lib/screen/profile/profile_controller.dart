@@ -1,8 +1,12 @@
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:jobseek/screen/profile/Profile_screen.dart';
+import 'package:jobseek/service/pref_services.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 
 class ProfileUserController extends GetxController implements GetxService {
   TextEditingController fullNameController = TextEditingController();
@@ -19,8 +23,17 @@ class ProfileUserController extends GetxController implements GetxService {
   ImagePicker picker = ImagePicker();
   File? image;
 
-  void onChanged(String value){
+  void onChanged(String value) {
     update(["colorChange"]);
+  }
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    fullNameController.text = PrefService.getString(PrefKeys.fullName);
+    emailController.text = PrefService.getString(PrefKeys.email);
+    occupationController.text = PrefService.getString(PrefKeys.occupation);
   }
 
   Future<void> onDatePickerTap(context) async {
@@ -52,7 +65,7 @@ class ProfileUserController extends GetxController implements GetxService {
     }
   }
 
-  onLoginBtnTap1() {
+  EditTap() {
     validate();
     if (isNameValidate.value == false &&
         isEmailValidate.value == false &&
@@ -62,9 +75,38 @@ class ProfileUserController extends GetxController implements GetxService {
       if (kDebugMode) {
         print("GO TO HOME PAGE");
       }
-      // Get.to(ManagerDashBoardScreen());
+
+      Map<String, dynamic> map = {
+        "City": PrefService.getString(PrefKeys.city),
+        "Country": PrefService.getString(PrefKeys.country),
+        "Email": PrefService.getString(PrefKeys.email),
+        "Occupation": occupationController.text,
+        "Phone": PrefService.getString(PrefKeys.phoneNumber),
+        "State": PrefService.getString(PrefKeys.state),
+        "fullName": fullNameController.text,
+        "Dob": dateOfBirthController.text,
+        "Address": addressController.text,
+      };
+
+      PrefService.setValue(
+        PrefKeys.fullName,
+        fullNameController.text,
+      );
+      PrefService.setValue(
+        PrefKeys.occupation,
+        occupationController.text,
+      );
+      FirebaseFirestore.instance
+          .collection("Auth")
+          .doc("User")
+          .collection("register")
+          .doc(PrefService.getString(PrefKeys.userId))
+          .update(map);
+
+      Get.to(ProfileUserScreenU());
     }
   }
+
   validate() {
     if (fullNameController.text.isEmpty) {
       isNameValidate.value = true;
@@ -88,31 +130,31 @@ class ProfileUserController extends GetxController implements GetxService {
     } else {
       isOccupationValidate.value = false;
     }
-    if (dateOfBirthController .text.isEmpty) {
+    if (dateOfBirthController.text.isEmpty) {
       isbirthValidate.value = true;
     } else {
       isbirthValidate.value = false;
     }
   }
- ontap() async{
-  XFile? img = await picker.pickImage(source: ImageSource.camera);
-  String path = img!.path;
-  image = File(path);
-  imagePicker();
-  Get.back();
-}
- ontapGallery()async{
-   XFile? gallery = await picker.pickImage(source: ImageSource.gallery);
-   String path = gallery!.path;
-   image = File(path) ;
-   imagePicker();
-   Get.back();
 
- }
-  imagePicker(){
+  ontap() async {
+    XFile? img = await picker.pickImage(source: ImageSource.camera);
+    String path = img!.path;
+    image = File(path);
+    imagePicker();
+    Get.back();
+  }
+
+  ontapGallery() async {
+    XFile? gallery = await picker.pickImage(source: ImageSource.gallery);
+    String path = gallery!.path;
+    image = File(path);
+    imagePicker();
+    Get.back();
+  }
+
+  imagePicker() {
     update(['pic']);
     update();
   }
-
-
 }

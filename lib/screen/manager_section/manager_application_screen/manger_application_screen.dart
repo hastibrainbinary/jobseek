@@ -84,7 +84,7 @@ class ManagerApplicationScreen extends StatelessWidget {
                     style: appTextStyle(
                         color: ColorRes.black,
                         fontSize: 20,
-                        fontWeight: FontWeight.w600),
+                        fontWeight: FontWeight.w500),
                   ),
                 ),
               ],

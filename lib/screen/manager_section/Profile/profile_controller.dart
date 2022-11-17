@@ -9,7 +9,6 @@ import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 
-
 class ProfileController extends GetxController implements GetxService {
   TextEditingController companyNameController = TextEditingController();
   TextEditingController companyEmailController = TextEditingController();
@@ -56,7 +55,7 @@ class ProfileController extends GetxController implements GetxService {
     }
   }
 
-  init(){
+  init() {
     isLod.value = true;
     final docRef = fireStore
         .collection("Auth")
@@ -66,7 +65,7 @@ class ProfileController extends GetxController implements GetxService {
         .collection("company")
         .doc("details");
     docRef.get().then(
-          (DocumentSnapshot doc) {
+      (DocumentSnapshot doc) {
         final data = doc.data() as Map<String, dynamic>;
         companyNameController.text = data["name"];
         companyEmailController.text = data["email"];
@@ -78,15 +77,20 @@ class ProfileController extends GetxController implements GetxService {
         // ...
       },
       onError: (e) {
-        Get.snackbar("Error getting document:", "$e", colorText: const Color(0xffDA1414));
-        print("Error getting document: $e");
+        Get.snackbar("Error getting document:", "$e",
+            colorText: const Color(0xffDA1414));
+        if (kDebugMode) {
+          print("Error getting document: $e");
+        }
       },
     );
   }
 
   onTapEdit() {
-    print("GO TO Edit Profile");
-      Get.to(EditProfileScreen());
+    if (kDebugMode) {
+      print("GO TO Edit Profile");
+    }
+    Get.to(EditProfileScreen());
   }
 
   changeDropdwon({required String val}) {
@@ -158,6 +162,7 @@ class ProfileController extends GetxController implements GetxService {
       // Get.to(ManagerDashBoardScreen());
     }
   }
+
   validateAndSubmit() {
     Get.toNamed(AppRes.managerDashboardScreen);
 /*    if (companyNameController.text.isEmpty) {
@@ -215,7 +220,7 @@ class ProfileController extends GetxController implements GetxService {
     update();
   }
 
-  void onChanged(String value){
+  void onChanged(String value) {
     update(["colorChange"]);
   }
 }
