@@ -9,7 +9,10 @@ class UiUxDesignerScreen extends StatelessWidget {
   String? userOccupation;
   String? companyName;
   String? message;
-   UiUxDesignerScreen({Key? key, this.userOccupation, this.companyName, this.message}) : super(key: key);
+  String? salary;
+  String? location;
+  String? type;
+   UiUxDesignerScreen({Key? key, this.userOccupation, this.companyName, this.message,this.salary,this.location,this.type}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -140,7 +143,7 @@ class UiUxDesignerScreen extends StatelessWidget {
                                       color: ColorRes.black.withOpacity(0.8),
                                       fontSize: 12,
                                       fontWeight: FontWeight.w500)),
-                              Text("\$2.350",
+                              Text(salary ??"",
                                   style: appTextStyle(
                                       color: ColorRes.containerColor,
                                       fontSize: 12,
@@ -156,7 +159,7 @@ class UiUxDesignerScreen extends StatelessWidget {
                                       color: ColorRes.black.withOpacity(0.8),
                                       fontSize: 12,
                                       fontWeight: FontWeight.w500)),
-                              Text("Full Time",
+                              Text(type ??"",
                                   style: appTextStyle(
                                       color: ColorRes.containerColor,
                                       fontSize: 12,
@@ -172,7 +175,7 @@ class UiUxDesignerScreen extends StatelessWidget {
                                       color: ColorRes.black.withOpacity(0.8),
                                       fontSize: 12,
                                       fontWeight: FontWeight.w500)),
-                              Text("United States",
+                              Text(location ??"",
                                   style: appTextStyle(
                                       color: ColorRes.containerColor,
                                       fontSize: 12,

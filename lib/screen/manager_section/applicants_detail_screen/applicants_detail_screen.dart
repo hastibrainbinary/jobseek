@@ -498,7 +498,10 @@ void settingModalBottomSheet(
                           'status': controller.selectedValue,
                           'userUid': args['uid'],
                           'message': controller.msgController.text,
-                          'userOccupation': args['Occupation']
+                          'userOccupation': args['Occupation'],
+                          'salary':args['salary'],
+                          "location":args['location'],
+                          'type':args['type']
                         });
                       },
                       child: Container(

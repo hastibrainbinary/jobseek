@@ -9,7 +9,10 @@ class RejectedScreen extends StatelessWidget {
   String? userOccupation;
   String? companyName;
   String? message;
-   RejectedScreen({Key? key, this.userOccupation, this.companyName, this.message}) : super(key: key);
+  String? salary;
+  String? location;
+  String? type;
+   RejectedScreen({Key? key, this.userOccupation, this.companyName, this.message,this.salary,this.location,this.type}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -142,7 +145,7 @@ class RejectedScreen extends StatelessWidget {
                                       color: ColorRes.black.withOpacity(0.8),
                                       fontSize: 12,
                                       fontWeight: FontWeight.w500)),
-                              Text("\$2.160",
+                              Text(salary ?? "",
                                   style: appTextStyle(
                                       color: ColorRes.containerColor,
                                       fontSize: 12,
@@ -158,7 +161,7 @@ class RejectedScreen extends StatelessWidget {
                                       color: ColorRes.black.withOpacity(0.8),
                                       fontSize: 12,
                                       fontWeight: FontWeight.w500)),
-                              Text("Part Time",
+                              Text(type??"",
                                   style: appTextStyle(
                                       color: ColorRes.containerColor,
                                       fontSize: 12,
@@ -174,7 +177,7 @@ class RejectedScreen extends StatelessWidget {
                                       color: ColorRes.black.withOpacity(0.8),
                                       fontSize: 12,
                                       fontWeight: FontWeight.w500)),
-                              Text("Canada",
+                              Text(location??"",
                                   style: appTextStyle(
                                       color: ColorRes.containerColor,
                                       fontSize: 12,
