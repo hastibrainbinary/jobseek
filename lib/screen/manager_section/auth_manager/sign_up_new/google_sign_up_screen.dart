@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/auth/sign_up/sign_upScreen.dart';
@@ -22,7 +23,9 @@ class GoogleSignupScreenM extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("EMAIL : $email , $firstName , $lastName");
+    if (kDebugMode) {
+      print("EMAIL : $email , $firstName , $lastName");
+    }
     GoogleSignUpControllerM controller = Get.put(GoogleSignUpControllerM(
         email: email, firstname: firstName, lastname: lastName, uid: uid));
 

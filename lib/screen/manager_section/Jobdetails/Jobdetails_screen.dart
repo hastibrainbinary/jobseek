@@ -115,7 +115,7 @@ class JobDetailsScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            position!,
+                            position??"",
                             style: appTextStyle(
                                 color: ColorRes.black,
                                 fontSize: 15,

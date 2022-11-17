@@ -92,7 +92,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
     update(["colorChange"]);
   }
 
-  onTapNext(String position) async {
+  onTapNext({String? position}) async {
     String uid = PrefService.getString(PrefKeys.userId);
     int totalPost = PrefService.getInt(PrefKeys.totalPost);
     String pUid = "$uid*${totalPost + 1}";
@@ -241,6 +241,14 @@ class CreateVacanciesController extends GetxController implements GetxService {
     'Writer',
     'Design',
     'Finance',
+    'Software',
+    'Database Manager',
+    'Product Manager',
+    'Full-Stack Developer',
+    'Data Scientist',
+    'Web Developers',
+    'Networking',
+    'Cyber Security',
   ];
   var itemsStatus = [
     'Active',

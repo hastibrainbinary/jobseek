@@ -20,14 +20,15 @@ import 'home_controller.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
   final HomeController controller = HomeController();
-  JobRecommendationController jrcontroller = Get.put(JobRecommendationController());
+  JobRecommendationController jrcontroller =
+      Get.put(JobRecommendationController());
   FirebaseFirestore fireStore = FirebaseFirestore.instance;
   var args = Get.arguments;
-  JobDetailsUploadCvController jobDetailsUploadCvController = Get.put(JobDetailsUploadCvController());
+  JobDetailsUploadCvController jobDetailsUploadCvController =
+      Get.put(JobDetailsUploadCvController());
 
   @override
   Widget build(BuildContext context) {
-
     jobDetailsUploadCvController.init();
     final controller = Get.put(HomeController());
 
@@ -154,10 +155,11 @@ class HomeScreen extends StatelessWidget {
                                   child: Text(
                                     jrcontroller.jobs2[index],
                                     style: appTextStyle(
-                                        color: jrcontroller.selectedJobs2.value ==
-                                                index
-                                            ? ColorRes.white
-                                            : ColorRes.containerColor,
+                                        color:
+                                            jrcontroller.selectedJobs2.value ==
+                                                    index
+                                                ? ColorRes.white
+                                                : ColorRes.containerColor,
                                         fontSize: 12,
                                         fontWeight: FontWeight.w600),
                                   ),
@@ -197,7 +199,7 @@ class HomeScreen extends StatelessWidget {
                                       )
                                     : Center(
                                         child: Text(jrcontroller.jobs2[
-                                        jrcontroller.selectedJobs2.value]),
+                                            jrcontroller.selectedJobs2.value]),
                                       ),
                   ),
                 ],

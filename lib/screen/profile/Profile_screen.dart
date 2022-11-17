@@ -547,7 +547,8 @@ class ProfileUserScreenU extends StatelessWidget {
                           GetBuilder<ProfileUserController>(
                               id: "Organization",
                               builder: (controller) {
-                                return (controller.fullNameController.text ==
+                                return
+                                    /*(controller.fullNameController.text ==
                                             '' ||
                                         controller.emailController.text == '' ||
                                         controller.addressController.text ==
@@ -584,30 +585,28 @@ class ProfileUserScreenU extends StatelessWidget {
                                                   color: ColorRes.white)),
                                         ),
                                       )
-                                    : InkWell(
-                                        // dashboard write
-                                        onTap: controller.onLoginBtnTap1,
-                                        child: Container(
-                                          height: 50,
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          alignment: Alignment.center,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            gradient: const LinearGradient(
-                                                colors: [
-                                                  ColorRes.gradientColor,
-                                                  ColorRes.containerColor
-                                                ]),
-                                          ),
-                                          child: Text("Save Changes",
-                                              style: appTextStyle(
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: ColorRes.white)),
-                                        ),
-                                      );
+                                    :*/
+                                    InkWell(
+                                  // dashboard write
+                                  onTap: controller.onLoginBtnTap1,
+                                  child: Container(
+                                    height: 50,
+                                    width: MediaQuery.of(context).size.width,
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      gradient: const LinearGradient(colors: [
+                                        ColorRes.gradientColor,
+                                        ColorRes.containerColor
+                                      ]),
+                                    ),
+                                    child: Text("Save Changes",
+                                        style: appTextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                            color: ColorRes.white)),
+                                  ),
+                                );
                               }),
                           // const SizedBox(
                           //   height: 20,

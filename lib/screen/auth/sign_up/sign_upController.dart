@@ -213,7 +213,8 @@ class SignUpController extends GetxController {
             PrefKeys.userId, userCredential.user?.uid.toString());
         PrefService.setValue(PrefKeys.rol, "User");
         Map<String, dynamic> map2 = {
-          "fullName": "${firstnameController.text} ${lastnameController.text}",
+          "fullName":
+              "${firstnameController.text}  ${lastnameController.text}",
           "Email": emailController.text,
           "Phone": phoneController.text,
           "Occupation": occupationController.text,
@@ -221,8 +222,10 @@ class SignUpController extends GetxController {
           "State": stateController.text,
           "Country": countryController.text,
         };
-        await PrefService.setValue(PrefKeys.email, emailController.text.toString());
-        await PrefService.setValue(PrefKeys.occupation, occupationController.text.toString());
+        await PrefService.setValue(
+            PrefKeys.email, emailController.text.toString());
+        await PrefService.setValue(
+            PrefKeys.occupation, occupationController.text.toString());
         await PrefService.setValue(
             PrefKeys.fullName,
             firstnameController.text.toString() +
@@ -234,7 +237,6 @@ class SignUpController extends GetxController {
         await PrefService.setValue(
             PrefKeys.country, countryController.text.toString());
         addDataInFirebase(userUid: userCredential.user?.uid ?? "", map: map2);
-
       }
 
       loading.value = false;
@@ -275,21 +277,19 @@ class SignUpController extends GetxController {
     loading.value = false;
 
     Get.off(() => DashBoardScreen());
-    firstnameController.text="";
-    lastnameController.text="";
-    emailController.text="";
-    phoneController.text="";
-    passwordController.text="";
-    cityController.text="";
-    stateController.text="";
-    countryController.text="";
-    occupationController.text="";
+    firstnameController.text = "";
+    lastnameController.text = "";
+    emailController.text = "";
+    phoneController.text = "";
+    passwordController.text = "";
+    cityController.text = "";
+    stateController.text = "";
+    countryController.text = "";
+    occupationController.text = "";
     if (kDebugMode) {
       print("*************************** Success");
     }
   }
-
-
 
   bool show = true;
   Country countryModel = Country.from(json: {

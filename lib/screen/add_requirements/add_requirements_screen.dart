@@ -156,7 +156,7 @@ class RequirementsScreen extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: InkWell(
                   onTap: () {
-                    controller.onTapNext;
+                    controller.onTapNext();
                   },
                   child: Container(
                     height: 50,
@@ -171,11 +171,13 @@ class RequirementsScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    child: Text("Post Job Vacancy",
-                        style: appTextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                            color: ColorRes.white)),
+                    child: Text(
+                      "Post Job Vacancy",
+                      style: appTextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                          color: ColorRes.white),
+                    ),
                   ),
                 ),
               ),
