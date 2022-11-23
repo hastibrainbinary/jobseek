@@ -9,8 +9,9 @@ Widget notificationBox() {
     height: 92,
     margin: const EdgeInsets.only(bottom: 30),
     decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        border: Border.all(color: ColorRes.borderColor, width: 2)),
+      borderRadius: BorderRadius.circular(15),
+      border: Border.all(color: ColorRes.borderColor, width: 2),
+    ),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -18,14 +19,15 @@ Widget notificationBox() {
         Container(
           padding: const EdgeInsets.only(left: 20),
           alignment: Alignment.center,
-            height: 50,
-            width: 70,
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage(AssetRes.notificationDetail)))),
-        const SizedBox(
-          width: 10
+          height: 50,
+          width: 70,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(AssetRes.notificationDetail),
+            ),
+          ),
         ),
+        const SizedBox(width: 10),
         Container(
           width: Get.width * 0.65,
           padding: const EdgeInsets.only(right: 20),
@@ -39,7 +41,7 @@ Widget notificationBox() {
               Text(
                 "Your application to Apple Company has been read",
                 style: appTextStyle(
-                    color: Colors.black,
+                    color: ColorRes.black,
                     fontWeight: FontWeight.w600,
                     fontSize: 13),
                 maxLines: 2,

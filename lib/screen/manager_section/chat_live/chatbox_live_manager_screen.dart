@@ -4,6 +4,7 @@ import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 
 class ChatBovLiveScreen extends StatelessWidget {
   const ChatBovLiveScreen({Key? key}) : super(key: key);
@@ -31,7 +32,7 @@ class ChatBovLiveScreen extends StatelessWidget {
                 ),
                 const SizedBox(width: 85),
                 Text(
-                  'Chat Box',
+                 Strings.chatBox,
                   style: appTextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
@@ -66,15 +67,15 @@ class ChatBovLiveScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "AirBNB",
+                        Strings.airBNB,
                           style: appTextStyle(
                               color: ColorRes.black,
                               fontSize: 15,
                               fontWeight: FontWeight.w500),
                         ),
                         const SizedBox(height: 6),
-                        Text(
-                          "Online",
+                        Text(Strings.online,
+
                           style: appTextStyle(
                               color: ColorRes.black,
                               fontSize: 9,

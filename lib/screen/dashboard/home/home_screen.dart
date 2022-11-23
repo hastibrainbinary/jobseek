@@ -6,7 +6,6 @@ import 'package:jobseek/screen/dashboard/home/home_controller.dart';
 import 'package:jobseek/screen/dashboard/home/tipsforyou_screen.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/all_jobs.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/appbar.dart';
-import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/tips_for_you_section.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_controller.dart';
 import 'package:jobseek/screen/job_recommendation_screen/job_recommendation_controller.dart';
@@ -15,9 +14,9 @@ import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/string.dart';
-
 import 'home_controller.dart';
 
+// ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
   final HomeController controller = HomeController();
@@ -62,42 +61,27 @@ class HomeScreen extends StatelessWidget {
                               ),
                             ),
                             child: TextField(
-                                readOnly: true,
+                              readOnly: true,
                               //controller: controller.searchNewController,
                               onChanged: (value) {},
                               onTap: () {
                                 Get.to(() => const SearchJobScreen());
                               },
                               decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  suffixIcon: const Icon(Icons.search,
-
-                                      color: ColorRes.grey),
-                                  hintText: "Search",
-                                  hintStyle: appTextStyle(
-                                      fontSize: 14,
-                                      color: ColorRes.grey,
-                                      fontWeight: FontWeight.w500),
-                                  contentPadding:
-                                      const EdgeInsets.only(left: 20, top: 13)),
+                                border: InputBorder.none,
+                                suffixIcon: const Icon(Icons.search,
+                                    color: ColorRes.grey),
+                                hintText: "Search",
+                                hintStyle: appTextStyle(
+                                    fontSize: 14,
+                                    color: ColorRes.grey,
+                                    fontWeight: FontWeight.w500),
+                                contentPadding:
+                                    const EdgeInsets.only(left: 20, top: 13),
+                              ),
                             ),
                           ),
                         ),
-                        // const SizedBox(width: 20),
-                        // Container(
-                        //   height: 40,
-                        //   width: 40,
-                        //   alignment: Alignment.center,
-                        //   decoration: const BoxDecoration(
-                        //     borderRadius: BorderRadius.all(Radius.circular(10)),
-                        //     color: ColorRes.logoColor,
-                        //   ),
-                        //   child: Image.asset(
-                        //     AssetRes.menuIcon,
-                        //     color: ColorRes.containerColor,
-                        //     height: 15,
-                        //   ),
-                        // ),
                       ],
                     ),
                   ),
@@ -129,11 +113,13 @@ class HomeScreen extends StatelessWidget {
                         InkWell(
                           onTap: () =>
                               Get.toNamed(AppRes.jobRecommendationScreen),
-                          child: Text(Strings.seeAll,
-                              style: GoogleFonts.poppins(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  color: ColorRes.containerColor)),
+                          child: Text(
+                            Strings.seeAll,
+                            style: GoogleFonts.poppins(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                color: ColorRes.containerColor),
+                          ),
                         ),
                       ],
                     ),
@@ -144,6 +130,7 @@ class HomeScreen extends StatelessWidget {
                     height: 32,
                     child: Obx(() {
                       return ListView.builder(
+
                           itemCount: controller.jobs.length,
                           shrinkWrap: true,
                           scrollDirection: Axis.horizontal,
@@ -192,34 +179,37 @@ class HomeScreen extends StatelessWidget {
                         itemBuilder: (context, index) {
                           return GestureDetector(
                             onTap: () => jrcontroller.onTapJobs2(index),
-                            child: Obx(() => Container(
-                                  margin: const EdgeInsets.only(right: 10),
-                                  height: 32,
-                                  width: 70,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(
-                                          color: ColorRes.containerColor,
-                                          width: 2),
-                                      borderRadius: const BorderRadius.all(
-                                        Radius.circular(10),
-                                      ),
+                            child: Obx(
+                              () => Container(
+                                margin: const EdgeInsets.only(right: 10),
+                                height: 32,
+                                // width: 70,
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: ColorRes.containerColor,
+                                        width: 2),
+                                    borderRadius: const BorderRadius.all(
+                                      Radius.circular(10),
+                                    ),
+                                    color: jrcontroller.selectedJobs2.value ==
+                                            index
+                                        ? ColorRes.containerColor
+                                        : ColorRes.white),
+                                child: Text(
+                                  jrcontroller.jobs2[index],
+                                  style: appTextStyle(
                                       color: jrcontroller.selectedJobs2.value ==
                                               index
-                                          ? ColorRes.containerColor
-                                          : ColorRes.white),
-                                  child: Text(
-                                    jrcontroller.jobs2[index],
-                                    style: appTextStyle(
-                                        color:
-                                            jrcontroller.selectedJobs2.value ==
-                                                    index
-                                                ? ColorRes.white
-                                                : ColorRes.containerColor,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                )),
+                                          ? ColorRes.white
+                                          : ColorRes.containerColor,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ),
+                            ),
                           );
                         }),
                   ),
@@ -253,10 +243,83 @@ class HomeScreen extends StatelessWidget {
                                             .collection("Finance")
                                             .snapshots(),
                                       )
-                                    : Center(
-                                        child: Text(jrcontroller.jobs2[
-                                            jrcontroller.selectedJobs2.value]),
-                                      ),
+                                    : controller.selectedJobs2.value == 4
+                                        ? allJobs(fireStore
+                                            .collection("category")
+                                            .doc("Software")
+                                            .collection("Software")
+                                            .snapshots())
+                                        : controller.selectedJobs2.value == 5
+                                            ? allJobs(fireStore
+                                                .collection("category")
+                                                .doc("Database Manager")
+                                                .collection("Database Manager")
+                                                .snapshots())
+                                            : controller.selectedJobs2.value ==
+                                                    6
+                                                ? allJobs(fireStore
+                                                    .collection("category")
+                                                    .doc("Product Manager")
+                                                    .collection(
+                                                        "Product Manager")
+                                                    .snapshots())
+                                                : controller.selectedJobs2
+                                                            .value ==
+                                                        7
+                                                    ? allJobs(fireStore
+                                                        .collection("category")
+                                                        .doc(
+                                                            "Full-Stack Developer")
+                                                        .collection(
+                                                            "Full-Stack Developer")
+                                                        .snapshots())
+                                                    : controller.selectedJobs2
+                                                                .value ==
+                                                            8
+                                                        ? allJobs(fireStore
+                                                            .collection(
+                                                                "category")
+                                                            .doc(
+                                                                "Data Scientist")
+                                                            .collection(
+                                                                "Data Scientist")
+                                                            .snapshots())
+                                                        : controller.selectedJobs2
+                                                                    .value ==
+                                                                9
+                                                            ? allJobs(fireStore
+                                                                .collection(
+                                                                    "category")
+                                                                .doc(
+                                                                    "Web Developers")
+                                                                .collection(
+                                                                    "Web Developers")
+                                                                .snapshots())
+                                                            : controller.selectedJobs2
+                                                                        .value ==
+                                                                    10
+                                                                ? allJobs(fireStore
+                                                                    .collection(
+                                                                        "category")
+                                                                    .doc(
+                                                                        "Networking")
+                                                                    .collection(
+                                                                        "Networking")
+                                                                    .snapshots())
+                                                                : controller.selectedJobs2
+                                                                            .value ==
+                                                                        11
+                                                                    ? allJobs(fireStore
+                                                                        .collection(
+                                                                            "category")
+                                                                        .doc("Cyber Security")
+                                                                        .collection("Cyber Security")
+                                                                        .snapshots())
+                                                                    : Center(
+                                                                        child: Text(jrcontroller.jobs2[jrcontroller
+                                                                            .selectedJobs2
+                                                                            .value]),
+                                                                      ),
                   ),
                 ],
               ),

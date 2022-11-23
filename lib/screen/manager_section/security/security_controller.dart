@@ -1,24 +1,22 @@
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_disposable.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 class SecurityController extends GetxController implements GetxService {
   RxBool isSwitchedFace = true.obs;
   RxBool isSwitchedRemember = true.obs;
   RxBool isSwitchedTouch = false.obs;
 
-
-  onchangeFace(value){
+  onchangeFace(value) {
     isSwitchedFace.value = value;
     update();
   }
-  onchangeRemember(value){
+
+  onchangeRemember(value) {
     isSwitchedRemember.value = value;
     update();
   }
-  onchangeTouch(value){
+
+  onchangeTouch(value) {
     isSwitchedTouch.value = value;
     update();
   }
-
 }

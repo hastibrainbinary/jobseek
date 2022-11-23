@@ -36,7 +36,8 @@ class TipsForYouScreen extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.center,
                     child: Text(
-                      'Tips for you',
+                      Strings.tipsForYou,
+
                       style: appTextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,

@@ -42,7 +42,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
       },
       onError: (e) => print("Error getting document: $e"),
     );
-
+    validate();
     Get.to(RequirementsScreen());
   }
 
@@ -80,7 +80,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
       companyName = "";
       addRequirementsList = [];
     }
-    update();
+    update(["profile"]);
   }
 
   onTapAddRequirements() {
@@ -180,17 +180,22 @@ class CreateVacanciesController extends GetxController implements GetxService {
       isTypeValidate.value = true;
     } else {
       isTypeValidate.value = false;
-      if (categoryController.text.isEmpty) {
-        isCategoryValidate.value = true;
-      } else {
-        isCategoryValidate.value = false;
-      }
-      if (statusController.text.isEmpty) {
-        isStatusValidate.value = true;
-      } else {
-        isStatusValidate.value = false;
-      }
     }
+    if (categoryController.text.isEmpty) {
+      isCategoryValidate.value = true;
+    } else {
+      isCategoryValidate.value = false;
+    }
+    if (statusController.text.isEmpty) {
+      isStatusValidate.value = true;
+    } else {
+      isStatusValidate.value = false;
+    }
+
+    update(["profile"]);
+    update(["Location"]);
+    update(["type"]);
+    update(["Status"]);
   }
 
   changeDropwon({required String val}) {
@@ -216,7 +221,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
   changeStatus({required String val}) {
     dropDownValueStatus = val;
     statusController.text = dropDownValueStatus!;
-    update(["Category"]);
+    update(["Status"]);
   }
 
   String? dropDownValueLocation;

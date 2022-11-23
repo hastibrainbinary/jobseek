@@ -214,7 +214,7 @@ class SignUpController extends GetxController {
         PrefService.setValue(PrefKeys.rol, "User");
         Map<String, dynamic> map2 = {
           "fullName":
-              "${firstnameController.text}  ${lastnameController.text}",
+              "${firstnameController.text}                    ${lastnameController.text}",
           "Email": emailController.text,
           "Phone": phoneController.text,
           "Occupation": occupationController.text,
@@ -236,6 +236,9 @@ class SignUpController extends GetxController {
             PrefKeys.state, stateController.text.toString());
         await PrefService.setValue(
             PrefKeys.country, countryController.text.toString());
+        await PrefService.setValue(
+            PrefKeys.phoneNumber, phoneController.text.toString());
+
         addDataInFirebase(userUid: userCredential.user?.uid ?? "", map: map2);
       }
 

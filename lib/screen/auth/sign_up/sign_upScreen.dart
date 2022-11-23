@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
+import 'package:jobseek/common/widgets/common_loader.dart';
 import 'package:jobseek/common/widgets/common_textField.dart';
 import 'package:jobseek/screen/auth/sign_inScreen/Signin_Screen.dart';
 import 'package:jobseek/screen/auth/sign_inScreen/Signin_controller.dart';
@@ -11,6 +12,7 @@ import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
+import 'package:jobseek/utils/string.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -45,7 +47,7 @@ class SignUpScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(15),
                           ),
                           child: Text(
-                            'Logo',
+                            Strings.logo,
                             style: appTextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 18,
@@ -57,7 +59,7 @@ class SignUpScreen extends StatelessWidget {
                       const SizedBox(height: 18),
                       Center(
                         child: Text(
-                          'Sign up for free',
+                          Strings.signUpForFree,
                           style: appTextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
@@ -68,7 +70,7 @@ class SignUpScreen extends StatelessWidget {
                       GetBuilder<SignUpController>(
                         id: "showFirstname",
                         builder: (controller) => texFieldColumn(
-                            title: 'First Name',
+                            title: Strings.firstName,
                             hintText: 'First Name',
                             onChanged: controller.onChanged,
                             error: controller.firstError,
@@ -78,7 +80,7 @@ class SignUpScreen extends StatelessWidget {
                       GetBuilder<SignUpController>(
                         id: "showLastname",
                         builder: (controller) => texFieldColumn(
-                          title: 'Last Name',
+                          title: Strings.lastName,
                           hintText: 'Last Name',
                           onChanged: controller.onChanged,
                           error: controller.lastError,
@@ -89,7 +91,7 @@ class SignUpScreen extends StatelessWidget {
                       GetBuilder<SignUpController>(
                         id: "showEmail",
                         builder: (controller) => texFieldColumn(
-                            title: 'Email',
+                            title: Strings.email,
                             hintText: 'Email',
                             onChanged: controller.onChanged,
                             error: controller.emailError,
@@ -100,7 +102,7 @@ class SignUpScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 15, bottom: 10),
                         child: Row(
                           children: [
-                            Text('Phone number',
+                            Text(Strings.phoneNumber,
                                 style: appTextStyle(
                                     fontWeight: FontWeight.w500,
                                     fontSize: 14,
@@ -200,7 +202,7 @@ class SignUpScreen extends StatelessWidget {
                                                 fontSize: 9,
                                                 fontWeight: FontWeight.w400,
                                                 color: ColorRes.starColor),
-                                          )
+                                          ),
                                         ]),
                                   ),
                             // Text(controller.phoneError)
@@ -212,11 +214,14 @@ class SignUpScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 13, bottom: 10),
                         child: Row(
                           children: [
-                            Text('Password',
-                                style: appTextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                    color: ColorRes.black.withOpacity(0.6))),
+                            Text(
+                              Strings.password,
+                              style: appTextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                color: ColorRes.black.withOpacity(0.6),
+                              ),
+                            ),
                             Text(
                               '*',
                               style: appTextStyle(
@@ -361,7 +366,7 @@ class SignUpScreen extends StatelessWidget {
                       GetBuilder<SignUpController>(
                         id: "showOccupation",
                         builder: (controller) => texFieldColumn(
-                            title: 'Occupation',
+                            title: Strings.occupation,
                             hintText: 'Occupation',
                             onChanged: controller.onChanged,
                             error: controller.occupationError,
@@ -371,7 +376,7 @@ class SignUpScreen extends StatelessWidget {
                       GetBuilder<SignUpController>(
                         id: "showCity",
                         builder: (controller) => texFieldColumn(
-                            title: 'City',
+                            title: Strings.city,
                             hintText: 'City',
                             onChanged: controller.onChanged,
                             error: controller.cityError,
@@ -379,24 +384,28 @@ class SignUpScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       GetBuilder<SignUpController>(
-                          id: "showState",
-                          builder: (controller) => texFieldColumn(
-                                title: 'State',
-                                hintText: 'State',
-                                onChanged: controller.onChanged,
-                                error: controller.stateError,
-                                txtController: controller.stateController,
-                              )),
+                        id: "showState",
+                        builder: (controller) => texFieldColumn(
+                          title: Strings.state,
+                          hintText: 'State',
+                          onChanged: controller.onChanged,
+                          error: controller.stateError,
+                          txtController: controller.stateController,
+                        ),
+                      ),
                       const SizedBox(height: 10),
                       Padding(
                         padding: const EdgeInsets.only(left: 13, bottom: 10),
                         child: Row(
                           children: [
-                            Text('Country',
-                                style: appTextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 14,
-                                    color: ColorRes.black.withOpacity(0.6))),
+                            Text(
+                              Strings.country,
+                              style: appTextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 14,
+                                color: ColorRes.black.withOpacity(0.6),
+                              ),
+                            ),
                             const Text(
                               '*',
                               style: TextStyle(
@@ -568,7 +577,7 @@ class SignUpScreen extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(4),
                                     ),
                                   ),
-                                  Text('Remember me',
+                                  Text(Strings.rememberMe,
                                       style: appTextStyle(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 13,
@@ -611,7 +620,6 @@ class SignUpScreen extends StatelessWidget {
                                   )
                                 :*/
                                 InkWell(
-                              // dashboard write
                               onTap: controller.onSignUpBtnTap,
                               child: Container(
                                 height: 50,
@@ -624,7 +632,7 @@ class SignUpScreen extends StatelessWidget {
                                     ColorRes.containerColor
                                   ]),
                                 ),
-                                child: Text("Sign up",
+                                child: Text(Strings.signUp,
                                     style: appTextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.w500,
@@ -636,7 +644,7 @@ class SignUpScreen extends StatelessWidget {
                       Center(
                         child: InkWell(
                           onTap: () {},
-                          child: Text('or continue with',
+                          child: Text(Strings.orContinueWith,
                               style: appTextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.w400,
@@ -679,7 +687,7 @@ class SignUpScreen extends StatelessWidget {
                                   ),
                                   const SizedBox(width: 15),
                                   Text(
-                                    'Facebook',
+                                    Strings.facebook,
                                     style: appTextStyle(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 15,
@@ -720,7 +728,7 @@ class SignUpScreen extends StatelessWidget {
                                     height: 27,
                                   ),
                                   const SizedBox(width: 15),
-                                  Text('Google',
+                                  Text(Strings.google,
                                       style: appTextStyle(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 15,
@@ -738,7 +746,7 @@ class SignUpScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "already have account?",
+                            Strings.alreadyHaveAccount,
                             style: appTextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 15,
@@ -773,7 +781,7 @@ class SignUpScreen extends StatelessWidget {
                                     });
                               },
                               child: Text(
-                                ' Sign In',
+                                Strings.signIn,
                                 style: appTextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 16,
@@ -786,19 +794,8 @@ class SignUpScreen extends StatelessWidget {
                     ]),
               )),
               controller.loading.isTrue
-                  ? Center(
-                      child: Container(
-                        padding: const EdgeInsets.all(35),
-                        height: 110,
-                        width: 110,
-                        decoration: BoxDecoration(
-                            color: ColorRes.white,
-                            borderRadius: BorderRadius.circular(25)),
-                        child: const CircularProgressIndicator(
-                          backgroundColor: Color(0xffE2D3FE),
-                          color: ColorRes.containerColor,
-                        ),
-                      ),
+                  ? const Center(
+                      child: CommonLoader(),
                     )
                   : const SizedBox(),
             ],

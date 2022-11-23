@@ -117,13 +117,16 @@ class SecurityScreen extends StatelessWidget {
                   ),
                   const Spacer(),
                   // SizedBox(width: Get.width - 150),
-                  Obx(() => FlutterSwitch(
+                  Obx(
+                    () => FlutterSwitch(
                       height: 27,
                       width: 45,
                       value: controller.isSwitchedTouch.value,
                       activeColor: ColorRes.blueColor,
                       toggleSize: 20,
-                      onToggle: (value) => controller.onchangeTouch(value))),
+                      onToggle: (value) => controller.onchangeTouch(value),
+                    ),
+                  ),
                   const SizedBox(width: 15),
                 ],
               ),

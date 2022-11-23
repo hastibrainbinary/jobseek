@@ -8,8 +8,8 @@ import 'package:jobseek/screen/chat_box/chat_box_controller.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 import 'package:paginate_firestore/paginate_firestore.dart';
-
 import 'chat_box_usercontroller.dart';
 
 class ChatLiveScreen extends StatelessWidget {
@@ -60,7 +60,8 @@ class ChatLiveScreen extends StatelessWidget {
                   const SizedBox(width: 80),
                   Center(
                     child: Text(
-                      'Chat Box',
+                      Strings.chatBox,
+
                       style: appTextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
@@ -108,7 +109,8 @@ class ChatLiveScreen extends StatelessWidget {
                                 ),
                                 const SizedBox(height: 6),
                                 Text(
-                                  "Online",
+                                  Strings.online,
+
                                   style: appTextStyle(
                                       color: ColorRes.black,
                                       fontSize: 12,
@@ -189,7 +191,7 @@ class ChatLiveScreen extends StatelessWidget {
                       }
 
                       Widget box = data['type'] == "alert"
-                          ? SizedBox()
+                          ? const SizedBox()
                           : Column(
                               children: [
                                 /* SizedBox(
@@ -228,8 +230,8 @@ class ChatLiveScreen extends StatelessWidget {
                                                       .toString() ==
                                                   userUid
                                               ? const LinearGradient(colors: [
-                                                  Color(0xFFBF9EFF),
-                                                  Color(0xFF8B4EFF),
+                                                  ColorRes.gradientColor,
+                                                  ColorRes.containerColor,
                                                 ])
                                               : const LinearGradient(colors: [
                                                   Color(0xFFEEEBF4),
@@ -247,10 +249,10 @@ class ChatLiveScreen extends StatelessWidget {
                                                 userUid
                                             ? const TextStyle(
                                                 fontSize: 17,
-                                                color: Colors.white)
+                                                color: ColorRes.white)
                                             : const TextStyle(
                                                 fontSize: 17,
-                                                color: Colors.black),
+                                                color: ColorRes.black),
                                       ),
                                     ),
                                     const SizedBox(
@@ -299,14 +301,14 @@ class ChatLiveScreen extends StatelessWidget {
                         borderRadius: const BorderRadius.all(
                           Radius.circular(10),
                         ),
-                        color: Colors.white,
+                        color: ColorRes.white,
                       ),
                       child: Row(
                         children: [
                           Expanded(
                             child: TextFormField(
                               controller: controller.msController,
-                              style: const TextStyle(color: Colors.black),
+                              style: const TextStyle(color: ColorRes.black),
                               decoration: const InputDecoration(
                                   hintText: "Type message...",
                                   hintStyle: TextStyle(

@@ -275,14 +275,16 @@ class ApplicationsScreen extends StatelessWidget {
                                                                           ? Navigator.push(
                                                                               context,
                                                                               MaterialPageRoute(
-                                                                                  builder: (con) => RejectedScreen(
-                                                                                        userOccupation: snapshot2.data!.docs[index2]['userOccupation'],
-                                                                                        companyName: snapshot.data!.docs[index]['companyName'],
-                                                                                        message: snapshot2.data!.docs[index2]['message'],
-                                                                                    salary: snapshot2.data!.docs[index2]['salary'],
-                                                                                    location: snapshot2.data!.docs[index2]['location'],
-                                                                                    type: snapshot2.data!.docs[index2]['type'],
-                                                                                      )))
+                                                                                builder: (con) => RejectedScreen(
+                                                                                  userOccupation: snapshot2.data!.docs[index2]['userOccupation'],
+                                                                                  companyName: snapshot.data!.docs[index]['companyName'],
+                                                                                  message: snapshot2.data!.docs[index2]['message'],
+                                                                                  salary: snapshot2.data!.docs[index2]['salary'],
+                                                                                  location: snapshot2.data!.docs[index2]['location'],
+                                                                                  type: snapshot2.data!.docs[index2]['type'],
+                                                                                ),
+                                                                              ),
+                                                                            )
                                                                           : (snapshot2.data!.docs[index2]['status'] == 'Accepted')
                                                                               ? Navigator.push(
                                                                                   context,
@@ -437,9 +439,9 @@ class ApplicationsScreen extends StatelessWidget {
                                                                                     userOccupation: snapshot2.data!.docs[index2]['userOccupation'],
                                                                                     companyName: snapshot.data!.docs[index]['companyName'],
                                                                                     message: snapshot2.data!.docs[index2]['message'],
-                                                                                salary: snapshot2.data!.docs[index2]['salary'],
-                                                                                location: snapshot2.data!.docs[index2]['location'],
-                                                                                type: snapshot2.data!.docs[index2]['type'],
+                                                                                    salary: snapshot2.data!.docs[index2]['salary'],
+                                                                                    location: snapshot2.data!.docs[index2]['location'],
+                                                                                    type: snapshot2.data!.docs[index2]['type'],
                                                                                   )));
                                                                     },
                                                                     child:
@@ -530,10 +532,14 @@ class ApplicationsScreen extends StatelessWidget {
                                                                           crossAxisAlignment:
                                                                               CrossAxisAlignment.start,
                                                                           children: [
-                                                                            Text(snapshot2.data!.docs[index2]['userOccupation'],
-                                                                                style: appTextStyle(color: ColorRes.black, fontSize: 15, fontWeight: FontWeight.w500)),
-                                                                            Text(snapshot.data!.docs[index]['companyName'],
-                                                                                style: appTextStyle(color: ColorRes.black, fontSize: 12, fontWeight: FontWeight.w400)),
+                                                                            Text(
+                                                                              snapshot2.data!.docs[index2]['userOccupation'],
+                                                                              style: appTextStyle(color: ColorRes.black, fontSize: 15, fontWeight: FontWeight.w500),
+                                                                            ),
+                                                                            Text(
+                                                                              snapshot.data!.docs[index]['companyName'],
+                                                                              style: appTextStyle(color: ColorRes.black, fontSize: 12, fontWeight: FontWeight.w400),
+                                                                            ),
                                                                           ],
                                                                         ),
                                                                       ],
@@ -556,9 +562,9 @@ class ApplicationsScreen extends StatelessWidget {
                                                                                     userOccupation: snapshot2.data!.docs[index2]['userOccupation'],
                                                                                     companyName: snapshot.data!.docs[index]['companyName'],
                                                                                     message: snapshot2.data!.docs[index2]['message'],
-                                                                                salary: snapshot2.data!.docs[index2]['salary'],
-                                                                                location: snapshot2.data!.docs[index2]['location'],
-                                                                                type: snapshot2.data!.docs[index2]['type'],
+                                                                                    salary: snapshot2.data!.docs[index2]['salary'],
+                                                                                    location: snapshot2.data!.docs[index2]['location'],
+                                                                                    type: snapshot2.data!.docs[index2]['type'],
                                                                                   )));
                                                                     },
                                                                     child:
@@ -675,9 +681,9 @@ class ApplicationsScreen extends StatelessWidget {
                                                                                     userOccupation: snapshot2.data!.docs[index2]['userOccupation'],
                                                                                     companyName: snapshot.data!.docs[index]['companyName'],
                                                                                     message: snapshot2.data!.docs[index2]['message'],
-                                                                                salary: snapshot2.data!.docs[index2]['salary'],
-                                                                                location: snapshot2.data!.docs[index2]['location'],
-                                                                                type: snapshot2.data!.docs[index2]['type'],
+                                                                                    salary: snapshot2.data!.docs[index2]['salary'],
+                                                                                    location: snapshot2.data!.docs[index2]['location'],
+                                                                                    type: snapshot2.data!.docs[index2]['type'],
                                                                                   )));
                                                                     },
                                                                     child:

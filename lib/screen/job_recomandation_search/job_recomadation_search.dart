@@ -5,13 +5,13 @@ import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/all_jobs.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
 import 'package:jobseek/screen/job_recomandation_search/job_recomandation_search_controller.dart';
-import 'package:jobseek/screen/job_recommendation_screen/job_recommendation_controller.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 
 class JobRecomandationSearch extends StatelessWidget {
-   JobRecomandationSearch({Key? key}) : super(key: key);
-final controller = Get.put(JobRecomandationSearchController());
+  JobRecomandationSearch({Key? key}) : super(key: key);
+  final controller = Get.put(JobRecomandationSearchController());
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ final controller = Get.put(JobRecomandationSearchController());
                   child: Align(
                     alignment: Alignment.center,
                     child: Text(
-                      'Job recommendation',
+                      Strings.jobRecommendation,
                       style: appTextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
@@ -61,18 +61,18 @@ final controller = Get.put(JobRecomandationSearchController());
             const SizedBox(
               height: 10,
             ),
-           GetBuilder<JobRecomandationSearchController>(
-               id: "length",
-               builder: (con){
-             return Padding(
-               padding: const EdgeInsets.only(left: 18.0),
-               child: Text("${con.totalLength} jobs"),
-             );
-           }),
+            GetBuilder<JobRecomandationSearchController>(
+                id: "length",
+                builder: (con) {
+                  return Padding(
+                    padding: const EdgeInsets.only(left: 18.0),
+                    child: Text("${con.totalLength} jobs"),
+                  );
+                }),
             const SizedBox(
               height: 10,
             ),
-           /* Container(
+            /* Container(
               padding: const EdgeInsets.only(left: 20, right: 20),
               height: 32,
               child: ListView.builder(
@@ -110,8 +110,12 @@ final controller = Get.put(JobRecomandationSearchController());
                     );
                   }),
             ),*/
-            GetBuilder<JobRecomandationSearchController>(builder: (con) =>
-                 allJobs(FirebaseFirestore.instance.collection("allPost").snapshots())
+            GetBuilder<JobRecomandationSearchController>(
+                builder: (con) => allJobs(
+                    FirebaseFirestore.instance
+                        .collection("allPost")
+                        .snapshots(),
+                    seeAll: true)
                 /*: controller.selectedJobs2.value == 1
                 ? allJobs(fireStore
                 .collection("category")
@@ -133,8 +137,8 @@ final controller = Get.put(JobRecomandationSearchController());
                 : Center(
               child: Text(controller
                   .jobs2[controller.selectedJobs2.value]),*/
-      //      )
-      ),
+                //      )
+                ),
           ],
         ),
       ),

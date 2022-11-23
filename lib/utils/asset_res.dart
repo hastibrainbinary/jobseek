@@ -87,4 +87,5 @@ class AssetRes {
   static const Inbox = "${images}Inbox.png";
   static const profileLogo = "${images}profileLogo.png";
   static const companyProfile ='${images}companyProfile.png';
+  static const userImage="${images}userImage.png";
 }

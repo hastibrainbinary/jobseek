@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
+import 'package:jobseek/utils/string.dart';
 
 class VideoJoinScreen extends StatelessWidget {
   const VideoJoinScreen({Key? key}) : super(key: key);
@@ -28,7 +29,8 @@ class VideoJoinScreen extends StatelessWidget {
           top: 400,
           left: 165,
           child: Text(
-            "AirBNB",
+            Strings.airBNB,
+
             style: appTextStyle(fontSize: 22, fontWeight: FontWeight.w500),
           ),
         ),
@@ -36,7 +38,7 @@ class VideoJoinScreen extends StatelessWidget {
           top: 440,
           left: 140,
           child: Text(
-            "Joining Interview ...",
+            Strings.joiningInterview,
             style: appTextStyle(fontWeight: FontWeight.w400, fontSize: 14),
           ),
         ),

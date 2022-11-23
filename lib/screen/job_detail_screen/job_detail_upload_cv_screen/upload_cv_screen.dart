@@ -7,6 +7,7 @@ import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/string.dart';
 
+// ignore: must_be_immutable
 class JobDetailsUploadCvScreen extends StatelessWidget {
   JobDetailsUploadCvScreen({Key? key}) : super(key: key);
   final JobDetailsUploadCvController controller =

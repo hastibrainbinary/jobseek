@@ -102,7 +102,7 @@ class SignUpControllerM extends GetxController {
         PrefService.setValue(PrefKeys.totalPost, 0);
 
         Map<String, dynamic> map2 = {
-          "FullName": "${firstnameController.text}  ${lastnameController.text}",
+          "FullName": "${firstnameController.text}     ${lastnameController.text}",
           "Email": emailController.text,
           "Phone": phoneController.text,
           "City": cityController.text,

@@ -8,8 +8,6 @@ import 'package:jobseek/screen/dashboard/dashboard_screen.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 
-
-
 class GoogleSignupController extends GetxController {
   final String email;
   final String firstname;
@@ -23,7 +21,9 @@ class GoogleSignupController extends GetxController {
   });
   @override
   void onInit() {
-    print("********************************");
+    if (kDebugMode) {
+      print("********************************");
+    }
     emailController.text = email;
     firstnameController.text = firstname;
     lastnameController.text = lastname;
@@ -244,7 +244,7 @@ class GoogleSignupController extends GetxController {
     await addDataInFirebase(userUid: uid, map: map2);
 
     PrefService.setValue(PrefKeys.fullName,
-        "${firstnameController.text} ${lastnameController.text}");
+        "${firstnameController.text}                ${lastnameController.text}");
     PrefService.setValue(PrefKeys.email, emailController.text);
     PrefService.setValue(PrefKeys.phoneNumber, phoneController.text);
     PrefService.setValue(PrefKeys.city, cityController.text);

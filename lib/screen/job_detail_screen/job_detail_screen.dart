@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_controller.dart';
@@ -19,7 +20,9 @@ class JobDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(args['saved']['location']);
+    if (kDebugMode) {
+      print(args['saved']['location']);
+    }
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -170,7 +173,7 @@ class JobDetailScreen extends StatelessWidget {
                               child: Text(
                                 Strings.jobDetails,
                                 style: appTextStyle(
-                                  color: Colors.black,
+                                  color: ColorRes.black,
                                   fontSize: 20,
                                 ),
                               ),
@@ -230,8 +233,9 @@ class JobDetailScreen extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                         vertical: 18, horizontal: 18),
                     decoration: BoxDecoration(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(15)),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(15),
+                        ),
                         border: Border.all(color: ColorRes.borderColor),
                         color: ColorRes.white),
                     child: Column(

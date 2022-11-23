@@ -4,6 +4,7 @@ import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 
 class Notification1Screen extends StatelessWidget {
   const Notification1Screen({Key? key}) : super(key: key);
@@ -31,7 +32,8 @@ class Notification1Screen extends StatelessWidget {
                 ),
                 const SizedBox(width: 60),
                 Text(
-                  'Notification',
+                  Strings.notification,
+
                   style: appTextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,

@@ -6,8 +6,10 @@ import 'package:jobseek/screen/auth/ResetPasswordPage/ResetPasswordScreen.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 import 'package:pinput/pinput.dart';
 
+// ignore: must_be_immutable
 class OtpScreen extends StatelessWidget {
   OtpScreen({Key? key}) : super(key: key);
   OtpController controller = Get.put(OtpController());
@@ -20,7 +22,6 @@ class OtpScreen extends StatelessWidget {
       body: Column(children: [
         const SizedBox(height: 50),
         backButton(),
-
         Row(
           children: [
             Padding(
@@ -34,7 +35,7 @@ class OtpScreen extends StatelessWidget {
             ),
             const SizedBox(width: 46),
             Text(
-              'Forgot Password',
+              Strings.forgotPassword,
               style: appTextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w500,
@@ -45,7 +46,7 @@ class OtpScreen extends StatelessWidget {
         ),
         SizedBox(height: Get.height * 0.19),
         Text(
-          'Code has been send to +6282******39',
+          Strings.codeHasBeen,
           style: appTextStyle(
               fontSize: 12, fontWeight: FontWeight.w400, color: ColorRes.black),
         ),
@@ -84,7 +85,7 @@ class OtpScreen extends StatelessWidget {
                       ),
                       const SizedBox(width: 10),
                       Text(
-                        'Invalid OTP code',
+                        Strings.invalidOTPCode,
                         style: appTextStyle(
                             fontSize: 9,
                             fontWeight: FontWeight.w400,
@@ -92,7 +93,6 @@ class OtpScreen extends StatelessWidget {
                       ),
                     ]),
               ),
-
         SizedBox(height: Get.height * 0.0600),
         GetBuilder<OtpController>(
             id: "Seconds",
@@ -101,7 +101,7 @@ class OtpScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Resend code in ',
+                  Text(Strings.resendCodeIn,
                       style: appTextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
@@ -144,7 +144,7 @@ class OtpScreen extends StatelessWidget {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (con) => ResetPasswordScreen()));
               },
-              child: Text("Verify",
+              child: Text(Strings.verify,
                   style: appTextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 18,
@@ -152,7 +152,6 @@ class OtpScreen extends StatelessWidget {
             ),
           ),
         ),
-        // SizedBox(height: Get.height * 0.03),
       ]),
     );
   }

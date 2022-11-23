@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
+import 'package:jobseek/screen/job_recommendation_screen/job_recommendation_screen.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
+import 'package:jobseek/utils/string.dart';
 
 class SearchJobScreen extends StatelessWidget {
   const SearchJobScreen({Key? key}) : super(key: key);
@@ -41,7 +43,7 @@ class SearchJobScreen extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.center,
                     child: Text(
-                      'Search jobs',
+                      Strings.searchJobs,
                       style: appTextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
@@ -57,7 +59,7 @@ class SearchJobScreen extends StatelessWidget {
               child: AdvancedSearch(
                 clearSearchEnabled: true,
                 singleItemHeight: 40,
-                hintText: 'Skills,designation,companies',
+                hintText: 'designation,companies',
                 hintTextColor: Colors.black.withOpacity(0.5),
                 autoListing: true,
                 unSelectedTextColor: Colors.black.withOpacity(0.5),
@@ -80,18 +82,21 @@ class SearchJobScreen extends StatelessWidget {
               ),
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Get.to(const JobRecommendation());
+              },
               child: Center(
                 child: Container(
                   margin: const EdgeInsets.only(top: 15),
                   height: 36,
                   width: 119,
                   decoration: BoxDecoration(
-                      color: ColorRes.containerColor,
-                      borderRadius: BorderRadius.circular(10)),
+                    color: ColorRes.containerColor,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                   child: const Center(
                     child: Text(
-                      "Search jobs",
+                      Strings.searchJobs,
                       style: TextStyle(
                           color: ColorRes.white,
                           fontWeight: FontWeight.w500,
@@ -110,7 +115,7 @@ class SearchJobScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18),
               child: Text(
-                'Your most recent searches',
+                Strings.yourMostRecentSearches,
                 style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
@@ -147,19 +152,23 @@ class SearchJobScreen extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Supervisor,Gurgaon/Guru...",
-                              style: GoogleFonts.poppins(
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.black)),
+                          Text(
+                            "Supervisor,Gurgaon/Guru...",
+                            style: GoogleFonts.poppins(
+                                fontSize: 11,
+                                fontWeight: FontWeight.w400,
+                                color: ColorRes.black),
+                          ),
                           const SizedBox(
                             height: 6,
                           ),
-                          Text("2 new",
-                              style: GoogleFonts.poppins(
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.w400,
-                                  color: ColorRes.containerColor)),
+                          Text(
+                            "2 new",
+                            style: GoogleFonts.poppins(
+                                fontSize: 11,
+                                fontWeight: FontWeight.w400,
+                                color: ColorRes.containerColor),
+                          ),
                         ],
                       ),
                     ],

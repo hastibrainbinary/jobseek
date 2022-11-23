@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/screen/create_vacancies/create_vacancies_screen.dart';
-import 'package:jobseek/screen/dashboard/dashboard_screen.dart';
 import 'package:jobseek/screen/manager_section/Jobdetails/Jobdetails_controller.dart';
 import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen.dart';
 import 'package:jobseek/screen/manager_section/manager_application_screen/manger_application_screen.dart';
@@ -13,23 +11,28 @@ import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 import 'package:jobseek/utils/string.dart';
 
+// ignore: must_be_immutable
 class JobDetailsScreen extends StatelessWidget {
   final bool isError;
   String? position;
 
-  JobDetailsScreen({Key? key, required this.isError, this.position}) : super(key: key);
+  JobDetailsScreen({Key? key, required this.isError, this.position})
+      : super(key: key);
   final JobDetailsController controller = Get.put(JobDetailsController());
   // var args = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
     // debugPrint("Args Print $args");
-    return WillPopScope(onWillPop: () async{
-      await Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-        return ManagerDashBoardScreen();
-      },));
-      return true;
-    },
+    return WillPopScope(
+      onWillPop: () async {
+        await Navigator.pushReplacement(context, MaterialPageRoute(
+          builder: (context) {
+            return ManagerDashBoardScreen();
+          },
+        ));
+        return true;
+      },
       child: Scaffold(
         backgroundColor: ColorRes.backgroundColor,
         body: SingleChildScrollView(
@@ -73,9 +76,12 @@ class JobDetailsScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(8)),
                         child: InkWell(
                           onTap: () {
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-                              return ManagerDashBoardScreen();
-                            },));
+                            Navigator.pushReplacement(context,
+                                MaterialPageRoute(
+                              builder: (context) {
+                                return ManagerDashBoardScreen();
+                              },
+                            ));
                           },
                           child: const Icon(
                             Icons.arrow_back_ios,
@@ -88,8 +94,9 @@ class JobDetailsScreen extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.only(top: 5),
                           child: Text(
-                            "Job Details",
-                            style: appTextStyle(color: ColorRes.black, fontSize: 20),
+                            Strings.jobDetails,
+                            style: appTextStyle(
+                                color: ColorRes.black, fontSize: 20),
                           ),
                         ),
                       )
@@ -100,7 +107,8 @@ class JobDetailsScreen extends StatelessWidget {
                 Container(
                   height: 92,
                   width: Get.width,
-                  margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
                   padding: const EdgeInsets.all(15),
                   decoration: BoxDecoration(
                       borderRadius: const BorderRadius.all(Radius.circular(15)),
@@ -115,14 +123,14 @@ class JobDetailsScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            position??"",
+                            position ?? "",
                             style: appTextStyle(
                                 color: ColorRes.black,
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500),
                           ),
                           Text(
-                           PrefService.getString(PrefKeys.companyName),
+                            PrefService.getString(PrefKeys.companyName),
                             style: appTextStyle(
                                 color: ColorRes.black,
                                 fontSize: 12,
@@ -144,12 +152,12 @@ class JobDetailsScreen extends StatelessWidget {
                 const SizedBox(height: 10),
                 Center(
                   child: isError == true
-                      ? Text("Job Vacancy Posted!",
+                      ? Text(Strings.jobVacancyPosted,
                           style: appTextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
                               color: ColorRes.containerColor))
-                      : Text("Oops, Failed to Post",
+                      : Text(Strings.oopsFailedToPost,
                           style: appTextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
@@ -198,7 +206,8 @@ class JobDetailsScreen extends StatelessWidget {
                       height: 50,
                       alignment: Alignment.center,
                       padding: const EdgeInsets.symmetric(vertical: 12),
-                      margin: const EdgeInsets.only(right: 18, left: 18, top: 10),
+                      margin:
+                          const EdgeInsets.only(right: 18, left: 18, top: 10),
                       decoration: const BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         gradient: LinearGradient(colors: [

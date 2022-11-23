@@ -6,7 +6,6 @@ import 'package:jobseek/common/widgets/helper.dart';
 import 'package:jobseek/screen/chat_box_user/chat_box_usercontroller.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/pref_keys.dart';
-
 import 'chat_box_live-Screen.dart';
 
 ChatBoxUserController chatBoxUserController = Get.put(ChatBoxUserController());
