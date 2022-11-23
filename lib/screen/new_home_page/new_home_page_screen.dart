@@ -12,7 +12,9 @@ import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
+import 'package:jobseek/utils/string.dart';
 
+// ignore: must_be_immutable
 class HomePageNewScreenU extends StatelessWidget {
   HomePageNewScreenU({Key? key}) : super(key: key);
 
@@ -40,7 +42,7 @@ class HomePageNewScreenU extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 11),
                   child: Text(
                     textAlign: TextAlign.center,
-                    "Logo",
+                    Strings.logo,
                     style: appTextStyle(
                         color: ColorRes.containerColor,
                         fontWeight: FontWeight.w600,
@@ -51,7 +53,7 @@ class HomePageNewScreenU extends StatelessWidget {
               const Spacer(),
               Center(
                 child: Text(
-                  'Job Seeker',
+                  Strings.jobSeeker,
                   style: appTextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
@@ -91,8 +93,11 @@ class HomePageNewScreenU extends StatelessWidget {
                   Expanded(
                     child: Container(
                       decoration: const BoxDecoration(
-                          color: ColorRes.white2,
-                          borderRadius: BorderRadius.all(Radius.circular(8),),),
+                        color: ColorRes.white2,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(8),
+                        ),
+                      ),
                       child: TextField(
                         controller: controller.searchControllerNew,
                         onChanged: (value) {},
@@ -100,16 +105,17 @@ class HomePageNewScreenU extends StatelessWidget {
                           Get.to(() => const SearchJobScreen());
                         },
                         decoration: InputDecoration(
-                            border: InputBorder.none,
-                            suffixIcon:
-                                const Icon(Icons.search, color: ColorRes.grey),
-                            hintText: "Search jobs here...",
-                            hintStyle: appTextStyle(
-                                fontSize: 14,
-                                color: ColorRes.grey,
-                                fontWeight: FontWeight.w500),
-                            contentPadding:
-                                const EdgeInsets.only(left: 20, top: 13)),
+                          border: InputBorder.none,
+                          suffixIcon:
+                              const Icon(Icons.search, color: ColorRes.grey),
+                          hintText: Strings.searchJobsHere,
+                          hintStyle: appTextStyle(
+                              fontSize: 14,
+                              color: ColorRes.grey,
+                              fontWeight: FontWeight.w500),
+                          contentPadding:
+                              const EdgeInsets.only(left: 20, top: 13),
+                        ),
                       ),
                     ),
                   ),
@@ -242,7 +248,7 @@ class HomePageNewScreenU extends StatelessWidget {
                 const SizedBox(width: 10),
                 InkWell(
                   onTap: () {
-                    Get.to(() => SigninScreenU());
+                    Get.to(() => const SigninScreenU());
                   },
                   child: Container(
                     margin: const EdgeInsets.only(top: 15),
@@ -399,7 +405,7 @@ class HomePageNewScreenU extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                    'Job recommendation',
+                    Strings.jobRecommendation,
                     style: appTextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -412,7 +418,7 @@ class HomePageNewScreenU extends StatelessWidget {
                       Get.to(() => JobRecomandationSearch());
                     },
                     child: Text(
-                      'View all',
+                      Strings.viewAll,
                       style: appTextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
@@ -455,7 +461,7 @@ class HomePageNewScreenU extends StatelessWidget {
                       ),
                       const SizedBox(height: 6),
                       Text(
-                        "AirBNB",
+                        Strings.airBNB,
                         style: appTextStyle(
                             color: ColorRes.black,
                             fontSize: 10,
@@ -479,11 +485,13 @@ class HomePageNewScreenU extends StatelessWidget {
                       const Icon(Icons.bookmark,
                           color: ColorRes.containerColor),
                       const SizedBox(height: 10),
-                      Text("\$2.350",
-                          style: appTextStyle(
-                              color: ColorRes.containerColor,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600)),
+                      Text(
+                        "\$2.350",
+                        style: appTextStyle(
+                            color: ColorRes.containerColor,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600),
+                      ),
                     ],
                   ),
                   const SizedBox(width: 10),

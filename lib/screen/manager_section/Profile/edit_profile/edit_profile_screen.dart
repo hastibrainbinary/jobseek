@@ -15,7 +15,6 @@ class EditProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       backgroundColor: ColorRes.backgroundColor,
       body: Column(
         children: [
@@ -48,8 +47,9 @@ class EditProfileScreen extends StatelessWidget {
               height: 40,
               width: 40,
               decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(10)),
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(10),
+              ),
               /*child: InkWell(
                 onTap: () {
                   Navigator.push(
@@ -81,11 +81,14 @@ class EditProfileScreen extends StatelessWidget {
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 image: (controller.image == null)
-                                    ? const DecorationImage(
-                                        image: AssetImage(
+                                    ? DecorationImage(
+                                        image: const AssetImage(
                                           AssetRes.roundAirbnb,
                                         ),
-                                        fit: BoxFit.fill)
+                                        fit: BoxFit.fill,
+                                        onError: (error, starcase) {
+                                          Image.asset(AssetRes.userImage);
+                                        })
                                     : DecorationImage(
                                         image: FileImage(
                                           controller.image!,
@@ -574,7 +577,7 @@ class EditProfileScreen extends StatelessWidget {
                       GetBuilder<ProfileController>(
                           id: "Organization",
                           builder: (controller) {
-                            return (controller.companyNameController.text ==
+                            return /*(controller.companyNameController.text ==
                                         '' ||
                                     controller.companyEmailController.text ==
                                         '' ||
@@ -605,27 +608,28 @@ class EditProfileScreen extends StatelessWidget {
                                               color: ColorRes.white)),
                                     ),
                                   )
-                                : InkWell(
-                                    // dashboard write
-                                    onTap: controller.onTapSubmit,
-                                    child: Container(
-                                      height: 50,
-                                      width: MediaQuery.of(context).size.width,
-                                      alignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        gradient: const LinearGradient(colors: [
-                                          ColorRes.gradientColor,
-                                          ColorRes.containerColor
-                                        ]),
-                                      ),
-                                      child: Text("Save Changes",
-                                          style: appTextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w500,
-                                              color: ColorRes.white)),
-                                    ),
-                                  );
+                                :*/
+                                InkWell(
+                              // dashboard write
+                              onTap: controller.onTapSubmit,
+                              child: Container(
+                                height: 50,
+                                width: MediaQuery.of(context).size.width,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  gradient: const LinearGradient(colors: [
+                                    ColorRes.gradientColor,
+                                    ColorRes.containerColor
+                                  ]),
+                                ),
+                                child: Text("Save Changes",
+                                    style: appTextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500,
+                                        color: ColorRes.white)),
+                              ),
+                            );
                           }),
                       const SizedBox(
                         height: 20,

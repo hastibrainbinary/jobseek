@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/common_error_box.dart';
+import 'package:jobseek/common/widgets/common_loader.dart';
 import 'package:jobseek/common/widgets/common_textField.dart';
 import 'package:jobseek/screen/manager_section/Profile/profile_controller.dart';
 import 'package:jobseek/screen/manager_section/Settings/settings_screen.dart';
@@ -67,7 +68,7 @@ class ProfileScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (con) => const SettingScreenM(),
+                          builder: (con) =>  SettingScreenM(),
                         ),
                       );
                     },
@@ -94,11 +95,15 @@ class ProfileScreen extends StatelessWidget {
                                       decoration: BoxDecoration(
                                           shape: BoxShape.circle,
                                           image: (controller.image == null)
-                                              ? const DecorationImage(
-                                                  image: AssetImage(
+                                              ?  DecorationImage(
+                                                  image: const AssetImage(
                                                     AssetRes.roundAirbnb,
                                                   ),
-                                                  fit: BoxFit.fill)
+                                                  fit: BoxFit.fill,
+                                          onError: (error,starcase){
+                                                     Image.asset(AssetRes.userImage);
+                                          }
+                                          )
                                               : DecorationImage(
                                                   image: FileImage(
                                                     controller.image!,
@@ -622,19 +627,8 @@ class ProfileScreen extends StatelessWidget {
                           ),
                         ]),
                       )
-                    : Center(
-                        child: Container(
-                          padding: const EdgeInsets.all(35),
-                          height: 110,
-                          width: 110,
-                          decoration: BoxDecoration(
-                              color: ColorRes.white,
-                              borderRadius: BorderRadius.circular(25)),
-                          child: const CircularProgressIndicator(
-                            backgroundColor: Color(0xffE2D3FE),
-                            color: ColorRes.containerColor,
-                          ),
-                        ),
+                    : const Center(
+                        child:CommonLoader(),
                       ),
               ),
             ],

@@ -5,6 +5,7 @@ import 'package:jobseek/common/widgets/common_textField.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 import 'create_vacancies_controller.dart';
 
 class CreateVacanciesScreenM extends StatelessWidget {
@@ -47,9 +48,11 @@ class CreateVacanciesScreenM extends StatelessWidget {
                         ),
                       ),
                     ),
-                     SizedBox(width: Get.width/10,),
+                    SizedBox(
+                      width: Get.width / 10,
+                    ),
                     Text(
-                      'Create Vacancies',
+                      Strings.createVacancies,
                       style: appTextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
@@ -75,17 +78,18 @@ class CreateVacanciesScreenM extends StatelessWidget {
                               bottom: 2,
                               left: 80,
                               child: Container(
-                                  height: 18,
-                                  width: 18,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(18),
-                                      color: ColorRes.containerColor),
-                                  child: const Icon(
-                                    Icons.edit,
-                                    size: 13,
-                                    color: ColorRes.white,
-                                  )),
-                            )
+                                height: 18,
+                                width: 18,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(18),
+                                    color: ColorRes.containerColor),
+                                child: const Icon(
+                                  Icons.edit,
+                                  size: 13,
+                                  color: ColorRes.white,
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                         const SizedBox(height: 18),
@@ -105,7 +109,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 15),
                                   child: Text(
-                                    "Open Position",
+                                    Strings.openPosition,
                                     style: appTextStyle(
                                       color: ColorRes.black.withOpacity(0.6),
                                       fontSize: 14,
@@ -151,7 +155,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 15),
                                   child: Text(
-                                    "Salary",
+                                    Strings.salary,
                                     style: appTextStyle(
                                         color: ColorRes.grey, fontSize: 14),
                                   ),
@@ -205,7 +209,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 15),
                                   child: Text(
-                                    "Location",
+                                    Strings.location,
                                     style: appTextStyle(
                                         color: ColorRes.grey, fontSize: 14),
                                   ),
@@ -221,6 +225,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                               height: 10,
                             ),
                             commonTextFormField(
+                                readOnly: true,
                                 onChanged: controller.onChanged,
                                 textDecoration: InputDecoration(
                                   contentPadding: const EdgeInsets.all(15),
@@ -254,7 +259,6 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                           onChanged: (String? val) {
                                             controller.changeDropwon(val: val!);
                                             controller.update(["profile"]);
-
                                           });
                                     },
                                   ),
@@ -278,7 +282,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 15),
                                   child: Text(
-                                    "Type",
+                                    Strings.type,
                                     style: appTextStyle(
                                         color: ColorRes.grey, fontSize: 14),
                                   ),
@@ -287,13 +291,14 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                   "*",
                                   style:
                                       appTextStyle(color: ColorRes.starColor),
-                                )
+                                ),
                               ],
                             ),
                             const SizedBox(
                               height: 10,
                             ),
                             commonTextFormField(
+                                readOnly: true,
                                 onChanged: controller.onChanged,
                                 textDecoration: InputDecoration(
                                   contentPadding: const EdgeInsets.all(15),
@@ -327,7 +332,6 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                           onChanged: (String? val) {
                                             controller.changetype(val: val!);
                                             controller.update(["profile"]);
-
                                           });
                                     },
                                   ),
@@ -351,7 +355,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 15),
                                   child: Text(
-                                    "Category",
+                                    Strings.category,
                                     style: appTextStyle(
                                         color: ColorRes.grey, fontSize: 14),
                                   ),
@@ -367,6 +371,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                               height: 10,
                             ),
                             commonTextFormField(
+                                readOnly: true,
                                 onChanged: controller.onChanged,
                                 textDecoration: InputDecoration(
                                   contentPadding: const EdgeInsets.all(15),
@@ -401,7 +406,6 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                             controller.changeCategory(
                                                 val: val!);
                                             controller.update(["profile"]);
-
                                           });
                                     },
                                   ),
@@ -425,7 +429,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 15),
                                   child: Text(
-                                    "Status",
+                                    Strings.status,
                                     style: appTextStyle(
                                         color: ColorRes.grey, fontSize: 14),
                                   ),
@@ -441,6 +445,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                               height: 10,
                             ),
                             commonTextFormField(
+                                readOnly: true,
                                 onChanged: controller.onChanged,
                                 textDecoration: InputDecoration(
                                   contentPadding: const EdgeInsets.all(15),
@@ -545,11 +550,13 @@ class CreateVacanciesScreenM extends StatelessWidget {
                                           ColorRes.containerColor
                                         ]),
                                       ),
-                                      child: Text("Next",
-                                          style: appTextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w500,
-                                              color: ColorRes.white)),
+                                      child: Text(
+                                        Strings.next,
+                                        style: appTextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                            color: ColorRes.white),
+                                      ),
                                     ),
                                   );
                                 }),

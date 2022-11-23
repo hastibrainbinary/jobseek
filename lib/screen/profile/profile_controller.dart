@@ -22,6 +22,8 @@ class ProfileUserController extends GetxController implements GetxService {
   DateTime? startTime;
   ImagePicker picker = ImagePicker();
   File? image;
+  RxBool isLod = false.obs;
+  static FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
   void onChanged(String value) {
     update(["colorChange"]);
@@ -34,6 +36,8 @@ class ProfileUserController extends GetxController implements GetxService {
     fullNameController.text = PrefService.getString(PrefKeys.fullName);
     emailController.text = PrefService.getString(PrefKeys.email);
     occupationController.text = PrefService.getString(PrefKeys.occupation);
+    dateOfBirthController.text = PrefService.getString(PrefKeys.dateOfBirth);
+    addressController.text = PrefService.getString(PrefKeys.address);
   }
 
   Future<void> onDatePickerTap(context) async {
@@ -41,8 +45,8 @@ class ProfileUserController extends GetxController implements GetxService {
       context: context,
       initialDate: DateTime.now(),
       initialEntryMode: DatePickerEntryMode.calendarOnly,
-      firstDate: DateTime(2020),
-      lastDate: DateTime(2050),
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
       builder: (context, child) {
         return Theme(
           data: ThemeData(
@@ -65,6 +69,37 @@ class ProfileUserController extends GetxController implements GetxService {
     }
   }
 
+  init() {
+    isLod.value = true;
+    final docRef = fireStore
+        .collection("Auth")
+        .doc("User")
+        .collection("register")
+        .doc(PrefService.getString(PrefKeys.userId))
+        .collection("company")
+        .doc("details");
+    docRef.get().then(
+      (DocumentSnapshot doc) {
+        final data = doc.data() as Map<String, dynamic>;
+        fullNameController.text = data["name"];
+        emailController.text = data["email"];
+        addressController.text = data["address"];
+        occupationController.text = data["date"];
+        dateOfBirthController.text = data["country"];
+        update();
+        isLod.value = false;
+      },
+      onError: (e) {
+        Get.snackbar("Error getting document:", "$e",
+            colorText: const Color(0xffDA1414));
+        if (kDebugMode) {
+          print("Error getting document: $e");
+        }
+      },
+    );
+  }
+
+  // ignore: non_constant_identifier_names
   EditTap() {
     validate();
     if (isNameValidate.value == false &&
@@ -96,12 +131,25 @@ class ProfileUserController extends GetxController implements GetxService {
         PrefKeys.occupation,
         occupationController.text,
       );
+      PrefService.setValue(
+        PrefKeys.address,
+        addressController.text,
+      );
+      PrefService.setValue(
+        PrefKeys.dateOfBirth,
+        dateOfBirthController.text,
+      );
       FirebaseFirestore.instance
           .collection("Auth")
           .doc("User")
           .collection("register")
           .doc(PrefService.getString(PrefKeys.userId))
           .update(map);
+      if (kDebugMode) {
+        print("GO TO HOME PAGE");
+      }
+      init();
+      Get.back();
 
       Get.to(ProfileUserScreenU());
     }
@@ -154,7 +202,7 @@ class ProfileUserController extends GetxController implements GetxService {
   }
 
   imagePicker() {
-    update(['pic']);
+    update(['image']);
     update();
   }
 }

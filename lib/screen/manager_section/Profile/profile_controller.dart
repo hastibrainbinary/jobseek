@@ -74,7 +74,7 @@ class ProfileController extends GetxController implements GetxService {
         countryController.text = data["country"];
         update();
         isLod.value = false;
-        // ...
+
       },
       onError: (e) {
         Get.snackbar("Error getting document:", "$e",
@@ -100,35 +100,7 @@ class ProfileController extends GetxController implements GetxService {
     update(["dropdown"]);
   }
 
-  validate() {
-    if (companyNameController.text.isEmpty) {
-      isNameValidate.value = true;
-    } else {
-      isNameValidate.value = false;
-    }
-    if (companyEmailController.text.isEmpty ||
-        !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-            .hasMatch(companyEmailController.text)) {
-      isEmailValidate.value = true;
-    } else {
-      isEmailValidate.value = false;
-    }
-    if (companyAddressController.text.isEmpty) {
-      isAddressValidate.value = true;
-    } else {
-      isAddressValidate.value = false;
-    }
-    if (countryController.text.isEmpty) {
-      isCountryValidate.value = true;
-    } else {
-      isCountryValidate.value = false;
-    }
-    if (dateController.text.isEmpty) {
-      isDateController.value = true;
-    } else {
-      isDateController.value = false;
-    }
-  }
+
 
   onTapSubmit() async {
     validate();
@@ -162,7 +134,35 @@ class ProfileController extends GetxController implements GetxService {
       // Get.to(ManagerDashBoardScreen());
     }
   }
-
+  validate() {
+    if (companyNameController.text.isEmpty) {
+      isNameValidate.value = true;
+    } else {
+      isNameValidate.value = false;
+    }
+    if (companyEmailController.text.isEmpty ||
+        !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+            .hasMatch(companyEmailController.text)) {
+      isEmailValidate.value = true;
+    } else {
+      isEmailValidate.value = false;
+    }
+    if (companyAddressController.text.isEmpty) {
+      isAddressValidate.value = true;
+    } else {
+      isAddressValidate.value = false;
+    }
+    if (countryController.text.isEmpty) {
+      isCountryValidate.value = true;
+    } else {
+      isCountryValidate.value = false;
+    }
+    if (dateController.text.isEmpty) {
+      isDateController.value = true;
+    } else {
+      isDateController.value = false;
+    }
+  }
   validateAndSubmit() {
     Get.toNamed(AppRes.managerDashboardScreen);
 /*    if (companyNameController.text.isEmpty) {

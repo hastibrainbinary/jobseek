@@ -43,7 +43,7 @@ class SignInScreenController extends GetxController {
       if (kDebugMode) {
         print(password);
       }
-      // if (remeberMe) {
+      // if (rememberMe) {
       //   setState(() {
       //     isChecked = true;
       //   });

@@ -11,7 +11,9 @@ import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
+import 'package:jobseek/utils/string.dart';
 
+// ignore: must_be_immutable
 class ManagerApplicationScreen extends StatelessWidget {
   final ManagerApplicationScreenController controller =
       Get.put(ManagerApplicationScreenController());
@@ -46,7 +48,7 @@ class ManagerApplicationScreen extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          'Logo',
+                          Strings.logo,
                           style: appTextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 10,
@@ -80,7 +82,7 @@ class ManagerApplicationScreen extends StatelessWidget {
                 Align(
                   alignment: Alignment.center,
                   child: Text(
-                    "Applications",
+                    Strings.applications,
                     style: appTextStyle(
                         color: ColorRes.black,
                         fontSize: 20,
@@ -242,7 +244,7 @@ class ManagerApplicationScreen extends StatelessWidget {
                                                       Text(
                                                         textAlign:
                                                             TextAlign.center,
-                                                        "Empty",
+                                                        Strings.empty,
                                                         style: TextStyle(
                                                             color: ColorRes
                                                                 .containerColor,

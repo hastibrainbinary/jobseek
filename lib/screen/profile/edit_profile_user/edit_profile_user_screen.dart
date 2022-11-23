@@ -4,7 +4,6 @@ import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/common/widgets/common_error_box.dart';
 import 'package:jobseek/common/widgets/common_textField.dart';
 import 'package:jobseek/screen/profile/profile_controller.dart';
-import 'package:jobseek/screen/settings/settings_screen.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
@@ -56,7 +55,7 @@ class EditProfileUser extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           SizedBox(
-            height: Get.height - 150,
+            height: Get.height - 130,
             child: SingleChildScrollView(
               child: Column(children: [
                 Padding(
@@ -117,10 +116,11 @@ class EditProfileUser extends StatelessWidget {
                                             Text(
                                               'Change Avatar',
                                               style: appTextStyle(
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: ColorRes.black
-                                                      .withOpacity(0.8)),
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500,
+                                                color: ColorRes.black
+                                                    .withOpacity(0.8),
+                                              ),
                                             ),
                                             // const SizedBox(height: 20),
                                             Padding(
@@ -520,46 +520,7 @@ class EditProfileUser extends StatelessWidget {
                         GetBuilder<ProfileUserController>(
                             id: "Organization",
                             builder: (controller) {
-                              return
-                                  /*  (controller.fullNameController.text ==
-                                            '' ||
-                                        controller.emailController.text == '' ||
-                                        controller.addressController.text ==
-                                            '' ||
-                                        controller.occupationController.text ==
-                                            '' ||
-                                        controller.dateOfBirthController.text ==
-                                            '')
-                                    ? InkWell(
-                                        // dashboard write
-                                        onTap: controller.onLoginBtnTap1,
-
-                                        child: Container(
-                                          height: 50,
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          alignment: Alignment.center,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            gradient: LinearGradient(
-                                              colors: [
-                                                ColorRes.gradientColor
-                                                    .withOpacity(0.2),
-                                                ColorRes.containerColor
-                                                    .withOpacity(0.4)
-                                              ],
-                                            ),
-                                          ),
-                                          child: Text("Save Changes",
-                                              style: appTextStyle(
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: ColorRes.white)),
-                                        ),
-                                      )
-                                    : */
-                                  InkWell(
+                              return InkWell(
                                 onTap: controller.EditTap,
                                 child: Container(
                                   height: 50,
@@ -580,6 +541,9 @@ class EditProfileUser extends StatelessWidget {
                                 ),
                               );
                             }),
+                        SizedBox(
+                            height: MediaQuery.of(context).viewInsets.bottom +
+                                50.0),
                       ],
                     ),
                   ),

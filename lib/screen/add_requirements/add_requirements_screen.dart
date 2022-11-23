@@ -6,6 +6,7 @@ import 'package:jobseek/screen/create_vacancies/create_vacancies_controller.dart
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 
 class RequirementsScreen extends StatelessWidget {
   RequirementsScreen({Key? key}) : super(key: key);
@@ -94,7 +95,7 @@ class RequirementsScreen extends StatelessWidget {
                                         ),
                                         const SizedBox(width: 10),
                                         Text(
-                                          'Add New Requirements',
+                                          Strings.addNewRequirements,
                                           style: appTextStyle(
                                               color: ColorRes.containerColor,
                                               fontSize: 15,
@@ -155,8 +156,12 @@ class RequirementsScreen extends StatelessWidget {
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: InkWell(
-                  onTap: () {
-                    controller.onTapNext(position: controller.positionController.text);
+                  onTap: () async {
+                    controller.loader.value = true;
+                    await //Future.delayed(const Duration(microseconds: 50));
+                        controller.onTapNext(
+                            position: controller.positionController.text);
+                    controller.loader.value = false;
                   },
                   child: Container(
                     height: 50,
@@ -172,7 +177,7 @@ class RequirementsScreen extends StatelessWidget {
                       ),
                     ),
                     child: Text(
-                      "Post Job Vacancy",
+                      Strings.postJobVacancy,
                       style: appTextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w500,

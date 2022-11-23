@@ -1,18 +1,18 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jobseek/common/widgets/common_error_box.dart';
 import 'package:jobseek/common/widgets/common_loader.dart';
 import 'package:jobseek/common/widgets/common_textField.dart';
-import 'package:jobseek/screen/job_detail_screen/job_detail_widget/job_detail_widget.dart';
 import 'package:jobseek/screen/update_vacancies_requirements/update_vacancies_requirement_controller.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 
 class UpdateVacanciesRequirementsScreen extends StatelessWidget {
-  UpdateVacanciesRequirementsScreen({
+  const UpdateVacanciesRequirementsScreen({
     Key? key,
   }) : super(key: key);
 
@@ -21,7 +21,6 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
     final controller = Get.put(UpdateVacanciesRequirementController());
     return Scaffold(
       backgroundColor: ColorRes.backgroundColor,
-      resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: Stack(
           children: [
@@ -159,11 +158,11 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                 padding: const EdgeInsets.all(13.0),
                                 child: Center(
                                   child: Text(
-                                    'Requirements',
+                                    Strings.requirements,
                                     style: appTextStyle(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 14,
-                                      color: controller.isJobDetails == true
+                                      color: controller.isJobDetails ==true
                                           ? ColorRes.containerColor
                                           : ColorRes.white,
                                     ),
@@ -179,7 +178,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                           ? Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: SizedBox(
-                                height: Get.height - 215,
+                                height: Get.height - 180,
                                 child: SingleChildScrollView(
                                   child: Column(children: [
                                     Stack(
@@ -225,7 +224,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                           padding:
                                               const EdgeInsets.only(left: 15),
                                           child: Text(
-                                            "Open Position",
+                                            Strings.openPosition,
                                             style: appTextStyle(
                                               color: ColorRes.black
                                                   .withOpacity(0.6),
@@ -274,7 +273,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                           padding:
                                               const EdgeInsets.only(left: 15),
                                           child: Text(
-                                            "Salary",
+                                            Strings.salary,
                                             style: appTextStyle(
                                                 color: ColorRes.grey,
                                                 fontSize: 14),
@@ -291,6 +290,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                       height: 10,
                                     ),
                                     commonTextFormField(
+                                        type: TextInputType.number,
                                         textDecoration: InputDecoration(
                                           contentPadding:
                                               const EdgeInsets.all(15),
@@ -332,7 +332,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                           padding:
                                               const EdgeInsets.only(left: 15),
                                           child: Text(
-                                            "Location",
+                                            Strings.location,
                                             style: appTextStyle(
                                                 color: ColorRes.grey,
                                                 fontSize: 14),
@@ -349,6 +349,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                       height: 10,
                                     ),
                                     commonTextFormField(
+                                        readOnly: true,
                                         textDecoration: InputDecoration(
                                           contentPadding:
                                               const EdgeInsets.all(15),
@@ -409,7 +410,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                           padding:
                                               const EdgeInsets.only(left: 15),
                                           child: Text(
-                                            "Type",
+                                            Strings.type,
                                             style: appTextStyle(
                                                 color: ColorRes.grey,
                                                 fontSize: 14),
@@ -426,6 +427,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                       height: 10,
                                     ),
                                     commonTextFormField(
+                                        readOnly: true,
                                         textDecoration: InputDecoration(
                                           contentPadding:
                                               const EdgeInsets.all(15),
@@ -481,7 +483,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                           padding:
                                               const EdgeInsets.only(left: 15),
                                           child: Text(
-                                            "Status",
+                                            Strings.status,
                                             style: appTextStyle(
                                                 color: ColorRes.grey,
                                                 fontSize: 14),
@@ -498,6 +500,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                       height: 10,
                                     ),
                                     commonTextFormField(
+                                        readOnly: true,
                                         textDecoration: InputDecoration(
                                           contentPadding:
                                               const EdgeInsets.all(15),
@@ -634,7 +637,8 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                                                     ]),
                                                               ),
                                                               child: Text(
-                                                                  "Update Vacancy",
+                                                                  Strings
+                                                                      .updateVacancy,
                                                                   style: appTextStyle(
                                                                       fontSize:
                                                                           18,
@@ -650,7 +654,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                                 );
                                         }),
                                     const SizedBox(
-                                      height: 20,
+                                      height: 245,
                                     ),
                                   ]),
                                 ),
@@ -679,11 +683,13 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                                         .length) -
                                                 controller
                                                     .requirmentList.length;
-                                            print(values);
+                                            if (kDebugMode) {
+                                              print(values);
+                                            }
                                             return Column(
                                               children: [
                                                 /*  detailBox(
-                                                controller.requirmentList[index]
+                                                controller.requirementList[index]
                                                     .toString(),
                                                 true),*/
                                                 index >=
@@ -722,8 +728,10 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                                                           (value) {
                                                                         controller.onchangeValues =
                                                                             value;
-                                                                        print(controller
-                                                                            .onchangeValues);
+                                                                        if (kDebugMode) {
+                                                                          print(
+                                                                              controller.onchangeValues);
+                                                                        }
                                                                       },
                                                                       onSubmitted:
                                                                           (value) {
@@ -979,7 +987,8 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                         ),
                                         const SizedBox(width: 5),
                                         Text(
-                                          'Add New Requirements',
+                                          Strings.addNewRequirements,
+
                                           style: appTextStyle(
                                               color: ColorRes.containerColor,
                                               fontSize: 15,
@@ -1012,7 +1021,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                             ],
                                           ),
                                         ),
-                                        child: Text("Update Vacancy",
+                                        child: Text(Strings.updateVacancy,
                                             style: appTextStyle(
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.w500,

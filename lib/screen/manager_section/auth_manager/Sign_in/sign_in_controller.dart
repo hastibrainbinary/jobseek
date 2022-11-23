@@ -143,8 +143,12 @@ class SignInScreenControllerM extends GetxController {
         loading.value = false;
       }
 
-      print("${value.isBlank}=|=|=|");
-      print("${value.docs.length}=|=|=|");
+      if (kDebugMode) {
+        print("${value.isBlank}=|=|=|");
+      }
+      if (kDebugMode) {
+        print("${value.docs.length}=|=|=|");
+      }
     });
   }
 
@@ -320,8 +324,12 @@ class SignInScreenControllerM extends GetxController {
           loading.value = false;
         }
 
-        print("${value.isBlank}=|=|=|");
-        print("${value.docs.length}=|=|=|");
+        if (kDebugMode) {
+          print("${value.isBlank}=|=|=|");
+        }
+        if (kDebugMode) {
+          print("${value.docs.length}=|=|=|");
+        }
       });
 
       PrefService.setValue(PrefKeys.userId, user?.uid.toString());

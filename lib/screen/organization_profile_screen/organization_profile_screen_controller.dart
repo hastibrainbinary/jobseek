@@ -41,7 +41,8 @@ class OrganizationProfileScreenController extends GetxController
   }
 
   RxBool conLoader = false.obs;
-  onLoginBtnTap() async { conLoader.value= true;
+  onConfirmTap() async {
+    conLoader.value = true;
     String uid = PrefService.getString(PrefKeys.userId);
     Map<String, dynamic> map = {
       "email": companyEmailController.text.trim(),
@@ -77,7 +78,7 @@ class OrganizationProfileScreenController extends GetxController
         PrefService.setValue(
             PrefKeys.companyName, companyNameController.text.toString());
         Get.off(ManagerDashBoardScreen());
-        conLoader.value= false;
+        conLoader.value = false;
       });
     }
     PrefService.setValue(

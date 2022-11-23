@@ -13,7 +13,6 @@ import 'package:jobseek/screen/job_recommendation_screen/job_recommendation_scre
 import 'package:jobseek/screen/manager_section/Notification/notification_services.dart';
 import 'package:jobseek/screen/manager_section/applicants_detail_screen/applicants_detail_screen.dart';
 import 'package:jobseek/screen/manager_section/auth_manager/first_page/first_screen.dart';
-import 'package:jobseek/screen/manager_section/call/video_joinig_Screen.dart';
 import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen.dart';
 import 'package:jobseek/screen/manager_section/manager_application_detail_screen/manager_application_detail_screen.dart';
 import 'package:jobseek/screen/manager_section/resume_screen/resume_screen.dart';

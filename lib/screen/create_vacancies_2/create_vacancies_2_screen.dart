@@ -6,6 +6,7 @@ import 'package:jobseek/common/widgets/common_textField.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 import 'create_vacancies_2_controller.dart';
 
 class CreateVacancies2Screen extends StatelessWidget {
@@ -438,7 +439,7 @@ class CreateVacancies2Screen extends StatelessWidget {
                                     ]),
                                   ),
                                   child: Text(
-                                    "Update Vacancy",
+                                    Strings.updateVacancy,
                                     style: appTextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.w500,

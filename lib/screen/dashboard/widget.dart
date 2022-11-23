@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 
 Future alertU(context) {
   return showDialog(
@@ -13,10 +14,10 @@ Future alertU(context) {
             ElevatedButton(
               style: ButtonStyle(
                 backgroundColor:
-                MaterialStateProperty.all<Color>(ColorRes.containerColor),
+                    MaterialStateProperty.all<Color>(ColorRes.containerColor),
               ),
               child: Text(
-                'Cancel',
+                Strings.cancel,
                 style: appTextStyle(color: ColorRes.white, fontSize: 15),
               ),
               onPressed: () {
@@ -26,9 +27,10 @@ Future alertU(context) {
             ElevatedButton(
               style: ButtonStyle(
                 backgroundColor:
-                MaterialStateProperty.all<Color>(ColorRes.containerColor),
+                    MaterialStateProperty.all<Color>(ColorRes.containerColor),
               ),
-              child: Text("Exit",
+              child: Text(
+                  Strings.exit,
                   style: appTextStyle(color: ColorRes.white, fontSize: 15)),
               onPressed: () async {
                 exit(0);

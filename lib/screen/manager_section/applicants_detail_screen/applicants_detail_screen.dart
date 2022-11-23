@@ -17,6 +17,7 @@ import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 import 'package:jobseek/utils/string.dart';
 
+// ignore: must_be_immutable
 class ApplicantsDetailScreen extends StatelessWidget {
   dynamic args = Get.arguments;
   final bool isWrong;
@@ -74,7 +75,7 @@ class ApplicantsDetailScreen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(top: 5),
                   child: Text(
-                    "Applicants",
+                    Strings.applicants,
                     style: appTextStyle(color: ColorRes.black, fontSize: 20),
                   ),
                 ),
@@ -233,7 +234,7 @@ class ApplicantsDetailScreen extends StatelessWidget {
                                   ])),
                               child: Center(
                                 child: Text(
-                                  "See Resume",
+                                  Strings.seeResume,
                                   style: appTextStyle(
                                       color: ColorRes.white, fontSize: 15),
                                 ),
@@ -248,11 +249,11 @@ class ApplicantsDetailScreen extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 20),
                             width: Get.width,
                             decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: ColorRes.white,
                               border: Border.all(
                                   color: controller.selectedValue == "Rejected"
                                       ? ColorRes.red
-                                      : (controller.selectedValue == "Active"
+                                      : (controller.selectedValue == "Accepted"
                                           ? ColorRes.darkGreen
                                           : ColorRes.containerColor),
                                   width: 2),
@@ -292,7 +293,7 @@ class ApplicantsDetailScreen extends StatelessWidget {
                                 onChanged: (String? value) =>
                                     controller.onChangeStatus(value!),
                                 hint: Text(
-                                  "Mark Status as",
+                                  Strings.markStatusAs,
                                   style: appTextStyle(
                                       color: ColorRes.containerColor,
                                       fontSize: 14),
@@ -356,7 +357,7 @@ class ApplicantsDetailScreen extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 20),
                                     child: Text(
-                                      "Message",
+                                      Strings.message,
                                       style: appTextStyle(
                                           color: ColorRes.black2, fontSize: 16),
                                     ),
@@ -419,8 +420,9 @@ class ApplicantsDetailScreen extends StatelessWidget {
                         ])),
                     child: Center(
                       child: Text(
-                        "Send to Applicants",
-                        style: appTextStyle(color: Colors.white, fontSize: 20),
+                        Strings.sendToApplicants,
+                        style:
+                            appTextStyle(color: ColorRes.white, fontSize: 20),
                       ),
                     ),
                   ),
@@ -479,7 +481,19 @@ void settingModalBottomSheet(
                     const SizedBox(height: 10),
                     InkWell(
                       onTap: () async {
-                        Navigator.of(context).pop();
+                        controller.selectedValue = "";
+                        controller.msgController.clear();
+                        controller.msgController.text = "";
+                        controller.showTime = "Hour";
+                        controller.showDate = "Date";
+                        // Get.back();
+                        ManagerDashBoardScreenController controller2 =
+                        Get.find<ManagerDashBoardScreenController>();
+                        controller2.currentTab.value = 1;
+                        controller2.update(["bottom_bar"]);
+                        Get.offAll(() => ManagerDashBoardScreen(),
+                            arguments: {"index": "1"});
+                       // Navigator.of(context).pop();
 
                         await FirebaseFirestore.instance
                             .collection("Applicants")
@@ -499,11 +513,9 @@ void settingModalBottomSheet(
                           'status': controller.selectedValue,
                           'userUid': args['uid'],
                           'message': controller.msgController.text,
-                          'userOccupation': args['Occupation'],
-                          'salary':args['salary'],
-                          "location":args['location'],
-                          'type':args['type']
+                          'userOccupation': args['Occupation']
                         });
+
                       },
                       child: Container(
                         height: 50,
@@ -541,7 +553,7 @@ void settingModalBottomSheet(
                     Image.asset(AssetRes.failedImage, height: 130),
                     const SizedBox(height: 20),
                     Center(
-                      child: Text("Oops, Failed",
+                      child: Text(Strings.oopsFailed,
                           style: appTextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
@@ -574,9 +586,11 @@ void settingModalBottomSheet(
                           ColorRes.containerColor,
                         ]),
                       ),
-                      child: Text(Strings.tryAgain,
-                          style: appTextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w500)),
+                      child: Text(
+                        Strings.tryAgain,
+                        style: appTextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w500),
+                      ),
                     ),
                   ],
                 ),

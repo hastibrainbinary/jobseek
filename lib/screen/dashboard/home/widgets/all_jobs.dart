@@ -11,7 +11,7 @@ import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 
-Widget allJobs(Stream stream) {
+Widget allJobs(Stream stream, {bool? seeAll = false}) {
   final HomeController controller = HomeController();
 
   //final jrController = Get.put(JobRecommendationController());
@@ -31,7 +31,6 @@ Widget allJobs(Stream stream) {
               if (jrController.searchText.value.isNotEmpty) {
                 jrController.documents =
                     jrController.documents.where((element) {
-                  //print(element.get('Position'));
                   return element
                       .get('Position')
                       .toString()
@@ -39,13 +38,24 @@ Widget allJobs(Stream stream) {
                       .contains(jrController.searchText.value.toLowerCase());
                 }).toList();
               }
-
+              /*   if (jrController.searchText.value.isNotEmpty) {
+                jrController.documents =
+                    jrController.documents.where((element) {
+                  return element
+                      .get('CompanyName')
+                      .toString()
+                      .toLowerCase()
+                      .contains(jrController.searchText.value.toLowerCase());
+                }).toList();
+              }*/
               return snapshot.hasData
                   ? ListView.builder(
                       padding: const EdgeInsets.all(0),
-                      itemCount: jrController.documents.length <= 15
+                      itemCount: seeAll!
                           ? jrController.documents.length
-                          : 15,
+                          : (jrController.documents.length <= 15
+                              ? jrController.documents.length
+                              : 15),
                       //jrController.documents.length,
                       shrinkWrap: true,
                       physics: const BouncingScrollPhysics(),
@@ -106,12 +116,13 @@ Widget allJobs(Stream stream) {
                                                 fontWeight: FontWeight.w400),
                                           ),
                                           Text(
-                                              "${jrController.documents[index]["location"]} "
-                                              " ${jrController.documents[index]["type"]}",
-                                              style: appTextStyle(
-                                                  color: ColorRes.black,
-                                                  fontSize: 10,
-                                                  fontWeight: FontWeight.w400)),
+                                            "${jrController.documents[index]["location"]} "
+                                            " ${jrController.documents[index]["type"]}",
+                                            style: appTextStyle(
+                                                color: ColorRes.black,
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.w400),
+                                          ),
                                         ],
                                       ),
                                       const Spacer(),

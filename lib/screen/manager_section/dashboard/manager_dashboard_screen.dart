@@ -11,6 +11,7 @@ import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class ManagerDashBoardScreen extends StatelessWidget {
@@ -66,7 +67,7 @@ class ManagerDashBoardScreen extends StatelessWidget {
                             ? ColorRes.containerColor
                             : ColorRes.grey.withOpacity(0.6),
                       ),
-                      title: Text("Home",
+                      title: Text(Strings.home,
                           style: controller.currentTab.value == 0
                               ? bottomTitleStyle
                               : bottomTitleStyleDisable),
@@ -82,7 +83,7 @@ class ManagerDashBoardScreen extends StatelessWidget {
                             ? ColorRes.containerColor
                             : ColorRes.grey.withOpacity(0.6),
                       ),
-                      title: Text("Applies",
+                      title: Text(Strings.applies,
                           style: controller.currentTab.value == 1
                               ? bottomTitleStyle
                               : bottomTitleStyleDisable),
@@ -99,7 +100,7 @@ class ManagerDashBoardScreen extends StatelessWidget {
                             : ColorRes.grey.withOpacity(0.6),
                       ),
                       title: Text(
-                        "Inbox",
+                        Strings.inbox,
                         style: controller.currentTab.value == 2
                             ? bottomTitleStyle
                             : bottomTitleStyleDisable,
@@ -116,7 +117,7 @@ class ManagerDashBoardScreen extends StatelessWidget {
                             ? ColorRes.containerColor
                             : ColorRes.grey.withOpacity(0.6),
                       ),
-                      title: Text("Profile",
+                      title: Text(Strings.profile,
                           style: controller.currentTab.value == 3
                               ? bottomTitleStyle
                               : bottomTitleStyleDisable),

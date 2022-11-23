@@ -12,6 +12,7 @@ import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 
 class OrganizationProfileScreen extends StatelessWidget {
   const OrganizationProfileScreen({Key? key}) : super(key: key);
@@ -38,7 +39,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 11),
                   child: Text(
                     textAlign: TextAlign.center,
-                    "Logo",
+                    Strings.logo,
                     style: appTextStyle(
                         color: ColorRes.containerColor,
                         fontWeight: FontWeight.w600,
@@ -48,7 +49,7 @@ class OrganizationProfileScreen extends StatelessWidget {
               ),
               const Spacer(),
               Text(
-                'Organization Profile',
+                Strings.organizationProfile,
                 style: appTextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w500,
@@ -123,7 +124,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                     height: 10,
                   ),
                   Text(
-                    "Upload Company Logo",
+                    Strings.uploadCompanyLogo,
                     style: appTextStyle(
                         color: ColorRes.black.withOpacity(0.5), fontSize: 15),
                   ),
@@ -153,7 +154,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 16),
                         child: Text(
-                          "Name Of Company",
+                          Strings.nameOfCompany,
                           style: appTextStyle(
                             color: ColorRes.black.withOpacity(0.6),
                             fontSize: 14,
@@ -198,7 +199,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 16),
                         child: Text(
-                          "Company Email",
+                          Strings.companyEmail,
                           style:
                               appTextStyle(color: ColorRes.grey, fontSize: 14),
                         ),
@@ -247,7 +248,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 16),
                         child: Text(
-                          "Established date",
+                          Strings.establishedDate,
                           style:
                               appTextStyle(color: ColorRes.grey, fontSize: 14),
                         ),
@@ -303,7 +304,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 16),
                         child: Text(
-                          "Country",
+                          Strings.country,
                           style:
                               appTextStyle(color: ColorRes.grey, fontSize: 14),
                         ),
@@ -372,7 +373,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 16),
                         child: Text(
-                          "Company Address",
+                          Strings.companyAddress,
                           style:
                               appTextStyle(color: ColorRes.grey, fontSize: 14),
                         ),
@@ -450,7 +451,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                             if (kDebugMode) {
                               print("a4fyj66enum j");
                             }
-                            controller.onLoginBtnTap();
+                            controller.onConfirmTap();
                           },
 
                           child: Container(
@@ -466,7 +467,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                             ),
                             child: controller.conLoader.value
                                 ? const CommonLoader()
-                                : Text("Confirm",
+                                : Text(Strings.confirm,
                                     style: appTextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.w500,

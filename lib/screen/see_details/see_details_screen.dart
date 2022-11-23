@@ -5,6 +5,7 @@ import 'package:jobseek/screen/see_details/see_details_controller.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
@@ -15,6 +16,7 @@ class SeeDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var args = Get.arguments;
+
     final controller = Get.put(SeeDetailsController());
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -28,7 +30,7 @@ class SeeDetailsScreen extends StatelessWidget {
               Center(
                 child: Text(
                   textAlign: TextAlign.center,
-                  "See Details",
+                  Strings.seeDetails,
                   style: appTextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
@@ -102,12 +104,13 @@ class SeeDetailsScreen extends StatelessWidget {
                               SizedBox(
                                 width: Get.width * 0.3,
                                 child: Text(
-                                    controller.filepath
-                                        .value /*"Resume - Adam Smith.pdf"*/,
-                                    style: appTextStyle(
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.w600,
-                                        color: ColorRes.black)),
+                                  controller.filepath
+                                      .value /*"Resume - Adam Smith.pdf"*/,
+                                  style: appTextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w600,
+                                      color: ColorRes.black),
+                                ),
                               ),
                               Row(
                                 children: [
@@ -185,7 +188,7 @@ class SeeDetailsScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 15),
                         child: Text(
-                          " Name",
+                          Strings.name,
                           style: appTextStyle(
                             color: ColorRes.black.withOpacity(0.6),
                             fontSize: 14,
@@ -216,7 +219,7 @@ class SeeDetailsScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 15),
                         child: Text(
-                          " Email",
+                          Strings.email,
                           style: appTextStyle(
                             color: ColorRes.black.withOpacity(0.6),
                             fontSize: 14,
@@ -256,7 +259,7 @@ class SeeDetailsScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 15),
                         child: Text(
-                          "Phone Number",
+                          Strings.phoneNumber,
                           style: appTextStyle(
                             color: ColorRes.black.withOpacity(0.6),
                             fontSize: 14,
@@ -314,7 +317,7 @@ class SeeDetailsScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 15),
                         child: Text(
-                          " city",
+                          Strings.city,
                           style: appTextStyle(
                             color: ColorRes.black.withOpacity(0.6),
                             fontSize: 14,
@@ -353,7 +356,7 @@ class SeeDetailsScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 15),
                         child: Text(
-                          "State",
+                          Strings.state,
                           style: appTextStyle(
                             color: ColorRes.black.withOpacity(0.6),
                             fontSize: 14,
@@ -384,7 +387,7 @@ class SeeDetailsScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 15),
                         child: Text(
-                          "Country",
+                          Strings.country,
                           style: appTextStyle(
                             color: ColorRes.black.withOpacity(0.6),
                             fontSize: 14,
@@ -439,7 +442,7 @@ class SeeDetailsScreen extends StatelessWidget {
                                   width: 10,
                                 ),
                                 Text(
-                                  "Back",
+                                  Strings.back,
                                   style: appTextStyle(
                                       color: ColorRes.white,
                                       fontSize: 20,

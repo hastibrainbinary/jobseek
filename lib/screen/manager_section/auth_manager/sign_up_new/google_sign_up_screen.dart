@@ -7,6 +7,7 @@ import 'package:jobseek/screen/manager_section/auth_manager/sign_up_new/google_s
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 
 class GoogleSignupScreenM extends StatelessWidget {
   final String email;
@@ -49,7 +50,7 @@ class GoogleSignupScreenM extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: Text(
-                  'Logo',
+                  Strings.logo,
                   style: appTextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 18,
@@ -61,7 +62,7 @@ class GoogleSignupScreenM extends StatelessWidget {
             const SizedBox(height: 18),
             Center(
               child: Text(
-                'Sign up for free',
+                Strings.signUpForFree,
                 style: appTextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
@@ -72,7 +73,7 @@ class GoogleSignupScreenM extends StatelessWidget {
             GetBuilder<GoogleSignUpControllerM>(
               id: "showFirstname",
               builder: (controller) => texFieldColumn(
-                  title: 'First Name',
+                  title: Strings.firstName,
                   hintText: 'First Name',
                   onChanged: controller.onChanged,
                   error: controller.firstError,
@@ -82,7 +83,7 @@ class GoogleSignupScreenM extends StatelessWidget {
             GetBuilder<GoogleSignUpControllerM>(
               id: "showLastname",
               builder: (controller) => texFieldColumn(
-                title: 'Last Name',
+                title: Strings.lastName,
                 hintText: 'Last Name',
                 onChanged: controller.onChanged,
                 error: controller.lastError,
@@ -93,7 +94,7 @@ class GoogleSignupScreenM extends StatelessWidget {
             GetBuilder<GoogleSignUpControllerM>(
               id: "showEmail",
               builder: (controller) => texFieldColumn(
-                  title: 'Email',
+                  title: Strings.email,
                   hintText: 'Email',
                   read: true,
                   error: controller.emailError,
@@ -104,7 +105,7 @@ class GoogleSignupScreenM extends StatelessWidget {
               padding: const EdgeInsets.only(left: 15, bottom: 10),
               child: Row(
                 children: [
-                  Text('Phone number',
+                  Text(Strings.phoneNumber,
                       style: appTextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 14,
@@ -208,7 +209,7 @@ class GoogleSignupScreenM extends StatelessWidget {
             GetBuilder<GoogleSignUpControllerM>(
               id: "showCity",
               builder: (controller) => texFieldColumn(
-                  title: 'City',
+                  title: Strings.city,
                   hintText: 'City',
                   onChanged: controller.onChanged,
                   error: controller.cityError,
@@ -218,7 +219,7 @@ class GoogleSignupScreenM extends StatelessWidget {
             GetBuilder<GoogleSignUpControllerM>(
                 id: "showState",
                 builder: (controller) => texFieldColumn(
-                      title: 'State',
+                      title: Strings.state,
                       hintText: 'State',
                       onChanged: controller.onChanged,
                       error: controller.stateError,
@@ -228,7 +229,7 @@ class GoogleSignupScreenM extends StatelessWidget {
             GetBuilder<GoogleSignUpControllerM>(
                 id: "showCountry",
                 builder: (controller) => texFieldColumn(
-                      title: 'Country',
+                      title: Strings.country,
                       hintText: 'Country',
                       onChanged: controller.onChanged,
                       error: controller.countryError,
@@ -255,11 +256,13 @@ class GoogleSignupScreenM extends StatelessWidget {
                             borderRadius: BorderRadius.circular(4),
                           ),
                         ),
-                        Text('Remember me',
-                            style: appTextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 13,
-                                color: ColorRes.black))
+                        Text(
+                          Strings.rememberMe,
+                          style: appTextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 13,
+                              color: ColorRes.black),
+                        )
                       ],
                     ),
                   );
@@ -308,11 +311,13 @@ class GoogleSignupScreenM extends StatelessWidget {
                           ColorRes.containerColor
                         ]),
                       ),
-                      child: Text("Sign up",
-                          style: appTextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
-                              color: ColorRes.white)),
+                      child: Text(
+                        Strings.signUp,
+                        style: appTextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                            color: ColorRes.white),
+                      ),
                     ),
                   );
                 }),

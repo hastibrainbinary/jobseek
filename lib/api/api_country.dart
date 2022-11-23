@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:jobseek/api/model/api_country_model.dart';
 import 'package:jobseek/service/http_services.dart';
@@ -12,7 +13,9 @@ class CountrySearch{
 
         return searchCountryFromJson(response.body);
       } else {
-        print(jsonDecode(response.body));
+        if (kDebugMode) {
+          print(jsonDecode(response.body));
+        }
       }
     return null;
   }

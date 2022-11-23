@@ -9,6 +9,7 @@ import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
+import 'package:jobseek/utils/string.dart';
 
 class SaveJobScreen extends StatelessWidget {
   SaveJobScreen({Key? key}) : super(key: key);
@@ -39,7 +40,7 @@ class SaveJobScreen extends StatelessWidget {
                   ),
                   const SizedBox(width: 71),
                   Text(
-                    'Saved Jobs',
+                    Strings.savedJobs,
                     style: appTextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w500,

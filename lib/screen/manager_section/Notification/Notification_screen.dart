@@ -69,7 +69,7 @@ class NotificationScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Container(
-              margin: const EdgeInsets.symmetric(horizontal:10),
+              margin: const EdgeInsets.symmetric(horizontal: 10),
               color: ColorRes.lightGrey.withOpacity(0.8),
               height: 1,
             ),
@@ -106,7 +106,7 @@ class NotificationScreen extends StatelessWidget {
               color: ColorRes.lightGrey.withOpacity(0.8),
               height: 1,
             ),
-            const SizedBox(height:20),
+            const SizedBox(height: 20),
             Row(
               children: [
                 Padding(
@@ -140,7 +140,7 @@ class NotificationScreen extends StatelessWidget {
               color: ColorRes.lightGrey.withOpacity(0.8),
               height: 1,
             ),
-            const SizedBox(height:20),
+            const SizedBox(height: 20),
             Row(
               children: [
                 Padding(

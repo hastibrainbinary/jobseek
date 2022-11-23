@@ -14,6 +14,7 @@ import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
+import 'package:jobseek/utils/string.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'applications/applications_screen.dart';
 
@@ -131,7 +132,7 @@ class DashBoardScreen extends StatelessWidget {
                           ? ColorRes.containerColor
                           : ColorRes.grey.withOpacity(0.6),
                     ),
-                    title: Text("Profile",
+                    title: Text(Strings.profile,
                         style: controller.currentTab == 3
                             ? bottomTitleStyle
                             : bottomTitleStyleDisable),

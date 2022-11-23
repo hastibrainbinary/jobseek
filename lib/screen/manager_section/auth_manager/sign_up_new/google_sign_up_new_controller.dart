@@ -213,7 +213,7 @@ class GoogleSignUpControllerM extends GetxController {
 
   onSignUpBtnTap() async {
     Map<String, dynamic> map2 = {
-      "fullName": "${firstnameController.text}  ${lastnameController.text}",
+      "fullName": "${firstnameController.text}    ${lastnameController.text}",
       "Email": emailController.text,
       "Phone": phoneController.text,
       "City": cityController.text,

@@ -2,11 +2,12 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../utils/pref_keys.dart';
 
 FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -16,9 +17,9 @@ List companyList = [];
 bool abc = false;
 
 class JobDetailsUploadCvController extends GetxController {
+  RefreshController refreshController = RefreshController();
 
   init() async {
-
     await firestore.collection("Apply").get().then((value) {
       value.docs.forEach((element) {
         if (element['uid'] == PrefService.getString(PrefKeys.userId)) {
@@ -31,14 +32,13 @@ class JobDetailsUploadCvController extends GetxController {
           companyList = value.docs[i]['companyName'];
         }
       }*/
-
     });
+    refreshController.refreshCompleted();
   }
 
   String? pdfUrl;
 
   onTapApply({var args}) {
-
     abc = false;
     for (int i = 0; i < companyList.length; i++) {
       if (companyList[i] == args['CompanyName']) {
@@ -53,7 +53,9 @@ class JobDetailsUploadCvController extends GetxController {
     List<String> companyNameList = List.generate(companyList.length, (index) {
       return companyList[index].toString();
     });
-    print(companyNameList);
+    if (kDebugMode) {
+      print(companyNameList);
+    }
 
     firestore
         .collection("Apply")
@@ -70,13 +72,10 @@ class JobDetailsUploadCvController extends GetxController {
       'Occupation': PrefService.getString(PrefKeys.occupation),
       'uid': FirebaseAuth.instance.currentUser!.uid,
       'resumeUrl': pdfUrl,
-      'salary':args['salary'],
-      'location':args['location'],
-      'type':args['type'],
+      'salary': args['salary'],
+      'location': args['location'],
+      'type': args['type'],
     });
-
-
-
 
     Get.toNamed(AppRes.jobDetailSuccessOrFailed, arguments: [
       {"doc": args},
@@ -159,11 +158,14 @@ class JobDetailsUploadCvController extends GetxController {
           FirebaseStorage.instance.ref().child(path).getDownloadURL();
       storageRef.then((result) {
         pdfUrl = result;
-        print("result is $result");
-
+        if (kDebugMode) {
+          print("result is $result");
+        }
       });
     } else {
-      print('No Image Path Received');
+      if (kDebugMode) {
+        print('No Image Path Received');
+      }
 
       return '';
     }

@@ -74,7 +74,7 @@ class AppearanceScreenU extends StatelessWidget {
               height: 1,
             ),
             const SizedBox(height: 20),
-            Row(
+           /* Row(
               children: [
                 Padding(
                   padding: const EdgeInsets.all(15.0),
@@ -129,7 +129,7 @@ class AppearanceScreenU extends StatelessWidget {
                         controller.onchangeFullScreenMode(value))),
                 const SizedBox(width: 15),
               ],
-            ),
+            ),*/
           ]),
     );
   }
