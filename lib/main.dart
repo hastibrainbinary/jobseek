@@ -82,9 +82,6 @@ class MyApp extends StatelessWidget {
             name: AppRes.jobRecommendationScreen,
             page: () => const JobRecommendation()),
         GetPage(
-            name: AppRes.jobRecommendationScreen,
-            page: () => const JobRecommendation()),
-        GetPage(
             name: AppRes.organizationProfileScreen,
             page: () => const OrganizationProfileScreen()),
         GetPage(
