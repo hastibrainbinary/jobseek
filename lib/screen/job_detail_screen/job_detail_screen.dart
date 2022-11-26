@@ -13,6 +13,7 @@ import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 import 'package:jobseek/utils/string.dart';
 
+// ignore: must_be_immutable
 class JobDetailScreen extends StatelessWidget {
   JobDetailScreen({Key? key}) : super(key: key);
   final JobDetailsController controller = Get.put(JobDetailsController());

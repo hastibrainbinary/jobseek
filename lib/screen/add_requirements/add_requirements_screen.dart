@@ -159,7 +159,7 @@ class RequirementsScreen extends StatelessWidget {
                   onTap: () async {
                     controller.loader.value = true;
                     await //Future.delayed(const Duration(microseconds: 50));
-                        controller.onTapNext(
+                        controller.onUpdateVacancyTapNext(
                             position: controller.positionController.text);
                     controller.loader.value = false;
                   },

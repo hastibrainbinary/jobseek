@@ -11,6 +11,7 @@ import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
+import 'package:jobseek/utils/string.dart';
 import 'UiuxDesigner_screen.dart';
 import 'accepted_screen.dart';
 
@@ -43,17 +44,19 @@ class ApplicationsScreen extends StatelessWidget {
                     decoration: const BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         color: ColorRes.logoColor),
-                    child: Text("Logo",
-                        style: appTextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 10,
-                            color: ColorRes.containerColor)),
+                    child: Text(
+                      Strings.logo,
+                      style: appTextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 10,
+                          color: ColorRes.containerColor),
+                    ),
                   ),
                   Expanded(
                     child: Container(
                         alignment: Alignment.center,
                         child: Text(
-                          "Applications",
+                          Strings.applications,
                           style: appTextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w600,

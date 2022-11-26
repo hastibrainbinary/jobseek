@@ -26,7 +26,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
   List<TextEditingController> addRequirementsList = [];
 
-  onTapNextBut(String position) {
+  onTapNextBut(String position) async {
     final docRef = fireStore
         .collection("Auth")
         .doc("Manager")
@@ -42,8 +42,19 @@ class CreateVacanciesController extends GetxController implements GetxService {
       },
       onError: (e) => print("Error getting document: $e"),
     );
-    validate();
-    Get.to(RequirementsScreen());
+    await validate();
+    if (isPositionValidate.value == true &&
+        isSalaryValidate.value == true &&
+        isLocationValidate.value == true &&
+        isTypeValidate.value == true &&
+        isCategoryValidate.value == true &&
+        isStatusValidate.value == true) {
+    } else {
+      Get.to(RequirementsScreen());
+      if (kDebugMode) {
+        print("valid");
+      }
+    }
   }
 
   void onTapBack(String value) {
@@ -56,6 +67,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
       typeController.clear();
       categoryController.clear();
       statusController.clear();
+
       isPositionValidate.value = false;
       isSalaryValidate.value = false;
       isLocationValidate.value = false;
@@ -92,7 +104,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
     update(["colorChange"]);
   }
 
-  onTapNext({String? position}) async {
+  onUpdateVacancyTapNext({String? position}) async {
     String uid = PrefService.getString(PrefKeys.userId);
     int totalPost = PrefService.getInt(PrefKeys.totalPost);
     String pUid = "$uid*${totalPost + 1}";
@@ -116,6 +128,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
       "CompanyName": companyName,
       "RequirementsList": requirementsList,
       "BookMarkUserList": [],
+      "Id": uid,
     };
     validate();
     if (isPositionValidate.value == false &&

@@ -46,9 +46,7 @@ class ApplicantsSeeAllScreen extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(top: 5),
                     child: Text(
-
                       Strings.applicants,
-
                       style: appTextStyle(color: ColorRes.black, fontSize: 20),
                     ),
                   ),

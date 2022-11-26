@@ -70,15 +70,26 @@ Widget allJobs(Stream stream, {bool? seeAll = false}) {
                           print([jrController.documents.length - 1 - index]);
                         }
                         if (kDebugMode) {
-                          print(jrController.documents[jrController.documents.length - 1 - index].id);
+                          print(jrController
+                              .documents[
+                                  jrController.documents.length - 1 - index]
+                              .id);
                         }
-                        return (jrController.documents[jrController.documents.length - 1 - index]["Status"] !=
+                        return (jrController.documents[
+                                    jrController.documents.length -
+                                        1 -
+                                        index]["Status"] !=
                                 'Inactive')
                             ? InkWell(
                                 onTap: () => Get.toNamed(AppRes.jobDetailScreen,
                                     arguments: {
-                                      "saved": jrController.documents[jrController.documents.length - 1 - index],
-                                      "docId": jrController.documents.length - 1 - index
+                                      "saved": jrController.documents[
+                                          jrController.documents.length -
+                                              1 -
+                                              index],
+                                      "docId": jrController.documents.length -
+                                          1 -
+                                          index
                                     }),
                                 child: Container(
                                   height: 92,
@@ -97,7 +108,7 @@ Widget allJobs(Stream stream, {bool? seeAll = false}) {
                                   child: Row(
                                     children: [
                                       Image.asset(
-                                          controller.jobTypesLogo[index %5]),
+                                          controller.jobTypesLogo[index % 5]),
                                       const SizedBox(width: 20),
                                       Column(
                                         mainAxisAlignment:
@@ -106,28 +117,33 @@ Widget allJobs(Stream stream, {bool? seeAll = false}) {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            jrController.documents[jrController.documents.length - 1 - index]
-                                                ["Position"],
+                                            jrController.documents[
+                                                jrController.documents.length -
+                                                    1 -
+                                                    index]["Position"],
                                             style: appTextStyle(
                                                 color: ColorRes.black,
                                                 fontSize: 15,
                                                 fontWeight: FontWeight.w500),
                                           ),
                                           Text(
-                                            jrController.documents[jrController.documents.length - 1 - index]
-                                                ["CompanyName"],
+                                            jrController.documents[
+                                                jrController.documents.length -
+                                                    1 -
+                                                    index]["CompanyName"],
                                             style: appTextStyle(
                                                 color: ColorRes.black,
                                                 fontSize: 12,
                                                 fontWeight: FontWeight.w400),
                                           ),
                                           Text(
-                                              "${jrController.documents[jrController.documents.length - 1 - index]["location"]} "
-                                              " ${jrController.documents[jrController.documents.length - 1 - index]["type"]}",
-                                              style: appTextStyle(
-                                                  color: ColorRes.black,
-                                                  fontSize: 10,
-                                                  fontWeight: FontWeight.w400)),
+                                            "${jrController.documents[jrController.documents.length - 1 - index]["location"]} "
+                                            " ${jrController.documents[jrController.documents.length - 1 - index]["type"]}",
+                                            style: appTextStyle(
+                                                color: ColorRes.black,
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.w400),
+                                          ),
                                         ],
                                       ),
                                       const Spacer(),
@@ -139,39 +155,53 @@ Widget allJobs(Stream stream, {bool? seeAll = false}) {
                                         children: [
                                           InkWell(
                                             onTap: () {
-                                              String docId =
-                                                  snapshot.data.docs[jrController.documents.length - 1 - index].id;
+                                              String docId = snapshot
+                                                  .data
+                                                  .docs[jrController
+                                                          .documents.length -
+                                                      1 -
+                                                      index]
+                                                  .id;
                                               controller.onTapSave(
-                                                  jrController.documents.length - 1 - index,
-                                                  jrController.documents[jrController.documents.length - 1 - index],
+                                                  jrController
+                                                          .documents.length -
+                                                      1 -
+                                                      index,
+                                                  jrController.documents[
+                                                      jrController.documents
+                                                              .length -
+                                                          1 -
+                                                          index],
                                                   docId);
                                             },
                                             child: GetBuilder<
                                                     JobRecommendationController>(
                                                 builder: (con) {
                                               return Image.asset(
-                                                (jrController.documents[jrController.documents.length - 1 - index][
+                                                (jrController.documents[jrController
+                                                                        .documents
+                                                                        .length -
+                                                                    1 -
+                                                                    index][
                                                                 'BookMarkUserList'] ==
                                                             null ||
                                                         jrController
-                                                                .documents[
-                                                        jrController.documents.length - 1 - index][
+                                                                .documents[jrController.documents.length - 1 - index][
                                                                     'BookMarkUserList']
                                                                 .length ==
                                                             0)
                                                     ? AssetRes
                                                         .bookMarkBorderIcon
-                                                    : (jrController
-                                                            .documents[jrController.documents.length - 1 - index][
-                                                                'BookMarkUserList']
-                                                            .contains(PrefService
-                                                                .getString(
-                                                                    PrefKeys
-                                                                        .userId)))
-                                                        ? AssetRes
-                                                            .bookMarkFillIcon
-                                                        : AssetRes
-                                                            .bookMarkBorderIcon,
+                                                    : (jrController.documents[
+                                                                jrController
+                                                                        .documents
+                                                                        .length -
+                                                                    1 -
+                                                                    index]
+                                                                ['BookMarkUserList']
+                                                            .contains(PrefService.getString(PrefKeys.userId)))
+                                                        ? AssetRes.bookMarkFillIcon
+                                                        : AssetRes.bookMarkBorderIcon,
                                                 height: 20,
                                               );
                                             }),

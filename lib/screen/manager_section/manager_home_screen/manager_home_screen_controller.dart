@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/manager_section/Notification/notification_services.dart';
 import 'package:jobseek/service/pref_services.dart';
@@ -16,7 +17,9 @@ class ManagerHomeScreenController extends GetxController
     token = await NotificationService.getFcmToken();
     getCompanyName();
     getUserData();
-    print(token);
+    if (kDebugMode) {
+      print(token);
+    }
     super.onInit();
   }
 

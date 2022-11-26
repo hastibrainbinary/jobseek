@@ -74,7 +74,6 @@ class ProfileController extends GetxController implements GetxService {
         countryController.text = data["country"];
         update();
         isLod.value = false;
-
       },
       onError: (e) {
         Get.snackbar("Error getting document:", "$e",
@@ -100,8 +99,6 @@ class ProfileController extends GetxController implements GetxService {
     update(["dropdown"]);
   }
 
-
-
   onTapSubmit() async {
     validate();
     if (isNameValidate.value == false &&
@@ -117,6 +114,9 @@ class ProfileController extends GetxController implements GetxService {
         "country": countryController.text.trim(),
         "address": companyAddressController.text.trim(),
       };
+      Map<String, dynamic> map2 = {
+        "CompanyName": companyNameController.text.trim().toString()
+      };
       await fireStore
           .collection("Auth")
           .doc("Manager")
@@ -126,6 +126,17 @@ class ProfileController extends GetxController implements GetxService {
           .doc("details")
           .update(map);
 
+      await fireStore
+          .collection("allPost")
+          .where("Id", isEqualTo: uid)
+          .get()
+          .then((QuerySnapshot snapshot) {
+        snapshot.docs.forEach((element) async {
+          await fireStore.collection("allPost").doc(element.id).update(
+              {"CompanyName": companyNameController.text.trim().toString()});
+        });
+      });
+
       if (kDebugMode) {
         print("GO TO HOME PAGE");
       }
@@ -134,6 +145,7 @@ class ProfileController extends GetxController implements GetxService {
       // Get.to(ManagerDashBoardScreen());
     }
   }
+
   validate() {
     if (companyNameController.text.isEmpty) {
       isNameValidate.value = true;
@@ -163,6 +175,7 @@ class ProfileController extends GetxController implements GetxService {
       isDateController.value = false;
     }
   }
+
   validateAndSubmit() {
     Get.toNamed(AppRes.managerDashboardScreen);
 /*    if (companyNameController.text.isEmpty) {

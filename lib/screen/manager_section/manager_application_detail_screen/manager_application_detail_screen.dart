@@ -28,8 +28,9 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
                     height: 40,
                     width: 40,
                     decoration: BoxDecoration(
-                        color: ColorRes.logoColor,
-                        borderRadius: BorderRadius.circular(10)),
+                      color: ColorRes.logoColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                     child: Padding(
                       padding: const EdgeInsets.only(top: 11),
                       child: Text(
