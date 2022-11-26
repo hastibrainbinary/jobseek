@@ -37,6 +37,7 @@ Widget allJobs(Stream stream, {bool? seeAll = false}) {
                       .toString()
                       .toLowerCase()
                       .contains(jrController.searchText.value.toLowerCase()) || element
+
                       .get('CompanyName')
                       .toString()
                       .toLowerCase()
