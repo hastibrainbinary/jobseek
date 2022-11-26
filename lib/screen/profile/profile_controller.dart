@@ -1,12 +1,15 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:jobseek/screen/profile/Profile_screen.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/pref_keys.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class ProfileUserController extends GetxController implements GetxService {
   TextEditingController fullNameController = TextEditingController();
@@ -23,6 +26,8 @@ class ProfileUserController extends GetxController implements GetxService {
   ImagePicker picker = ImagePicker();
   File? image;
   RxBool isLod = false.obs;
+
+  String url = "";
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
   void onChanged(String value) {
@@ -100,7 +105,7 @@ class ProfileUserController extends GetxController implements GetxService {
   }
 
   // ignore: non_constant_identifier_names
-  EditTap() {
+  EditTap() async {
     validate();
     if (isNameValidate.value == false &&
         isEmailValidate.value == false &&
@@ -121,6 +126,7 @@ class ProfileUserController extends GetxController implements GetxService {
         "fullName": fullNameController.text,
         "Dob": dateOfBirthController.text,
         "Address": addressController.text,
+        "imageUrl": url,
       };
 
       PrefService.setValue(
@@ -145,6 +151,21 @@ class ProfileUserController extends GetxController implements GetxService {
           .collection("register")
           .doc(PrefService.getString(PrefKeys.userId))
           .update(map);
+      String uid = PrefService.getString(PrefKeys.userId);
+
+      await fireStore
+          .collection("Apply")
+          .where("uid", isEqualTo: uid)
+          .get()
+          .then((QuerySnapshot snapshot) {
+        snapshot.docs.forEach((element) async {
+          await fireStore.collection("Apply").doc(element.id).update({
+            "fullName": fullNameController.text.trim().toString(),
+            "Occupation": occupationController.text.trim().toString()
+          });
+        });
+      });
+
       if (kDebugMode) {
         print("GO TO HOME PAGE");
       }
@@ -189,6 +210,7 @@ class ProfileUserController extends GetxController implements GetxService {
     XFile? img = await picker.pickImage(source: ImageSource.camera);
     String path = img!.path;
     image = File(path);
+    getUrl();
     imagePicker();
     Get.back();
   }
@@ -197,6 +219,7 @@ class ProfileUserController extends GetxController implements GetxService {
     XFile? gallery = await picker.pickImage(source: ImageSource.gallery);
     String path = gallery!.path;
     image = File(path);
+
     imagePicker();
     Get.back();
   }
@@ -204,5 +227,100 @@ class ProfileUserController extends GetxController implements GetxService {
   imagePicker() {
     update(['image']);
     update();
+  }
+
+  getUrl() {
+    FirebaseStorage storage = FirebaseStorage.instance;
+    Reference ref = storage.ref().child("image1" + DateTime.now().toString());
+    UploadTask uploadTask = ref.putFile(image!);
+
+    uploadTask.then((res) async {
+      isLod.value = true;
+      url = await res.ref.getDownloadURL();
+      isLod.value = false;
+      if (kDebugMode) {
+        print("url $url");
+      }
+      update();
+    });
+  }
+
+  addImg({required String img}) async {
+    final storage = FirebaseStorage.instance;
+
+    // if (imagePath != null) {
+    //   var snapshot =
+    //       await storage.ref().child('images/imageName').putFile(imagePath!);
+    //   var downloadUrl = await snapshot.ref.getDownloadURL();
+    //   await FirebaseFirestore.instance
+    //       .collection("User")
+    //       .doc("profile")
+    //       .collection("Profile")
+    //       .doc("profilePic")
+    //       .set({"url": downloadUrl, "name": "ProfilePic"});
+    // } else {
+    //   print("no path received");
+    // }
+
+    String imageName =
+        img.substring(img.lastIndexOf("/") + 1, img.lastIndexOf("."));
+
+    String path = img.substring(img.indexOf("/") + 1, img.lastIndexOf("/"));
+
+    final Directory systemTempDir = Directory.systemTemp;
+    final byteData = await rootBundle.load(img);
+    final file = File('${systemTempDir.path}/$imageName.jpg');
+
+    await file.writeAsBytes(byteData.buffer
+        .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
+
+    TaskSnapshot taskSnapshot =
+        await storage.ref('$path/$imageName').putFile(file);
+    final String downloadUrl = await taskSnapshot.ref.getDownloadURL();
+
+    await FirebaseFirestore.instance
+        .collection(path)
+        .add({"url": downloadUrl, "name": imageName});
+  }
+
+  Future<String?> uploadImage({File? flow, String? path}) async {
+    final firebaseStorage = FirebaseStorage.instance;
+    // final imagePicker = ImagePicker();
+    // PickedFile? image;
+    String? imageUrl;
+    //Check Permissions
+    await Permission.photos.request();
+
+    var permissionStatus = await Permission.photos.status;
+    if (kDebugMode) {
+      print(permissionStatus);
+    }
+
+    if (permissionStatus.isGranted) {
+      if (flow != null) {
+        //  File(image.path);
+        //Upload to Firebase
+        var snapshot =
+            firebaseStorage.ref().child(path!).putFile(flow).snapshot;
+        String downloadUrl = await snapshot.ref.getDownloadURL();
+        // setState(() {
+        imageUrl = downloadUrl;
+        if (kDebugMode) {
+          print(imageUrl);
+        }
+        return imageUrl;
+        // });
+      } else {
+        if (kDebugMode) {
+          print('No Image Path Received');
+        }
+        return '';
+      }
+    } else {
+      if (kDebugMode) {
+        print('Permission not granted. Try Again with permission access');
+      }
+      return '';
+    }
   }
 }

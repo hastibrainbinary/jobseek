@@ -59,10 +59,11 @@ class ManagerApplicationScreen extends StatelessWidget {
                     InkWell(
                       onTap: () {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (con) =>
-                                    const CreateVacanciesScreenM()));
+                          context,
+                          MaterialPageRoute(
+                            builder: (con) => const CreateVacanciesScreenM(),
+                          ),
+                        );
                       },
                       child: Container(
                         height: 40,

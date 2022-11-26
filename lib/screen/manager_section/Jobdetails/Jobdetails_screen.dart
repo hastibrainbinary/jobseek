@@ -152,16 +152,20 @@ class JobDetailsScreen extends StatelessWidget {
                 const SizedBox(height: 10),
                 Center(
                   child: isError == true
-                      ? Text(Strings.jobVacancyPosted,
+                      ? Text(
+                          Strings.jobVacancyPosted,
                           style: appTextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
-                              color: ColorRes.containerColor))
-                      : Text(Strings.oopsFailedToPost,
+                              color: ColorRes.containerColor),
+                        )
+                      : Text(
+                          Strings.oopsFailedToPost,
                           style: appTextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
-                              color: ColorRes.starColor)),
+                              color: ColorRes.starColor),
+                        ),
                 ),
                 Center(
                   child: Padding(

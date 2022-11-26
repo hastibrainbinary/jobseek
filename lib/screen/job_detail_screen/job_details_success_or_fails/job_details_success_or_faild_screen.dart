@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/dashboard/applications/applications_screen.dart';
 import 'package:jobseek/screen/dashboard/dashboard_screen.dart';
-import 'package:jobseek/screen/dashboard/home/home_screen.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_controller.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_widget/job_details_appbar.dart';
 import 'package:jobseek/utils/app_style.dart';
@@ -20,12 +19,15 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: WillPopScope(onWillPop: () async {
-        await Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-          return DashBoardScreen();
-        },));
-        return true;
-      },
+      body: WillPopScope(
+        onWillPop: () async {
+          await Navigator.pushReplacement(context, MaterialPageRoute(
+            builder: (context) {
+              return DashBoardScreen();
+            },
+          ));
+          return true;
+        },
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 18),
           child: Column(

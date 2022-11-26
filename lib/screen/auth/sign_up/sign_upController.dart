@@ -221,6 +221,7 @@ class SignUpController extends GetxController {
           "City": cityController.text,
           "State": stateController.text,
           "Country": countryController.text,
+          "imageUrl": "",
         };
         await PrefService.setValue(
             PrefKeys.email, emailController.text.toString());

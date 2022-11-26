@@ -150,4 +150,8 @@ class Strings {
   static const postJobVacancy="Post Job Vacancy";
   static const oopsFailed="Oops, Failed";
   static const darkMode="Dark Mode";
+  static const enterValidOccupation="Enter Valid Occupation";
+  static const enterValidAddress="Enter Valid Address";
+  static const enterValidEmail="Enter Valid Email";
+  static const enterValidName="Enter Valid Name";
 }

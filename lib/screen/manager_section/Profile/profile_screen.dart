@@ -9,6 +9,7 @@ import 'package:jobseek/screen/manager_section/Settings/settings_screen.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({Key? key}) : super(key: key);
@@ -35,7 +36,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        'Logo',
+                        Strings.logo,
                         style: appTextStyle(
                             fontSize: 10,
                             fontWeight: FontWeight.w600,
@@ -47,7 +48,7 @@ class ProfileScreen extends StatelessWidget {
                 const Spacer(),
                 Center(
                   child: Text(
-                    'Profile',
+                    Strings.profile,
                     style: appTextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w500,
@@ -61,14 +62,15 @@ class ProfileScreen extends StatelessWidget {
                   height: 40,
                   width: 40,
                   decoration: BoxDecoration(
-                      color: ColorRes.logoColor,
-                      borderRadius: BorderRadius.circular(10)),
+                    color: ColorRes.logoColor,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                   child: InkWell(
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (con) =>  SettingScreenM(),
+                          builder: (con) => SettingScreenM(),
                         ),
                       );
                     },
@@ -93,22 +95,23 @@ class ProfileScreen extends StatelessWidget {
                                       width: 90,
                                       height: 90,
                                       decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          image: (controller.image == null)
-                                              ?  DecorationImage(
-                                                  image: const AssetImage(
-                                                    AssetRes.roundAirbnb,
-                                                  ),
-                                                  fit: BoxFit.fill,
-                                          onError: (error,starcase){
-                                                     Image.asset(AssetRes.userImage);
-                                          }
-                                          )
-                                              : DecorationImage(
-                                                  image: FileImage(
-                                                    controller.image!,
-                                                  ),
-                                                  fit: BoxFit.fill)),
+                                        shape: BoxShape.circle,
+                                        image: (controller.image == null)
+                                            ? DecorationImage(
+                                                image: const AssetImage(
+                                                  AssetRes.roundAirbnb,
+                                                ),
+                                                fit: BoxFit.fill,
+                                                onError: (error, starcase) {
+                                                  Image.asset(
+                                                      AssetRes.userImage);
+                                                })
+                                            : DecorationImage(
+                                                image: FileImage(
+                                                  controller.image!,
+                                                ),
+                                                fit: BoxFit.fill),
+                                      ),
                                     ),
                                     /*Positioned(
                             bottom: 0,
@@ -628,7 +631,7 @@ class ProfileScreen extends StatelessWidget {
                         ]),
                       )
                     : const Center(
-                        child:CommonLoader(),
+                        child: CommonLoader(),
                       ),
               ),
             ],

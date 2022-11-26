@@ -194,7 +194,7 @@ class ProfileUserScreenU extends StatelessWidget {
                                     const SizedBox(
                                       height: 10,
                                     ),
-                                    commonErrorBox("Enter Valid Name"),
+                                    commonErrorBox(Strings.enterValidName),
                                   ],
                                 )
                               : const SizedBox(),
@@ -239,7 +239,7 @@ class ProfileUserScreenU extends StatelessWidget {
                                     const SizedBox(
                                       height: 10,
                                     ),
-                                    commonErrorBox("Enter Valid Email"),
+                                    commonErrorBox(Strings.enterValidEmail),
                                   ],
                                 )
                               : const SizedBox(),
@@ -327,7 +327,7 @@ class ProfileUserScreenU extends StatelessWidget {
                                     const SizedBox(
                                       height: 10,
                                     ),
-                                    commonErrorBox("Enter Valid Address"),
+                                    commonErrorBox(Strings.enterValidAddress),
                                   ],
                                 )
                               : const SizedBox(),
@@ -369,7 +369,8 @@ class ProfileUserScreenU extends StatelessWidget {
                                     const SizedBox(
                                       height: 10,
                                     ),
-                                    commonErrorBox("Enter Valid Occupation"),
+                                    commonErrorBox(
+                                        Strings.enterValidOccupation),
                                   ],
                                 )
                               : const SizedBox(),
@@ -395,11 +396,13 @@ class ProfileUserScreenU extends StatelessWidget {
                                         ColorRes.containerColor
                                       ]),
                                     ),
-                                    child: Text(Strings.edit,
-                                        style: appTextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w500,
-                                            color: ColorRes.white)),
+                                    child: Text(
+                                      Strings.edit,
+                                      style: appTextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500,
+                                          color: ColorRes.white),
+                                    ),
                                   ),
                                 );
                               }),

@@ -57,11 +57,13 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(args["doc"]["Position"],
-                                    style: appTextStyle(
-                                        color: ColorRes.black,
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w500)),
+                                Text(
+                                  args["doc"]["Position"],
+                                  style: appTextStyle(
+                                      color: ColorRes.black,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500),
+                                ),
                                 Text(args["doc"]["CompanyName"],
                                     style: appTextStyle(
                                         color: ColorRes.black,
@@ -91,46 +93,50 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                               color: ColorRes.black)),
 
                       ///upload pdf error Container
-                      Obx(() => controller.isPdfUploadError.value
-                          ? Container(
-                              width: Get.width,
-                              // height: 28,
-                              margin: const EdgeInsets.only(top: 10),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(50),
-                                  color: ColorRes.invalidColor),
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 15,
-                                vertical: 18,
-                              ),
-                              child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    const Image(
-                                      image: AssetImage(
-                                        AssetRes.invalid,
+                      Obx(
+                        () => controller.isPdfUploadError.value
+                            ? Container(
+                                width: Get.width,
+                                // height: 28,
+                                margin: const EdgeInsets.only(top: 10),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(50),
+                                    color: ColorRes.invalidColor),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 15,
+                                  vertical: 18,
+                                ),
+                                child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      const Image(
+                                        image: AssetImage(
+                                          AssetRes.invalid,
+                                        ),
+                                        height: 25,
                                       ),
-                                      height: 25,
-                                    ),
-                                    const SizedBox(width: 10),
-                                    SizedBox(
-                                      width: Get.width * 0.65,
-                                      child: Text(
+                                      const SizedBox(width: 10),
+                                      SizedBox(
+                                        width: Get.width * 0.65,
+                                        child: Text(
                                           "Upload failed,please re-upload your file",
                                           style: appTextStyle(
                                               fontWeight: FontWeight.w400,
                                               fontSize: 12,
-                                              color: ColorRes.starColor)),
-                                    ),
-                                    const Spacer(),
-                                    const Icon(
-                                      Icons.clear,
-                                      color: ColorRes.starColor,
-                                    )
-                                  ]),
-                            )
-                          : const SizedBox()),
+                                              color: ColorRes.starColor),
+                                        ),
+                                      ),
+                                      const Spacer(),
+                                      const Icon(
+                                        Icons.clear,
+                                        color: ColorRes.starColor,
+                                      )
+                                    ]),
+                              )
+                            : const SizedBox(),
+                      ),
 
                       Obx(() => controller.filepath.value != ""
                           ? Container(
@@ -176,9 +182,10 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                               ),
                             )
                           : const SizedBox()),
-
                       GestureDetector(
-                        onTap: () => controller.applyResume(),
+                        onTap: () {
+                          (controller.docu) ? controller.applyResume() : null;
+                        },
                         child: Container(
                           width: Get.width,
                           margin: const EdgeInsets.only(top: 15),
@@ -208,33 +215,38 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                       ),
 
                       ///uploading loader
-                      /* Container(
-                        width: Get.width,
-                        padding: const EdgeInsets.symmetric(vertical: 35),
-                        margin: const EdgeInsets.only(top: 10),
-                        decoration: BoxDecoration(
-                          color: ColorRes.white,
-                          borderRadius: const BorderRadius.all(Radius.circular(15)),
-                          border: Border.all(color: ColorRes.borderColor),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            CircularProgressIndicator(
-                                color: ColorRes.containerColor,
-                                backgroundColor:
-                                    ColorRes.containerColor.withOpacity(0.3)),
-                            const SizedBox(height: 20),
-                            Text(Strings.uploading,
-                                style: appTextStyle(
-                                    color: ColorRes.containerColor,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500))
-                          ],
-                        ),
-                      ),*/
+                      /*         GestureDetector(
+                         onTap: () {
+                           controller.applyResume();
+                         },
 
+                         child: Container(
+                          width: Get.width,
+                          padding: const EdgeInsets.symmetric(vertical: 35),
+                          margin: const EdgeInsets.only(top: 10),
+                          decoration: BoxDecoration(
+                            color: ColorRes.white,
+                            borderRadius: const BorderRadius.all(Radius.circular(15)),
+                            border: Border.all(color: ColorRes.borderColor),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              CircularProgressIndicator(
+                                  color: ColorRes.containerColor,
+                                  backgroundColor:
+                                      ColorRes.containerColor.withOpacity(0.3)),
+                              const SizedBox(height: 20),
+                              Text(Strings.uploading,
+                                  style: appTextStyle(
+                                      color: ColorRes.containerColor,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500))
+                            ],
+                          ),
+                      ),
+                       ),*/
                       // const Spacer(),
                       const SizedBox(height: 50),
                       GestureDetector(

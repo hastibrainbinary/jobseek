@@ -353,7 +353,7 @@ class EditProfileScreen extends StatelessWidget {
                                 const SizedBox(
                                   height: 10,
                                 ),
-                                commonErrorBox("Please Enter Company name"),
+                                commonErrorBox("Please Enter CompanyName"),
                               ],
                             )
                           : const SizedBox(),

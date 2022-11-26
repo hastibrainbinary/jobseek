@@ -88,15 +88,16 @@ class HomeScreen extends StatelessWidget {
 
                   //searchArea(),
                   InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (con) => const TipsForYouScreen(),
-                          ),
-                        );
-                      },
-                      child: tipsForYouSection()),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (con) => const TipsForYouScreen(),
+                        ),
+                      );
+                    },
+                    child: tipsForYouSection(),
+                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 18),
                     child: Row(
@@ -213,9 +214,7 @@ class HomeScreen extends StatelessWidget {
                           );
                         }),
                   ),
-
                   const SizedBox(height: 18),
-
                   Obx(
                     () => jrcontroller.selectedJobs2.value == 0
                         ? allJobs(fireStore.collection("allPost").snapshots())
@@ -263,8 +262,7 @@ class HomeScreen extends StatelessWidget {
                                                     .collection(
                                                         "Product Manager")
                                                     .snapshots())
-                                                : controller.selectedJobs2
-                                                            .value ==
+                                                : controller.selectedJobs2.value ==
                                                         7
                                                     ? allJobs(fireStore
                                                         .collection("category")
@@ -287,14 +285,16 @@ class HomeScreen extends StatelessWidget {
                                                         : controller.selectedJobs2
                                                                     .value ==
                                                                 9
-                                                            ? allJobs(fireStore
-                                                                .collection(
-                                                                    "category")
-                                                                .doc(
-                                                                    "Web Developers")
-                                                                .collection(
-                                                                    "Web Developers")
-                                                                .snapshots())
+                                                            ? allJobs(
+                                                                fireStore
+                                                                    .collection(
+                                                                        "category")
+                                                                    .doc(
+                                                                        "Web Developers")
+                                                                    .collection(
+                                                                        "Web Developers")
+                                                                    .snapshots(),
+                                                                seeAll: true)
                                                             : controller.selectedJobs2
                                                                         .value ==
                                                                     10
@@ -306,15 +306,8 @@ class HomeScreen extends StatelessWidget {
                                                                     .collection(
                                                                         "Networking")
                                                                     .snapshots())
-                                                                : controller.selectedJobs2
-                                                                            .value ==
-                                                                        11
-                                                                    ? allJobs(fireStore
-                                                                        .collection(
-                                                                            "category")
-                                                                        .doc("Cyber Security")
-                                                                        .collection("Cyber Security")
-                                                                        .snapshots())
+                                                                : controller.selectedJobs2.value == 11
+                                                                    ? allJobs(fireStore.collection("category").doc("Cyber Security").collection("Cyber Security").snapshots())
                                                                     : Center(
                                                                         child: Text(jrcontroller.jobs2[jrcontroller
                                                                             .selectedJobs2
