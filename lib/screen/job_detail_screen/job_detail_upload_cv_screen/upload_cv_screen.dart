@@ -138,50 +138,65 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                             : const SizedBox(),
                       ),
 
-                      Obx(() => controller.filepath.value != ""
-                          ? Container(
-                              // height: 82,
-                              width: Get.width,
-                              margin: const EdgeInsets.only(top: 10),
-                              padding: const EdgeInsets.symmetric(vertical: 10),
-                              decoration: BoxDecoration(
-                                color: const Color(0xffEEEBF4),
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(15)),
-                                border: Border.all(color: ColorRes.borderColor),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Image.asset(AssetRes.pdfIcon, height: 90),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        width: Get.width * 0.6,
-                                        child: Text(
-                                            controller.filepath
-                                                .value /*"Resume - Adam Smith.pdf"*/,
-                                            style: appTextStyle(
-                                                fontSize: 13,
-                                                fontWeight: FontWeight.w600,
-                                                color: ColorRes.black)),
-                                      ),
-                                      const SizedBox(height: 10),
-                                      Text("440 kb",
+                      Obx(
+                        () => controller.filepath.value != ""
+                            ? Container(
+                                // height: 82,
+                                width: Get.width,
+                                margin: const EdgeInsets.only(top: 10),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 10),
+                                decoration: BoxDecoration(
+                                  color: const Color(0xffEEEBF4),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(15)),
+                                  border:
+                                      Border.all(color: ColorRes.borderColor),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Image.asset(AssetRes.pdfIcon, height: 90),
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          width: Get.width * 0.6,
+                                          child: Text(
+                                              controller.filepath
+                                                  .value /*"Resume - Adam Smith.pdf"*/,
+                                              style: appTextStyle(
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: ColorRes.black)),
+                                        ),
+                                        const SizedBox(height: 10),
+                                        Text(
+                                          "440 kb",
                                           style: appTextStyle(
                                               fontSize: 10,
                                               fontWeight: FontWeight.w400,
-                                              color: ColorRes.grey))
-                                    ],
-                                  )
-                                ],
-                              ),
-                            )
-                          : const SizedBox()),
+                                              color: ColorRes.grey),
+                                        ),
+                                      ],
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        controller.pdfUrl = null;
+                                      },
+                                      child: const Image(
+                                        image: AssetImage(AssetRes.PdfRemove),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              )
+                            : const SizedBox(),
+                      ),
                       GestureDetector(
                         onTap: () {
                           (controller.docu) ? controller.applyResume() : null;
@@ -251,7 +266,13 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                       const SizedBox(height: 50),
                       GestureDetector(
                         onTap: () {
-                          controller.onTapApply(args: args["doc"]);
+                          if (controller.pdfUrl == null ||
+                              controller.pdfUrl == "") {
+                            Get.snackbar("Error", "Upload Your Resume",
+                                colorText: const Color(0xffDA1414));
+                          } else {
+                            controller.onTapApply(args: args["doc"]);
+                          }
                         },
                         child: Obx(() {
                           return Container(
@@ -262,8 +283,9 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                             margin: const EdgeInsets.only(
                                 right: 10, left: 10, top: 10, bottom: 30),
                             decoration: BoxDecoration(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10)),
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(10),
+                              ),
                               gradient: controller.filepath.value == ""
                                   ? const LinearGradient(colors: [
                                       ColorRes.gradientColor,

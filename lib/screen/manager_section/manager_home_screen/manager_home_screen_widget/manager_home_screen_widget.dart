@@ -11,6 +11,7 @@ import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
+import 'package:jobseek/utils/string.dart';
 
 Widget recentPeopleBox() {
   final contro = Get.put(ManagerHomeScreenController());
@@ -19,7 +20,7 @@ Widget recentPeopleBox() {
   jobDetailsUploadCvController.init();
   return SingleChildScrollView(
     child: SizedBox(
-      height: Get.height / 1.42,
+      height: Get.height / 1.50,
       child: ListView.builder(
           itemCount: contro.userData.length,
           itemBuilder: (context, i) {
@@ -93,7 +94,8 @@ Widget recentPeopleBox() {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            "${contro.userData[i]['userName']}",
+                                           // "${contro.userData[i]['userName']}",
+                                            "${contro.userData[i]['fullName']}",
                                             style: appTextStyle(
                                                 color: ColorRes.black,
                                                 fontSize: 14,
@@ -115,10 +117,11 @@ Widget recentPeopleBox() {
                                       InkWell(
                                         onTap: () {
                                           Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (con) =>
-                                                      ChatBoxScreen()));
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (con) => ChatBoxScreen(),
+                                            ),
+                                          );
                                         },
                                         // onTap: () => Get.toNamed(
                                         //     AppRes.applicantsDetails,
@@ -205,7 +208,7 @@ Widget recentPeopleBox() {
                                       ),
                                       child: Center(
                                         child: Text(
-                                          "See Resume",
+                                          Strings.seeResume,
                                           style: appTextStyle(
                                               color: ColorRes.white,
                                               fontSize: 15),
@@ -229,7 +232,7 @@ Widget recentPeopleBox() {
                                           color: ColorRes.white),
                                       child: Center(
                                         child: Text(
-                                          "See Details",
+                                          Strings.seeDetails,
                                           style: appTextStyle(
                                               color: ColorRes.containerColor,
                                               fontSize: 15),

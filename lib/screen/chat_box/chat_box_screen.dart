@@ -182,12 +182,9 @@ class ChatBoxScreen extends StatelessWidget {
                                 QuerySnapshot<Map<String, dynamic>>>(
                             stream: FirebaseFirestore.instance
                                 .collection("Apply")
+                                .where('uidList')
+                                .orderBy('lastMessageTime', descending: true)
                                 .snapshots(),
-                            /*FirebaseFirestore.instance
-                .collection("Auth")
-                .doc("User")
-                .collection("register")
-                .snapshots(),*/
                             builder: (context, snapshot) {
                               if (snapshot.data == null ||
                                   snapshot.hasData == false) {
@@ -198,7 +195,6 @@ class ChatBoxScreen extends StatelessWidget {
                                   itemCount: snapshot.data!.docs.length,
                                   itemBuilder: (context, index) {
                                     String? o;
-
                                     snapshot.data!.docs[index]['companyName']
                                         .forEach((element) {
                                       if (element.toString().toLowerCase() ==

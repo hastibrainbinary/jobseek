@@ -270,13 +270,14 @@ class HomePageNewScreenU extends StatelessWidget {
                 ),
                 const Spacer(),
                 Container(
-                    margin: const EdgeInsets.only(right: 8),
-                    child: const Image(
-                      image: AssetImage(
-                        AssetRes.HomeLogo,
-                      ),
-                      height: 107,
-                    ))
+                  margin: const EdgeInsets.only(right: 8),
+                  child: const Image(
+                    image: AssetImage(
+                      AssetRes.HomeLogo,
+                    ),
+                    height: 107,
+                  ),
+                ),
               ],
             ),
             Container(

@@ -99,20 +99,31 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                                 SizedBox(
                                   width: Get.width * 0.6,
                                   child: Text(
-                                      args[1]['filename']
-                                          .value /*"Resume - Adam Smith.pdf"*/,
-                                      style: appTextStyle(
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w600,
-                                          color: ColorRes.black)),
+                                    args[1]['filename']
+                                        .value /*"Resume - Adam Smith.pdf"*/,
+                                    style: appTextStyle(
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w600,
+                                        color: ColorRes.black),
+                                  ),
                                 ),
                                 const SizedBox(height: 10),
-                                Text("440 kb",
-                                    style: appTextStyle(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w400,
-                                        color: ColorRes.grey))
+                                Text(
+                                  "440 kb",
+                                  style: appTextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w400,
+                                      color: ColorRes.grey),
+                                ),
                               ],
+                            ),
+                            InkWell(
+                              onTap: () {
+                                controller.pdfUrl = null;
+                              },
+                              child: const Image(
+                                image: AssetImage(AssetRes.PdfRemove),
+                              ),
                             )
                           ],
                         ),

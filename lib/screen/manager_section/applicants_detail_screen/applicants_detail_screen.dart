@@ -488,12 +488,12 @@ void settingModalBottomSheet(
                         controller.showDate = "Date";
                         // Get.back();
                         ManagerDashBoardScreenController controller2 =
-                        Get.find<ManagerDashBoardScreenController>();
+                            Get.find<ManagerDashBoardScreenController>();
                         controller2.currentTab.value = 1;
                         controller2.update(["bottom_bar"]);
                         Get.offAll(() => ManagerDashBoardScreen(),
                             arguments: {"index": "1"});
-                       // Navigator.of(context).pop();
+                        // Navigator.of(context).pop();
 
                         await FirebaseFirestore.instance
                             .collection("Applicants")
@@ -515,7 +515,6 @@ void settingModalBottomSheet(
                           'message': controller.msgController.text,
                           'userOccupation': args['Occupation']
                         });
-
                       },
                       child: Container(
                         height: 50,
