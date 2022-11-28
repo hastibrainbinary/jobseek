@@ -242,19 +242,19 @@ class HomeScreen extends StatelessWidget {
                                             .collection("Finance")
                                             .snapshots(),
                                       )
-                                    : controller.selectedJobs2.value == 4
+                                    : jrcontroller.selectedJobs2.value == 4
                                         ? allJobs(fireStore
                                             .collection("category")
                                             .doc("Software")
                                             .collection("Software")
                                             .snapshots())
-                                        : controller.selectedJobs2.value == 5
+                                        : jrcontroller.selectedJobs2.value == 5
                                             ? allJobs(fireStore
                                                 .collection("category")
                                                 .doc("Database Manager")
                                                 .collection("Database Manager")
                                                 .snapshots())
-                                            : controller.selectedJobs2.value ==
+                                            : jrcontroller.selectedJobs2.value ==
                                                     6
                                                 ? allJobs(fireStore
                                                     .collection("category")
@@ -262,7 +262,7 @@ class HomeScreen extends StatelessWidget {
                                                     .collection(
                                                         "Product Manager")
                                                     .snapshots())
-                                                : controller.selectedJobs2.value ==
+                                                : jrcontroller.selectedJobs2.value ==
                                                         7
                                                     ? allJobs(fireStore
                                                         .collection("category")
@@ -271,8 +271,7 @@ class HomeScreen extends StatelessWidget {
                                                         .collection(
                                                             "Full-Stack Developer")
                                                         .snapshots())
-                                                    : controller.selectedJobs2
-                                                                .value ==
+                                                    : jrcontroller.selectedJobs2.value ==
                                                             8
                                                         ? allJobs(fireStore
                                                             .collection(
@@ -282,7 +281,8 @@ class HomeScreen extends StatelessWidget {
                                                             .collection(
                                                                 "Data Scientist")
                                                             .snapshots())
-                                                        : controller.selectedJobs2
+                                                        : jrcontroller
+                                                                    .selectedJobs2
                                                                     .value ==
                                                                 9
                                                             ? allJobs(
@@ -295,18 +295,16 @@ class HomeScreen extends StatelessWidget {
                                                                         "Web Developers")
                                                                     .snapshots(),
                                                                 seeAll: true)
-                                                            : controller.selectedJobs2
+                                                            : jrcontroller
+                                                                        .selectedJobs2
                                                                         .value ==
                                                                     10
                                                                 ? allJobs(fireStore
-                                                                    .collection(
-                                                                        "category")
-                                                                    .doc(
-                                                                        "Networking")
-                                                                    .collection(
-                                                                        "Networking")
+                                                                    .collection("category")
+                                                                    .doc("Networking")
+                                                                    .collection("Networking")
                                                                     .snapshots())
-                                                                : controller.selectedJobs2.value == 11
+                                                                : jrcontroller.selectedJobs2.value == 11
                                                                     ? allJobs(fireStore.collection("category").doc("Cyber Security").collection("Cyber Security").snapshots())
                                                                     : Center(
                                                                         child: Text(jrcontroller.jobs2[jrcontroller

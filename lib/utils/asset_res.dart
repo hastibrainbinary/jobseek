@@ -4,6 +4,7 @@ class AssetRes {
 
   ///------------------------------icons------------------------------------------------------
   static const invalid = '${icons}invalid.png';
+  static const PdfRemove ="${icons}PdfRemove.png";
   static const inboxLogo = '${icons}inbox_icon.png';
   static const emailLogo = '${icons}emailLogo.png';
   static const home = '${icons}home.png';

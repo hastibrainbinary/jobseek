@@ -34,6 +34,7 @@ class ChatLiveScreen extends StatelessWidget {
     return WillPopScope(
       onWillPop: () async {
         await controller.lastMessageTrue(otherUserUid!);
+        controller.msController.clear();
         return true;
       },
       child: Scaffold(
@@ -51,17 +52,28 @@ class ChatLiveScreen extends StatelessWidget {
                     child: InkWell(
                       onTap: () {
                         controller.lastMessageTrue(otherUserUid!);
+                        controller.msController.clear();
 
                         Get.back();
                       },
-                      child: backButton(),
+                      child: Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                          color: ColorRes.logoColor,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: const Icon(
+                          Icons.arrow_back_ios_new_rounded,
+                          color: ColorRes.containerColor,
+                        ),
+                      ),
                     ),
                   ),
                   const SizedBox(width: 80),
                   Center(
                     child: Text(
                       Strings.chatBox,
-
                       style: appTextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
@@ -110,7 +122,6 @@ class ChatLiveScreen extends StatelessWidget {
                                 const SizedBox(height: 6),
                                 Text(
                                   Strings.online,
-
                                   style: appTextStyle(
                                       color: ColorRes.black,
                                       fontSize: 12,

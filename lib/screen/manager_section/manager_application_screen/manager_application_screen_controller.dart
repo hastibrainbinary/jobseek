@@ -18,15 +18,15 @@ class ManagerApplicationScreenController extends GetxController
 
   ].obs;
 
-  // search(String value)async{
-  //  var d=  await FirebaseFirestore.instance.collection('allPost').get();
-  //
-  //  d.docs.forEach((element) {
-  //    element.get("CompanyName").toString()
-  //        .toLowerCase()
-  //        .contains(value.toLowerCase());
-  //  });
-  // }
+  /*search(String value)async{
+   var d=  await FirebaseFirestore.instance.collection('allPost').get();
+
+   d.docs.forEach((element) {
+     element.get("CompanyName").toString()
+         .toLowerCase()
+         .contains(value.toLowerCase());
+   });
+  }*/
 
   onTapJobs2(int index) {
     selectedJobs2.value = index;

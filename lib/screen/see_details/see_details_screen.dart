@@ -129,9 +129,9 @@ class SeeDetailsScreen extends StatelessWidget {
                                     height: 16,
                                     width: 16,
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(16),
-                                        border:
-                                            Border.all(color: ColorRes.black)),
+                                      borderRadius: BorderRadius.circular(16),
+                                      border: Border.all(color: ColorRes.black),
+                                    ),
                                     child: const Icon(
                                       Icons.arrow_downward,
                                       size: 10,
@@ -159,9 +159,10 @@ class SeeDetailsScreen extends StatelessWidget {
                                   Text(
                                     "258.4 KB",
                                     style: appTextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 8,
-                                        color: ColorRes.black.withOpacity(0.6)),
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 8,
+                                      color: ColorRes.black.withOpacity(0.6),
+                                    ),
                                   ),
                                 ],
                               )
