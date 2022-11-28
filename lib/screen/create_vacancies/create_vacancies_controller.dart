@@ -43,17 +43,23 @@ class CreateVacanciesController extends GetxController implements GetxService {
       onError: (e) => print("Error getting document: $e"),
     );
     await validate();
-    if (isPositionValidate.value == true &&
-        isSalaryValidate.value == true &&
-        isLocationValidate.value == true &&
-        isTypeValidate.value == true &&
-        isCategoryValidate.value == true &&
-        isStatusValidate.value == true) {
-    } else {
+    if (isPositionValidate.value == false &&
+        isSalaryValidate.value == false &&
+        isLocationValidate.value == false &&
+        isTypeValidate.value == false &&
+        isCategoryValidate.value == false &&
+        isStatusValidate.value == false) {
       Get.to(RequirementsScreen());
       if (kDebugMode) {
         print("valid");
       }
+    } else {
+      update(["profile"]);
+      update(["Location"]);
+      update(["type"]);
+      update(["Status"]);
+      update(["Category"]);
+
     }
   }
 
@@ -209,6 +215,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
     update(["Location"]);
     update(["type"]);
     update(["Status"]);
+    update(["Category"]);
   }
 
   changeDropwon({required String val}) {

@@ -18,7 +18,7 @@ bool abc = false;
 
 class JobDetailsUploadCvController extends GetxController {
   RefreshController refreshController = RefreshController();
-  bool docu = true;
+
 
   init() async {
     await firestore.collection("Apply").get().then((value) {
@@ -138,7 +138,7 @@ class JobDetailsUploadCvController extends GetxController {
       final File fileForFirebase = File(file.path!);
 
       uploadImage(file: fileForFirebase, path: "files/${file.name}");
-      docu = false;
+
     } else {
       // User canceled the picker
 

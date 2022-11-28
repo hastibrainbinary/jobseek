@@ -43,6 +43,7 @@ class ProfileUserController extends GetxController implements GetxService {
     occupationController.text = PrefService.getString(PrefKeys.occupation);
     dateOfBirthController.text = PrefService.getString(PrefKeys.dateOfBirth);
     addressController.text = PrefService.getString(PrefKeys.address);
+    image = File(PrefService.getString(PrefKeys.imageId));
   }
 
   Future<void> onDatePickerTap(context) async {
@@ -129,6 +130,10 @@ class ProfileUserController extends GetxController implements GetxService {
         "imageUrl": url,
       };
 
+      PrefService.setValue(
+        PrefKeys.imageId,
+        url,
+      );
       PrefService.setValue(
         PrefKeys.fullName,
         fullNameController.text,
@@ -228,6 +233,7 @@ class ProfileUserController extends GetxController implements GetxService {
 
   imagePicker() {
     update(['image']);
+    update(['pic']);
     update();
   }
 

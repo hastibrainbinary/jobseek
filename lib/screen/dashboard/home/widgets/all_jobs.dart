@@ -33,20 +33,27 @@ Widget allJobs(Stream stream, {bool? seeAll = false}) {
                     jrController.documents.where((element) {
                   //print(element.get('Position'));
                   return element
-                          .get('Position')
-                          .toString()
-                          .toLowerCase()
-                          .contains(
-                              jrController.searchText.value.toLowerCase()) ||
-                      element
-                          .get('CompanyName')
-                          .toString()
-                          .toLowerCase()
-                          .contains(
-                              jrController.searchText.value.toLowerCase());
+                      .get('Position')
+                      .toString()
+                      .toLowerCase()
+                      .contains(jrController.searchText.value.toLowerCase()) || element
+
+                      .get('CompanyName')
+                      .toString()
+                      .toLowerCase()
+                      .contains(jrController.searchText.value.toLowerCase());
                 }).toList();
               }
-
+              /*   if (jrController.searchText.value.isNotEmpty) {
+                jrController.documents =
+                    jrController.documents.where((element) {
+                  return element
+                      .get('CompanyName')
+                      .toString()
+                      .toLowerCase()
+                      .contains(jrController.searchText.value.toLowerCase());
+                }).toList();
+              }*/
               return snapshot.hasData
                   ? ListView.builder(
                       padding: const EdgeInsets.all(0),
