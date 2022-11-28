@@ -89,204 +89,209 @@ class ProfileScreen extends StatelessWidget {
                             padding: const EdgeInsets.all(12.0),
                             child: Row(
                               children: [
-                                Stack(
-                                  children: [
-                                    Container(
-                                      width: 90,
-                                      height: 90,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        image: (controller.image == null)
-                                            ? DecorationImage(
-                                                image: const AssetImage(
-                                                  AssetRes.roundAirbnb,
-                                                ),
-                                                fit: BoxFit.fill,
-                                                onError: (error, starcase) {
-                                                  Image.asset(
-                                                      AssetRes.userImage);
-                                                })
-                                            : DecorationImage(
-                                                image: FileImage(
-                                                  controller.image!,
-                                                ),
-                                                fit: BoxFit.fill),
-                                      ),
-                                    ),
-                                    /*Positioned(
+                                GetBuilder<ProfileController>(
+                                  id:"image",
+                                  builder: (con) {
+                                    return Stack(
+                                      children: [
+                                        Container(
+                                          width: 90,
+                                          height: 90,
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            image: (controller.image == null)
+                                                ? DecorationImage(
+                                                    image: const AssetImage(
+                                                      AssetRes.roundAirbnb,
+                                                    ),
+                                                    fit: BoxFit.fill,
+                                                    onError: (error, starcase) {
+                                                      Image.asset(
+                                                          AssetRes.userImage);
+                                                    })
+                                                : DecorationImage(
+                                                    image: FileImage(
+                                                      controller.image!,
+                                                    ),
+                                                    fit: BoxFit.fill),
+                                          ),
+                                        ),
+                                        /*Positioned(
                             bottom: 0,
                             right: 10,
                             child: InkWell(
                               onTap: () {
-                                showModalBottomSheet<void>(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  backgroundColor: Colors.transparent,
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return Container(
-                                      height: 450,
-                                      decoration: const BoxDecoration(
-                                        color: ColorRes.white,
-                                        borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(45),
-                                          topRight: Radius.circular(45),
-                                        ),
+                                    showModalBottomSheet<void>(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10.0),
                                       ),
-                                      child: Center(
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: <Widget>[
-                                            const SizedBox(height: 30),
-                                            Text(
-                                              'Change Logo Company',
-                                              style: appTextStyle(
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: ColorRes.black
-                                                      .withOpacity(0.8)),
+                                      backgroundColor: Colors.transparent,
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return Container(
+                                          height: 450,
+                                          decoration: const BoxDecoration(
+                                            color: ColorRes.white,
+                                            borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(45),
+                                              topRight: Radius.circular(45),
                                             ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 18,
-                                                      vertical: 18),
-                                              child: Container(
-                                                height: 120,
-                                                width: Get.width,
-                                                decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                    color:
-                                                        const Color(0xffF3ECFF),
-                                                  ),
-                                                  borderRadius:
-                                                      const BorderRadius.all(
-                                                    Radius.circular(5),
-                                                  ),
+                                          ),
+                                          child: Center(
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: <Widget>[
+                                                const SizedBox(height: 30),
+                                                Text(
+                                                  'Change Logo Company',
+                                                  style: appTextStyle(
+                                                      fontSize: 14,
+                                                      fontWeight: FontWeight.w500,
+                                                      color: ColorRes.black
+                                                          .withOpacity(0.8)),
                                                 ),
-                                                child: Column(
-                                                  children: [
-                                                    InkWell(
-                                                      onTap: () =>
-                                                          controller.onTapImage,
-                                                      child: Container(
-                                                        height: 70,
-                                                        width: 70,
-                                                        margin: const EdgeInsets
-                                                                .symmetric(
-                                                            horizontal: 100,
-                                                            vertical: 10),
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: ColorRes
-                                                              .logoColor,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(80),
-                                                        ),
-                                                        child: const Icon(
-                                                          Icons.camera_alt,
-                                                          size: 40,
-                                                          color: ColorRes
-                                                              .containerColor,
-                                                        ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.symmetric(
+                                                          horizontal: 18,
+                                                          vertical: 18),
+                                                  child: Container(
+                                                    height: 120,
+                                                    width: Get.width,
+                                                    decoration: BoxDecoration(
+                                                      border: Border.all(
+                                                        color:
+                                                            const Color(0xffF3ECFF),
+                                                      ),
+                                                      borderRadius:
+                                                          const BorderRadius.all(
+                                                        Radius.circular(5),
                                                       ),
                                                     ),
-                                                    Text(
-                                                      "Take photo",
-                                                      style: appTextStyle(
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          fontSize: 14,
-                                                          color:
-                                                              ColorRes.black),
+                                                    child: Column(
+                                                      children: [
+                                                        InkWell(
+                                                          onTap: () =>
+                                                              controller.onTapImage,
+                                                          child: Container(
+                                                            height: 70,
+                                                            width: 70,
+                                                            margin: const EdgeInsets
+                                                                    .symmetric(
+                                                                horizontal: 100,
+                                                                vertical: 10),
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: ColorRes
+                                                                  .logoColor,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(80),
+                                                            ),
+                                                            child: const Icon(
+                                                              Icons.camera_alt,
+                                                              size: 40,
+                                                              color: ColorRes
+                                                                  .containerColor,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          "Take photo",
+                                                          style: appTextStyle(
+                                                              fontWeight:
+                                                                  FontWeight.w500,
+                                                              fontSize: 14,
+                                                              color:
+                                                                  ColorRes.black),
+                                                        ),
+                                                      ],
                                                     ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 18),
-                                              child: Container(
-                                                height: 120,
-                                                width: Get.width,
-                                                decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                    color:
-                                                        const Color(0xffF3ECFF),
-                                                  ),
-                                                  borderRadius:
-                                                      const BorderRadius.all(
-                                                    Radius.circular(5),
                                                   ),
                                                 ),
-                                                child: Column(
-                                                  children: [
-                                                    InkWell(
-                                                      onTap: () => controller
-                                                          .onTapGallery1(),
-                                                      child: Container(
-                                                        height: 70,
-                                                        width: 70,
-                                                        margin: const EdgeInsets
-                                                                .symmetric(
-                                                            horizontal: 100,
-                                                            vertical: 10),
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: ColorRes
-                                                              .logoColor,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(80),
-                                                        ),
-                                                        child: const Image(
-                                                          image: AssetImage(
-                                                              AssetRes
-                                                                  .galleryImage),
-                                                          color: ColorRes
-                                                              .containerColor,
-                                                        ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.symmetric(
+                                                          horizontal: 18),
+                                                  child: Container(
+                                                    height: 120,
+                                                    width: Get.width,
+                                                    decoration: BoxDecoration(
+                                                      border: Border.all(
+                                                        color:
+                                                            const Color(0xffF3ECFF),
+                                                      ),
+                                                      borderRadius:
+                                                          const BorderRadius.all(
+                                                        Radius.circular(5),
                                                       ),
                                                     ),
-                                                    Text(
-                                                      "Form gallery",
-                                                      style: appTextStyle(
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          fontSize: 14,
-                                                          color:
-                                                              ColorRes.black),
+                                                    child: Column(
+                                                      children: [
+                                                        InkWell(
+                                                          onTap: () => controller
+                                                              .onTapGallery1(),
+                                                          child: Container(
+                                                            height: 70,
+                                                            width: 70,
+                                                            margin: const EdgeInsets
+                                                                    .symmetric(
+                                                                horizontal: 100,
+                                                                vertical: 10),
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: ColorRes
+                                                                  .logoColor,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(80),
+                                                            ),
+                                                            child: const Image(
+                                                              image: AssetImage(
+                                                                  AssetRes
+                                                                      .galleryImage),
+                                                              color: ColorRes
+                                                                  .containerColor,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          "Form gallery",
+                                                          style: appTextStyle(
+                                                              fontWeight:
+                                                                  FontWeight.w500,
+                                                              fontSize: 14,
+                                                              color:
+                                                                  ColorRes.black),
+                                                        ),
+                                                      ],
                                                     ),
-                                                  ],
+                                                  ),
                                                 ),
-                                              ),
+                                              ],
                                             ),
-                                          ],
-                                        ),
-                                      ),
+                                          ),
+                                        );
+                                      },
                                     );
-                                  },
-                                );
                               },
                               child: const CircleAvatar(
-                                radius: 7.5,
-                                backgroundColor: ColorRes.containerColor,
-                                child: Icon(
-                                  Icons.edit,
-                                  size: 8,
-                                  color: ColorRes.white,
-                                ),
+                                    radius: 7.5,
+                                    backgroundColor: ColorRes.containerColor,
+                                    child: Icon(
+                                      Icons.edit,
+                                      size: 8,
+                                      color: ColorRes.white,
+                                    ),
                               ),
                             ),
                           ),*/
-                                  ],
+                                      ],
+                                    );
+                                  }
                                 ),
                                 const SizedBox(width: 20),
                                 Column(

@@ -72,6 +72,7 @@ class ProfileController extends GetxController implements GetxService {
         companyAddressController.text = data["address"];
         dateController.text = data["date"];
         countryController.text = data["country"];
+        image =File(data['imageUrl']);
         update();
         isLod.value = false;
       },
@@ -217,6 +218,7 @@ class ProfileController extends GetxController implements GetxService {
     XFile? img = await picker.pickImage(source: ImageSource.camera);
     String path = img!.path;
     image = File(path);
+    Get.back();
     imagePicker();
   }
 
@@ -224,12 +226,14 @@ class ProfileController extends GetxController implements GetxService {
     XFile? gallery = await picker.pickImage(source: ImageSource.gallery);
     String path = gallery!.path;
     image = File(path);
+    Get.back();
     imagePicker();
   }
 
   imagePicker() {
     update(['gallery']);
     update(['onTap']);
+    update(['image']);
     update();
   }
 

@@ -187,9 +187,10 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                                     InkWell(
                                       onTap: () {
                                         controller.pdfUrl = null;
+                                        controller.filepath.value="";
                                       },
                                       child: const Image(
-                                        image: AssetImage(AssetRes.PdfRemove),
+                                        image: AssetImage(AssetRes.PdfRemove,),
                                       ),
                                     )
                                   ],
@@ -199,7 +200,7 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          (controller.docu) ? controller.applyResume() : null;
+                          (controller.pdfUrl!=""||controller.pdfUrl==null) ? controller.applyResume() : null;
                         },
                         child: Container(
                           width: Get.width,
