@@ -174,7 +174,7 @@ class EditProfileUser extends StatelessWidget {
                                                       style: appTextStyle(
                                                           fontWeight:
                                                               FontWeight.w500,
-                                                          fontSize: 14,
+                                                          fontSize: 13,
                                                           color:
                                                               ColorRes.black),
                                                     ),
