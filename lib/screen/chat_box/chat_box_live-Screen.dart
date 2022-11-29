@@ -8,6 +8,7 @@ import 'package:jobseek/screen/manager_section/call/video_joinig_Screen.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 import 'package:paginate_firestore/paginate_firestore.dart';
 
 // ignore: must_be_immutable
@@ -72,7 +73,8 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                   const SizedBox(width: 85),
                   Center(
                     child: Text(
-                      'Chat Box',
+                      Strings.chatBox,
+
                       style: appTextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,

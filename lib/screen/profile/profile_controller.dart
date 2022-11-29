@@ -238,7 +238,7 @@ class ProfileUserController extends GetxController implements GetxService {
 
   getUrl() {
     FirebaseStorage storage = FirebaseStorage.instance;
-    Reference ref = storage.ref().child("image1" + DateTime.now().toString());
+    Reference ref = storage.ref().child("image1${DateTime.now()}");
     UploadTask uploadTask = ref.putFile(image!);
 
     uploadTask.then((res) async {

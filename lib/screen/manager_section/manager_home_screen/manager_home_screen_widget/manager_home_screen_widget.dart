@@ -26,7 +26,9 @@ Widget recentPeopleBox({bool? homeScreen,String? position}) {
           itemBuilder: (context, i) {
             String? o;
 
-            print(contro.userData[0]['companyName'][0]['companyname']);
+            if (kDebugMode) {
+              print(contro.userData[0]['companyName'][0]['companyname']);
+            }
 
             if(homeScreen==true)
               {

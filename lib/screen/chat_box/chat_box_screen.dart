@@ -498,10 +498,9 @@ class ChatBoxScreen extends StatelessWidget {
                                                       decoration: BoxDecoration(
                                                           borderRadius:
                                                               const BorderRadius
-                                                                      .all(
-                                                                  Radius
-                                                                      .circular(
-                                                                          15)),
+                                                                  .all(
+                                                            Radius.circular(15),
+                                                          ),
                                                           border: Border.all(
                                                             color: const Color(
                                                                 0xffF3ECFF),

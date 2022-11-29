@@ -212,8 +212,9 @@ class SeeDetailsScreen extends StatelessWidget {
                         height: 51,
                         width: 339,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: ColorRes.containerColor),),
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: ColorRes.containerColor),
+                        ),
                         child: Text(
                           args['userName'],
                           style: const TextStyle(

@@ -12,14 +12,13 @@ import '../../../utils/pref_keys.dart';
 
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 //List<String> position = [];
-List<Map<String,dynamic>> companyList = [];
+List<Map<String, dynamic>> companyList = [];
 bool abc = false;
 
 class JobDetailsUploadCvController extends GetxController {
   RefreshController refreshController = RefreshController();
 
-
- /* init() async {
+  /* init() async {
     await firestore.collection("Apply").get().then((value) {
       value.docs.forEach((element) {
         if (element['uid'] == PrefService.getString(PrefKeys.userId)) {
@@ -27,11 +26,11 @@ class JobDetailsUploadCvController extends GetxController {
         }
       });
 
-      *//*for (int i = 1; i <= value.docs.length; i++) {
+      */ /*for (int i = 1; i <= value.docs.length; i++) {
         if (value.docs[i]['uid'] == PrefService.getString(PrefKeys.userId)) {
           companyList = value.docs[i]['companyName'];
         }
-      }*//*
+      }*/ /*
     });
     refreshController.refreshCompleted();
   }*/
@@ -39,7 +38,10 @@ class JobDetailsUploadCvController extends GetxController {
     await firestore.collection("Apply").get().then((value) {
       value.docs.forEach((element) {
         if (element['uid'] == PrefService.getString(PrefKeys.userId)) {
-          companyList.add( {"companyname" :element['CompanyName'], "position":element['Position']});
+          companyList.add({
+            "companyname": element['CompanyName'],
+            "position": element['Position']
+          });
         }
       });
 
@@ -51,10 +53,11 @@ class JobDetailsUploadCvController extends GetxController {
     });
     refreshController.refreshCompleted();
   }
+
   String? pdfUrl;
   double filesize =0;
 
- /* onTapApply({var args}) {
+  /* onTapApply({var args}) {
     abc = false;
     for (int i = 0; i < companyList.length; i++) {
       if (companyList[i] == args['CompanyName']) {
@@ -103,16 +106,19 @@ class JobDetailsUploadCvController extends GetxController {
   onTapApply({var args}) {
     abc = false;
     for (int i = 0; i < companyList.length; i++) {
-      if (companyList[i]['companycame'] == args['CompanyName'] && companyList[i]['position'] == args['Position']) {
+      if (companyList[i]['companyame'] == args['CompanyName'] &&
+          companyList[i]['position'] == args['Position']) {
         abc = true;
       }
     }
 
     if (!abc) {
-      companyList.add({"companyname" :args['CompanyName'], "position":args['Position']});
+      companyList.add(
+          {"companyname": args['CompanyName'], "position": args['Position']});
     }
 
-    List<Map<String,dynamic>> companyNameList = List.generate(companyList.length, (index) {
+    List<Map<String, dynamic>> companyNameList =
+        List.generate(companyList.length, (index) {
       return companyList[index];
     });
     if (kDebugMode) {
@@ -204,7 +210,6 @@ class JobDetailsUploadCvController extends GetxController {
       final File fileForFirebase = File(file.path!);
 
       uploadImage(file: fileForFirebase, path: "files/${file.name}");
-
     } else {
       // User canceled the picker
 
