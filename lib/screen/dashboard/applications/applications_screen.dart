@@ -174,11 +174,11 @@ class ApplicationsScreen extends StatelessWidget {
                                       return (snapshot2.data!
                                                   .docs[index2]['userName']
                                                   .toString()
-                                                  .toLowerCase() ==
+                                                  .toLowerCase().removeAllWhitespace ==
                                               PrefService.getString(
                                                       PrefKeys.fullName)
                                                   .toString()
-                                                  .toLowerCase())
+                                                  .toLowerCase().removeAllWhitespace)
                                           ? Obx(
                                               () => Column(
                                                 children: [
@@ -270,7 +270,7 @@ class ApplicationsScreen extends StatelessWidget {
                                                                           context,
                                                                           MaterialPageRoute(
                                                                               builder: (con) => UiUxDesignerScreen(
-                                                                                    userOccupation: snapshot2.data!.docs[index2]['userOccupation'],
+                                                                                    position: snapshot2.data!.docs[index2]['position'],
                                                                                     companyName: snapshot.data!.docs[index]['companyName'],
                                                                                     message: snapshot2.data!.docs[index2]['message'],
                                                                                   )))
@@ -279,7 +279,7 @@ class ApplicationsScreen extends StatelessWidget {
                                                                               context,
                                                                               MaterialPageRoute(
                                                                                 builder: (con) => RejectedScreen(
-                                                                                  userOccupation: snapshot2.data!.docs[index2]['userOccupation'],
+                                                                                  position: snapshot2.data!.docs[index2]['position'],
                                                                                   companyName: snapshot.data!.docs[index]['companyName'],
                                                                                   message: snapshot2.data!.docs[index2]['message'],
                                                                                   salary: snapshot2.data!.docs[index2]['salary'],
@@ -293,7 +293,7 @@ class ApplicationsScreen extends StatelessWidget {
                                                                                   context,
                                                                                   MaterialPageRoute(
                                                                                     builder: (con) => AcceptedScreen(
-                                                                                      userOccupation: snapshot2.data!.docs[index2]['userOccupation'],
+                                                                                      position: snapshot2.data!.docs[index2]['position'],
                                                                                       companyName: snapshot.data!.docs[index]['companyName'],
                                                                                       message: snapshot2.data!.docs[index2]['message'],
                                                                                       salary: snapshot2.data!.docs[index2]['salary'],
@@ -416,7 +416,7 @@ class ApplicationsScreen extends StatelessWidget {
                                                                           crossAxisAlignment:
                                                                               CrossAxisAlignment.start,
                                                                           children: [
-                                                                            Text(snapshot2.data!.docs[index2]['userOccupation'],
+                                                                            Text(snapshot2.data!.docs[index2]['position'],
                                                                                 style: appTextStyle(color: ColorRes.black, fontSize: 15, fontWeight: FontWeight.w500)),
                                                                             Text(snapshot.data!.docs[index]['companyName'],
                                                                                 style: appTextStyle(color: ColorRes.black, fontSize: 12, fontWeight: FontWeight.w400)),
@@ -439,7 +439,7 @@ class ApplicationsScreen extends StatelessWidget {
                                                                           context,
                                                                           MaterialPageRoute(
                                                                               builder: (con) => AcceptedScreen(
-                                                                                    userOccupation: snapshot2.data!.docs[index2]['userOccupation'],
+                                                                                    position: snapshot2.data!.docs[index2]['position'],
                                                                                     companyName: snapshot.data!.docs[index]['companyName'],
                                                                                     message: snapshot2.data!.docs[index2]['message'],
                                                                                     salary: snapshot2.data!.docs[index2]['salary'],
@@ -536,7 +536,7 @@ class ApplicationsScreen extends StatelessWidget {
                                                                               CrossAxisAlignment.start,
                                                                           children: [
                                                                             Text(
-                                                                              snapshot2.data!.docs[index2]['userOccupation'],
+                                                                              snapshot2.data!.docs[index2]['position'],
                                                                               style: appTextStyle(color: ColorRes.black, fontSize: 15, fontWeight: FontWeight.w500),
                                                                             ),
                                                                             Text(
@@ -562,7 +562,7 @@ class ApplicationsScreen extends StatelessWidget {
                                                                           context,
                                                                           MaterialPageRoute(
                                                                               builder: (con) => RejectedScreen(
-                                                                                    userOccupation: snapshot2.data!.docs[index2]['userOccupation'],
+                                                                                    position: snapshot2.data!.docs[index2]['position'],
                                                                                     companyName: snapshot.data!.docs[index]['companyName'],
                                                                                     message: snapshot2.data!.docs[index2]['message'],
                                                                                     salary: snapshot2.data!.docs[index2]['salary'],
@@ -658,7 +658,7 @@ class ApplicationsScreen extends StatelessWidget {
                                                                           crossAxisAlignment:
                                                                               CrossAxisAlignment.start,
                                                                           children: [
-                                                                            Text(snapshot2.data!.docs[index2]['userOccupation'],
+                                                                            Text(snapshot2.data!.docs[index2]['position'],
                                                                                 style: appTextStyle(color: ColorRes.black, fontSize: 15, fontWeight: FontWeight.w500)),
                                                                             Text(snapshot.data!.docs[index]['companyName'],
                                                                                 style: appTextStyle(color: ColorRes.black, fontSize: 12, fontWeight: FontWeight.w400)),
@@ -681,7 +681,7 @@ class ApplicationsScreen extends StatelessWidget {
                                                                           context,
                                                                           MaterialPageRoute(
                                                                               builder: (con) => UiUxDesignerScreen(
-                                                                                    userOccupation: snapshot2.data!.docs[index2]['userOccupation'],
+                                                                                    position: snapshot2.data!.docs[index2]['position'],
                                                                                     companyName: snapshot.data!.docs[index]['companyName'],
                                                                                     message: snapshot2.data!.docs[index2]['message'],
                                                                                     salary: snapshot2.data!.docs[index2]['salary'],

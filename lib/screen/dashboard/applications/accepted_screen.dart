@@ -6,13 +6,13 @@ import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
 class AcceptedScreen extends StatelessWidget {
-  String? userOccupation;
+  String? position;
   String? companyName;
   String? message;
   String? salary;
   String? location;
   String? type;
-   AcceptedScreen({Key? key,  this.userOccupation, this.companyName, this.message,this.salary,this.location,this.type}) : super(key: key);
+   AcceptedScreen({Key? key,  this.position, this.companyName, this.message,this.salary,this.location,this.type}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +83,7 @@ class AcceptedScreen extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(userOccupation??"",
+                                      Text(position??"",
                                           style: appTextStyle(
                                               color: ColorRes.black,
                                               fontSize: 15,

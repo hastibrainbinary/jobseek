@@ -6,13 +6,13 @@ import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
 class UiUxDesignerScreen extends StatelessWidget {
-  String? userOccupation;
+  String? position;
   String? companyName;
   String? message;
   String? salary;
   String? location;
   String? type;
-   UiUxDesignerScreen({Key? key, this.userOccupation, this.companyName, this.message,this.salary,this.location,this.type}) : super(key: key);
+   UiUxDesignerScreen({Key? key, this.position, this.companyName, this.message,this.salary,this.location,this.type}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +82,7 @@ class UiUxDesignerScreen extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(userOccupation??"",
+                                    Text(position??"",
                                         style: appTextStyle(
                                             color: ColorRes.black,
                                             fontSize: 15,

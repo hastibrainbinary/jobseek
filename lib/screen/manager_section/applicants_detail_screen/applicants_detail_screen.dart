@@ -481,11 +481,7 @@ void settingModalBottomSheet(
                     const SizedBox(height: 10),
                     InkWell(
                       onTap: () async {
-                        controller.selectedValue = "";
-                        controller.msgController.clear();
-                        controller.msgController.text = "";
-                        controller.showTime = "Hour";
-                        controller.showDate = "Date";
+
                         // Get.back();
                         ManagerDashBoardScreenController controller2 =
                             Get.find<ManagerDashBoardScreenController>();
@@ -524,10 +520,17 @@ void settingModalBottomSheet(
                           'userUid': args['uid'],
                           'message': controller.msgController.text,
                           'userOccupation': args['Occupation'],
-                          'position':position
+                          'position':position,
+                          'salary':args['salary'],
+                          'location':args['location'],
+                          'type':args['type']
                         });
 
-
+                        controller.selectedValue = "";
+                        controller.msgController.clear();
+                        controller.msgController.text = "";
+                        controller.showTime = "Hour";
+                        controller.showDate = "Date";
                       },
                       child: Container(
                         height: 50,

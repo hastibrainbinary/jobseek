@@ -284,10 +284,10 @@ Future bottom(context, fileds, image, docId) {
                 const SizedBox(width: 10),
                 InkWell(
                   onTap: () {
+
                     FirebaseFirestore.instance
                         .collection("BookMark")
-                        .doc(docId)
-                        .delete();
+                        .doc(PrefService.getString(PrefKeys.userId)).collection('BookMark1').doc(docId).delete();
                     Navigator.of(context).pop();
                   },
                   child: Container(
