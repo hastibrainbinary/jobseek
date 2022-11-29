@@ -76,7 +76,7 @@ class ProfileController extends GetxController implements GetxService {
         companyAddressController.text = data["address"];
         dateController.text = data["date"];
         countryController.text = data["country"];
-        image =File(data['imageUrl']);
+        // image = File(data['imageUrl']);
         update();
         isLod.value = false;
       },
@@ -154,7 +154,7 @@ class ProfileController extends GetxController implements GetxService {
 
   getUrl() {
     FirebaseStorage storage = FirebaseStorage.instance;
-    Reference ref = storage.ref().child("imageM" + DateTime.now().toString());
+    Reference ref = storage.ref().child("imageM${DateTime.now()}");
     UploadTask uploadTask = ref.putFile(image!);
 
     uploadTask.then((res) async {
@@ -194,8 +194,10 @@ class ProfileController extends GetxController implements GetxService {
     final byteData = await rootBundle.load(img);
     final file = File('${systemTempDir.path}/$imageName.jpg');
 
-    await file.writeAsBytes(byteData.buffer
-        .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
+    await file.writeAsBytes(
+      byteData.buffer
+          .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes),
+    );
 
     TaskSnapshot taskSnapshot =
         await storage.ref('$path/$imageName').putFile(file);

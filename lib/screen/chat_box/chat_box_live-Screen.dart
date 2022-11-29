@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/screen/chat_box/chat_box_controller.dart';
 import 'package:jobseek/screen/chat_box_user/chat_box_usercontroller.dart';
 import 'package:jobseek/screen/manager_section/call/call_join_Screen.dart';
@@ -11,6 +10,7 @@ import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:paginate_firestore/paginate_firestore.dart';
 
+// ignore: must_be_immutable
 class ChatBoxLiveScreenM extends StatelessWidget {
   final String? name;
   final String? roomId;

@@ -19,7 +19,6 @@ bool abc = false;
 class JobDetailsUploadCvController extends GetxController {
   RefreshController refreshController = RefreshController();
 
-
   init() async {
     await firestore.collection("Apply").get().then((value) {
       value.docs.forEach((element) {
@@ -60,7 +59,7 @@ class JobDetailsUploadCvController extends GetxController {
 
     firestore
         .collection("Apply")
-        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .doc(FirebaseAuth.instance.currentUser?.uid)
         .set({
       'apply': true,
       'companyName': companyNameList,
@@ -71,7 +70,7 @@ class JobDetailsUploadCvController extends GetxController {
       'state': PrefService.getString(PrefKeys.state),
       'country': PrefService.getString(PrefKeys.country),
       'Occupation': PrefService.getString(PrefKeys.occupation),
-      'uid': FirebaseAuth.instance.currentUser!.uid,
+      'uid': FirebaseAuth.instance.currentUser?.uid,
       'resumeUrl': pdfUrl,
       'salary': args['salary'],
       'location': args['location'],
@@ -138,7 +137,6 @@ class JobDetailsUploadCvController extends GetxController {
       final File fileForFirebase = File(file.path!);
 
       uploadImage(file: fileForFirebase, path: "files/${file.name}");
-
     } else {
       // User canceled the picker
 

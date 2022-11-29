@@ -55,7 +55,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                     alignment: Alignment.center,
                     child: Center(
                       child: Text(
-                        "Update  Vacancies",
+                        Strings.updateVacancies,
                         style: appTextStyle(
                             color: ColorRes.black,
                             fontSize: 20,
@@ -104,11 +104,13 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                               width: 164,
                               decoration: BoxDecoration(
                                 border: Border.all(
+                                  // ignore: unrelated_type_equality_checks
                                   color: controller.isJobDetails == true
                                       ? ColorRes.white
                                       : ColorRes.containerColor,
                                 ),
                                 gradient: LinearGradient(
+                                  // ignore: unrelated_type_equality_checks
                                   colors: controller.isJobDetails == true
                                       ? [
                                           ColorRes.gradientColor,
@@ -124,6 +126,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                   textAlign: TextAlign.center,
                                   'Job Details',
                                   style: appTextStyle(
+                                      // ignore: unrelated_type_equality_checks
                                       color: controller.isJobDetails == true
                                           ? ColorRes.white
                                           : ColorRes.containerColor,
@@ -140,6 +143,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                               width: 164,
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
+                                  // ignore: unrelated_type_equality_checks
                                   colors: controller.isJobDetails == true
                                       ? [ColorRes.white, ColorRes.white]
                                       : [
@@ -149,6 +153,7 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                 ),
                                 borderRadius: BorderRadius.circular(10),
                                 border: Border.all(
+                                  // ignore: unrelated_type_equality_checks
                                   color: controller.isJobDetails == true
                                       ? ColorRes.containerColor
                                       : ColorRes.white,
@@ -162,7 +167,8 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                     style: appTextStyle(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 14,
-                                      color: controller.isJobDetails ==true
+                                      // ignore: unrelated_type_equality_checks
+                                      color: controller.isJobDetails == true
                                           ? ColorRes.containerColor
                                           : ColorRes.white,
                                     ),
@@ -244,13 +250,14 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                     ),
                                     commonTextFormField(
                                         textDecoration: InputDecoration(
-                                            contentPadding:
-                                                const EdgeInsets.all(15),
-                                            border: InputBorder.none,
-                                            hintText: "ui ux design",
-                                            hintStyle: appTextStyle(
-                                                fontSize: 14,
-                                                color: ColorRes.black)),
+                                          contentPadding:
+                                              const EdgeInsets.all(15),
+                                          border: InputBorder.none,
+                                          hintText: "ui ux design",
+                                          hintStyle: appTextStyle(
+                                              fontSize: 14,
+                                              color: ColorRes.black),
+                                        ),
                                         controller:
                                             controller.positionController),
                                     controller.isPositionValidate.value == true
@@ -988,7 +995,6 @@ class UpdateVacanciesRequirementsScreen extends StatelessWidget {
                                         const SizedBox(width: 5),
                                         Text(
                                           Strings.addNewRequirements,
-
                                           style: appTextStyle(
                                               color: ColorRes.containerColor,
                                               fontSize: 15,

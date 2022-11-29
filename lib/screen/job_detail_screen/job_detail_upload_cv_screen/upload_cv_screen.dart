@@ -64,11 +64,13 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                                       fontSize: 15,
                                       fontWeight: FontWeight.w500),
                                 ),
-                                Text(args["doc"]["CompanyName"],
-                                    style: appTextStyle(
-                                        color: ColorRes.black,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400)),
+                                Text(
+                                  args["doc"]["CompanyName"],
+                                  style: appTextStyle(
+                                      color: ColorRes.black,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400),
+                                ),
                               ],
                             ),
                           ],
@@ -167,12 +169,13 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                                         SizedBox(
                                           width: Get.width * 0.6,
                                           child: Text(
-                                              controller.filepath
-                                                  .value /*"Resume - Adam Smith.pdf"*/,
-                                              style: appTextStyle(
-                                                  fontSize: 13,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: ColorRes.black)),
+                                            controller.filepath
+                                                .value /*"Resume - Adam Smith.pdf"*/,
+                                            style: appTextStyle(
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w600,
+                                                color: ColorRes.black),
+                                          ),
                                         ),
                                         const SizedBox(height: 10),
                                         Text(
@@ -187,10 +190,12 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                                     InkWell(
                                       onTap: () {
                                         controller.pdfUrl = null;
-                                        controller.filepath.value="";
+                                        controller.filepath.value = "";
                                       },
                                       child: const Image(
-                                        image: AssetImage(AssetRes.PdfRemove,),
+                                        image: AssetImage(
+                                          AssetRes.PdfRemove,
+                                        ),
                                       ),
                                     )
                                   ],
@@ -200,7 +205,9 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          (controller.pdfUrl!=""||controller.pdfUrl==null) ? controller.applyResume() : null;
+                          (controller.pdfUrl != "" || controller.pdfUrl == null)
+                              ? controller.applyResume()
+                              : null;
                         },
                         child: Container(
                           width: Get.width,
@@ -297,9 +304,11 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                                       ColorRes.containerColor,
                                     ]),
                             ),
-                            child: Text(Strings.apply,
-                                style: appTextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.w500)),
+                            child: Text(
+                              Strings.apply,
+                              style: appTextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.w500),
+                            ),
                           );
                         }),
                       )

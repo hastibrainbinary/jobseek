@@ -12,6 +12,7 @@ import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
+import 'package:jobseek/utils/string.dart';
 import 'chat_box_controller.dart';
 
 // ignore: must_be_immutable
@@ -50,7 +51,7 @@ class ChatBoxScreen extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        'Logo',
+                        Strings.logo,
                         style: appTextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 10,
@@ -63,7 +64,7 @@ class ChatBoxScreen extends StatelessWidget {
                   alignment: Alignment.center,
                   child: Center(
                     child: Text(
-                      "Chat Box",
+                      Strings.chatBox,
                       style: appTextStyle(
                           color: ColorRes.black,
                           fontSize: 20,
@@ -259,9 +260,9 @@ class ChatBoxScreen extends StatelessWidget {
                                                   decoration: BoxDecoration(
                                                       borderRadius:
                                                           const BorderRadius
-                                                                  .all(
-                                                              Radius.circular(
-                                                                  15)),
+                                                              .all(
+                                                        Radius.circular(15),
+                                                      ),
                                                       border: Border.all(
                                                         color: const Color(
                                                             0xffF3ECFF),

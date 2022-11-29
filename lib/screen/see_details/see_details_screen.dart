@@ -8,6 +8,7 @@ import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/string.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/foundation.dart';
+// ignore: depend_on_referenced_packages
 import 'package:http/http.dart';
 
 class SeeDetailsScreen extends StatelessWidget {
@@ -141,12 +142,14 @@ class SeeDetailsScreen extends StatelessWidget {
                               ),
                               Row(
                                 children: [
-                                  Text("13/06/2022",
-                                      style: appTextStyle(
-                                          fontSize: 8,
-                                          fontWeight: FontWeight.w400,
-                                          color:
-                                              ColorRes.black.withOpacity(0.6))),
+                                  Text(
+                                    "13/06/2022",
+                                    style: appTextStyle(
+                                      fontSize: 8,
+                                      fontWeight: FontWeight.w400,
+                                      color: ColorRes.black.withOpacity(0.6),
+                                    ),
+                                  ),
                                   const SizedBox(width: 10),
                                   Text(
                                     "9:58",
@@ -204,7 +207,7 @@ class SeeDetailsScreen extends StatelessWidget {
                         width: 339,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: ColorRes.containerColor)),
+                            border: Border.all(color: ColorRes.containerColor),),
                         child: Text(
                           args['userName'],
                           style: const TextStyle(

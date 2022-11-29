@@ -95,7 +95,6 @@ Widget recentPeopleBox() {
                                         children: [
                                           Text(
                                             "${contro.userData[i]['userName']}",
-                                            // "${contro.userData[i]['fullName']}",
                                             style: appTextStyle(
                                                 color: ColorRes.black,
                                                 fontSize: 14,
@@ -130,9 +129,10 @@ Widget recentPeopleBox() {
                                           height: 40,
                                           width: 40,
                                           decoration: BoxDecoration(
-                                              color: ColorRes.logoColor,
-                                              borderRadius:
-                                                  BorderRadius.circular(8)),
+                                            color: ColorRes.logoColor,
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
                                           child: const GradientIcon(
                                             Icons.chat,
                                             20,
@@ -149,18 +149,21 @@ Widget recentPeopleBox() {
                                       InkWell(
                                         onTap: () {
                                           Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (con) =>
-                                                      const VideoJoiningScreen()));
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (con) =>
+                                                  const VideoJoiningScreen(),
+                                            ),
+                                          );
                                         },
                                         child: Container(
                                           height: 40,
                                           width: 40,
                                           decoration: BoxDecoration(
-                                              color: ColorRes.logoColor,
-                                              borderRadius:
-                                                  BorderRadius.circular(8)),
+                                            color: ColorRes.logoColor,
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
                                           child: const GradientIcon(
                                             Icons.videocam_sharp,
                                             20,

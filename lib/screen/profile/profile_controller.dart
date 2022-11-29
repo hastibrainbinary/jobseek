@@ -217,7 +217,6 @@ class ProfileUserController extends GetxController implements GetxService {
     image = File(path);
     getUrl();
     uploadImage();
-    // addImg(img: 'img');
     imagePicker();
     Get.back();
   }

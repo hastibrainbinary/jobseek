@@ -110,14 +110,15 @@ class ManagerApplicationScreen extends StatelessWidget {
                 controller.update(["search"]);
               },
               decoration: InputDecoration(
-                  border: InputBorder.none,
-                  suffixIcon: const Icon(Icons.search, color: ColorRes.grey),
-                  hintText: "Search",
-                  hintStyle: appTextStyle(
-                      fontSize: 14,
-                      color: ColorRes.grey,
-                      fontWeight: FontWeight.w500),
-                  contentPadding: const EdgeInsets.only(left: 0, top: 13)),
+                border: InputBorder.none,
+                suffixIcon: const Icon(Icons.search, color: ColorRes.grey),
+                hintText: "Search",
+                hintStyle: appTextStyle(
+                    fontSize: 14,
+                    color: ColorRes.grey,
+                    fontWeight: FontWeight.w500),
+                contentPadding: const EdgeInsets.only(left: 0, top: 13),
+              ),
             ),
           ),
           const SizedBox(
