@@ -145,6 +145,7 @@ class JobDetailsUploadCvController extends GetxController {
 
     filepath.value = "";
   }
+
   RxString filepath = "".obs;
   RxInt? fileSize;
   RxBool isPdfUploadError = false.obs;

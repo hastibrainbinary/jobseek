@@ -120,6 +120,7 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 controller.pdfUrl = null;
+                                controller.filepath.value = "";
                               },
                               child: const Image(
                                 image: AssetImage(AssetRes.PdfRemove),
@@ -143,11 +144,13 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                                   fontWeight: FontWeight.w600,
                                   color: ColorRes.containerColor),
                             )
-                          : Text(Strings.failed,
+                          : Text(
+                              Strings.failed,
                               style: appTextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600,
-                                  color: ColorRes.red)),
+                                  color: ColorRes.red),
+                            ),
                       const SizedBox(height: 5),
                       Text(
                           args[1]["error"] == false
@@ -210,18 +213,20 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                           // padding: const EdgeInsets.symmetric(vertical: 12),
                           margin: const EdgeInsets.only(top: 10, bottom: 30),
                           decoration: BoxDecoration(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10)),
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(10),
+                            ),
                             border: Border.all(color: ColorRes.containerColor),
                           ),
                           child: Text(
-                              args[1]["error"] == false
-                                  ? Strings.discoverMoreJobs
-                                  : Strings.discoverMoreJobs,
-                              style: appTextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w500,
-                                  color: ColorRes.containerColor)),
+                            args[1]["error"] == false
+                                ? Strings.discoverMoreJobs
+                                : Strings.discoverMoreJobs,
+                            style: appTextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                                color: ColorRes.containerColor),
+                          ),
                         ),
                       ),
                     ],

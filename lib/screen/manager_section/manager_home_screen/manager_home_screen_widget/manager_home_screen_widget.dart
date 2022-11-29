@@ -29,8 +29,7 @@ Widget recentPeopleBox() {
             print(contro.userData[0]['companyName'][0]['companyname']);
 
             contro.userData[i]['companyName'].forEach((element) {
-
-              if (element['companyname'].toString().toLowerCase() ==
+              if (element.toString().toLowerCase() ==
                   PrefService.getString(PrefKeys.companyName)
                       .toString()
                       .toLowerCase()) {
@@ -152,18 +151,21 @@ Widget recentPeopleBox() {
                                       InkWell(
                                         onTap: () {
                                           Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (con) =>
-                                                      const VideoJoiningScreen()));
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (con) =>
+                                                  const VideoJoiningScreen(),
+                                            ),
+                                          );
                                         },
                                         child: Container(
                                           height: 40,
                                           width: 40,
                                           decoration: BoxDecoration(
-                                              color: ColorRes.logoColor,
-                                              borderRadius:
-                                                  BorderRadius.circular(8)),
+                                            color: ColorRes.logoColor,
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
                                           child: const GradientIcon(
                                             Icons.videocam_sharp,
                                             20,

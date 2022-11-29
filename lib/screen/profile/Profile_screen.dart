@@ -140,9 +140,10 @@ class ProfileUserScreenU extends StatelessWidget {
                             Text(
                               PrefService.getString(PrefKeys.occupation),
                               style: appTextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 12,
-                                  color: ColorRes.black.withOpacity(0.6)),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
+                                color: ColorRes.black.withOpacity(0.6),
+                              ),
                             ),
                           ],
                         ),

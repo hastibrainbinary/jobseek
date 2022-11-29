@@ -182,9 +182,12 @@ class ChatBoxScreen extends StatelessWidget {
                                 QuerySnapshot<Map<String, dynamic>>>(
                             stream: FirebaseFirestore.instance
                                 .collection("Apply")
-                                .where('uidList')
-                                .orderBy('lastMessageTime', descending: true)
                                 .snapshots(),
+                            /*FirebaseFirestore.instance
+                .collection("Auth")
+                .doc("User")
+                .collection("register")
+                .snapshots(),*/
                             builder: (context, snapshot) {
                               if (snapshot.data == null ||
                                   snapshot.hasData == false) {
@@ -195,6 +198,7 @@ class ChatBoxScreen extends StatelessWidget {
                                   itemCount: snapshot.data!.docs.length,
                                   itemBuilder: (context, index) {
                                     String? o;
+
                                     snapshot.data!.docs[index]['companyName']
                                         .forEach((element) {
                                       if (element.toString().toLowerCase() ==
@@ -256,9 +260,9 @@ class ChatBoxScreen extends StatelessWidget {
                                                   decoration: BoxDecoration(
                                                       borderRadius:
                                                           const BorderRadius
-                                                                  .all(
-                                                              Radius.circular(
-                                                                  15)),
+                                                              .all(
+                                                        Radius.circular(15),
+                                                      ),
                                                       border: Border.all(
                                                         color: const Color(
                                                             0xffF3ECFF),
@@ -494,9 +498,10 @@ class ChatBoxScreen extends StatelessWidget {
                                                       decoration: BoxDecoration(
                                                           borderRadius:
                                                               const BorderRadius
-                                                                  .all(
-                                                            Radius.circular(15),
-                                                          ),
+                                                                      .all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          15)),
                                                           border: Border.all(
                                                             color: const Color(
                                                                 0xffF3ECFF),

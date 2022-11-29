@@ -103,11 +103,13 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
                                   fontSize: 10,
                                   fontWeight: FontWeight.w400),
                             ),
-                            Text(args["docs"]["type"],
-                                style: appTextStyle(
-                                    color: ColorRes.black,
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w400)),
+                            Text(
+                              args["docs"]["type"],
+                              style: appTextStyle(
+                                  color: ColorRes.black,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w400),
+                            ),
                           ],
                         ),
                       ],

@@ -90,33 +90,35 @@ class ProfileScreen extends StatelessWidget {
                             child: Row(
                               children: [
                                 GetBuilder<ProfileController>(
-                                  id:"image",
-                                  builder: (con) {
-                                    return Stack(
-                                      children: [
-                                        Container(
-                                          width: 90,
-                                          height: 90,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            image: (controller.image == null)
-                                                ? DecorationImage(
-                                                    image: const AssetImage(
-                                                      AssetRes.roundAirbnb,
-                                                    ),
-                                                    fit: BoxFit.fill,
-                                                    onError: (error, starcase) {
-                                                      Image.asset(
-                                                          AssetRes.userImage);
-                                                    })
-                                                : DecorationImage(
-                                                    image: FileImage(
-                                                      controller.image!,
-                                                    ),
-                                                    fit: BoxFit.fill),
+                                    id: "image",
+                                    builder: (con) {
+                                      return Stack(
+                                        children: [
+                                          Container(
+                                            width: 90,
+                                            height: 90,
+                                            decoration: BoxDecoration(
+                                              color: ColorRes.black,
+                                              shape: BoxShape.circle,
+                                              image: (controller.image == null)
+                                                  ? DecorationImage(
+                                                      image: const AssetImage(
+                                                        AssetRes.roundAirbnb,
+                                                      ),
+                                                      fit: BoxFit.fill,
+                                                      onError:
+                                                          (error, starcase) {
+                                                        Image.asset(
+                                                            AssetRes.userImage);
+                                                      })
+                                                  : DecorationImage(
+                                                      image: FileImage(
+                                                        controller.image!,
+                                                      ),
+                                                      fit: BoxFit.fill),
+                                            ),
                                           ),
-                                        ),
-                                        /*Positioned(
+                                          /*Positioned(
                             bottom: 0,
                             right: 10,
                             child: InkWell(
@@ -289,10 +291,9 @@ class ProfileScreen extends StatelessWidget {
                               ),
                             ),
                           ),*/
-                                      ],
-                                    );
-                                  }
-                                ),
+                                        ],
+                                      );
+                                    }),
                                 const SizedBox(width: 20),
                                 Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -309,10 +310,10 @@ class ProfileScreen extends StatelessWidget {
                                     Text(
                                       controller.companyEmailController.text,
                                       style: appTextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 12,
-                                          color:
-                                              ColorRes.black.withOpacity(0.6)),
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12,
+                                        color: ColorRes.black.withOpacity(0.6),
+                                      ),
                                     ),
                                     const SizedBox(height: 2),
                                     Text(
