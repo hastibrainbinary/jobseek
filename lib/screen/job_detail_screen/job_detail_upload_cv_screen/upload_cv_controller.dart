@@ -52,6 +52,7 @@ class JobDetailsUploadCvController extends GetxController {
     refreshController.refreshCompleted();
   }
   String? pdfUrl;
+  double filesize =0;
 
  /* onTapApply({var args}) {
     abc = false;
@@ -133,6 +134,8 @@ class JobDetailsUploadCvController extends GetxController {
       'Occupation': PrefService.getString(PrefKeys.occupation),
       'uid': FirebaseAuth.instance.currentUser!.uid,
       'resumeUrl': pdfUrl,
+      'fileName':filepath.value,
+      'fileSize':filesize,
       'salary': args['salary'],
       'location': args['location'],
       'type': args['type'],
@@ -181,6 +184,9 @@ class JobDetailsUploadCvController extends GetxController {
       final kbVal = kb.ceil().toInt();
       final mb = kb / 1024;
       fileSize?.value = kbVal;
+      filesize = mb;
+
+      print(filesize);
 
       debugPrint("filepath $filepath FileSize ${fileSize?.value}  $kbVal");
       {
@@ -189,7 +195,7 @@ class JobDetailsUploadCvController extends GetxController {
 
         debugPrint("FILES : $file");
         filepath.value = file.name.toString();
-        fileSize?.value = file.size;
+        fileSize?.value = file.size.ceil().toInt();
         isPdfUploadError.value = false;
 
         debugPrint("filepath $filepath FileSize $fileSize");
@@ -206,7 +212,7 @@ class JobDetailsUploadCvController extends GetxController {
     }
   }
 
-  Future<String?> uploadImage({File? file, String? path}) async {
+  Future<String?> uploadImage({File? file, String? path,}) async {
     final firebaseStorage = FirebaseStorage.instance;
 
     if (file != null) {

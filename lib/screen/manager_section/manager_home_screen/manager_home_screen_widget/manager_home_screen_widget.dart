@@ -13,7 +13,7 @@ import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 import 'package:jobseek/utils/string.dart';
 
-Widget recentPeopleBox() {
+Widget recentPeopleBox({bool? homeScreen,String? position}) {
   final contro = Get.put(ManagerHomeScreenController());
   JobDetailsUploadCvController jobDetailsUploadCvController =
       Get.put(JobDetailsUploadCvController());
@@ -28,17 +28,34 @@ Widget recentPeopleBox() {
 
             print(contro.userData[0]['companyName'][0]['companyname']);
 
-            contro.userData[i]['companyName'].forEach((element) {
-              if (element.toString().toLowerCase() ==
-                  PrefService.getString(PrefKeys.companyName)
-                      .toString()
-                      .toLowerCase()) {
-                if (kDebugMode) {
-                  print(element);
-                }
-                o = element['companyname'];
+            if(homeScreen==true)
+              {
+                contro.userData[i]['companyName'].forEach((element) {
+                  if (element['companyname'].toString().toLowerCase() ==
+                      PrefService.getString(PrefKeys.companyName)
+                          .toString()
+                          .toLowerCase() && element['position'].toString()==position) {
+                    if (kDebugMode) {
+                      print(element);
+                    }
+                    o = element['companyname'];
+                  }
+                });
               }
-            });
+           else {
+              contro.userData[i]['companyName'].forEach((element) {
+                if (element['companyname'].toString().toLowerCase() ==
+                    PrefService.getString(PrefKeys.companyName)
+                        .toString()
+                        .toLowerCase()) {
+                  if (kDebugMode) {
+                    print(element);
+                  }
+                  o = element['companyname'];
+                }
+              });
+            }
+
 
             return (o.toString().toLowerCase() ==
                     PrefService.getString(PrefKeys.companyName)

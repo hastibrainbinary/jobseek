@@ -115,14 +115,20 @@ class SeeDetailsScreen extends StatelessWidget {
                               ),
                               Row(
                                 children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(bottom: 1),
-                                    child: Text(
-                                      "Get started.pdf",
-                                      style: appTextStyle(
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.w500,
-                                          color: ColorRes.black),
+                                  SizedBox(
+                                    width: 90,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(bottom: 1),
+                                      child: Flexible(
+                                        child: Text(
+                                          "${args['fileName']}",
+                                          overflow: TextOverflow.ellipsis,
+                                          style: appTextStyle(
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w500,
+                                              color: ColorRes.black),
+                                        ),
+                                      ),
                                     ),
                                   ),
                                   const SizedBox(width: 50),
@@ -160,7 +166,7 @@ class SeeDetailsScreen extends StatelessWidget {
                                   ),
                                   const SizedBox(width: 12),
                                   Text(
-                                    "258.4 KB",
+                                    "${args['fileSize'].toStringAsFixed(1)} MB",
                                     style: appTextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontSize: 8,
