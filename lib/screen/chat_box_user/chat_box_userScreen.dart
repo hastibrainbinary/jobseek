@@ -210,13 +210,13 @@ class ChatBoxUserScreen extends StatelessWidget {
                             });*/
 
                                         companyList.forEach((element) {
-                                          if (element
+                                          if (element['companyname']
                                                   .toString()
                                                   .toLowerCase() ==
                                               data['name']
                                                   .toString()
                                                   .toLowerCase()) {
-                                            o = element;
+                                            o = element['companyname'];
                                           }
                                         });
 
@@ -433,13 +433,13 @@ class ChatBoxUserScreen extends StatelessWidget {
                                         String? o;
 
                                         companyList.forEach((element) {
-                                          if (element
+                                          if (element['companyname']
                                                   .toString()
                                                   .toLowerCase() ==
                                               data['name']
                                                   .toString()
                                                   .toLowerCase()) {
-                                            o = element;
+                                            o = element['companyname'];
                                           }
                                         });
 

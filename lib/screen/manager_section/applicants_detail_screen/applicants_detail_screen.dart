@@ -502,6 +502,16 @@ void settingModalBottomSheet(
                           'companyName':
                               PrefService.getString(PrefKeys.companyName),
                         });
+                        String? position;
+                        args['companyName'].forEach((e){
+                          if(e['companyname']==PrefService.getString(PrefKeys.companyName))
+                            {
+
+                              position = e['position'].toString();
+
+                              print(position);
+                            }
+                        });
 
                         await FirebaseFirestore.instance
                             .collection("Applicants")
@@ -513,8 +523,11 @@ void settingModalBottomSheet(
                           'status': controller.selectedValue,
                           'userUid': args['uid'],
                           'message': controller.msgController.text,
-                          'userOccupation': args['Occupation']
+                          'userOccupation': args['Occupation'],
+                          'position':position
                         });
+
+
                       },
                       child: Container(
                         height: 50,

@@ -12,18 +12,34 @@ import '../../../utils/pref_keys.dart';
 
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 //List<String> position = [];
-List companyList = [];
-
+List<Map<String,dynamic>> companyList = [];
 bool abc = false;
 
 class JobDetailsUploadCvController extends GetxController {
   RefreshController refreshController = RefreshController();
 
-  init() async {
+
+ /* init() async {
     await firestore.collection("Apply").get().then((value) {
       value.docs.forEach((element) {
         if (element['uid'] == PrefService.getString(PrefKeys.userId)) {
           companyList = element['companyName'];
+        }
+      });
+
+      *//*for (int i = 1; i <= value.docs.length; i++) {
+        if (value.docs[i]['uid'] == PrefService.getString(PrefKeys.userId)) {
+          companyList = value.docs[i]['companyName'];
+        }
+      }*//*
+    });
+    refreshController.refreshCompleted();
+  }*/
+  init() async {
+    await firestore.collection("Apply").get().then((value) {
+      value.docs.forEach((element) {
+        if (element['uid'] == PrefService.getString(PrefKeys.userId)) {
+          companyList.add( {"companyname" :element['CompanyName'], "position":element['Position']});
         }
       });
 
@@ -35,10 +51,9 @@ class JobDetailsUploadCvController extends GetxController {
     });
     refreshController.refreshCompleted();
   }
-
   String? pdfUrl;
 
-  onTapApply({var args}) {
+ /* onTapApply({var args}) {
     abc = false;
     for (int i = 0; i < companyList.length; i++) {
       if (companyList[i] == args['CompanyName']) {
@@ -59,7 +74,7 @@ class JobDetailsUploadCvController extends GetxController {
 
     firestore
         .collection("Apply")
-        .doc(FirebaseAuth.instance.currentUser?.uid)
+        .doc(FirebaseAuth.instance.currentUser!.uid)
         .set({
       'apply': true,
       'companyName': companyNameList,
@@ -70,7 +85,53 @@ class JobDetailsUploadCvController extends GetxController {
       'state': PrefService.getString(PrefKeys.state),
       'country': PrefService.getString(PrefKeys.country),
       'Occupation': PrefService.getString(PrefKeys.occupation),
-      'uid': FirebaseAuth.instance.currentUser?.uid,
+      'uid': FirebaseAuth.instance.currentUser!.uid,
+      'resumeUrl': pdfUrl,
+      'salary': args['salary'],
+      'location': args['location'],
+      'type': args['type'],
+    });
+
+    Get.toNamed(AppRes.jobDetailSuccessOrFailed, arguments: [
+      {"doc": args},
+      {"error": false, "filename": filepath},
+    ]);
+
+    filepath.value = "";
+  }*/
+  onTapApply({var args}) {
+    abc = false;
+    for (int i = 0; i < companyList.length; i++) {
+      if (companyList[i]['companycame'] == args['CompanyName'] && companyList[i]['position'] == args['Position']) {
+        abc = true;
+      }
+    }
+
+    if (!abc) {
+      companyList.add({"companyname" :args['CompanyName'], "position":args['Position']});
+    }
+
+    List<Map<String,dynamic>> companyNameList = List.generate(companyList.length, (index) {
+      return companyList[index];
+    });
+    if (kDebugMode) {
+      print(companyNameList.runtimeType);
+    }
+
+    firestore
+        .collection("Apply")
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .set({
+      'apply': true,
+      'companyName': companyNameList,
+      'userName': PrefService.getString(PrefKeys.fullName),
+      'email': PrefService.getString(PrefKeys.email),
+      'phone': PrefService.getString(PrefKeys.phoneNumber),
+      'city': PrefService.getString(PrefKeys.city),
+      'state': PrefService.getString(PrefKeys.state),
+      'country': PrefService.getString(PrefKeys.country),
+      'Occupation': PrefService.getString(PrefKeys.occupation),
+      'uid': FirebaseAuth.instance.currentUser!.uid,
       'resumeUrl': pdfUrl,
       'salary': args['salary'],
       'location': args['location'],
@@ -84,7 +145,6 @@ class JobDetailsUploadCvController extends GetxController {
 
     filepath.value = "";
   }
-
   RxString filepath = "".obs;
   RxInt? fileSize;
   RxBool isPdfUploadError = false.obs;
@@ -137,6 +197,7 @@ class JobDetailsUploadCvController extends GetxController {
       final File fileForFirebase = File(file.path!);
 
       uploadImage(file: fileForFirebase, path: "files/${file.name}");
+
     } else {
       // User canceled the picker
 
