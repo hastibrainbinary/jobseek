@@ -237,7 +237,7 @@ class ApplicationsScreen extends StatelessWidget {
                                                                       children: [
                                                                         Text(
                                                                             snapshot2.data!.docs[index2][
-                                                                                'userOccupation'],
+                                                                                'position'],
                                                                             style: appTextStyle(
                                                                                 color: ColorRes.black,
                                                                                 fontSize: 15,

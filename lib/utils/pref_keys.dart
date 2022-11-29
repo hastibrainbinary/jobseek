@@ -40,4 +40,6 @@ class PrefKeys {
   static const companyName = "companyName";
   static const firstnameu = "firstnameu";
 
+  static const imageManager ="imageManager";
+
 }

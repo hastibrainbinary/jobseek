@@ -26,15 +26,18 @@ Widget recentPeopleBox() {
           itemBuilder: (context, i) {
             String? o;
 
+            print(contro.userData[0]['companyName'][0]['companyname']);
+
             contro.userData[i]['companyName'].forEach((element) {
-              if (element.toString().toLowerCase() ==
+
+              if (element['companyname'].toString().toLowerCase() ==
                   PrefService.getString(PrefKeys.companyName)
                       .toString()
                       .toLowerCase()) {
                 if (kDebugMode) {
                   print(element);
                 }
-                o = element;
+                o = element['companyname'];
               }
             });
 
@@ -95,7 +98,7 @@ Widget recentPeopleBox() {
                                         children: [
                                           Text(
                                            // "${contro.userData[i]['userName']}",
-                                            "${contro.userData[i]['fullName']}",
+                                            "${contro.userData[i]['userName']}",
                                             style: appTextStyle(
                                                 color: ColorRes.black,
                                                 fontSize: 14,

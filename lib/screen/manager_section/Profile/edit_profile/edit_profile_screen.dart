@@ -75,25 +75,30 @@ class EditProfileScreen extends StatelessWidget {
                     children: [
                       Stack(
                         children: [
-                          Container(
-                            width: 90,
-                            height: 90,
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: (controller.image == null)
-                                    ? DecorationImage(
-                                        image: const AssetImage(
-                                          AssetRes.roundAirbnb,
-                                        ),
-                                        fit: BoxFit.fill,
-                                        onError: (error, starcase) {
-                                          Image.asset(AssetRes.userImage);
-                                        })
-                                    : DecorationImage(
-                                        image: FileImage(
-                                          controller.image!,
-                                        ),
-                                        fit: BoxFit.fill)),
+                          GetBuilder<ProfileController>(
+                            id:"image",
+                            builder: (context) {
+                              return Container(
+                                width: 90,
+                                height: 90,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: (controller.image == null)
+                                        ? DecorationImage(
+                                            image: const AssetImage(
+                                              AssetRes.roundAirbnb,
+                                            ),
+                                            fit: BoxFit.fill,
+                                            onError: (error, starcase) {
+                                              Image.asset(AssetRes.userImage);
+                                            })
+                                        : DecorationImage(
+                                            image: FileImage(
+                                              controller.image!,
+                                            ),
+                                            fit: BoxFit.fill)),
+                              );
+                            }
                           ),
                           Positioned(
                             bottom: 0,
@@ -153,8 +158,10 @@ class EditProfileScreen extends StatelessWidget {
                                                 child: Column(
                                                   children: [
                                                     InkWell(
-                                                      onTap: () =>
-                                                          controller.onTapImage,
+                                                      onTap: () {
+                                                        controller.onTapImage();
+                                                      },
+
                                                       child: Container(
                                                         height: 70,
                                                         width: 70,
