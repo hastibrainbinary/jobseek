@@ -174,11 +174,13 @@ class ApplicationsScreen extends StatelessWidget {
                                       return (snapshot2.data!
                                                   .docs[index2]['userName']
                                                   .toString()
-                                                  .toLowerCase().removeAllWhitespace ==
+                                                  .toLowerCase()
+                                                  .removeAllWhitespace ==
                                               PrefService.getString(
                                                       PrefKeys.fullName)
                                                   .toString()
-                                                  .toLowerCase().removeAllWhitespace)
+                                                  .toLowerCase()
+                                                  .removeAllWhitespace)
                                           ? Obx(
                                               () => Column(
                                                 children: [
@@ -269,7 +271,7 @@ class ApplicationsScreen extends StatelessWidget {
                                                                       ? Navigator.push(
                                                                           context,
                                                                           MaterialPageRoute(
-                                                                              builder: (con) => UiUxDesignerScreen(
+                                                                              builder: (con) => SentScreen(
                                                                                     position: snapshot2.data!.docs[index2]['position'],
                                                                                     companyName: snapshot.data!.docs[index]['companyName'],
                                                                                     message: snapshot2.data!.docs[index2]['message'],
@@ -625,16 +627,19 @@ class ApplicationsScreen extends StatelessWidget {
                                                               padding:
                                                                   const EdgeInsets
                                                                       .all(15),
-                                                              decoration: BoxDecoration(
-                                                                  borderRadius: const BorderRadius
-                                                                          .all(
-                                                                      Radius.circular(
-                                                                          15)),
-                                                                  border: Border.all(
-                                                                      color: const Color(
-                                                                          0xffF3ECFF)),
-                                                                  color: ColorRes
-                                                                      .white),
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                      borderRadius:
+                                                                          const BorderRadius.all(Radius.circular(
+                                                                              15)),
+                                                                      border:
+                                                                          Border
+                                                                              .all(
+                                                                        color: const Color(
+                                                                            0xffF3ECFF),
+                                                                      ),
+                                                                      color: ColorRes
+                                                                          .white),
                                                               child: Column(
                                                                 children: [
                                                                   Padding(
@@ -680,7 +685,7 @@ class ApplicationsScreen extends StatelessWidget {
                                                                       Navigator.push(
                                                                           context,
                                                                           MaterialPageRoute(
-                                                                              builder: (con) => UiUxDesignerScreen(
+                                                                              builder: (con) => SentScreen(
                                                                                     position: snapshot2.data!.docs[index2]['position'],
                                                                                     companyName: snapshot.data!.docs[index]['companyName'],
                                                                                     message: snapshot2.data!.docs[index2]['message'],

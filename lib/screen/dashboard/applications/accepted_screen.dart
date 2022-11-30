@@ -5,6 +5,7 @@ import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
+// ignore: must_be_immutable
 class AcceptedScreen extends StatelessWidget {
   String? position;
   String? companyName;

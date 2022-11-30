@@ -6,8 +6,22 @@ import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/string.dart';
 
-class FinancialPlannerScreen extends StatelessWidget {
-  const FinancialPlannerScreen({Key? key}) : super(key: key);
+class ScheduleInterviewScreen extends StatelessWidget {
+  String? position;
+  String? companyName;
+  String? message;
+  String? salary;
+  String? location;
+  String? type;
+  ScheduleInterviewScreen(
+      {Key? key,
+      this.position,
+      this.companyName,
+      this.message,
+      this.salary,
+      this.location,
+      this.type})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -71,12 +85,12 @@ class FinancialPlannerScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("Financial Planner",
+                              Text(position ?? "",
                                   style: appTextStyle(
                                       color: ColorRes.black,
                                       fontSize: 15,
                                       fontWeight: FontWeight.w500)),
-                              Text("Twitter",
+                              Text(companyName ?? "",
                                   style: appTextStyle(
                                       color: ColorRes.black,
                                       fontSize: 12,
@@ -130,7 +144,7 @@ class FinancialPlannerScreen extends StatelessWidget {
                               color: ColorRes.black.withOpacity(0.8),
                               fontSize: 12,
                               fontWeight: FontWeight.w500)),
-                      Text("\$1.480",
+                      Text(salary ?? "",
                           style: appTextStyle(
                               color: ColorRes.containerColor,
                               fontSize: 12,
@@ -147,7 +161,7 @@ class FinancialPlannerScreen extends StatelessWidget {
                               fontSize: 12,
                               fontWeight: FontWeight.w500)),
                       Text(
-                        "Freelance",
+                        type ?? "",
                         style: appTextStyle(
                             color: ColorRes.containerColor,
                             fontSize: 12,
@@ -167,7 +181,7 @@ class FinancialPlannerScreen extends StatelessWidget {
                             fontWeight: FontWeight.w500),
                       ),
                       Text(
-                        "Singapore",
+                        type ?? "",
                         style: appTextStyle(
                             color: ColorRes.containerColor,
                             fontSize: 12,

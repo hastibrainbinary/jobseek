@@ -5,14 +5,23 @@ import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
-class UiUxDesignerScreen extends StatelessWidget {
+// ignore: must_be_immutable
+class SentScreen extends StatelessWidget {
   String? position;
   String? companyName;
   String? message;
   String? salary;
   String? location;
   String? type;
-   UiUxDesignerScreen({Key? key, this.position, this.companyName, this.message,this.salary,this.location,this.type}) : super(key: key);
+  SentScreen(
+      {Key? key,
+      this.position,
+      this.companyName,
+      this.message,
+      this.salary,
+      this.location,
+      this.type})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -82,12 +91,12 @@ class UiUxDesignerScreen extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(position??"",
+                                    Text(position ?? "",
                                         style: appTextStyle(
                                             color: ColorRes.black,
                                             fontSize: 15,
                                             fontWeight: FontWeight.w500)),
-                                    Text(companyName??"",
+                                    Text(companyName ?? "",
                                         style: appTextStyle(
                                             color: ColorRes.black,
                                             fontSize: 12,
@@ -143,7 +152,7 @@ class UiUxDesignerScreen extends StatelessWidget {
                                       color: ColorRes.black.withOpacity(0.8),
                                       fontSize: 12,
                                       fontWeight: FontWeight.w500)),
-                              Text(salary ??"",
+                              Text(salary ?? "",
                                   style: appTextStyle(
                                       color: ColorRes.containerColor,
                                       fontSize: 12,
@@ -154,16 +163,20 @@ class UiUxDesignerScreen extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("Type",
-                                  style: appTextStyle(
-                                      color: ColorRes.black.withOpacity(0.8),
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500)),
-                              Text(type ??"",
-                                  style: appTextStyle(
-                                      color: ColorRes.containerColor,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600)),
+                              Text(
+                                "Type",
+                                style: appTextStyle(
+                                    color: ColorRes.black.withOpacity(0.8),
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              Text(
+                                type ?? "",
+                                style: appTextStyle(
+                                    color: ColorRes.containerColor,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600),
+                              ),
                             ],
                           ),
                           const SizedBox(height: 10),
@@ -175,7 +188,7 @@ class UiUxDesignerScreen extends StatelessWidget {
                                       color: ColorRes.black.withOpacity(0.8),
                                       fontSize: 12,
                                       fontWeight: FontWeight.w500)),
-                              Text(location ??"",
+                              Text( type ?? "",
                                   style: appTextStyle(
                                       color: ColorRes.containerColor,
                                       fontSize: 12,
@@ -189,14 +202,13 @@ class UiUxDesignerScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
-                       message??"",
+                        message ?? "",
                         style: appTextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
                             color: ColorRes.black.withOpacity(0.9)),
                       ),
                     ),
-
                     const SizedBox(height: 55),
                     Container(
                       height: 50,

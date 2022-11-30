@@ -5,6 +5,7 @@ import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
+// ignore: must_be_immutable
 class RejectedScreen extends StatelessWidget {
   String? position;
   String? companyName;
@@ -12,7 +13,15 @@ class RejectedScreen extends StatelessWidget {
   String? salary;
   String? location;
   String? type;
-   RejectedScreen({Key? key, this.position, this.companyName, this.message,this.salary,this.location,this.type}) : super(key: key);
+  RejectedScreen(
+      {Key? key,
+      this.position,
+      this.companyName,
+      this.message,
+      this.salary,
+      this.location,
+      this.type})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -83,13 +92,13 @@ class RejectedScreen extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      position??"",
+                                      position ?? "",
                                       style: appTextStyle(
                                           color: ColorRes.black,
                                           fontSize: 15,
                                           fontWeight: FontWeight.w500),
                                     ),
-                                    Text(companyName??"",
+                                    Text(companyName ?? "",
                                         style: appTextStyle(
                                             color: ColorRes.black,
                                             fontSize: 12,
@@ -156,16 +165,20 @@ class RejectedScreen extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("Type",
-                                  style: appTextStyle(
-                                      color: ColorRes.black.withOpacity(0.8),
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500)),
-                              Text(type??"",
-                                  style: appTextStyle(
-                                      color: ColorRes.containerColor,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600)),
+                              Text(
+                                "Type",
+                                style: appTextStyle(
+                                    color: ColorRes.black.withOpacity(0.8),
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              Text(
+                                type ?? "",
+                                style: appTextStyle(
+                                    color: ColorRes.containerColor,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600),
+                              ),
                             ],
                           ),
                           const SizedBox(height: 10),
@@ -177,7 +190,7 @@ class RejectedScreen extends StatelessWidget {
                                       color: ColorRes.black.withOpacity(0.8),
                                       fontSize: 12,
                                       fontWeight: FontWeight.w500)),
-                              Text(location??"",
+                              Text(location ?? "",
                                   style: appTextStyle(
                                       color: ColorRes.containerColor,
                                       fontSize: 12,
@@ -191,14 +204,13 @@ class RejectedScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
-                        message??"",
+                        message ?? "",
                         style: appTextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
                             color: ColorRes.black.withOpacity(0.9)),
                       ),
                     ),
-
                     const SizedBox(height: 55),
                     Container(
                       height: 50,

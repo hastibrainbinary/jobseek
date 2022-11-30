@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/call/video_ReceiveScreen.dart';
@@ -481,7 +482,6 @@ void settingModalBottomSheet(
                     const SizedBox(height: 10),
                     InkWell(
                       onTap: () async {
-
                         // Get.back();
                         ManagerDashBoardScreenController controller2 =
                             Get.find<ManagerDashBoardScreenController>();
@@ -499,14 +499,15 @@ void settingModalBottomSheet(
                               PrefService.getString(PrefKeys.companyName),
                         });
                         String? position;
-                        args['companyName'].forEach((e){
-                          if(e['companyname']==PrefService.getString(PrefKeys.companyName))
-                            {
+                        args['companyName'].forEach((e) {
+                          if (e['companyname'] ==
+                              PrefService.getString(PrefKeys.companyName)) {
+                            position = e['position'].toString();
 
-                              position = e['position'].toString();
-
+                            if (kDebugMode) {
                               print(position);
                             }
+                          }
                         });
 
                         await FirebaseFirestore.instance
@@ -520,10 +521,10 @@ void settingModalBottomSheet(
                           'userUid': args['uid'],
                           'message': controller.msgController.text,
                           'userOccupation': args['Occupation'],
-                          'position':position,
-                          'salary':args['salary'],
-                          'location':args['location'],
-                          'type':args['type']
+                          'position': position,
+                          'salary': args['salary'],
+                          'location': args['location'],
+                          'type': args['type']
                         });
 
                         controller.selectedValue = "";
@@ -568,11 +569,13 @@ void settingModalBottomSheet(
                     Image.asset(AssetRes.failedImage, height: 130),
                     const SizedBox(height: 20),
                     Center(
-                      child: Text(Strings.oopsFailed,
-                          style: appTextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w600,
-                              color: ColorRes.starColor)),
+                      child: Text(
+                        Strings.oopsFailed,
+                        style: appTextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                            color: ColorRes.starColor),
+                      ),
                     ),
                     const SizedBox(height: 10),
                     Center(
