@@ -22,6 +22,8 @@ class ApplicationsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
+    print("fcbsgbfcsdtfvs");
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
@@ -369,11 +371,11 @@ class ApplicationsScreen extends StatelessWidget {
                                                   (applicationController
                                                               .selectedJobs
                                                               .value ==
-                                                          1)
+                                                          2)
                                                       ? (snapshot2.data!.docs[
                                                                       index2]
                                                                   ['status'] ==
-                                                              'Accepted')
+                                                              'Schedule Interview')
                                                           ? Container(
                                                               height: 135,
                                                               width: Get.width,
@@ -437,17 +439,7 @@ class ApplicationsScreen extends StatelessWidget {
                                                                           10),
                                                                   InkWell(
                                                                     onTap: () {
-                                                                      Navigator.push(
-                                                                          context,
-                                                                          MaterialPageRoute(
-                                                                              builder: (con) => AcceptedScreen(
-                                                                                    position: snapshot2.data!.docs[index2]['position'],
-                                                                                    companyName: snapshot.data!.docs[index]['companyName'],
-                                                                                    message: snapshot2.data!.docs[index2]['message'],
-                                                                                    salary: snapshot2.data!.docs[index2]['salary'],
-                                                                                    location: snapshot2.data!.docs[index2]['location'],
-                                                                                    type: snapshot2.data!.docs[index2]['type'],
-                                                                                  )));
+
                                                                     },
                                                                     child:
                                                                         Container(
@@ -458,7 +450,7 @@ class ApplicationsScreen extends StatelessWidget {
                                                                       decoration:
                                                                           BoxDecoration(
                                                                         color: const Color(
-                                                                            0xffEDF9F0),
+                                                                            0xffFFFBED),
                                                                         borderRadius:
                                                                             BorderRadius.circular(99),
                                                                       ),
@@ -466,7 +458,7 @@ class ApplicationsScreen extends StatelessWidget {
                                                                           Center(
                                                                         child:
                                                                             Text(
-                                                                          "Application Accepted",
+                                                                          "Schedule Interview",
                                                                           style:
                                                                               appTextStyle(
                                                                             fontSize:
@@ -474,7 +466,7 @@ class ApplicationsScreen extends StatelessWidget {
                                                                             fontWeight:
                                                                                 FontWeight.w500,
                                                                             color:
-                                                                                const Color(0xff23A757),
+                                                                                const Color(0xffF1C100),
                                                                           ),
                                                                         ),
                                                                       ),
@@ -484,6 +476,125 @@ class ApplicationsScreen extends StatelessWidget {
                                                               ),
                                                             )
                                                           : const SizedBox()
+                                                      : const SizedBox(),
+                                                  (applicationController
+                                                      .selectedJobs
+                                                      .value ==
+                                                      1)
+                                                      ? (snapshot2.data!.docs[
+                                                  index2]
+                                                  ['status'] ==
+                                                      'Accepted')
+                                                      ? Container(
+                                                    height: 135,
+                                                    width: Get.width,
+                                                    margin: const EdgeInsets
+                                                        .symmetric(
+                                                        horizontal:
+                                                        18,
+                                                        vertical: 4),
+                                                    padding:
+                                                    const EdgeInsets
+                                                        .all(15),
+                                                    decoration: BoxDecoration(
+                                                        borderRadius: const BorderRadius
+                                                            .all(
+                                                            Radius.circular(
+                                                                15)),
+                                                        border: Border.all(
+                                                            color: const Color(
+                                                                0xffF3ECFF)),
+                                                        color: ColorRes
+                                                            .white),
+                                                    child: Column(
+                                                      children: [
+                                                        Padding(
+                                                          padding: const EdgeInsets
+                                                              .only(
+                                                              bottom:
+                                                              8),
+                                                          child: Row(
+                                                            children: [
+                                                              Image.asset(
+                                                                  AssetRes
+                                                                      .airBnbLogo,
+                                                                  height:
+                                                                  40),
+                                                              const SizedBox(
+                                                                  width:
+                                                                  20),
+                                                              Column(
+                                                                mainAxisAlignment:
+                                                                MainAxisAlignment.center,
+                                                                crossAxisAlignment:
+                                                                CrossAxisAlignment.start,
+                                                                children: [
+                                                                  Text(snapshot2.data!.docs[index2]['position'],
+                                                                      style: appTextStyle(color: ColorRes.black, fontSize: 15, fontWeight: FontWeight.w500)),
+                                                                  Text(snapshot.data!.docs[index]['companyName'],
+                                                                      style: appTextStyle(color: ColorRes.black, fontSize: 12, fontWeight: FontWeight.w400)),
+                                                                ],
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        const Divider(
+                                                          color:
+                                                          ColorRes
+                                                              .grey,
+                                                        ),
+                                                        const SizedBox(
+                                                            height:
+                                                            10),
+                                                        InkWell(
+                                                          onTap: () {
+                                                            Navigator.push(
+                                                                context,
+                                                                MaterialPageRoute(
+                                                                    builder: (con) => AcceptedScreen(
+                                                                      position: snapshot2.data!.docs[index2]['position'],
+                                                                      companyName: snapshot.data!.docs[index]['companyName'],
+                                                                      message: snapshot2.data!.docs[index2]['message'],
+                                                                      salary: snapshot2.data!.docs[index2]['salary'],
+                                                                      location: snapshot2.data!.docs[index2]['location'],
+                                                                      type: snapshot2.data!.docs[index2]['type'],
+                                                                    )));
+                                                          },
+                                                          child:
+                                                          Container(
+                                                            height:
+                                                            28,
+                                                            width: Get
+                                                                .width,
+                                                            decoration:
+                                                            BoxDecoration(
+                                                              color: const Color(
+                                                                  0xffEDF9F0),
+                                                              borderRadius:
+                                                              BorderRadius.circular(99),
+                                                            ),
+                                                            child:
+                                                            Center(
+                                                              child:
+                                                              Text(
+                                                                "Application Accepted",
+                                                                style:
+                                                                appTextStyle(
+                                                                  fontSize:
+                                                                  12,
+                                                                  fontWeight:
+                                                                  FontWeight.w500,
+                                                                  color:
+                                                                  const Color(0xff23A757),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  )
+                                                      : const SizedBox()
                                                       : const SizedBox(),
                                                   (applicationController
                                                               .selectedJobs
