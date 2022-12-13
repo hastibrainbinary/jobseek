@@ -380,9 +380,9 @@ class ManagerApplicationScreen extends StatelessWidget {
                                                                       child:
                                                                           Row(
                                                                         children: [
-                                                                          Image
-                                                                              .asset(
-                                                                            AssetRes.airBnbLogo,
+                                                                          Image(
+                                                                            image:
+                                                                                NetworkImage(controller.documentData[index]["imageUrl"]),
                                                                             height:
                                                                                 62,
                                                                             width:

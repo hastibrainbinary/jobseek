@@ -10,6 +10,8 @@ class ApplicantsDetailsController extends GetxController
   DateTime? selectedDate = DateTime.now();
   String? showTime;
   String? showDate;
+  String? status;
+  String? massage;
   var inputFormat = DateFormat('dd/MM/yyyy');
   TextEditingController msgController = TextEditingController();
 
@@ -35,12 +37,16 @@ class ApplicantsDetailsController extends GetxController
   Future<void> selectTime(BuildContext context) async {
     final TimeOfDay? picked =
         await showTimePicker(context: context, initialTime: TimeOfDay.now()
+
             //selectedTime,
             );
     if (picked != null) {
       String selTime = '${picked.hour}:${picked.minute}:00';
+      //  initialTime: const TimeOfDay(hour: 10, minute: 47);
+
       showTime = DateFormat.jm().format(DateFormat("hh:mm:ss").parse(selTime));
       selectedTime = picked;
+
       update(['drop']);
     }
   }
@@ -51,4 +57,30 @@ class ApplicantsDetailsController extends GetxController
     var outputFormat = DateFormat('dd/MM/yyyy');
     return outputFormat.format(inputDate);
   }
+
+  List<Map<String, dynamic>> statusList = [];
+  bool abc = false;
+
+  /*onTapOk({var args}) {
+    abc = false;
+    for (int i = 0; i < statusList.length; i++) {
+      if (statusList[i]['status'] == args['status'] &&
+          statusList[i]['position'] == args['Position']) {
+        abc = true;
+      }
+    }
+
+    if (!abc) {
+      statusList.add({"status": args['status'], "position": args['Position']});
+    }
+
+    List<Map<String, dynamic>> companyNameList =
+        List.generate(statusList.length, (index) {
+      return statusList[index];
+    });
+
+    if (kDebugMode) {
+      print(companyNameList.runtimeType);
+    }
+  }*/
 }

@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/job_recomandation_search/job_recomadation_search.dart';
 
-class HomePageNewController extends GetxController {
-  TextEditingController searchControllerNew = TextEditingController();
+class SearchJobController extends GetxController{
+  TextEditingController searchJobControllerNew = TextEditingController();
 
   String location = "";
   String skills = "";
@@ -39,4 +39,5 @@ class HomePageNewController extends GetxController {
     }
     update(['popup']);
   }
+
 }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
-import 'package:jobseek/screen/job_recommendation_screen/job_recommendation_screen.dart';
+import 'package:jobseek/screen/search_job/search_job_controller.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
@@ -11,8 +11,10 @@ import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 import 'package:jobseek/utils/string.dart';
 
+// ignore: must_be_immutable
 class SearchJobScreen extends StatelessWidget {
-  const SearchJobScreen({Key? key}) : super(key: key);
+  SearchJobScreen({Key? key}) : super(key: key);
+  SearchJobController controller = Get.put(SearchJobController());
 
   @override
   Widget build(BuildContext context) {
@@ -54,37 +56,76 @@ class SearchJobScreen extends StatelessWidget {
                 ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 18, right: 18, bottom: 8),
-              child: AdvancedSearch(
-                clearSearchEnabled: true,
-                singleItemHeight: 40,
-                hintText: 'designation,companies',
-                hintTextColor: Colors.black.withOpacity(0.5),
-                autoListing: true,
-                unSelectedTextColor: Colors.black.withOpacity(0.5),
-                maxElementsToDisplay: 10,
-                onItemTap: (int index, String value) {},
-                searchItems: PrefService.getList(PrefKeys.allDesignation),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 18.0, bottom: 18, right: 18),
-              child: AdvancedSearch(
-                clearSearchEnabled: true,
-                singleItemHeight: 40,
-                hintText: 'Location',
-                hintTextColor: Colors.black.withOpacity(0.5),
-                autoListing: true,
-                maxElementsToDisplay: 10,
-                onItemTap: (int index, String value) {},
-                searchItems: PrefService.getList(PrefKeys.allCountryData),
-              ),
-            ),
+            GetBuilder<SearchJobController>(
+                id: "popup",
+                builder: (con) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            top: 18.0, left: 18, right: 18, bottom: 8),
+                        child: AdvancedSearch(
+                          clearSearchEnabled: true,
+                          singleItemHeight: 40,
+                          hintText: 'Enter designation, companies',
+                          hintTextColor: Colors.black.withOpacity(0.5),
+                          autoListing: true,
+                          unSelectedTextColor: Colors.black.withOpacity(0.5),
+                          maxElementsToDisplay: 10,
+                          onItemTap: (int index, String value) {
+                            controller.skills = value;
+                          },
+                          searchItems:
+                              PrefService.getList(PrefKeys.allDesignation),
+                        ),
+                      ),
+                      (controller.skillError != "")
+                          ? Padding(
+                              padding: const EdgeInsets.only(left: 18.0),
+                              child: SizedBox(
+                                child: Text(
+                                  controller.skillError,
+                                  style: const TextStyle(
+                                      fontSize: 12, color: Colors.red),
+                                ),
+                              ),
+                            )
+                          : const SizedBox(),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            bottom: 18.0, left: 18, right: 18),
+                        child: AdvancedSearch(
+                          clearSearchEnabled: true,
+                          singleItemHeight: 40,
+                          hintText: 'Enter location',
+                          hintTextColor: Colors.black.withOpacity(0.5),
+                          autoListing: true,
+                          maxElementsToDisplay: 10,
+                          onItemTap: (int index, String value) {
+                            controller.location = value;
+                          },
+                          searchItems:
+                              PrefService.getList(PrefKeys.allCountryData),
+                        ),
+                      ),
+                      (controller.locationError != "")
+                          ? Padding(
+                              padding: const EdgeInsets.only(left: 18.0),
+                              child: SizedBox(
+                                child: Text(
+                                  controller.locationError,
+                                  style: const TextStyle(
+                                      fontSize: 12, color: Colors.red),
+                                ),
+                              ),
+                            )
+                          : const SizedBox(),
+                    ],
+                  );
+                }),
             InkWell(
-              onTap: () {
-                Get.to(const JobRecommendation());
-              },
+              onTap: controller.searchJob,
               child: Center(
                 child: Container(
                   margin: const EdgeInsets.only(top: 15),

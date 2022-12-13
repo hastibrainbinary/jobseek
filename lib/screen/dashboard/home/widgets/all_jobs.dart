@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/common_loader.dart';
+import 'package:jobseek/screen/create_vacancies/create_vacancies_controller.dart';
 import 'package:jobseek/screen/dashboard/home/home_controller.dart';
 import 'package:jobseek/screen/job_recommendation_screen/job_recommendation_controller.dart';
 import 'package:jobseek/service/pref_services.dart';
@@ -13,6 +14,7 @@ import 'package:jobseek/utils/pref_keys.dart';
 
 Widget allJobs(Stream stream, {bool? seeAll = false}) {
   final HomeController controller = HomeController();
+  CreateVacanciesController create = Get.put(CreateVacanciesController());
 
   //final jrController = Get.put(JobRecommendationController());
   return GetBuilder<JobRecommendationController>(
@@ -33,15 +35,17 @@ Widget allJobs(Stream stream, {bool? seeAll = false}) {
                     jrController.documents.where((element) {
                   //print(element.get('Position'));
                   return element
-                      .get('Position')
-                      .toString()
-                      .toLowerCase()
-                      .contains(jrController.searchText.value.toLowerCase()) || element
-
-                      .get('CompanyName')
-                      .toString()
-                      .toLowerCase()
-                      .contains(jrController.searchText.value.toLowerCase());
+                          .get('Position')
+                          .toString()
+                          .toLowerCase()
+                          .contains(
+                              jrController.searchText.value.toLowerCase()) ||
+                      element
+                          .get('CompanyName')
+                          .toString()
+                          .toLowerCase()
+                          .contains(
+                              jrController.searchText.value.toLowerCase());
                 }).toList();
               }
               /*   if (jrController.searchText.value.isNotEmpty) {
@@ -107,8 +111,18 @@ Widget allJobs(Stream stream, {bool? seeAll = false}) {
                                       color: ColorRes.white),
                                   child: Row(
                                     children: [
-                                      Image.asset(
-                                          controller.jobTypesLogo[index % 5]),
+                                      (create.url == "")
+                                          ? const Image(
+                                              image: AssetImage(
+                                                  AssetRes.airBnbLogo),
+                                              height: 100,
+                                            )
+                                          : Image(
+                                              image: NetworkImage(create.url),
+                                              height: 100,
+                                            ),
+                                      /*  Image.asset(
+                                          controller.jobTypesLogo[index % 5]),*/
                                       const SizedBox(width: 20),
                                       Column(
                                         mainAxisAlignment:

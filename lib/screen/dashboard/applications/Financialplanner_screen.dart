@@ -6,6 +6,7 @@ import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/string.dart';
 
+// ignore: must_be_immutable
 class ScheduleInterviewScreen extends StatelessWidget {
   String? position;
   String? companyName;
@@ -181,7 +182,7 @@ class ScheduleInterviewScreen extends StatelessWidget {
                             fontWeight: FontWeight.w500),
                       ),
                       Text(
-                        type ?? "",
+                        location ?? "",
                         style: appTextStyle(
                             color: ColorRes.containerColor,
                             fontSize: 12,

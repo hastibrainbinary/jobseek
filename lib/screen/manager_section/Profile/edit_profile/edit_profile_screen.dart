@@ -3,14 +3,18 @@ import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/common/widgets/common_error_box.dart';
 import 'package:jobseek/common/widgets/common_textField.dart';
+import 'package:jobseek/screen/create_vacancies/create_vacancies_controller.dart';
 import 'package:jobseek/screen/manager_section/Profile/profile_controller.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
+// ignore: must_be_immutable
 class EditProfileScreen extends StatelessWidget {
   EditProfileScreen({Key? key}) : super(key: key);
   final controller = Get.put(ProfileController());
+
+  CreateVacanciesController getCreate = Get.put(CreateVacanciesController());
 
   @override
   Widget build(BuildContext context) {
@@ -76,14 +80,14 @@ class EditProfileScreen extends StatelessWidget {
                       Stack(
                         children: [
                           GetBuilder<ProfileController>(
-                            id:"image",
-                            builder: (context) {
-                              return Container(
-                                width: 90,
-                                height: 90,
-                                decoration: BoxDecoration(
+                              id: "image",
+                              builder: (context) {
+                                return Container(
+                                  width: 90,
+                                  height: 90,
+                                  decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    image: (controller.image == null)
+                                    image: (getCreate.url == "")
                                         ? DecorationImage(
                                             image: const AssetImage(
                                               AssetRes.roundAirbnb,
@@ -93,13 +97,13 @@ class EditProfileScreen extends StatelessWidget {
                                               Image.asset(AssetRes.userImage);
                                             })
                                         : DecorationImage(
-                                            image: FileImage(
-                                              controller.image!,
+                                            image: NetworkImage(
+                                              getCreate.url,
                                             ),
-                                            fit: BoxFit.fill)),
-                              );
-                            }
-                          ),
+                                            fit: BoxFit.fill),
+                                  ),
+                                );
+                              }),
                           Positioned(
                             bottom: 0,
                             right: 10,
@@ -161,7 +165,6 @@ class EditProfileScreen extends StatelessWidget {
                                                       onTap: () {
                                                         controller.onTapImage();
                                                       },
-
                                                       child: Container(
                                                         height: 70,
                                                         width: 70,

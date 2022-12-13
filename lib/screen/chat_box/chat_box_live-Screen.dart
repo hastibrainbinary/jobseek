@@ -24,6 +24,7 @@ class ChatBoxLiveScreenM extends StatelessWidget {
     this.userUid,
     this.otherUserUid,
     this.roomId,
+
   }) : super(key: key);
 
   ChatBoxController controller = Get.put(ChatBoxController());
@@ -74,7 +75,6 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                   Center(
                     child: Text(
                       Strings.chatBox,
-
                       style: appTextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
@@ -135,10 +135,11 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (con) =>
-                                      const VideoJoiningScreen()));
+                            context,
+                            MaterialPageRoute(
+                              builder: (con) => const VideoJoiningScreen(),
+                            ),
+                          );
                         },
                         child: Container(
                           height: 35,
@@ -157,9 +158,11 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (con) => const CallJoinScreen()));
+                            context,
+                            MaterialPageRoute(
+                              builder: (con) => const CallJoinScreen(),
+                            ),
+                          );
                         },
                         child: Container(
                           height: 35,

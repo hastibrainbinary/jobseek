@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
+import 'package:jobseek/screen/manager_section/applicants_detail_screen/applicants_details_controller.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 import 'package:jobseek/utils/string.dart';
 
-class Notification1Screen extends StatelessWidget {
-  const Notification1Screen({Key? key}) : super(key: key);
+// ignore: must_be_immutable
+class NotificationScreenM extends StatelessWidget {
+  NotificationScreenM({Key? key}) : super(key: key);
+  ApplicantsDetailsController anscontro =
+      Get.put(ApplicantsDetailsController());
 
   @override
   Widget build(BuildContext context) {
@@ -77,14 +83,16 @@ class Notification1Screen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Your application to Apple Company has been read',
+                                  PrefService.getString(PrefKeys.companyName),
+                                  // 'Your application to Apple Company has been read',
                                   style: appTextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 13,
                                       color: ColorRes.black),
                                 ),
                                 Text(
-                                  '17.00',
+                                  anscontro.selectedValue ?? "",
+                                  //'17.00',
                                   style: appTextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w400,

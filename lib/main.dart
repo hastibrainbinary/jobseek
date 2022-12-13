@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
@@ -15,6 +16,7 @@ import 'package:jobseek/screen/manager_section/applicants_detail_screen/applican
 import 'package:jobseek/screen/manager_section/auth_manager/first_page/first_screen.dart';
 import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen.dart';
 import 'package:jobseek/screen/manager_section/manager_application_detail_screen/manager_application_detail_screen.dart';
+import 'package:jobseek/screen/manager_section/notification1/notification1_screen.dart';
 import 'package:jobseek/screen/manager_section/resume_screen/resume_screen.dart';
 import 'package:jobseek/screen/new_home_page/new_home_page_screen.dart';
 import 'package:jobseek/screen/notification_screen/notification_screen.dart';
@@ -24,6 +26,7 @@ import 'package:jobseek/screen/splashScreen/splash_Screen.dart';
 import 'package:jobseek/screen/update_vacancies_requirements/update_vacancies_requirements_screen.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_res.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,9 +38,10 @@ void main() async {
   await FirebaseMessaging.instance.getToken().then((value) {
     if (kDebugMode) {
       print("FCM Token => $value");
+      PrefService.setValue(PrefKeys.deviceToken, value);
     }
   });
-  await PrefService.init();
+
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       systemNavigationBarColor: Colors.transparent, // navigation bar color
       statusBarColor: Colors.transparent, // status bar color
@@ -63,7 +67,7 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(
             name: AppRes.notificationScreen,
-            page: () => const NotificationScreen()),
+            page: () => const NotificationScreenU()),
         // GetPage(name: AppRes.jobDetailScreen, page: () => JobDetailScreen()),
         GetPage(name: AppRes.newHomePageUi, page: () => HomePageNewScreenU()),
         GetPage(
@@ -74,7 +78,7 @@ class MyApp extends StatelessWidget {
             page: () => JobDetailsSuccessOrFailedScreen()),
         GetPage(
             name: AppRes.notificationScreen,
-            page: () => const NotificationScreen()),
+            page: () => NotificationScreenM()),
         //GetPage(name: AppRes.jobDetailScreen, page: () => JobDetailScreen()),
         GetPage(name: AppRes.jobDetailScreen, page: () => JobDetailScreen()),
         GetPage(

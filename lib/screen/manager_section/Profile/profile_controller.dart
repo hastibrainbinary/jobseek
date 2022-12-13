@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,7 +8,6 @@ import 'package:jobseek/screen/manager_section/Profile/edit_profile/edit_profile
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class ProfileController extends GetxController implements GetxService {
   TextEditingController companyNameController = TextEditingController();
@@ -24,11 +22,12 @@ class ProfileController extends GetxController implements GetxService {
   RxBool isCountryValidate = false.obs;
   RxBool isDateController = false.obs;
   RxBool isLod = false.obs;
+  // RxString fbImageUrlM = "".obs;
 
   DateTime? startTime;
   ImagePicker picker = ImagePicker();
   File? image;
-  String url='';
+  String url = '';
   Future<void> onDatePickerTap(context) async {
     DateTime? picked = await showDatePicker(
       context: context,
@@ -78,6 +77,7 @@ class ProfileController extends GetxController implements GetxService {
 
         image = File(PrefService.getString(PrefKeys.imageManager));
         update();
+
         imagePicker();
         isLod.value = false;
       },
@@ -119,12 +119,12 @@ class ProfileController extends GetxController implements GetxService {
         "date": dateController.text.trim(),
         "country": countryController.text.trim(),
         "address": companyAddressController.text.trim(),
-        "imageUrl":url
+        "imageUrl": url,
       };
-      PrefService.setValue(
+      /*    PrefService.setValue(
         PrefKeys.imageManager,
         url,
-      );
+      );*/
 
       Map<String, dynamic> map2 = {
         "CompanyName": companyNameController.text.trim().toString()
@@ -229,12 +229,13 @@ class ProfileController extends GetxController implements GetxService {
     XFile? img = await picker.pickImage(source: ImageSource.camera);
     String path = img!.path;
     image = File(path);
-    await getUrl();
-    uploadImage();
+    /* await getUrl();
+    uploadImage();*/
     Get.back();
     imagePicker();
   }
-  getUrl() {
+
+  /* getUrl() {
     FirebaseStorage storage = FirebaseStorage.instance;
     Reference ref = storage.ref().child("image1" + DateTime.now().toString());
     UploadTask uploadTask = ref.putFile(image!);
@@ -289,15 +290,14 @@ class ProfileController extends GetxController implements GetxService {
       }
       return '';
     }
-  }
-
+  }*/
 
   onTapGallery1() async {
     XFile? gallery = await picker.pickImage(source: ImageSource.gallery);
     String path = gallery!.path;
     image = File(path);
-    await getUrl();
-    await uploadImage();
+    /* await getUrl();
+    await uploadImage();*/
     Get.back();
     imagePicker();
   }

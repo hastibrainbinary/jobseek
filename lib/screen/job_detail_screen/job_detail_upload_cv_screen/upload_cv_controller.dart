@@ -26,11 +26,13 @@ class JobDetailsUploadCvController extends GetxController {
         }
       });
 
-      */ /*for (int i = 1; i <= value.docs.length; i++) {
+      */
+  /*for (int i = 1; i <= value.docs.length; i++) {
         if (value.docs[i]['uid'] == PrefService.getString(PrefKeys.userId)) {
           companyList = value.docs[i]['companyName'];
         }
-      }*/ /*
+      }*/
+  /*
     });
     refreshController.refreshCompleted();
   }*/
@@ -38,10 +40,10 @@ class JobDetailsUploadCvController extends GetxController {
     await firestore.collection("Apply").get().then((value) {
       value.docs.forEach((element) {
         if (element['uid'] == PrefService.getString(PrefKeys.userId)) {
-          companyList.add({
+      /*    companyList.add({
             "companyname": element['CompanyName'],
             "position": element['Position']
-          });
+          });*/
         }
       });
 
@@ -55,7 +57,7 @@ class JobDetailsUploadCvController extends GetxController {
   }
 
   String? pdfUrl;
-  double filesize =0;
+  double filesize = 0;
 
   /* onTapApply({var args}) {
     abc = false;
@@ -140,11 +142,12 @@ class JobDetailsUploadCvController extends GetxController {
       'Occupation': PrefService.getString(PrefKeys.occupation),
       'uid': FirebaseAuth.instance.currentUser!.uid,
       'resumeUrl': pdfUrl,
-      'fileName':filepath.value,
-      'fileSize':filesize,
+      'fileName': filepath.value,
+      'fileSize': filesize,
       'salary': args['salary'],
       'location': args['location'],
       'type': args['type'],
+      "deviceToken": PrefService.getString(PrefKeys.deviceToken),
     });
 
     Get.toNamed(AppRes.jobDetailSuccessOrFailed, arguments: [
@@ -192,7 +195,9 @@ class JobDetailsUploadCvController extends GetxController {
       fileSize?.value = kbVal;
       filesize = mb;
 
-      print(filesize);
+      if (kDebugMode) {
+        print(filesize);
+      }
 
       debugPrint("filepath $filepath FileSize ${fileSize?.value}  $kbVal");
       {
@@ -217,7 +222,10 @@ class JobDetailsUploadCvController extends GetxController {
     }
   }
 
-  Future<String?> uploadImage({File? file, String? path,}) async {
+  Future<String?> uploadImage({
+    File? file,
+    String? path,
+  }) async {
     final firebaseStorage = FirebaseStorage.instance;
 
     if (file != null) {

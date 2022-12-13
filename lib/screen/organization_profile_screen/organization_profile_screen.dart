@@ -33,8 +33,9 @@ class OrganizationProfileScreen extends StatelessWidget {
                 height: 40,
                 width: 40,
                 decoration: BoxDecoration(
-                    color: ColorRes.logoColor,
-                    borderRadius: BorderRadius.circular(10)),
+                  color: ColorRes.logoColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 child: Padding(
                   padding: const EdgeInsets.only(top: 11),
                   child: Text(
@@ -62,8 +63,9 @@ class OrganizationProfileScreen extends StatelessWidget {
                 height: 40,
                 width: 40,
                 decoration: BoxDecoration(
-                    color: ColorRes.logoColor,
-                    borderRadius: BorderRadius.circular(10)),
+                  color: ColorRes.logoColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 child: InkWell(
                   onTap: () {
                     settingModalBottomSheet(context);
@@ -105,19 +107,20 @@ class OrganizationProfileScreen extends StatelessWidget {
                       width: 60,
                       height: 60,
                       decoration: BoxDecoration(
-                          color: ColorRes.logoColor,
-                          shape: BoxShape.circle,
-                          image: (controller.image == null)
-                              ? const DecorationImage(
-                                  image: AssetImage(
-                                    AssetRes.cloud,
-                                  ),
-                                )
-                              : DecorationImage(
-                                  image: FileImage(
-                                    controller.image!,
-                                  ),
-                                  fit: BoxFit.fill)),
+                        color: ColorRes.logoColor,
+                        shape: BoxShape.circle,
+                        image: (controller.image == null)
+                            ? const DecorationImage(
+                                image: AssetImage(
+                                  AssetRes.cloud,
+                                ),
+                              )
+                            : DecorationImage(
+                                image: FileImage(
+                                  controller.image!,
+                                ),
+                                fit: BoxFit.fill),
+                      ),
                     ),
                   ),
                   const SizedBox(

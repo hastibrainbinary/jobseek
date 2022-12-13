@@ -26,9 +26,10 @@ class ProfileUserController extends GetxController implements GetxService {
   ImagePicker picker = ImagePicker();
   File? image;
   RxBool isLod = false.obs;
-
   String url = "";
+  RxString fbImageUrl = "".obs;
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
+  get http => null;
 
   void onChanged(String value) {
     update(["colorChange"]);
@@ -37,13 +38,22 @@ class ProfileUserController extends GetxController implements GetxService {
   @override
   void onInit() {
     // TODO: implement onInit
-    super.onInit();
+
     fullNameController.text = PrefService.getString(PrefKeys.fullName);
     emailController.text = PrefService.getString(PrefKeys.email);
     occupationController.text = PrefService.getString(PrefKeys.occupation);
     dateOfBirthController.text = PrefService.getString(PrefKeys.dateOfBirth);
     addressController.text = PrefService.getString(PrefKeys.address);
     image = File(PrefService.getString(PrefKeys.imageId));
+    getFbImgUrl();
+    super.onInit();
+  }
+
+  getFbImgUrl() async {
+    fbImageUrl.value = await PrefService.getString(PrefKeys.imageId);
+    if (kDebugMode) {
+      print("fbIMGURL  $fbImageUrl");
+    }
   }
 
   Future<void> onDatePickerTap(context) async {

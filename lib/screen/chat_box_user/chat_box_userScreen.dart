@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/helper.dart';
@@ -14,7 +15,7 @@ import 'chat_box_usercontroller.dart';
 class ChatBoxUserScreen extends StatelessWidget {
   ChatBoxUserScreen({Key? key}) : super(key: key);
   final controller = Get.put(ChatBoxUserController());
-  List p = [];
+  List j = [];
   bool abc = false;
 
   //ManagerHomeScreenController managerHomeScreenController = Get.put(ManagerHomeScreenController());
@@ -35,8 +36,9 @@ class ChatBoxUserScreen extends StatelessWidget {
             height: 40,
             width: 40,
             decoration: BoxDecoration(
-                color: ColorRes.logoColor,
-                borderRadius: BorderRadius.circular(10)),
+              color: ColorRes.logoColor,
+              borderRadius: BorderRadius.circular(10),
+            ),
             child: Padding(
               padding: const EdgeInsets.only(top: 11),
               child: Text(
@@ -175,10 +177,10 @@ class ChatBoxUserScreen extends StatelessWidget {
                                               snapshot1.data!.docs[index].id))
                                           .snapshots(),
                                       builder: (context, snapshotM) {
-                                        if (snapshotM.data == null ||
+                                        /* if (snapshotM.data == null ||
                                             snapshotM.hasData == false) {
                                           return const SizedBox();
-                                        }
+                                        }*/
 
                                         Map<String, dynamic>? dataM =
                                             snapshotM.data?.data();
@@ -213,7 +215,7 @@ class ChatBoxUserScreen extends StatelessWidget {
                                           if (element['companyname']
                                                   .toString()
                                                   .toLowerCase() ==
-                                              data['name']
+                                              data!['name']
                                                   .toString()
                                                   .toLowerCase()) {
                                             o = element['companyname'];
@@ -221,7 +223,7 @@ class ChatBoxUserScreen extends StatelessWidget {
                                         });
 
                                         return (o.toString().toLowerCase() ==
-                                                data['name']
+                                                data!['name']
                                                     .toString()
                                                     .toLowerCase())
                                             ? InkWell(
@@ -234,7 +236,7 @@ class ChatBoxUserScreen extends StatelessWidget {
                                                       context,
                                                       snapshot1
                                                           .data!.docs[index].id,
-                                                      data['name']);
+                                                      data!['name']);
                                                 },
                                                 child: Container(
                                                   height: 92,
@@ -248,12 +250,13 @@ class ChatBoxUserScreen extends StatelessWidget {
                                                   decoration: BoxDecoration(
                                                       borderRadius:
                                                           const BorderRadius
-                                                                  .all(
-                                                              Radius.circular(
-                                                                  15)),
+                                                              .all(
+                                                        Radius.circular(15),
+                                                      ),
                                                       border: Border.all(
-                                                          color: const Color(
-                                                              0xffF3ECFF)),
+                                                        color: const Color(
+                                                            0xffF3ECFF),
+                                                      ),
                                                       color: ColorRes.white),
                                                   child: Row(
                                                     children: [

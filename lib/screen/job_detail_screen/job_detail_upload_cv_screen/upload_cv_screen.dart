@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_controller.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_widget/job_details_appbar.dart';
+import 'package:jobseek/screen/manager_section/Notification/notification_services.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 import 'package:jobseek/utils/string.dart';
 
 // ignore: must_be_immutable
@@ -151,7 +154,8 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   color: const Color(0xffEEEBF4),
                                   borderRadius: const BorderRadius.all(
-                                      Radius.circular(15)),
+                                    Radius.circular(15),
+                                  ),
                                   border:
                                       Border.all(color: ColorRes.borderColor),
                                 ),
@@ -274,6 +278,16 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                       const SizedBox(height: 50),
                       GestureDetector(
                         onTap: () {
+                          SendNotificationModel notification =
+                              SendNotificationModel(
+                                  title:
+                                      PrefService.getString(PrefKeys.fullName),
+                                  body: "applied your vacancies",
+                                  fcmTokens: [
+                                // PrefService.getString(PrefKeys.deviceToken),
+                                "ee7zgJFLRO2vRYUB2p_Yan:APA91bFRLU7a29lkqG50lhPDzcFyROQhQreHtHTTrndMySyQBPYUBfQ9MnhEcb02awiEK1sFIw02mFSjes9Dzpvq-zhm7JnJbG2wLMbyiSxHkGzODdsl3crcMyuIzeijTZbSHfLIu4t4"
+                              ]);
+                          NotificationService.sendNotification(notification);
                           if (controller.pdfUrl == null ||
                               controller.pdfUrl == "") {
                             Get.snackbar("Error", "Upload Your Resume",

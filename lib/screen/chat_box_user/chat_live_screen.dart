@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/screen/call/call_joining_screen.dart';
 import 'package:jobseek/screen/call/video_joinScreen.dart';
 import 'package:jobseek/screen/chat_box/chat_box_controller.dart';
@@ -12,6 +11,7 @@ import 'package:jobseek/utils/string.dart';
 import 'package:paginate_firestore/paginate_firestore.dart';
 import 'chat_box_usercontroller.dart';
 
+// ignore: must_be_immutable
 class ChatLiveScreen extends StatelessWidget {
   final String? name;
   final String? roomId;
@@ -135,9 +135,11 @@ class ChatLiveScreen extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (con) => const VideoJoinScreen()));
+                            context,
+                            MaterialPageRoute(
+                              builder: (con) => const VideoJoinScreen(),
+                            ),
+                          );
                         },
                         child: Container(
                           height: 35,
@@ -328,20 +330,21 @@ class ChatLiveScreen extends StatelessWidget {
                             ),
                           ),
                           InkWell(
-                              onTap: () {
-                                if (controller.validation()) {
-                                  controller.sendMessage(
-                                    roomId.toString(),
-                                    otherUserUid,
-                                  );
-                                  FocusScope.of(context).unfocus();
-                                }
-                              },
-                              child: Image.asset(
-                                AssetRes.chatSend,
-                                height: 25,
-                                width: 25,
-                              ))
+                            onTap: () {
+                              if (controller.validation()) {
+                                controller.sendMessage(
+                                  roomId.toString(),
+                                  otherUserUid,
+                                );
+                                FocusScope.of(context).unfocus();
+                              }
+                            },
+                            child: Image.asset(
+                              AssetRes.chatSend,
+                              height: 25,
+                              width: 25,
+                            ),
+                          ),
                         ],
                       ),
                     );

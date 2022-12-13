@@ -22,7 +22,9 @@ class CreateVacanciesController extends GetxController implements GetxService {
   RxBool isCategoryValidate = false.obs;
   RxBool isStatusValidate = false.obs;
   RxBool loader = false.obs;
+  String url = "";
   String companyName = "";
+
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
   List<TextEditingController> addRequirementsList = [];
 
@@ -38,6 +40,8 @@ class CreateVacanciesController extends GetxController implements GetxService {
       (DocumentSnapshot doc) {
         final data = doc.data() as Map<String, dynamic>;
         companyName = data["name"];
+        url = data["imageUrl"];
+
         // ...
       },
       onError: (e) => print("Error getting document: $e"),
@@ -59,7 +63,6 @@ class CreateVacanciesController extends GetxController implements GetxService {
       update(["type"]);
       update(["Status"]);
       update(["Category"]);
-
     }
   }
 
@@ -135,6 +138,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
       "RequirementsList": requirementsList,
       "BookMarkUserList": [],
       "Id": uid,
+      "imageUrl": url,
     };
     validate();
     if (isPositionValidate.value == false &&

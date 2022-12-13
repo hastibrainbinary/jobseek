@@ -180,7 +180,8 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: InkWell(
                     // onTap: () => Get.toNamed(AppRes.applicantsDetails),
-                    child: recentPeopleBox(homeScreen:true,position: args["docs"]["Position"])),
+                    child: recentPeopleBox(
+                        homeScreen: true, position: args["docs"]["Position"])),
               ),
             )
           ],

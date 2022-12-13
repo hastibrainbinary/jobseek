@@ -32,8 +32,9 @@ class ProfileUserScreenU extends StatelessWidget {
                 height: 40,
                 width: 40,
                 decoration: BoxDecoration(
-                    color: ColorRes.logoColor,
-                    borderRadius: BorderRadius.circular(10)),
+                  color: ColorRes.logoColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 child: Padding(
                   padding: const EdgeInsets.only(top: 11),
                   child: Text(
@@ -102,15 +103,20 @@ class ProfileUserScreenU extends StatelessWidget {
                                     decoration: BoxDecoration(
                                       color: ColorRes.black,
                                       borderRadius: BorderRadius.circular(50),
-                                      image: (controller.image != null)
+                                      image: controller.fbImageUrl.value != ""
                                           ? DecorationImage(
-                                              image:
-                                                  FileImage(controller.image!),
-                                            )
-                                          : const DecorationImage(
-                                              image: AssetImage(
-                                                  AssetRes.userprofileLogo),
-                                            ),
+                                              image: NetworkImage(
+                                                  controller.fbImageUrl.value),
+                                              fit: BoxFit.fill)
+                                          : (controller.image != null)
+                                              ? DecorationImage(
+                                                  image: FileImage(
+                                                      controller.image!),
+                                                )
+                                              : const DecorationImage(
+                                                  image: AssetImage(
+                                                      AssetRes.userprofileLogo),
+                                                ),
                                     ),
                                   );
                                 }),
@@ -132,9 +138,10 @@ class ProfileUserScreenU extends StatelessWidget {
                             Text(
                               PrefService.getString(PrefKeys.email),
                               style: appTextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 12,
-                                  color: ColorRes.black.withOpacity(0.6)),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
+                                color: ColorRes.black.withOpacity(0.6),
+                              ),
                             ),
                             const SizedBox(height: 2),
                             Text(
@@ -277,8 +284,9 @@ class ProfileUserScreenU extends StatelessWidget {
                                   border: InputBorder.none,
                                   hintText: "  Date of birth",
                                   hintStyle: appTextStyle(
-                                      fontSize: 14,
-                                      color: ColorRes.black.withOpacity(0.15)),
+                                    fontSize: 14,
+                                    color: ColorRes.black.withOpacity(0.15),
+                                  ),
                                   suffixIcon: Container(
                                     padding: const EdgeInsets.all(15),
                                     child: Image(

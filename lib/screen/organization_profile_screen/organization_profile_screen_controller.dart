@@ -1,12 +1,15 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/pref_keys.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class OrganizationProfileScreenController extends GetxController
     implements GetxService {
@@ -30,10 +33,25 @@ class OrganizationProfileScreenController extends GetxController
   RxBool isLocationValidate = false.obs;
   RxBool isTypeValidate = false.obs;
   RxBool isStatusValidate = false.obs;
+  RxBool isLod = false.obs;
+  RxString fbImageUrlM = "".obs;
   DateTime? startTime;
   ImagePicker picker = ImagePicker();
   File? image;
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    // getFbImgUrlM();
+    super.onInit();
+  }
+  /*getFbImgUrlM() async {
+    fbImageUrlM.value = await PrefService.getString(PrefKeys.imageIdM);
+    if (kDebugMode) {
+      print("fbIMGURL  $fbImageUrlM");
+    }
+  }*/
 
   void onChanged(String value) {
     update(["colorChange"]);
@@ -50,7 +68,12 @@ class OrganizationProfileScreenController extends GetxController
       "date": dateController.text.trim(),
       "country": countryController.text.trim(),
       "address": companyAddressController.text.trim(),
+      "imageUrl": url,
     };
+    PrefService.setValue(
+      PrefKeys.imageManager,
+      url,
+    );
     validate();
     if (isNameValidate.value == false &&
         isEmailValidate.value == false &&
@@ -83,6 +106,102 @@ class OrganizationProfileScreenController extends GetxController
     }
     PrefService.setValue(
         PrefKeys.companyName, companyNameController.text.toString());
+  }
+
+  String url = "";
+  getUrl() {
+    FirebaseStorage storage = FirebaseStorage.instance;
+    Reference ref = storage.ref().child("image1${DateTime.now()}");
+    UploadTask uploadTask = ref.putFile(image!);
+
+    uploadTask.then((res) async {
+      isLod.value = true;
+      url = await res.ref.getDownloadURL();
+      isLod.value = false;
+      if (kDebugMode) {
+        print("url $url");
+      }
+      update();
+    });
+  }
+
+  addImg({required String img}) async {
+    final storage = FirebaseStorage.instance;
+
+    // if (imagePath != null) {
+    //   var snapshot =
+    //       await storage.ref().child('images/imageName').putFile(imagePath!);
+    //   var downloadUrl = await snapshot.ref.getDownloadURL();
+    //   await FirebaseFirestore.instance
+    //       .collection("User")
+    //       .doc("profile")
+    //       .collection("Profile")
+    //       .doc("profilePic")
+    //       .set({"url": downloadUrl, "name": "ProfilePic"});
+    // } else {
+    //   print("no path received");
+    // }
+
+    String imageName =
+        img.substring(img.lastIndexOf("/") + 1, img.lastIndexOf("."));
+
+    String path = img.substring(img.indexOf("/") + 1, img.lastIndexOf("/"));
+
+    final Directory systemTempDir = Directory.systemTemp;
+    final byteData = await rootBundle.load(img);
+    final file = File('${systemTempDir.path}/$imageName.jpg');
+
+    await file.writeAsBytes(byteData.buffer
+        .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
+
+    TaskSnapshot taskSnapshot =
+        await storage.ref('$path/$imageName').putFile(file);
+    final String downloadUrl = await taskSnapshot.ref.getDownloadURL();
+
+    await FirebaseFirestore.instance
+        .collection(path)
+        .add({"url": downloadUrl, "name": imageName});
+  }
+
+  Future<String?> uploadImage({File? flow, String? path}) async {
+    final firebaseStorage = FirebaseStorage.instance;
+    // final imagePicker = ImagePicker();
+    // PickedFile? image;
+    String? imageUrl;
+    //Check Permissions
+    await Permission.photos.request();
+
+    var permissionStatus = await Permission.photos.status;
+    if (kDebugMode) {
+      print(permissionStatus);
+    }
+
+    if (permissionStatus.isGranted) {
+      if (flow != null) {
+        //  File(image.path);
+        //Upload to Firebase
+        var snapshot =
+            firebaseStorage.ref().child(path!).putFile(flow).snapshot;
+        String downloadUrl = await snapshot.ref.getDownloadURL();
+        // setState(() {
+        imageUrl = downloadUrl;
+        if (kDebugMode) {
+          print(imageUrl);
+        }
+        return imageUrl;
+        // });
+      } else {
+        if (kDebugMode) {
+          print('No Image Path Received');
+        }
+        return '';
+      }
+    } else {
+      if (kDebugMode) {
+        print('Permission not granted. Try Again with permission access');
+      }
+      return '';
+    }
   }
 
   validate() {
@@ -171,6 +290,8 @@ class OrganizationProfileScreenController extends GetxController
     XFile? gallery = await picker.pickImage(source: ImageSource.gallery);
     String path = gallery!.path;
     image = File(path);
+    getUrl();
+    uploadImage();
     imagePicker();
   }
 

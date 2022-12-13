@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
+import 'package:jobseek/screen/chat_box/chat_box_screen.dart';
+import 'package:jobseek/screen/chat_box_user/chat_box_userScreen.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
@@ -147,16 +149,20 @@ class SentScreen extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("Salary",
-                                  style: appTextStyle(
-                                      color: ColorRes.black.withOpacity(0.8),
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500)),
-                              Text(salary ?? "",
-                                  style: appTextStyle(
-                                      color: ColorRes.containerColor,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600)),
+                              Text(
+                                "Salary",
+                                style: appTextStyle(
+                                    color: ColorRes.black.withOpacity(0.8),
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              Text(
+                                salary ?? "",
+                                style: appTextStyle(
+                                    color: ColorRes.containerColor,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600),
+                              ),
                             ],
                           ),
                           const SizedBox(height: 10),
@@ -183,16 +189,20 @@ class SentScreen extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("Location",
-                                  style: appTextStyle(
-                                      color: ColorRes.black.withOpacity(0.8),
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500)),
-                              Text( type ?? "",
-                                  style: appTextStyle(
-                                      color: ColorRes.containerColor,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600)),
+                              Text(
+                                "Location",
+                                style: appTextStyle(
+                                    color: ColorRes.black.withOpacity(0.8),
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              Text(
+                                location ?? "",
+                                style: appTextStyle(
+                                    color: ColorRes.containerColor,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600),
+                              ),
                             ],
                           ),
                         ],
@@ -210,26 +220,34 @@ class SentScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 55),
-                    Container(
-                      height: 50,
-                      width: Get.width,
-                      // width: MediaQuery.of(context).size.width,
-                      margin: const EdgeInsets.symmetric(horizontal: 20),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        gradient: const LinearGradient(
-                          colors: [
-                            ColorRes.gradientColor,
-                            ColorRes.containerColor,
-                          ],
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (con) => ChatBoxScreen()));
+                      },
+                      child: Container(
+                        height: 50,
+                        width: Get.width,
+                        // width: MediaQuery.of(context).size.width,
+                        margin: const EdgeInsets.symmetric(horizontal: 20),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          gradient: const LinearGradient(
+                            colors: [
+                              ColorRes.gradientColor,
+                              ColorRes.containerColor,
+                            ],
+                          ),
                         ),
+                        child: Text("Join Interview",
+                            style: appTextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 18,
+                                color: ColorRes.white)),
                       ),
-                      child: Text("Join Interview",
-                          style: appTextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 18,
-                              color: ColorRes.white)),
                     ),
                   ]),
             ),

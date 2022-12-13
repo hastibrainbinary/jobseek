@@ -213,8 +213,7 @@ class SignUpController extends GetxController {
             PrefKeys.userId, userCredential.user?.uid.toString());
         PrefService.setValue(PrefKeys.rol, "User");
         Map<String, dynamic> map2 = {
-          "fullName":
-              "${firstnameController.text} ${lastnameController.text}",
+          "fullName": "${firstnameController.text} ${lastnameController.text}",
           "Email": emailController.text,
           "Phone": phoneController.text,
           "Occupation": occupationController.text,
@@ -222,6 +221,7 @@ class SignUpController extends GetxController {
           "State": stateController.text,
           "Country": countryController.text,
           "imageUrl": "",
+          //"deviceToken": PrefService.getString(PrefKeys.deviceToken),
         };
         await PrefService.setValue(
             PrefKeys.email, emailController.text.toString());

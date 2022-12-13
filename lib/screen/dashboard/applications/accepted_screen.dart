@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
+import 'package:jobseek/screen/chat_box/chat_box_screen.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
@@ -13,7 +14,15 @@ class AcceptedScreen extends StatelessWidget {
   String? salary;
   String? location;
   String? type;
-   AcceptedScreen({Key? key,  this.position, this.companyName, this.message,this.salary,this.location,this.type}) : super(key: key);
+  AcceptedScreen(
+      {Key? key,
+      this.position,
+      this.companyName,
+      this.message,
+      this.salary,
+      this.location,
+      this.type})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -84,12 +93,12 @@ class AcceptedScreen extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(position??"",
+                                      Text(position ?? "",
                                           style: appTextStyle(
                                               color: ColorRes.black,
                                               fontSize: 15,
                                               fontWeight: FontWeight.w500)),
-                                      Text(companyName??"",
+                                      Text(companyName ?? "",
                                           style: appTextStyle(
                                               color: ColorRes.black,
                                               fontSize: 12,
@@ -140,48 +149,60 @@ class AcceptedScreen extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("Salary",
-                                    style: appTextStyle(
-                                        color: ColorRes.black.withOpacity(0.8),
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w500)),
-                                Text(salary ??"",
-                                    style: appTextStyle(
-                                        color: ColorRes.containerColor,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w600)),
+                                Text(
+                                  "Salary",
+                                  style: appTextStyle(
+                                      color: ColorRes.black.withOpacity(0.8),
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                Text(
+                                  salary ?? "",
+                                  style: appTextStyle(
+                                      color: ColorRes.containerColor,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600),
+                                ),
                               ],
                             ),
                             const SizedBox(height: 10),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("Type",
-                                    style: appTextStyle(
-                                        color: ColorRes.black.withOpacity(0.8),
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w500)),
-                                Text(type ?? "",
-                                    style: appTextStyle(
-                                        color: ColorRes.containerColor,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w600)),
+                                Text(
+                                  "Type",
+                                  style: appTextStyle(
+                                      color: ColorRes.black.withOpacity(0.8),
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                Text(
+                                  type ?? "",
+                                  style: appTextStyle(
+                                      color: ColorRes.containerColor,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600),
+                                ),
                               ],
                             ),
                             const SizedBox(height: 10),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("Location",
-                                    style: appTextStyle(
-                                        color: ColorRes.black.withOpacity(0.8),
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w500)),
-                                Text(location ?? "",
-                                    style: appTextStyle(
-                                        color: ColorRes.containerColor,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w600)),
+                                Text(
+                                  "Location",
+                                  style: appTextStyle(
+                                      color: ColorRes.black.withOpacity(0.8),
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                Text(
+                                  location ?? "",
+                                  style: appTextStyle(
+                                      color: ColorRes.containerColor,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600),
+                                ),
                               ],
                             ),
                           ],
@@ -191,36 +212,47 @@ class AcceptedScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Text(
-                          message??"",
+                          message ?? "",
                           style: appTextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              color: ColorRes.black.withOpacity(0.9)),
-                        ),
-                      ),
-
-
-                      const SizedBox(height: 55),
-                      Container(
-                        height: 50,
-                        width: Get.width,
-                        // width: MediaQuery.of(context).size.width,
-                        margin: const EdgeInsets.symmetric(horizontal: 20),
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          gradient: const LinearGradient(
-                            colors: [
-                              ColorRes.gradientColor,
-                              ColorRes.containerColor,
-                            ],
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: ColorRes.black.withOpacity(0.9),
                           ),
                         ),
-                        child: Text("Send Message to Recruiter Now",
+                      ),
+                      const SizedBox(height: 55),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (con) => ChatBoxScreen(),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          height: 50,
+                          width: Get.width,
+                          // width: MediaQuery.of(context).size.width,
+                          margin: const EdgeInsets.symmetric(horizontal: 20),
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            gradient: const LinearGradient(
+                              colors: [
+                                ColorRes.gradientColor,
+                                ColorRes.containerColor,
+                              ],
+                            ),
+                          ),
+                          child: Text(
+                            "Send Message to Recruiter Now",
                             style: appTextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 18,
-                                color: ColorRes.white)),
+                                color: ColorRes.white),
+                          ),
+                        ),
                       )
                     ]),
               ),

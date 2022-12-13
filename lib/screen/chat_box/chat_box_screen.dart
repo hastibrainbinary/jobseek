@@ -30,7 +30,7 @@ class ChatBoxScreen extends StatelessWidget {
     jobDetailsUploadCvController.init();
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: ColorRes.backgroundColor,
+        backgroundColor: ColorRes.backgroundColor,
       body: Column(
         children: [
           const SizedBox(height: 50),
@@ -201,7 +201,9 @@ class ChatBoxScreen extends StatelessWidget {
 
                                     snapshot.data!.docs[index]['companyName']
                                         .forEach((element) {
-                                      if (element.toString().toLowerCase() ==
+                                      if (element['companyname']
+                                              .toString()
+                                              .toLowerCase() ==
                                           PrefService.getString(
                                                   PrefKeys.companyName)
                                               .toString()
@@ -209,7 +211,7 @@ class ChatBoxScreen extends StatelessWidget {
                                         if (kDebugMode) {
                                           print(element);
                                         }
-                                        o = element;
+                                        o = element['companyname'];
                                       }
                                     });
 
@@ -498,9 +500,10 @@ class ChatBoxScreen extends StatelessWidget {
                                                       decoration: BoxDecoration(
                                                           borderRadius:
                                                               const BorderRadius
-                                                                  .all(
-                                                            Radius.circular(15),
-                                                          ),
+                                                                      .all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          15)),
                                                           border: Border.all(
                                                             color: const Color(
                                                                 0xffF3ECFF),

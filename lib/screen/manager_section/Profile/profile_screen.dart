@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/common_error_box.dart';
 import 'package:jobseek/common/widgets/common_loader.dart';
 import 'package:jobseek/common/widgets/common_textField.dart';
+import 'package:jobseek/screen/create_vacancies/create_vacancies_controller.dart';
 import 'package:jobseek/screen/manager_section/Profile/profile_controller.dart';
 import 'package:jobseek/screen/manager_section/Settings/settings_screen.dart';
 import 'package:jobseek/utils/app_style.dart';
@@ -15,6 +16,8 @@ class ProfileScreen extends StatelessWidget {
   ProfileScreen({Key? key}) : super(key: key);
   final controller = Get.put(ProfileController());
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
+
+  CreateVacanciesController getCreate = Get.put(CreateVacanciesController());
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +103,7 @@ class ProfileScreen extends StatelessWidget {
                                             decoration: BoxDecoration(
                                               color: ColorRes.black,
                                               shape: BoxShape.circle,
-                                              image: (controller.image == null)
+                                              image: (getCreate.url == "")
                                                   ? DecorationImage(
                                                       image: const AssetImage(
                                                         AssetRes.roundAirbnb,
@@ -112,185 +115,12 @@ class ProfileScreen extends StatelessWidget {
                                                             AssetRes.userImage);
                                                       })
                                                   : DecorationImage(
-                                                      image: FileImage(
-                                                        controller.image!,
+                                                      image: NetworkImage(
+                                                        getCreate.url,
                                                       ),
                                                       fit: BoxFit.fill),
                                             ),
                                           ),
-                                          /*Positioned(
-                            bottom: 0,
-                            right: 10,
-                            child: InkWell(
-                              onTap: () {
-                                    showModalBottomSheet<void>(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10.0),
-                                      ),
-                                      backgroundColor: Colors.transparent,
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return Container(
-                                          height: 450,
-                                          decoration: const BoxDecoration(
-                                            color: ColorRes.white,
-                                            borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(45),
-                                              topRight: Radius.circular(45),
-                                            ),
-                                          ),
-                                          child: Center(
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: <Widget>[
-                                                const SizedBox(height: 30),
-                                                Text(
-                                                  'Change Logo Company',
-                                                  style: appTextStyle(
-                                                      fontSize: 14,
-                                                      fontWeight: FontWeight.w500,
-                                                      color: ColorRes.black
-                                                          .withOpacity(0.8)),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.symmetric(
-                                                          horizontal: 18,
-                                                          vertical: 18),
-                                                  child: Container(
-                                                    height: 120,
-                                                    width: Get.width,
-                                                    decoration: BoxDecoration(
-                                                      border: Border.all(
-                                                        color:
-                                                            const Color(0xffF3ECFF),
-                                                      ),
-                                                      borderRadius:
-                                                          const BorderRadius.all(
-                                                        Radius.circular(5),
-                                                      ),
-                                                    ),
-                                                    child: Column(
-                                                      children: [
-                                                        InkWell(
-                                                          onTap: () =>
-                                                              controller.onTapImage,
-                                                          child: Container(
-                                                            height: 70,
-                                                            width: 70,
-                                                            margin: const EdgeInsets
-                                                                    .symmetric(
-                                                                horizontal: 100,
-                                                                vertical: 10),
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: ColorRes
-                                                                  .logoColor,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(80),
-                                                            ),
-                                                            child: const Icon(
-                                                              Icons.camera_alt,
-                                                              size: 40,
-                                                              color: ColorRes
-                                                                  .containerColor,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        Text(
-                                                          "Take photo",
-                                                          style: appTextStyle(
-                                                              fontWeight:
-                                                                  FontWeight.w500,
-                                                              fontSize: 14,
-                                                              color:
-                                                                  ColorRes.black),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.symmetric(
-                                                          horizontal: 18),
-                                                  child: Container(
-                                                    height: 120,
-                                                    width: Get.width,
-                                                    decoration: BoxDecoration(
-                                                      border: Border.all(
-                                                        color:
-                                                            const Color(0xffF3ECFF),
-                                                      ),
-                                                      borderRadius:
-                                                          const BorderRadius.all(
-                                                        Radius.circular(5),
-                                                      ),
-                                                    ),
-                                                    child: Column(
-                                                      children: [
-                                                        InkWell(
-                                                          onTap: () => controller
-                                                              .onTapGallery1(),
-                                                          child: Container(
-                                                            height: 70,
-                                                            width: 70,
-                                                            margin: const EdgeInsets
-                                                                    .symmetric(
-                                                                horizontal: 100,
-                                                                vertical: 10),
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: ColorRes
-                                                                  .logoColor,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(80),
-                                                            ),
-                                                            child: const Image(
-                                                              image: AssetImage(
-                                                                  AssetRes
-                                                                      .galleryImage),
-                                                              color: ColorRes
-                                                                  .containerColor,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        Text(
-                                                          "Form gallery",
-                                                          style: appTextStyle(
-                                                              fontWeight:
-                                                                  FontWeight.w500,
-                                                              fontSize: 14,
-                                                              color:
-                                                                  ColorRes.black),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                    );
-                              },
-                              child: const CircleAvatar(
-                                    radius: 7.5,
-                                    backgroundColor: ColorRes.containerColor,
-                                    child: Icon(
-                                      Icons.edit,
-                                      size: 8,
-                                      color: ColorRes.white,
-                                    ),
-                              ),
-                            ),
-                          ),*/
                                         ],
                                       );
                                     }),

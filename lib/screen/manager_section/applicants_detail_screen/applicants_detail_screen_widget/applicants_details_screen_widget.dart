@@ -14,8 +14,9 @@ Widget dateTimeBox(
         height: 39,
         padding: const EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: ColorRes.containerColor, width: 1.5)),
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: ColorRes.containerColor, width: 1.5),
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

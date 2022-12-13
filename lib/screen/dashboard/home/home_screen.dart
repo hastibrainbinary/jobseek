@@ -47,7 +47,7 @@ class HomeScreen extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  const SizedBox(height: 23),
+                 /* const SizedBox(height: 23),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 18),
                     child: Row(
@@ -65,7 +65,7 @@ class HomeScreen extends StatelessWidget {
                               //controller: controller.searchNewController,
                               onChanged: (value) {},
                               onTap: () {
-                                Get.to(() => const SearchJobScreen());
+                                Get.to(() => SearchJobScreen());
                               },
                               decoration: InputDecoration(
                                 border: InputBorder.none,
@@ -85,7 +85,7 @@ class HomeScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-
+*/
                   //searchArea(),
                   InkWell(
                     onTap: () {

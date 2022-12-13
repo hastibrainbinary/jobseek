@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/call/video_ReceiveScreen.dart';
 import 'package:jobseek/screen/chat_box/chat_box_screen.dart';
+import 'package:jobseek/screen/manager_section/Notification/notification_services.dart';
+import 'package:jobseek/screen/manager_section/Profile/profile_controller.dart';
 import 'package:jobseek/screen/manager_section/applicants_detail_screen/applicants_detail_screen_widget/applicants_details_screen_widget.dart';
 import 'package:jobseek/screen/manager_section/applicants_detail_screen/applicants_details_controller.dart';
 import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen.dart';
@@ -29,6 +31,7 @@ class ApplicantsDetailScreen extends StatelessWidget {
   }) : super(key: key);
   final ApplicantsDetailsController controller =
       Get.put(ApplicantsDetailsController());
+  ApplicantsDetailsController ans = Get.put(ApplicantsDetailsController());
 
   @override
   Widget build(BuildContext context) {
@@ -164,9 +167,9 @@ class ApplicantsDetailScreen extends StatelessWidget {
                                       height: 40,
                                       width: 40,
                                       decoration: BoxDecoration(
-                                          color: ColorRes.logoColor,
-                                          borderRadius:
-                                              BorderRadius.circular(12)),
+                                        color: ColorRes.logoColor,
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
                                       child: const GradientIcon(
                                         Icons.chat,
                                         20,
@@ -194,9 +197,9 @@ class ApplicantsDetailScreen extends StatelessWidget {
                                       height: 40,
                                       width: 40,
                                       decoration: BoxDecoration(
-                                          color: ColorRes.logoColor,
-                                          borderRadius:
-                                              BorderRadius.circular(12)),
+                                        color: ColorRes.logoColor,
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
                                       child: const GradientIcon(
                                         Icons.videocam_sharp,
                                         20,
@@ -228,11 +231,12 @@ class ApplicantsDetailScreen extends StatelessWidget {
                             child: Container(
                               height: 50,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  gradient: const LinearGradient(colors: [
-                                    ColorRes.gradientColor,
-                                    ColorRes.containerColor,
-                                  ])),
+                                borderRadius: BorderRadius.circular(15),
+                                gradient: const LinearGradient(colors: [
+                                  ColorRes.gradientColor,
+                                  ColorRes.containerColor,
+                                ]),
+                              ),
                               child: Center(
                                 child: Text(
                                   Strings.seeResume,
@@ -291,8 +295,10 @@ class ApplicantsDetailScreen extends StatelessWidget {
                                     ),
                                   );
                                 }).toList(),
-                                onChanged: (String? value) =>
-                                    controller.onChangeStatus(value!),
+                                onChanged: (String? value) {
+                                  controller.status = value!;
+                                  controller.onChangeStatus(value);
+                                },
                                 hint: Text(
                                   Strings.markStatusAs,
                                   style: appTextStyle(
@@ -401,24 +407,37 @@ class ApplicantsDetailScreen extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    FocusScopeNode currentFocus = FocusScope.of(context);
-
-                    if (!currentFocus.hasPrimaryFocus) {
-                      currentFocus.unfocus();
+                    if (controller.status == null || controller.status == "") {
+                      Get.snackbar(
+                          "Error", "Select Status & Write Your Message",
+                          colorText: const Color(0xffDA1414));
                     }
+                    if (controller.msgController.text.isEmpty ||
+                        controller.msgController.text == "") {
+                      Get.snackbar("Error", " Write Your Message",
+                          colorText: const Color(0xffDA1414));
+                    } else {
+                      FocusScopeNode currentFocus = FocusScope.of(context);
 
-                    settingModalBottomSheet(context, isWrong, controller, args);
+                      if (!currentFocus.hasPrimaryFocus) {
+                        currentFocus.unfocus();
+                      }
+
+                      settingModalBottomSheet(
+                          context, isWrong, controller, args);
+                    }
                   },
                   child: Container(
                     height: 50,
                     width: Get.width,
                     margin: const EdgeInsets.symmetric(horizontal: 20),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        gradient: const LinearGradient(colors: [
-                          ColorRes.gradientColor,
-                          ColorRes.containerColor,
-                        ])),
+                      borderRadius: BorderRadius.circular(10),
+                      gradient: const LinearGradient(colors: [
+                        ColorRes.gradientColor,
+                        ColorRes.containerColor,
+                      ]),
+                    ),
                     child: Center(
                       child: Text(
                         Strings.sendToApplicants,
@@ -459,11 +478,13 @@ void settingModalBottomSheet(
                     Image.asset(AssetRes.successImage, height: 130),
                     const SizedBox(height: 20),
                     Center(
-                      child: Text("Successful!",
-                          style: appTextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w600,
-                              color: ColorRes.containerColor)),
+                      child: Text(
+                        "Successful!",
+                        style: appTextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                            color: ColorRes.containerColor),
+                      ),
                     ),
                     const SizedBox(height: 10),
                     Center(
@@ -482,6 +503,21 @@ void settingModalBottomSheet(
                     const SizedBox(height: 10),
                     InkWell(
                       onTap: () async {
+                        ApplicantsDetailsController anscontro =
+                            Get.put(ApplicantsDetailsController());
+
+                        SendNotificationModel notification =
+                            SendNotificationModel(
+                                title:
+                                    PrefService.getString(PrefKeys.companyName),
+                                body: anscontro.selectedValue,
+                                fcmTokens: [
+                              // PrefService.getString(PrefKeys.deviceToken),
+
+                              "ee7zgJFLRO2vRYUB2p_Yan:APA91bFRLU7a29lkqG50lhPDzcFyROQhQreHtHTTrndMySyQBPYUBfQ9MnhEcb02awiEK1sFIw02mFSjes9Dzpvq-zhm7JnJbG2wLMbyiSxHkGzODdsl3crcMyuIzeijTZbSHfLIu4t4"
+                            ]);
+                        NotificationService.sendNotification(notification);
+
                         // Get.back();
                         ManagerDashBoardScreenController controller2 =
                             Get.find<ManagerDashBoardScreenController>();
@@ -509,7 +545,7 @@ void settingModalBottomSheet(
                             }
                           }
                         });
-
+                        /*   controller.onTapOk();*/
                         await FirebaseFirestore.instance
                             .collection("Applicants")
                             .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -540,15 +576,19 @@ void settingModalBottomSheet(
                         margin:
                             const EdgeInsets.only(right: 18, left: 18, top: 10),
                         decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
                           gradient: LinearGradient(colors: [
                             ColorRes.gradientColor,
                             ColorRes.containerColor,
                           ]),
                         ),
-                        child: Text(Strings.ok,
-                            style: appTextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w500)),
+                        child: Text(
+                          Strings.ok,
+                          style: appTextStyle(
+                              fontSize: 18, fontWeight: FontWeight.w500),
+                        ),
                       ),
                     ),
                   ],
@@ -598,7 +638,9 @@ void settingModalBottomSheet(
                       margin:
                           const EdgeInsets.only(right: 18, left: 18, top: 10),
                       decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
                         gradient: LinearGradient(colors: [
                           ColorRes.gradientColor,
                           ColorRes.containerColor,

@@ -95,7 +95,7 @@ class SeeDetailsScreen extends StatelessWidget {
 
                               if (kDebugMode) {
                                 print(file2);
-                              } // 3
+                              } //
                             }
                           },
                           child: Column(
@@ -342,8 +342,9 @@ class SeeDetailsScreen extends StatelessWidget {
                         height: 51,
                         width: 339,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: ColorRes.containerColor)),
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: ColorRes.containerColor),
+                        ),
                         child: Text(
                           args['city'],
                           style: const TextStyle(
@@ -381,8 +382,9 @@ class SeeDetailsScreen extends StatelessWidget {
                         height: 51,
                         width: 339,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: ColorRes.containerColor)),
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: ColorRes.containerColor),
+                        ),
                         child: Text(
                           args['state'],
                           style: const TextStyle(
@@ -412,8 +414,9 @@ class SeeDetailsScreen extends StatelessWidget {
                         height: 51,
                         width: 339,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: ColorRes.containerColor)),
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: ColorRes.containerColor),
+                        ),
                         child: Text(
                           args['country'],
                           style: const TextStyle(

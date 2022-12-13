@@ -58,7 +58,7 @@ class ManagerHomeScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (con) => const Notification1Screen(),
+                            builder: (con) => NotificationScreenM(),
                           ),
                         );
                       },

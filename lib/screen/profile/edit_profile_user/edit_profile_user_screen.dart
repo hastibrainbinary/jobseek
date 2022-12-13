@@ -73,14 +73,20 @@ class EditProfileUser extends StatelessWidget {
                                   decoration: BoxDecoration(
                                     color: ColorRes.black,
                                     borderRadius: BorderRadius.circular(50),
-                                    image: (controller.image != null)
+                                    image: controller.fbImageUrl.value != ""
                                         ? DecorationImage(
-                                            image: FileImage(controller.image!),
-                                          )
-                                        : const DecorationImage(
-                                            image: AssetImage(
-                                                AssetRes.userprofileLogo),
-                                          ),
+                                            image: NetworkImage(
+
+                                                controller.fbImageUrl.value),fit: BoxFit.fill)
+                                        : (controller.image != null)
+                                            ? DecorationImage(
+                                                image: FileImage(
+                                                    controller.image!),
+                                              )
+                                            : const DecorationImage(
+                                                image: AssetImage(
+                                                    AssetRes.userprofileLogo),
+                                              ),
                                   ),
                                 );
                               }),
@@ -277,9 +283,10 @@ class EditProfileUser extends StatelessWidget {
                           Text(
                             PrefService.getString(PrefKeys.email),
                             style: appTextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 12,
-                                color: ColorRes.black.withOpacity(0.6)),
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12,
+                              color: ColorRes.black.withOpacity(0.6),
+                            ),
                           ),
                           const SizedBox(height: 2),
                           Text(

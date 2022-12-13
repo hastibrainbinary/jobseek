@@ -102,7 +102,8 @@ class SignUpControllerM extends GetxController {
         PrefService.setValue(PrefKeys.totalPost, 0);
 
         Map<String, dynamic> map2 = {
-          "FullName": "${firstnameController.text}     ${lastnameController.text}",
+          "FullName":
+              "${firstnameController.text}     ${lastnameController.text}",
           "Email": emailController.text,
           "Phone": phoneController.text,
           "City": cityController.text,
@@ -110,6 +111,7 @@ class SignUpControllerM extends GetxController {
           "Country": countryController.text,
           "TotalPost": 0,
           "company": false,
+          "deviceToken": PrefService.getString(PrefKeys.deviceToken),
         };
         addDataInFirebase(userUid: userCredential.user?.uid ?? "", map: map2);
         // chatDataInFirebase(userUid: userCredential.user?.uid ?? "", map: map2);

@@ -13,23 +13,26 @@ class HomeController extends GetxController implements GetxService {
 
   RxBool isBookMark = false.obs;
 
-  RxList jobTypes = [
+  /*RxList jobTypes = [
     "UI/UX Designer",
     "Financial planner",
     "UI/UX Designer",
     "Financial planner",
     "UI/UX Designer"
-  ].obs;
+  ].obs;*/
   RxList jobTypesSaved = List.generate(2, (index) => false).obs;
 
-  RxList jobTypesLogo = [
+/*  RxList jobTypesLogo = [
     AssetRes.airBnbLogo,
     AssetRes.twitterLogo,
     AssetRes.airBnbLogo,
     AssetRes.twitterLogo,
     AssetRes.airBnbLogo
-  ].obs;
-
+  ].obs;*/
+  String location = "";
+  String locationError = "";
+  String skills = "";
+  String skillError = "";
   @override
   void onInit() {
     super.onInit();
@@ -51,6 +54,7 @@ class HomeController extends GetxController implements GetxService {
         "salary": field['salary'],
         "location": field['location'],
         "type": field['type'],
+        "imageUrl": field['imageUrl'],
       };
 
       List bookmark = [];
@@ -105,5 +109,15 @@ class HomeController extends GetxController implements GetxService {
 
   getfirstName() async {
     firstNAme = await PrefService.getString(PrefKeys.firstnameu);
+  }
+
+  locationValidation() {
+    if (location == null || location == "") {
+      locationError = "Please Enter Location";
+      update(['popup']);
+    } else {
+      locationError = "";
+      update(['popup']);
+    }
   }
 }

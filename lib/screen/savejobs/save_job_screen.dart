@@ -78,7 +78,8 @@ class SaveJobScreen extends StatelessWidget {
                                 padding: const EdgeInsets.all(15),
                                 decoration: BoxDecoration(
                                     borderRadius: const BorderRadius.all(
-                                        Radius.circular(15)),
+                                      Radius.circular(15),
+                                    ),
                                     border: Border.all(
                                         color: const Color(0xffF3ECFF)),
                                     color: ColorRes.white),
@@ -101,26 +102,29 @@ class SaveJobScreen extends StatelessWidget {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                              bookMarkData[index]['Position'] ??
-                                                  "",
-                                              style: appTextStyle(
-                                                  color: ColorRes.black,
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.w500)),
+                                            bookMarkData[index]['Position'] ??
+                                                "",
+                                            style: appTextStyle(
+                                                color: ColorRes.black,
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w500),
+                                          ),
                                           Text(
-                                              bookMarkData[index]
-                                                      ['CompanyName'] ??
-                                                  "",
-                                              style: appTextStyle(
-                                                  color: ColorRes.black,
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w400)),
+                                            bookMarkData[index]
+                                                    ['CompanyName'] ??
+                                                "",
+                                            style: appTextStyle(
+                                                color: ColorRes.black,
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w400),
+                                          ),
                                           Text(
-                                              "${bookMarkData[index]['location']} ${bookMarkData[index]['type']}",
-                                              style: appTextStyle(
-                                                  color: ColorRes.black,
-                                                  fontSize: 9,
-                                                  fontWeight: FontWeight.w400)),
+                                            "${bookMarkData[index]['location']} ${bookMarkData[index]['type']}",
+                                            style: appTextStyle(
+                                                color: ColorRes.black,
+                                                fontSize: 9,
+                                                fontWeight: FontWeight.w400),
+                                          ),
                                         ],
                                       ),
                                       const Spacer(),
@@ -284,10 +288,12 @@ Future bottom(context, fileds, image, docId) {
                 const SizedBox(width: 10),
                 InkWell(
                   onTap: () {
-
                     FirebaseFirestore.instance
                         .collection("BookMark")
-                        .doc(PrefService.getString(PrefKeys.userId)).collection('BookMark1').doc(docId).delete();
+                        .doc(PrefService.getString(PrefKeys.userId))
+                        .collection('BookMark1')
+                        .doc(docId)
+                        .delete();
                     Navigator.of(context).pop();
                   },
                   child: Container(

@@ -13,7 +13,7 @@ import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 import 'package:jobseek/utils/string.dart';
 
-Widget recentPeopleBox({bool? homeScreen,String? position}) {
+Widget recentPeopleBox({bool? homeScreen, String? position}) {
   final contro = Get.put(ManagerHomeScreenController());
   JobDetailsUploadCvController jobDetailsUploadCvController =
       Get.put(JobDetailsUploadCvController());
@@ -30,21 +30,20 @@ Widget recentPeopleBox({bool? homeScreen,String? position}) {
               print(contro.userData[0]['companyName'][0]['companyname']);
             }
 
-            if(homeScreen==true)
-              {
-                contro.userData[i]['companyName'].forEach((element) {
-                  if (element['companyname'].toString().toLowerCase() ==
-                      PrefService.getString(PrefKeys.companyName)
-                          .toString()
-                          .toLowerCase() && element['position'].toString()==position) {
-                    if (kDebugMode) {
-                      print(element);
-                    }
-                    o = element['companyname'];
+            if (homeScreen == true) {
+              contro.userData[i]['companyName'].forEach((element) {
+                if (element['companyname'].toString().toLowerCase() ==
+                        PrefService.getString(PrefKeys.companyName)
+                            .toString()
+                            .toLowerCase() &&
+                    element['position'].toString() == position) {
+                  if (kDebugMode) {
+                    print(element);
                   }
-                });
-              }
-           else {
+                  o = element['companyname'];
+                }
+              });
+            } else {
               contro.userData[i]['companyName'].forEach((element) {
                 if (element['companyname'].toString().toLowerCase() ==
                     PrefService.getString(PrefKeys.companyName)
@@ -57,7 +56,6 @@ Widget recentPeopleBox({bool? homeScreen,String? position}) {
                 }
               });
             }
-
 
             return (o.toString().toLowerCase() ==
                     PrefService.getString(PrefKeys.companyName)
@@ -99,6 +97,16 @@ Widget recentPeopleBox({bool? homeScreen,String? position}) {
                                           borderRadius:
                                               BorderRadius.circular(10),
                                         ),
+                                        /*  contro.userData[i]['imageUrl'] != ""
+                                            ? Image(
+                                            image: NetworkImage(
+                                                contro.userData[i]
+                                                ['imageUrl']))
+                                            : const Image(
+                                          image: AssetImage(
+                                              AssetRes.detailsImage),
+                                          height: 20,
+                                        ),*/
                                         child: const Image(
                                           image:
                                               AssetImage(AssetRes.detailsImage),
@@ -115,7 +123,7 @@ Widget recentPeopleBox({bool? homeScreen,String? position}) {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                           // "${contro.userData[i]['userName']}",
+                                            // "${contro.userData[i]['userName']}",
                                             "${contro.userData[i]['userName']}",
                                             style: appTextStyle(
                                                 color: ColorRes.black,

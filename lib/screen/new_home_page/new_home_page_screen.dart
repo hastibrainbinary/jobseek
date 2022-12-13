@@ -67,8 +67,9 @@ class HomePageNewScreenU extends StatelessWidget {
                 height: 40,
                 width: 40,
                 decoration: BoxDecoration(
-                    color: ColorRes.logoColor,
-                    borderRadius: BorderRadius.circular(10)),
+                  color: ColorRes.logoColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 child: const InkWell(
                   // onTap: () {
                   //   Navigator.push(
@@ -102,7 +103,7 @@ class HomePageNewScreenU extends StatelessWidget {
                         controller: controller.searchControllerNew,
                         onChanged: (value) {},
                         onTap: () {
-                          Get.to(() => const SearchJobScreen());
+                          Get.to(() => SearchJobScreen());
                         },
                         decoration: InputDecoration(
                           border: InputBorder.none,
@@ -380,8 +381,9 @@ class HomePageNewScreenU extends StatelessWidget {
                   height: 36,
                   width: 119,
                   decoration: BoxDecoration(
-                      color: ColorRes.containerColor,
-                      borderRadius: BorderRadius.circular(10)),
+                    color: ColorRes.containerColor,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                   child: const Center(
                     child: Text(
                       "Search jobs",
@@ -454,7 +456,7 @@ class HomePageNewScreenU extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "UI/UX Designer",
+                        Strings.uIUXDesigner,
                         style: appTextStyle(
                             color: ColorRes.black,
                             fontSize: 15,
@@ -483,7 +485,9 @@ class HomePageNewScreenU extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       const Spacer(),
-                      const Icon(Icons.bookmark,
+                      const Image(
+                          image: AssetImage(AssetRes.bookMarkBorderIcon),
+                          height: 20,
                           color: ColorRes.containerColor),
                       const SizedBox(height: 10),
                       Text(
@@ -553,14 +557,18 @@ class HomePageNewScreenU extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       const Spacer(),
-                      const Icon(Icons.bookmark,
+                      const Image(
+                          image: AssetImage(AssetRes.bookMarkBorderIcon),
+                          height: 20,
                           color: ColorRes.containerColor),
                       const SizedBox(height: 10),
-                      Text("\$2.200",
-                          style: appTextStyle(
-                              color: ColorRes.containerColor,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600)),
+                      Text(
+                        "\$2.200",
+                        style: appTextStyle(
+                            color: ColorRes.containerColor,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600),
+                      ),
                     ],
                   ),
                   const SizedBox(width: 10),

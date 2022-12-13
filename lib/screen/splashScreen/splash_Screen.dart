@@ -27,11 +27,20 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    getpref();
 
-    splash();
-    if(PrefService.getList(PrefKeys.allDesignation)==null || PrefService.getList(PrefKeys.allDesignation).isEmpty || PrefService.getList(PrefKeys.allCountryData)==null || PrefService.getList(PrefKeys.allCountryData).isEmpty){
+
+
+  }
+  getpref()async{
+  await  PrefService.init();
+  if (PrefService.getList(PrefKeys.allDesignation) == null ||
+      PrefService.getList(PrefKeys.allDesignation).isEmpty ||
+      PrefService.getList(PrefKeys.allCountryData) == null ||
+      PrefService.getList(PrefKeys.allCountryData).isEmpty) {
     countryApi();
-    }
+  }
+  splash();
   }
 
   void splash() async {
@@ -74,7 +83,6 @@ class _SplashScreenState extends State<SplashScreen> {
               child: Text(
                 textAlign: TextAlign.end,
                 Strings.logo,
-
                 style: GoogleFonts.poppins(
                     fontSize: 30,
                     fontWeight: FontWeight.w400,
@@ -86,7 +94,7 @@ class _SplashScreenState extends State<SplashScreen> {
               child: Row(
                 children: [
                   Container(
-                    margin: const EdgeInsets.only(bottom:15),
+                    margin: const EdgeInsets.only(bottom: 15),
                     child: RichText(
                       text: TextSpan(
                         children: <TextSpan>[
