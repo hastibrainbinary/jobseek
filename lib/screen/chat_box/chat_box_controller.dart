@@ -111,17 +111,18 @@ class ChatBoxController extends GetxController implements GetxService {
     });
   }
 
-  void gotoChatScreen(BuildContext context, String otherUid, name) async {
+  void gotoChatScreen(
+      BuildContext context, String otherUid, name, deviceToken) async {
     loader.value = true;
     await getRoomId(otherUid);
     loader.value = false;
 
     Get.to(() => ChatBoxLiveScreenM(
-          roomId: roomId,
-          name: name,
-          otherUserUid: otherUid,
-          userUid: userUid,
-        ));
+        roomId: roomId,
+        name: name,
+        otherUserUid: otherUid,
+        userUid: userUid,
+        deviceToken: deviceToken));
   }
 
   int? msgCount;
@@ -215,6 +216,7 @@ class ChatBoxController extends GetxController implements GetxService {
       "lastMessageTime": DateTime.now(),
       "lastMessageRead": false,
       "countM": countM.length,
+      "deviceTokenM": PrefKeys.deviceToken
     });
   }
 

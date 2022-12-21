@@ -111,7 +111,7 @@ class SignUpControllerM extends GetxController {
           "Country": countryController.text,
           "TotalPost": 0,
           "company": false,
-          "deviceToken": PrefService.getString(PrefKeys.deviceToken),
+          "deviceTokenM": PrefService.getString(PrefKeys.deviceToken),
         };
         addDataInFirebase(userUid: userCredential.user?.uid ?? "", map: map2);
         // chatDataInFirebase(userUid: userCredential.user?.uid ?? "", map: map2);

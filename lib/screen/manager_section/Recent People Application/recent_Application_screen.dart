@@ -54,7 +54,7 @@ class RecentApplicationScreen extends StatelessWidget {
                 return Expanded(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 10),
+                        horizontal: 20,),
                     child: InkWell(
                         //  onTap: () => Get.toNamed(AppRes.applicantsDetails),
                         child: recentPeopleBox()),

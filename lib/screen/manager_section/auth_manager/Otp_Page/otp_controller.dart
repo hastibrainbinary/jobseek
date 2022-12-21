@@ -6,7 +6,6 @@ import 'package:jobseek/utils/color_res.dart';
 import 'package:pinput/pinput.dart';
 
 class OtpControllerM extends GetxController {
-
   TextEditingController otpController = TextEditingController();
   int seconds = 60;
   Timer? _countDown;
@@ -15,12 +14,12 @@ class OtpControllerM extends GetxController {
     const oneSec = Duration(seconds: 1);
     _countDown = Timer.periodic(
       oneSec,
-          (timer) {
+      (timer) {
         if (seconds == 0) {
           _countDown?.cancel();
           update(["Seconds"]);
         } else {
-          seconds --;
+          seconds--;
           update(["Seconds"]);
         }
       },
@@ -34,9 +33,8 @@ class OtpControllerM extends GetxController {
     super.onInit();
   }
 
-
   String otpError = "";
-  otpvalidation() {
+  otpValidation() {
     if (otpController.text.trim() == "") {
       otpError = "Enter otp";
     } else {
@@ -49,7 +47,7 @@ class OtpControllerM extends GetxController {
   }
 
   bool validator() {
-    otpvalidation();
+    otpValidation();
 
     if (otpError == "") {
       return true;

@@ -69,6 +69,8 @@ class OrganizationProfileScreenController extends GetxController
       "country": countryController.text.trim(),
       "address": companyAddressController.text.trim(),
       "imageUrl": url,
+      "deviceToken": PrefService.getString(PrefKeys.deviceToken),
+
     };
     PrefService.setValue(
       PrefKeys.imageManager,

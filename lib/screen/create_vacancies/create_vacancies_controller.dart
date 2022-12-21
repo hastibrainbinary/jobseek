@@ -139,6 +139,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
       "BookMarkUserList": [],
       "Id": uid,
       "imageUrl": url,
+      "deviceToken": PrefService.getString(PrefKeys.deviceToken),
     };
     validate();
     if (isPositionValidate.value == false &&

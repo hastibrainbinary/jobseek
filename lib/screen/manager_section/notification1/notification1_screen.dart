@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
+import 'package:jobseek/screen/manager_section/Notification/notification_services.dart';
 import 'package:jobseek/screen/manager_section/applicants_detail_screen/applicants_details_controller.dart';
-import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
-import 'package:jobseek/utils/pref_keys.dart';
 import 'package:jobseek/utils/string.dart';
 
 // ignore: must_be_immutable
@@ -52,7 +51,7 @@ class NotificationScreenM extends StatelessWidget {
               height: Get.height - 150,
               child: ListView.builder(
                 padding: const EdgeInsets.all(0),
-                itemCount: 3,
+                itemCount: 5,
                 itemBuilder: (BuildContext context, int index) {
                   return Container(
                     margin:
@@ -60,9 +59,12 @@ class NotificationScreenM extends StatelessWidget {
                     padding: const EdgeInsets.all(15),
                     width: Get.width,
                     decoration: BoxDecoration(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(15)),
-                        border: Border.all(color: const Color(0xffF3ECFF)),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(15),
+                        ),
+                        border: Border.all(
+                          color: const Color(0xffF3ECFF),
+                        ),
                         color: ColorRes.white),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -83,7 +85,9 @@ class NotificationScreenM extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  PrefService.getString(PrefKeys.companyName),
+                                  anscontro.selectedValue ??
+                                      NotificationService.noti["title"],
+
                                   // 'Your application to Apple Company has been read',
                                   style: appTextStyle(
                                       fontWeight: FontWeight.w600,
@@ -91,12 +95,14 @@ class NotificationScreenM extends StatelessWidget {
                                       color: ColorRes.black),
                                 ),
                                 Text(
-                                  anscontro.selectedValue ?? "",
+                                  anscontro.selectedValue ??
+                                      NotificationService.noti["body"],
                                   //'17.00',
                                   style: appTextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w400,
-                                      color: ColorRes.black.withOpacity(0.5)),
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w400,
+                                    color: ColorRes.black.withOpacity(0.5),
+                                  ),
                                 )
                               ],
                             ),

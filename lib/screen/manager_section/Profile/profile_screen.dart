@@ -12,6 +12,7 @@ import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/string.dart';
 
+// ignore: must_be_immutable
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({Key? key}) : super(key: key);
   final controller = Get.put(ProfileController());

@@ -205,9 +205,8 @@ class GoogleSignUpControllerM extends GetxController {
         .doc(userUid)
         .set(map)
         .catchError((e) {
-      if (kDebugMode) {
         print('...error...' + e);
-      }
+
     });
   }
 
@@ -219,7 +218,8 @@ class GoogleSignUpControllerM extends GetxController {
       "City": cityController.text,
       "State": stateController.text,
       "Country": countryController.text,
-      "TotalPost": 0
+      "TotalPost": 0,
+      "deviceTokenM": PrefService.getString(PrefKeys.deviceToken),
     };
 
     if (kDebugMode) {

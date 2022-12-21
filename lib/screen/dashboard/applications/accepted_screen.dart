@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
-import 'package:jobseek/screen/chat_box/chat_box_screen.dart';
+import 'package:jobseek/screen/chat_box_user/chat_box_userScreen.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
@@ -226,7 +226,7 @@ class AcceptedScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (con) => ChatBoxScreen(),
+                              builder: (con) => ChatBoxUserScreen(),
                             ),
                           );
                         },

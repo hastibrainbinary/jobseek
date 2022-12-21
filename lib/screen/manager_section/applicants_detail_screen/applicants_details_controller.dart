@@ -58,8 +58,8 @@ class ApplicantsDetailsController extends GetxController
     return outputFormat.format(inputDate);
   }
 
-  List<Map<String, dynamic>> statusList = [];
-  bool abc = false;
+  /*List<Map<String, dynamic>> statusList = [];
+  bool abc = false;*/
 
   /*onTapOk({var args}) {
     abc = false;

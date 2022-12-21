@@ -6,6 +6,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:http/http.dart' as http;
 
 class NotificationService {
+  static Map<String, dynamic> noti = {};
   static Future<void> init() async {
     await FirebaseMessaging.instance
         .setForegroundNotificationPresentationOptions(
@@ -50,6 +51,10 @@ class NotificationService {
           ),
           payload: jsonEncode(payload),
         );
+        noti = {
+          "title": notification.title,
+          "body": notification.body,
+        };
       }
     });
 

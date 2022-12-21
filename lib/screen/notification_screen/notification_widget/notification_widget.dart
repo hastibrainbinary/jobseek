@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/screen/manager_section/Notification/notification_services.dart';
+import 'package:jobseek/screen/manager_section/applicants_detail_screen/applicants_details_controller.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
 Widget notificationBox() {
+  ApplicantsDetailsController anscontro =
+      Get.put(ApplicantsDetailsController());
   return Container(
     height: 92,
     margin: const EdgeInsets.only(bottom: 30),
@@ -39,18 +43,15 @@ Widget notificationBox() {
                 height: 15,
               ),
               Text(
-                "Your application to Apple Company has been read",
+                anscontro.selectedValue ?? NotificationService.noti["title"],
                 style: appTextStyle(
                     color: ColorRes.black,
                     fontWeight: FontWeight.w600,
                     fontSize: 13),
                 maxLines: 2,
               ),
-              // const SizedBox(
-              //   height: 5,
-              // ),
               Text(
-                "17:00",
+                anscontro.selectedValue ?? NotificationService.noti["body"],
                 style: appTextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
@@ -58,9 +59,6 @@ Widget notificationBox() {
                 ),
                 textAlign: TextAlign.left,
               ),
-              // const SizedBox(
-              //   height: 20,
-              // ),
             ],
           ),
         )

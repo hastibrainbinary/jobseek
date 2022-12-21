@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:jobseek/screen/call/video_ReceiveScreen.dart';
 import 'package:jobseek/screen/chat_box/chat_box_screen.dart';
 import 'package:jobseek/screen/manager_section/Notification/notification_services.dart';
-import 'package:jobseek/screen/manager_section/Profile/profile_controller.dart';
 import 'package:jobseek/screen/manager_section/applicants_detail_screen/applicants_detail_screen_widget/applicants_details_screen_widget.dart';
 import 'package:jobseek/screen/manager_section/applicants_detail_screen/applicants_details_controller.dart';
 import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen.dart';
@@ -512,9 +511,7 @@ void settingModalBottomSheet(
                                     PrefService.getString(PrefKeys.companyName),
                                 body: anscontro.selectedValue,
                                 fcmTokens: [
-                              // PrefService.getString(PrefKeys.deviceToken),
-
-                              "ee7zgJFLRO2vRYUB2p_Yan:APA91bFRLU7a29lkqG50lhPDzcFyROQhQreHtHTTrndMySyQBPYUBfQ9MnhEcb02awiEK1sFIw02mFSjes9Dzpvq-zhm7JnJbG2wLMbyiSxHkGzODdsl3crcMyuIzeijTZbSHfLIu4t4"
+                              args['deviceToken'],
                             ]);
                         NotificationService.sendNotification(notification);
 

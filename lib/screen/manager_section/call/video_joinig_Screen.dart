@@ -30,7 +30,6 @@ class VideoJoiningScreen extends StatelessWidget {
           left: 155,
           child: Text(
             Strings.airBNB,
-
             style: appTextStyle(
               fontSize: 22,
               fontWeight: FontWeight.w500,

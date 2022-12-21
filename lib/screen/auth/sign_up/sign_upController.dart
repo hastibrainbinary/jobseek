@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_interpolation_to_compose_strings
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -221,7 +223,7 @@ class SignUpController extends GetxController {
           "State": stateController.text,
           "Country": countryController.text,
           "imageUrl": "",
-          //"deviceToken": PrefService.getString(PrefKeys.deviceToken),
+          "deviceTokenU": PrefService.getString(PrefKeys.deviceToken),
         };
         await PrefService.setValue(
             PrefKeys.email, emailController.text.toString());

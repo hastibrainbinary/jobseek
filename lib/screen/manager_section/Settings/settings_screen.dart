@@ -128,13 +128,16 @@ class SettingScreenM extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
-                Obx(() => FlutterSwitch(
+                Obx(
+                  () => FlutterSwitch(
                     height: 27,
                     width: 45,
                     value: controller.isSwitchedDarkMode.value,
                     activeColor: ColorRes.blueColor,
                     toggleSize: 20,
-                    onToggle: (value) => controller.onchangeDarkMode(value))),
+                    onToggle: (value) => controller.onchangeDarkMode(value),
+                  ),
+                ),
                 const SizedBox(width: 15),
               ],
             ),
@@ -158,14 +161,16 @@ class SettingScreenM extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
-                Obx(() => FlutterSwitch(
+                Obx(
+                  () => FlutterSwitch(
                     height: 27,
                     width: 45,
                     value: controller.isSwitchedLocalization.value,
                     activeColor: ColorRes.blueColor,
                     toggleSize: 20,
-                    onToggle: (value) =>
-                        controller.onchangeLocalization(value))),
+                    onToggle: (value) => controller.onchangeLocalization(value),
+                  ),
+                ),
                 const SizedBox(width: 15),
               ],
             ),

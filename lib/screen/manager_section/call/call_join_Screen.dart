@@ -35,7 +35,7 @@ class CallJoinScreen extends StatelessWidget {
           const SizedBox(height: 20),
           Text(
             Strings.airBNB,
-           style: appTextStyle(
+            style: appTextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.w500,
                 color: ColorRes.black),
@@ -43,7 +43,6 @@ class CallJoinScreen extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             Strings.joiningInterview,
-
             style: appTextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w400,

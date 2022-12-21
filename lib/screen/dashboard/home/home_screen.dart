@@ -9,7 +9,6 @@ import 'package:jobseek/screen/dashboard/home/widgets/appbar.dart';
 import 'package:jobseek/screen/dashboard/home/widgets/tips_for_you_section.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_controller.dart';
 import 'package:jobseek/screen/job_recommendation_screen/job_recommendation_controller.dart';
-import 'package:jobseek/screen/search_job/search_job_screen.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/color_res.dart';
@@ -47,7 +46,7 @@ class HomeScreen extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                 /* const SizedBox(height: 23),
+                  /* const SizedBox(height: 23),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 18),
                     child: Row(

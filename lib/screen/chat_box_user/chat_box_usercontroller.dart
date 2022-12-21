@@ -58,9 +58,8 @@ class ChatBoxUserController extends GetxController implements GetxService {
 
   bool validation() {
     if (msController.text.isEmpty) {
-      if (kDebugMode) {
-        print("Please enter message");
-      }
+      print("Please enter message");
+
       return false;
     }
     return true;
@@ -112,7 +111,7 @@ class ChatBoxUserController extends GetxController implements GetxService {
     });
   }
 
-  void gotoChatScreen(BuildContext context, String otherUid, name) async {
+  void gotoChatScreen(BuildContext context, String otherUid, name,deviceToken ) async {
     loader.value = true;
     await getRoomId(otherUid);
     loader.value = false;
@@ -122,6 +121,8 @@ class ChatBoxUserController extends GetxController implements GetxService {
           name: name,
           otherUserUid: otherUid,
           userUid: userUid,
+        deviceToken:deviceToken,
+
         ));
   }
 

@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
@@ -34,13 +33,10 @@ void main() async {
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   NotificationService.init();
+  await PrefService.init();
+  String? value =await FirebaseMessaging.instance.getToken();
+  await PrefService.setValue(PrefKeys.deviceToken, value);
 
-  await FirebaseMessaging.instance.getToken().then((value) {
-    if (kDebugMode) {
-      print("FCM Token => $value");
-      PrefService.setValue(PrefKeys.deviceToken, value);
-    }
-  });
 
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       systemNavigationBarColor: Colors.transparent, // navigation bar color
@@ -77,8 +73,7 @@ class MyApp extends StatelessWidget {
             name: AppRes.jobDetailSuccessOrFailed,
             page: () => JobDetailsSuccessOrFailedScreen()),
         GetPage(
-            name: AppRes.notificationScreen,
-            page: () => NotificationScreenM()),
+            name: AppRes.notificationScreen, page: () => NotificationScreenM()),
         //GetPage(name: AppRes.jobDetailScreen, page: () => JobDetailScreen()),
         GetPage(name: AppRes.jobDetailScreen, page: () => JobDetailScreen()),
         GetPage(

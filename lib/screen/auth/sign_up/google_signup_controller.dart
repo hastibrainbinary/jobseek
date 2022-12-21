@@ -235,6 +235,7 @@ class GoogleSignupController extends GetxController {
       "City": cityController.text,
       "State": stateController.text,
       "Country": countryController.text,
+      "deviceTokenU": PrefService.getString(PrefKeys.deviceToken),
     };
 
     // singUp(emailController.text, passwordController.text);

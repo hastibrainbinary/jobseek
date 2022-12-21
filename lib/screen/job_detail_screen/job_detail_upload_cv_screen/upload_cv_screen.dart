@@ -85,17 +85,21 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                         color: Color(0xffD9D9D9),
                       ),
                       const SizedBox(height: 20),
-                      Text(Strings.uploadResume,
-                          style: appTextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w600,
-                              color: ColorRes.black)),
+                      Text(
+                        Strings.uploadResume,
+                        style: appTextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600,
+                            color: ColorRes.black),
+                      ),
                       const SizedBox(height: 10),
-                      Text(Strings.uploadYourCvOr,
-                          style: appTextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                              color: ColorRes.black)),
+                      Text(
+                        Strings.uploadYourCvOr,
+                        style: appTextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                            color: ColorRes.black),
+                      ),
 
                       ///upload pdf error Container
                       Obx(
@@ -174,7 +178,7 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                                           width: Get.width * 0.6,
                                           child: Text(
                                             controller.filepath
-                                                .value /*"Resume - Adam Smith.pdf"*/,
+                                                .value ,
                                             style: appTextStyle(
                                                 fontSize: 13,
                                                 fontWeight: FontWeight.w600,
@@ -284,8 +288,7 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                                       PrefService.getString(PrefKeys.fullName),
                                   body: "applied your vacancies",
                                   fcmTokens: [
-                                // PrefService.getString(PrefKeys.deviceToken),
-                                "ee7zgJFLRO2vRYUB2p_Yan:APA91bFRLU7a29lkqG50lhPDzcFyROQhQreHtHTTrndMySyQBPYUBfQ9MnhEcb02awiEK1sFIw02mFSjes9Dzpvq-zhm7JnJbG2wLMbyiSxHkGzODdsl3crcMyuIzeijTZbSHfLIu4t4"
+                                args["doc"]["deviceToken"],
                               ]);
                           NotificationService.sendNotification(notification);
                           if (controller.pdfUrl == null ||

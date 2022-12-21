@@ -4,9 +4,12 @@ import 'package:get/get.dart';
 import 'package:jobseek/screen/call/call_joining_screen.dart';
 import 'package:jobseek/screen/call/video_joinScreen.dart';
 import 'package:jobseek/screen/chat_box/chat_box_controller.dart';
+import 'package:jobseek/screen/manager_section/Notification/notification_services.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 import 'package:jobseek/utils/string.dart';
 import 'package:paginate_firestore/paginate_firestore.dart';
 import 'chat_box_usercontroller.dart';
@@ -17,6 +20,7 @@ class ChatLiveScreen extends StatelessWidget {
   final String? roomId;
   final String? otherUserUid;
   final String? userUid;
+  final String? deviceToken;
 
   ChatLiveScreen({
     Key? key,
@@ -24,6 +28,7 @@ class ChatLiveScreen extends StatelessWidget {
     this.userUid,
     this.otherUserUid,
     this.roomId,
+    this.deviceToken,
   }) : super(key: key);
 
   ChatBoxUserController controller = Get.put(ChatBoxUserController());
@@ -158,9 +163,11 @@ class ChatLiveScreen extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (con) => const CallJoiningScreen()));
+                            context,
+                            MaterialPageRoute(
+                              builder: (con) => const CallJoiningScreen(),
+                            ),
+                          );
                         },
                         child: Container(
                           height: 35,
@@ -331,6 +338,17 @@ class ChatLiveScreen extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
+                              SendNotificationModel notification =
+                                  SendNotificationModel(
+                                      title: PrefService.getString(
+                                          PrefKeys.fullName),
+                                      body: "Massage",
+                                      fcmTokens: [
+                                    deviceToken.toString(),
+                                    // PrefService.getString(PrefKeys.deviceToken),
+                                  ]);
+                              NotificationService.sendNotification(
+                                  notification);
                               if (controller.validation()) {
                                 controller.sendMessage(
                                   roomId.toString(),

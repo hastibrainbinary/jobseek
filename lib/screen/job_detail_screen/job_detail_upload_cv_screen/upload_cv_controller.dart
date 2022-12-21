@@ -7,11 +7,11 @@ import 'package:get/get.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import '../../../utils/pref_keys.dart';
+
 
 FirebaseFirestore firestore = FirebaseFirestore.instance;
-//List<String> position = [];
 List<Map<String, dynamic>> companyList = [];
 bool abc = false;
 
@@ -40,10 +40,10 @@ class JobDetailsUploadCvController extends GetxController {
     await firestore.collection("Apply").get().then((value) {
       value.docs.forEach((element) {
         if (element['uid'] == PrefService.getString(PrefKeys.userId)) {
-      /*    companyList.add({
+          companyList.add({
             "companyname": element['CompanyName'],
             "position": element['Position']
-          });*/
+          });
         }
       });
 

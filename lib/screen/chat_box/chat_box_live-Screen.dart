@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/chat_box/chat_box_controller.dart';
 import 'package:jobseek/screen/chat_box_user/chat_box_usercontroller.dart';
+import 'package:jobseek/screen/manager_section/Notification/notification_services.dart';
 import 'package:jobseek/screen/manager_section/call/call_join_Screen.dart';
 import 'package:jobseek/screen/manager_section/call/video_joinig_Screen.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 import 'package:jobseek/utils/string.dart';
 import 'package:paginate_firestore/paginate_firestore.dart';
 
@@ -17,15 +20,16 @@ class ChatBoxLiveScreenM extends StatelessWidget {
   final String? roomId;
   final String? otherUserUid;
   final String? userUid;
+  final String? deviceToken;
 
-  ChatBoxLiveScreenM({
-    Key? key,
-    this.name,
-    this.userUid,
-    this.otherUserUid,
-    this.roomId,
-
-  }) : super(key: key);
+  ChatBoxLiveScreenM(
+      {Key? key,
+      this.name,
+      this.userUid,
+      this.otherUserUid,
+      this.roomId,
+      this.deviceToken})
+      : super(key: key);
 
   ChatBoxController controller = Get.put(ChatBoxController());
   ChatBoxUserController chatBoxUserController =
@@ -278,7 +282,6 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                             );
                       if ((index + 1) == docementSnapshot.length) {
                         return Column(
-                          // mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             const SizedBox(
@@ -331,6 +334,19 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
+                              SendNotificationModel notification =
+                                  SendNotificationModel(
+                                      title: PrefService.getString(
+                                          PrefKeys.companyName),
+                                      body: "Massage",
+                                      fcmTokens: [
+                                    deviceToken.toString(),
+
+                                    /* "ee7zgJFLRO2vRYUB2p_Yan:APA91bFRLU7a29lkqG50lhPDzcFyROQhQreHtHTTrndMySyQBPYUBfQ9MnhEcb02awiEK1sFIw02mFSjes9Dzpvq-zhm7JnJbG2wLMbyiSxHkGzODdsl3crcMyuIzeijTZbSHfLIu4t4"*/
+                                  ]);
+                              NotificationService.sendNotification(
+                                  notification);
+
                               if (controller.validation()) {
                                 controller.sendMessage(
                                   roomId.toString(),
