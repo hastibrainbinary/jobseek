@@ -3,18 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jobseek/screen/auth/sign_inScreen/Signin_Screen.dart';
-import 'package:jobseek/screen/dashboard/home/widgets/search_field.dart';
 import 'package:jobseek/screen/job_recomandation_search/job_recomadation_search.dart';
 import 'package:jobseek/screen/looking_for_screen/looking_for_screen.dart';
 import 'package:jobseek/screen/new_home_page/new_home_page_controller.dart';
 import 'package:jobseek/screen/search_job/search_job_screen.dart';
-import 'package:jobseek/screen/splashScreen/splash_controller.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
+import 'package:jobseek/utils/string.dart';
 
+// ignore: must_be_immutable
 class HomePageNewScreenU extends StatelessWidget {
   HomePageNewScreenU({Key? key}) : super(key: key);
 
@@ -42,7 +42,7 @@ class HomePageNewScreenU extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 11),
                   child: Text(
                     textAlign: TextAlign.center,
-                    "Logo",
+                    Strings.logo,
                     style: appTextStyle(
                         color: ColorRes.containerColor,
                         fontWeight: FontWeight.w600,
@@ -53,7 +53,7 @@ class HomePageNewScreenU extends StatelessWidget {
               const Spacer(),
               Center(
                 child: Text(
-                  'Job Seeker',
+                  Strings.jobSeeker,
                   style: appTextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
@@ -67,8 +67,9 @@ class HomePageNewScreenU extends StatelessWidget {
                 height: 40,
                 width: 40,
                 decoration: BoxDecoration(
-                    color: ColorRes.logoColor,
-                    borderRadius: BorderRadius.circular(10)),
+                  color: ColorRes.logoColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 child: const InkWell(
                   // onTap: () {
                   //   Navigator.push(
@@ -93,25 +94,29 @@ class HomePageNewScreenU extends StatelessWidget {
                   Expanded(
                     child: Container(
                       decoration: const BoxDecoration(
-                          color: ColorRes.white2,
-                          borderRadius: BorderRadius.all(Radius.circular(8))),
+                        color: ColorRes.white2,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(8),
+                        ),
+                      ),
                       child: TextField(
                         controller: controller.searchControllerNew,
                         onChanged: (value) {},
                         onTap: () {
-                          Get.to(() => const SearchJobScreen());
+                          Get.to(() => SearchJobScreen());
                         },
                         decoration: InputDecoration(
-                            border: InputBorder.none,
-                            suffixIcon:
-                                const Icon(Icons.search, color: ColorRes.grey),
-                            hintText: "Search",
-                            hintStyle: appTextStyle(
-                                fontSize: 14,
-                                color: ColorRes.grey,
-                                fontWeight: FontWeight.w500),
-                            contentPadding:
-                                const EdgeInsets.only(left: 20, top: 13)),
+                          border: InputBorder.none,
+                          suffixIcon:
+                              const Icon(Icons.search, color: ColorRes.grey),
+                          hintText: Strings.searchJobsHere,
+                          hintStyle: appTextStyle(
+                              fontSize: 14,
+                              color: ColorRes.grey,
+                              fontWeight: FontWeight.w500),
+                          contentPadding:
+                              const EdgeInsets.only(left: 20, top: 13),
+                        ),
                       ),
                     ),
                   ),
@@ -152,7 +157,7 @@ class HomePageNewScreenU extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
               child: Row(
                 children: const [
                   Icon(
@@ -183,7 +188,7 @@ class HomePageNewScreenU extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
               child: Row(
                 children: const [
                   Icon(
@@ -213,67 +218,68 @@ class HomePageNewScreenU extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 22.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      Get.to(() => const LookingForScreen());
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.only(top: 15),
-                      height: 36,
-                      width: 95,
-                      decoration: BoxDecoration(
-                          color: ColorRes.containerColor,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: const Center(
-                        child: Text(
-                          "Register",
-                          style: TextStyle(
-                              color: ColorRes.white,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14),
-                        ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(width: 20),
+                InkWell(
+                  onTap: () {
+                    Get.to(() => const LookingForScreen());
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.only(top: 15),
+                    height: 36,
+                    width: 95,
+                    decoration: BoxDecoration(
+                      color: ColorRes.containerColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        "Register",
+                        style: TextStyle(
+                            color: ColorRes.white,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 14),
                       ),
                     ),
                   ),
-                  const SizedBox(width: 10),
-                  InkWell(
-                    onTap: () {
-                      Get.to(() => SigninScreenU());
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.only(top: 15),
-                      height: 36,
-                      width: 95,
-                      decoration: BoxDecoration(
-                          color: ColorRes.logoColor,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: const Center(
-                        child: Text(
-                          "Log in",
-                          style: TextStyle(
-                              color: ColorRes.containerColor,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14),
-                        ),
+                ),
+                const SizedBox(width: 10),
+                InkWell(
+                  onTap: () {
+                    Get.to(() => const SigninScreenU());
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.only(top: 15),
+                    height: 36,
+                    width: 95,
+                    decoration: BoxDecoration(
+                        color: ColorRes.logoColor,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: const Center(
+                      child: Text(
+                        "Log in",
+                        style: TextStyle(
+                            color: ColorRes.containerColor,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 14),
                       ),
                     ),
                   ),
-                  Container(
-                      decoration: const BoxDecoration(),
-                      child: const Image(
-                        image: AssetImage(
-                          AssetRes.HomeImage,
-                        ),
-                        height: 132,
-                      ))
-                ],
-              ),
+                ),
+                const Spacer(),
+                Container(
+                  margin: const EdgeInsets.only(right: 8),
+                  child: const Image(
+                    image: AssetImage(
+                      AssetRes.HomeLogo,
+                    ),
+                    height: 107,
+                  ),
+                ),
+              ],
             ),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 1),
@@ -294,7 +300,7 @@ class HomePageNewScreenU extends StatelessWidget {
                 "Find your dream job",
                 style: TextStyle(
                     fontWeight: FontWeight.w600,
-                    fontSize: 14,
+                    fontSize: 18,
                     color: ColorRes.black),
               ),
             ),
@@ -311,7 +317,7 @@ class HomePageNewScreenU extends StatelessWidget {
                         child: AdvancedSearch(
                           clearSearchEnabled: true,
                           singleItemHeight: 40,
-                          hintText: 'Enter skills,designation,companies',
+                          hintText: 'Enter designation, companies',
                           hintTextColor: Colors.black.withOpacity(0.5),
                           autoListing: true,
                           unSelectedTextColor: Colors.black.withOpacity(0.5),
@@ -375,8 +381,9 @@ class HomePageNewScreenU extends StatelessWidget {
                   height: 36,
                   width: 119,
                   decoration: BoxDecoration(
-                      color: ColorRes.containerColor,
-                      borderRadius: BorderRadius.circular(10)),
+                    color: ColorRes.containerColor,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                   child: const Center(
                     child: Text(
                       "Search jobs",
@@ -401,7 +408,7 @@ class HomePageNewScreenU extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                    'Job recommendation',
+                    Strings.jobRecommendation,
                     style: appTextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -414,7 +421,7 @@ class HomePageNewScreenU extends StatelessWidget {
                       Get.to(() => JobRecomandationSearch());
                     },
                     child: Text(
-                      'View all',
+                      Strings.viewAll,
                       style: appTextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
@@ -449,7 +456,7 @@ class HomePageNewScreenU extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "UI/UX Designer",
+                        Strings.uIUXDesigner,
                         style: appTextStyle(
                             color: ColorRes.black,
                             fontSize: 15,
@@ -457,7 +464,7 @@ class HomePageNewScreenU extends StatelessWidget {
                       ),
                       const SizedBox(height: 6),
                       Text(
-                        "AirBNB",
+                        Strings.airBNB,
                         style: appTextStyle(
                             color: ColorRes.black,
                             fontSize: 10,
@@ -478,14 +485,18 @@ class HomePageNewScreenU extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       const Spacer(),
-                      const Icon(Icons.bookmark,
+                      const Image(
+                          image: AssetImage(AssetRes.bookMarkBorderIcon),
+                          height: 20,
                           color: ColorRes.containerColor),
                       const SizedBox(height: 10),
-                      Text("\$2.350",
-                          style: appTextStyle(
-                              color: ColorRes.containerColor,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600)),
+                      Text(
+                        "\$2.350",
+                        style: appTextStyle(
+                            color: ColorRes.containerColor,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600),
+                      ),
                     ],
                   ),
                   const SizedBox(width: 10),
@@ -546,14 +557,18 @@ class HomePageNewScreenU extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       const Spacer(),
-                      const Icon(Icons.bookmark,
+                      const Image(
+                          image: AssetImage(AssetRes.bookMarkBorderIcon),
+                          height: 20,
                           color: ColorRes.containerColor),
                       const SizedBox(height: 10),
-                      Text("\$2.200",
-                          style: appTextStyle(
-                              color: ColorRes.containerColor,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600)),
+                      Text(
+                        "\$2.200",
+                        style: appTextStyle(
+                            color: ColorRes.containerColor,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600),
+                      ),
                     ],
                   ),
                   const SizedBox(width: 10),

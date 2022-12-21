@@ -18,14 +18,15 @@ class SignInScreenControllerM extends GetxController {
   bool isManager = false;
   String emailError = "";
   String pwdError = "";
-@override
-  void onInit(){
+  @override
+  void onInit() {
+    super.onInit();
+  }
 
-  super.onInit();
-}
   getRememberEmailDataManger() {
     if (PrefService.getString(PrefKeys.emailRememberManager) != "") {
-      emailController.text = PrefService.getString(PrefKeys.emailRememberManager);
+      emailController.text =
+          PrefService.getString(PrefKeys.emailRememberManager);
       passwordController.text =
           PrefService.getString(PrefKeys.passwordRememberManager);
     }
@@ -142,8 +143,12 @@ class SignInScreenControllerM extends GetxController {
         loading.value = false;
       }
 
-      print("${value.isBlank}=|=|=|");
-      print("${value.docs.length}=|=|=|");
+      if (kDebugMode) {
+        print("${value.isBlank}=|=|=|");
+      }
+      if (kDebugMode) {
+        print("${value.docs.length}=|=|=|");
+      }
     });
   }
 
@@ -190,7 +195,8 @@ class SignInScreenControllerM extends GetxController {
 
   onLoginBtnTap() async {
     if (rememberMe == true) {
-      await PrefService.setValue(PrefKeys.emailRememberManager, emailController.text);
+      await PrefService.setValue(
+          PrefKeys.emailRememberManager, emailController.text);
       await PrefService.setValue(
           PrefKeys.passwordRememberManager, passwordController.text);
     }
@@ -275,7 +281,8 @@ class SignInScreenControllerM extends GetxController {
           .collection("register")
           .get()
           .then((value) async {
-        if (value.docs.length.isEqual(0)) {
+        // ignore: unnecessary_null_comparison
+        if (value == null) {
           loading.value = true;
           Get.snackbar(
               "Error", "Please create account,\n your email is not registered",
@@ -287,6 +294,18 @@ class SignInScreenControllerM extends GetxController {
             }
             if (value.docs[i]["Email"] == user!.email &&
                 value.docs[i]["Email"] != "") {
+              isManager = false;
+              Get.snackbar("Error",
+                  "Please create account,\n your email is not registered",
+                  colorText: const Color(0xffDA1414));
+              if (await googleSignIn.isSignedIn()) {
+                await googleSignIn.signOut();
+              }
+              loading.value = false;
+              if (kDebugMode) {
+                print("$isManager====]]]]]");
+              }
+            } else {
               isManager = true;
               PrefService.setValue(PrefKeys.rol, "Manager");
               PrefService.setValue(
@@ -300,25 +319,17 @@ class SignInScreenControllerM extends GetxController {
                 print("$isManager====]]]]]");
               }
               break;
-            } else {
-              isManager = false;
-              Get.snackbar("Error",
-                  "Please create account,\n your email is not registered",
-                  colorText: const Color(0xffDA1414));
-              if (await googleSignIn.isSignedIn()) {
-                await googleSignIn.signOut();
-              }
-              loading.value = false;
-              if (kDebugMode) {
-                print("$isManager====]]]]]");
-              }
             }
           }
           loading.value = false;
         }
 
-        print("${value.isBlank}=|=|=|");
-        print("${value.docs.length}=|=|=|");
+        if (kDebugMode) {
+          print("${value.isBlank}=|=|=|");
+        }
+        if (kDebugMode) {
+          print("${value.docs.length}=|=|=|");
+        }
       });
 
       PrefService.setValue(PrefKeys.userId, user?.uid.toString());

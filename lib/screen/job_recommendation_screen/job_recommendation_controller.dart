@@ -32,7 +32,6 @@ class JobRecommendationController extends GetxController
     }
   }
 
-
   //CollectionReference allNoteCollection = FirebaseFirestore.instance.collection('allPost');
   List<DocumentSnapshot> documents = [];
 
@@ -46,7 +45,20 @@ class JobRecommendationController extends GetxController
   // }
 
   RxInt selectedJobs2 = 0.obs;
-  RxList jobs2 = ["All Job", "Writer", "Design", "Finance"].obs;
+  RxList jobs2 = [
+    "All Job",
+    "Writer",
+    "Design",
+    "Finance",
+    'Software',
+    'Database Manager',
+    'Product Manager',
+    'Full-Stack Developer',
+    'Data Scientist',
+    'Web Developers',
+    'Networking',
+    'Cyber Security'
+  ].obs;
 
   onTapJobs2(int index) {
     selectedJobs2.value = index;

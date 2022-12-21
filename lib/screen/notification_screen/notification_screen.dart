@@ -5,8 +5,8 @@ import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/string.dart';
 
-class NotificationScreen extends StatelessWidget {
-  const NotificationScreen({Key? key}) : super(key: key);
+class NotificationScreenU extends StatelessWidget {
+  const NotificationScreenU({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class NotificationScreen extends StatelessWidget {
                     child: Text(
                       Strings.notification,
                       style: appTextStyle(
-                          color: Colors.black,
+                          color: ColorRes.black,
                           fontSize: 20,
                           fontWeight: FontWeight.w500),
                     ),

@@ -6,30 +6,33 @@ import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 
-  JobRecommendationController jcon = Get.put(JobRecommendationController());
+JobRecommendationController jcon = Get.put(JobRecommendationController());
+
 class HomeController extends GetxController implements GetxService {
-  TextEditingController searchController = TextEditingController();
+  TextEditingController searchNewController = TextEditingController();
 
-  RxBool isBookMark=false.obs;
+  RxBool isBookMark = false.obs;
 
-  RxList jobTypes = [
+  /*RxList jobTypes = [
     "UI/UX Designer",
     "Financial planner",
     "UI/UX Designer",
     "Financial planner",
     "UI/UX Designer"
-  ].obs;
+  ].obs;*/
   RxList jobTypesSaved = List.generate(2, (index) => false).obs;
 
-
-  RxList jobTypesLogo = [
+/*  RxList jobTypesLogo = [
     AssetRes.airBnbLogo,
     AssetRes.twitterLogo,
     AssetRes.airBnbLogo,
     AssetRes.twitterLogo,
     AssetRes.airBnbLogo
-  ].obs;
-
+  ].obs;*/
+  String location = "";
+  String locationError = "";
+  String skills = "";
+  String skillError = "";
   @override
   void onInit() {
     super.onInit();
@@ -37,11 +40,11 @@ class HomeController extends GetxController implements GetxService {
     jobTypesSaved = List.generate(jcon.documents.length, (index) => false).obs;
   }
 
-  onTapSave(index,field,docId) {
+  onTapSave(index, field, docId) {
     if (jobTypesSaved[index] == true) {
-   //   jobTypesSaved[index] = false;
+      //   jobTypesSaved[index] = false;
 
-    //  FirebaseFirestore.instance.collection("BookMark").doc(docId).delete();
+      //  FirebaseFirestore.instance.collection("BookMark").doc(docId).delete();
     } else {
       jobTypesSaved[index] = true;
 
@@ -51,40 +54,51 @@ class HomeController extends GetxController implements GetxService {
         "salary": field['salary'],
         "location": field['location'],
         "type": field['type'],
+        "imageUrl": field['imageUrl'],
       };
 
-
-      List bookmark =[];
+      List bookmark = [];
       bookmark = field['BookMarkUserList'];
-      if(bookmark.length==0){
+      if (bookmark.length == 0) {
         bookmark.add(PrefService.getString(PrefKeys.userId));
       }
-      for(int i=0;i< bookmark.length;i++)
-        {
-
-          if(bookmark[i] != PrefService.getString(PrefKeys.userId))
-            {
-              bookmark.add(PrefService.getString(PrefKeys.userId));
-            }
+      for (int i = 0; i < bookmark.length; i++) {
+        if (bookmark[i] != PrefService.getString(PrefKeys.userId)) {
+          bookmark.add(PrefService.getString(PrefKeys.userId));
         }
+      }
       List<String> bookmarkList = List.generate(bookmark.length, (index) {
         return bookmark[index].toString();
       });
-      Map<String, dynamic> map2={
-        "BookMarkUserList":bookmarkList,
+      Map<String, dynamic> map2 = {
+        "BookMarkUserList": bookmarkList,
       };
 
       FirebaseFirestore.instance.collection('allPost').doc(docId).update(map2);
 
-      FirebaseFirestore.instance.collection('BookMark').doc(PrefService.getString(PrefKeys.userId)).collection("BookMark1")..doc().set(
-       map
-      );
+      FirebaseFirestore.instance
+          .collection('BookMark')
+          .doc(PrefService.getString(PrefKeys.userId))
+          .collection("BookMark1")
+        ..doc().set(map);
     }
-    }
-
+  }
 
   RxInt selectedJobs2 = 0.obs;
-  RxList jobs2 = ["All Job", "Writer", "Design", "Finance"].obs;
+  RxList jobs2 = [
+    'All Job',
+    "Writer",
+    "Design",
+    "Finance",
+    'Software',
+    'Database Manager',
+    'Product Manager',
+    'Full-Stack Developer',
+    'Data Scientist',
+    'Web Developers',
+    'Networking',
+    'Cyber Security'
+  ].obs;
 
   onTapJobs2(int index) {
     selectedJobs2.value = index;
@@ -93,8 +107,17 @@ class HomeController extends GetxController implements GetxService {
 
   String? firstNAme;
 
-
   getfirstName() async {
     firstNAme = await PrefService.getString(PrefKeys.firstnameu);
+  }
+
+  locationValidation() {
+    if (location == null || location == "") {
+      locationError = "Please Enter Location";
+      update(['popup']);
+    } else {
+      locationError = "";
+      update(['popup']);
+    }
   }
 }

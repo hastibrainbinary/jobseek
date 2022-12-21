@@ -1,8 +1,8 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/common_error_box.dart';
 import 'package:jobseek/common/widgets/common_textField.dart';
+import 'package:jobseek/screen/profile/edit_profile_user/edit_profile_user_screen.dart';
 import 'package:jobseek/screen/profile/profile_controller.dart';
 import 'package:jobseek/screen/settings/settings_screen.dart';
 import 'package:jobseek/service/pref_services.dart';
@@ -10,20 +10,14 @@ import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
+import 'package:jobseek/utils/string.dart';
 
 class ProfileUserScreenU extends StatelessWidget {
   ProfileUserScreenU({Key? key}) : super(key: key);
   final controller = Get.put(ProfileUserController());
 
-
-
   @override
   Widget build(BuildContext context) {
-
-    controller.fullNameController.text = PrefService.getString(PrefKeys.fullName);
-    controller.emailController.text = PrefService.getString(PrefKeys.email);
-    controller.occupationController.text = PrefService.getString(PrefKeys.occupation);
-
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: ColorRes.backgroundColor,
@@ -38,13 +32,14 @@ class ProfileUserScreenU extends StatelessWidget {
                 height: 40,
                 width: 40,
                 decoration: BoxDecoration(
-                    color: ColorRes.logoColor,
-                    borderRadius: BorderRadius.circular(10)),
+                  color: ColorRes.logoColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 child: Padding(
                   padding: const EdgeInsets.only(top: 11),
                   child: Text(
                     textAlign: TextAlign.center,
-                    "Logo",
+                    Strings.logo,
                     style: appTextStyle(
                         color: ColorRes.containerColor,
                         fontWeight: FontWeight.w600,
@@ -55,7 +50,7 @@ class ProfileUserScreenU extends StatelessWidget {
               const Spacer(),
               Center(
                 child: Text(
-                  'Profile',
+                  Strings.profile,
                   style: appTextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
@@ -69,14 +64,17 @@ class ProfileUserScreenU extends StatelessWidget {
                 height: 40,
                 width: 40,
                 decoration: BoxDecoration(
-                    color: ColorRes.logoColor,
-                    borderRadius: BorderRadius.circular(10)),
+                  color: ColorRes.logoColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 child: InkWell(
                   onTap: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (con) => const SettingsScreenU()));
+                      context,
+                      MaterialPageRoute(
+                        builder: (con) => const SettingsScreenU(),
+                      ),
+                    );
                   },
                   child: const Icon(
                     Icons.settings,
@@ -97,205 +95,31 @@ class ProfileUserScreenU extends StatelessWidget {
                         Stack(
                           children: [
                             GetBuilder<ProfileUserController>(
-                              id:"pic",
-                              builder: (context) {
-                                return Container(
-                                  width: 100,
-                                  height: 100,
-                                  decoration: BoxDecoration(
-                                      color: Colors.black,
+                                id: "pic",
+                                builder: (context) {
+                                  return Container(
+                                    width: 100,
+                                    height: 100,
+                                    decoration: BoxDecoration(
+                                      color: ColorRes.black,
                                       borderRadius: BorderRadius.circular(50),
-                                      image:  (controller.image!=null)?DecorationImage(
-                                          image: FileImage(
-                                              controller.image!)
-                                      ):const DecorationImage(
-                                          image: AssetImage(
-                                              AssetRes.userprofileLogo)
-                                      )
-                                  ),
-                                );
-                              }
-                            ),
-                            Positioned(
-                              bottom: 0,
-                              right: 2,
-                              child: InkWell(
-                                onTap: () {
-                                  showModalBottomSheet<void>(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10.0),
+                                      image: controller.fbImageUrl.value != ""
+                                          ? DecorationImage(
+                                              image: NetworkImage(
+                                                  controller.fbImageUrl.value),
+                                              fit: BoxFit.fill)
+                                          : (controller.image != null)
+                                              ? DecorationImage(
+                                                  image: FileImage(
+                                                      controller.image!),
+                                                )
+                                              : const DecorationImage(
+                                                  image: AssetImage(
+                                                      AssetRes.userprofileLogo),
+                                                ),
                                     ),
-                                    backgroundColor: Colors.transparent,
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return Container(
-                                        height: 450,
-                                        decoration: const BoxDecoration(
-                                          color: ColorRes.white,
-                                          borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(45),
-                                            topRight: Radius.circular(45),
-                                          ),
-                                        ),
-                                        child: Center(
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: <Widget>[
-                                              const SizedBox(height: 30),
-                                              Text(
-                                                'Change Avatar',
-                                                style: appTextStyle(
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w500,
-                                                    color: ColorRes.black
-                                                        .withOpacity(0.8)),
-                                              ),
-                                              // const SizedBox(height: 20),
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 18,
-                                                        vertical: 18),
-                                                child: Container(
-                                                  height: 120,
-                                                  width: Get.width,
-                                                  decoration: BoxDecoration(
-                                                    border: Border.all(
-                                                      color: const Color(
-                                                          0xffF3ECFF),
-                                                    ),
-                                                    borderRadius:
-                                                        const BorderRadius.all(
-                                                      Radius.circular(5),
-                                                    ),
-                                                  ),
-                                                  child: Column(
-                                                    children: [
-                                                      InkWell(
-                                                        onTap: () =>
-                                                            controller.ontap(),
-                                                        child: Container(
-                                                          height: 70,
-                                                          width: 70,
-                                                          margin:
-                                                              const EdgeInsets
-                                                                      .symmetric(
-                                                                  horizontal:
-                                                                      100,
-                                                                  vertical: 10),
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: ColorRes
-                                                                .logoColor,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        80),
-                                                          ),
-                                                          child: const Icon(
-                                                            Icons.camera_alt,
-                                                            size: 40,
-                                                            color: ColorRes
-                                                                .containerColor,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Text(
-                                                        "Take photo",
-                                                        style: appTextStyle(
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            fontSize: 14,
-                                                            color:
-                                                                ColorRes.black),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 18),
-                                                child: Container(
-                                                  height: 120,
-                                                  width: Get.width,
-                                                  decoration: BoxDecoration(
-                                                    border: Border.all(
-                                                      color: const Color(
-                                                          0xffF3ECFF),
-                                                    ),
-                                                    borderRadius:
-                                                        const BorderRadius.all(
-                                                      Radius.circular(5),
-                                                    ),
-                                                  ),
-                                                  child: Column(
-                                                    children: [
-                                                      InkWell(
-                                                        onTap: () => controller
-                                                            .ontapGallery(),
-                                                        child: Container(
-                                                          height: 70,
-                                                          width: 70,
-                                                          margin:
-                                                              const EdgeInsets
-                                                                      .symmetric(
-                                                                  horizontal:
-                                                                      100,
-                                                                  vertical: 10),
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: ColorRes
-                                                                .logoColor,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        80),
-                                                          ),
-                                                          child: const Image(
-                                                            image: AssetImage(
-                                                                AssetRes
-                                                                    .galleryaimage),
-                                                            color: ColorRes
-                                                                .containerColor,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Text(
-                                                        "Form gallery",
-                                                        style: appTextStyle(
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            fontSize: 14,
-                                                            color:
-                                                                ColorRes.black),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      );
-                                    },
                                   );
-                                },
-                                child: const CircleAvatar(
-                                  radius: 10,
-                                  backgroundColor: ColorRes.containerColor,
-                                  child: Icon(
-                                    Icons.edit,
-                                    size: 10,
-                                    color: ColorRes.white,
-                                  ),
-                                ),
-                              ),
-                            ),
+                                }),
                           ],
                         ),
                         const SizedBox(width: 20),
@@ -314,17 +138,19 @@ class ProfileUserScreenU extends StatelessWidget {
                             Text(
                               PrefService.getString(PrefKeys.email),
                               style: appTextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 12,
-                                  color: ColorRes.black.withOpacity(0.6)),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
+                                color: ColorRes.black.withOpacity(0.6),
+                              ),
                             ),
                             const SizedBox(height: 2),
                             Text(
                               PrefService.getString(PrefKeys.occupation),
                               style: appTextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 12,
-                                  color: ColorRes.black.withOpacity(0.6)),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
+                                color: ColorRes.black.withOpacity(0.6),
+                              ),
                             ),
                           ],
                         ),
@@ -342,7 +168,7 @@ class ProfileUserScreenU extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                "Full Name",
+                                Strings.fullName,
                                 style: appTextStyle(
                                   color: ColorRes.black.withOpacity(0.6),
                                   fontSize: 14,
@@ -357,25 +183,26 @@ class ProfileUserScreenU extends StatelessWidget {
                           const SizedBox(
                             height: 10,
                           ),
-
                           commonTextFormField(
                               onChanged: controller.onChanged,
+                              readOnly: true,
                               textDecoration: InputDecoration(
-                                  contentPadding: const EdgeInsets.all(15),
-                                  border: InputBorder.none,
-                                  hintText: "  Full Name",
-                                  hintStyle: appTextStyle(
-                                      fontSize: 14,
-                                      color: ColorRes.black.withOpacity(0.15))),
-                              controller: controller.fullNameController
-                          ),
+                                contentPadding: const EdgeInsets.all(15),
+                                border: InputBorder.none,
+                                hintText: "  Full Name",
+                                hintStyle: appTextStyle(
+                                  fontSize: 14,
+                                  color: ColorRes.black.withOpacity(0.15),
+                                ),
+                              ),
+                              controller: controller.fullNameController),
                           controller.isNameValidate.value == true
                               ? Column(
                                   children: [
                                     const SizedBox(
                                       height: 10,
                                     ),
-                                    commonErrorBox("Enter Valid Name"),
+                                    commonErrorBox(Strings.enterValidName),
                                   ],
                                 )
                               : const SizedBox(),
@@ -385,7 +212,7 @@ class ProfileUserScreenU extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                "Email",
+                                Strings.email,
                                 style: appTextStyle(
                                     color: ColorRes.grey, fontSize: 14),
                               ),
@@ -400,6 +227,7 @@ class ProfileUserScreenU extends StatelessWidget {
                           ),
                           commonTextFormField(
                               onChanged: controller.onChanged,
+                              readOnly: true,
                               textDecoration: InputDecoration(
                                 contentPadding: const EdgeInsets.all(15),
                                 border: InputBorder.none,
@@ -419,7 +247,7 @@ class ProfileUserScreenU extends StatelessWidget {
                                     const SizedBox(
                                       height: 10,
                                     ),
-                                    commonErrorBox("Enter Valid Email"),
+                                    commonErrorBox(Strings.enterValidEmail),
                                   ],
                                 )
                               : const SizedBox(),
@@ -429,7 +257,7 @@ class ProfileUserScreenU extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                "Date of birth",
+                                Strings.dateOfBirth,
                                 style: appTextStyle(
                                     color: ColorRes.grey, fontSize: 14),
                               ),
@@ -444,19 +272,21 @@ class ProfileUserScreenU extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
-                              controller.onDatePickerTap(context);
+                              //controller.onDatePickerTap(context);
                             },
                             child: commonTextFormField(
+                                readOnly: true,
                                 onChanged: controller.onChanged,
-                                onTap: () =>
-                                    controller.onDatePickerTap(context),
+                                // onTap: () =>
+                                //    controller.onDatePickerTap(context),
                                 textDecoration: InputDecoration(
                                   contentPadding: const EdgeInsets.all(15),
                                   border: InputBorder.none,
                                   hintText: "  Date of birth",
                                   hintStyle: appTextStyle(
-                                      fontSize: 14,
-                                      color: ColorRes.black.withOpacity(0.15)),
+                                    fontSize: 14,
+                                    color: ColorRes.black.withOpacity(0.15),
+                                  ),
                                   suffixIcon: Container(
                                     padding: const EdgeInsets.all(15),
                                     child: Image(
@@ -474,7 +304,7 @@ class ProfileUserScreenU extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                "Address",
+                                Strings.address,
                                 style: appTextStyle(
                                     color: ColorRes.grey, fontSize: 14),
                               ),
@@ -488,6 +318,7 @@ class ProfileUserScreenU extends StatelessWidget {
                             height: 10,
                           ),
                           commonTextFormField(
+                              readOnly: true,
                               onChanged: controller.onChanged,
                               textDecoration: InputDecoration(
                                 border: InputBorder.none,
@@ -505,7 +336,7 @@ class ProfileUserScreenU extends StatelessWidget {
                                     const SizedBox(
                                       height: 10,
                                     ),
-                                    commonErrorBox("Enter Valid Address"),
+                                    commonErrorBox(Strings.enterValidAddress),
                                   ],
                                 )
                               : const SizedBox(),
@@ -515,20 +346,21 @@ class ProfileUserScreenU extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                "Occupation",
+                                Strings.occupation,
                                 style: appTextStyle(
                                     color: ColorRes.grey, fontSize: 14),
                               ),
                               Text(
                                 "*",
                                 style: appTextStyle(color: ColorRes.starColor),
-                              )
+                              ),
                             ],
                           ),
                           const SizedBox(
                             height: 10,
                           ),
                           commonTextFormField(
+                              readOnly: true,
                               onChanged: controller.onChanged,
                               textDecoration: InputDecoration(
                                 border: InputBorder.none,
@@ -540,17 +372,17 @@ class ProfileUserScreenU extends StatelessWidget {
                                 ),
                               ),
                               controller: controller.occupationController),
-                          controller.isoccupationValidate.value == true
+                          controller.isOccupationValidate.value == true
                               ? Column(
                                   children: [
                                     const SizedBox(
                                       height: 10,
                                     ),
-                                    commonErrorBox("Enter Valid Occupation"),
+                                    commonErrorBox(
+                                        Strings.enterValidOccupation),
                                   ],
                                 )
                               : const SizedBox(),
-
                           const SizedBox(height: 20),
                           const SizedBox(
                             height: 10,
@@ -558,71 +390,31 @@ class ProfileUserScreenU extends StatelessWidget {
                           GetBuilder<ProfileUserController>(
                               id: "Organization",
                               builder: (controller) {
-                                return (controller.fullNameController.text ==
-                                            '' ||
-                                        controller.emailController.text == '' ||
-                                        controller.addressController.text ==
-                                            '' ||
-                                        controller.occupationController.text ==
-                                            '' ||
-                                        controller.dateOfBirthController.text ==
-                                            '')
-                                    ? InkWell(
-                                        // dashboard write
-                                        onTap: controller.onLoginBtnTap1,
-
-                                        child: Container(
-                                          height: 50,
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          alignment: Alignment.center,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            gradient: LinearGradient(
-                                              colors: [
-                                                ColorRes.gradientColor
-                                                    .withOpacity(0.2),
-                                                ColorRes.containerColor
-                                                    .withOpacity(0.4)
-                                              ],
-                                            ),
-                                          ),
-                                          child: Text("Save Changes",
-                                              style: appTextStyle(
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: ColorRes.white)),
-                                        ),
-                                      )
-                                    : InkWell(
-                                        // dashboard write
-                                        onTap: controller.onLoginBtnTap1,
-                                        child: Container(
-                                          height: 50,
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          alignment: Alignment.center,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            gradient: const LinearGradient(
-                                                colors: [
-                                                  ColorRes.gradientColor,
-                                                  ColorRes.containerColor
-                                                ]),
-                                          ),
-                                          child: Text("Save Changes",
-                                              style: appTextStyle(
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: ColorRes.white)),
-                                        ),
-                                      );
+                                return InkWell(
+                                  onTap: () {
+                                    Get.to(() => EditProfileUser());
+                                  },
+                                  child: Container(
+                                    height: 50,
+                                    width: MediaQuery.of(context).size.width,
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      gradient: const LinearGradient(colors: [
+                                        ColorRes.gradientColor,
+                                        ColorRes.containerColor
+                                      ]),
+                                    ),
+                                    child: Text(
+                                      Strings.edit,
+                                      style: appTextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500,
+                                          color: ColorRes.white),
+                                    ),
+                                  ),
+                                );
                               }),
-                          // const SizedBox(
-                          //   height: 20,
-                          // ),
                         ],
                       ),
                     ),

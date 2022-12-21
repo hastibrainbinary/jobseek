@@ -1,22 +1,26 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/screen/call/call_joining_screen.dart';
 import 'package:jobseek/screen/call/video_joinScreen.dart';
 import 'package:jobseek/screen/chat_box/chat_box_controller.dart';
+import 'package:jobseek/screen/manager_section/Notification/notification_services.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/pref_keys.dart';
+import 'package:jobseek/utils/string.dart';
 import 'package:paginate_firestore/paginate_firestore.dart';
-
 import 'chat_box_usercontroller.dart';
 
+// ignore: must_be_immutable
 class ChatLiveScreen extends StatelessWidget {
   final String? name;
   final String? roomId;
   final String? otherUserUid;
   final String? userUid;
+  final String? deviceToken;
 
   ChatLiveScreen({
     Key? key,
@@ -24,6 +28,7 @@ class ChatLiveScreen extends StatelessWidget {
     this.userUid,
     this.otherUserUid,
     this.roomId,
+    this.deviceToken,
   }) : super(key: key);
 
   ChatBoxUserController controller = Get.put(ChatBoxUserController());
@@ -32,8 +37,9 @@ class ChatLiveScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async{
+      onWillPop: () async {
         await controller.lastMessageTrue(otherUserUid!);
+        controller.msController.clear();
         return true;
       },
       child: Scaffold(
@@ -51,17 +57,28 @@ class ChatLiveScreen extends StatelessWidget {
                     child: InkWell(
                       onTap: () {
                         controller.lastMessageTrue(otherUserUid!);
+                        controller.msController.clear();
 
                         Get.back();
                       },
-                      child: backButton(),
-
+                      child: Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                          color: ColorRes.logoColor,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: const Icon(
+                          Icons.arrow_back_ios_new_rounded,
+                          color: ColorRes.containerColor,
+                        ),
+                      ),
                     ),
                   ),
                   const SizedBox(width: 80),
                   Center(
                     child: Text(
-                      'Chat Box',
+                      Strings.chatBox,
                       style: appTextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
@@ -76,7 +93,8 @@ class ChatLiveScreen extends StatelessWidget {
                 child: Container(
                   height: 92,
                   width: Get.width,
-                  margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
                   padding: const EdgeInsets.all(15),
                   decoration: BoxDecoration(
                       borderRadius: const BorderRadius.all(
@@ -88,42 +106,45 @@ class ChatLiveScreen extends StatelessWidget {
                       color: ColorRes.white),
                   child: Row(
                     children: [
-                      Expanded(child: Row(
-                        children: [
-                          Image.asset(
-                            AssetRes.airBnbLogo,
-                          ),
-                          const SizedBox(width: 20),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                name.toString(),
-                                style: appTextStyle(
-                                    color: ColorRes.black,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                              const SizedBox(height: 6),
-                              Text(
-                                "Online",
-                                style: appTextStyle(
-                                    color: ColorRes.black,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),),
-
+                      Expanded(
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              AssetRes.airBnbLogo,
+                            ),
+                            const SizedBox(width: 20),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  name.toString(),
+                                  style: appTextStyle(
+                                      color: ColorRes.black,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                const SizedBox(height: 6),
+                                Text(
+                                  Strings.online,
+                                  style: appTextStyle(
+                                      color: ColorRes.black,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
                       InkWell(
                         onTap: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (con) => const VideoJoinScreen()));
+                            context,
+                            MaterialPageRoute(
+                              builder: (con) => const VideoJoinScreen(),
+                            ),
+                          );
                         },
                         child: Container(
                           height: 35,
@@ -142,9 +163,11 @@ class ChatLiveScreen extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (con) => const CallJoiningScreen()));
+                            context,
+                            MaterialPageRoute(
+                              builder: (con) => const CallJoiningScreen(),
+                            ),
+                          );
                         },
                         child: Container(
                           height: 35,
@@ -163,20 +186,18 @@ class ChatLiveScreen extends StatelessWidget {
                   ),
                 ),
               ),
-
-              const SizedBox(height: 15,),
+              const SizedBox(
+                height: 15,
+              ),
               Expanded(
-              flex: 3,
-                child:  PaginateFirestore(
-
-
+                flex: 3,
+                child: PaginateFirestore(
                     scrollController: controller.listScrollController,
                     isLive: true,
                     reverse: true,
-
                     itemBuilder: (context, docementSnapshot, index) {
-                      Map<String, dynamic>? data =
-                      docementSnapshot[index].data() as Map<String, dynamic>?;
+                      Map<String, dynamic>? data = docementSnapshot[index]
+                          .data() as Map<String, dynamic>?;
                       if (data == null) {
                         return const SizedBox();
                       }
@@ -190,10 +211,10 @@ class ChatLiveScreen extends StatelessWidget {
                       }
 
                       Widget box = data['type'] == "alert"
-                          ? SizedBox()
+                          ? const SizedBox()
                           : Column(
-                        children: [
-                          /* SizedBox(
+                              children: [
+                                /* SizedBox(
                                     width: Get.width,
                                     height: 35,
                                     child: Center(
@@ -205,58 +226,63 @@ class ChatLiveScreen extends StatelessWidget {
                                       ),
                                     ),
                                   ),*/
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment:
-                            data['senderUid'].toString() == userUid
-                                ? MainAxisAlignment.end
-                                : MainAxisAlignment.start,
-                            children: [
-                              // Text(controller.data['time'].toString(),style: sfProTextReguler(fontSize: 12,color:ColorRes.colorF0F0F0 ),),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      data['senderUid'].toString() == userUid
+                                          ? MainAxisAlignment.end
+                                          : MainAxisAlignment.start,
+                                  children: [
+                                    // Text(controller.data['time'].toString(),style: sfProTextReguler(fontSize: 12,color:ColorRes.colorF0F0F0 ),),
 
-                              const SizedBox(
-                                width: 20,
-                              ),
-                              Container(
-                                padding: const EdgeInsets.all(10),
-                                constraints: BoxConstraints(
-                                  maxWidth: Get.width / 1.3,
-                                ),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    gradient: data['senderUid']
-                                        .toString() ==
-                                        userUid?
-                                    const LinearGradient(colors: [
-                                      Color(0xFFBF9EFF),
-                                      Color(0xFF8B4EFF),
-                                    ]):const LinearGradient(colors: [
-                                      Color(0xFFEEEBF4),
-                                      Color(0xFFEEEBF4),
-                                    ])
-                                  /* color: data['senderUid']
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    Container(
+                                      padding: const EdgeInsets.all(10),
+                                      constraints: BoxConstraints(
+                                        maxWidth: Get.width / 1.3,
+                                      ),
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          gradient: data['senderUid']
+                                                      .toString() ==
+                                                  userUid
+                                              ? const LinearGradient(colors: [
+                                                  ColorRes.gradientColor,
+                                                  ColorRes.containerColor,
+                                                ])
+                                              : const LinearGradient(colors: [
+                                                  Color(0xFFEEEBF4),
+                                                  Color(0xFFEEEBF4),
+                                                ])
+                                          /* color: data['senderUid']
                                           .toString() ==
                                           userUid
                                           ? Colors.green
                                           : Colors.lightBlue*/
+                                          ),
+                                      child: Text(
+                                        data['content'].toString(),
+                                        style: data['senderUid'].toString() ==
+                                                userUid
+                                            ? const TextStyle(
+                                                fontSize: 17,
+                                                color: ColorRes.white)
+                                            : const TextStyle(
+                                                fontSize: 17,
+                                                color: ColorRes.black),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                  ],
                                 ),
-                                child: Text(
-                                  data['content'].toString(),
-                                  style: data['senderUid']
-                                      .toString() ==
-                                      userUid?const TextStyle(
-                                      fontSize: 17, color: Colors.white):const TextStyle(
-                                      fontSize: 17, color: Colors.black),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 20,
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 10),
-                        ],
-                      );
+                                const SizedBox(height: 10),
+                              ],
+                            );
                       if ((index + 1) == docementSnapshot.length) {
                         return Column(
                           // mainAxisAlignment: MainAxisAlignment.center,
@@ -277,13 +303,15 @@ class ChatLiveScreen extends StatelessWidget {
                         .doc(roomId)
                         .collection(roomId!)
                         .orderBy("time", descending: true),
-                    itemBuilderType: PaginateBuilderType.listView),),
-              const SizedBox(height: 15,),
+                    itemBuilderType: PaginateBuilderType.listView),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
               GetBuilder<ChatBoxUserController>(
                   id: "message",
                   builder: (controller) {
                     return Container(
-
                       margin: const EdgeInsets.symmetric(horizontal: 20),
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       decoration: BoxDecoration(
@@ -293,41 +321,55 @@ class ChatLiveScreen extends StatelessWidget {
                         borderRadius: const BorderRadius.all(
                           Radius.circular(10),
                         ),
-                        color: Colors.white,
+                        color: ColorRes.white,
                       ),
                       child: Row(
                         children: [
                           Expanded(
                             child: TextFormField(
                               controller: controller.msController,
-                              style: const TextStyle(color: Colors.black),
+                              style: const TextStyle(color: ColorRes.black),
                               decoration: const InputDecoration(
                                   hintText: "Type message...",
-                                  hintStyle:
-                                  TextStyle(fontSize: 17, color: Colors.grey),
+                                  hintStyle: TextStyle(
+                                      fontSize: 17, color: Colors.grey),
                                   border: InputBorder.none),
                             ),
                           ),
                           InkWell(
-                              onTap: () {
-                                if (controller.validation()) {
-                                  controller.sendMessage(
-                                    roomId.toString(),
-                                    otherUserUid,
-                                  );
-                                  FocusScope.of(context).unfocus();
-                                }
-                              },
-                              child: Image.asset(
-                                AssetRes.chatSend,
-                                height: 25,
-                                width: 25,
-                              ))
+                            onTap: () {
+                              SendNotificationModel notification =
+                                  SendNotificationModel(
+                                      title: PrefService.getString(
+                                          PrefKeys.fullName),
+                                      body: "Massage",
+                                      fcmTokens: [
+                                    deviceToken.toString(),
+                                    // PrefService.getString(PrefKeys.deviceToken),
+                                  ]);
+                              NotificationService.sendNotification(
+                                  notification);
+                              if (controller.validation()) {
+                                controller.sendMessage(
+                                  roomId.toString(),
+                                  otherUserUid,
+                                );
+                                FocusScope.of(context).unfocus();
+                              }
+                            },
+                            child: Image.asset(
+                              AssetRes.chatSend,
+                              height: 25,
+                              width: 25,
+                            ),
+                          ),
                         ],
                       ),
                     );
                   }),
-              const SizedBox(height: 15,),
+              const SizedBox(
+                height: 15,
+              ),
             ]),
       ),
     );

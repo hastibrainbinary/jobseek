@@ -11,7 +11,9 @@ import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
+import 'package:jobseek/utils/string.dart';
 
+// ignore: must_be_immutable
 class ManagerApplicationScreen extends StatelessWidget {
   final ManagerApplicationScreenController controller =
       Get.put(ManagerApplicationScreenController());
@@ -46,7 +48,7 @@ class ManagerApplicationScreen extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          'Logo',
+                          Strings.logo,
                           style: appTextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 10,
@@ -57,10 +59,11 @@ class ManagerApplicationScreen extends StatelessWidget {
                     InkWell(
                       onTap: () {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (con) =>
-                                    const CreateVacanciesScreenM()));
+                          context,
+                          MaterialPageRoute(
+                            builder: (con) => const CreateVacanciesScreenM(),
+                          ),
+                        );
                       },
                       child: Container(
                         height: 40,
@@ -80,13 +83,13 @@ class ManagerApplicationScreen extends StatelessWidget {
                 Align(
                   alignment: Alignment.center,
                   child: Text(
-                    "Applications",
+                    Strings.applications,
                     style: appTextStyle(
                         color: ColorRes.black,
                         fontSize: 20,
-                        fontWeight: FontWeight.w600),
+                        fontWeight: FontWeight.w500),
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -107,14 +110,15 @@ class ManagerApplicationScreen extends StatelessWidget {
                 controller.update(["search"]);
               },
               decoration: InputDecoration(
-                  border: InputBorder.none,
-                  suffixIcon: const Icon(Icons.search, color: ColorRes.grey),
-                  hintText: "Search",
-                  hintStyle: appTextStyle(
-                      fontSize: 14,
-                      color: ColorRes.grey,
-                      fontWeight: FontWeight.w500),
-                  contentPadding: const EdgeInsets.only(left: 0, top: 13)),
+                border: InputBorder.none,
+                suffixIcon: const Icon(Icons.search, color: ColorRes.grey),
+                hintText: "Search",
+                hintStyle: appTextStyle(
+                    fontSize: 14,
+                    color: ColorRes.grey,
+                    fontWeight: FontWeight.w500),
+                contentPadding: const EdgeInsets.only(left: 0, top: 13),
+              ),
             ),
           ),
           const SizedBox(
@@ -242,7 +246,7 @@ class ManagerApplicationScreen extends StatelessWidget {
                                                       Text(
                                                         textAlign:
                                                             TextAlign.center,
-                                                        "Empty",
+                                                        Strings.empty,
                                                         style: TextStyle(
                                                             color: ColorRes
                                                                 .containerColor,
@@ -376,9 +380,9 @@ class ManagerApplicationScreen extends StatelessWidget {
                                                                       child:
                                                                           Row(
                                                                         children: [
-                                                                          Image
-                                                                              .asset(
-                                                                            AssetRes.airBnbLogo,
+                                                                          Image(
+                                                                            image:
+                                                                                NetworkImage(controller.documentData[index]["imageUrl"]),
                                                                             height:
                                                                                 62,
                                                                             width:
@@ -411,7 +415,10 @@ class ManagerApplicationScreen extends StatelessWidget {
                                                                                       width: 10,
                                                                                       child: Text(" - "),
                                                                                     ),
-                                                                                    Text(controller.documentData[index]["type"], style: appTextStyle(color: ColorRes.black, fontSize: 10, fontWeight: FontWeight.w400)),
+                                                                                    Text(
+                                                                                      controller.documentData[index]["type"],
+                                                                                      style: appTextStyle(color: ColorRes.black, fontSize: 10, fontWeight: FontWeight.w400),
+                                                                                    ),
                                                                                   ],
                                                                                 ),
                                                                               ],
@@ -525,7 +532,7 @@ class ManagerApplicationScreen extends StatelessWidget {
                                                                               ),
                                                                               const SizedBox(width: 20),
                                                                               Padding(
-                                                                                padding: const EdgeInsets.only(top: 12),
+                                                                                padding: const EdgeInsets.only(top: 15),
                                                                                 child: Column(
                                                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                                                   children: [
@@ -535,7 +542,7 @@ class ManagerApplicationScreen extends StatelessWidget {
                                                                                     ),
                                                                                     Text(controller.documentData[index]["CompanyName"], style: appTextStyle(color: ColorRes.black, fontSize: 12, fontWeight: FontWeight.w400)),
                                                                                     const SizedBox(
-                                                                                      height: 6,
+                                                                                      height: 2,
                                                                                     ),
                                                                                     Row(
                                                                                       children: [
@@ -555,7 +562,7 @@ class ManagerApplicationScreen extends StatelessWidget {
                                                                               ),
                                                                               const Spacer(),
                                                                               Padding(
-                                                                                padding: const EdgeInsets.only(top: 12),
+                                                                                padding: const EdgeInsets.only(top: 10, right: 15),
                                                                                 child: Column(
                                                                                   mainAxisAlignment: MainAxisAlignment.start,
                                                                                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -576,7 +583,7 @@ class ManagerApplicationScreen extends StatelessWidget {
                                                                                       ),
                                                                                     ),
                                                                                     const SizedBox(
-                                                                                      height: 19,
+                                                                                      height: 16,
                                                                                     ),
                                                                                     Text(
                                                                                       controller.documentData[index]["salary"],
@@ -655,7 +662,7 @@ class ManagerApplicationScreen extends StatelessWidget {
                                                                             ),
                                                                             const SizedBox(width: 20),
                                                                             Padding(
-                                                                              padding: const EdgeInsets.only(top: 12),
+                                                                              padding: const EdgeInsets.only(top: 15),
                                                                               child: Column(
                                                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                                                 children: [
@@ -665,7 +672,7 @@ class ManagerApplicationScreen extends StatelessWidget {
                                                                                   ),
                                                                                   Text(controller.documentData[index]["CompanyName"], style: appTextStyle(color: ColorRes.black, fontSize: 12, fontWeight: FontWeight.w400)),
                                                                                   const SizedBox(
-                                                                                    height: 6,
+                                                                                    height: 2,
                                                                                   ),
                                                                                   Row(
                                                                                     children: [
@@ -685,7 +692,7 @@ class ManagerApplicationScreen extends StatelessWidget {
                                                                             ),
                                                                             const Spacer(),
                                                                             Padding(
-                                                                              padding: const EdgeInsets.only(top: 12),
+                                                                              padding: const EdgeInsets.only(top: 10, right: 15),
                                                                               child: Column(
                                                                                 mainAxisAlignment: MainAxisAlignment.start,
                                                                                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -706,7 +713,7 @@ class ManagerApplicationScreen extends StatelessWidget {
                                                                                     ),
                                                                                   ),
                                                                                   const SizedBox(
-                                                                                    height: 19,
+                                                                                    height: 16,
                                                                                   ),
                                                                                   Text(
                                                                                     controller.documentData[index]["salary"],

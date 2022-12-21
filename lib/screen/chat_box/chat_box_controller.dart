@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/helper.dart';
 import 'package:jobseek/screen/chat_box_user/chat_box_usercontroller.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/pref_keys.dart';
-
 import 'chat_box_live-Screen.dart';
 
 ChatBoxUserController chatBoxUserController = Get.put(ChatBoxUserController());
@@ -57,7 +57,9 @@ class ChatBoxController extends GetxController implements GetxService {
 
   bool validation() {
     if (msController.text.isEmpty) {
-      print("Please enter message");
+      if (kDebugMode) {
+        print("Please enter message");
+      }
       return false;
     }
     return true;
@@ -109,17 +111,18 @@ class ChatBoxController extends GetxController implements GetxService {
     });
   }
 
-  void gotoChatScreen(BuildContext context, String otherUid, name) async {
+  void gotoChatScreen(
+      BuildContext context, String otherUid, name, deviceToken) async {
     loader.value = true;
     await getRoomId(otherUid);
     loader.value = false;
 
     Get.to(() => ChatBoxLiveScreenM(
-          roomId: roomId,
-          name: name,
-          otherUserUid: otherUid,
-          userUid: userUid,
-        ));
+        roomId: roomId,
+        name: name,
+        otherUserUid: otherUid,
+        userUid: userUid,
+        deviceToken: deviceToken));
   }
 
   int? msgCount;
@@ -136,26 +139,24 @@ class ChatBoxController extends GetxController implements GetxService {
         .doc(getChatId(userUid, otherUid))
         .get()
         .then((value) {
-
-      if(value['countM'] == null){
+      if (value['countM'] == null) {
         countM.add(msg);
-      }
-      else{
-        msgCount = value['countM'] ;
+      } else {
+        msgCount = value['countM'];
         if (msgCount == null) {
           countM = [];
           countM.add(msg);
-
-        } else{
-          print(msgCount);
+        } else {
+          if (kDebugMode) {
+            print(msgCount);
+          }
           countM.add(msg);
         }
-        print(countM);
+        if (kDebugMode) {
+          print(countM);
+        }
       }
-
     });
-
-
 
     setLastMsgInDoc(msg);
     await setMessage(roomId, msg, userUid);
@@ -206,13 +207,16 @@ class ChatBoxController extends GetxController implements GetxService {
   }
 
   Future<void> setLastMsgInDoc(String msg) async {
-    print(countM.length);
+    if (kDebugMode) {
+      print(countM.length);
+    }
     await FirebaseFirestore.instance.collection("chats").doc(roomId).update({
       "lastMessage": msg,
       "lastMessageSender": userUid,
       "lastMessageTime": DateTime.now(),
       "lastMessageRead": false,
       "countM": countM.length,
+      "deviceTokenM": PrefKeys.deviceToken
     });
   }
 

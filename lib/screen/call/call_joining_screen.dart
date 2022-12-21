@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 
 class CallJoiningScreen extends StatelessWidget {
   const CallJoiningScreen({Key? key}) : super(key: key);
@@ -24,7 +25,7 @@ class CallJoiningScreen extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           Text(
-            'AirBNB',
+            Strings.airBNB,
             style: appTextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.w500,
@@ -32,7 +33,7 @@ class CallJoiningScreen extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'Joining Interview ...',
+            Strings.joiningInterview,
             style: appTextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w400,

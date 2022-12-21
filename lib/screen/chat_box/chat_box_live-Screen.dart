@@ -1,14 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/screen/chat_box/chat_box_controller.dart';
 import 'package:jobseek/screen/chat_box_user/chat_box_usercontroller.dart';
+import 'package:jobseek/screen/manager_section/Notification/notification_services.dart';
 import 'package:jobseek/screen/manager_section/call/call_join_Screen.dart';
 import 'package:jobseek/screen/manager_section/call/video_joinig_Screen.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/pref_keys.dart';
+import 'package:jobseek/utils/string.dart';
 import 'package:paginate_firestore/paginate_firestore.dart';
 
 class ChatBoxLiveScreenM extends StatelessWidget {
@@ -16,14 +19,16 @@ class ChatBoxLiveScreenM extends StatelessWidget {
   final String? roomId;
   final String? otherUserUid;
   final String? userUid;
+  final String? deviceToken;
 
-  ChatBoxLiveScreenM({
-    Key? key,
-    this.name,
-    this.userUid,
-    this.otherUserUid,
-    this.roomId,
-  }) : super(key: key);
+  ChatBoxLiveScreenM(
+      {Key? key,
+      this.name,
+      this.userUid,
+      this.otherUserUid,
+      this.roomId,
+      this.deviceToken})
+      : super(key: key);
 
   ChatBoxController controller = Get.put(ChatBoxController());
   ChatBoxUserController chatBoxUserController =
@@ -34,6 +39,7 @@ class ChatBoxLiveScreenM extends StatelessWidget {
     return WillPopScope(
       onWillPop: () async {
         await controller.lastMessageTrue(otherUserUid!);
+        controller.msController.clear();
         return true;
       },
       child: Scaffold(
@@ -51,16 +57,27 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                     child: InkWell(
                       onTap: () {
                         controller.lastMessageTrue(otherUserUid!);
-
+                        controller.msController.clear();
                         Get.back();
                       },
-                      child: backButton(),
+                      child: Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                          color: ColorRes.logoColor,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: const Icon(
+                          Icons.arrow_back_ios_new_rounded,
+                          color: ColorRes.containerColor,
+                        ),
+                      ),
                     ),
                   ),
                   const SizedBox(width: 85),
                   Center(
                     child: Text(
-                      'Chat Box',
+                      Strings.chatBox,
                       style: appTextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
@@ -121,10 +138,11 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (con) =>
-                                      const VideoJoiningScreen()));
+                            context,
+                            MaterialPageRoute(
+                              builder: (con) => const VideoJoiningScreen(),
+                            ),
+                          );
                         },
                         child: Container(
                           height: 35,
@@ -143,9 +161,11 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (con) => const CallJoinScreen()));
+                            context,
+                            MaterialPageRoute(
+                              builder: (con) => const CallJoinScreen(),
+                            ),
+                          );
                         },
                         child: Container(
                           height: 35,
@@ -261,7 +281,6 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                             );
                       if ((index + 1) == docementSnapshot.length) {
                         return Column(
-                          // mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             const SizedBox(
@@ -314,6 +333,17 @@ class ChatBoxLiveScreenM extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
+                              SendNotificationModel notification =
+                                  SendNotificationModel(
+                                      title: PrefService.getString(
+                                          PrefKeys.companyName),
+                                      body: "Massage",
+                                      fcmTokens: [
+                                    deviceToken.toString(),
+                                  ]);
+                              NotificationService.sendNotification(
+                                  notification);
+
                               if (controller.validation()) {
                                 controller.sendMessage(
                                   roomId.toString(),

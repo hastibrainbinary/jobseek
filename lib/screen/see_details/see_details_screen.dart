@@ -5,8 +5,10 @@ import 'package:jobseek/screen/see_details/see_details_controller.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/foundation.dart';
+// ignore: depend_on_referenced_packages
 import 'package:http/http.dart';
 
 class SeeDetailsScreen extends StatelessWidget {
@@ -15,6 +17,7 @@ class SeeDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var args = Get.arguments;
+
     final controller = Get.put(SeeDetailsController());
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -28,7 +31,7 @@ class SeeDetailsScreen extends StatelessWidget {
               Center(
                 child: Text(
                   textAlign: TextAlign.center,
-                  "See Details",
+                  Strings.seeDetails,
                   style: appTextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
@@ -92,7 +95,7 @@ class SeeDetailsScreen extends StatelessWidget {
 
                               if (kDebugMode) {
                                 print(file2);
-                              } // 3
+                              } //
                             }
                           },
                           child: Column(
@@ -102,23 +105,30 @@ class SeeDetailsScreen extends StatelessWidget {
                               SizedBox(
                                 width: Get.width * 0.3,
                                 child: Text(
-                                    controller.filepath
-                                        .value /*"Resume - Adam Smith.pdf"*/,
-                                    style: appTextStyle(
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.w600,
-                                        color: ColorRes.black)),
+                                  controller.filepath
+                                      .value /*"Resume - Adam Smith.pdf"*/,
+                                  style: appTextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w600,
+                                      color: ColorRes.black),
+                                ),
                               ),
                               Row(
                                 children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(bottom: 1),
-                                    child: Text(
-                                      "Get started.pdf",
-                                      style: appTextStyle(
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.w500,
-                                          color: ColorRes.black),
+                                  SizedBox(
+                                    width: 90,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(bottom: 1),
+                                      child: Flexible(
+                                        child: Text(
+                                          "${args['fileName']}",
+                                          overflow: TextOverflow.ellipsis,
+                                          style: appTextStyle(
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w500,
+                                              color: ColorRes.black),
+                                        ),
+                                      ),
                                     ),
                                   ),
                                   const SizedBox(width: 50),
@@ -126,9 +136,9 @@ class SeeDetailsScreen extends StatelessWidget {
                                     height: 16,
                                     width: 16,
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(16),
-                                        border:
-                                            Border.all(color: ColorRes.black)),
+                                      borderRadius: BorderRadius.circular(16),
+                                      border: Border.all(color: ColorRes.black),
+                                    ),
                                     child: const Icon(
                                       Icons.arrow_downward,
                                       size: 10,
@@ -138,12 +148,14 @@ class SeeDetailsScreen extends StatelessWidget {
                               ),
                               Row(
                                 children: [
-                                  Text("13/06/2022",
-                                      style: appTextStyle(
-                                          fontSize: 8,
-                                          fontWeight: FontWeight.w400,
-                                          color:
-                                              ColorRes.black.withOpacity(0.6))),
+                                  Text(
+                                    "13/06/2022",
+                                    style: appTextStyle(
+                                      fontSize: 8,
+                                      fontWeight: FontWeight.w400,
+                                      color: ColorRes.black.withOpacity(0.6),
+                                    ),
+                                  ),
                                   const SizedBox(width: 10),
                                   Text(
                                     "9:58",
@@ -154,11 +166,12 @@ class SeeDetailsScreen extends StatelessWidget {
                                   ),
                                   const SizedBox(width: 12),
                                   Text(
-                                    "258.4 KB",
+                                    "${args['fileSize'].toStringAsFixed(1)} MB",
                                     style: appTextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 8,
-                                        color: ColorRes.black.withOpacity(0.6)),
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 8,
+                                      color: ColorRes.black.withOpacity(0.6),
+                                    ),
                                   ),
                                 ],
                               )
@@ -185,7 +198,7 @@ class SeeDetailsScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 15),
                         child: Text(
-                          " Name",
+                          Strings.name,
                           style: appTextStyle(
                             color: ColorRes.black.withOpacity(0.6),
                             fontSize: 14,
@@ -199,8 +212,9 @@ class SeeDetailsScreen extends StatelessWidget {
                         height: 51,
                         width: 339,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: ColorRes.containerColor)),
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: ColorRes.containerColor),
+                        ),
                         child: Text(
                           args['userName'],
                           style: const TextStyle(
@@ -216,7 +230,7 @@ class SeeDetailsScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 15),
                         child: Text(
-                          " Email",
+                          Strings.email,
                           style: appTextStyle(
                             color: ColorRes.black.withOpacity(0.6),
                             fontSize: 14,
@@ -256,7 +270,7 @@ class SeeDetailsScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 15),
                         child: Text(
-                          "Phone Number",
+                          Strings.phoneNumber,
                           style: appTextStyle(
                             color: ColorRes.black.withOpacity(0.6),
                             fontSize: 14,
@@ -314,7 +328,7 @@ class SeeDetailsScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 15),
                         child: Text(
-                          " city",
+                          Strings.city,
                           style: appTextStyle(
                             color: ColorRes.black.withOpacity(0.6),
                             fontSize: 14,
@@ -328,8 +342,9 @@ class SeeDetailsScreen extends StatelessWidget {
                         height: 51,
                         width: 339,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: ColorRes.containerColor)),
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: ColorRes.containerColor),
+                        ),
                         child: Text(
                           args['city'],
                           style: const TextStyle(
@@ -353,7 +368,7 @@ class SeeDetailsScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 15),
                         child: Text(
-                          "State",
+                          Strings.state,
                           style: appTextStyle(
                             color: ColorRes.black.withOpacity(0.6),
                             fontSize: 14,
@@ -367,8 +382,9 @@ class SeeDetailsScreen extends StatelessWidget {
                         height: 51,
                         width: 339,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: ColorRes.containerColor)),
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: ColorRes.containerColor),
+                        ),
                         child: Text(
                           args['state'],
                           style: const TextStyle(
@@ -384,7 +400,7 @@ class SeeDetailsScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 15),
                         child: Text(
-                          "Country",
+                          Strings.country,
                           style: appTextStyle(
                             color: ColorRes.black.withOpacity(0.6),
                             fontSize: 14,
@@ -398,8 +414,9 @@ class SeeDetailsScreen extends StatelessWidget {
                         height: 51,
                         width: 339,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: ColorRes.containerColor)),
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: ColorRes.containerColor),
+                        ),
                         child: Text(
                           args['country'],
                           style: const TextStyle(
@@ -439,7 +456,7 @@ class SeeDetailsScreen extends StatelessWidget {
                                   width: 10,
                                 ),
                                 Text(
-                                  "Back",
+                                  Strings.back,
                                   style: appTextStyle(
                                       color: ColorRes.white,
                                       fontSize: 20,

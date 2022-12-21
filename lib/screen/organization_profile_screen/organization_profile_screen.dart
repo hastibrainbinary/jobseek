@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:jobseek/common/widgets/common_error_box.dart';
+import 'package:jobseek/common/widgets/common_loader.dart';
 import 'package:jobseek/common/widgets/common_textField.dart';
 import 'package:jobseek/screen/looking_for_screen/looking_for_screen.dart';
 import 'package:jobseek/screen/organization_profile_screen/organization_profile_screen_controller.dart';
@@ -11,6 +12,7 @@ import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 
 class OrganizationProfileScreen extends StatelessWidget {
   const OrganizationProfileScreen({Key? key}) : super(key: key);
@@ -31,13 +33,14 @@ class OrganizationProfileScreen extends StatelessWidget {
                 height: 40,
                 width: 40,
                 decoration: BoxDecoration(
-                    color: ColorRes.logoColor,
-                    borderRadius: BorderRadius.circular(10)),
+                  color: ColorRes.logoColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 child: Padding(
                   padding: const EdgeInsets.only(top: 11),
                   child: Text(
                     textAlign: TextAlign.center,
-                    "Logo",
+                    Strings.logo,
                     style: appTextStyle(
                         color: ColorRes.containerColor,
                         fontWeight: FontWeight.w600,
@@ -45,9 +48,9 @@ class OrganizationProfileScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: 10),
+              const Spacer(),
               Text(
-                'Organization Profile',
+                Strings.organizationProfile,
                 style: appTextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w500,
@@ -60,8 +63,9 @@ class OrganizationProfileScreen extends StatelessWidget {
                 height: 40,
                 width: 40,
                 decoration: BoxDecoration(
-                    color: ColorRes.logoColor,
-                    borderRadius: BorderRadius.circular(10)),
+                  color: ColorRes.logoColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 child: InkWell(
                   onTap: () {
                     settingModalBottomSheet(context);
@@ -103,26 +107,27 @@ class OrganizationProfileScreen extends StatelessWidget {
                       width: 60,
                       height: 60,
                       decoration: BoxDecoration(
-                          color: ColorRes.logoColor,
-                          shape: BoxShape.circle,
-                          image: (controller.image == null)
-                              ? const DecorationImage(
-                                  image: AssetImage(
-                                    AssetRes.cloud,
-                                  ),
-                                )
-                              : DecorationImage(
-                                  image: FileImage(
-                                    controller.image!,
-                                  ),
-                                  fit: BoxFit.fill)),
+                        color: ColorRes.logoColor,
+                        shape: BoxShape.circle,
+                        image: (controller.image == null)
+                            ? const DecorationImage(
+                                image: AssetImage(
+                                  AssetRes.cloud,
+                                ),
+                              )
+                            : DecorationImage(
+                                image: FileImage(
+                                  controller.image!,
+                                ),
+                                fit: BoxFit.fill),
+                      ),
                     ),
                   ),
                   const SizedBox(
                     height: 10,
                   ),
                   Text(
-                    "Upload Company Logo",
+                    Strings.uploadCompanyLogo,
                     style: appTextStyle(
                         color: ColorRes.black.withOpacity(0.5), fontSize: 15),
                   ),
@@ -152,7 +157,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 16),
                         child: Text(
-                          "Name Of Company",
+                          Strings.nameOfCompany,
                           style: appTextStyle(
                             color: ColorRes.black.withOpacity(0.6),
                             fontSize: 14,
@@ -197,7 +202,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 16),
                         child: Text(
-                          "Company Email",
+                          Strings.companyEmail,
                           style:
                               appTextStyle(color: ColorRes.grey, fontSize: 14),
                         ),
@@ -246,7 +251,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 16),
                         child: Text(
-                          "Established date",
+                          Strings.establishedDate,
                           style:
                               appTextStyle(color: ColorRes.grey, fontSize: 14),
                         ),
@@ -302,7 +307,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 16),
                         child: Text(
-                          "Country",
+                          Strings.country,
                           style:
                               appTextStyle(color: ColorRes.grey, fontSize: 14),
                         ),
@@ -371,7 +376,7 @@ class OrganizationProfileScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 16),
                         child: Text(
-                          "Company Address",
+                          Strings.companyAddress,
                           style:
                               appTextStyle(color: ColorRes.grey, fontSize: 14),
                         ),
@@ -413,7 +418,8 @@ class OrganizationProfileScreen extends StatelessWidget {
                   GetBuilder<OrganizationProfileScreenController>(
                       id: "Organization",
                       builder: (controller) {
-                        return (controller.companyNameController.text == '' ||
+                        return
+                            /* (controller.companyNameController.text == '' ||
                                 controller.companyEmailController.text == '' ||
                                 controller.dateController.text == '' ||
                                 controller.countryController.text == '' ||
@@ -441,33 +447,36 @@ class OrganizationProfileScreen extends StatelessWidget {
                                           color: ColorRes.white)),
                                 ),
                               )
-                            : InkWell(
-                                // dashboard write
-                                onTap: () {
-                                  if (kDebugMode) {
-                                    print("a4fyj66enum j");
-                                  }
-                                  controller.onLoginBtnTap();
-                                },
+                            : */
+                            InkWell(
+                          // dashboard write
+                          onTap: () {
+                            if (kDebugMode) {
+                              print("a4fyj66enum j");
+                            }
+                            controller.onConfirmTap();
+                          },
 
-                                child: Container(
-                                  height: 50,
-                                  width: MediaQuery.of(context).size.width,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    gradient: const LinearGradient(colors: [
-                                      ColorRes.gradientColor,
-                                      ColorRes.containerColor
-                                    ]),
-                                  ),
-                                  child: Text("Confirm",
-                                      style: appTextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500,
-                                          color: ColorRes.white)),
-                                ),
-                              );
+                          child: Container(
+                            height: 50,
+                            width: MediaQuery.of(context).size.width,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              gradient: const LinearGradient(colors: [
+                                ColorRes.gradientColor,
+                                ColorRes.containerColor
+                              ]),
+                            ),
+                            child: controller.conLoader.value
+                                ? const CommonLoader()
+                                : Text(Strings.confirm,
+                                    style: appTextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500,
+                                        color: ColorRes.white)),
+                          ),
+                        );
                       }),
                   const SizedBox(
                     height: 20,
@@ -577,9 +586,9 @@ class OrganizationProfileScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                    )
+                    ),
                   ],
-                )
+                ),
               ],
             ),
           );

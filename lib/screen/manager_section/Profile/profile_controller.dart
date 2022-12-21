@@ -9,7 +9,6 @@ import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 
-
 class ProfileController extends GetxController implements GetxService {
   TextEditingController companyNameController = TextEditingController();
   TextEditingController companyEmailController = TextEditingController();
@@ -23,10 +22,12 @@ class ProfileController extends GetxController implements GetxService {
   RxBool isCountryValidate = false.obs;
   RxBool isDateController = false.obs;
   RxBool isLod = false.obs;
+  // RxString fbImageUrlM = "".obs;
 
   DateTime? startTime;
   ImagePicker picker = ImagePicker();
   File? image;
+  String url = '';
   Future<void> onDatePickerTap(context) async {
     DateTime? picked = await showDatePicker(
       context: context,
@@ -56,7 +57,7 @@ class ProfileController extends GetxController implements GetxService {
     }
   }
 
-  init(){
+  init() {
     isLod.value = true;
     final docRef = fireStore
         .collection("Auth")
@@ -66,27 +67,35 @@ class ProfileController extends GetxController implements GetxService {
         .collection("company")
         .doc("details");
     docRef.get().then(
-          (DocumentSnapshot doc) {
+      (DocumentSnapshot doc) {
         final data = doc.data() as Map<String, dynamic>;
         companyNameController.text = data["name"];
         companyEmailController.text = data["email"];
         companyAddressController.text = data["address"];
         dateController.text = data["date"];
         countryController.text = data["country"];
+
+        image = File(PrefService.getString(PrefKeys.imageManager));
         update();
+
+        imagePicker();
         isLod.value = false;
-        // ...
       },
       onError: (e) {
-        Get.snackbar("Error getting document:", "$e", colorText: const Color(0xffDA1414));
-        print("Error getting document: $e");
+        Get.snackbar("Error getting document:", "$e",
+            colorText: const Color(0xffDA1414));
+        if (kDebugMode) {
+          print("Error getting document: $e");
+        }
       },
     );
   }
 
   onTapEdit() {
-    print("GO TO Edit Profile");
-      Get.to(EditProfileScreen());
+    if (kDebugMode) {
+      print("GO TO Edit Profile");
+    }
+    Get.to(EditProfileScreen());
   }
 
   changeDropdwon({required String val}) {
@@ -94,6 +103,59 @@ class ProfileController extends GetxController implements GetxService {
     countryController.text = dropDownValue;
 
     update(["dropdown"]);
+  }
+
+  onTapSubmit() async {
+    validate();
+    if (isNameValidate.value == false &&
+        isEmailValidate.value == false &&
+        isAddressValidate.value == false &&
+        isCountryValidate.value == false &&
+        isDateController.value == false) {
+      String uid = PrefService.getString(PrefKeys.userId);
+      Map<String, dynamic> map = {
+        "email": companyEmailController.text.trim(),
+        "name": companyNameController.text.trim(),
+        "date": dateController.text.trim(),
+        "country": countryController.text.trim(),
+        "address": companyAddressController.text.trim(),
+        "imageUrl": url,
+      };
+      /*    PrefService.setValue(
+        PrefKeys.imageManager,
+        url,
+      );*/
+
+      Map<String, dynamic> map2 = {
+        "CompanyName": companyNameController.text.trim().toString()
+      };
+      await fireStore
+          .collection("Auth")
+          .doc("Manager")
+          .collection("register")
+          .doc(uid)
+          .collection("company")
+          .doc("details")
+          .update(map);
+
+      await fireStore
+          .collection("allPost")
+          .where("Id", isEqualTo: uid)
+          .get()
+          .then((QuerySnapshot snapshot) {
+        snapshot.docs.forEach((element) async {
+          await fireStore.collection("allPost").doc(element.id).update(
+              {"CompanyName": companyNameController.text.trim().toString()});
+        });
+      });
+
+      if (kDebugMode) {
+        print("GO TO HOME PAGE");
+      }
+      init();
+      Get.back();
+      // Get.to(ManagerDashBoardScreen());
+    }
   }
 
   validate() {
@@ -126,38 +188,6 @@ class ProfileController extends GetxController implements GetxService {
     }
   }
 
-  onTapSubmit() async {
-    validate();
-    if (isNameValidate.value == false &&
-        isEmailValidate.value == false &&
-        isAddressValidate.value == false &&
-        isCountryValidate.value == false &&
-        isDateController.value == false) {
-      String uid = PrefService.getString(PrefKeys.userId);
-      Map<String, dynamic> map = {
-        "email": companyEmailController.text.trim(),
-        "name": companyNameController.text.trim(),
-        "date": dateController.text.trim(),
-        "country": countryController.text.trim(),
-        "address": companyAddressController.text.trim(),
-      };
-      await fireStore
-          .collection("Auth")
-          .doc("Manager")
-          .collection("register")
-          .doc(uid)
-          .collection("company")
-          .doc("details")
-          .update(map);
-
-      if (kDebugMode) {
-        print("GO TO HOME PAGE");
-      }
-      init();
-      Get.back();
-      // Get.to(ManagerDashBoardScreen());
-    }
-  }
   validateAndSubmit() {
     Get.toNamed(AppRes.managerDashboardScreen);
 /*    if (companyNameController.text.isEmpty) {
@@ -199,23 +229,87 @@ class ProfileController extends GetxController implements GetxService {
     XFile? img = await picker.pickImage(source: ImageSource.camera);
     String path = img!.path;
     image = File(path);
+    /* await getUrl();
+    uploadImage();*/
+    Get.back();
     imagePicker();
   }
+
+  /* getUrl() {
+    FirebaseStorage storage = FirebaseStorage.instance;
+    Reference ref = storage.ref().child("image1" + DateTime.now().toString());
+    UploadTask uploadTask = ref.putFile(image!);
+
+    uploadTask.then((res) async {
+      isLod.value = true;
+      url = await res.ref.getDownloadURL();
+      isLod.value = false;
+      if (kDebugMode) {
+        print("url $url");
+      }
+      update();
+    });
+  }
+
+  Future<String?> uploadImage({File? flow, String? path}) async {
+    final firebaseStorage = FirebaseStorage.instance;
+    // final imagePicker = ImagePicker();
+    // PickedFile? image;
+    String? imageUrl;
+    //Check Permissions
+    await Permission.photos.request();
+
+    var permissionStatus = await Permission.photos.status;
+    if (kDebugMode) {
+      print(permissionStatus);
+    }
+
+    if (permissionStatus.isGranted) {
+      if (flow != null) {
+        //  File(image.path);
+        //Upload to Firebase
+        var snapshot =
+            firebaseStorage.ref().child(path!).putFile(flow).snapshot;
+        String downloadUrl = await snapshot.ref.getDownloadURL();
+        // setState(() {
+        imageUrl = downloadUrl;
+        if (kDebugMode) {
+          print(imageUrl);
+        }
+        return imageUrl;
+        // });
+      } else {
+        if (kDebugMode) {
+          print('No Image Path Received');
+        }
+        return '';
+      }
+    } else {
+      if (kDebugMode) {
+        print('Permission not granted. Try Again with permission access');
+      }
+      return '';
+    }
+  }*/
 
   onTapGallery1() async {
     XFile? gallery = await picker.pickImage(source: ImageSource.gallery);
     String path = gallery!.path;
     image = File(path);
+    /* await getUrl();
+    await uploadImage();*/
+    Get.back();
     imagePicker();
   }
 
   imagePicker() {
     update(['gallery']);
     update(['onTap']);
+    update(['image']);
     update();
   }
 
-  void onChanged(String value){
+  void onChanged(String value) {
     update(["colorChange"]);
   }
 }

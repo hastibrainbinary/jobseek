@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/color_res.dart';
 
-Widget detailBox(text) {
+Widget detailBox(text, values) {
   return Container(
     // height: 50,
     width: Get.width,
@@ -34,40 +34,59 @@ Widget detailBox(text) {
                 color: Colors.black, fontSize: 12, fontWeight: FontWeight.w400),
           ),
         ),
-        /*PopupMenuButton(
+     /*   PopupMenuButton(
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20),
+                  topLeft: Radius.circular(20))),
           itemBuilder: (context) => [
             PopupMenuItem(
-              value: 1,
-              child: Row(
-                children: const [
-                  Icon(
-                    Icons.edit,
-                    color: ColorRes.containerColor,
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text("edit")
-                ],
+              value: 1,height: 18,
+              child: Container(
+                height: 18,
+                width: 116,
+                child: Row(
+                  children: const [
+                    Icon(
+                      Icons.edit,
+                      color: ColorRes.containerColor,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text("edit")
+                  ],
+                ),
               ),
             ),
+            PopupMenuItem(height: 1,
+                child: Container(
+              height: 1,
+              width: 116,
+                  color: Colors.grey,
+            )),
             PopupMenuItem(
-              value: 2,
-              child: Row(
-                children: const [
-                  Icon(
-                    Icons.delete,
-                    color: ColorRes.starColor,
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text("remove")
-                ],
+              value: 2,height: 18,
+              child: Container(
+                height: 18,
+                width: 116,
+                child: Row(
+                  children: const [
+                    Icon(
+                      Icons.delete,
+                      color: ColorRes.starColor,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text("remove")
+                  ],
+                ),
               ),
             ),
           ],
-          offset: const Offset(0, 10),
+          offset: const Offset(0, 50),
           color: Colors.white,
           elevation: 1,
         ),*/

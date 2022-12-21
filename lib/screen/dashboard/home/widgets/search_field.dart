@@ -1,7 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:jobseek/screen/chat_box/chat_box_controller.dart';
 import 'package:jobseek/screen/chat_box_user/chat_box_usercontroller.dart';
 import 'package:jobseek/screen/dashboard/home/home_controller.dart';
@@ -21,18 +19,19 @@ Widget searchArea() {
         Expanded(
           child: Container(
             decoration: const BoxDecoration(
-                color: ColorRes.white2,
-                borderRadius: BorderRadius.all(Radius.circular(8))),
+              color: ColorRes.white2,
+              borderRadius: BorderRadius.all(
+                Radius.circular(8),
+              ),
+            ),
             child: TextField(
-              controller: controller.searchController,
+              controller: controller.searchNewController,
               onChanged: (value) {
-
                 jrController.searchText.value = value;
                 jrController.update(["search"]);
 
                 chatBoxUserController.searchText.value = value;
                 chatBoxUserController.update(["searchChat"]);
-
               },
               /*onChanged: (val){
                 jrController.allJob = FirebaseFirestore.instance.collection("allPost").where(val , isGreaterThanOrEqualTo: "Position"
@@ -42,14 +41,15 @@ Widget searchArea() {
                 ) as Stream? ;
               },*/
               decoration: InputDecoration(
-                  border: InputBorder.none,
-                  suffixIcon: const Icon(Icons.search, color: ColorRes.grey),
-                  hintText: "Search",
-                  hintStyle: appTextStyle(
-                      fontSize: 14,
-                      color: ColorRes.grey,
-                      fontWeight: FontWeight.w500),
-                  contentPadding: const EdgeInsets.only(left: 20, top: 13)),
+                border: InputBorder.none,
+                suffixIcon: const Icon(Icons.search, color: ColorRes.grey),
+                hintText: "Search",
+                hintStyle: appTextStyle(
+                    fontSize: 14,
+                    color: ColorRes.grey,
+                    fontWeight: FontWeight.w500),
+                contentPadding: const EdgeInsets.only(left: 20, top: 13),
+              ),
             ),
           ),
         ),
@@ -74,7 +74,6 @@ Widget searchArea() {
 }
 
 Widget searchAreaChatU() {
-
   final chatBoxUserController = Get.put(ChatBoxUserController());
 
   return Padding(
@@ -89,10 +88,8 @@ Widget searchAreaChatU() {
             child: TextField(
               controller: chatBoxUserController.searchController,
               onChanged: (value) {
-
                 chatBoxUserController.searchText.value = value;
                 chatBoxUserController.update(["searchChat"]);
-
               },
               /*onChanged: (val){
                 jrController.allJob = FirebaseFirestore.instance.collection("allPost").where(val , isGreaterThanOrEqualTo: "Position"
@@ -134,7 +131,6 @@ Widget searchAreaChatU() {
 }
 
 Widget searchAreaChatM() {
-
   final chatBoxController = Get.put(ChatBoxController());
 
   return Padding(
@@ -144,15 +140,16 @@ Widget searchAreaChatM() {
         Expanded(
           child: Container(
             decoration: const BoxDecoration(
-                color: ColorRes.white2,
-                borderRadius: BorderRadius.all(Radius.circular(8))),
+              color: ColorRes.white2,
+              borderRadius: BorderRadius.all(
+                Radius.circular(8),
+              ),
+            ),
             child: TextField(
               controller: chatBoxController.searchController,
               onChanged: (value) {
-
                 chatBoxController.searchText.value = value;
                 chatBoxController.update(["searchChat"]);
-
               },
               /*onChanged: (val){
                 jrController.allJob = FirebaseFirestore.instance.collection("allPost").where(val , isGreaterThanOrEqualTo: "Position"
@@ -162,14 +159,15 @@ Widget searchAreaChatM() {
                 ) as Stream? ;
               },*/
               decoration: InputDecoration(
-                  border: InputBorder.none,
-                  suffixIcon: const Icon(Icons.search, color: ColorRes.grey),
-                  hintText: "Search",
-                  hintStyle: appTextStyle(
-                      fontSize: 14,
-                      color: ColorRes.grey,
-                      fontWeight: FontWeight.w500),
-                  contentPadding: const EdgeInsets.only(left: 20, top: 13)),
+                border: InputBorder.none,
+                suffixIcon: const Icon(Icons.search, color: ColorRes.grey),
+                hintText: "Search",
+                hintStyle: appTextStyle(
+                    fontSize: 14,
+                    color: ColorRes.grey,
+                    fontWeight: FontWeight.w500),
+                contentPadding: const EdgeInsets.only(left: 20, top: 13),
+              ),
             ),
           ),
         ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/screen/dashboard/dashboard_controller.dart';
 import 'package:jobseek/screen/looking_for_screen/looking_for_screen.dart';
+import 'package:jobseek/screen/settings/appearance/localization.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
@@ -11,7 +11,6 @@ import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 import 'package:jobseek/utils/string.dart';
 import 'appearance/appearance_screen.dart';
-import 'notification/notification_screen.dart';
 
 class SettingsScreenU extends StatelessWidget {
   const SettingsScreenU({Key? key}) : super(key: key);
@@ -36,7 +35,7 @@ class SettingsScreenU extends StatelessWidget {
                     height: 40,
                     width: 40,
                     padding: const EdgeInsets.only(left: 10),
-                    margin: const EdgeInsets.only(left: 20),
+                    margin: const EdgeInsets.only(left: 14),
                     decoration: BoxDecoration(
                       color: ColorRes.logoColor,
                       borderRadius: BorderRadius.circular(10),
@@ -54,9 +53,9 @@ class SettingsScreenU extends StatelessWidget {
                   alignment: Alignment.center,
                   child: Center(
                     child: Text(
-                      "Settings",
+                      Strings.settings,
                       style: appTextStyle(
-                          color: Colors.black,
+                          color: ColorRes.black,
                           fontSize: 20,
                           fontWeight: FontWeight.w500),
                     ),
@@ -65,7 +64,7 @@ class SettingsScreenU extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 10),
-            InkWell(
+            /*  InkWell(
               onTap: () {
                 Navigator.push(
                     context,
@@ -115,7 +114,7 @@ class SettingsScreenU extends StatelessWidget {
               color: ColorRes.lightGrey.withOpacity(0.8),
               height: 1,
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 10),*/
             // InkWell(
             //   onTap: () {
             //     Navigator.push(
@@ -196,6 +195,60 @@ class SettingsScreenU extends StatelessWidget {
                         const SizedBox(width: 15),
                         Text(
                           Strings.appearance,
+                          style: appTextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: ColorRes.black),
+                        ),
+                      ],
+                    ),
+                    const Image(
+                      image: AssetImage(AssetRes.settingaArrow),
+                      height: 15,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 3),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 10),
+              color: ColorRes.lightGrey.withOpacity(0.8),
+              height: 1,
+            ),
+            const SizedBox(height: 10),
+
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (con) => const LocalizationScreen(),
+                  ),
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          height: 55,
+                          width: 55,
+                          decoration: BoxDecoration(
+                            color: ColorRes.logoColor,
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: const Icon(
+                            Icons.language,
+                            color: ColorRes.containerColor,
+                          ),
+                        ),
+                        const SizedBox(width: 15),
+                        Text(
+                          Strings.localization,
                           style: appTextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 14,

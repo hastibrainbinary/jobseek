@@ -1,16 +1,15 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/auth/congratsPage/congrastsScreen.dart';
 
 class ResetPasswordController extends GetxController {
   TextEditingController passwordController = TextEditingController();
-  TextEditingController  confirmPasswordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
 
   String newPassword = '';
   String confirmPassword = '';
   final _formKey = GlobalKey<FormState>();
-
 
   passwordValidation() {
     if (passwordController.text.trim() == "") {
@@ -19,26 +18,29 @@ class ResetPasswordController extends GetxController {
       if (passwordController.text.trim().length >= 8) {
         newPassword = '';
       } else {
-        newPassword ='Password must be at least 8 characters in length';
+        newPassword = 'Password must be at least 8 characters in length';
       }
     }
   }
 
   newPasswordValidation() {
     if (confirmPasswordController.text.trim() == "") {
-      confirmPassword  = "Enter Password";
+      confirmPassword = "Enter Password";
     } else {
-      if (passwordController.text.trim() == confirmPasswordController.text.trim()) {
-        confirmPassword  = '';
+      if (passwordController.text.trim() ==
+          confirmPasswordController.text.trim()) {
+        confirmPassword = '';
       } else {
-        confirmPassword  ='Confirmation password does not match the entered password';
+        confirmPassword =
+            'Confirmation password does not match the entered password';
       }
     }
   }
+
   bool validator() {
     passwordValidation();
     newPasswordValidation();
-    if (newPassword == ""&&confirmPassword =="" ) {
+    if (newPassword == "" && confirmPassword == "") {
       return true;
     } else {
       return false;
@@ -59,8 +61,6 @@ class ResetPasswordController extends GetxController {
     confirm = !confirm;
     update(['ConfirmPassword']);
   }
-
-
 
   bool rememberMe = false;
 
@@ -84,9 +84,11 @@ class ResetPasswordController extends GetxController {
   //   }
   //   update();
   // }
-  onLoginBtnTap( context) {
+  onLoginBtnTap(context) {
     if (validator()) {
-      print("GO TO HOME PAGE");
+      if (kDebugMode) {
+        print("GO TO HOME PAGE");
+      }
       Get.to(const CongratsScreen());
     }
     update(["NewPassword"]);
@@ -94,12 +96,7 @@ class ResetPasswordController extends GetxController {
 
     if (_formKey.currentState!.validate()) {
       Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (con) => const CongratsScreen()));
+          context, MaterialPageRoute(builder: (con) => const CongratsScreen()));
     }
   }
-
-  }
-
-
+}

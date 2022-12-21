@@ -1,11 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/call/video_ReceiveScreen.dart';
 import 'package:jobseek/screen/chat_box/chat_box_screen.dart';
+import 'package:jobseek/screen/manager_section/Notification/notification_services.dart';
 import 'package:jobseek/screen/manager_section/applicants_detail_screen/applicants_detail_screen_widget/applicants_details_screen_widget.dart';
 import 'package:jobseek/screen/manager_section/applicants_detail_screen/applicants_details_controller.dart';
+import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen.dart';
+import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen_controller.dart';
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_widget/manager_home_screen_widget.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_res.dart';
@@ -15,17 +19,18 @@ import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 import 'package:jobseek/utils/string.dart';
 
+// ignore: must_be_immutable
 class ApplicantsDetailScreen extends StatelessWidget {
   dynamic args = Get.arguments;
   final bool isWrong;
+
   ApplicantsDetailScreen({
     Key? key,
     required this.isWrong,
   }) : super(key: key);
   final ApplicantsDetailsController controller =
       Get.put(ApplicantsDetailsController());
-
-
+  ApplicantsDetailsController ans = Get.put(ApplicantsDetailsController());
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +49,9 @@ class ApplicantsDetailScreen extends StatelessWidget {
                 width: 40,
                 padding: const EdgeInsets.only(left: 10),
                 decoration: BoxDecoration(
-                    color: ColorRes.logoColor,
-                    borderRadius: BorderRadius.circular(8)),
+                  color: ColorRes.logoColor,
+                  borderRadius: BorderRadius.circular(8),
+                ),
                 child: InkWell(
                   onTap: () {
                     controller.selectedValue = "";
@@ -53,7 +59,13 @@ class ApplicantsDetailScreen extends StatelessWidget {
                     controller.msgController.text = "";
                     controller.showTime = "Hour";
                     controller.showDate = "Date";
-                    Get.back();
+                    // Get.back();
+                    ManagerDashBoardScreenController controller2 =
+                        Get.find<ManagerDashBoardScreenController>();
+                    controller2.currentTab.value = 1;
+                    controller2.update(["bottom_bar"]);
+                    Get.offAll(() => ManagerDashBoardScreen(),
+                        arguments: {"index": "1"});
                   },
                   child: const Icon(
                     Icons.arrow_back_ios,
@@ -66,7 +78,7 @@ class ApplicantsDetailScreen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(top: 5),
                   child: Text(
-                    "Applicants",
+                    Strings.applicants,
                     style: appTextStyle(color: ColorRes.black, fontSize: 20),
                   ),
                 ),
@@ -92,8 +104,9 @@ class ApplicantsDetailScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 15, vertical: 20),
                       decoration: BoxDecoration(
-                          border: Border.all(color: ColorRes.borderColor),
-                          borderRadius: BorderRadius.circular(15)),
+                        border: Border.all(color: ColorRes.borderColor),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
                       child: Column(
                         children: [
                           Row(
@@ -153,9 +166,9 @@ class ApplicantsDetailScreen extends StatelessWidget {
                                       height: 40,
                                       width: 40,
                                       decoration: BoxDecoration(
-                                          color: ColorRes.logoColor,
-                                          borderRadius:
-                                              BorderRadius.circular(12)),
+                                        color: ColorRes.logoColor,
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
                                       child: const GradientIcon(
                                         Icons.chat,
                                         20,
@@ -172,25 +185,28 @@ class ApplicantsDetailScreen extends StatelessWidget {
                                   InkWell(
                                     onTap: () {
                                       Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (con) =>
-                                                  const VideoReceiveScreen()));
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (con) =>
+                                              const VideoReceiveScreen(),
+                                        ),
+                                      );
                                     },
                                     child: Container(
                                       height: 40,
                                       width: 40,
                                       decoration: BoxDecoration(
-                                          color: ColorRes.logoColor,
-                                          borderRadius:
-                                              BorderRadius.circular(12)),
+                                        color: ColorRes.logoColor,
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
                                       child: const GradientIcon(
-                                          Icons.videocam_sharp,
-                                          20,
-                                          LinearGradient(colors: [
-                                            ColorRes.gradientColor,
-                                            ColorRes.containerColor,
-                                          ])),
+                                        Icons.videocam_sharp,
+                                        20,
+                                        LinearGradient(colors: [
+                                          ColorRes.gradientColor,
+                                          ColorRes.containerColor,
+                                        ]),
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -209,18 +225,20 @@ class ApplicantsDetailScreen extends StatelessWidget {
                             height: 20,
                           ),
                           InkWell(
-                            onTap: () => Get.toNamed(AppRes.resumeScreen, arguments: {"doc": args['resumeUrl']}),
+                            onTap: () => Get.toNamed(AppRes.resumeScreen,
+                                arguments: {"doc": args['resumeUrl']}),
                             child: Container(
                               height: 50,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  gradient: const LinearGradient(colors: [
-                                    ColorRes.gradientColor,
-                                    ColorRes.containerColor,
-                                  ])),
+                                borderRadius: BorderRadius.circular(15),
+                                gradient: const LinearGradient(colors: [
+                                  ColorRes.gradientColor,
+                                  ColorRes.containerColor,
+                                ]),
+                              ),
                               child: Center(
                                 child: Text(
-                                  "See Resume",
+                                  Strings.seeResume,
                                   style: appTextStyle(
                                       color: ColorRes.white, fontSize: 15),
                                 ),
@@ -235,11 +253,11 @@ class ApplicantsDetailScreen extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 20),
                             width: Get.width,
                             decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: ColorRes.white,
                               border: Border.all(
                                   color: controller.selectedValue == "Rejected"
                                       ? ColorRes.red
-                                      : (controller.selectedValue == "Active"
+                                      : (controller.selectedValue == "Accepted"
                                           ? ColorRes.darkGreen
                                           : ColorRes.containerColor),
                                   width: 2),
@@ -256,7 +274,9 @@ class ApplicantsDetailScreen extends StatelessWidget {
                                           : ColorRes.containerColor),
                                 ),
                                 isExpanded: true,
-                                value: controller.selectedValue == "" ? null : controller.selectedValue,
+                                value: controller.selectedValue == ""
+                                    ? null
+                                    : controller.selectedValue,
                                 items: controller.list.map((e) {
                                   return DropdownMenuItem<String>(
                                     value: e,
@@ -274,10 +294,12 @@ class ApplicantsDetailScreen extends StatelessWidget {
                                     ),
                                   );
                                 }).toList(),
-                                onChanged: (String? value) =>
-                                    controller.onChangeStatus(value!),
+                                onChanged: (String? value) {
+                                  controller.status = value!;
+                                  controller.onChangeStatus(value);
+                                },
                                 hint: Text(
-                                  "Mark Status as",
+                                  Strings.markStatusAs,
                                   style: appTextStyle(
                                       color: ColorRes.containerColor,
                                       fontSize: 14),
@@ -341,7 +363,7 @@ class ApplicantsDetailScreen extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 20),
                                     child: Text(
-                                      "Message",
+                                      Strings.message,
                                       style: appTextStyle(
                                           color: ColorRes.black2, fontSize: 16),
                                     ),
@@ -359,10 +381,11 @@ class ApplicantsDetailScreen extends StatelessWidget {
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 20),
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15),
-                                    border: Border.all(
-                                        color: ColorRes.containerColor,
-                                        width: 1.5)),
+                                  borderRadius: BorderRadius.circular(15),
+                                  border: Border.all(
+                                      color: ColorRes.containerColor,
+                                      width: 1.5),
+                                ),
                                 child: TextFormField(
                                   controller: controller.msgController,
                                   decoration: const InputDecoration(
@@ -383,30 +406,42 @@ class ApplicantsDetailScreen extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    FocusScopeNode currentFocus = FocusScope.of(context);
-
-                    if (!currentFocus.hasPrimaryFocus) {
-                      currentFocus.unfocus();
+                    if (controller.status == null || controller.status == "") {
+                      Get.snackbar(
+                          "Error", "Select Status & Write Your Message",
+                          colorText: const Color(0xffDA1414));
                     }
+                    if (controller.msgController.text.isEmpty ||
+                        controller.msgController.text == "") {
+                      Get.snackbar("Error", " Write Your Message",
+                          colorText: const Color(0xffDA1414));
+                    } else {
+                      FocusScopeNode currentFocus = FocusScope.of(context);
 
+                      if (!currentFocus.hasPrimaryFocus) {
+                        currentFocus.unfocus();
+                      }
 
-
-                    settingModalBottomSheet(context, isWrong, controller, args);
+                      settingModalBottomSheet(
+                          context, isWrong, controller, args);
+                    }
                   },
                   child: Container(
                     height: 50,
                     width: Get.width,
                     margin: const EdgeInsets.symmetric(horizontal: 20),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        gradient: const LinearGradient(colors: [
-                          ColorRes.gradientColor,
-                          ColorRes.containerColor,
-                        ])),
+                      borderRadius: BorderRadius.circular(10),
+                      gradient: const LinearGradient(colors: [
+                        ColorRes.gradientColor,
+                        ColorRes.containerColor,
+                      ]),
+                    ),
                     child: Center(
                       child: Text(
-                        "Send to Applicants",
-                        style: appTextStyle(color: Colors.white, fontSize: 20),
+                        Strings.sendToApplicants,
+                        style:
+                            appTextStyle(color: ColorRes.white, fontSize: 20),
                       ),
                     ),
                   ),
@@ -420,155 +455,202 @@ class ApplicantsDetailScreen extends StatelessWidget {
   }
 }
 
-void settingModalBottomSheet(context, bool isWrong, ApplicantsDetailsController controller, var args) {
+void settingModalBottomSheet(
+    context, bool isWrong, ApplicantsDetailsController controller, var args) {
   showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
       builder: (BuildContext bc) {
-        return ( isWrong == false)
+        return (isWrong == false)
             ? Container(
-          height: 390,
-          decoration: const BoxDecoration(
-            color: ColorRes.white,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(45),
-              topRight: Radius.circular(45),
-            ),
-          ),
-          child: Column(
-            children: [
-              const SizedBox(height: 50),
-              Image.asset(
-                  AssetRes.successImage,
-                  height: 130),
-              const SizedBox(height: 20),
-              Center(
-                child: Text("Successful!",
-                    style: appTextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color: ColorRes.containerColor)),
-              ),
-              const SizedBox(height: 10),
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Text("Notifications have been sent to applicants..",
-                      style: appTextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                        color: ColorRes.black.withOpacity(0.6),
-                      ),
-                      textAlign: TextAlign.center),
-                ),
-              ),
-              const SizedBox(height: 10),
-             InkWell(
-               onTap: () async{
-
-
-                 Navigator.of(context).pop();
-
-
-                 await FirebaseFirestore.instance
-                     .collection("Applicants")
-                     .doc(FirebaseAuth.instance.currentUser!.uid)
-                     .set({
-                   'companyName': PrefService.getString(PrefKeys.companyName),
-                 });
-
-                 await FirebaseFirestore.instance
-                     .collection("Applicants")
-                     .doc(FirebaseAuth.instance.currentUser!.uid)
-                     .collection("userDetails")
-                     .doc(args['uid'])
-                     .set({
-                   'userName': args['userName'],
-                   'status': controller.selectedValue,
-                   'userUid': args['uid'],
-                   'message': controller.msgController.text,
-                   'userOccupation' : args['Occupation']
-                 });
-
-
-
-
-               },
-               child:  Container(
-                 height: 50,
-                 alignment: Alignment.center,
-                 padding: const EdgeInsets.symmetric(vertical: 12),
-                 margin: const EdgeInsets.only(right: 18, left: 18, top: 10),
-                 decoration: const BoxDecoration(
-                   borderRadius: BorderRadius.all(Radius.circular(10)),
-                   gradient: LinearGradient(colors: [
-                     ColorRes.gradientColor,
-                     ColorRes.containerColor,
-                   ]),
-                 ),
-                 child: Text(Strings.ok,
-                     style: appTextStyle(
-                         fontSize: 18, fontWeight: FontWeight.w500)),
-               ),
-             ),
-            ],
-          ),
-        )
-            : Container(
-          height: 390,
-          decoration: const BoxDecoration(
-            color: ColorRes.white,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(45),
-              topRight: Radius.circular(45),
-            ),
-          ),
-          child: Column(
-            children: [
-              const SizedBox(height: 50),
-              Image.asset(
-                  AssetRes.failedImage,
-                  height: 130),
-              const SizedBox(height: 20),
-              Center(
-                child: Text("Oops, Failed",
-                    style: appTextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color: ColorRes.starColor)),
-              ),
-              const SizedBox(height: 10),
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Text(Strings.pleaseMakeSureThatYour,
-                      style: appTextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                        color: ColorRes.black.withOpacity(0.6),
-                      ),
-                      textAlign: TextAlign.center),
-                ),
-              ),
-              const SizedBox(height: 10),
-              Container(
-                height: 50,
-                alignment: Alignment.center,
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                margin: const EdgeInsets.only(right: 18, left: 18, top: 10),
+                height: 390,
                 decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                  gradient: LinearGradient(colors: [
-                    ColorRes.gradientColor,
-                    ColorRes.containerColor,
-                  ]),
+                  color: ColorRes.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(45),
+                    topRight: Radius.circular(45),
+                  ),
                 ),
-                child: Text(Strings.tryAgain,
-                    style: appTextStyle(
-                        fontSize: 18, fontWeight: FontWeight.w500)),
-              ),
-            ],
-          ),
-        );
+                child: Column(
+                  children: [
+                    const SizedBox(height: 50),
+                    Image.asset(AssetRes.successImage, height: 130),
+                    const SizedBox(height: 20),
+                    Center(
+                      child: Text(
+                        "Successful!",
+                        style: appTextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                            color: ColorRes.containerColor),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child:
+                            Text("Notifications have been sent to applicants..",
+                                style: appTextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                  color: ColorRes.black.withOpacity(0.6),
+                                ),
+                                textAlign: TextAlign.center),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    InkWell(
+                      onTap: () async {
+                        ApplicantsDetailsController anscontro =
+                            Get.put(ApplicantsDetailsController());
+
+                        SendNotificationModel notification =
+                            SendNotificationModel(
+                                title:
+                                    PrefService.getString(PrefKeys.companyName),
+                                body: anscontro.selectedValue,
+                                fcmTokens: [
+                              args['deviceToken'],
+                            ]);
+                        NotificationService.sendNotification(notification);
+
+                        // Get.back();
+                        ManagerDashBoardScreenController controller2 =
+                            Get.find<ManagerDashBoardScreenController>();
+                        controller2.currentTab.value = 1;
+                        controller2.update(["bottom_bar"]);
+                        Get.offAll(() => ManagerDashBoardScreen(),
+                            arguments: {"index": "1"});
+                        // Navigator.of(context).pop();
+
+                        await FirebaseFirestore.instance
+                            .collection("Applicants")
+                            .doc(FirebaseAuth.instance.currentUser!.uid)
+                            .set({
+                          'companyName':
+                              PrefService.getString(PrefKeys.companyName),
+                        });
+                        String? position;
+                        args['companyName'].forEach((e) {
+                          if (e['companyname'] ==
+                              PrefService.getString(PrefKeys.companyName)) {
+                            position = e['position'].toString();
+
+                            if (kDebugMode) {
+                              print(position);
+                            }
+                          }
+                        });
+                        /*   controller.onTapOk();*/
+                        await FirebaseFirestore.instance
+                            .collection("Applicants")
+                            .doc(FirebaseAuth.instance.currentUser!.uid)
+                            .collection("userDetails")
+                            .doc(args['uid'])
+                            .set({
+                          'userName': args['userName'],
+                          'status': controller.selectedValue,
+                          'userUid': args['uid'],
+                          'message': controller.msgController.text,
+                          'userOccupation': args['Occupation'],
+                          'position': position,
+                          'salary': args['salary'],
+                          'location': args['location'],
+                          'type': args['type']
+                        });
+
+                        controller.selectedValue = "";
+                        controller.msgController.clear();
+                        controller.msgController.text = "";
+                        controller.showTime = "Hour";
+                        controller.showDate = "Date";
+                      },
+                      child: Container(
+                        height: 50,
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        margin:
+                            const EdgeInsets.only(right: 18, left: 18, top: 10),
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
+                          gradient: LinearGradient(colors: [
+                            ColorRes.gradientColor,
+                            ColorRes.containerColor,
+                          ]),
+                        ),
+                        child: Text(
+                          Strings.ok,
+                          style: appTextStyle(
+                              fontSize: 18, fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            : Container(
+                height: 390,
+                decoration: const BoxDecoration(
+                  color: ColorRes.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(45),
+                    topRight: Radius.circular(45),
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 50),
+                    Image.asset(AssetRes.failedImage, height: 130),
+                    const SizedBox(height: 20),
+                    Center(
+                      child: Text(
+                        Strings.oopsFailed,
+                        style: appTextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                            color: ColorRes.starColor),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(Strings.pleaseMakeSureThatYour,
+                            style: appTextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                              color: ColorRes.black.withOpacity(0.6),
+                            ),
+                            textAlign: TextAlign.center),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Container(
+                      height: 50,
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      margin:
+                          const EdgeInsets.only(right: 18, left: 18, top: 10),
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        gradient: LinearGradient(colors: [
+                          ColorRes.gradientColor,
+                          ColorRes.containerColor,
+                        ]),
+                      ),
+                      child: Text(
+                        Strings.tryAgain,
+                        style: appTextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                  ],
+                ),
+              );
       });
 }

@@ -6,8 +6,10 @@ import 'package:jobseek/common/widgets/common_textField.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 import 'ResetPasswordController.dart';
 
+// ignore: must_be_immutable
 class ResetPasswordScreen extends StatelessWidget {
   ResetPasswordScreen({Key? key}) : super(key: key);
   ResetPasswordController controller = Get.put(ResetPasswordController());
@@ -34,7 +36,7 @@ class ResetPasswordScreen extends StatelessWidget {
             const SizedBox(width: 50),
             Center(
               child: Text(
-                'Reset Password',
+                Strings.resetPassword,
                 style: appTextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w500,
@@ -48,7 +50,7 @@ class ResetPasswordScreen extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(right: 170),
           child: Text(
-            'Create a new password',
+            Strings.createANewPassword,
             style: appTextStyle(
                 fontWeight: FontWeight.w400,
                 fontSize: 14,
@@ -65,7 +67,7 @@ class ResetPasswordScreen extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      'New Password',
+                      Strings.newPassword,
                       style: appTextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
@@ -168,7 +170,7 @@ class ResetPasswordScreen extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      'Confirm New Password',
+                      Strings.confirmNewPassword,
                       style: appTextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
@@ -333,7 +335,7 @@ class ResetPasswordScreen extends StatelessWidget {
                           ),
                         ),
                         const Text(
-                          'Remember me',
+                          Strings.rememberMe,
                           style: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 13,
@@ -361,7 +363,7 @@ class ResetPasswordScreen extends StatelessWidget {
               ]),
             ),
             child: Text(
-              "Save",
+              Strings.save,
               style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w500,
                   fontSize: 18,

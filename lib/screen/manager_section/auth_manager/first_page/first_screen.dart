@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/screen/manager_section/auth_manager/Sign_in/sign_in_screen.dart';
-import 'package:jobseek/screen/manager_section/auth_manager/sign_up/sign_up_screen.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../sign_up_new/sign_up_new_screen.dart';
 
 class FirstPageScreenM extends StatelessWidget {
   const FirstPageScreenM({Key? key}) : super(key: key);
@@ -30,9 +31,11 @@ class FirstPageScreenM extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const SizedBox(height: 10,),
+              const SizedBox(
+                height: 10,
+              ),
               Padding(
-                padding:  const EdgeInsets.all( 18.0),
+                padding: const EdgeInsets.all(18.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -42,7 +45,7 @@ class FirstPageScreenM extends StatelessWidget {
               ),
               SizedBox(height: Get.height * 0.12),
               Text(
-                'Logo',
+                Strings.logo,
                 style: appTextStyle(
                     fontSize: 44,
                     fontWeight: FontWeight.w600,
@@ -50,10 +53,10 @@ class FirstPageScreenM extends StatelessWidget {
               ),
               SizedBox(height: Get.height * 0.12),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Text(
                   textAlign: TextAlign.center,
-                  'We currently have over 140 live roles waiting\n for you!',
+                  Strings.firstScreenSentences,
                   style: appTextStyle(
                     fontWeight: FontWeight.w400,
                     fontSize: 26,
@@ -76,7 +79,7 @@ class FirstPageScreenM extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                       color: ColorRes.containerColor),
                   child: Text(
-                    "Create Account",
+                    Strings.createAccount,
                     style: appTextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 18,
@@ -86,7 +89,7 @@ class FirstPageScreenM extends StatelessWidget {
               ),
               SizedBox(height: Get.height * 0.03),
               Text(
-                'Already have an account?',
+                Strings.alreadyHaveAccount,
                 style: appTextStyle(
                   fontWeight: FontWeight.w400,
                   fontSize: 18,
@@ -109,7 +112,7 @@ class FirstPageScreenM extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                     border: Border.all(color: ColorRes.containerColor),
                   ),
-                  child: Text("Sign In",
+                  child: Text(Strings.signIn,
                       style: appTextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 18,
@@ -118,19 +121,20 @@ class FirstPageScreenM extends StatelessWidget {
               ),
               SizedBox(height: Get.height * 0.03),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: RichText(
+                  textAlign: TextAlign.center,
                   text: TextSpan(
                     children: <TextSpan>[
                       TextSpan(
-                          text:
-                              'By creating an account, you are agreeing\n                to our',
-                          style: appTextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400,
-                              color: ColorRes.textColor)),
+                        text: Strings.screenSentences,
+                        style: appTextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w400,
+                            color: ColorRes.textColor),
+                      ),
                       TextSpan(
-                          text: ' Terms of Service',
+                          text: Strings.termsOfService,
                           style: appTextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,

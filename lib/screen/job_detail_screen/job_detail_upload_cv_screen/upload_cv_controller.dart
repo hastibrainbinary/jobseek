@@ -2,27 +2,48 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import '../../../utils/pref_keys.dart';
+import 'package:jobseek/utils/pref_keys.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+
 
 FirebaseFirestore firestore = FirebaseFirestore.instance;
-//List<String> position = [];
-List companyList = [];
-
+List<Map<String, dynamic>> companyList = [];
 bool abc = false;
 
 class JobDetailsUploadCvController extends GetxController {
+  RefreshController refreshController = RefreshController();
 
-  init() async {
-
+  /* init() async {
     await firestore.collection("Apply").get().then((value) {
       value.docs.forEach((element) {
         if (element['uid'] == PrefService.getString(PrefKeys.userId)) {
           companyList = element['companyName'];
+        }
+      });
+
+      */
+  /*for (int i = 1; i <= value.docs.length; i++) {
+        if (value.docs[i]['uid'] == PrefService.getString(PrefKeys.userId)) {
+          companyList = value.docs[i]['companyName'];
+        }
+      }*/
+  /*
+    });
+    refreshController.refreshCompleted();
+  }*/
+  init() async {
+    await firestore.collection("Apply").get().then((value) {
+      value.docs.forEach((element) {
+        if (element['uid'] == PrefService.getString(PrefKeys.userId)) {
+          companyList.add({
+            "companyname": element['CompanyName'],
+            "position": element['Position']
+          });
         }
       });
 
@@ -31,14 +52,14 @@ class JobDetailsUploadCvController extends GetxController {
           companyList = value.docs[i]['companyName'];
         }
       }*/
-
     });
+    refreshController.refreshCompleted();
   }
 
   String? pdfUrl;
+  double filesize = 0;
 
-  onTapApply({var args}) {
-
+  /* onTapApply({var args}) {
     abc = false;
     for (int i = 0; i < companyList.length; i++) {
       if (companyList[i] == args['CompanyName']) {
@@ -53,7 +74,9 @@ class JobDetailsUploadCvController extends GetxController {
     List<String> companyNameList = List.generate(companyList.length, (index) {
       return companyList[index].toString();
     });
-    print(companyNameList);
+    if (kDebugMode) {
+      print(companyNameList);
+    }
 
     firestore
         .collection("Apply")
@@ -70,6 +93,61 @@ class JobDetailsUploadCvController extends GetxController {
       'Occupation': PrefService.getString(PrefKeys.occupation),
       'uid': FirebaseAuth.instance.currentUser!.uid,
       'resumeUrl': pdfUrl,
+      'salary': args['salary'],
+      'location': args['location'],
+      'type': args['type'],
+    });
+
+    Get.toNamed(AppRes.jobDetailSuccessOrFailed, arguments: [
+      {"doc": args},
+      {"error": false, "filename": filepath},
+    ]);
+
+    filepath.value = "";
+  }*/
+  onTapApply({var args}) {
+    abc = false;
+    for (int i = 0; i < companyList.length; i++) {
+      if (companyList[i]['companyame'] == args['CompanyName'] &&
+          companyList[i]['position'] == args['Position']) {
+        abc = true;
+      }
+    }
+
+    if (!abc) {
+      companyList.add(
+          {"companyname": args['CompanyName'], "position": args['Position']});
+    }
+
+    List<Map<String, dynamic>> companyNameList =
+        List.generate(companyList.length, (index) {
+      return companyList[index];
+    });
+    if (kDebugMode) {
+      print(companyNameList.runtimeType);
+    }
+
+    firestore
+        .collection("Apply")
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .set({
+      'apply': true,
+      'companyName': companyNameList,
+      'userName': PrefService.getString(PrefKeys.fullName),
+      'email': PrefService.getString(PrefKeys.email),
+      'phone': PrefService.getString(PrefKeys.phoneNumber),
+      'city': PrefService.getString(PrefKeys.city),
+      'state': PrefService.getString(PrefKeys.state),
+      'country': PrefService.getString(PrefKeys.country),
+      'Occupation': PrefService.getString(PrefKeys.occupation),
+      'uid': FirebaseAuth.instance.currentUser!.uid,
+      'resumeUrl': pdfUrl,
+      'fileName': filepath.value,
+      'fileSize': filesize,
+      'salary': args['salary'],
+      'location': args['location'],
+      'type': args['type'],
+      "deviceToken": PrefService.getString(PrefKeys.deviceToken),
     });
 
     Get.toNamed(AppRes.jobDetailSuccessOrFailed, arguments: [
@@ -115,6 +193,11 @@ class JobDetailsUploadCvController extends GetxController {
       final kbVal = kb.ceil().toInt();
       final mb = kb / 1024;
       fileSize?.value = kbVal;
+      filesize = mb;
+
+      if (kDebugMode) {
+        print(filesize);
+      }
 
       debugPrint("filepath $filepath FileSize ${fileSize?.value}  $kbVal");
       {
@@ -123,7 +206,7 @@ class JobDetailsUploadCvController extends GetxController {
 
         debugPrint("FILES : $file");
         filepath.value = file.name.toString();
-        fileSize?.value = file.size;
+        fileSize?.value = file.size.ceil().toInt();
         isPdfUploadError.value = false;
 
         debugPrint("filepath $filepath FileSize $fileSize");
@@ -139,7 +222,10 @@ class JobDetailsUploadCvController extends GetxController {
     }
   }
 
-  Future<String?> uploadImage({File? file, String? path}) async {
+  Future<String?> uploadImage({
+    File? file,
+    String? path,
+  }) async {
     final firebaseStorage = FirebaseStorage.instance;
 
     if (file != null) {
@@ -153,11 +239,14 @@ class JobDetailsUploadCvController extends GetxController {
           FirebaseStorage.instance.ref().child(path).getDownloadURL();
       storageRef.then((result) {
         pdfUrl = result;
-        print("result is $result");
-
+        if (kDebugMode) {
+          print("result is $result");
+        }
       });
     } else {
-      print('No Image Path Received');
+      if (kDebugMode) {
+        print('No Image Path Received');
+      }
 
       return '';
     }

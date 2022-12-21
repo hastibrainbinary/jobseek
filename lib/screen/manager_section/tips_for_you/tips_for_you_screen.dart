@@ -5,6 +5,7 @@ import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_
 import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 
 class ApplicantsSeeAllScreen extends StatelessWidget {
   const ApplicantsSeeAllScreen({Key? key}) : super(key: key);
@@ -45,7 +46,7 @@ class ApplicantsSeeAllScreen extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(top: 5),
                     child: Text(
-                      "Applicants",
+                      Strings.applicants,
                       style: appTextStyle(color: ColorRes.black, fontSize: 20),
                     ),
                   ),

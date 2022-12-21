@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 class AddRequirementController extends GetxController implements GetxService {
   RxBool read = false.obs;
   RxBool text = false.obs;
+  RxBool loader = false.obs;
   RxList requirements = [
     "Experienced in Figma or Sketch.",
     "Able to work in large or small team.",

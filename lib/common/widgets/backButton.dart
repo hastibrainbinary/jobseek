@@ -4,7 +4,7 @@ import 'package:jobseek/utils/color_res.dart';
 
 Widget backButton() {
   return InkWell(
-    onTap: (){
+    onTap: () {
       Get.back();
     },
     child: Container(

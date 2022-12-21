@@ -7,16 +7,18 @@ class CommonLoader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
-        padding: const EdgeInsets.all(35),
-        height: 110,
-        width: 110,
-        decoration: BoxDecoration(
-            color: ColorRes.white,
-            borderRadius: BorderRadius.circular(25)),
-        child: const CircularProgressIndicator(
-          backgroundColor: Color(0xffE2D3FE),
-          color: ColorRes.containerColor,
+      child: InkWell(
+        onTap: () {},
+        child: Container(
+          padding: const EdgeInsets.all(35),
+          height: 110,
+          width: 110,
+          decoration: BoxDecoration(
+              color: ColorRes.white, borderRadius: BorderRadius.circular(25)),
+          child: const CircularProgressIndicator(
+            backgroundColor: Color(0xffE2D3FE),
+            color: ColorRes.containerColor,
+          ),
         ),
       ),
     );

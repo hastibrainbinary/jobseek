@@ -3,19 +3,22 @@ import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/common/widgets/common_error_box.dart';
 import 'package:jobseek/common/widgets/common_textField.dart';
+import 'package:jobseek/screen/create_vacancies/create_vacancies_controller.dart';
 import 'package:jobseek/screen/manager_section/Profile/profile_controller.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
+// ignore: must_be_immutable
 class EditProfileScreen extends StatelessWidget {
   EditProfileScreen({Key? key}) : super(key: key);
   final controller = Get.put(ProfileController());
 
+  CreateVacanciesController getCreate = Get.put(CreateVacanciesController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       backgroundColor: ColorRes.backgroundColor,
       body: Column(
         children: [
@@ -48,8 +51,9 @@ class EditProfileScreen extends StatelessWidget {
               height: 40,
               width: 40,
               decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(10)),
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(10),
+              ),
               /*child: InkWell(
                 onTap: () {
                   Navigator.push(
@@ -75,23 +79,31 @@ class EditProfileScreen extends StatelessWidget {
                     children: [
                       Stack(
                         children: [
-                          Container(
-                            width: 90,
-                            height: 90,
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: (controller.image == null)
-                                    ? const DecorationImage(
-                                    image: AssetImage(
-                                      AssetRes.roundAirbnb,
-                                    ),
-                                    fit: BoxFit.fill)
-                                    : DecorationImage(
-                                    image: FileImage(
-                                      controller.image!,
-                                    ),
-                                    fit: BoxFit.fill)),
-                          ),
+                          GetBuilder<ProfileController>(
+                              id: "image",
+                              builder: (context) {
+                                return Container(
+                                  width: 90,
+                                  height: 90,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: (getCreate.url == "")
+                                        ? DecorationImage(
+                                            image: const AssetImage(
+                                              AssetRes.roundAirbnb,
+                                            ),
+                                            fit: BoxFit.fill,
+                                            onError: (error, starcase) {
+                                              Image.asset(AssetRes.userImage);
+                                            })
+                                        : DecorationImage(
+                                            image: NetworkImage(
+                                              getCreate.url,
+                                            ),
+                                            fit: BoxFit.fill),
+                                  ),
+                                );
+                              }),
                           Positioned(
                             bottom: 0,
                             right: 10,
@@ -150,8 +162,9 @@ class EditProfileScreen extends StatelessWidget {
                                                 child: Column(
                                                   children: [
                                                     InkWell(
-                                                      onTap: () =>
-                                                          controller.onTapImage,
+                                                      onTap: () {
+                                                        controller.onTapImage();
+                                                      },
                                                       child: Container(
                                                         height: 70,
                                                         width: 70,
@@ -285,8 +298,7 @@ class EditProfileScreen extends StatelessWidget {
                             style: appTextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 12,
-                                color:
-                                ColorRes.black.withOpacity(0.6)),
+                                color: ColorRes.black.withOpacity(0.6)),
                           ),
                           const SizedBox(height: 2),
                           Text(
@@ -294,8 +306,7 @@ class EditProfileScreen extends StatelessWidget {
                             style: appTextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 12,
-                                color:
-                                ColorRes.black.withOpacity(0.6)),
+                                color: ColorRes.black.withOpacity(0.6)),
                           ),
                         ],
                       ),
@@ -308,19 +319,17 @@ class EditProfileScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Obx(
-                        () => Column(children: [
+                    () => Column(children: [
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
                         child: Row(
                           children: [
                             Padding(
-                              padding:
-                              const EdgeInsets.only(left: 10),
+                              padding: const EdgeInsets.only(left: 10),
                               child: Text(
                                 "Name Of Company",
                                 style: appTextStyle(
-                                  color: ColorRes.black
-                                      .withOpacity(0.6),
+                                  color: ColorRes.black.withOpacity(0.6),
                                   fontSize: 14,
                                 ),
                               ),
@@ -339,28 +348,24 @@ class EditProfileScreen extends StatelessWidget {
                       ),
                       commonTextFormField(
                           textDecoration: InputDecoration(
-                            contentPadding:
-                            const EdgeInsets.all(15),
+                            contentPadding: const EdgeInsets.all(15),
                             border: InputBorder.none,
                             hintText: "name of company",
                             hintStyle: appTextStyle(
                               fontSize: 14,
-                              color: ColorRes.black
-                                  .withOpacity(0.15),
+                              color: ColorRes.black.withOpacity(0.15),
                             ),
                           ),
-                          controller:
-                          controller.companyNameController),
+                          controller: controller.companyNameController),
                       controller.isNameValidate.value == true
                           ? Column(
-                        children: [
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          commonErrorBox(
-                              "Please Enter Company name"),
-                        ],
-                      )
+                              children: [
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                commonErrorBox("Please Enter CompanyName"),
+                              ],
+                            )
                           : const SizedBox(),
                       const SizedBox(
                         height: 20,
@@ -368,19 +373,16 @@ class EditProfileScreen extends StatelessWidget {
                       Row(
                         children: [
                           Padding(
-                            padding:
-                            const EdgeInsets.only(left: 5),
+                            padding: const EdgeInsets.only(left: 5),
                             child: Text(
                               "Company Email",
                               style: appTextStyle(
-                                  color: ColorRes.grey,
-                                  fontSize: 14),
+                                  color: ColorRes.grey, fontSize: 14),
                             ),
                           ),
                           Text(
                             "*",
-                            style: appTextStyle(
-                                color: ColorRes.starColor),
+                            style: appTextStyle(color: ColorRes.starColor),
                           )
                         ],
                       ),
@@ -389,37 +391,31 @@ class EditProfileScreen extends StatelessWidget {
                       ),
                       commonTextFormField(
                           textDecoration: InputDecoration(
-                            contentPadding:
-                            const EdgeInsets.all(15),
+                            contentPadding: const EdgeInsets.all(15),
                             border: InputBorder.none,
                             hintText: "Company Email",
                             hintStyle: appTextStyle(
                                 fontSize: 14,
-                                color: ColorRes.black
-                                    .withOpacity(0.15)),
+                                color: ColorRes.black.withOpacity(0.15)),
                             suffixIcon: Container(
                               padding: const EdgeInsets.all(16),
                               child: Image(
-                                image: const AssetImage(
-                                    AssetRes.emailLogo),
-                                color: ColorRes.black
-                                    .withOpacity(0.15),
+                                image: const AssetImage(AssetRes.emailLogo),
+                                color: ColorRes.black.withOpacity(0.15),
                               ),
                             ),
                           ),
                           readOnly: true,
-                          controller:
-                          controller.companyEmailController),
+                          controller: controller.companyEmailController),
                       controller.isEmailValidate.value == true
                           ? Column(
-                        children: [
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          commonErrorBox(
-                              "Please Enter Company Email"),
-                        ],
-                      )
+                              children: [
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                commonErrorBox("Please Enter Company Email"),
+                              ],
+                            )
                           : const SizedBox(),
                       const SizedBox(
                         height: 20,
@@ -427,19 +423,16 @@ class EditProfileScreen extends StatelessWidget {
                       Row(
                         children: [
                           Padding(
-                            padding:
-                            const EdgeInsets.only(left: 5),
+                            padding: const EdgeInsets.only(left: 5),
                             child: Text(
                               "Established date",
                               style: appTextStyle(
-                                  color: ColorRes.grey,
-                                  fontSize: 14),
+                                  color: ColorRes.grey, fontSize: 14),
                             ),
                           ),
                           Text(
                             "*",
-                            style: appTextStyle(
-                                color: ColorRes.starColor),
+                            style: appTextStyle(color: ColorRes.starColor),
                           )
                         ],
                       ),
@@ -451,40 +444,33 @@ class EditProfileScreen extends StatelessWidget {
                           controller.onDatePickerTap(context);
                         },
                         child: commonTextFormField(
-                            onTap: () => controller
-                                .onDatePickerTap(context),
+                            onTap: () => controller.onDatePickerTap(context),
                             textDecoration: InputDecoration(
-                              contentPadding:
-                              const EdgeInsets.all(15),
+                              contentPadding: const EdgeInsets.all(15),
                               border: InputBorder.none,
                               hintText: "Date",
                               hintStyle: appTextStyle(
                                   fontSize: 14,
-                                  color: ColorRes.black
-                                      .withOpacity(0.15)),
+                                  color: ColorRes.black.withOpacity(0.15)),
                               suffixIcon: Container(
                                 padding: const EdgeInsets.all(15),
                                 child: Image(
-                                  image: const AssetImage(
-                                      AssetRes.dateIcon),
-                                  color: ColorRes.black
-                                      .withOpacity(0.15),
+                                  image: const AssetImage(AssetRes.dateIcon),
+                                  color: ColorRes.black.withOpacity(0.15),
                                 ),
                               ),
                             ),
-                            controller:
-                            controller.dateController),
+                            controller: controller.dateController),
                       ),
                       controller.isDateController.value == true
                           ? Column(
-                        children: [
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          commonErrorBox(
-                              "Please Enter Date"),
-                        ],
-                      )
+                              children: [
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                commonErrorBox("Please Enter Date"),
+                              ],
+                            )
                           : const SizedBox(),
                       const SizedBox(
                         height: 20,
@@ -492,19 +478,16 @@ class EditProfileScreen extends StatelessWidget {
                       Row(
                         children: [
                           Padding(
-                            padding:
-                            const EdgeInsets.only(left: 5),
+                            padding: const EdgeInsets.only(left: 5),
                             child: Text(
                               "Country",
                               style: appTextStyle(
-                                  color: ColorRes.grey,
-                                  fontSize: 14),
+                                  color: ColorRes.grey, fontSize: 14),
                             ),
                           ),
                           Text(
                             "*",
-                            style: appTextStyle(
-                                color: ColorRes.starColor),
+                            style: appTextStyle(color: ColorRes.starColor),
                           )
                         ],
                       ),
@@ -513,27 +496,25 @@ class EditProfileScreen extends StatelessWidget {
                       ),
                       commonTextFormField(
                           textDecoration: InputDecoration(
-                            contentPadding:
-                            const EdgeInsets.all(15),
+                            contentPadding: const EdgeInsets.all(15),
                             border: InputBorder.none,
                             hintText: "Country",
                             hintStyle: appTextStyle(
                               fontSize: 14,
-                              color: ColorRes.black
-                                  .withOpacity(0.15),
+                              color: ColorRes.black.withOpacity(0.15),
                             ),
                             suffixIcon: GetBuilder<ProfileController>(
                               id: "dropdown",
                               builder: (controller) {
                                 return DropdownButton(
-                                  //value: controller.dropDownValue,
+                                    //value: controller.dropDownValue,
                                     iconSize: 35.0,
                                     iconEnabledColor: Colors.grey.shade400,
                                     iconDisabledColor: Colors.grey.shade400,
                                     underline: Container(),
                                     icon: const Icon(Icons.arrow_drop_down),
                                     items: controller.items.map(
-                                          (val) {
+                                      (val) {
                                         return DropdownMenuItem<String>(
                                           value: val,
                                           child: Text(val),
@@ -546,18 +527,16 @@ class EditProfileScreen extends StatelessWidget {
                               },
                             ),
                           ),
-                          controller:
-                          controller.countryController),
+                          controller: controller.countryController),
                       controller.isCountryValidate.value == true
                           ? Column(
-                        children: [
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          commonErrorBox(
-                              "Please Enter Country"),
-                        ],
-                      )
+                              children: [
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                commonErrorBox("Please Enter Country"),
+                              ],
+                            )
                           : const SizedBox(),
                       const SizedBox(
                         height: 20,
@@ -565,19 +544,16 @@ class EditProfileScreen extends StatelessWidget {
                       Row(
                         children: [
                           Padding(
-                            padding:
-                            const EdgeInsets.only(left: 5),
+                            padding: const EdgeInsets.only(left: 5),
                             child: Text(
                               "Company Address",
                               style: appTextStyle(
-                                  color: ColorRes.grey,
-                                  fontSize: 14),
+                                  color: ColorRes.grey, fontSize: 14),
                             ),
                           ),
                           Text(
                             "*",
-                            style: appTextStyle(
-                                color: ColorRes.starColor),
+                            style: appTextStyle(color: ColorRes.starColor),
                           )
                         ],
                       ),
@@ -586,28 +562,24 @@ class EditProfileScreen extends StatelessWidget {
                       ),
                       commonTextFormField(
                           textDecoration: InputDecoration(
-                            contentPadding:
-                            const EdgeInsets.all(15),
+                            contentPadding: const EdgeInsets.all(15),
                             border: InputBorder.none,
                             hintText: "Address",
                             hintStyle: appTextStyle(
                               fontSize: 14,
-                              color: ColorRes.black
-                                  .withOpacity(0.15),
+                              color: ColorRes.black.withOpacity(0.15),
                             ),
                           ),
-                          controller: controller
-                              .companyAddressController),
+                          controller: controller.companyAddressController),
                       controller.isAddressValidate.value == true
                           ? Column(
-                        children: [
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          commonErrorBox(
-                              "Please Enter Address"),
-                        ],
-                      )
+                              children: [
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                commonErrorBox("Please Enter Address"),
+                              ],
+                            )
                           : const SizedBox(),
                       const SizedBox(
                         height: 20,
@@ -615,82 +587,57 @@ class EditProfileScreen extends StatelessWidget {
                       GetBuilder<ProfileController>(
                           id: "Organization",
                           builder: (controller) {
-                            return (controller.companyNameController.text == '' ||
-                                controller
-                                    .companyEmailController
-                                    .text ==
-                                    '' ||
-                                controller.dateController
-                                    .text ==
-                                    '' ||
-                                controller.countryController
-                                    .text ==
-                                    '' ||
-                                controller
-                                    .companyAddressController
-                                    .text ==
-                                    '')
+                            return /*(controller.companyNameController.text ==
+                                        '' ||
+                                    controller.companyEmailController.text ==
+                                        '' ||
+                                    controller.dateController.text == '' ||
+                                    controller.countryController.text == '' ||
+                                    controller.companyAddressController.text ==
+                                        '')
                                 ? InkWell(
-                              child: Container(
-                                height: 50,
-                                width:
-                                MediaQuery.of(context)
-                                    .size
-                                    .width,
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                  BorderRadius.circular(
-                                      10),
-                                  gradient: LinearGradient(
-                                    colors: [
-                                      ColorRes.gradientColor
-                                          .withOpacity(0.2),
-                                      ColorRes
-                                          .containerColor
-                                          .withOpacity(0.4)
-                                    ],
-                                  ),
-                                ),
-                                child: Text("Save Changes",
-                                    style: appTextStyle(
-                                        fontSize: 18,
-                                        fontWeight:
-                                        FontWeight.w500,
-                                        color: ColorRes
-                                            .white)),
-                              ),
-                            )
-                                : InkWell(
+                                    child: Container(
+                                      height: 50,
+                                      width: MediaQuery.of(context).size.width,
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        gradient: LinearGradient(
+                                          colors: [
+                                            ColorRes.gradientColor
+                                                .withOpacity(0.2),
+                                            ColorRes.containerColor
+                                                .withOpacity(0.4)
+                                          ],
+                                        ),
+                                      ),
+                                      child: Text("Save Changes",
+                                          style: appTextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w500,
+                                              color: ColorRes.white)),
+                                    ),
+                                  )
+                                :*/
+                                InkWell(
                               // dashboard write
                               onTap: controller.onTapSubmit,
                               child: Container(
                                 height: 50,
-                                width:
-                                MediaQuery.of(context)
-                                    .size
-                                    .width,
+                                width: MediaQuery.of(context).size.width,
                                 alignment: Alignment.center,
                                 decoration: BoxDecoration(
-                                  borderRadius:
-                                  BorderRadius.circular(
-                                      10),
-                                  gradient:
-                                  const LinearGradient(
-                                      colors: [
-                                        ColorRes
-                                            .gradientColor,
-                                        ColorRes
-                                            .containerColor
-                                      ]),
+                                  borderRadius: BorderRadius.circular(10),
+                                  gradient: const LinearGradient(colors: [
+                                    ColorRes.gradientColor,
+                                    ColorRes.containerColor
+                                  ]),
                                 ),
                                 child: Text("Save Changes",
                                     style: appTextStyle(
                                         fontSize: 18,
-                                        fontWeight:
-                                        FontWeight.w500,
-                                        color: ColorRes
-                                            .white)),
+                                        fontWeight: FontWeight.w500,
+                                        color: ColorRes.white)),
                               ),
                             );
                           }),

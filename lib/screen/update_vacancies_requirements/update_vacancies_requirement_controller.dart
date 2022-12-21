@@ -1,22 +1,44 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/screen/create_vacancies/create_vacancies_screen.dart';
+import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen.dart';
 
 class UpdateVacanciesRequirementController extends GetxController {
   final args = Get.arguments;
 
   List requirments = [];
   RxBool isJobDetails = true.obs;
+
   ontap() {
     isJobDetails.value = false;
     update();
   }
 
+  bool editValues = false;
+  List<bool> moreOption = [];
+
+  void onTapMore(int index) {
+    if (moreOption[index] == false) {
+      moreOption[index] = true;
+    } else {
+      moreOption[index] = false;
+    }
+    update(['more']);
+  }
+
+  editOnTap() {
+    if (editValues == false) {
+      editValues = true;
+    } else {
+      editValues = false;
+    }
+    update(["editValues"]);
+  }
+
   RxBool text = false.obs;
   RxBool add = true.obs;
-
+  String? onchangeValues;
   @override
   void onInit() {
     // TODO: implement onInit
@@ -29,13 +51,17 @@ class UpdateVacanciesRequirementController extends GetxController {
   TextEditingController locationController = TextEditingController();
   TextEditingController typeController = TextEditingController();
   TextEditingController statusController = TextEditingController();
+  TextEditingController requirementController = TextEditingController();
   List requirmentList = [];
+  List<TextEditingController> addRequirementsList = [];
+
   RxBool isPositionValidate = false.obs;
   RxBool isSalaryValidate = false.obs;
   RxBool isLocationValidate = false.obs;
   RxBool isTypeValidate = false.obs;
   RxBool isStatusValidate = false.obs;
-  onLoginBtnTap() async {
+
+  onUpdateVacancyTap() async {
     validate();
     if (isPositionValidate.value == false &&
         isSalaryValidate.value == false &&
@@ -52,7 +78,7 @@ class UpdateVacanciesRequirementController extends GetxController {
         "location": locationController.text.trim(),
         "type": typeController.text.trim(),
         "Status": statusController.text.trim(),
-        "BookMarkUserList":[],
+        "BookMarkUserList": [],
       };
 
       FirebaseFirestore.instance
@@ -62,6 +88,17 @@ class UpdateVacanciesRequirementController extends GetxController {
 
       Get.back();
     }
+  }
+
+  onTapNewRequirement() {
+    if (addRequirementsList.isEmpty) {
+      addRequirementsList.add(TextEditingController());
+    } else if (addRequirementsList.isNotEmpty) {
+      Get.snackbar("Error", "Please Fill Up Filed", colorText: Colors.red);
+    }
+    text.value = true;
+    update(["more"]);
+    update();
   }
 
   initState(dynamic data) async {
@@ -76,7 +113,54 @@ class UpdateVacanciesRequirementController extends GetxController {
         .doc(args['docs'].id.toString())
         .get();
     var ref = document.data();
-    print(ref);
+    if (kDebugMode) {
+      print(ref);
+    }
+    moreOption = List.filled(data['docs']['RequirementsList'].length, false);
+    update(["more"]);
+  }
+
+  deleteNewRequirement(int index) async {
+    requirmentList.removeAt(index);
+    Map<String, dynamic> map = {
+      "RequirementsList": requirmentList,
+    };
+
+    FirebaseFirestore.instance
+        .collection("allPost")
+        .doc(args['docs'].id.toString())
+        .update(map);
+    update(["more"]);
+  }
+
+  RxBool loader = false.obs;
+
+  onTapRequirements(BuildContext context) async {
+    loader.value = true;
+
+    /* List<String> requirementsList1 = List.generate(
+        addRequirementsList.length, (index) => addRequirementsList[index].text);
+    print(requirementsList1);
+    requirementList=requirementsList1;
+    print(requirementList);*/
+    if (kDebugMode) {
+      print(onchangeValues);
+    }
+    Map<String, dynamic> map = {
+      "RequirementsList": requirmentList,
+    };
+
+    await FirebaseFirestore.instance
+        .collection("allPost")
+        .doc(args['docs'].id.toString())
+        .update({"RequirementsList": requirmentList});
+    update(["update"]);
+    loader.value = false;
+    Navigator.pushReplacement(context, MaterialPageRoute(
+      builder: (context) {
+        return ManagerDashBoardScreen();
+      },
+    ));
   }
 
   validate() {
@@ -138,6 +222,7 @@ class UpdateVacanciesRequirementController extends GetxController {
     "Republic",
     "Prague",
   ];
+
   changeDropwonType({required String val}) {
     dropDownValueType = val;
     typeController.text = dropDownValueType;

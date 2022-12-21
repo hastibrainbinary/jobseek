@@ -5,6 +5,7 @@ import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
+import 'package:jobseek/utils/string.dart';
 
 Widget homeAppBar() {
   return Padding(
@@ -19,7 +20,7 @@ Widget homeAppBar() {
               borderRadius: BorderRadius.all(Radius.circular(10)),
               color: ColorRes.logoColor),
           child: const Text(
-            "Logo",
+            Strings.logo,
             style: TextStyle(
                 color: ColorRes.containerColor,
                 fontSize: 10,
@@ -38,7 +39,7 @@ Widget homeAppBar() {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "Hello,",
+                      Strings.hello,
                       style: appTextStyle(
                           color: ColorRes.black,
                           fontSize: 20,

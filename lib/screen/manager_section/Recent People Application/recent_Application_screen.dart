@@ -6,10 +6,13 @@ import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_widget/manager_home_screen_widget.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 
+// ignore: must_be_immutable
 class RecentApplicationScreen extends StatelessWidget {
-   RecentApplicationScreen({Key? key}) : super(key: key);
-  JobDetailsUploadCvController jobDetailsUploadCvController = Get.put(JobDetailsUploadCvController());
+  RecentApplicationScreen({Key? key}) : super(key: key);
+  JobDetailsUploadCvController jobDetailsUploadCvController =
+      Get.put(JobDetailsUploadCvController());
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +36,7 @@ class RecentApplicationScreen extends StatelessWidget {
               ),
               SizedBox(width: Get.width - 350),
               Text(
-                'Recent People Application',
+                Strings.recentPeopleApplication,
                 style: appTextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w500,
@@ -51,9 +54,9 @@ class RecentApplicationScreen extends StatelessWidget {
                 return Expanded(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 10),
+                        horizontal: 20,),
                     child: InkWell(
-                      //  onTap: () => Get.toNamed(AppRes.applicantsDetails),
+                        //  onTap: () => Get.toNamed(AppRes.applicantsDetails),
                         child: recentPeopleBox()),
                   ),
                 );

@@ -4,9 +4,25 @@ import 'package:jobseek/common/widgets/backButton.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 
-class FinancialPlannerScreen extends StatelessWidget {
-  const FinancialPlannerScreen({Key? key}) : super(key: key);
+// ignore: must_be_immutable
+class ScheduleInterviewScreen extends StatelessWidget {
+  String? position;
+  String? companyName;
+  String? message;
+  String? salary;
+  String? location;
+  String? type;
+  ScheduleInterviewScreen(
+      {Key? key,
+      this.position,
+      this.companyName,
+      this.message,
+      this.salary,
+      this.location,
+      this.type})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +52,7 @@ class FinancialPlannerScreen extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.center,
                     child: Text(
-                      'Application',
+                      Strings.applications,
                       style: appTextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
@@ -47,64 +63,67 @@ class FinancialPlannerScreen extends StatelessWidget {
                 ),
               ],
             ),
-            Container(
-              height: 135,
-              width: Get.width,
-              margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
-              padding: const EdgeInsets.all(15),
-              decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(15)),
-                  border: Border.all(color: const Color(0xffF3ECFF)),
-                  color: ColorRes.white),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: Row(
-                      children: [
-                        Image.asset(AssetRes.twitterLogo, height: 40),
-                        const SizedBox(width: 20),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Financial Planner",
-                                style: appTextStyle(
-                                    color: ColorRes.black,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500)),
-                            Text("Twitter",
-                                style: appTextStyle(
-                                    color: ColorRes.black,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400)),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Divider(
-                    color: ColorRes.grey,
-                  ),
-                  const SizedBox(height: 10),
-                  Container(
-                    height: 28,
-                    width: Get.width,
-                    decoration: BoxDecoration(
-                      color: const Color(0xffFFFBED),
-                      borderRadius: BorderRadius.circular(99),
-                    ),
-                    child: Center(
-                      child: Text(
-                        "Application Pending",
-                        style: appTextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            color: const Color(0xffF1C100)),
+            InkWell(
+              onTap: () {},
+              child: Container(
+                height: 135,
+                width: Get.width,
+                margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
+                padding: const EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(15)),
+                    border: Border.all(color: const Color(0xffF3ECFF)),
+                    color: ColorRes.white),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: Row(
+                        children: [
+                          Image.asset(AssetRes.twitterLogo, height: 40),
+                          const SizedBox(width: 20),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(position ?? "",
+                                  style: appTextStyle(
+                                      color: ColorRes.black,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500)),
+                              Text(companyName ?? "",
+                                  style: appTextStyle(
+                                      color: ColorRes.black,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400)),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
-                  ),
-                ],
+                    const Divider(
+                      color: ColorRes.grey,
+                    ),
+                    const SizedBox(height: 10),
+                    Container(
+                      height: 28,
+                      width: Get.width,
+                      decoration: BoxDecoration(
+                        color: const Color(0xffFFFBED),
+                        borderRadius: BorderRadius.circular(99),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Application Pending",
+                          style: appTextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: const Color(0xffF1C100)),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             const SizedBox(height: 10),
@@ -126,7 +145,7 @@ class FinancialPlannerScreen extends StatelessWidget {
                               color: ColorRes.black.withOpacity(0.8),
                               fontSize: 12,
                               fontWeight: FontWeight.w500)),
-                      Text("\$1.480",
+                      Text(salary ?? "",
                           style: appTextStyle(
                               color: ColorRes.containerColor,
                               fontSize: 12,
@@ -142,27 +161,33 @@ class FinancialPlannerScreen extends StatelessWidget {
                               color: ColorRes.black.withOpacity(0.8),
                               fontSize: 12,
                               fontWeight: FontWeight.w500)),
-                      Text("Freelance",
-                          style: appTextStyle(
-                              color: ColorRes.containerColor,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600)),
+                      Text(
+                        type ?? "",
+                        style: appTextStyle(
+                            color: ColorRes.containerColor,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Location",
-                          style: appTextStyle(
-                              color: ColorRes.black.withOpacity(0.8),
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500)),
-                      Text("Singapore",
-                          style: appTextStyle(
-                              color: ColorRes.containerColor,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600)),
+                      Text(
+                        Strings.location,
+                        style: appTextStyle(
+                            color: ColorRes.black.withOpacity(0.8),
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      Text(
+                        location ?? "",
+                        style: appTextStyle(
+                            color: ColorRes.containerColor,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600),
+                      ),
                     ],
                   ),
                 ],

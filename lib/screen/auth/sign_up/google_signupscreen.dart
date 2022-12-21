@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/common_textField.dart';
@@ -7,6 +8,7 @@ import 'package:jobseek/screen/auth/sign_up/widget/signup_bottom/country.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 
 class GoogleSignupScreen extends StatelessWidget {
   final String email;
@@ -23,7 +25,9 @@ class GoogleSignupScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("EMAIL : $email , $firstName , $lastName");
+    if (kDebugMode) {
+      print("EMAIL : $email , $firstName , $lastName");
+    }
     GoogleSignupController controller = Get.put(GoogleSignupController(
         uid: uid, email: email, firstname: firstName, lastname: lastName));
 
@@ -47,7 +51,7 @@ class GoogleSignupScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: Text(
-                  'Logo',
+                  Strings.logo,
                   style: appTextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 18,
@@ -59,7 +63,7 @@ class GoogleSignupScreen extends StatelessWidget {
             const SizedBox(height: 18),
             Center(
               child: Text(
-                'Sign up for free',
+                Strings.signUpForFree,
                 style: appTextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
@@ -70,7 +74,7 @@ class GoogleSignupScreen extends StatelessWidget {
             GetBuilder<GoogleSignupController>(
               id: "showFirstname",
               builder: (controller) => texFieldColumn(
-                  title: 'First Name',
+                  title: Strings.firstName,
                   hintText: 'First Name',
                   onChanged: controller.onChanged,
                   error: controller.firstError,
@@ -80,7 +84,7 @@ class GoogleSignupScreen extends StatelessWidget {
             GetBuilder<GoogleSignupController>(
               id: "showLastname",
               builder: (controller) => texFieldColumn(
-                title: 'Last Name',
+                title: Strings.lastName,
                 hintText: 'Last Name',
                 onChanged: controller.onChanged,
                 error: controller.lastError,
@@ -91,7 +95,7 @@ class GoogleSignupScreen extends StatelessWidget {
             GetBuilder<GoogleSignupController>(
               id: "showEmail",
               builder: (controller) => texFieldColumn(
-                  title: 'Email',
+                  title: Strings.email,
                   hintText: 'Email',
                   onChanged: controller.onChanged,
                   error: controller.emailError,
@@ -102,7 +106,7 @@ class GoogleSignupScreen extends StatelessWidget {
               padding: const EdgeInsets.only(left: 15, bottom: 10),
               child: Row(
                 children: [
-                  Text('Phone number',
+                  Text(Strings.phoneNumber,
                       style: appTextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 14,
@@ -207,7 +211,7 @@ class GoogleSignupScreen extends StatelessWidget {
               padding: const EdgeInsets.only(left: 15, bottom: 10),
               child: Row(
                 children: [
-                  Text('Occupation',
+                  Text(Strings.occupation,
                       style: appTextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
@@ -335,7 +339,7 @@ class GoogleSignupScreen extends StatelessWidget {
             GetBuilder<GoogleSignupController>(
               id: "showCity",
               builder: (controller) => texFieldColumn(
-                  title: 'City',
+                  title: Strings.city,
                   hintText: 'City',
                   onChanged: controller.onChanged,
                   error: controller.cityError,
@@ -345,13 +349,29 @@ class GoogleSignupScreen extends StatelessWidget {
             GetBuilder<GoogleSignupController>(
                 id: "showState",
                 builder: (controller) => texFieldColumn(
-                      title: 'State',
+                      title: Strings.state,
                       hintText: 'State',
                       onChanged: controller.onChanged,
                       error: controller.stateError,
                       txtController: controller.stateController,
                     )),
             const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.only(left: 13, bottom: 10),
+              child: Row(
+                children: [
+                  Text(Strings.country,
+                      style: appTextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14,
+                          color: ColorRes.black.withOpacity(0.6))),
+                  const Text(
+                    '*',
+                    style: TextStyle(fontSize: 15, color: ColorRes.starColor),
+                  ),
+                ],
+              ),
+            ),
             GetBuilder<GoogleSignupController>(
               id: "showCountry",
               builder: (controller) => Column(
@@ -496,7 +516,7 @@ class GoogleSignupScreen extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'Remember me',
+                          Strings.rememberMe,
                           style: appTextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 13,
@@ -510,7 +530,8 @@ class GoogleSignupScreen extends StatelessWidget {
             GetBuilder<GoogleSignupController>(
                 id: "dark",
                 builder: (controller) {
-                  return (controller.firstnameController.text == '' ||
+                  return
+                      /* (controller.firstnameController.text == '' ||
                           controller.lastnameController.text == '' ||
                           controller.emailController.text == '' ||
                           controller.phoneController.text == '' ||
@@ -535,27 +556,27 @@ class GoogleSignupScreen extends StatelessWidget {
                                   fontWeight: FontWeight.w500,
                                   color: ColorRes.white)),
                         )
-                      : InkWell(
-                          // dashboard write
-                          onTap: controller.onSignUpBtnTap,
-                          child: Container(
-                            height: 50,
-                            width: MediaQuery.of(context).size.width,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              gradient: const LinearGradient(colors: [
-                                ColorRes.gradientColor,
-                                ColorRes.containerColor
-                              ]),
-                            ),
-                            child: Text("Sign up",
-                                style: appTextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500,
-                                    color: ColorRes.white)),
-                          ),
-                        );
+                      :*/
+                      InkWell(
+                    onTap: controller.onSignUpBtnTap,
+                    child: Container(
+                      height: 50,
+                      width: MediaQuery.of(context).size.width,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        gradient: const LinearGradient(colors: [
+                          ColorRes.gradientColor,
+                          ColorRes.containerColor
+                        ]),
+                      ),
+                      child: Text(Strings.signUp,
+                          style: appTextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              color: ColorRes.white)),
+                    ),
+                  );
                 }),
             const SizedBox(height: 28),
           ]),

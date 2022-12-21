@@ -19,7 +19,7 @@ class OtpScreenM extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       backgroundColor: ColorRes.backgroundColor,
       body: Column(children: [
-        const SizedBox(height:50),
+        const SizedBox(height: 50),
         Row(
           children: [
             Padding(
@@ -57,7 +57,6 @@ class OtpScreenM extends StatelessWidget {
           closeKeyboardWhenCompleted: true,
           defaultPinTheme: controller.defaultTheme,
           focusedPinTheme: controller.defaultTheme.copyDecorationWith(
-
             borderRadius: BorderRadius.circular(8),
           ),
         ),
@@ -124,7 +123,7 @@ class OtpScreenM extends StatelessWidget {
             }),
         const SizedBox(height: 180),
         InkWell(
-          onTap: controller.otpvalidation(),
+          onTap: controller.otpValidation(),
           child: Container(
             height: 50,
             width: 339,

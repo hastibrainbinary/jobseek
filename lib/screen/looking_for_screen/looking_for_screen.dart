@@ -5,6 +5,7 @@ import 'package:jobseek/screen/looking_for_screen/looking_for_you_screen_control
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 
 class LookingForScreen extends StatelessWidget {
   const LookingForScreen({Key? key}) : super(key: key);
@@ -55,7 +56,7 @@ class LookingForScreen extends StatelessWidget {
                     height: Get.height * 0.02,
                   ),
                   Text(
-                    "What are you looking for?",
+                    Strings.whatAreYouLookingFor,
                     style: appTextStyle(color: ColorRes.black, fontSize: 14),
                   ),
                   SizedBox(

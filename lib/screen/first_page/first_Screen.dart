@@ -9,8 +9,10 @@ import 'package:jobseek/screen/auth/sign_up/sign_upScreen.dart';
 import 'package:jobseek/screen/first_page/first_controller.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+// ignore: must_be_immutable
 class FirstScreen extends StatelessWidget {
   FirstScreen({Key? key}) : super(key: key);
   FirstScreenController controller = Get.put(FirstScreenController());
@@ -40,9 +42,11 @@ class FirstScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const SizedBox(height: 10,),
+              const SizedBox(
+                height: 10,
+              ),
               Padding(
-                padding:  const EdgeInsets.all( 18.0),
+                padding: const EdgeInsets.all(18.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -53,7 +57,7 @@ class FirstScreen extends StatelessWidget {
               const SizedBox(height: 110),
               // Get.height * 0.12),
               Text(
-                'Logo',
+                Strings.logo,
                 style: GoogleFonts.poppins(
                   fontSize: 44,
                   fontWeight: FontWeight.w600,
@@ -61,10 +65,10 @@ class FirstScreen extends StatelessWidget {
               ),
               SizedBox(height: Get.height * 0.12),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
                   textAlign: TextAlign.center,
-                  'We currently have over 140 live roles waiting\n for you!',
+                  Strings.firstScreenSentences,
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w400,
                     fontSize: 26,
@@ -75,8 +79,12 @@ class FirstScreen extends StatelessWidget {
               SizedBox(height: Get.height * 0.03),
               InkWell(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (con) => const SignUpScreen()));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (con) => const SignUpScreen(),
+                    ),
+                  );
                 },
                 child: Container(
                   height: 55,
@@ -87,7 +95,7 @@ class FirstScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                       color: ColorRes.containerColor),
                   child: Text(
-                    "Create Account",
+                    Strings.createAccount,
                     style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w500,
                         fontSize: 18,
@@ -97,7 +105,7 @@ class FirstScreen extends StatelessWidget {
               ),
               SizedBox(height: Get.height * 0.03),
               Text(
-                'Already have an account?',
+                Strings.alreadyHaveAccount,
                 style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w400,
                   fontSize: 18,
@@ -107,8 +115,10 @@ class FirstScreen extends StatelessWidget {
               SizedBox(height: Get.height * 0.0344),
               InkWell(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (con) => SigninScreenU()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (con) => const SigninScreenU()));
                 },
                 child: Container(
                   height: 55,
@@ -120,7 +130,7 @@ class FirstScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                     border: Border.all(color: ColorRes.containerColor),
                   ),
-                  child: Text("Sign In",
+                  child: Text(Strings.signIn,
                       style: GoogleFonts.poppins(
                           fontWeight: FontWeight.w500,
                           fontSize: 18,
@@ -141,7 +151,7 @@ class FirstScreen extends StatelessWidget {
                               fontWeight: FontWeight.w400,
                               color: ColorRes.textColor)),
                       TextSpan(
-                          text: ' Terms of Service',
+                          text: Strings.termsOfService,
                           style: GoogleFonts.poppins(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,

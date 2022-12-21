@@ -3,14 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
+import 'package:jobseek/screen/search_job/search_job_controller.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
+import 'package:jobseek/utils/string.dart';
 
+// ignore: must_be_immutable
 class SearchJobScreen extends StatelessWidget {
-  const SearchJobScreen({Key? key}) : super(key: key);
+  SearchJobScreen({Key? key}) : super(key: key);
+  SearchJobController controller = Get.put(SearchJobController());
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +45,7 @@ class SearchJobScreen extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.center,
                     child: Text(
-                      'Search jobs',
+                      Strings.searchJobs,
                       style: appTextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
@@ -52,46 +56,88 @@ class SearchJobScreen extends StatelessWidget {
                 ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 18, right: 18, bottom: 8),
-              child: AdvancedSearch(
-                clearSearchEnabled: true,
-                singleItemHeight: 40,
-                hintText: 'Skills,designation,companies',
-                hintTextColor: Colors.black.withOpacity(0.5),
-                autoListing: true,
-                unSelectedTextColor: Colors.black.withOpacity(0.5),
-                maxElementsToDisplay: 10,
-                onItemTap: (int index, String value) {},
-                searchItems: PrefService.getList(PrefKeys.allDesignation),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 18.0, bottom: 18, right: 18),
-              child: AdvancedSearch(
-                clearSearchEnabled: true,
-                singleItemHeight: 40,
-                hintText: 'Location',
-                hintTextColor: Colors.black.withOpacity(0.5),
-                autoListing: true,
-                maxElementsToDisplay: 10,
-                onItemTap: (int index, String value) {},
-                searchItems: PrefService.getList(PrefKeys.allCountryData),
-              ),
-            ),
+            GetBuilder<SearchJobController>(
+                id: "popup",
+                builder: (con) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            top: 18.0, left: 18, right: 18, bottom: 8),
+                        child: AdvancedSearch(
+                          clearSearchEnabled: true,
+                          singleItemHeight: 40,
+                          hintText: 'Enter designation, companies',
+                          hintTextColor: Colors.black.withOpacity(0.5),
+                          autoListing: true,
+                          unSelectedTextColor: Colors.black.withOpacity(0.5),
+                          maxElementsToDisplay: 10,
+                          onItemTap: (int index, String value) {
+                            controller.skills = value;
+                          },
+                          searchItems:
+                              PrefService.getList(PrefKeys.allDesignation),
+                        ),
+                      ),
+                      (controller.skillError != "")
+                          ? Padding(
+                              padding: const EdgeInsets.only(left: 18.0),
+                              child: SizedBox(
+                                child: Text(
+                                  controller.skillError,
+                                  style: const TextStyle(
+                                      fontSize: 12, color: Colors.red),
+                                ),
+                              ),
+                            )
+                          : const SizedBox(),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            bottom: 18.0, left: 18, right: 18),
+                        child: AdvancedSearch(
+                          clearSearchEnabled: true,
+                          singleItemHeight: 40,
+                          hintText: 'Enter location',
+                          hintTextColor: Colors.black.withOpacity(0.5),
+                          autoListing: true,
+                          maxElementsToDisplay: 10,
+                          onItemTap: (int index, String value) {
+                            controller.location = value;
+                          },
+                          searchItems:
+                              PrefService.getList(PrefKeys.allCountryData),
+                        ),
+                      ),
+                      (controller.locationError != "")
+                          ? Padding(
+                              padding: const EdgeInsets.only(left: 18.0),
+                              child: SizedBox(
+                                child: Text(
+                                  controller.locationError,
+                                  style: const TextStyle(
+                                      fontSize: 12, color: Colors.red),
+                                ),
+                              ),
+                            )
+                          : const SizedBox(),
+                    ],
+                  );
+                }),
             InkWell(
-              onTap: () {},
+              onTap: controller.searchJob,
               child: Center(
                 child: Container(
                   margin: const EdgeInsets.only(top: 15),
                   height: 36,
                   width: 119,
                   decoration: BoxDecoration(
-                      color: ColorRes.containerColor,
-                      borderRadius: BorderRadius.circular(10)),
+                    color: ColorRes.containerColor,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                   child: const Center(
                     child: Text(
-                      "Search jobs",
+                      Strings.searchJobs,
                       style: TextStyle(
                           color: ColorRes.white,
                           fontWeight: FontWeight.w500,
@@ -110,7 +156,7 @@ class SearchJobScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18),
               child: Text(
-                'Your most recent searches',
+                Strings.yourMostRecentSearches,
                 style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
@@ -147,19 +193,23 @@ class SearchJobScreen extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Supervisor,Gurgaon/Guru...",
-                              style: GoogleFonts.poppins(
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.black)),
+                          Text(
+                            "Supervisor,Gurgaon/Guru...",
+                            style: GoogleFonts.poppins(
+                                fontSize: 11,
+                                fontWeight: FontWeight.w400,
+                                color: ColorRes.black),
+                          ),
                           const SizedBox(
                             height: 6,
                           ),
-                          Text("2 new",
-                              style: GoogleFonts.poppins(
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.w400,
-                                  color: ColorRes.containerColor)),
+                          Text(
+                            "2 new",
+                            style: GoogleFonts.poppins(
+                                fontSize: 11,
+                                fontWeight: FontWeight.w400,
+                                color: ColorRes.containerColor),
+                          ),
                         ],
                       ),
                     ],

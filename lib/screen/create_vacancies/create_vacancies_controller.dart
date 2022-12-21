@@ -21,11 +21,14 @@ class CreateVacanciesController extends GetxController implements GetxService {
   RxBool isTypeValidate = false.obs;
   RxBool isCategoryValidate = false.obs;
   RxBool isStatusValidate = false.obs;
+  RxBool loader = false.obs;
+  String url = "";
   String companyName = "";
+
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
   List<TextEditingController> addRequirementsList = [];
 
-  onTapNextBut(String position) {
+  onTapNextBut(String position) async {
     final docRef = fireStore
         .collection("Auth")
         .doc("Manager")
@@ -37,12 +40,30 @@ class CreateVacanciesController extends GetxController implements GetxService {
       (DocumentSnapshot doc) {
         final data = doc.data() as Map<String, dynamic>;
         companyName = data["name"];
+        url = data["imageUrl"];
+
         // ...
       },
       onError: (e) => print("Error getting document: $e"),
     );
-
-    Get.to(RequirementsScreen(position: position));
+    await validate();
+    if (isPositionValidate.value == false &&
+        isSalaryValidate.value == false &&
+        isLocationValidate.value == false &&
+        isTypeValidate.value == false &&
+        isCategoryValidate.value == false &&
+        isStatusValidate.value == false) {
+      Get.to(RequirementsScreen());
+      if (kDebugMode) {
+        print("valid");
+      }
+    } else {
+      update(["profile"]);
+      update(["Location"]);
+      update(["type"]);
+      update(["Status"]);
+      update(["Category"]);
+    }
   }
 
   void onTapBack(String value) {
@@ -55,6 +76,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
       typeController.clear();
       categoryController.clear();
       statusController.clear();
+
       isPositionValidate.value = false;
       isSalaryValidate.value = false;
       isLocationValidate.value = false;
@@ -79,7 +101,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
       companyName = "";
       addRequirementsList = [];
     }
-    update();
+    update(["profile"]);
   }
 
   onTapAddRequirements() {
@@ -91,14 +113,16 @@ class CreateVacanciesController extends GetxController implements GetxService {
     update(["colorChange"]);
   }
 
-  onTapNext(String position) async {
+  onUpdateVacancyTapNext({String? position}) async {
     String uid = PrefService.getString(PrefKeys.userId);
     int totalPost = PrefService.getInt(PrefKeys.totalPost);
     String pUid = "$uid*${totalPost + 1}";
 
     List<String> requirementsList = List.generate(
         addRequirementsList.length, (index) => addRequirementsList[index].text);
-    print(requirementsList);
+    if (kDebugMode) {
+      print(requirementsList);
+    }
 
     if (kDebugMode) {
       print("**************$totalPost");
@@ -112,7 +136,10 @@ class CreateVacanciesController extends GetxController implements GetxService {
       "Status": statusController.text.trim(),
       "CompanyName": companyName,
       "RequirementsList": requirementsList,
-      "BookMarkUserList":[],
+      "BookMarkUserList": [],
+      "Id": uid,
+      "imageUrl": url,
+      "deviceToken": PrefService.getString(PrefKeys.deviceToken),
     };
     validate();
     if (isPositionValidate.value == false &&
@@ -151,8 +178,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
         onTapBack("");
         Get.off(() => JobDetailsScreen(
               isError: true,
-          position: position,
-
+              position: position,
             ));
       });
     }
@@ -178,17 +204,23 @@ class CreateVacanciesController extends GetxController implements GetxService {
       isTypeValidate.value = true;
     } else {
       isTypeValidate.value = false;
-      if (categoryController.text.isEmpty) {
-        isCategoryValidate.value = true;
-      } else {
-        isCategoryValidate.value = false;
-      }
-      if (statusController.text.isEmpty) {
-        isStatusValidate.value = true;
-      } else {
-        isStatusValidate.value = false;
-      }
     }
+    if (categoryController.text.isEmpty) {
+      isCategoryValidate.value = true;
+    } else {
+      isCategoryValidate.value = false;
+    }
+    if (statusController.text.isEmpty) {
+      isStatusValidate.value = true;
+    } else {
+      isStatusValidate.value = false;
+    }
+
+    update(["profile"]);
+    update(["Location"]);
+    update(["type"]);
+    update(["Status"]);
+    update(["Category"]);
   }
 
   changeDropwon({required String val}) {
@@ -214,7 +246,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
   changeStatus({required String val}) {
     dropDownValueStatus = val;
     statusController.text = dropDownValueStatus!;
-    update(["Category"]);
+    update(["Status"]);
   }
 
   String? dropDownValueLocation;
@@ -231,6 +263,8 @@ class CreateVacanciesController extends GetxController implements GetxService {
 
   var items1 = [
     'Part time',
+    'Freelancer',
+    'Remote',
     'Full time',
   ];
   String? dropDownValueCategory;
@@ -239,6 +273,14 @@ class CreateVacanciesController extends GetxController implements GetxService {
     'Writer',
     'Design',
     'Finance',
+    'Software',
+    'Database Manager',
+    'Product Manager',
+    'Full-Stack Developer',
+    'Data Scientist',
+    'Web Developers',
+    'Networking',
+    'Cyber Security',
   ];
   var itemsStatus = [
     'Active',

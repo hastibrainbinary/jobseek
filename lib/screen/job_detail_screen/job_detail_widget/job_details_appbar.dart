@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/dashboard/dashboard_screen.dart';
 import 'package:jobseek/screen/dashboard/home/home_screen.dart';
+import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_controller.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/string.dart';
 
-Widget jobDetailsAppBar() {
+Widget jobDetailsAppBar(JobDetailsUploadCvController controller) {
   return Column(
     children: [
       const SizedBox(height: 60),
@@ -22,6 +23,8 @@ Widget jobDetailsAppBar() {
                 InkWell(
                   onTap: () {
                     Get.back();
+                    controller.filepath.value = "";
+
                   },
                   child: Container(
                     height: 40,

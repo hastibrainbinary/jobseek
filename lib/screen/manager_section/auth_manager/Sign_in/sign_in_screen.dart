@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
+import 'package:jobseek/common/widgets/common_loader.dart';
 import 'package:jobseek/common/widgets/common_textField.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_controller.dart';
 import 'package:jobseek/screen/manager_section/auth_manager/Sign_in/sign_in_controller.dart';
 import 'package:jobseek/screen/manager_section/auth_manager/forgot_Password/forgot_password_screen.dart';
-import 'package:jobseek/screen/manager_section/auth_manager/sign_up/sign_up_screen.dart';
+import 'package:jobseek/screen/manager_section/auth_manager/sign_up_new/sign_up_new_screen.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 
 class SignInScreenM extends StatefulWidget {
-  SignInScreenM({Key? key}) : super(key: key);
+  const SignInScreenM({Key? key}) : super(key: key);
 
   @override
   State<SignInScreenM> createState() => _SignInScreenMState();
@@ -22,12 +24,14 @@ class _SignInScreenMState extends State<SignInScreenM> {
 
   final formGlobalKey = GlobalKey<FormState>();
 
-  JobDetailsUploadCvController jobDetailsUploadCvController = Get.put(JobDetailsUploadCvController());
-@override
+  JobDetailsUploadCvController jobDetailsUploadCvController =
+      Get.put(JobDetailsUploadCvController());
+  @override
   void initState() {
-  controller.getRememberEmailDataManger();
+    controller.getRememberEmailDataManger();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     jobDetailsUploadCvController.init();
@@ -52,7 +56,7 @@ class _SignInScreenMState extends State<SignInScreenM> {
                             color: ColorRes.logoColor,
                             borderRadius: BorderRadius.circular(15),
                           ),
-                          child: Text('Logo',
+                          child: Text(Strings.logo,
                               style: appTextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 18,
@@ -61,7 +65,7 @@ class _SignInScreenMState extends State<SignInScreenM> {
                       ),
                       const SizedBox(height: 18),
                       Center(
-                        child: Text('Sign in to your account',
+                        child: Text(Strings.signInToYourAccount,
                             style: appTextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -74,7 +78,7 @@ class _SignInScreenMState extends State<SignInScreenM> {
                           key: formGlobalKey,
                           child: Row(
                             children: [
-                              Text('Email',
+                              Text(Strings.email,
                                   style: appTextStyle(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 14,
@@ -208,7 +212,7 @@ class _SignInScreenMState extends State<SignInScreenM> {
                         padding: const EdgeInsets.only(left: 15, bottom: 10),
                         child: Row(
                           children: [
-                            Text('Password',
+                            Text(Strings.password,
                                 style: appTextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w500,
@@ -378,7 +382,7 @@ class _SignInScreenMState extends State<SignInScreenM> {
                                               BorderRadius.circular(4),
                                         ),
                                       ),
-                                      Text('Remember me',
+                                      Text(Strings.rememberMe,
                                           style: appTextStyle(
                                               fontWeight: FontWeight.w500,
                                               fontSize: 13,
@@ -393,7 +397,8 @@ class _SignInScreenMState extends State<SignInScreenM> {
                       GetBuilder<SignInScreenControllerM>(
                           id: "colorChange",
                           builder: (controller) {
-                            return (controller.emailController.text == '' ||
+                            return
+                                /* (controller.emailController.text == '' ||
                                     controller.passwordController.text == '')
                                 ? Container(
                                     height: 50,
@@ -412,26 +417,27 @@ class _SignInScreenMState extends State<SignInScreenM> {
                                             fontWeight: FontWeight.w500,
                                             color: ColorRes.white)),
                                   )
-                                : InkWell(
-                                    onTap: controller.onLoginBtnTap,
-                                    child: Container(
-                                      height: 50,
-                                      width: MediaQuery.of(context).size.width,
-                                      alignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        gradient: const LinearGradient(colors: [
-                                          ColorRes.gradientColor,
-                                          ColorRes.containerColor
-                                        ]),
-                                      ),
-                                      child: Text("Sign In",
-                                          style: appTextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w500,
-                                              color: ColorRes.white)),
-                                    ),
-                                  );
+                                :*/
+                                InkWell(
+                              onTap: controller.onLoginBtnTap,
+                              child: Container(
+                                height: 50,
+                                width: MediaQuery.of(context).size.width,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  gradient: const LinearGradient(colors: [
+                                    ColorRes.gradientColor,
+                                    ColorRes.containerColor
+                                  ]),
+                                ),
+                                child: Text(Strings.signIn,
+                                    style: appTextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500,
+                                        color: ColorRes.white)),
+                              ),
+                            );
                           }),
                       const SizedBox(height: 18),
                       Center(
@@ -442,7 +448,7 @@ class _SignInScreenMState extends State<SignInScreenM> {
                                 MaterialPageRoute(
                                     builder: (con) => ForgotPasswordScreenM()));
                           },
-                          child: Text('Forgot the password?',
+                          child: Text(Strings.forgotThePassword,
                               style: appTextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15,
@@ -453,7 +459,7 @@ class _SignInScreenMState extends State<SignInScreenM> {
                       Center(
                         child: InkWell(
                           onTap: () {},
-                          child: Text('or continue with',
+                          child: Text(Strings.orContinueWith,
                               style: appTextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.w400,
@@ -495,7 +501,7 @@ class _SignInScreenMState extends State<SignInScreenM> {
                                     height: 27,
                                   ),
                                   const SizedBox(width: 15),
-                                  Text('Facebook',
+                                  Text(Strings.facebook,
                                       style: appTextStyle(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 15,
@@ -536,7 +542,7 @@ class _SignInScreenMState extends State<SignInScreenM> {
                                   ),
                                   const SizedBox(width: 15),
                                   Text(
-                                    'Google',
+                                    Strings.google,
                                     style: appTextStyle(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 15,
@@ -553,7 +559,7 @@ class _SignInScreenMState extends State<SignInScreenM> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Don't have account?",
+                            Strings.donTHaveAccount,
                             style: appTextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 15,
@@ -573,7 +579,7 @@ class _SignInScreenMState extends State<SignInScreenM> {
                                     });
                               },
                               child: Text(
-                                ' Sign up',
+                                Strings.signUp,
                                 style: appTextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 16,
@@ -587,19 +593,8 @@ class _SignInScreenMState extends State<SignInScreenM> {
               ),
             ),
             controller.loading.isTrue
-                ? Center(
-                    child: Container(
-                      padding: const EdgeInsets.all(35),
-                      height: 110,
-                      width: 110,
-                      decoration: BoxDecoration(
-                          color: ColorRes.white,
-                          borderRadius: BorderRadius.circular(25)),
-                      child: const CircularProgressIndicator(
-                        backgroundColor: Color(0xffE2D3FE),
-                        color: ColorRes.containerColor,
-                      ),
-                    ),
+                ? const Center(
+                    child: CommonLoader(),
                   )
                 : const SizedBox(),
           ]);

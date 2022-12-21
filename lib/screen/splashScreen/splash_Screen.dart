@@ -1,19 +1,19 @@
 import 'dart:async';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jobseek/api/api_country.dart';
 import 'package:jobseek/screen/dashboard/dashboard_controller.dart';
 import 'package:jobseek/screen/dashboard/dashboard_screen.dart';
-import 'package:jobseek/screen/looking_for_screen/looking_for_screen.dart';
 import 'package:jobseek/screen/manager_section/dashboard/manager_dashboard_screen.dart';
-import 'package:jobseek/screen/new_home_page/new_home_page_screen.dart';
 import 'package:jobseek/screen/organization_profile_screen/organization_profile_screen.dart';
 import 'package:jobseek/screen/splashScreen/splash_controller.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
+import 'package:jobseek/utils/string.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -27,11 +27,20 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    getpref();
 
-    splash();
-    if(PrefService.getList(PrefKeys.allDesignation)==null || PrefService.getList(PrefKeys.allDesignation).isEmpty || PrefService.getList(PrefKeys.allCountryData)==null || PrefService.getList(PrefKeys.allCountryData).isEmpty){
+
+
+  }
+  getpref()async{
+  await  PrefService.init();
+  if (PrefService.getList(PrefKeys.allDesignation) == null ||
+      PrefService.getList(PrefKeys.allDesignation).isEmpty ||
+      PrefService.getList(PrefKeys.allCountryData) == null ||
+      PrefService.getList(PrefKeys.allCountryData).isEmpty) {
     countryApi();
-    }
+  }
+  splash();
   }
 
   void splash() async {
@@ -73,7 +82,7 @@ class _SplashScreenState extends State<SplashScreen> {
               padding: const EdgeInsets.only(top: 54, right: 30),
               child: Text(
                 textAlign: TextAlign.end,
-                'Logo',
+                Strings.logo,
                 style: GoogleFonts.poppins(
                     fontSize: 30,
                     fontWeight: FontWeight.w400,
@@ -85,7 +94,7 @@ class _SplashScreenState extends State<SplashScreen> {
               child: Row(
                 children: [
                   Container(
-                    margin: const EdgeInsets.only(bottom:15),
+                    margin: const EdgeInsets.only(bottom: 15),
                     child: RichText(
                       text: TextSpan(
                         children: <TextSpan>[
@@ -171,7 +180,9 @@ class _SplashScreenState extends State<SplashScreen> {
       });
     });
 
-    print(PrefService.getList(PrefKeys.allDesignation));
+    if (kDebugMode) {
+      print(PrefService.getList(PrefKeys.allDesignation));
+    }
     if (PrefService.getList(PrefKeys.allCountryData) == null ||
         PrefService.getList(PrefKeys.allCountryData).isEmpty) {
       PrefService.setValue(PrefKeys.allCountryData, controller.allData);

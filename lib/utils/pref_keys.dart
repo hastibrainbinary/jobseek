@@ -10,6 +10,7 @@ class PrefKeys {
   static const phoneId = "phoneId";
   static const phoneNumber = "phoneNumber";
   static const imageId = "imageId";
+  static const imageIdM ="imageIdM";
   static const openConfirmSignUpPage = "openConfirmSignUpPage";
   static const totalPost = "totalPost";
   static const allCountryData="allCountryData";
@@ -39,5 +40,8 @@ class PrefKeys {
   static const rememberMe = "remember me";
   static const companyName = "companyName";
   static const firstnameu = "firstnameu";
+
+  static const imageManager ="imageManager";
+  static const deviceToken="deviceToken";
 
 }

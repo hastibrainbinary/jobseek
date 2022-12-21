@@ -1,15 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
+import 'package:jobseek/screen/chat_box/chat_box_screen.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 
-class UiUxDesignerScreen extends StatelessWidget {
-  String? userOccupation;
+// ignore: must_be_immutable
+class SentScreen extends StatelessWidget {
+  String? position;
   String? companyName;
   String? message;
-   UiUxDesignerScreen({Key? key, this.userOccupation, this.companyName, this.message}) : super(key: key);
+  String? salary;
+  String? location;
+  String? type;
+  SentScreen(
+      {Key? key,
+      this.position,
+      this.companyName,
+      this.message,
+      this.salary,
+      this.location,
+      this.type})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -79,16 +92,20 @@ class UiUxDesignerScreen extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(userOccupation??"",
-                                        style: appTextStyle(
-                                            color: ColorRes.black,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w500)),
-                                    Text(companyName??"",
-                                        style: appTextStyle(
-                                            color: ColorRes.black,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w400)),
+                                    Text(
+                                      position ?? "",
+                                      style: appTextStyle(
+                                          color: ColorRes.black,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    Text(
+                                      companyName ?? "",
+                                      style: appTextStyle(
+                                          color: ColorRes.black,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w400),
+                                    ),
                                   ],
                                 ),
                               ],
@@ -135,48 +152,60 @@ class UiUxDesignerScreen extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("Salary",
-                                  style: appTextStyle(
-                                      color: ColorRes.black.withOpacity(0.8),
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500)),
-                              Text("\$2.350",
-                                  style: appTextStyle(
-                                      color: ColorRes.containerColor,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600)),
+                              Text(
+                                "Salary",
+                                style: appTextStyle(
+                                    color: ColorRes.black.withOpacity(0.8),
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              Text(
+                                salary ?? "",
+                                style: appTextStyle(
+                                    color: ColorRes.containerColor,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600),
+                              ),
                             ],
                           ),
                           const SizedBox(height: 10),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("Type",
-                                  style: appTextStyle(
-                                      color: ColorRes.black.withOpacity(0.8),
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500)),
-                              Text("Full Time",
-                                  style: appTextStyle(
-                                      color: ColorRes.containerColor,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600)),
+                              Text(
+                                "Type",
+                                style: appTextStyle(
+                                    color: ColorRes.black.withOpacity(0.8),
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              Text(
+                                type ?? "",
+                                style: appTextStyle(
+                                    color: ColorRes.containerColor,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600),
+                              ),
                             ],
                           ),
                           const SizedBox(height: 10),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("Location",
-                                  style: appTextStyle(
-                                      color: ColorRes.black.withOpacity(0.8),
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500)),
-                              Text("United States",
-                                  style: appTextStyle(
-                                      color: ColorRes.containerColor,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600)),
+                              Text(
+                                "Location",
+                                style: appTextStyle(
+                                    color: ColorRes.black.withOpacity(0.8),
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              Text(
+                                location ?? "",
+                                style: appTextStyle(
+                                    color: ColorRes.containerColor,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600),
+                              ),
                             ],
                           ),
                         ],
@@ -186,35 +215,42 @@ class UiUxDesignerScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
-                       message??"",
+                        message ?? "",
                         style: appTextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
                             color: ColorRes.black.withOpacity(0.9)),
                       ),
                     ),
-
                     const SizedBox(height: 55),
-                    Container(
-                      height: 50,
-                      width: Get.width,
-                      // width: MediaQuery.of(context).size.width,
-                      margin: const EdgeInsets.symmetric(horizontal: 20),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        gradient: const LinearGradient(
-                          colors: [
-                            ColorRes.gradientColor,
-                            ColorRes.containerColor,
-                          ],
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (con) => ChatBoxScreen()));
+                      },
+                      child: Container(
+                        height: 50,
+                        width: Get.width,
+                        // width: MediaQuery.of(context).size.width,
+                        margin: const EdgeInsets.symmetric(horizontal: 20),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          gradient: const LinearGradient(
+                            colors: [
+                              ColorRes.gradientColor,
+                              ColorRes.containerColor,
+                            ],
+                          ),
                         ),
+                        child: Text("Join Interview",
+                            style: appTextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 18,
+                                color: ColorRes.white)),
                       ),
-                      child: Text("Join Interview",
-                          style: appTextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 18,
-                              color: ColorRes.white)),
                     ),
                   ]),
             ),

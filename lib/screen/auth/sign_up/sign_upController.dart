@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_interpolation_to_compose_strings
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -220,9 +222,13 @@ class SignUpController extends GetxController {
           "City": cityController.text,
           "State": stateController.text,
           "Country": countryController.text,
+          "imageUrl": "",
+          "deviceTokenU": PrefService.getString(PrefKeys.deviceToken),
         };
-        await PrefService.setValue(PrefKeys.email, emailController.text.toString());
-        await PrefService.setValue(PrefKeys.occupation, occupationController.text.toString());
+        await PrefService.setValue(
+            PrefKeys.email, emailController.text.toString());
+        await PrefService.setValue(
+            PrefKeys.occupation, occupationController.text.toString());
         await PrefService.setValue(
             PrefKeys.fullName,
             firstnameController.text.toString() +
@@ -233,8 +239,10 @@ class SignUpController extends GetxController {
             PrefKeys.state, stateController.text.toString());
         await PrefService.setValue(
             PrefKeys.country, countryController.text.toString());
-        addDataInFirebase(userUid: userCredential.user?.uid ?? "", map: map2);
+        await PrefService.setValue(
+            PrefKeys.phoneNumber, phoneController.text.toString());
 
+        addDataInFirebase(userUid: userCredential.user?.uid ?? "", map: map2);
       }
 
       loading.value = false;
@@ -275,21 +283,19 @@ class SignUpController extends GetxController {
     loading.value = false;
 
     Get.off(() => DashBoardScreen());
-    firstnameController.text="";
-    lastnameController.text="";
-    emailController.text="";
-    phoneController.text="";
-    passwordController.text="";
-    cityController.text="";
-    stateController.text="";
-    countryController.text="";
-    occupationController.text="";
+    firstnameController.text = "";
+    lastnameController.text = "";
+    emailController.text = "";
+    phoneController.text = "";
+    passwordController.text = "";
+    cityController.text = "";
+    stateController.text = "";
+    countryController.text = "";
+    occupationController.text = "";
     if (kDebugMode) {
       print("*************************** Success");
     }
   }
-
-
 
   bool show = true;
   Country countryModel = Country.from(json: {

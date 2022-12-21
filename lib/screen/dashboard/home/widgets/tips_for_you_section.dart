@@ -23,11 +23,11 @@ Widget tipsForYouSection() {
               ),
             ),
             const Spacer(),
-            Text(Strings.seeAll,
-                style: appTextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: ColorRes.containerColor))
+            // Text(Strings.seeAll,
+            //     style: appTextStyle(
+            //         fontSize: 14,
+            //         fontWeight: FontWeight.w500,
+            //         color: ColorRes.containerColor))
 
             // Text("See all",style: GoogleFonts.poppins(fontSize: ),)
           ],

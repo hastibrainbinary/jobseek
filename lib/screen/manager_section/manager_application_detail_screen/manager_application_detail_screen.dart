@@ -5,7 +5,9 @@ import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 
+// ignore: must_be_immutable
 class ManagerApplicationDetailScreen extends StatelessWidget {
   ManagerApplicationDetailScreen({Key? key}) : super(key: key);
   var args = Get.arguments;
@@ -26,13 +28,14 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
                     height: 40,
                     width: 40,
                     decoration: BoxDecoration(
-                        color: ColorRes.logoColor,
-                        borderRadius: BorderRadius.circular(10)),
+                      color: ColorRes.logoColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                     child: Padding(
                       padding: const EdgeInsets.only(top: 11),
                       child: Text(
                         textAlign: TextAlign.center,
-                        "Logo",
+                        Strings.logo,
                         style: appTextStyle(
                             color: ColorRes.containerColor,
                             fontWeight: FontWeight.w600,
@@ -41,11 +44,14 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    width: Get.width - 80,
+                    width: Get.width - 110,
                     alignment: Alignment.center,
                     child: Text(
-                      "Applications",
-                      style: appTextStyle(color: ColorRes.black, fontSize: 20),
+                      Strings.applications,
+                      style: appTextStyle(
+                          color: ColorRes.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600),
                     ),
                   ),
                 ],
@@ -58,17 +64,6 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
               onTap: () {
                 Get.toNamed(AppRes.updateVacanciesRequirementScreen,
                     arguments: args);
-                /*   Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (con) => UpdateVacanciesRequirementsScreen(
-                      index: int.parse(
-                        args["DocId"].toString(),
-                      ),
-                      args:args,
-                    ),
-                  ),
-                );*/
               },
               child: Container(
                 height: 92,
@@ -108,11 +103,13 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
                                   fontSize: 10,
                                   fontWeight: FontWeight.w400),
                             ),
-                            Text(args["docs"]["type"],
-                                style: appTextStyle(
-                                    color: ColorRes.black,
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w400)),
+                            Text(
+                              args["docs"]["type"],
+                              style: appTextStyle(
+                                  color: ColorRes.black,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w400),
+                            ),
                           ],
                         ),
                       ],
@@ -164,7 +161,7 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Applicants",
+                    Strings.applicants,
                     style: appTextStyle(
                         color: const Color(0xff242424),
                         fontSize: 16,
@@ -183,7 +180,8 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: InkWell(
                     // onTap: () => Get.toNamed(AppRes.applicantsDetails),
-                    child: recentPeopleBox()),
+                    child: recentPeopleBox(
+                        homeScreen: true, position: args["docs"]["Position"])),
               ),
             )
           ],

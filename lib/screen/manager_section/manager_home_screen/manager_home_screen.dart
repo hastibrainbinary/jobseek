@@ -6,9 +6,13 @@ import 'package:jobseek/screen/manager_section/Recent%20People%20Application/rec
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_controller.dart';
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_widget/manager_home_screen_widget.dart';
 import 'package:jobseek/screen/manager_section/notification1/notification1_screen.dart';
+import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/pref_keys.dart';
+import 'package:jobseek/utils/string.dart';
 
+// ignore: must_be_immutable
 class ManagerHomeScreen extends StatelessWidget {
   ManagerHomeScreen({Key? key}) : super(key: key);
   final controller = Get.put(ManagerHomeScreenController());
@@ -41,7 +45,7 @@ class ManagerHomeScreen extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          'Logo',
+                          Strings.logo,
                           style: appTextStyle(
                               fontSize: 10,
                               fontWeight: FontWeight.w600,
@@ -52,9 +56,11 @@ class ManagerHomeScreen extends StatelessWidget {
                     InkWell(
                       onTap: () {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (con) => const Notification1Screen()));
+                          context,
+                          MaterialPageRoute(
+                            builder: (con) => NotificationScreenM(),
+                          ),
+                        );
                       },
                       child: Container(
                           height: 40,
@@ -79,16 +85,16 @@ class ManagerHomeScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "Welcome,",
+                          Strings.welcome,
                           style: appTextStyle(
                               color: ColorRes.black,
                               fontSize: 20,
                               fontWeight: FontWeight.w600),
                         ),
                         Text(
+                          PrefService.getString(PrefKeys.companyName),
                           textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis,
-                          controller.companyName ?? "",
                           maxLines: 2,
                           style: appTextStyle(
                               color: ColorRes.containerColor,
@@ -351,7 +357,7 @@ class ManagerHomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  " Recent People Application",
+                  Strings.RecentPeopleApplication,
                   style: appTextStyle(
                       color: ColorRes.black,
                       fontWeight: FontWeight.w600,
@@ -360,12 +366,14 @@ class ManagerHomeScreen extends StatelessWidget {
                 InkWell(
                   onTap: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (con) => RecentApplicationScreen()));
+                      context,
+                      MaterialPageRoute(
+                        builder: (con) => RecentApplicationScreen(),
+                      ),
+                    );
                   },
                   child: Text(
-                    "See all",
+                    Strings.seeAll,
                     style: appTextStyle(
                         color: ColorRes.containerColor,
                         fontWeight: FontWeight.w500,
@@ -375,9 +383,7 @@ class ManagerHomeScreen extends StatelessWidget {
               ],
             ),
           ),
-          // const SizedBox(
-          //   height: 20,
-          // ),
+
           GetBuilder<ManagerHomeScreenController>(
               id: "userdata",
               builder: (contro) {
@@ -388,7 +394,7 @@ class ManagerHomeScreen extends StatelessWidget {
                       ? const CommonLoader()
                       : recentPeopleBox(),
                 );
-              })
+              }),
         ],
       ),
     );

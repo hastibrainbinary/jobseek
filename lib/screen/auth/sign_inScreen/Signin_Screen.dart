@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jobseek/common/widgets/backButton.dart';
+import 'package:jobseek/common/widgets/common_loader.dart';
 import 'package:jobseek/common/widgets/common_textField.dart';
 import 'package:jobseek/screen/auth/forgot_password_new/forgot_password_new_screen.dart';
 import 'package:jobseek/screen/auth/sign_inScreen/Signin_controller.dart';
@@ -11,9 +12,10 @@ import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
+import 'package:jobseek/utils/string.dart';
 
 class SigninScreenU extends StatefulWidget {
-  SigninScreenU({Key? key}) : super(key: key);
+  const SigninScreenU({Key? key}) : super(key: key);
 
   @override
   State<SigninScreenU> createState() => _SigninScreenUState();
@@ -61,7 +63,7 @@ class _SigninScreenUState extends State<SigninScreenU> {
                               borderRadius: BorderRadius.circular(15),
                             ),
                             child: Text(
-                              'Logo',
+                              Strings.logo,
                               style: GoogleFonts.poppins(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 18,
@@ -72,7 +74,7 @@ class _SigninScreenUState extends State<SigninScreenU> {
                         SizedBox(height: Get.height * 0.022),
                         Center(
                           child: Text(
-                            'Sign in to your account',
+                            Strings.signInToYourAccount,
                             style: GoogleFonts.poppins(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -88,7 +90,7 @@ class _SigninScreenUState extends State<SigninScreenU> {
                               Padding(
                                 padding: const EdgeInsets.only(left: .0),
                                 child: Text(
-                                  'Email',
+                                  Strings.email,
                                   style: GoogleFonts.poppins(
                                     fontWeight: FontWeight.w500,
                                     fontSize: 14,
@@ -229,7 +231,7 @@ class _SigninScreenUState extends State<SigninScreenU> {
                               left: 13, bottom: Get.height * 0.012),
                           child: Row(
                             children: [
-                              Text('Password',
+                              Text(Strings.password,
                                   style: GoogleFonts.poppins(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w500,
@@ -427,7 +429,7 @@ class _SigninScreenUState extends State<SigninScreenU> {
                                           ),
                                         ),
                                         Text(
-                                          'Remember me',
+                                          Strings.rememberMe,
                                           style: GoogleFonts.poppins(
                                               fontWeight: FontWeight.w500,
                                               fontSize: 13,
@@ -443,7 +445,8 @@ class _SigninScreenUState extends State<SigninScreenU> {
                         GetBuilder<SignInScreenController>(
                             id: "colorChange",
                             builder: (controller) {
-                              return (controller.emailController.text == '' ||
+                              return
+                                  /*(controller.emailController.text == '' ||
                                       controller.passwordController.text == '')
                                   ? Container(
                                       height: 50,
@@ -464,35 +467,34 @@ class _SigninScreenUState extends State<SigninScreenU> {
                                               fontWeight: FontWeight.w500,
                                               color: ColorRes.white)),
                                     )
-                                  : InkWell(
-                                      onTap: () {
-                                        controller.onLoginBtnTap(
-                                            password: controller
-                                                .passwordController.text,
-                                            email: controller
-                                                .emailController.text);
-                                      },
-                                      child: Container(
-                                        height: 50,
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        alignment: Alignment.center,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          gradient: const LinearGradient(
-                                              colors: [
-                                                ColorRes.gradientColor,
-                                                ColorRes.containerColor
-                                              ]),
-                                        ),
-                                        child: Text("Sign In",
-                                            style: GoogleFonts.poppins(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.w500,
-                                                color: ColorRes.white)),
-                                      ),
-                                    );
+                                  :*/
+                                  InkWell(
+                                onTap: () {
+                                  controller.onLoginBtnTap(
+                                      password:
+                                          controller.passwordController.text,
+                                      email: controller.emailController.text);
+                                },
+                                child: Container(
+                                  height: 50,
+                                  width: MediaQuery.of(context).size.width,
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    gradient: const LinearGradient(colors: [
+                                      ColorRes.gradientColor,
+                                      ColorRes.containerColor
+                                    ]),
+                                  ),
+                                  child: Text(
+                                    Strings.signIn,
+                                    style: GoogleFonts.poppins(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500,
+                                        color: ColorRes.white),
+                                  ),
+                                ),
+                              );
                             }),
                         SizedBox(height: Get.height * 0.022),
                         Center(
@@ -505,7 +507,7 @@ class _SigninScreenUState extends State<SigninScreenU> {
                                           ForgotPasswordScreenU()));
                             },
                             child: Text(
-                              'Forgot the password?',
+                              Strings.forgotThePassword,
                               style: GoogleFonts.poppins(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 15,
@@ -518,7 +520,7 @@ class _SigninScreenUState extends State<SigninScreenU> {
                         Center(
                           child: InkWell(
                             onTap: () {},
-                            child: Text('or continue with',
+                            child: Text(Strings.orContinueWith,
                                 style: GoogleFonts.poppins(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w400,
@@ -560,7 +562,7 @@ class _SigninScreenUState extends State<SigninScreenU> {
                                       height: 27,
                                     ),
                                     const SizedBox(width: 15),
-                                    Text('Facebook',
+                                    Text(Strings.facebook,
                                         style: GoogleFonts.poppins(
                                             fontWeight: FontWeight.w500,
                                             fontSize: 15,
@@ -601,7 +603,7 @@ class _SigninScreenUState extends State<SigninScreenU> {
                                     ),
                                     const SizedBox(width: 15),
                                     Text(
-                                      'Google',
+                                      Strings.google,
                                       style: GoogleFonts.poppins(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 15,
@@ -618,7 +620,7 @@ class _SigninScreenUState extends State<SigninScreenU> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Don't have account?",
+                              Strings.donTHaveAccount,
                               style: GoogleFonts.poppins(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15,
@@ -638,7 +640,7 @@ class _SigninScreenUState extends State<SigninScreenU> {
                                   });
                                 },
                                 child: Text(
-                                  ' Sign up',
+                                  Strings.signUp,
                                   style: GoogleFonts.poppins(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 16,
@@ -652,23 +654,7 @@ class _SigninScreenUState extends State<SigninScreenU> {
                 ),
               ),
               controller.loading.isTrue
-                  ? Container(
-                      height: Get.height,
-                      width: Get.width,
-                      color: ColorRes.containerColor.withOpacity(0.2),
-                      alignment: Alignment.center,
-                      child: Container(
-                        padding: const EdgeInsets.all(35),
-                        height: 110,
-                        width: 110,
-                        decoration: BoxDecoration(
-                            color: ColorRes.white,
-                            borderRadius: BorderRadius.circular(25)),
-                        child: const CircularProgressIndicator(
-                          color: ColorRes.containerColor,
-                        ),
-                      ),
-                    )
+                  ? const CommonLoader()
                   : const SizedBox(),
             ]);
           }),

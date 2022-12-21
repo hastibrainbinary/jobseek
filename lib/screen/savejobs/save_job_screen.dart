@@ -9,6 +9,7 @@ import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
+import 'package:jobseek/utils/string.dart';
 
 class SaveJobScreen extends StatelessWidget {
   SaveJobScreen({Key? key}) : super(key: key);
@@ -37,9 +38,9 @@ class SaveJobScreen extends StatelessWidget {
                       child: backButton(),
                     ),
                   ),
-                  const SizedBox(width: 85),
+                  const SizedBox(width: 71),
                   Text(
-                    'Saved Jobs',
+                    Strings.savedJobs,
                     style: appTextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w500,
@@ -50,7 +51,9 @@ class SaveJobScreen extends StatelessWidget {
               ),
               StreamBuilder(
                   stream: FirebaseFirestore.instance
-                      .collection("BookMark").doc(PrefService.getString(PrefKeys.userId)).collection("BookMark1")
+                      .collection("BookMark")
+                      .doc(PrefService.getString(PrefKeys.userId))
+                      .collection("BookMark1")
                       .snapshots(),
                   builder: (context,
                       AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
@@ -75,7 +78,8 @@ class SaveJobScreen extends StatelessWidget {
                                 padding: const EdgeInsets.all(15),
                                 decoration: BoxDecoration(
                                     borderRadius: const BorderRadius.all(
-                                        Radius.circular(15)),
+                                      Radius.circular(15),
+                                    ),
                                     border: Border.all(
                                         color: const Color(0xffF3ECFF)),
                                     color: ColorRes.white),
@@ -98,26 +102,29 @@ class SaveJobScreen extends StatelessWidget {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                              bookMarkData[index]['Position'] ??
-                                                  "",
-                                              style: appTextStyle(
-                                                  color: ColorRes.black,
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.w500)),
+                                            bookMarkData[index]['Position'] ??
+                                                "",
+                                            style: appTextStyle(
+                                                color: ColorRes.black,
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w500),
+                                          ),
                                           Text(
-                                              bookMarkData[index]
-                                                      ['CompanyName'] ??
-                                                  "",
-                                              style: appTextStyle(
-                                                  color: ColorRes.black,
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w400)),
+                                            bookMarkData[index]
+                                                    ['CompanyName'] ??
+                                                "",
+                                            style: appTextStyle(
+                                                color: ColorRes.black,
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w400),
+                                          ),
                                           Text(
-                                              "${bookMarkData[index]['location']} ${bookMarkData[index]['type']}",
-                                              style: appTextStyle(
-                                                  color: ColorRes.black,
-                                                  fontSize: 9,
-                                                  fontWeight: FontWeight.w400)),
+                                            "${bookMarkData[index]['location']} ${bookMarkData[index]['type']}",
+                                            style: appTextStyle(
+                                                color: ColorRes.black,
+                                                fontSize: 9,
+                                                fontWeight: FontWeight.w400),
+                                          ),
                                         ],
                                       ),
                                       const Spacer(),
@@ -159,11 +166,11 @@ class SaveJobScreen extends StatelessWidget {
                                 ),
                               );
                             })
-                        :Container(
-                        height: Get.height,
-                        width: Get.width,
-                        alignment: Alignment.center,
-                        child: const CommonLoader());
+                        : Container(
+                            height: Get.height,
+                            width: Get.width,
+                            alignment: Alignment.center,
+                            child: const CommonLoader());
                   }),
             ]),
       ),
@@ -283,6 +290,8 @@ Future bottom(context, fileds, image, docId) {
                   onTap: () {
                     FirebaseFirestore.instance
                         .collection("BookMark")
+                        .doc(PrefService.getString(PrefKeys.userId))
+                        .collection('BookMark1')
                         .doc(docId)
                         .delete();
                     Navigator.of(context).pop();

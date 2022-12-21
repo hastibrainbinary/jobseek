@@ -5,7 +5,7 @@ import 'package:jobseek/utils/asset_res.dart';
 
 class SaveJobController extends GetxController implements GetxService {
   RxList jobTypes =
-      ["UI/UX Designer", "Financial Olanner", "UI/UX Designer"].obs;
+      ["UI/UX Designer", "Financial Planner", "UI/UX Designer"].obs;
 
   RxList jobTypesLogo =
       [AssetRes.airBnbLogo, AssetRes.twitterLogo, AssetRes.airBnbLogo].obs;
@@ -21,7 +21,20 @@ class SaveJobController extends GetxController implements GetxService {
   // }
 
   RxInt selectedJobs2 = 0.obs;
-  RxList jobs2 = ["All Job", "Writer", "Design", "Finance"].obs;
+  RxList jobs2 = [
+    "All Job",
+    "Writer",
+    "Design",
+    "Finance",
+    'Software',
+    'Database Manager',
+    'Product Manager',
+    'Full-Stack Developer',
+    'Data Scientist',
+    'Web Developers',
+    'Networking',
+    'Cyber Security'
+  ].obs;
 
   onTapJobs2(int index) {
     selectedJobs2.value = index;

@@ -2,8 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/chat_box/chat_box_screen.dart';
-import 'package:jobseek/screen/call/video_ReceiveScreen.dart';
-import 'package:jobseek/screen/chat_box/chat_box_screen.dart';
+import 'package:jobseek/screen/create_vacancies/create_vacancies_controller.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_controller.dart';
 import 'package:jobseek/screen/manager_section/call/video_joinig_Screen.dart';
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_controller.dart';
@@ -13,32 +12,52 @@ import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
+import 'package:jobseek/utils/string.dart';
 
-Widget recentPeopleBox() {
+Widget recentPeopleBox({bool? homeScreen, String? position}) {
   final contro = Get.put(ManagerHomeScreenController());
   JobDetailsUploadCvController jobDetailsUploadCvController =
       Get.put(JobDetailsUploadCvController());
   jobDetailsUploadCvController.init();
+  CreateVacanciesController create = Get.put(CreateVacanciesController());
   return SingleChildScrollView(
     child: SizedBox(
-      height: Get.height / 1.42,
+      height: Get.height / 1.40,
       child: ListView.builder(
           itemCount: contro.userData.length,
           itemBuilder: (context, i) {
-
             String? o;
 
-            contro.userData[i]['companyName'].forEach((element) {
-              if (element.toString().toLowerCase() ==
-                  PrefService.getString(PrefKeys.companyName)
-                      .toString()
-                      .toLowerCase()) {
-                if (kDebugMode) {
-                  print(element);
+            if (kDebugMode) {
+              print(contro.userData[0]['companyName'][0]['companyname']);
+            }
+
+            if (homeScreen == true) {
+              contro.userData[i]['companyName'].forEach((element) {
+                if (element['companyname'].toString().toLowerCase() ==
+                        PrefService.getString(PrefKeys.companyName)
+                            .toString()
+                            .toLowerCase() &&
+                    element['position'].toString() == position) {
+                  if (kDebugMode) {
+                    print(element);
+                  }
+                  o = element['companyname'];
                 }
-                o = element;
-              }
-            });
+              });
+            } else {
+              contro.userData[i]['companyName'].forEach((element) {
+                if (element['companyname'].toString().toLowerCase() ==
+                    PrefService.getString(PrefKeys.companyName)
+                        .toString()
+                        .toLowerCase()) {
+                  if (kDebugMode) {
+                    print(element);
+                  }
+                  o = element['companyname'];
+                }
+              });
+            }
 
             return (o.toString().toLowerCase() ==
                     PrefService.getString(PrefKeys.companyName)
@@ -61,8 +80,9 @@ Widget recentPeopleBox() {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 14, vertical: 20),
                           decoration: BoxDecoration(
-                              border: Border.all(color: ColorRes.borderColor),
-                              borderRadius: BorderRadius.circular(15)),
+                            border: Border.all(color: ColorRes.borderColor),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
                           child: Column(
                             children: [
                               Row(
@@ -79,11 +99,31 @@ Widget recentPeopleBox() {
                                           borderRadius:
                                               BorderRadius.circular(10),
                                         ),
-                                        child: const Image(
+                                        /*  contro.userData[i]['imageUrl'] != ""
+                                            ? Image(
+                                            image: NetworkImage(
+                                                contro.userData[i]
+                                                ['imageUrl']))
+                                            : const Image(
+                                          image: AssetImage(
+                                              AssetRes.detailsImage),
+                                          height: 20,
+                                        ),*/
+                                        child: (create.url == "")
+                                            ? const Image(
+                                                image: AssetImage(
+                                                    AssetRes.detailsImage),
+                                                height: 100,
+                                              )
+                                            : Image(
+                                                image: NetworkImage(create.url),
+                                                height: 100,
+                                              ),
+                                        /* child: const Image(
                                           image:
                                               AssetImage(AssetRes.detailsImage),
                                           height: 20,
-                                        ),
+                                        ),*/
                                       ),
                                       const SizedBox(
                                         width: 10,
@@ -95,6 +135,7 @@ Widget recentPeopleBox() {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
+                                            // "${contro.userData[i]['userName']}",
                                             "${contro.userData[i]['userName']}",
                                             style: appTextStyle(
                                                 color: ColorRes.black,
@@ -117,10 +158,11 @@ Widget recentPeopleBox() {
                                       InkWell(
                                         onTap: () {
                                           Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (con) =>
-                                                      ChatBoxScreen()));
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (con) => ChatBoxScreen(),
+                                            ),
+                                          );
                                         },
                                         // onTap: () => Get.toNamed(
                                         //     AppRes.applicantsDetails,
@@ -148,18 +190,21 @@ Widget recentPeopleBox() {
                                       InkWell(
                                         onTap: () {
                                           Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (con) =>
-                                                      const VideoJoiningScreen()));
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (con) =>
+                                                  const VideoJoiningScreen(),
+                                            ),
+                                          );
                                         },
                                         child: Container(
                                           height: 40,
                                           width: 40,
                                           decoration: BoxDecoration(
-                                              color: ColorRes.logoColor,
-                                              borderRadius:
-                                                  BorderRadius.circular(8)),
+                                            color: ColorRes.logoColor,
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
                                           child: const GradientIcon(
                                             Icons.videocam_sharp,
                                             20,
@@ -207,7 +252,7 @@ Widget recentPeopleBox() {
                                       ),
                                       child: Center(
                                         child: Text(
-                                          "See Resume",
+                                          Strings.seeResume,
                                           style: appTextStyle(
                                               color: ColorRes.white,
                                               fontSize: 15),
@@ -231,7 +276,7 @@ Widget recentPeopleBox() {
                                           color: ColorRes.white),
                                       child: Center(
                                         child: Text(
-                                          "See Details",
+                                          Strings.seeDetails,
                                           style: appTextStyle(
                                               color: ColorRes.containerColor,
                                               fontSize: 15),

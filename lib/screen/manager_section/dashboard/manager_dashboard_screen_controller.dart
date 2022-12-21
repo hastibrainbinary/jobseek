@@ -2,14 +2,25 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/manager_section/Profile/profile_controller.dart';
 
-
-class ManagerDashBoardScreenController extends GetxController implements GetxService{
+class ManagerDashBoardScreenController extends GetxController
+    implements GetxService {
   RxInt currentTab = 0.obs;
+  var args = Get.arguments;
+
+  @override
+  void onInit() {
+    if (args != null) {
+      currentTab.value = int.parse(args["index"]);
+    }
+
+    super.onInit();
+  }
+
   void onBottomBarChange(int index) {
     currentTab.value = index;
     if (index == 0) {
       debugPrint("INDEX IS 0");
-     /* Get.put(ManagerHomeScreen());*/
+      /* Get.put(ManagerHomeScreen());*/
       // homeController.init();
     } else if (index == 1) {
       debugPrint("INDEX IS 1");
