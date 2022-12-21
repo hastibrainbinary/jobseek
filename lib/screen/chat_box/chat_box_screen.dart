@@ -175,14 +175,13 @@ class ChatBoxScreen extends StatelessWidget {
                   );
                 }),
           ),
-           GetBuilder(
+          GetBuilder(
               id: "searchChat",
               builder: (con) {
                 return controller.selectedJobs.value == 0
                     ? allChat()
                     : unread();
               })
-
         ],
       ),
     );
