@@ -111,7 +111,8 @@ class ChatBoxUserController extends GetxController implements GetxService {
     });
   }
 
-  void gotoChatScreen(BuildContext context, String otherUid, name,deviceToken ) async {
+  void gotoChatScreen(
+      BuildContext context, String otherUid, name, deviceToken) async {
     loader.value = true;
     await getRoomId(otherUid);
     loader.value = false;
@@ -121,8 +122,7 @@ class ChatBoxUserController extends GetxController implements GetxService {
           name: name,
           otherUserUid: otherUid,
           userUid: userUid,
-        deviceToken:deviceToken,
-
+          deviceToken: deviceToken,
         ));
   }
 
