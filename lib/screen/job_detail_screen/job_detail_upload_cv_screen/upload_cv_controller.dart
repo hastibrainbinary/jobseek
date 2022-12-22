@@ -10,7 +10,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 List<Map<String, dynamic>> companyList = [];
 bool abc = false;

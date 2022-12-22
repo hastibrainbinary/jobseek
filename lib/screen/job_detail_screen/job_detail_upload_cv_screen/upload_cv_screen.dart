@@ -50,7 +50,9 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(15)),
-                            border: Border.all(color: const Color(0xffF3ECFF)),
+                            border: Border.all(
+                              color: const Color(0xffF3ECFF),
+                            ),
                             color: ColorRes.white),
                         child: Row(
                           children: [
