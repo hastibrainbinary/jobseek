@@ -19,6 +19,7 @@ class ChatBoxController extends GetxController implements GetxService {
   TextEditingController msController = TextEditingController();
   final ScrollController listScrollController = ScrollController();
   List countM = [];
+  List dataChat = [];
 
   RxString searchText = ''.obs;
 
@@ -30,7 +31,7 @@ class ChatBoxController extends GetxController implements GetxService {
 
   onTapJobs(int index) {
     selectedJobs.value = index;
-    //update(["hList"]);
+    update(["searchChat"]);
   }
 
   int currentTab = 0;

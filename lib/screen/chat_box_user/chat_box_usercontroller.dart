@@ -21,6 +21,7 @@ class ChatBoxUserController extends GetxController implements GetxService {
 
   DateTime lastMsg = DateTime.now();
   List countU = [];
+  List dataChatUser = [];
 
   RxString searchText = ''.obs;
 
@@ -31,7 +32,7 @@ class ChatBoxUserController extends GetxController implements GetxService {
   ].obs;
   onTapJobs(int index) {
     selectedJobs.value = index;
-    //update(["hList"]);
+    update(["searchChat"]);
   }
 
   int currentTab = 0;

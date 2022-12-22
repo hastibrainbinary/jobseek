@@ -37,13 +37,21 @@ class JobDetailsUploadCvController extends GetxController {
     refreshController.refreshCompleted();
   }*/
   init() async {
+    companyList = [];
+
     await firestore.collection("Apply").get().then((value) {
       value.docs.forEach((element) {
         if (element['uid'] == PrefService.getString(PrefKeys.userId)) {
-          companyList.add({
-            "companyname": element['CompanyName'],
-            "position": element['Position']
-          });
+          for(int y=0;y<element['companyName'].length;y++){
+
+            companyList.add({
+              "companyName":  element['companyName'][y]["companyname"],
+              "position":  element['companyName'][y]["position"]
+            });
+
+          }
+
+
         }
       });
 
@@ -53,7 +61,9 @@ class JobDetailsUploadCvController extends GetxController {
         }
       }*/
     });
+    print(companyList);
     refreshController.refreshCompleted();
+    update(["searchChat"]);
   }
 
   String? pdfUrl;
