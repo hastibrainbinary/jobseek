@@ -1,10 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/screen/manager_section/auth_manager/Otp_Page/otp_screen.dart';
 
 class ForgotPasswordControllerM extends GetxController {
   GlobalKey<FormState> forgotFormKey = GlobalKey();

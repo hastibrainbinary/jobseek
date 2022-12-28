@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/common/widgets/backButton.dart';
-import 'package:jobseek/common/widgets/common_textField.dart';
+import 'package:jobseek/common/widgets/back_button.dart';
+import 'package:jobseek/common/widgets/common_text_field.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
@@ -60,7 +60,6 @@ class ForgotPasswordScreenU extends StatelessWidget {
                       color: ColorRes.black.withOpacity(0.6))),
             ),
             const SizedBox(height: 10),
-
             GetBuilder<ForgotPasswordControllerU>(
               id: "showEmail",
               builder: (controller) => Column(
@@ -125,71 +124,30 @@ class ForgotPasswordScreenU extends StatelessWidget {
                 ],
               ),
             ),
-            // const SizedBox(height: 20),
-            //
-            // const SizedBox(height: 10),
-            // commonTextFormField(
-            //     textDecoration: InputDecoration(
-            //       contentPadding: const EdgeInsets.all(15),
-            //       border: InputBorder.none,
-            //       hintText: 'Email address',
-            //       hintStyle: appTextStyle(
-            //           fontSize: 14, color: ColorRes.black.withOpacity(0.15)),
-            //     ),
-            //     controller: controller.forgotEmailController),
-            // controller.isEmailValidate.value == true
-            //     ? Column(
-            //         children: [
-            //           const SizedBox(
-            //             height: 10,
-            //           ),
-            //           commonErrorBox("Enter Valid Email"),
-            //         ],
-            //       )
-            //     : const SizedBox(),
             const SizedBox(height: 15),
             GetBuilder<ForgotPasswordControllerU>(
                 id: "colorChange",
                 builder: (controller) {
-                  return
-                   /* (controller.forgotEmailController.text == '')
-                      ? Container(
-                          height: 50,
-                          width: MediaQuery.of(context).size.width,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            gradient: LinearGradient(colors: [
-                              ColorRes.gradientColor.withOpacity(0.2),
-                              ColorRes.containerColor.withOpacity(0.4)
-                            ]),
-                          ),
-                          child: Text("Send Instructions",
-                              style: appTextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w500,
-                                  color: ColorRes.white)),
-                        )
-                      :*/ InkWell(
-                          onTap: controller.onLoginBtnTap,
-                          child: Container(
-                            height: 50,
-                            width: MediaQuery.of(context).size.width,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              gradient: const LinearGradient(colors: [
-                                ColorRes.gradientColor,
-                                ColorRes.containerColor
-                              ]),
-                            ),
-                            child: Text("Send Instructions",
-                                style: appTextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500,
-                                    color: ColorRes.white)),
-                          ),
-                        );
+                  return InkWell(
+                    onTap: controller.onLoginBtnTap,
+                    child: Container(
+                      height: 50,
+                      width: MediaQuery.of(context).size.width,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        gradient: const LinearGradient(colors: [
+                          ColorRes.gradientColor,
+                          ColorRes.containerColor
+                        ]),
+                      ),
+                      child: Text("Send Instructions",
+                          style: appTextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              color: ColorRes.white)),
+                    ),
+                  );
                 }),
           ]),
         ),

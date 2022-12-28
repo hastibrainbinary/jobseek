@@ -4,7 +4,7 @@ class SalomonBottomBar extends StatelessWidget {
   /// A bottom bar that faithfully follows the design by Aurélien Salomon
   ///
   /// https://dribbble.com/shots/5925052-Google-Bottom-Bar-Navigation-Pattern/
-  SalomonBottomBar({
+  const SalomonBottomBar({
     Key? key,
     required this.items,
     this.currentIndex = 0,
@@ -73,38 +73,36 @@ class SalomonBottomBar extends StatelessWidget {
               curve: curve,
               duration: duration,
               builder: (context, t, _) {
-                final _selectedColor = item.selectedColor ??
+                final selectedColor = item.selectedColor ??
                     selectedItemColor ??
                     theme.primaryColor;
 
-                final _unselectedColor = item.unselectedColor ??
+                final unselectedColor = item.unselectedColor ??
                     unselectedItemColor ??
                     theme.iconTheme.color;
 
                 return Material(
                   color: Color.lerp(
-                      _selectedColor.withOpacity(0.0),
-                      _selectedColor.withOpacity(selectedColorOpacity ?? 0.1),
+                      selectedColor.withOpacity(0.0),
+                      selectedColor.withOpacity(selectedColorOpacity ?? 0.1),
                       t),
                   shape: itemShape,
-                  child: Container(
+                  child: SizedBox(
                     height: 54,
-                    // decoration: const BoxDecoration(
-                    //   color: Color(0xffE2D3FE),
-                    //   borderRadius: BorderRadius.all(Radius.circular(10))
-                    // ),
                     child: InkWell(
                       onTap: () => onTap?.call(items.indexOf(item)),
                       customBorder: itemShape,
-                      focusColor: _selectedColor.withOpacity(0.1),
-                      highlightColor: _selectedColor.withOpacity(0.1),
-                      splashColor: _selectedColor.withOpacity(0.1),
-                      hoverColor: _selectedColor.withOpacity(0.1),
-                      child:Padding(
+                      focusColor: selectedColor.withOpacity(0.1),
+                      highlightColor: selectedColor.withOpacity(0.1),
+                      splashColor: selectedColor.withOpacity(0.1),
+                      hoverColor: selectedColor.withOpacity(0.1),
+                      child: Padding(
                         padding: itemPadding -
                             (Directionality.of(context) == TextDirection.ltr
-                                ? EdgeInsets.only(right: itemPadding.right * 0.8)
-                                : EdgeInsets.only(left: itemPadding.left * 0.3)),
+                                ? EdgeInsets.only(
+                                    right: itemPadding.right * 0.8)
+                                : EdgeInsets.only(
+                                    left: itemPadding.left * 0.3)),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           mainAxisSize: MainAxisSize.min,
@@ -112,7 +110,7 @@ class SalomonBottomBar extends StatelessWidget {
                             IconTheme(
                               data: IconThemeData(
                                 color: Color.lerp(
-                                    _unselectedColor, _selectedColor, t),
+                                    unselectedColor, selectedColor, t),
                                 size: 24,
                               ),
                               child: items.indexOf(item) == currentIndex
@@ -122,15 +120,15 @@ class SalomonBottomBar extends StatelessWidget {
                             DefaultTextStyle(
                               style: TextStyle(
                                 color: Color.lerp(
-                                    _selectedColor.withOpacity(0.0),
-                                    _selectedColor,
+                                    selectedColor.withOpacity(0.0),
+                                    selectedColor,
                                     t),
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600,
                               ),
                               child: item.title,
                             ),
-                          /*  ClipRect(
+                            /*  ClipRect(
                               clipBehavior: Clip.antiAlias,
                               child: SizedBox(
                                 /// TODO: Constrain item height without a fixed value

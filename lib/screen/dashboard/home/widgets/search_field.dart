@@ -110,21 +110,6 @@ Widget searchAreaChatU() {
             ),
           ),
         ),
-        // const SizedBox(width: 20),
-        // Container(
-        //   height: 40,
-        //   width: 40,
-        //   alignment: Alignment.center,
-        //   decoration: const BoxDecoration(
-        //     borderRadius: BorderRadius.all(Radius.circular(10)),
-        //     color: ColorRes.logoColor,
-        //   ),
-        //   child: Image.asset(
-        //     AssetRes.menuIcon,
-        //     color: ColorRes.containerColor,
-        //     height: 15,
-        //   ),
-        // ),
       ],
     ),
   );

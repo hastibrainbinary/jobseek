@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/common/widgets/back_button.dart';
 import 'package:jobseek/common/widgets/common_loader.dart';
 import 'package:jobseek/screen/create_vacancies/create_vacancies_screen.dart';
 import 'package:jobseek/screen/manager_section/manager_application_screen/manager_application_screen_controller.dart';
@@ -39,23 +40,7 @@ class ManagerApplicationScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(
-                        color: ColorRes.logoColor,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Center(
-                        child: Text(
-                          Strings.logo,
-                          style: appTextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 10,
-                              color: ColorRes.containerColor),
-                        ),
-                      ),
-                    ),
+                    logo(),
                     InkWell(
                       onTap: () {
                         Navigator.push(
@@ -243,7 +228,7 @@ class ManagerApplicationScreen extends StatelessWidget {
                                                             AssetRes
                                                                 .successImage),
                                                       ),
-                                                      Text(
+                                                      const Text(
                                                         textAlign:
                                                             TextAlign.center,
                                                         Strings.empty,

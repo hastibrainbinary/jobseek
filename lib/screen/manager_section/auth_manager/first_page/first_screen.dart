@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/common/widgets/backButton.dart';
+import 'package:jobseek/common/widgets/back_button.dart';
 import 'package:jobseek/screen/manager_section/auth_manager/Sign_in/sign_in_screen.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
@@ -24,7 +24,7 @@ class FirstPageScreenM extends StatelessWidget {
         decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage(
-                AssetRes.fristBackScreen,
+                AssetRes.firstBackScreen,
               ),
               fit: BoxFit.cover),
         ),
@@ -100,7 +100,7 @@ class FirstPageScreenM extends StatelessWidget {
               InkWell(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (con) => SignInScreenM()));
+                      MaterialPageRoute(builder: (con) => const SignInScreenM()));
                 },
                 child: Container(
                   height: 55,
@@ -142,6 +142,7 @@ class FirstPageScreenM extends StatelessWidget {
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () async {
+                              // ignore: deprecated_member_use
                               if (!await launch(
                                   "https://www.termsfeed.com/live/588c37bc-3594-490a-be8b-d9409af52df7")) {
                                 throw 'Could not launch :https://www.termsfeed.com/live/588c37bc-3594-490a-be8b-d9409af52df7';

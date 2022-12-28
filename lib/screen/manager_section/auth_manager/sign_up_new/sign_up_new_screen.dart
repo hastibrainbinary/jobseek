@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/common/widgets/backButton.dart';
+import 'package:jobseek/common/widgets/back_button.dart';
 import 'package:jobseek/common/widgets/common_loader.dart';
-import 'package:jobseek/common/widgets/common_textField.dart';
+import 'package:jobseek/common/widgets/common_text_field.dart';
 import 'package:jobseek/screen/auth/sign_up/widget/signup_bottom/country.dart';
 import 'package:jobseek/screen/manager_section/auth_manager/Sign_in/sign_in_screen.dart';
 import 'package:jobseek/screen/manager_section/auth_manager/sign_up_new/sign_up_new_controller.dart';
@@ -42,11 +42,9 @@ class SignUpScreenM extends StatelessWidget {
                           color: ColorRes.logoColor,
                           borderRadius: BorderRadius.circular(15),
                         ),
-                        child: Text(Strings.logo,
-                            style: appTextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 18,
-                                color: ColorRes.containerColor)),
+                        child: const Image(
+                          image: AssetImage(AssetRes.logo),
+                        ),
                       ),
                     ),
                     const SizedBox(height: 18),
@@ -1328,7 +1326,7 @@ class SignUpScreenM extends StatelessWidget {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (con) => SignInScreenM()));
+                                      builder: (con) => const SignInScreenM()));
                             },
                             child: Text(
                               Strings.signIn,

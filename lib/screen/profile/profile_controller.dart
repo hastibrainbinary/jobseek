@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:jobseek/screen/profile/Profile_screen.dart';
+import 'package:jobseek/screen/profile/profile_screen.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -50,10 +50,12 @@ class ProfileUserController extends GetxController implements GetxService {
   }
 
   getFbImgUrl() async {
-    fbImageUrl.value = await PrefService.getString(PrefKeys.imageId);
-    if (kDebugMode) {
-      print("fbIMGURL  $fbImageUrl");
-    }
+    fbImageUrl.value = PrefService.getString(PrefKeys.imageId);
+
+      if (kDebugMode) {
+        print("fbIMGURL  $fbImageUrl");
+      }
+
   }
 
   Future<void> onDatePickerTap(context) async {
@@ -73,12 +75,14 @@ class ProfileUserController extends GetxController implements GetxService {
       },
     );
     if (picked != null) {
-      if (kDebugMode) {
+
         startTime = picked;
-      }
-      if (kDebugMode) {
-        print("START TIME : $startTime");
-      }
+
+
+        if (kDebugMode) {
+          print("START TIME : $startTime");
+        }
+
       dateOfBirthController.text =
           "${picked.toLocal().month}/${picked.toLocal().day}/${picked.toLocal().year}";
       update();
@@ -173,6 +177,7 @@ class ProfileUserController extends GetxController implements GetxService {
           .where("uid", isEqualTo: uid)
           .get()
           .then((QuerySnapshot snapshot) {
+        // ignore: avoid_function_literals_in_foreach_calls
         snapshot.docs.forEach((element) async {
           await fireStore.collection("Apply").doc(element.id).update({
             "fullName": fullNameController.text.trim().toString(),

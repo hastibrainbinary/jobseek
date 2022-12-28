@@ -41,11 +41,11 @@ class OrganizationProfileScreenController extends GetxController
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
   @override
-  void onInit() {
+  /*void onInit() {
     // TODO: implement onInit
     // getFbImgUrlM();
     super.onInit();
-  }
+  }*/
   /*getFbImgUrlM() async {
     fbImageUrlM.value = await PrefService.getString(PrefKeys.imageIdM);
     if (kDebugMode) {
@@ -53,6 +53,7 @@ class OrganizationProfileScreenController extends GetxController
     }
   }*/
 
+  // ignore: override_on_non_overriding_member
   void onChanged(String value) {
     update(["colorChange"]);
     update(["Organization"]);

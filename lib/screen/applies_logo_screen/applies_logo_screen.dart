@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jobseek/screen/auth/sign_inScreen/Signin_Screen.dart';
+import 'package:jobseek/common/widgets/back_button.dart';
+import 'package:jobseek/screen/auth/sign_in_screen/sign_in_screen.dart';
 import 'package:jobseek/screen/looking_for_screen/looking_for_screen.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
-
-
 
 class AppliesLogoScreen extends StatelessWidget {
   const AppliesLogoScreen({Key? key}) : super(key: key);
@@ -22,23 +21,7 @@ class AppliesLogoScreen extends StatelessWidget {
           const SizedBox(height: 50),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18.0),
-            child: Container(
-              alignment: Alignment.center,
-              height: 40,
-              width: 40,
-              decoration: BoxDecoration(
-                color: ColorRes.logoColor,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Text(
-                'Logo',
-                style: appTextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 10,
-                  color: ColorRes.containerColor,
-                ),
-              ),
-            ),
+            child:logo(),
           ),
           const SizedBox(height: 40),
           const Center(
@@ -111,7 +94,7 @@ class AppliesLogoScreen extends StatelessWidget {
               InkWell(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (con) => SigninScreenU()));
+                      MaterialPageRoute(builder: (con) => const SigninScreenU()));
                 },
                 child: Text(
                   'Login',

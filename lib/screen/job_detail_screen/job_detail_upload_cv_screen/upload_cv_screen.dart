@@ -177,8 +177,7 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                                         SizedBox(
                                           width: Get.width * 0.6,
                                           child: Text(
-                                            controller.filepath
-                                                .value ,
+                                            controller.filepath.value,
                                             style: appTextStyle(
                                                 fontSize: 13,
                                                 fontWeight: FontWeight.w600,
@@ -202,7 +201,7 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                                       },
                                       child: const Image(
                                         image: AssetImage(
-                                          AssetRes.PdfRemove,
+                                          AssetRes.pdfRemove,
                                         ),
                                       ),
                                     )

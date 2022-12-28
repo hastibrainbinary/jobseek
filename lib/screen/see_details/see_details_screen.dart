@@ -77,9 +77,11 @@ class SeeDetailsScreen extends StatelessWidget {
                           onTap: () async {
                             if (args['resumeUrl'] != null) {
                               var url = Uri.parse(args['resumeUrl']);
-                              if (kDebugMode) {
-                                print(url);
-                              } // <-- 1
+
+                                if (kDebugMode) {
+                                  print(url);
+                                }
+                              // <-- 1
                               var response = await get(url); // <--2
                               var documentDirectory =
                                   await getExternalStorageDirectory();

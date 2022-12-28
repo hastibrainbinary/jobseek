@@ -6,11 +6,10 @@ import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
-import 'manager_application_screen_controller.dart';
 
 Widget application(Stream stream) {
-  final ManagerApplicationScreenController controller =
-      ManagerApplicationScreenController();
+ /* final ManagerApplicationScreenController controller =
+      ManagerApplicationScreenController();*/
   final jrController = Get.put(JobRecommendationController());
 
   return StreamBuilder(
@@ -72,7 +71,7 @@ Widget application(Stream stream) {
                                           fontSize: 15,
                                           fontWeight: FontWeight.w500),
                                     ),
-                                    SizedBox(height: 5),
+                                    const SizedBox(height: 5),
                                     Text(
                                         snapshot.data!.docs[index]
                                             ["CompanyName"],
@@ -80,7 +79,7 @@ Widget application(Stream stream) {
                                             color: ColorRes.black,
                                             fontSize: 12,
                                             fontWeight: FontWeight.w400)),
-                                    SizedBox(height: 5),
+                                    const SizedBox(height: 5),
                                     Row(
                                       children: [
                                         Text(

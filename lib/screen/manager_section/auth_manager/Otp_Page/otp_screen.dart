@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/common/widgets/backButton.dart';
+import 'package:jobseek/common/widgets/back_button.dart';
 import 'package:jobseek/screen/manager_section/auth_manager/reset_password/reset_password_screen.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
@@ -9,6 +9,7 @@ import 'package:pinput/pinput.dart';
 
 import 'otp_controller.dart';
 
+// ignore: must_be_immutable
 class OtpScreenM extends StatelessWidget {
   OtpScreenM({Key? key}) : super(key: key);
   OtpControllerM controller = Get.put(OtpControllerM());

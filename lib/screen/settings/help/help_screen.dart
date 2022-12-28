@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/common/widgets/backButton.dart';
+import 'package:jobseek/common/widgets/back_button.dart';
 import 'package:jobseek/screen/manager_section/help/faq/faq_screen.dart';
 import 'package:jobseek/screen/manager_section/help/policy/policy_screen.dart';
 import 'package:jobseek/screen/manager_section/help/terms/terms_Screen.dart';
@@ -62,7 +62,7 @@ class HelpScreenU extends StatelessWidget {
                     const Spacer(),
                     // SizedBox(width: Get.width - 75),
                     const Image(
-                      image: AssetImage(AssetRes.settingaArrow),
+                      image: AssetImage(AssetRes.settingArrow),
                       height: 15,
                     ),
                   ],
@@ -95,7 +95,7 @@ class HelpScreenU extends StatelessWidget {
                     const Spacer(),
                     // SizedBox(width: Get.width - 185),
                     const Image(
-                      image: AssetImage(AssetRes.settingaArrow),
+                      image: AssetImage(AssetRes.settingArrow),
                       height: 15,
                     ),
                   ],
@@ -127,7 +127,7 @@ class HelpScreenU extends StatelessWidget {
                     ),
                     SizedBox(width: Get.width - 141),
                     const Image(
-                      image: AssetImage(AssetRes.settingaArrow),
+                      image: AssetImage(AssetRes.settingArrow),
                       height: 15,
                     ),
                   ],

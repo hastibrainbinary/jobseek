@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/add_requirements/add_requirements_screen.dart';
-import 'package:jobseek/screen/manager_section/Jobdetails/Jobdetails_screen.dart';
+import 'package:jobseek/screen/manager_section/Jobdetails/jobdetails_screen.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 
@@ -44,6 +44,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
 
         // ...
       },
+      // ignore: avoid_print
       onError: (e) => print("Error getting document: $e"),
     );
     await validate();
@@ -54,9 +55,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
         isCategoryValidate.value == false &&
         isStatusValidate.value == false) {
       Get.to(RequirementsScreen());
-      if (kDebugMode) {
-        print("valid");
-      }
+
     } else {
       update(["profile"]);
       update(["Location"]);
@@ -120,6 +119,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
 
     List<String> requirementsList = List.generate(
         addRequirementsList.length, (index) => addRequirementsList[index].text);
+
     if (kDebugMode) {
       print(requirementsList);
     }
@@ -127,6 +127,7 @@ class CreateVacanciesController extends GetxController implements GetxService {
     if (kDebugMode) {
       print("**************$totalPost");
     }
+
     Map<String, dynamic> map = {
       "Position": positionController.text.trim(),
       "salary": salaryController.text.trim(),

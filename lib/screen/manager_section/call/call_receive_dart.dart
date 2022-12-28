@@ -25,7 +25,7 @@ class CallReceiveScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(35),
                 image: const DecorationImage(
                     image: AssetImage(
-                      AssetRes.chatbox_Men_Image,
+                      AssetRes.chatBoxMenImage,
                     ),
                     fit: BoxFit.cover),
               ),
@@ -60,7 +60,7 @@ class CallReceiveScreen extends StatelessWidget {
                 padding: EdgeInsets.all(16.0),
                 child: Image(
                   image: AssetImage(
-                    AssetRes.call_decaline,
+                    AssetRes.callReject,
                   ),
                 ),
               ),

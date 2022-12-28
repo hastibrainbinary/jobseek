@@ -45,6 +45,7 @@ class SignUpControllerM extends GetxController {
         .set(map)
         .catchError((e) {
       if (kDebugMode) {
+        // ignore: prefer_interpolation_to_compose_strings
         print('...error...' + e);
       }
     });
@@ -353,41 +354,8 @@ class SignUpControllerM extends GetxController {
 
   final FirebaseAuth auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
-  // void signWithGoogle() async {
-  //   loading.value = true;
-  //   if (await googleSignIn.isSignedIn()) {
-  //     await googleSignIn.signOut();
-  //   }
-  //   final GoogleSignInAccount? account = await googleSignIn.signIn();
-  //   final GoogleSignInAuthentication authentication =
-  //   await account!.authentication;
-  //
-  //   final OAuthCredential credential = GoogleAuthProvider.credential(
-  //     idToken: authentication.idToken,
-  //     accessToken: authentication.accessToken,
-  //   );
-  //   final UserCredential authResult =
-  //   await auth.signInWithCredential(credential);
-  //   final User? user = authResult.user;
-  //   if (kDebugMode) {
-  //     print(user!.email);
-  //   }
-  //   if (kDebugMode) {
-  //     print(user?.uid);
-  //   }
-  //   if (kDebugMode) {
-  //     print(user?.displayName);
-  //   }
-  //   if (user?.uid != null && user?.uid != "") {
-  //    // Get.offAll(() => const OrganizationProfileScreen());
-  //     loading.value == false;
-  //     // loader false
-  //   } else {
-  //     loading.value == false;
-  //   }
-  //   loading.value == false;
-  //   //flutterToast(Strings.googleSignInSuccess);
-  // }
+
+  // ignore: non_constant_identifier_names
   void SignUpWithGoogle() async {
     if (await googleSignIn.isSignedIn()) {
       await googleSignIn.signOut();

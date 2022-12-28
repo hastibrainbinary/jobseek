@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/call/call_joining_screen.dart';
-import 'package:jobseek/screen/call/video_joinScreen.dart';
+import 'package:jobseek/screen/call/video_join_screen.dart';
 import 'package:jobseek/screen/chat_box/chat_box_controller.dart';
 import 'package:jobseek/screen/manager_section/Notification/notification_services.dart';
 import 'package:jobseek/service/pref_services.dart';

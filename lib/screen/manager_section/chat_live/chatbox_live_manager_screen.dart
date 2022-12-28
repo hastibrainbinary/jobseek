@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/common/widgets/backButton.dart';
+import 'package:jobseek/common/widgets/back_button.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
@@ -59,7 +59,7 @@ class ChatBovLiveScreen extends StatelessWidget {
                 child: Row(
                   children: [
                     Image.asset(
-                      AssetRes.chatbox_Men_Image,
+                      AssetRes.chatBoxMenImage,
                     ),
                     const SizedBox(width: 20),
                     Column(

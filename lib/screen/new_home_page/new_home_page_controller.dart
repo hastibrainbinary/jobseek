@@ -11,6 +11,7 @@ class HomePageNewController extends GetxController {
   String locationError = "";
 
   skillsValidation() {
+    // ignore: unnecessary_null_comparison
     if (skills == null || skills == "") {
       skillError = "Please Enter Designation,Companies";
       update(['popup']);
@@ -21,6 +22,7 @@ class HomePageNewController extends GetxController {
   }
 
   locationValidation() {
+    // ignore: unnecessary_null_comparison
     if (location == null || location == "") {
       locationError = "Please Enter Location";
       update(['popup']);

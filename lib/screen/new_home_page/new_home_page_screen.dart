@@ -2,7 +2,8 @@ import 'package:advanced_search/advanced_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jobseek/screen/auth/sign_inScreen/Signin_Screen.dart';
+import 'package:jobseek/common/widgets/back_button.dart';
+import 'package:jobseek/screen/auth/sign_in_screen/sign_in_screen.dart';
 import 'package:jobseek/screen/job_recomandation_search/job_recomadation_search.dart';
 import 'package:jobseek/screen/looking_for_screen/looking_for_screen.dart';
 import 'package:jobseek/screen/new_home_page/new_home_page_controller.dart';
@@ -31,25 +32,10 @@ class HomePageNewScreenU extends StatelessWidget {
           children: [
             const SizedBox(height: 60),
             Row(children: [
-              Container(
-                margin: const EdgeInsets.all(15),
-                height: 40,
-                width: 40,
-                decoration: BoxDecoration(
-                    color: ColorRes.logoColor,
-                    borderRadius: BorderRadius.circular(10)),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 11),
-                  child: Text(
-                    textAlign: TextAlign.center,
-                    Strings.logo,
-                    style: appTextStyle(
-                        color: ColorRes.containerColor,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 10),
-                  ),
-                ),
-              ),
+             Padding(
+               padding: const EdgeInsets. symmetric(horizontal: 18.0),
+               child: logo(),
+             ),
               const Spacer(),
               Center(
                 child: Text(
@@ -71,14 +57,7 @@ class HomePageNewScreenU extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: const InkWell(
-                  // onTap: () {
-                  //   Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (con) => Notification(),
-                  //     ),
-                  //   );
-                  // },
+
                   child: Icon(
                     Icons.notifications,
                     color: ColorRes.containerColor,
@@ -274,7 +253,7 @@ class HomePageNewScreenU extends StatelessWidget {
                   margin: const EdgeInsets.only(right: 8),
                   child: const Image(
                     image: AssetImage(
-                      AssetRes.HomeLogo,
+                      AssetRes.homeLogo,
                     ),
                     height: 107,
                   ),
@@ -290,7 +269,7 @@ class HomePageNewScreenU extends StatelessWidget {
             const Center(
               child: Image(
                 image: AssetImage(
-                  AssetRes.Home2,
+                  AssetRes.home2,
                 ),
                 height: 150,
               ),

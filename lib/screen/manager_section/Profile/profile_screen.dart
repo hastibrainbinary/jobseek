@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/common/widgets/back_button.dart';
 import 'package:jobseek/common/widgets/common_error_box.dart';
 import 'package:jobseek/common/widgets/common_loader.dart';
-import 'package:jobseek/common/widgets/common_textField.dart';
+import 'package:jobseek/common/widgets/common_text_field.dart';
 import 'package:jobseek/screen/create_vacancies/create_vacancies_controller.dart';
 import 'package:jobseek/screen/manager_section/Profile/profile_controller.dart';
 import 'package:jobseek/screen/manager_section/Settings/settings_screen.dart';
@@ -31,23 +32,7 @@ class ProfileScreen extends StatelessWidget {
               Row(children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                  child: Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      color: ColorRes.logoColor,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Center(
-                      child: Text(
-                        Strings.logo,
-                        style: appTextStyle(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w600,
-                            color: ColorRes.containerColor),
-                      ),
-                    ),
-                  ),
+                  child: logo(),
                 ),
                 const Spacer(),
                 Center(

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/common/widgets/backButton.dart';
+import 'package:jobseek/common/widgets/back_button.dart';
 import 'package:jobseek/common/widgets/common_loader.dart';
 import 'package:jobseek/screen/savejobs/save_job_controller.dart';
 import 'package:jobseek/service/pref_services.dart';
@@ -58,6 +58,7 @@ class SaveJobScreen extends StatelessWidget {
                   builder: (context,
                       AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
                           snapshot) {
+                    // ignore: unnecessary_null_comparison
                     List bookMarkData = (snapshot != null)
                         ? (snapshot.data != null)
                             ? snapshot.data!.docs

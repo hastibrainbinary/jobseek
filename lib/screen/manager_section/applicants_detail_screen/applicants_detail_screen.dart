@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/screen/call/video_ReceiveScreen.dart';
+import 'package:jobseek/screen/call/video_receive_screen.dart';
 import 'package:jobseek/screen/chat_box/chat_box_screen.dart';
 import 'package:jobseek/screen/manager_section/Notification/notification_services.dart';
 import 'package:jobseek/screen/manager_section/applicants_detail_screen/applicants_detail_screen_widget/applicants_details_screen_widget.dart';
@@ -537,9 +537,12 @@ void settingModalBottomSheet(
                               PrefService.getString(PrefKeys.companyName)) {
                             position = e['position'].toString();
 
-                            if (kDebugMode) {
-                              print(position);
-                            }
+
+                              if (
+                              kDebugMode) {
+                                print(position);
+                              }
+
                           }
                         });
                         /*   controller.onTapOk();*/

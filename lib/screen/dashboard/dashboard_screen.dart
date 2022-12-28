@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/applies_logo_screen/applies_logo_screen.dart';
-import 'package:jobseek/screen/chat_box_user/chat_box_userScreen.dart';
+import 'package:jobseek/screen/chat_box_user/chat_box_user_screen.dart';
 import 'package:jobseek/screen/dashboard/dashboard_controller.dart';
 import 'package:jobseek/screen/dashboard/home/home_screen.dart';
 import 'package:jobseek/screen/dashboard/widget.dart';
 import 'package:jobseek/screen/inbox_logo_screen/inbox_logo_screen.dart';
 import 'package:jobseek/screen/new_home_page/new_home_page_screen.dart';
-import 'package:jobseek/screen/profile/Profile_screen.dart';
+import 'package:jobseek/screen/profile/profile_screen.dart';
 import 'package:jobseek/screen/profile_logo_screen/profile_logo_screen.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';

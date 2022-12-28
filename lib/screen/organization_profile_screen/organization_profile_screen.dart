@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:jobseek/common/widgets/common_error_box.dart';
 import 'package:jobseek/common/widgets/common_loader.dart';
-import 'package:jobseek/common/widgets/common_textField.dart';
+import 'package:jobseek/common/widgets/common_text_field.dart';
 import 'package:jobseek/screen/looking_for_screen/looking_for_screen.dart';
 import 'package:jobseek/screen/organization_profile_screen/organization_profile_screen_controller.dart';
 import 'package:jobseek/service/pref_services.dart';

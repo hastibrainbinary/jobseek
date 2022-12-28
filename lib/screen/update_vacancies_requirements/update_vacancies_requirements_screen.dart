@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jobseek/common/widgets/common_error_box.dart';
 import 'package:jobseek/common/widgets/common_loader.dart';
-import 'package:jobseek/common/widgets/common_textField.dart';
+import 'package:jobseek/common/widgets/common_text_field.dart';
 import 'package:jobseek/screen/update_vacancies_requirements/update_vacancies_requirement_controller.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';

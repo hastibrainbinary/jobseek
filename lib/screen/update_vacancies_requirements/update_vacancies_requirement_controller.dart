@@ -146,9 +146,9 @@ class UpdateVacanciesRequirementController extends GetxController {
     if (kDebugMode) {
       print(onchangeValues);
     }
-    Map<String, dynamic> map = {
-      "RequirementsList": requirmentList,
-    };
+    // Map<String, dynamic> map = {
+    //   "RequirementsList": requirmentList,
+    // };
 
     await FirebaseFirestore.instance
         .collection("allPost")
@@ -156,6 +156,7 @@ class UpdateVacanciesRequirementController extends GetxController {
         .update({"RequirementsList": requirmentList});
     update(["update"]);
     loader.value = false;
+    // ignore: use_build_context_synchronously
     Navigator.pushReplacement(context, MaterialPageRoute(
       builder: (context) {
         return ManagerDashBoardScreen();

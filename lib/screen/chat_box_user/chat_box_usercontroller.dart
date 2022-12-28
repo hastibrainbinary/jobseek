@@ -59,7 +59,9 @@ class ChatBoxUserController extends GetxController implements GetxService {
 
   bool validation() {
     if (msController.text.isEmpty) {
-      print("Please enter message");
+      if (kDebugMode) {
+        print("Please enter message");
+      }
 
       return false;
     }
@@ -152,8 +154,10 @@ class ChatBoxUserController extends GetxController implements GetxService {
           if (kDebugMode) {
             print(msgCount);
           }
+
           countU.add(msg);
         }
+
         if (kDebugMode) {
           print(countU);
         }
@@ -206,6 +210,7 @@ class ChatBoxUserController extends GetxController implements GetxService {
     if (kDebugMode) {
       print(countU.length);
     }
+
     await FirebaseFirestore.instance.collection("chats").doc(roomId).update({
       "lastMessage": msg,
       "lastMessageSender": userUid,

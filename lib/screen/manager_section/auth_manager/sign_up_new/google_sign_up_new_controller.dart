@@ -21,7 +21,9 @@ class GoogleSignUpControllerM extends GetxController {
   });
   @override
   void onInit() {
-    print("********************************");
+    if (kDebugMode) {
+      print("********************************");
+    }
     emailController.text = email;
     firstnameController.text = firstname;
     lastnameController.text = lastname;
@@ -205,7 +207,10 @@ class GoogleSignUpControllerM extends GetxController {
         .doc(userUid)
         .set(map)
         .catchError((e) {
-        print('...error...' + e);
+        if (kDebugMode) {
+          // ignore: prefer_interpolation_to_compose_strings
+          print('...error...' + e);
+        }
 
     });
   }

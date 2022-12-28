@@ -1,10 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/screen/manager_section/auth_manager/Otp_Page/otp_screen.dart';
 
 class ForgotPasswordControllerU extends GetxController {
   GlobalKey<FormState> forgotFormKey = GlobalKey();
@@ -38,10 +35,12 @@ class ForgotPasswordControllerU extends GetxController {
 
   onLoginBtnTap() {
     if (validator()) {
-      if (kDebugMode) {
+
         resetPassword();
-        print("GO TO HOME PAGE");
-      }
+        if (kDebugMode) {
+          print("GO TO HOME PAGE");
+        }
+
       /*Get.to(OtpScreenM());*/
     }
     update(["showEmail"]);
@@ -56,18 +55,7 @@ class ForgotPasswordControllerU extends GetxController {
       Get.snackbar("Error", "$error", colorText: const Color(0xffDA1414));
     });
 
-    /*try {
-      await FirebaseAuth.instance.sendPasswordResetEmail(email:forgotEmailController.text.trim()).then((value) => (value) {
-        print(value);
-      });
 
-      Get.snackbar("Reset Password", "Password Reset Email Send", colorText: Colors.black);
-    } on FirebaseAuthException catch (x) {
-      if (kDebugMode) {
-        print(x.toString());
-      }
-      Get.snackbar("Error", "$x", colorText: const Color(0xffDA1414));
-    }*/
 
   }
 

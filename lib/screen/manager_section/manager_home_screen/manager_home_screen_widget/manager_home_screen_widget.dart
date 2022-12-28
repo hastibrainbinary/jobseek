@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:jobseek/screen/chat_box/chat_box_screen.dart';
 import 'package:jobseek/screen/create_vacancies/create_vacancies_controller.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_controller.dart';
-import 'package:jobseek/screen/manager_section/call/video_joinig_Screen.dart';
+import 'package:jobseek/screen/manager_section/call/video_joinig_screen.dart';
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_controller.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_res.dart';

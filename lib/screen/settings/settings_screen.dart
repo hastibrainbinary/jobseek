@@ -203,7 +203,7 @@ class SettingsScreenU extends StatelessWidget {
                       ],
                     ),
                     const Image(
-                      image: AssetImage(AssetRes.settingaArrow),
+                      image: AssetImage(AssetRes.settingArrow),
                       height: 15,
                     ),
                   ],
@@ -257,7 +257,7 @@ class SettingsScreenU extends StatelessWidget {
                       ],
                     ),
                     const Image(
-                      image: AssetImage(AssetRes.settingaArrow),
+                      image: AssetImage(AssetRes.settingArrow),
                       height: 15,
                     ),
                   ],

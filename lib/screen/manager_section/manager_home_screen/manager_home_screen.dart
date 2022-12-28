@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/common/widgets/back_button.dart';
 import 'package:jobseek/common/widgets/common_loader.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_controller.dart';
-import 'package:jobseek/screen/manager_section/Recent%20People%20Application/recent_Application_screen.dart';
+import 'package:jobseek/screen/manager_section/Recent%20People%20Application/recent_application_screen.dart';
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_controller.dart';
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_widget/manager_home_screen_widget.dart';
 import 'package:jobseek/screen/manager_section/notification1/notification1_screen.dart';
@@ -36,23 +37,8 @@ class ManagerHomeScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(
-                        color: ColorRes.logoColor,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Center(
-                        child: Text(
-                          Strings.logo,
-                          style: appTextStyle(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w600,
-                              color: ColorRes.containerColor),
-                        ),
-                      ),
-                    ),
+
+                    logo(),
                     InkWell(
                       onTap: () {
                         Navigator.push(

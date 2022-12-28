@@ -13,7 +13,6 @@ import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/color_res.dart';
 import 'package:jobseek/utils/string.dart';
-import 'home_controller.dart';
 
 // ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
@@ -29,7 +28,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     jobDetailsUploadCvController.init();
-    final controller = Get.put(HomeController());
+    //final controller = Get.put(HomeController());
 
     return Container(
       height: Get.height,

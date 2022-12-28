@@ -19,6 +19,7 @@ class SignInScreenControllerM extends GetxController {
   String emailError = "";
   String pwdError = "";
   @override
+  // ignore: unnecessary_overrides
   void onInit() {
     super.onInit();
   }
@@ -52,6 +53,7 @@ class SignInScreenControllerM extends GetxController {
           if (kDebugMode) {
             print("${value.docs[i]["Email"]}=||||||++++++++++");
           }
+
           if (value.docs[i]["Email"] == email && value.docs[i]["Email"] != "") {
             isManager = true;
             PrefService.setValue(PrefKeys.rol, "Manager");
@@ -74,8 +76,6 @@ class SignInScreenControllerM extends GetxController {
               }
             });
 
-            //PrefService.setValue(PrefKeys.companyName, value.docs[i].);
-
             if (kDebugMode) {
               print("$isManager====]]]]]");
             }
@@ -83,6 +83,7 @@ class SignInScreenControllerM extends GetxController {
             break;
           } else {
             isManager = false;
+
             if (kDebugMode) {
               print("$isManager====]]]]]");
             }
@@ -128,11 +129,12 @@ class SignInScreenControllerM extends GetxController {
                 print('Wrong password provided for that user.');
               }
             }
+
             if (kDebugMode) {
               print(e.code);
-              Get.snackbar("Error", e.code, colorText: const Color(0xffDA1414));
-              loading.value = false;
             }
+            Get.snackbar("Error", e.code, colorText: const Color(0xffDA1414));
+            loading.value = false;
           }
         } else {
           Get.snackbar(
@@ -146,6 +148,7 @@ class SignInScreenControllerM extends GetxController {
       if (kDebugMode) {
         print("${value.isBlank}=|=|=|");
       }
+
       if (kDebugMode) {
         print("${value.docs.length}=|=|=|");
       }
@@ -204,6 +207,7 @@ class SignInScreenControllerM extends GetxController {
       signInWithEmailAndPassword(
           password: passwordController.text.trim(),
           email: emailController.text.trim());
+
       if (kDebugMode) {
         print("GO TO HOME PAGE");
       }
@@ -263,12 +267,15 @@ class SignInScreenControllerM extends GetxController {
     final UserCredential authResult =
         await auth.signInWithCredential(credential);
     final User? user = authResult.user;
+
     if (kDebugMode) {
       print(user!.email);
     }
+
     if (kDebugMode) {
       print(user?.uid);
     }
+
     if (kDebugMode) {
       print(user?.displayName);
     }
@@ -292,6 +299,7 @@ class SignInScreenControllerM extends GetxController {
             if (kDebugMode) {
               print("${value.docs[i]["Email"]}=||||||++++++++++");
             }
+
             if (value.docs[i]["Email"] == user!.email &&
                 value.docs[i]["Email"] != "") {
               isManager = false;
@@ -302,6 +310,7 @@ class SignInScreenControllerM extends GetxController {
                 await googleSignIn.signOut();
               }
               loading.value = false;
+
               if (kDebugMode) {
                 print("$isManager====]]]]]");
               }
@@ -315,9 +324,11 @@ class SignInScreenControllerM extends GetxController {
               Get.off(() => PrefService.getBool(PrefKeys.company)
                   ? ManagerDashBoardScreen()
                   : const OrganizationProfileScreen());
+
               if (kDebugMode) {
                 print("$isManager====]]]]]");
               }
+
               break;
             }
           }
@@ -327,6 +338,7 @@ class SignInScreenControllerM extends GetxController {
         if (kDebugMode) {
           print("${value.isBlank}=|=|=|");
         }
+
         if (kDebugMode) {
           print("${value.docs.length}=|=|=|");
         }
@@ -349,9 +361,11 @@ class SignInScreenControllerM extends GetxController {
       loading.value = true;
       final LoginResult loginResult = await FacebookAuth.instance
           .login(permissions: ["email", "public_profile"]);
+
       if (kDebugMode) {
         print(loginResult);
       }
+
       await FacebookAuth.instance.getUserData().then((userData) {
         if (kDebugMode) {
           print(userData);

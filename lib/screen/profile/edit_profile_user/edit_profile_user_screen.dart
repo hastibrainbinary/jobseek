@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/common/widgets/backButton.dart';
+import 'package:jobseek/common/widgets/back_button.dart';
 import 'package:jobseek/common/widgets/common_error_box.dart';
-import 'package:jobseek/common/widgets/common_textField.dart';
+import 'package:jobseek/common/widgets/common_text_field.dart';
 import 'package:jobseek/screen/profile/profile_controller.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_style.dart';
@@ -228,7 +228,7 @@ class EditProfileUser extends StatelessWidget {
                                                         child: const Image(
                                                           image: AssetImage(
                                                               AssetRes
-                                                                  .galleryaimage),
+                                                                  .galleryImage),
                                                           color: ColorRes
                                                               .containerColor,
                                                         ),

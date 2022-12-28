@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/common/widgets/common_error_box.dart';
-import 'package:jobseek/common/widgets/common_textField.dart';
+import 'package:jobseek/common/widgets/common_text_field.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
@@ -494,43 +494,7 @@ class CreateVacanciesScreenM extends StatelessWidget {
                               GetBuilder<CreateVacanciesController>(
                                   id: "profile",
                                   builder: (controller) {
-                                    return /*(controller.positionController.text == '' ||
-                                              controller.salaryController.text ==
-                                                  '' ||
-                                              controller.locationController.text ==
-                                                  '' ||
-                                              controller.typeController.text ==
-                                                  '' ||
-                                              controller.categoryController.text ==
-                                                  '' ||
-                                              controller.statusController.text ==
-                                                  '')
-                                          ? Container(
-                                              height: 50,
-                                              width:
-                                                  MediaQuery.of(context).size.width,
-                                              alignment: Alignment.center,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                gradient: LinearGradient(
-                                                  colors: [
-                                                    ColorRes.gradientColor
-                                                        .withOpacity(0.2),
-                                                    ColorRes.containerColor
-                                                        .withOpacity(0.4)
-                                                  ],
-                                                ),
-                                              ),
-                                              child: Text("Next",
-                                                  style: appTextStyle(
-                                                      fontSize: 18,
-                                                      fontWeight: FontWeight.w500,
-                                                      color: ColorRes.white)),
-                                            )
-                                          : */
-                                        InkWell(
-                                      // add screen
+                                    return InkWell(
                                       onTap: () => controller.onTapNextBut(
                                           controller.positionController.text),
                                       child: Container(

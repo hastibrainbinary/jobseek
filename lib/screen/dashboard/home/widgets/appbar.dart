@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/common/widgets/back_button.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
@@ -12,21 +13,7 @@ Widget homeAppBar() {
     padding: const EdgeInsets.symmetric(horizontal: 18),
     child: Row(
       children: [
-        Container(
-          height: 40,
-          width: 40,
-          alignment: Alignment.center,
-          decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              color: ColorRes.logoColor),
-          child: const Text(
-            Strings.logo,
-            style: TextStyle(
-                color: ColorRes.containerColor,
-                fontSize: 10,
-                fontWeight: FontWeight.w600),
-          ),
-        ),
+       logo(),
         Expanded(
           child: Container(
             alignment: Alignment.center,

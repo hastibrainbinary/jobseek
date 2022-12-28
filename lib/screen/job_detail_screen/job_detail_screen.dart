@@ -113,7 +113,7 @@ class JobDetailScreen extends StatelessWidget {
                                                   List bookmark = [];
                                                   bookmark = args['saved']
                                                       ['BookMarkUserList'];
-                                                  if (bookmark.length == 0) {
+                                                  if (bookmark.isEmpty) {
                                                     bookmark.add(
                                                         PrefService.getString(
                                                             PrefKeys.userId));
@@ -146,6 +146,7 @@ class JobDetailScreen extends StatelessWidget {
                                                       .doc(args['saved'].id)
                                                       .update(map2);
 
+                                                  // ignore: avoid_single_cascade_in_expression_statements
                                                   FirebaseFirestore.instance
                                                       .collection('BookMark')
                                                       .doc(

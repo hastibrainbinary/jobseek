@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/common/widgets/common_textField.dart';
+import 'package:jobseek/common/widgets/common_text_field.dart';
 import 'package:jobseek/screen/auth/sign_up/google_signup_controller.dart';
-import 'package:jobseek/screen/auth/sign_up/sign_upScreen.dart';
+import 'package:jobseek/screen/auth/sign_up/sign_up_screen.dart';
 import 'package:jobseek/screen/auth/sign_up/widget/signup_bottom/country.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
@@ -28,8 +28,10 @@ class GoogleSignupScreen extends StatelessWidget {
     if (kDebugMode) {
       print("EMAIL : $email , $firstName , $lastName");
     }
-    GoogleSignupController controller = Get.put(GoogleSignupController(
-        uid: uid, email: email, firstname: firstName, lastname: lastName));
+
+    /*  GoogleSignupController
+    controller = Get.put(GoogleSignupController(
+        uid: uid, email: email, firstname: firstName, lastname: lastName));*/
 
     return Scaffold(
       backgroundColor: ColorRes.backgroundColor,
@@ -50,13 +52,8 @@ class GoogleSignupScreen extends StatelessWidget {
                   color: ColorRes.logoColor,
                   borderRadius: BorderRadius.circular(15),
                 ),
-                child: Text(
-                  Strings.logo,
-                  style: appTextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18,
-                    color: ColorRes.containerColor,
-                  ),
+                child: const Image(
+                  image: AssetImage(AssetRes.logo),
                 ),
               ),
             ),
@@ -531,32 +528,7 @@ class GoogleSignupScreen extends StatelessWidget {
                 id: "dark",
                 builder: (controller) {
                   return
-                      /* (controller.firstnameController.text == '' ||
-                          controller.lastnameController.text == '' ||
-                          controller.emailController.text == '' ||
-                          controller.phoneController.text == '' ||
-                          controller.occupationController.text == '' ||
-                          controller.cityController.text == '' ||
-                          controller.stateController.text == '' ||
-                          controller.countryController.text == '')
-                      ? Container(
-                          height: 50,
-                          width: MediaQuery.of(context).size.width,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            gradient: LinearGradient(colors: [
-                              ColorRes.gradientColor.withOpacity(0.2),
-                              ColorRes.containerColor.withOpacity(0.4)
-                            ]),
-                          ),
-                          child: Text("Sign up",
-                              style: appTextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w500,
-                                  color: ColorRes.white)),
-                        )
-                      :*/
+
                       InkWell(
                     onTap: controller.onSignUpBtnTap,
                     child: Container(

@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/screen/auth/sign_up/sign_upScreen.dart';
+import 'package:jobseek/screen/auth/sign_up/sign_up_screen.dart';
 import 'package:jobseek/screen/auth/sign_up/widget/signup_bottom/country.dart';
 import 'package:jobseek/screen/manager_section/auth_manager/sign_up_new/google_sign_up_new_controller.dart';
 import 'package:jobseek/utils/app_style.dart';
@@ -24,11 +24,13 @@ class GoogleSignupScreenM extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (kDebugMode) {
-      print("EMAIL : $email , $firstName , $lastName");
-    }
-    GoogleSignUpControllerM controller = Get.put(GoogleSignUpControllerM(
-        email: email, firstname: firstName, lastname: lastName, uid: uid));
+
+      if (kDebugMode) {
+        print("EMAIL : $email , $firstName , $lastName");
+      }
+
+   /* GoogleSignUpControllerM controller = Get.put(GoogleSignUpControllerM(
+        email: email, firstname: firstName, lastname: lastName, uid: uid));*/
 
     return Scaffold(
       backgroundColor: ColorRes.backgroundColor,
@@ -49,13 +51,8 @@ class GoogleSignupScreenM extends StatelessWidget {
                   color: ColorRes.logoColor,
                   borderRadius: BorderRadius.circular(15),
                 ),
-                child: Text(
-                  Strings.logo,
-                  style: appTextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18,
-                    color: ColorRes.containerColor,
-                  ),
+                child: const Image(
+                  image: AssetImage(AssetRes.logo),
                 ),
               ),
             ),

@@ -123,7 +123,7 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                                 controller.filepath.value = "";
                               },
                               child: const Image(
-                                image: AssetImage(AssetRes.PdfRemove),
+                                image: AssetImage(AssetRes.pdfRemove),
                               ),
                             )
                           ],

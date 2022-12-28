@@ -53,6 +53,8 @@ dependencies:
   permission_handler:
   flutter_cache_manager: ^3.3.0
   paginate_firestore: ^1.0.3+1
+  smooth_page_indicator: ^1.0.0+2
+
 
 
 

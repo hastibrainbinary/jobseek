@@ -125,10 +125,10 @@ class ProfileController extends GetxController implements GetxService {
         PrefKeys.imageManager,
         url,
       );*/
-
+/*
       Map<String, dynamic> map2 = {
         "CompanyName": companyNameController.text.trim().toString()
-      };
+      };*/
       await fireStore
           .collection("Auth")
           .doc("Manager")
@@ -143,6 +143,7 @@ class ProfileController extends GetxController implements GetxService {
           .where("Id", isEqualTo: uid)
           .get()
           .then((QuerySnapshot snapshot) {
+        // ignore: avoid_function_literals_in_foreach_calls
         snapshot.docs.forEach((element) async {
           await fireStore.collection("allPost").doc(element.id).update(
               {"CompanyName": companyNameController.text.trim().toString()});

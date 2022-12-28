@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/common/widgets/backButton.dart';
+import 'package:jobseek/common/widgets/back_button.dart';
 import 'package:jobseek/common/widgets/common_loader.dart';
 import 'package:jobseek/screen/create_vacancies/create_vacancies_controller.dart';
 import 'package:jobseek/utils/app_style.dart';
@@ -193,30 +193,7 @@ class RequirementsScreen extends StatelessWidget {
           ],
         ),
       ),
-      /*  floatingActionButton: InkWell(
-        onTap: () {
-          controller.onTapNext();
-        },
-        child: Container(
-          height: 50,
-          width: 420,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            gradient: const LinearGradient(
-              colors: [
-                ColorRes.gradientColor,
-                ColorRes.containerColor,
-              ],
-            ),
-          ),
-          child: Text("Post Job Vacancy",
-              style: appTextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                  color: ColorRes.white)),
-        ),
-      ),*/
+
     );
   }
 }

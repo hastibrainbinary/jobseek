@@ -21,9 +21,11 @@ class GoogleSignupController extends GetxController {
   });
   @override
   void onInit() {
-    if (kDebugMode) {
-      print("********************************");
-    }
+
+      if (kDebugMode) {
+        print("********************************");
+      }
+
     emailController.text = email;
     firstnameController.text = firstname;
     lastnameController.text = lastname;
@@ -220,9 +222,12 @@ class GoogleSignupController extends GetxController {
         .doc(userUid)
         .set(map)
         .catchError((e) {
-      if (kDebugMode) {
-        print('...error...' + e);
-      }
+
+        if (kDebugMode) {
+          // ignore: prefer_interpolation_to_compose_strings
+          print('...error...' + e);
+        }
+
     });
   }
 
@@ -239,9 +244,11 @@ class GoogleSignupController extends GetxController {
     };
 
     // singUp(emailController.text, passwordController.text);
-    if (kDebugMode) {
-      print("GO TO HOME PAGE");
-    }
+
+      if (kDebugMode) {
+        print("GO TO HOME PAGE");
+      }
+
     await addDataInFirebase(userUid: uid, map: map2);
 
     PrefService.setValue(PrefKeys.fullName,

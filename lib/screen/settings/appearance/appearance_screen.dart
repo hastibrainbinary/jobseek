@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:get/get.dart';
-import 'package:jobseek/common/widgets/backButton.dart';
+import 'package:jobseek/common/widgets/back_button.dart';
+import 'package:jobseek/screen/settings/appearance/appearance_controller.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/color_res.dart';
-import 'appearance_controller.dart';
 
 class AppearanceScreenU extends StatelessWidget {
   const AppearanceScreenU({Key? key}) : super(key: key);
@@ -74,7 +74,7 @@ class AppearanceScreenU extends StatelessWidget {
               height: 1,
             ),
             const SizedBox(height: 20),
-           /* Row(
+            /* Row(
               children: [
                 Padding(
                   padding: const EdgeInsets.all(15.0),

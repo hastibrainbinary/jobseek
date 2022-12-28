@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/dashboard/applications/applications_screen.dart';
-import 'package:jobseek/screen/first_page/first_Screen.dart';
+import 'package:jobseek/screen/first_page/first_screen.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_screen.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_upload_cv_screen/upload_cv_screen.dart';
 import 'package:jobseek/screen/job_detail_screen/job_details_success_or_fails/job_details_success_or_faild_screen.dart';
@@ -20,11 +20,12 @@ import 'package:jobseek/screen/new_home_page/new_home_page_screen.dart';
 import 'package:jobseek/screen/notification_screen/notification_screen.dart';
 import 'package:jobseek/screen/organization_profile_screen/organization_profile_screen.dart';
 import 'package:jobseek/screen/see_details/see_details_screen.dart';
-import 'package:jobseek/screen/splashScreen/splash_Screen.dart';
+import 'package:jobseek/screen/splashScreen/splash_screen.dart';
 import 'package:jobseek/screen/update_vacancies_requirements/update_vacancies_requirements_screen.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -56,6 +57,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: const SplashScreen(),
       //const SplashScreen(),
+
       initialRoute: "/",
       getPages: [
         GetPage(
@@ -87,7 +89,7 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: AppRes.managerApplicationDetailScreen,
             page: () => ManagerApplicationDetailScreen()),
-        GetPage(name: AppRes.resumeScreen, page: () => ResumeScreen()),
+        GetPage(name: AppRes.resumeScreen, page: () => const ResumeScreen()),
         GetPage(
             name: AppRes.applicantsDetails,
             page: () => ApplicantsDetailScreen(
@@ -101,7 +103,7 @@ class MyApp extends StatelessWidget {
             page: () => const SeeDetailsScreen()),
         GetPage(
             name: AppRes.updateVacanciesRequirementScreen,
-            page: () => UpdateVacanciesRequirementsScreen()),
+            page: () => const UpdateVacanciesRequirementsScreen()),
         GetPage(name: AppRes.firstScreen, page: () => FirstScreen()),
       ],
     );

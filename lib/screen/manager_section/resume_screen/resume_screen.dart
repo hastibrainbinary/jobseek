@@ -19,7 +19,7 @@ class ResumeScreen extends StatefulWidget {
 
 class _ResumeScreenState extends State<ResumeScreen> {
   var args = Get.arguments;
-  PDFViewController? _pdfViewController;
+ // PDFViewController? _pdfViewController;
   String remotePDFpath = "";
   bool loader = false;
 

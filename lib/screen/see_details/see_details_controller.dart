@@ -46,7 +46,7 @@ class SeeDetailsController extends GetxController implements GetxService {
       filepath.value = file.name.toString();
       final kb = file.size / 1024;
       final kbVal = kb.ceil().toInt();
-      final mb = kb / 1024;
+      //final mb = kb / 1024;
       fileSize?.value = kbVal;
 
       debugPrint("filepath $filepath FileSize ${fileSize?.value}  $kbVal");

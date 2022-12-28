@@ -52,7 +52,7 @@ class CallReceivedScreen extends StatelessWidget {
                 padding: EdgeInsets.all(16.0),
                 child: Image(
                   image: AssetImage(
-                    AssetRes.call_decaline,
+                    AssetRes.callReject,
                   ),
                 ),
               ),

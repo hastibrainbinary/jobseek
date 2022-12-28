@@ -10,7 +10,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 List<Map<String, dynamic>> companyList = [];
 bool abc = false;
@@ -18,50 +17,25 @@ bool abc = false;
 class JobDetailsUploadCvController extends GetxController {
   RefreshController refreshController = RefreshController();
 
-  /* init() async {
-    await firestore.collection("Apply").get().then((value) {
-      value.docs.forEach((element) {
-        if (element['uid'] == PrefService.getString(PrefKeys.userId)) {
-          companyList = element['companyName'];
-        }
-      });
-
-      */
-  /*for (int i = 1; i <= value.docs.length; i++) {
-        if (value.docs[i]['uid'] == PrefService.getString(PrefKeys.userId)) {
-          companyList = value.docs[i]['companyName'];
-        }
-      }*/
-  /*
-    });
-    refreshController.refreshCompleted();
-  }*/
   init() async {
     companyList = [];
 
     await firestore.collection("Apply").get().then((value) {
+      // ignore: avoid_function_literals_in_foreach_calls
       value.docs.forEach((element) {
         if (element['uid'] == PrefService.getString(PrefKeys.userId)) {
-          for(int y=0;y<element['companyName'].length;y++){
-
+          for (int y = 0; y < element['companyName'].length; y++) {
             companyList.add({
-              "companyName":  element['companyName'][y]["companyname"],
-              "position":  element['companyName'][y]["position"]
+              "companyName": element['companyName'][y]["companyname"],
+              "position": element['companyName'][y]["position"]
             });
-
           }
-
-
         }
       });
-
-      /*for (int i = 1; i <= value.docs.length; i++) {
-        if (value.docs[i]['uid'] == PrefService.getString(PrefKeys.userId)) {
-          companyList = value.docs[i]['companyName'];
-        }
-      }*/
     });
-    print(companyList);
+    if (kDebugMode) {
+      print(companyList);
+    }
     refreshController.refreshCompleted();
     update(["searchChat"]);
   }
@@ -69,52 +43,6 @@ class JobDetailsUploadCvController extends GetxController {
   String? pdfUrl;
   double filesize = 0;
 
-  /* onTapApply({var args}) {
-    abc = false;
-    for (int i = 0; i < companyList.length; i++) {
-      if (companyList[i] == args['CompanyName']) {
-        abc = true;
-      }
-    }
-
-    if (!abc) {
-      companyList.add(args['CompanyName']);
-    }
-
-    List<String> companyNameList = List.generate(companyList.length, (index) {
-      return companyList[index].toString();
-    });
-    if (kDebugMode) {
-      print(companyNameList);
-    }
-
-    firestore
-        .collection("Apply")
-        .doc(FirebaseAuth.instance.currentUser!.uid)
-        .set({
-      'apply': true,
-      'companyName': companyNameList,
-      'userName': PrefService.getString(PrefKeys.fullName),
-      'email': PrefService.getString(PrefKeys.email),
-      'phone': PrefService.getString(PrefKeys.phoneNumber),
-      'city': PrefService.getString(PrefKeys.city),
-      'state': PrefService.getString(PrefKeys.state),
-      'country': PrefService.getString(PrefKeys.country),
-      'Occupation': PrefService.getString(PrefKeys.occupation),
-      'uid': FirebaseAuth.instance.currentUser!.uid,
-      'resumeUrl': pdfUrl,
-      'salary': args['salary'],
-      'location': args['location'],
-      'type': args['type'],
-    });
-
-    Get.toNamed(AppRes.jobDetailSuccessOrFailed, arguments: [
-      {"doc": args},
-      {"error": false, "filename": filepath},
-    ]);
-
-    filepath.value = "";
-  }*/
   onTapApply({var args}) {
     abc = false;
     for (int i = 0; i < companyList.length; i++) {
@@ -133,6 +61,7 @@ class JobDetailsUploadCvController extends GetxController {
         List.generate(companyList.length, (index) {
       return companyList[index];
     });
+
     if (kDebugMode) {
       print(companyNameList.runtimeType);
     }
@@ -249,6 +178,7 @@ class JobDetailsUploadCvController extends GetxController {
           FirebaseStorage.instance.ref().child(path).getDownloadURL();
       storageRef.then((result) {
         pdfUrl = result;
+
         if (kDebugMode) {
           print("result is $result");
         }
@@ -260,15 +190,6 @@ class JobDetailsUploadCvController extends GetxController {
 
       return '';
     }
+    return null;
   }
-
-/*void documentFileUpload(String str) {
-
-    var data = {
-      "PDF": str,
-    };
-    snapshot.child("Documents").child('pdf').set(data).then((v) {
-    });
-  }*/
-
 }

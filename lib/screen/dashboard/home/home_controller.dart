@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobseek/screen/job_recommendation_screen/job_recommendation_controller.dart';
 import 'package:jobseek/service/pref_services.dart';
-import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
 
 JobRecommendationController jcon = Get.put(JobRecommendationController());
@@ -59,7 +58,7 @@ class HomeController extends GetxController implements GetxService {
 
       List bookmark = [];
       bookmark = field['BookMarkUserList'];
-      if (bookmark.length == 0) {
+      if (bookmark.isEmpty) {
         bookmark.add(PrefService.getString(PrefKeys.userId));
       }
       for (int i = 0; i < bookmark.length; i++) {
@@ -76,6 +75,7 @@ class HomeController extends GetxController implements GetxService {
 
       FirebaseFirestore.instance.collection('allPost').doc(docId).update(map2);
 
+      // ignore: avoid_single_cascade_in_expression_statements
       FirebaseFirestore.instance
           .collection('BookMark')
           .doc(PrefService.getString(PrefKeys.userId))
@@ -108,10 +108,11 @@ class HomeController extends GetxController implements GetxService {
   String? firstNAme;
 
   getfirstName() async {
-    firstNAme = await PrefService.getString(PrefKeys.firstnameu);
+    firstNAme = PrefService.getString(PrefKeys.firstnameu);
   }
 
   locationValidation() {
+    // ignore: unnecessary_null_comparison
     if (location == null || location == "") {
       locationError = "Please Enter Location";
       update(['popup']);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/common/widgets/back_button.dart';
 import 'package:jobseek/screen/manager_section/manager_home_screen/manager_home_screen_widget/manager_home_screen_widget.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/app_style.dart';
@@ -24,25 +25,7 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
                 children: [
-                  Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      color: ColorRes.logoColor,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 11),
-                      child: Text(
-                        textAlign: TextAlign.center,
-                        Strings.logo,
-                        style: appTextStyle(
-                            color: ColorRes.containerColor,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 10),
-                      ),
-                    ),
-                  ),
+                  logo(),
                   Container(
                     width: Get.width - 110,
                     alignment: Alignment.center,
