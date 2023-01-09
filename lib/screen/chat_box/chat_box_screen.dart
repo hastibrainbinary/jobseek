@@ -179,7 +179,7 @@ Widget allChat() {
 
                                 Map<String, dynamic>? dataM =
                                     snapshotM.data?.data();
-                                controller.dataChat = [];
+                                //controller.dataChat = [];
                                 if (dataM!["countU"] != null) {
                                   controller.dataChat.add({
                                     "name": snapshot.data!.docs[index]
@@ -241,9 +241,6 @@ Widget allChat() {
                                                           create.url),
                                                       height: 100,
                                                     ),
-                                              /*  Image.asset(
-                                                        AssetRes.airBnbLogo,
-                                                      ),*/
                                               const SizedBox(width: 20),
                                               Column(
                                                 mainAxisAlignment:

@@ -395,28 +395,7 @@ class _SignInScreenMState extends State<SignInScreenM> {
                       GetBuilder<SignInScreenControllerM>(
                           id: "colorChange",
                           builder: (controller) {
-                            return
-                                /* (controller.emailController.text == '' ||
-                                    controller.passwordController.text == '')
-                                ? Container(
-                                    height: 50,
-                                    width: MediaQuery.of(context).size.width,
-                                    alignment: Alignment.center,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      gradient: LinearGradient(colors: [
-                                        ColorRes.gradientColor.withOpacity(0.2),
-                                        ColorRes.containerColor.withOpacity(0.4)
-                                      ]),
-                                    ),
-                                    child: Text("Sign In",
-                                        style: appTextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w500,
-                                            color: ColorRes.white)),
-                                  )
-                                :*/
-                                InkWell(
+                            return InkWell(
                               onTap: controller.onLoginBtnTap,
                               child: Container(
                                 height: 50,

@@ -46,18 +46,18 @@ class JobRecommendationController extends GetxController
 
   RxInt selectedJobs2 = 0.obs;
   RxList jobs2 = [
-    "All Job",
-    "Writer",
-    "Design",
-    "Finance",
-    'Software',
-    'Database Manager',
-    'Product Manager',
-    'Full-Stack Developer',
-    'Data Scientist',
-    'Web Developers',
-    'Networking',
-    'Cyber Security'
+    "allJob".tr,
+    "writer".tr,
+    "design".tr,
+    "finance".tr,
+    "software".tr,
+    "databaseManager".tr,
+    "productManager".tr,
+    "fullStackDeveloper".tr,
+    "dataScientist".tr,
+    "webDevelopers".tr,
+    "networking".tr,
+    "cyberSecurity".tr,
   ].obs;
 
   onTapJobs2(int index) {

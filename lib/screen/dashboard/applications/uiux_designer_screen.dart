@@ -5,6 +5,7 @@ import 'package:jobseek/screen/chat_box/chat_box_screen.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 
 // ignore: must_be_immutable
 class SentScreen extends StatelessWidget {
@@ -50,7 +51,7 @@ class SentScreen extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(
-                    'Application',
+                    Strings.applications,
                     style: appTextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w500,
@@ -153,7 +154,7 @@ class SentScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Salary",
+                                Strings.salary,
                                 style: appTextStyle(
                                     color: ColorRes.black.withOpacity(0.8),
                                     fontSize: 12,
@@ -173,7 +174,7 @@ class SentScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Type",
+                                Strings.type,
                                 style: appTextStyle(
                                     color: ColorRes.black.withOpacity(0.8),
                                     fontSize: 12,
@@ -193,7 +194,7 @@ class SentScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Location",
+                                Strings.location,
                                 style: appTextStyle(
                                     color: ColorRes.black.withOpacity(0.8),
                                     fontSize: 12,
@@ -245,7 +246,7 @@ class SentScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        child: Text("Join Interview",
+                        child: Text(Strings.joiningInterview,
                             style: appTextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 18,

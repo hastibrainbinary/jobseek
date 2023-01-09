@@ -46,36 +46,35 @@ class SignUpController extends GetxController {
 
   String dropDownValue = 'India';
   var items = [
-    'India',
-    'United States',
-    'Europe',
-    'china',
-    'United Kingdom',
-    " Cuba",
-    "	Havana",
-    "Cyprus",
-    "Nicosia",
-    "Czech ",
-    "Republic",
-    "Prague",
+    "india".tr,
+    "unitedStates".tr,
+    "europe".tr,
+    "unitedKingdom".tr,
+    "cuba".tr,
+    "havana".tr,
+    "cyprus".tr,
+    "nicosia".tr,
+    "czech".tr,
+    "republic".tr,
+    "prague".tr,
   ];
   emailValidation() {
     if (emailController.text.trim() == "") {
-      emailError = 'Please Enter email';
+      emailError = 'pleaseEnterEmail'.tr;
     } else {
       if (RegExp(
               r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
           .hasMatch(emailController.text)) {
         emailError = '';
       } else {
-        emailError = "Invalid email";
+        emailError = 'invalidEmail'.tr;
       }
     }
   }
 
   firstNameValidation() {
     if (firstnameController.text.trim() == "") {
-      firstError = 'Please Enter Firstname';
+      firstError = "pleaseEnterFirstname".tr;
     } else {
       firstError = "";
     }
@@ -83,7 +82,7 @@ class SignUpController extends GetxController {
 
   lastNameValidation() {
     if (lastnameController.text.trim() == "") {
-      lastError = 'Please Enter Lastname';
+      lastError = "pleaseEnterLastname".tr;
     } else {
       lastError = "";
     }
@@ -91,7 +90,7 @@ class SignUpController extends GetxController {
 
   cityNameValidation() {
     if (cityController.text.trim() == "") {
-      cityError = 'Please Enter city';
+      cityError = "pleaseEnterCity".tr;
     } else {
       cityError = "";
     }
@@ -99,7 +98,7 @@ class SignUpController extends GetxController {
 
   stateNameValidation() {
     if (stateController.text.trim() == "") {
-      stateError = 'Please Enter State';
+      stateError = "pleaseEnterState".tr;
     } else {
       stateError = "";
     }
@@ -115,7 +114,7 @@ class SignUpController extends GetxController {
 
   occupationNameValidation() {
     if (occupationController.text.trim() == "") {
-      occupationError = 'Please Enter Country';
+      occupationError = "pleaseEnterCountry".tr;
     } else {
       occupationError = "";
     }
@@ -123,7 +122,7 @@ class SignUpController extends GetxController {
 
   phoneValidation() {
     if (phoneController.text.trim() == "") {
-      phoneError = 'Please Enter phoneNumber';
+      phoneError = "pleaseEnterPhoneNumber".tr;
     } else {
       if (phoneController.text.length == 10) {
         phoneError = "";

@@ -135,10 +135,10 @@ class SearchJobScreen extends StatelessWidget {
                     color: ColorRes.containerColor,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: const Center(
+                  child: Center(
                     child: Text(
                       Strings.searchJobs,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: ColorRes.white,
                           fontWeight: FontWeight.w500,
                           fontSize: 14),
@@ -168,7 +168,6 @@ class SearchJobScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18),
               child: Container(
-                //margin: const EdgeInsets.symmetric(horizontal: 18),
                 height: 67,
                 width: 200,
                 decoration: BoxDecoration(

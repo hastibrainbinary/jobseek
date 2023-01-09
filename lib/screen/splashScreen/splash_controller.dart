@@ -1,20 +1,16 @@
 import 'package:get/get.dart';
 import 'package:jobseek/api/model/api_country_model.dart';
 
-class SplashController extends GetxController{
+class SplashController extends GetxController {
+  List<SearchCountry>? countryData = [];
 
+  List<String> allData = [];
 
-  List<SearchCountry>? countryData=[];
-
-
-  List<String> allData =[];
-
-  List<String> allDesignation=[
+  List<String> allDesignation = [
     "Admin Big Data",
     "Ansible Operations Engineer",
     "Artifactory Administrator",
     "Artificial intelligence / Machine Learning Engineer",
-    "Artificial Intelligence / Machine Learning Leader",
     "Artificial Intelligence / Machine Learning Sr.Leader",
     "Artificial intelligence Architect",
     "Artificial Intelligence Researcher",
@@ -89,8 +85,8 @@ class SplashController extends GetxController{
     "Data Analyst",
     "DATA ARCHITECT",
     "Data Engineer",
-    "DATA MODELER",""
-,    "DATA SCIENTIST",
+    "DATA MODELER",
+    "DATA SCIENTIST",
     "Data Scientist",
     "DATABASE ADMINISTRATOR",
     "Database Administrator",
@@ -113,7 +109,7 @@ class SplashController extends GetxController{
     "Entry Level Software Engineer",
     "Entry Level Web Developer",
     "Envoy Engineer",
-    "Falco Engineer",
+    "Falcon Engineer",
     "FluentD Engineer",
     "Fortify Engineer",
     "Flutter Developer",
@@ -190,8 +186,6 @@ class SplashController extends GetxController{
     "Puppet Engineer",
     "PyTest Engineer",
     "Python Developer",
-    "PYTHON DEVELOPER",
-    "Python Developer",
     "QA (QUALITY ASSURANCE) SPECIALIST",
     "QA Engineer",
     "React Developer",
@@ -235,13 +229,13 @@ class SplashController extends GetxController{
     "Unity Developer",
     "UX DESIGNER",
     "Vault Engineer",
-    "Web Designer (UI/UX Designer)",
+    "Web Designer ",
+    "UI/UX Designer",
     "Web Developer",
     "Web Developer",
     "WordPress Developer",
     "WORDPRESS DEVELOPER",
     "XL Deploy Engineer",
-    "Zabbix Enginee",
+    "Zabbix Engineer",
   ];
-
 }

@@ -35,7 +35,6 @@ class NotificationScreenU extends StatelessWidget {
                 const SizedBox(width: 80),
                 Text(
                   Strings.notification,
-
                   style: appTextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
@@ -58,17 +57,16 @@ class NotificationScreenU extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
-                 //SizedBox(width: Get.width - 135),
                 Obx(() => Padding(
-                  padding: const EdgeInsets.only(right: 15.0),
-                  child: FlutterSwitch(
-                      height: 27,
-                      width: 45,
-                      value: controller.isSwitchedSound.value,
-                      activeColor: ColorRes.blueColor,
-                      toggleSize: 20,
-                      onToggle: (value) => controller.onchangeSound(value)),
-                )),
+                      padding: const EdgeInsets.only(right: 15.0),
+                      child: FlutterSwitch(
+                          height: 27,
+                          width: 45,
+                          value: controller.isSwitchedSound.value,
+                          activeColor: ColorRes.blueColor,
+                          toggleSize: 20,
+                          onToggle: (value) => controller.onchangeSound(value)),
+                    )),
               ],
             ),
             const SizedBox(height: 20),
@@ -91,17 +89,17 @@ class NotificationScreenU extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
-                //SizedBox(width: Get.width - 145),
                 Obx(() => Padding(
-                  padding: const EdgeInsets.only(right: 15.0),
-                  child: FlutterSwitch(
-                      height: 27,
-                      width: 45,
-                      value: controller.isSwitchedVibrate.value,
-                      activeColor: ColorRes.blueColor,
-                      toggleSize: 20,
-                      onToggle: (value) => controller.onchangeVibrate(value)),
-                )),
+                      padding: const EdgeInsets.only(right: 15.0),
+                      child: FlutterSwitch(
+                          height: 27,
+                          width: 45,
+                          value: controller.isSwitchedVibrate.value,
+                          activeColor: ColorRes.blueColor,
+                          toggleSize: 20,
+                          onToggle: (value) =>
+                              controller.onchangeVibrate(value)),
+                    )),
               ],
             ),
             const SizedBox(height: 20),
@@ -124,7 +122,6 @@ class NotificationScreenU extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
-                //SizedBox(width: Get.width - 220),
                 Obx(
                   () => Padding(
                     padding: const EdgeInsets.only(right: 15.0),
@@ -152,7 +149,7 @@ class NotificationScreenU extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Text(
-                    'New service available',
+                    Strings.newServiceAvailable,
                     style: appTextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
@@ -160,17 +157,17 @@ class NotificationScreenU extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
-                //SizedBox(width: Get.width - 245),
                 Obx(() => Padding(
-                  padding: const EdgeInsets.only(right: 15.0),
-                  child: FlutterSwitch(
-                      height: 27,
-                      width: 45,
-                      value: controller.isSwitchedService.value,
-                      activeColor: ColorRes.blueColor,
-                      toggleSize: 20,
-                      onToggle: (value) => controller.onchangeService(value)),
-                )),
+                      padding: const EdgeInsets.only(right: 15.0),
+                      child: FlutterSwitch(
+                          height: 27,
+                          width: 45,
+                          value: controller.isSwitchedService.value,
+                          activeColor: ColorRes.blueColor,
+                          toggleSize: 20,
+                          onToggle: (value) =>
+                              controller.onchangeService(value)),
+                    )),
               ],
             ),
           ]),

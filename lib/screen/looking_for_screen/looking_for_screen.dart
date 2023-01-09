@@ -72,7 +72,7 @@ class LookingForScreen extends StatelessWidget {
                           onTap: () => controller.onChangeWantJobChoice(),
                           child: Obx(
                             () => lookingForYouBox(AssetRes.wantJob,
-                                "I want job", controller.isJob.value),
+                                "iWantJob".tr, controller.isJob.value),
                           ),
                         ),
                         InkWell(
@@ -80,7 +80,7 @@ class LookingForScreen extends StatelessWidget {
                           child: Obx(
                             () => lookingForYouBox(
                                 AssetRes.person,
-                                "I want an employee",
+                                "iWantEmployee".tr,
                                 controller.isEmployee.value),
                           ),
                         ),

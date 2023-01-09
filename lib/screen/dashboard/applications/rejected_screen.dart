@@ -4,6 +4,7 @@ import 'package:jobseek/common/widgets/back_button.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 
 // ignore: must_be_immutable
 class RejectedScreen extends StatelessWidget {
@@ -49,7 +50,7 @@ class RejectedScreen extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(
-                    'Application',
+                    Strings.applications,
                     style: appTextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w500,
@@ -121,7 +122,7 @@ class RejectedScreen extends StatelessWidget {
                             ),
                             child: Center(
                               child: Text(
-                                "Application Rejected",
+                                Strings.applicationRejected,
                                 style: appTextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w500,
@@ -149,7 +150,7 @@ class RejectedScreen extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("Salary",
+                              Text(Strings.salary,
                                   style: appTextStyle(
                                       color: ColorRes.black.withOpacity(0.8),
                                       fontSize: 12,
@@ -166,7 +167,7 @@ class RejectedScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Type",
+                                Strings.type,
                                 style: appTextStyle(
                                     color: ColorRes.black.withOpacity(0.8),
                                     fontSize: 12,
@@ -185,7 +186,7 @@ class RejectedScreen extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("Location",
+                              Text(Strings.location,
                                   style: appTextStyle(
                                       color: ColorRes.black.withOpacity(0.8),
                                       fontSize: 12,
@@ -227,7 +228,7 @@ class RejectedScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      child: Text("Discover another job",
+                      child: Text(Strings.discoverAnotherJob,
                           style: appTextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 18,

@@ -11,9 +11,9 @@ class ManagerApplicationScreenController extends GetxController
 
   RxInt selectedJobs2 = 0.obs;
   RxList jobs2 = [
-    "All Vacancies",
-    "Active",
-    "Inactive",
+    "allVacancies".tr,
+    "active".tr,
+    "inactive".tr,
   ].obs;
 
   /*search(String value)async{

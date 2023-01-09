@@ -158,7 +158,7 @@ class ProfileScreen extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.only(left: 10),
                                       child: Text(
-                                        "Name Of Company",
+                                        Strings.nameOfCompany,
                                         style: appTextStyle(
                                           color:
                                               ColorRes.black.withOpacity(0.6),
@@ -209,7 +209,7 @@ class ProfileScreen extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 5),
                                     child: Text(
-                                      "Company Email",
+                                      Strings.companyEmail,
                                       style: appTextStyle(
                                           color: ColorRes.grey, fontSize: 14),
                                     ),
@@ -264,7 +264,7 @@ class ProfileScreen extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 5),
                                     child: Text(
-                                      "Established date",
+                                      Strings.establishedDate,
                                       style: appTextStyle(
                                           color: ColorRes.grey, fontSize: 14),
                                     ),
@@ -317,7 +317,7 @@ class ProfileScreen extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 5),
                                     child: Text(
-                                      "Country",
+                                      Strings.country,
                                       style: appTextStyle(
                                           color: ColorRes.grey, fontSize: 14),
                                     ),
@@ -372,7 +372,7 @@ class ProfileScreen extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 5),
                                     child: Text(
-                                      "Company Address",
+                                      Strings.companyAddress,
                                       style: appTextStyle(
                                           color: ColorRes.grey, fontSize: 14),
                                     ),
@@ -435,7 +435,7 @@ class ProfileScreen extends StatelessWidget {
                                           ),
                                         ),
                                         child: Text(
-                                          "Edit",
+                                          Strings.edit,
                                           style: appTextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.w500,

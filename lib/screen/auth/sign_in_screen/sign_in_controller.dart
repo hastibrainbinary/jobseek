@@ -55,14 +55,14 @@ class SignInScreenController extends GetxController {
 
   emailValidation() {
     if (emailController.text.trim() == "") {
-      emailError = 'Please enter email';
+      emailError = 'pleaseEnterEmail'.tr;
     } else {
       if (RegExp(
               r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
           .hasMatch(emailController.text)) {
         emailError = '';
       } else {
-        emailError = "Invalid email";
+        emailError = 'invalidEmail'.tr;
       }
     }
     update(["showEmail"]);

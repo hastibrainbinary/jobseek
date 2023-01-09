@@ -228,11 +228,11 @@ class ManagerApplicationScreen extends StatelessWidget {
                                                             AssetRes
                                                                 .successImage),
                                                       ),
-                                                      const Text(
+                                                      Text(
                                                         textAlign:
                                                             TextAlign.center,
                                                         Strings.empty,
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                             color: ColorRes
                                                                 .containerColor,
                                                             fontSize: 20,
@@ -291,7 +291,8 @@ class ManagerApplicationScreen extends StatelessWidget {
                                                                 ]),
                                                           ),
                                                           child: Text(
-                                                            "Create Vacancies Now",
+                                                            Strings
+                                                                .createVacanciesNow,
                                                             style: appTextStyle(
                                                                 fontWeight:
                                                                     FontWeight

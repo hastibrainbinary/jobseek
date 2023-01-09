@@ -55,7 +55,6 @@ class CreateVacanciesController extends GetxController implements GetxService {
         isCategoryValidate.value == false &&
         isStatusValidate.value == false) {
       Get.to(RequirementsScreen());
-
     } else {
       update(["profile"]);
       update(["Location"]);
@@ -96,7 +95,6 @@ class CreateVacanciesController extends GetxController implements GetxService {
       isTypeValidate.value = false;
       isCategoryValidate.value = false;
       isStatusValidate.value = false;
-
       companyName = "";
       addRequirementsList = [];
     }
@@ -253,38 +251,38 @@ class CreateVacanciesController extends GetxController implements GetxService {
   String? dropDownValueLocation;
 
   var items = [
-    'India',
-    'United States',
-    'Europe',
-    'china',
-    'United Kingdom',
+    "india".tr,
+    "unitedStates".tr,
+    "europe".tr,
+    "unitedKingdom".tr,
+    "cuba".tr,
   ];
 
   String? dropDownValueType;
 
   var items1 = [
-    'Part time',
-    'Freelancer',
-    'Remote',
-    'Full time',
+    "partTime".tr,
+    "freelancer".tr,
+    "remote".tr,
+    "fullTime".tr,
   ];
   String? dropDownValueCategory;
 
   var itemsCategory = [
-    'Writer',
-    'Design',
-    'Finance',
-    'Software',
-    'Database Manager',
-    'Product Manager',
-    'Full-Stack Developer',
-    'Data Scientist',
-    'Web Developers',
-    'Networking',
-    'Cyber Security',
+    "writer".tr,
+    "design".tr,
+    "finance".tr,
+    "software".tr,
+    "databaseManager".tr,
+    "productManager".tr,
+    "fullStackDeveloper".tr,
+    "dataScientist".tr,
+    "webDevelopers".tr,
+    "networking".tr,
+    "cyberSecurity".tr,
   ];
   var itemsStatus = [
-    'Active',
-    'Inactive',
+    "active".tr,
+    "inactive".tr,
   ];
 }

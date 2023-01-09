@@ -21,10 +21,9 @@ class GoogleSignupController extends GetxController {
   });
   @override
   void onInit() {
-
-      if (kDebugMode) {
-        print("********************************");
-      }
+    if (kDebugMode) {
+      print("********************************");
+    }
 
     emailController.text = email;
     firstnameController.text = firstname;
@@ -112,21 +111,21 @@ class GoogleSignupController extends GetxController {
 
   emailValidation() {
     if (emailController.text.trim() == "") {
-      emailError = 'Please enter email';
+      emailError = 'pleaseEnterEmail'.tr;
     } else {
       if (RegExp(
               r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
           .hasMatch(emailController.text)) {
         emailError = '';
       } else {
-        emailError = "Invalid email";
+        emailError = 'invalidEmail'.tr;
       }
     }
   }
 
   firstNameValidation() {
     if (firstnameController.text.trim() == "") {
-      firstError = 'Please enter Firstname';
+      firstError = "pleaseEnterFirstname".tr;
     } else {
       firstError = "";
     }
@@ -134,7 +133,7 @@ class GoogleSignupController extends GetxController {
 
   lastNameValidation() {
     if (lastnameController.text.trim() == "") {
-      lastError = 'Please enter Lastname';
+      lastError = "pleaseEnterLastname".tr;
     } else {
       lastError = "";
     }
@@ -142,7 +141,7 @@ class GoogleSignupController extends GetxController {
 
   cityNameValidation() {
     if (cityController.text.trim() == "") {
-      cityError = 'Please enter city';
+      cityError = "pleaseEnterCity".tr;
     } else {
       cityError = "";
     }
@@ -222,12 +221,10 @@ class GoogleSignupController extends GetxController {
         .doc(userUid)
         .set(map)
         .catchError((e) {
-
-        if (kDebugMode) {
-          // ignore: prefer_interpolation_to_compose_strings
-          print('...error...' + e);
-        }
-
+      if (kDebugMode) {
+        // ignore: prefer_interpolation_to_compose_strings
+        print('...error...' + e);
+      }
     });
   }
 
@@ -245,9 +242,9 @@ class GoogleSignupController extends GetxController {
 
     // singUp(emailController.text, passwordController.text);
 
-      if (kDebugMode) {
-        print("GO TO HOME PAGE");
-      }
+    if (kDebugMode) {
+      print("GO TO HOME PAGE");
+    }
 
     await addDataInFirebase(userUid: uid, map: map2);
 
@@ -277,18 +274,17 @@ class GoogleSignupController extends GetxController {
 
   String dropDownValue = 'India';
   var items = [
-    'India',
-    'United States',
-    'Europe',
-    'china',
-    'United Kingdom',
-    " Cuba",
-    "	Havana",
-    "Cyprus",
-    "Nicosia",
-    "Czech ",
-    "Republic",
-    "Prague",
+    "india".tr,
+    "unitedStates".tr,
+    "europe".tr,
+    "unitedKingdom".tr,
+    "cuba".tr,
+    "havana".tr,
+    "cyprus".tr,
+    "nicosia".tr,
+    "czech".tr,
+    "republic".tr,
+    "prague".tr,
   ];
   changeDropdwon({required String val}) {
     dropDownValue = val;

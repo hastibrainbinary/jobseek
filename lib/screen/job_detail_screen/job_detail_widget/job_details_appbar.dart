@@ -23,13 +23,11 @@ Widget jobDetailsAppBar(JobDetailsUploadCvController controller) {
                   onTap: () {
                     Get.back();
                     controller.filepath.value = "";
-
                   },
                   child: Container(
                     height: 40,
                     width: 40,
                     padding: const EdgeInsets.only(left: 10),
-                    // margin: const EdgeInsets.only(left: 10),
                     decoration: BoxDecoration(
                       color: ColorRes.logoColor,
                       borderRadius: BorderRadius.circular(10),
@@ -67,7 +65,7 @@ Widget jobDetailsAppBar(JobDetailsUploadCvController controller) {
                 child: Text(
                   Strings.jobDetails,
                   style: appTextStyle(
-                    color: Colors.black,
+                    color: ColorRes.black,
                     fontSize: 20,
                   ),
                 ),
@@ -79,6 +77,7 @@ Widget jobDetailsAppBar(JobDetailsUploadCvController controller) {
     ],
   );
 }
+
 Widget jobDetailsSuccessAppBar(BuildContext context) {
   return Column(
     children: [
@@ -93,15 +92,19 @@ Widget jobDetailsSuccessAppBar(BuildContext context) {
               children: [
                 InkWell(
                   onTap: () {
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-                      return DashBoardScreen();
-                    },));
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return DashBoardScreen();
+                        },
+                      ),
+                    );
                   },
                   child: Container(
                     height: 40,
                     width: 40,
                     padding: const EdgeInsets.only(left: 10),
-                    // margin: const EdgeInsets.only(left: 10),
                     decoration: BoxDecoration(
                       color: ColorRes.logoColor,
                       borderRadius: BorderRadius.circular(10),
@@ -139,7 +142,7 @@ Widget jobDetailsSuccessAppBar(BuildContext context) {
                 child: Text(
                   Strings.jobDetails,
                   style: appTextStyle(
-                    color: Colors.black,
+                    color: ColorRes.black,
                     fontSize: 20,
                   ),
                 ),

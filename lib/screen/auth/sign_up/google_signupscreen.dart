@@ -154,7 +154,7 @@ class GoogleSignupScreen extends StatelessWidget {
                               controller: controller.phoneController,
                               onChanged: controller.onChanged,
                               decoration: InputDecoration(
-                                  // prefix:countryCodePicker(context) ,
+
                                   hintText: 'Phone number',
                                   fillColor: ColorRes.white,
                                   filled: true,

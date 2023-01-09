@@ -261,7 +261,7 @@ class JobDetailScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("Type",
+                            Text(Strings.type,
                                 style: appTextStyle(
                                     color: ColorRes.black,
                                     fontSize: 15,
@@ -277,7 +277,7 @@ class JobDetailScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("Location",
+                            Text(Strings.location,
                                 style: appTextStyle(
                                     color: ColorRes.black,
                                     fontSize: 15,

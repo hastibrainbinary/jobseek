@@ -78,7 +78,6 @@ class JobRecommendation extends StatelessWidget {
                           margin: const EdgeInsets.only(right: 10),
                           height: 32,
                           padding: const EdgeInsets.symmetric(horizontal: 10),
-                          // width: 70,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                               border: Border.all(

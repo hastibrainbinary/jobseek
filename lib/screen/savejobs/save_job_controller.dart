@@ -1,6 +1,7 @@
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_disposable.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:get/get_utils/get_utils.dart';
 import 'package:jobseek/utils/asset_res.dart';
 
 class SaveJobController extends GetxController implements GetxService {
@@ -22,18 +23,18 @@ class SaveJobController extends GetxController implements GetxService {
 
   RxInt selectedJobs2 = 0.obs;
   RxList jobs2 = [
-    "All Job",
-    "Writer",
-    "Design",
-    "Finance",
-    'Software',
-    'Database Manager',
-    'Product Manager',
-    'Full-Stack Developer',
-    'Data Scientist',
-    'Web Developers',
-    'Networking',
-    'Cyber Security'
+    "allJob".tr,
+    "writer".tr,
+    "design".tr,
+    "finance".tr,
+    "software".tr,
+    "databaseManager".tr,
+    "productManager".tr,
+    "fullStackDeveloper".tr,
+    "dataScientist".tr,
+    "webDevelopers".tr,
+    "networking".tr,
+    "cyberSecurity".tr,
   ].obs;
 
   onTapJobs2(int index) {

@@ -149,13 +149,13 @@ class _ResumeScreenState extends State<ResumeScreen> {
                     ),
                   ),
                 ),
-                const Positioned(
+                 Positioned(
                   top: 10,
                   left: 150,
                   child: Center(
                     child: Text(
                       Strings.seeResume,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 20,
                           color: ColorRes.white),

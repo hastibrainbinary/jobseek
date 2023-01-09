@@ -45,46 +45,6 @@ class HomeScreen extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  /* const SizedBox(height: 23),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 18),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              color: ColorRes.white2,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(8),
-                              ),
-                            ),
-                            child: TextField(
-                              readOnly: true,
-                              //controller: controller.searchNewController,
-                              onChanged: (value) {},
-                              onTap: () {
-                                Get.to(() => SearchJobScreen());
-                              },
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                suffixIcon: const Icon(Icons.search,
-                                    color: ColorRes.grey),
-                                hintText: "Search",
-                                hintStyle: appTextStyle(
-                                    fontSize: 14,
-                                    color: ColorRes.grey,
-                                    fontWeight: FontWeight.w500),
-                                contentPadding:
-                                    const EdgeInsets.only(left: 20, top: 13),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-*/
-                  //searchArea(),
                   InkWell(
                     onTap: () {
                       Navigator.push(
@@ -182,7 +142,6 @@ class HomeScreen extends StatelessWidget {
                               () => Container(
                                 margin: const EdgeInsets.only(right: 10),
                                 height: 32,
-                                // width: 70,
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 10),
                                 alignment: Alignment.center,

@@ -223,7 +223,7 @@ class SettingsScreenU extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (con) => const LocalizationScreen(),
+                    builder: (con) => LocalizationScreen(),
                   ),
                 );
               },

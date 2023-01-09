@@ -136,6 +136,18 @@ Widget searchAreaChatM() {
                 chatBoxController.searchText.value = value;
                 chatBoxController.update(["searchChat"]);
               },
+              /*    if (jrController.searchText.value.isNotEmpty) {
+  jrController.documents =
+  jrController.documents.where((element) {
+  element
+      .get('CompanyName')
+      .toString()
+      .toLowerCase()
+      .contains(
+  jrController.searchText.value.toLowerCase());
+}).toList();
+}         */
+
               /*onChanged: (val){
                 jrController.allJob = FirebaseFirestore.instance.collection("allPost").where(val , isGreaterThanOrEqualTo: "Position"
                   // e.toString().toLowerCase().contains(val.toString().toLowerCase());
@@ -156,21 +168,6 @@ Widget searchAreaChatM() {
             ),
           ),
         ),
-        // const SizedBox(width: 20),
-        // Container(
-        //   height: 40,
-        //   width: 40,
-        //   alignment: Alignment.center,
-        //   decoration: const BoxDecoration(
-        //     borderRadius: BorderRadius.all(Radius.circular(10)),
-        //     color: ColorRes.logoColor,
-        //   ),
-        //   child: Image.asset(
-        //     AssetRes.menuIcon,
-        //     color: ColorRes.containerColor,
-        //     height: 15,
-        //   ),
-        // ),
       ],
     ),
   );

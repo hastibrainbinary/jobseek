@@ -3,6 +3,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:jobseek/localization/localization_file.dart';
 import 'package:jobseek/screen/dashboard/applications/applications_screen.dart';
 import 'package:jobseek/screen/first_page/first_screen.dart';
 import 'package:jobseek/screen/job_detail_screen/job_detail_screen.dart';
@@ -25,7 +26,6 @@ import 'package:jobseek/screen/update_vacancies_requirements/update_vacancies_re
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/app_res.dart';
 import 'package:jobseek/utils/pref_keys.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,6 +55,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
+      locale: LocalizationService.locale,
+      fallbackLocale: LocalizationService.fallbackLocale,
+      translations: LocalizationService(),
       home: const SplashScreen(),
       //const SplashScreen(),
 

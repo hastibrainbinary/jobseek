@@ -66,7 +66,6 @@ class SettingScreenM extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 20),
-
             InkWell(
               onTap: () {
                 Navigator.push(
@@ -123,7 +122,7 @@ class SettingScreenM extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (con) => const LocalizationScreenM(),
+                    builder: (con) => LocalizationScreenM(),
                   ),
                 );
               },

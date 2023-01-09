@@ -334,9 +334,9 @@ class ResetPasswordScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(4),
                           ),
                         ),
-                        const Text(
+                         Text(
                           Strings.rememberMe,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 13,
                               color: ColorRes.black),

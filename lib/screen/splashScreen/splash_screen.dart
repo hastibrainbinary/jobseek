@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jobseek/api/api_country.dart';
-import 'package:jobseek/screen/introducation_screen/introducation_screen.dart';
+import 'package:jobseek/screen/intro/introducation_screen.dart';
 import 'package:jobseek/screen/splashScreen/splash_controller.dart';
 import 'package:jobseek/service/pref_services.dart';
 import 'package:jobseek/utils/asset_res.dart';
@@ -41,9 +41,6 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void splash() async {
-    /*String token = PrefService.getString(PrefKeys.userId);
-    String rol = PrefService.getString(PrefKeys.rol);
-    bool company = PrefService.getBool(PrefKeys.company);*/
     await Future.delayed(const Duration(seconds: 3), () {
       return Get.offAll(IntroductionScreen());
     });

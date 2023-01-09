@@ -36,3 +36,20 @@ Widget logo() {
     ),
   );
 }
+
+Widget indicator(bool isActive, Color activeIndicatorColor) {
+  return SizedBox(
+    height: 9,
+    width: 15,
+    child: AnimatedContainer(
+      duration: const Duration(milliseconds: 150),
+      margin: const EdgeInsets.symmetric(horizontal: 3.0),
+      height: 8,
+      width: 12,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        color: isActive ? activeIndicatorColor : Colors.grey,
+      ),
+    ),
+  );
+}

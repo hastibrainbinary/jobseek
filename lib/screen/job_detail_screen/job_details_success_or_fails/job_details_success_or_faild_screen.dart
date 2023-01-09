@@ -178,9 +178,6 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                           height: 50,
                           width: Get.width,
                           alignment: Alignment.center,
-                          // padding: const EdgeInsets.symmetric(vertical: 12),
-                          //  margin:
-                          //      const EdgeInsets.only(right: 18, left: 18, top: 10),
                           decoration: const BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(10)),
                             gradient: LinearGradient(colors: [
@@ -210,7 +207,6 @@ class JobDetailsSuccessOrFailedScreen extends StatelessWidget {
                           height: 50,
                           width: Get.width,
                           alignment: Alignment.center,
-                          // padding: const EdgeInsets.symmetric(vertical: 12),
                           margin: const EdgeInsets.only(top: 10, bottom: 30),
                           decoration: BoxDecoration(
                             borderRadius: const BorderRadius.all(

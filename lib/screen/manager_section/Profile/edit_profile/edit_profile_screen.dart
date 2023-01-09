@@ -8,6 +8,7 @@ import 'package:jobseek/screen/manager_section/Profile/profile_controller.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 
 // ignore: must_be_immutable
 class EditProfileScreen extends StatelessWidget {
@@ -327,7 +328,7 @@ class EditProfileScreen extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(left: 10),
                               child: Text(
-                                "Name Of Company",
+                                Strings.nameOfCompany,
                                 style: appTextStyle(
                                   color: ColorRes.black.withOpacity(0.6),
                                   fontSize: 14,
@@ -375,7 +376,7 @@ class EditProfileScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(left: 5),
                             child: Text(
-                              "Company Email",
+                              Strings.companyEmail,
                               style: appTextStyle(
                                   color: ColorRes.grey, fontSize: 14),
                             ),
@@ -425,7 +426,7 @@ class EditProfileScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(left: 5),
                             child: Text(
-                              "Established date",
+                              Strings.establishedDate,
                               style: appTextStyle(
                                   color: ColorRes.grey, fontSize: 14),
                             ),
@@ -480,7 +481,7 @@ class EditProfileScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(left: 5),
                             child: Text(
-                              "Country",
+                              Strings.country,
                               style: appTextStyle(
                                   color: ColorRes.grey, fontSize: 14),
                             ),
@@ -546,7 +547,7 @@ class EditProfileScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(left: 5),
                             child: Text(
-                              "Company Address",
+                              Strings.companyAddress,
                               style: appTextStyle(
                                   color: ColorRes.grey, fontSize: 14),
                             ),
@@ -587,39 +588,7 @@ class EditProfileScreen extends StatelessWidget {
                       GetBuilder<ProfileController>(
                           id: "Organization",
                           builder: (controller) {
-                            return /*(controller.companyNameController.text ==
-                                        '' ||
-                                    controller.companyEmailController.text ==
-                                        '' ||
-                                    controller.dateController.text == '' ||
-                                    controller.countryController.text == '' ||
-                                    controller.companyAddressController.text ==
-                                        '')
-                                ? InkWell(
-                                    child: Container(
-                                      height: 50,
-                                      width: MediaQuery.of(context).size.width,
-                                      alignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        gradient: LinearGradient(
-                                          colors: [
-                                            ColorRes.gradientColor
-                                                .withOpacity(0.2),
-                                            ColorRes.containerColor
-                                                .withOpacity(0.4)
-                                          ],
-                                        ),
-                                      ),
-                                      child: Text("Save Changes",
-                                          style: appTextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w500,
-                                              color: ColorRes.white)),
-                                    ),
-                                  )
-                                :*/
-                                InkWell(
+                            return InkWell(
                               // dashboard write
                               onTap: controller.onTapSubmit,
                               child: Container(

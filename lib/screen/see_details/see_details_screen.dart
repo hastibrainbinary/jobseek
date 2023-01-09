@@ -78,9 +78,9 @@ class SeeDetailsScreen extends StatelessWidget {
                             if (args['resumeUrl'] != null) {
                               var url = Uri.parse(args['resumeUrl']);
 
-                                if (kDebugMode) {
-                                  print(url);
-                                }
+                              if (kDebugMode) {
+                                print(url);
+                              }
                               // <-- 1
                               var response = await get(url); // <--2
                               var documentDirectory =

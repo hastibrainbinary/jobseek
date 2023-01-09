@@ -32,7 +32,7 @@ class FirstPageScreenM extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(
-                height: 10,
+                height:40,
               ),
               Padding(
                 padding: const EdgeInsets.all(18.0),

@@ -114,7 +114,8 @@ class ScheduleInterviewScreen extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          "Application Pending",
+                          Strings.applicationPending,
+
                           style: appTextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w500,
@@ -156,7 +157,8 @@ class ScheduleInterviewScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Type",
+                      Text(Strings.type,
+
                           style: appTextStyle(
                               color: ColorRes.black.withOpacity(0.8),
                               fontSize: 12,
@@ -220,7 +222,8 @@ class ScheduleInterviewScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              child: Text("Waiting for review",
+              child: Text(
+                  Strings.waitingForReview,
                   style: appTextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 18,

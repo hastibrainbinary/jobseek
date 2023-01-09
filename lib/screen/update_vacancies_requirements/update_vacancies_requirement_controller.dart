@@ -180,13 +180,7 @@ class UpdateVacanciesRequirementController extends GetxController {
     } else {
       isLocationValidate.value = false;
     }
-    //  if (dropDownValueLocation.value.isEmpty ||
-    //      dropDownValueLocation.value == "")
-    // {
-    //   isLocationValidate.value = true;
-    // } else {
-    //   isLocationValidate.value = false;
-    // }
+
     if (typeController.text.isEmpty) {
       isTypeValidate.value = true;
     } else {
@@ -215,8 +209,8 @@ class UpdateVacanciesRequirementController extends GetxController {
     'Europe',
     'china',
     'United Kingdom',
-    " Cuba",
-    "	Havana",
+    "Cuba",
+    "Havana",
     "Cyprus",
     "Nicosia",
     "Czech ",

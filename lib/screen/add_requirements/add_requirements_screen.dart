@@ -39,7 +39,7 @@ class RequirementsScreen extends StatelessWidget {
                     ),
                     SizedBox(width: Get.width / 10),
                     Text(
-                      'Add Requirements',
+                      Strings.addRequirements,
                       style: appTextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
@@ -52,7 +52,7 @@ class RequirementsScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 18, right: 18),
                   child: Text(
-                    'Requirements',
+                    Strings.requirements,
                     style: appTextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -193,7 +193,6 @@ class RequirementsScreen extends StatelessWidget {
           ],
         ),
       ),
-
     );
   }
 }

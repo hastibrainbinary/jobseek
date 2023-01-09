@@ -6,6 +6,7 @@ import 'package:jobseek/screen/looking_for_screen/looking_for_screen.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/asset_res.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 
 class AppliesLogoScreen extends StatelessWidget {
   const AppliesLogoScreen({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class AppliesLogoScreen extends StatelessWidget {
           const SizedBox(height: 50),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18.0),
-            child:logo(),
+            child: logo(),
           ),
           const SizedBox(height: 40),
           const Center(
@@ -68,10 +69,10 @@ class AppliesLogoScreen extends StatelessWidget {
                   color: ColorRes.containerColor,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: const Center(
+                child: Center(
                   child: Text(
-                    "Register for free",
-                    style: TextStyle(
+                    Strings.registerForFree,
+                    style: const TextStyle(
                         color: ColorRes.white,
                         fontWeight: FontWeight.w500,
                         fontSize: 14),
@@ -85,7 +86,7 @@ class AppliesLogoScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Already have an account?",
+                Strings.alreadyHaveAccount,
                 style: appTextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 15,
@@ -93,11 +94,13 @@ class AppliesLogoScreen extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (con) => const SigninScreenU()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (con) => const SigninScreenU()));
                 },
                 child: Text(
-                  'Login',
+                  Strings.login,
                   style: appTextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 16,

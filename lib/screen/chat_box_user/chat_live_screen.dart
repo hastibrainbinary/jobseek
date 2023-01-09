@@ -214,18 +214,6 @@ class ChatLiveScreen extends StatelessWidget {
                           ? const SizedBox()
                           : Column(
                               children: [
-                                /* SizedBox(
-                                    width: Get.width,
-                                    height: 35,
-                                    child: Center(
-                                      child: Text(
-                                        controller.timeAgo(data['time'].toDate()),
-                                        style: TextStyle(
-                                          color: Colors.green.withOpacity(0.5),
-                                        ),
-                                      ),
-                                    ),
-                                  ),*/
                                 Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment:
@@ -233,8 +221,6 @@ class ChatLiveScreen extends StatelessWidget {
                                           ? MainAxisAlignment.end
                                           : MainAxisAlignment.start,
                                   children: [
-                                    // Text(controller.data['time'].toString(),style: sfProTextReguler(fontSize: 12,color:ColorRes.colorF0F0F0 ),),
-
                                     const SizedBox(
                                       width: 20,
                                     ),
@@ -256,13 +242,7 @@ class ChatLiveScreen extends StatelessWidget {
                                               : const LinearGradient(colors: [
                                                   Color(0xFFEEEBF4),
                                                   Color(0xFFEEEBF4),
-                                                ])
-                                          /* color: data['senderUid']
-                                          .toString() ==
-                                          userUid
-                                          ? Colors.green
-                                          : Colors.lightBlue*/
-                                          ),
+                                                ])),
                                       child: Text(
                                         data['content'].toString(),
                                         style: data['senderUid'].toString() ==
@@ -285,7 +265,6 @@ class ChatLiveScreen extends StatelessWidget {
                             );
                       if ((index + 1) == docementSnapshot.length) {
                         return Column(
-                          // mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             const SizedBox(
@@ -345,7 +324,6 @@ class ChatLiveScreen extends StatelessWidget {
                                       body: "Massage",
                                       fcmTokens: [
                                     deviceToken.toString(),
-                                    // PrefService.getString(PrefKeys.deviceToken),
                                   ]);
                               NotificationService.sendNotification(
                                   notification);

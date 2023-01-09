@@ -31,7 +31,7 @@ Widget detailBox(text, values) {
           child: Text(
             text,
             style: appTextStyle(
-                color: Colors.black, fontSize: 12, fontWeight: FontWeight.w400),
+                color: ColorRes.black, fontSize: 12, fontWeight: FontWeight.w400),
           ),
         ),
      /*   PopupMenuButton(

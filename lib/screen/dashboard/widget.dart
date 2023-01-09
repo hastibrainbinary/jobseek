@@ -9,7 +9,9 @@ Future alertU(context) {
       context: context,
       builder: (context) {
         return AlertDialog(
-          content: const Text("Do you want to Exit?"),
+          content: Text(
+            Strings.doYouWantToExit,
+          ),
           actions: <Widget>[
             ElevatedButton(
               style: ButtonStyle(
@@ -29,8 +31,7 @@ Future alertU(context) {
                 backgroundColor:
                     MaterialStateProperty.all<Color>(ColorRes.containerColor),
               ),
-              child: Text(
-                  Strings.exit,
+              child: Text(Strings.exit,
                   style: appTextStyle(color: ColorRes.white, fontSize: 15)),
               onPressed: () async {
                 exit(0);

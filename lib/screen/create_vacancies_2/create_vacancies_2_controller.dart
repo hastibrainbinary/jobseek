@@ -45,7 +45,7 @@ class CreateVacancies2Controller extends GetxController implements GetxService {
 
   RxString dropDownValueLocation = "".obs;
 
-  void onChanged(String value){
+  void onChanged(String value) {
     update(["colorChange"]);
   }
 

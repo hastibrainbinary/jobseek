@@ -6,6 +6,8 @@ import 'package:jobseek/screen/settings/appearance/appearance_controller.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/color_res.dart';
 
+import '../../../utils/string.dart';
+
 class AppearanceScreenU extends StatelessWidget {
   const AppearanceScreenU({Key? key}) : super(key: key);
 
@@ -33,7 +35,8 @@ class AppearanceScreenU extends StatelessWidget {
                 ),
                 const SizedBox(width: 67),
                 Text(
-                  'Appearance',
+                  Strings.appearance,
+
                   style: appTextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,

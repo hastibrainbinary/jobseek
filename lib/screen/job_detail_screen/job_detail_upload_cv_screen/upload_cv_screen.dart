@@ -210,6 +210,7 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                               )
                             : const SizedBox(),
                       ),
+
                       GestureDetector(
                         onTap: () {
                           (controller.pdfUrl != "" || controller.pdfUrl == null)
@@ -244,40 +245,6 @@ class JobDetailsUploadCvScreen extends StatelessWidget {
                         ),
                       ),
 
-                      ///uploading loader
-                      /*         GestureDetector(
-                         onTap: () {
-                           controller.applyResume();
-                         },
-
-                         child: Container(
-                          width: Get.width,
-                          padding: const EdgeInsets.symmetric(vertical: 35),
-                          margin: const EdgeInsets.only(top: 10),
-                          decoration: BoxDecoration(
-                            color: ColorRes.white,
-                            borderRadius: const BorderRadius.all(Radius.circular(15)),
-                            border: Border.all(color: ColorRes.borderColor),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              CircularProgressIndicator(
-                                  color: ColorRes.containerColor,
-                                  backgroundColor:
-                                      ColorRes.containerColor.withOpacity(0.3)),
-                              const SizedBox(height: 20),
-                              Text(Strings.uploading,
-                                  style: appTextStyle(
-                                      color: ColorRes.containerColor,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500))
-                            ],
-                          ),
-                      ),
-                       ),*/
-                      // const Spacer(),
                       const SizedBox(height: 50),
                       GestureDetector(
                         onTap: () {

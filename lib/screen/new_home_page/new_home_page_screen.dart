@@ -32,10 +32,10 @@ class HomePageNewScreenU extends StatelessWidget {
           children: [
             const SizedBox(height: 60),
             Row(children: [
-             Padding(
-               padding: const EdgeInsets. symmetric(horizontal: 18.0),
-               child: logo(),
-             ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                child: logo(),
+              ),
               const Spacer(),
               Center(
                 child: Text(
@@ -57,7 +57,6 @@ class HomePageNewScreenU extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: const InkWell(
-
                   child: Icon(
                     Icons.notifications,
                     color: ColorRes.containerColor,
@@ -99,21 +98,6 @@ class HomePageNewScreenU extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // const SizedBox(width: 20),
-                  // Container(
-                  //   height: 40,
-                  //   width: 40,
-                  //   alignment: Alignment.center,
-                  //   decoration: const BoxDecoration(
-                  //     borderRadius: BorderRadius.all(Radius.circular(10)),
-                  //     color: ColorRes.logoColor,
-                  //   ),
-                  //   child: Image.asset(
-                  //     AssetRes.menuIcon,
-                  //     color: ColorRes.containerColor,
-                  //     height: 15,
-                  //   ),
-                  // ),
                 ],
               ),
             ),
@@ -214,10 +198,10 @@ class HomePageNewScreenU extends StatelessWidget {
                       color: ColorRes.containerColor,
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: const Center(
+                    child: Center(
                       child: Text(
-                        "Register",
-                        style: TextStyle(
+                        Strings.register,
+                        style: const TextStyle(
                             color: ColorRes.white,
                             fontWeight: FontWeight.w500,
                             fontSize: 14),
@@ -237,10 +221,10 @@ class HomePageNewScreenU extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: ColorRes.logoColor,
                         borderRadius: BorderRadius.circular(10)),
-                    child: const Center(
+                    child: Center(
                       child: Text(
-                        "Log in",
-                        style: TextStyle(
+                        Strings.login,
+                        style: const TextStyle(
                             color: ColorRes.containerColor,
                             fontWeight: FontWeight.w500,
                             fontSize: 14),
@@ -363,10 +347,10 @@ class HomePageNewScreenU extends StatelessWidget {
                     color: ColorRes.containerColor,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: const Center(
+                  child: Center(
                     child: Text(
-                      "Search jobs",
-                      style: TextStyle(
+                      Strings.searchJobs,
+                      style: const TextStyle(
                           color: ColorRes.white,
                           fontWeight: FontWeight.w500,
                           fontSize: 14),

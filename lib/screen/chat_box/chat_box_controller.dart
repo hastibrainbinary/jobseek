@@ -24,9 +24,9 @@ class ChatBoxController extends GetxController implements GetxService {
   RxString searchText = ''.obs;
 
   RxList jobs = [
-    "All chat",
-    "Unread",
-    "Archived",
+    "allChat".tr,
+    "unread".tr,
+    "archived".tr,
   ].obs;
 
   onTapJobs(int index) {

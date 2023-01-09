@@ -37,7 +37,6 @@ class ManagerHomeScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-
                     logo(),
                     InkWell(
                       onTap: () {
@@ -343,7 +342,7 @@ class ManagerHomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  Strings.RecentPeopleApplication,
+                  Strings.recentPeopleApplication,
                   style: appTextStyle(
                       color: ColorRes.black,
                       fontWeight: FontWeight.w600,

@@ -1,10 +1,13 @@
 import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 // ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
+import 'package:jobseek/service/pref_services.dart';
+import 'package:jobseek/utils/pref_keys.dart';
 
 class NotificationService {
   static Map<String, dynamic> noti = {};
@@ -57,6 +60,11 @@ class NotificationService {
           "body": notification.body,
         };
       }
+      FirebaseFirestore.instance.collection("Notification").doc().set({
+        "title": notification?.title,
+        "body": notification?.body,
+        "deviceToken": PrefService.getString(PrefKeys.deviceToken),
+      });
     });
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {

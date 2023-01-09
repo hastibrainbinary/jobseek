@@ -72,44 +72,6 @@ class JobRecomandationSearch extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            /* Container(
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              height: 32,
-              child: ListView.builder(
-                  itemCount: controller.jobs2.length,
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  physics: const BouncingScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () => controller.onTapJobs2(index),
-                      child: Obx(() => Container(
-                        margin: const EdgeInsets.only(right: 10),
-                        height: 32,
-                        width: 70,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                color: ColorRes.containerColor, width: 2),
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(10),
-                            ),
-                            color: controller.selectedJobs2.value == index
-                                ? ColorRes.containerColor
-                                : ColorRes.white),
-                        child: Text(
-                          controller.jobs2[index],
-                          style: appTextStyle(
-                              color: controller.selectedJobs2.value == index
-                                  ? ColorRes.white
-                                  : ColorRes.containerColor,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      )),
-                    );
-                  }),
-            ),*/
             GetBuilder<JobRecomandationSearchController>(
                 builder: (con) => allJobs(
                     FirebaseFirestore.instance

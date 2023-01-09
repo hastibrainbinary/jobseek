@@ -54,8 +54,12 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
                 padding: const EdgeInsets.all(15),
                 decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(15)),
-                    border: Border.all(color: const Color(0xffF3ECFF)),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(15),
+                    ),
+                    border: Border.all(
+                      color: const Color(0xffF3ECFF),
+                    ),
                     color: ColorRes.white),
                 child: Row(
                   children: [
@@ -72,11 +76,13 @@ class ManagerApplicationDetailScreen extends StatelessWidget {
                               fontSize: 13,
                               fontWeight: FontWeight.w500),
                         ),
-                        Text(args["docs"]["CompanyName"],
-                            style: appTextStyle(
-                                color: ColorRes.black,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400)),
+                        Text(
+                          args["docs"]["CompanyName"],
+                          style: appTextStyle(
+                              color: ColorRes.black,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400),
+                        ),
                         Row(
                           children: [
                             Text(

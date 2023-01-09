@@ -73,10 +73,10 @@ class ProfileLogoScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: ColorRes.containerColor,
                       borderRadius: BorderRadius.circular(10)),
-                  child: const Center(
+                  child:  Center(
                     child: Text(
                       Strings.registerForFree,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: ColorRes.white,
                           fontWeight: FontWeight.w500,
                           fontSize: 14),

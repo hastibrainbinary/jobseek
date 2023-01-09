@@ -5,6 +5,7 @@ import 'package:jobseek/common/widgets/back_button.dart';
 import 'package:jobseek/screen/manager_section/security/security_controller.dart';
 import 'package:jobseek/utils/app_style.dart';
 import 'package:jobseek/utils/color_res.dart';
+import 'package:jobseek/utils/string.dart';
 
 class SecurityScreen extends StatelessWidget {
   const SecurityScreen({Key? key}) : super(key: key);
@@ -31,7 +32,8 @@ class SecurityScreen extends StatelessWidget {
                   ),
                   const SizedBox(width: 75),
                   Text(
-                    'Security',
+                    Strings.security,
+
                     style: appTextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w500,

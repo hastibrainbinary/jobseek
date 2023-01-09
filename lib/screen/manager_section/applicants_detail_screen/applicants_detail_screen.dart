@@ -413,7 +413,7 @@ class ApplicantsDetailScreen extends StatelessWidget {
                     }
                     if (controller.msgController.text.isEmpty ||
                         controller.msgController.text == "") {
-                      Get.snackbar("Error", " Write Your Message",
+                      Get.snackbar("Error", "Write Your Message",
                           colorText: const Color(0xffDA1414));
                     } else {
                       FocusScopeNode currentFocus = FocusScope.of(context);
@@ -478,7 +478,7 @@ void settingModalBottomSheet(
                     const SizedBox(height: 20),
                     Center(
                       child: Text(
-                        "Successful!",
+                        Strings.successful,
                         style: appTextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w600,
@@ -537,15 +537,12 @@ void settingModalBottomSheet(
                               PrefService.getString(PrefKeys.companyName)) {
                             position = e['position'].toString();
 
-
-                              if (
-                              kDebugMode) {
-                                print(position);
-                              }
-
+                            if (kDebugMode) {
+                              print(position);
+                            }
                           }
                         });
-                        /*   controller.onTapOk();*/
+
                         await FirebaseFirestore.instance
                             .collection("Applicants")
                             .doc(FirebaseAuth.instance.currentUser!.uid)

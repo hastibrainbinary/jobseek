@@ -19,17 +19,10 @@ Widget tipsForYouSection() {
               style: appTextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 16,
-                color: Colors.black,
+                color: ColorRes.black,
               ),
             ),
             const Spacer(),
-            // Text(Strings.seeAll,
-            //     style: appTextStyle(
-            //         fontSize: 14,
-            //         fontWeight: FontWeight.w500,
-            //         color: ColorRes.containerColor))
-
-            // Text("See all",style: GoogleFonts.poppins(fontSize: ),)
           ],
         ),
       ),
@@ -81,8 +74,11 @@ Widget tipsForYouSection() {
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       alignment: Alignment.center,
                       decoration: const BoxDecoration(
-                          color: ColorRes.orange,
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                        color: ColorRes.orange,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                      ),
                       child: Text(
                         Strings.readMore,
                         style: appTextStyle(

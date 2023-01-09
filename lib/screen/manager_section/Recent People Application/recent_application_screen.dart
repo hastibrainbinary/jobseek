@@ -45,16 +45,14 @@ class RecentApplicationScreen extends StatelessWidget {
               ),
             ],
           ),
-          // const SizedBox(height: 5),
-          //  searchArea(),
-          //   const SizedBox(height: 12),
           GetBuilder<ManagerHomeScreenController>(
               id: "userDataSeeAll",
               builder: (con) {
                 return Expanded(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 20,),
+                      horizontal: 20,
+                    ),
                     child: InkWell(
                         //  onTap: () => Get.toNamed(AppRes.applicantsDetails),
                         child: recentPeopleBox()),
